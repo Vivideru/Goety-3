@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:zombie_servants",
+    "#goety:skeleton_servants",
+    "#goety:necromancers",
+    "#goety:reapers",
+    "#goety:wraiths",
+    "#goety:bound_illagers",
+    "goety:apostle",
+    "goety:frayed",
+    "goety:rattled",
+    "goety:crypt_slime",
+    "goety:crypt_slime_servant",
+    "goety:haunted_armor",
+    "goety:haunted_armor_servant",
+    "goety:haunted_skull",
+    "goety:phantom_servant",
+    "goety:skeleton_villager_servant",
+    "goety:skeleton_wolf",
+    "goety:grave_golem",
+    "goety:haunt",
+    "goety:wight",
+    "goety:skull_lord",
+    "goety:bone_lord"
+  ]
+}

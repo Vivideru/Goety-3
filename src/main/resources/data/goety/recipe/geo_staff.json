@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:dark_wand"
+                        },
+    "craftType":  "geoturgy",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:gems/amethyst"
+                        },
+                        {
+                            "tag":  "c:gems/amethyst"
+                        },
+                        {
+                            "tag":  "c:gems/amethyst"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/amethyst"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "tag":  "minecraft:logs"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        },
+                        {
+                            "item":  "goety:occult_fabric"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:geo_staff"
+               }
+}
+

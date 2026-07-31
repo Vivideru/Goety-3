@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:enchantable/focus/burning",
+    "goety:infernal_tome",
+    "goety:haunted_broom"
+  ]
+}

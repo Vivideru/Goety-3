@@ -1,0 +1,22 @@
+{
+  "name": "锻造之戒",
+  "icon": "goety:ring_of_the_forge",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "当召唤僵尸或骷髅仆从时，它们有时会装备盔甲。但是有了这个戒指，几率将增加到100%%。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:ring_of_the_forge"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "如果配置文件中的'illagerServantTrainArmor'条目被启用，佩戴锻造之戒可以让新训练的刌民自带盔甲。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ring_of_the_forge": 1
+  }
+}

@@ -1,0 +1,103 @@
+package com.Polarice3.Goety.compat.curios;
+
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.curios.SingleStackItem;
+import com.Polarice3.Goety.compat.ICompatable;
+import com.google.common.collect.ImmutableMap;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.fml.InterModComms;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import top.theillusivec4.curios.api.CuriosApi;
+
+import java.util.Map;
+
+@SuppressWarnings("all")
+public class CuriosIntegration implements ICompatable {
+
+    private static final Map<Item, String> TYPES = ImmutableMap.<Item, String>builder()
+            .put(ModItems.RING_OF_WANT.get(), "ring")
+            .put(ModItems.RING_OF_THIRST.get(), "ring")
+            .put(ModItems.RING_OF_FORCE.get(), "ring")
+            .put(ModItems.RING_OF_THE_FORGE.get(), "ring")
+            .put(ModItems.RING_OF_THE_DRAGON.get(), "ring")
+            .put(ModItems.DARK_HAT.get(), "head")
+            .put(ModItems.GRAND_TURBAN.get(), "head")
+            .put(ModItems.FROST_CROWN.get(), "head")
+            .put(ModItems.WIND_CROWN.get(), "head")
+            .put(ModItems.STORM_CROWN.get(), "head")
+            .put(ModItems.WILD_CROWN.get(), "head")
+            .put(ModItems.ABYSS_CROWN.get(), "head")
+            .put(ModItems.VOID_CROWN.get(), "head")
+            .put(ModItems.NETHER_CROWN.get(), "head")
+            .put(ModItems.WITCH_HAT.get(), "head")
+            .put(ModItems.WITCH_HAT_HEDGE.get(), "head")
+            .put(ModItems.CRONE_HAT.get(), "head")
+            .put(ModItems.UNHOLY_HAT.get(), "head")
+            .put(ModItems.UNHOLY_HAT_HALO.get(), "head")
+            .put(ModItems.NECRO_CROWN.get(), "head")
+            .put(ModItems.NAMELESS_CROWN.get(), "head")
+            .put(ModItems.TARGETING_MONOCLE.get(), "head")
+            .put(ModItems.AMETHYST_NECKLACE.get(), "necklace")
+            .put(ModItems.PENDANT_OF_HUNGER.get(), "necklace")
+            .put(ModItems.STAR_AMULET.get(), "necklace")
+            .put(ModItems.SEA_AMULET.get(), "necklace")
+            .put(ModItems.FELINE_AMULET.get(), "necklace")
+            .put(ModItems.DARK_ROBE.get(), "body")
+            .put(ModItems.DARK_ROBE_FANCY.get(), "body")
+            .put(ModItems.GRAND_ROBE.get(), "body")
+            .put(ModItems.GEO_ROBE.get(), "body")
+            .put(ModItems.FROST_ROBE.get(), "body")
+            .put(ModItems.FROST_ROBE_CRYO.get(), "body")
+            .put(ModItems.WIND_ROBE.get(), "body")
+            .put(ModItems.STORM_ROBE.get(), "body")
+            .put(ModItems.WILD_ROBE.get(), "body")
+            .put(ModItems.ABYSS_ROBE.get(), "body")
+            .put(ModItems.VOID_ROBE.get(), "body")
+            .put(ModItems.NETHER_ROBE.get(), "body")
+            .put(ModItems.NETHER_ROBE_WARPED.get(), "body")
+            .put(ModItems.ILLUSION_ROBE.get(), "body")
+            .put(ModItems.ILLUSION_ROBE_MIRROR.get(), "body")
+            .put(ModItems.WITCH_ROBE.get(), "body")
+            .put(ModItems.WITCH_ROBE_HEDGE.get(), "body")
+            .put(ModItems.WARLOCK_ROBE.get(), "body")
+            .put(ModItems.WARLOCK_ROBE_DARK.get(), "body")
+            .put(ModItems.UNHOLY_ROBE.get(), "body")
+            .put(ModItems.NECRO_CAPE.get(), "back")
+            .put(ModItems.NAMELESS_CAPE.get(), "back")
+            .put(ModItems.GRAVE_GLOVE.get(), "hands")
+            .put(ModItems.THRASH_GLOVE.get(), "hands")
+            .put(ModItems.TOTEM_OF_ROOTS.get(), "charm")
+            .put(ModItems.TOTEM_OF_SOULS.get(), "charm")
+            .put(ModItems.ALARMING_CHARM.get(), "charm")
+            .put(ModItems.OMINOUS_CHARM.get(), "charm")
+            .put(ModItems.FOCUS_BAG.get(), "belt")
+            .put(ModItems.FOCUS_PACK.get(), "belt")
+            .put(ModItems.BREW_BAG.get(), "belt")
+            .put(ModItems.ETERNAL_CAULDRON.get(), "back")
+            .put(ModItems.WARLOCK_SASH.get(), "belt")
+            .put(ModItems.WAYFARERS_BELT.get(), "belt")
+            .put(ModItems.SPITEFUL_BELT.get(), "belt")
+            .build();
+
+    @SuppressWarnings("removal")
+    public void setup(FMLCommonSetupEvent event) {
+        com.Polarice3.Goety.Goety.getModEventBus().addListener(this::sendImc);
+        com.Polarice3.Goety.Goety.getModEventBus().addListener(this::registerCapabilities);
+    }
+
+    private void sendImc(InterModEnqueueEvent event) {
+        TYPES.values().stream().distinct().forEach(t -> InterModComms.sendTo("curios", top.theillusivec4.curios.api.SlotTypeMessage.REGISTER_TYPE, () -> new top.theillusivec4.curios.api.SlotTypeMessage.Builder(t).build()));
+    }
+
+    private void registerCapabilities(RegisterCapabilitiesEvent event) {
+        TYPES.keySet().forEach(entry -> {
+            if (entry instanceof SingleStackItem item) {
+                // Capability registration runs after item registries freeze, so reuse the registered item instance.
+                CuriosApi.registerCurio(item, item);
+            }
+        });
+    }
+
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Lobos Negros",
+  "icon": "minecraft:bone",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Considerados contos de fadas, esses presságios da morte são muito reais e leais ao seu invocador."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Pode-se invocar um lobo negro leal através do uso de um $(l:focuses/wild/hunting_focus)Foco da Caça$(), ou através de um ritual que invoca um sem um tempo de vida limitado."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_black_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:black_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Clicar com o botão direito em um Lobo Negro leal com carne irá curá-lo."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Invocar Lobos Negros através de certas maneiras também pode produzir variantes da fera ou até mesmo outros tipos de lobos da caça."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:skeleton_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Uma versão morta-viva dos lobos regulares, embora diferentemente deles, estes lobos podem emitir um uivo que aumenta o dano de seus aliados esqueletos. Diferente das outras duas variantes, estes lobos não se tornam invisíveis ao caçar sua presa. Eles são invocados lançando $(l:focuses/wild/hunting_focus)Foco da Caça$() com um $(l:crafts/staff/necro_staff)Cajado Necro$(), ou através de outro ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_skeleton_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:winter_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Estes caninos de pelagem branca são um terror para as pessoas que vivem em áreas gélidas, com suas presas geladas e resistência ao frio. Eles são invocados lançando $(l:focuses/wild/hunting_focus)Foco da Caça$() com um $(l:crafts/staff/frost_staff)Cajado do Gelo$(), invocados em biomas com neve, ou através de outro ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_winter_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:stormhound",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Lendas de criaturas energeticas que aparecem em meio a um trovão são abundantes, agora suas mandíbulas elétricas estão sob seu comando. Eles são invocados lançando $(l:focuses/wild/hunting_focus)Foco da Caça$() com um $(l:crafts/staff/storm_staff)Cajado da Tempestade$(), invocados durante tempestades, ou através de outro ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_stormhound_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:hellhound",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Você já ouviu histórias e mitos de feras de caça arrastandos e condenados para as chamas do Nether, talvez seja a hora de colocar estas feras sob seu comando. Eles são invocados lançando $(l:focuses/wild/hunting_focus)Foco da Caça$() com um $(l:crafts/staff/nether_staff)Cajado do Nether$(), invocados em biomas do Nether, ou através de outro ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_hellhound_thrall"
+    }
+  ]
+}

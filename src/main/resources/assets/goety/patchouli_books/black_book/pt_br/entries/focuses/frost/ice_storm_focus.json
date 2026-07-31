@@ -1,0 +1,22 @@
+{
+  "name": "Foco da Tempestade de Gelo",
+  "icon": "goety:ice_storm_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Este feitiço invoca uma bola de gelo que atravessa objetos lentamente, congelando e danificando criaturas próximas. A bola aumenta de tamanho conforme avança."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/ice_storm_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/frost_staff)Cajado Gélido$() aumenta o tamanho inicial da tempestade de gelo."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ice_storm_focus": 1
+  }
+}

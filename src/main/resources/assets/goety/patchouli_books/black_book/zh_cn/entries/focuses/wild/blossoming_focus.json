@@ -1,0 +1,22 @@
+{
+  "name": "绽放聚晶",
+  "icon": "goety:blossoming_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该发射可以发射一团充满荒野力量的荆棘球，其命中的区域将生长出多根剧毒荆棘"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blossoming_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/wild_staff)荒野魔杖$()施法可以增加法术的影响半径."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blossoming_focus": 1
+  }
+}

@@ -1,0 +1,87 @@
+{
+    "type":  "apotheosis:invader",
+    "basic_data":  {
+                       "bonus_loot":  [
+                                          "apotheosis:entity/boss_drops"
+                                      ],
+                       "constraints":  {
+                                           "dimensions":  [
+                                                              "minecraft:the_end"
+                                                          ]
+                                       },
+                       "name":  "use_name_generation",
+                       "support":  [
+                                       {
+                                           "entity":  "goety:watchling",
+                                           "x":  1.5,
+                                           "z":  1.5
+                                       },
+                                       {
+                                           "entity":  "goety:blastling",
+                                           "x":  -1.5,
+                                           "z":  1.5
+                                       }
+                                   ],
+                       "valid_gear_sets":  {
+                                               "summit":  [
+                                                              "#summit_melee"
+                                                          ],
+                                               "pinnacle":  [
+                                                                "#pinnacle_melee"
+                                                            ]
+                                           },
+                       "weights":  {
+                                       "summit":  {
+                                                      "quality":  1.5,
+                                                      "weight":  45
+                                                  },
+                                       "pinnacle":  {
+                                                        "quality":  1.5,
+                                                        "weight":  45
+                                                    }
+                                   }
+                   },
+    "entity":  "goety:snareling",
+    "size":  {
+                 "height":  3.4,
+                 "width":  1.25
+             },
+    "stats":  {
+                  "apotheosis:mythic":  {
+                                            "attribute_modifiers":  [
+                                                                        {
+                                                                            "attribute":  "minecraft:generic.max_health",
+                                                                            "operation":  "add_value",
+                                                                            "value":  {
+                                                                                          "min":  120.0,
+                                                                                          "max":  170.0
+                                                                                      }
+                                                                        },
+                                                                        {
+                                                                            "attribute":  "minecraft:generic.attack_damage",
+                                                                            "operation":  "add_multiplied_base",
+                                                                            "value":  {
+                                                                                          "min":  0.85,
+                                                                                          "max":  1.25
+                                                                                      }
+                                                                        },
+                                                                        {
+                                                                            "attribute":  "minecraft:generic.knockback_resistance",
+                                                                            "operation":  "add_value",
+                                                                            "value":  0.8
+                                                                        }
+                                                                    ],
+                                            "effects":  [
+                                                            {
+                                                                "amplifier":  1.0,
+                                                                "effect":  "minecraft:fire_resistance"
+                                                            }
+                                                        ],
+                                            "enchant_chance":  0.8,
+                                            "enchantment_levels":  {
+                                                                       "primary":  55,
+                                                                       "secondary":  40
+                                                                   }
+                                        }
+              }
+}

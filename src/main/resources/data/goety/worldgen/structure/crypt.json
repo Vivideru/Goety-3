@@ -1,0 +1,68 @@
+{
+  "type": "goety:crypt",
+  "biomes": "#goety:has_structure/crypt",
+  "step": "surface_structures",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "goety:haunted_armor",
+          "weight": 20,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "goety:crypt_slime",
+          "weight": 10,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "minecraft:zombie",
+          "weight": 10,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "minecraft:skeleton",
+          "weight": 10,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "goety:reaper",
+          "weight": 5,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "goety:border_wraith",
+          "weight": 5,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "goety:bone_spider",
+          "weight": 5,
+          "minCount": 1,
+          "maxCount": 1
+        },
+        {
+          "type": "goety:cairn_necromancer",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 1
+        }
+      ]
+    }
+  },
+  "start_pool": "goety:crypt/start_pool",
+  "size": 30,
+  "terrain_adaptation": "bury",
+  "start_height": {
+    "absolute": -34
+  },
+  "project_start_to_heightmap": "WORLD_SURFACE_WG",
+  "max_distance_from_center": 1000
+}

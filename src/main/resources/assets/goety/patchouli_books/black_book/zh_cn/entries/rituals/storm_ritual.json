@@ -1,0 +1,24 @@
+{
+  "name": "风暴仪式",
+  "icon": "minecraft:lightning_rod",
+  "category": "goety:rituals",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "需求: $(li)相同于天空仪式 $(li)祭坛必须完全暴露在风暴中 $(li)4个避雷针 $(li)20个锁链 $(li)12个任意种类的铜块."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "goety:textures/gui/entries/storm_ritual.png"
+      ],
+      "border": true,
+      "text": "一个摆放仪式的例子."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "风暴将为你的仪式提供无与伦比的力量！铜块可以是任意种类。"
+    }
+  ]
+}

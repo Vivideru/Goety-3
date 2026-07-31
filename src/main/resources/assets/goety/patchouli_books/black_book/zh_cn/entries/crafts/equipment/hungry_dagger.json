@@ -1,0 +1,23 @@
+{
+  "name": "饥饿匕首",
+  "icon": "goety:hungry_dagger",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/craft_necro_brazier",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "尖牙匕首的变种，虽然不再有毒，但能为持有者恢复其所造成伤害的5%%的生命值。噬魂附魔等级越高，吸血百分比就越高。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:hungry_dagger"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "匕首可以在铁砧上使用$(l:crafts/dark_metal_ingot)黑暗金属锭$()来修复，它也可以自己使用灵魂能量来修复。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hungry_dagger": 1
+  }
+}

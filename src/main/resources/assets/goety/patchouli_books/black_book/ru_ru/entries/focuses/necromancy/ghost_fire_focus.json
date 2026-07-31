@@ -1,0 +1,22 @@
+{
+  "name": "Фокус ледяного пламени",
+  "icon": "goety:ghost_fire_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Пламя мертвецов может быть довольно леденящим. С помощью эктоплазмы вам удалось вызывать ледяное пламя в определённом месте или под ногами врагов."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/ghost_fire_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/necro_staff)некро-посоха$() вызывает пламя в радиусе 3 на 3 вместо 2 на 2."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ghost_fire_focus": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Monóculo de Mira",
+  "icon": "goety:targeting_monocle",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Tentar acertar seus inimigos com seus feitiços pode ser um pesadelo, pois eles podem desviar de suas Presas Mágicas com apenas um passo. Com este monóculo, você pode travar nos inimigos próximos pressionando a tecla 'Ativar Curio', permitindo que você os acerte com mais precisão com um feitiço."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:targeting_monocle"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Pressionar a tecla 'Ativar Curio' enquanto ativo mudará para outro inimigo próximo. Pressionar a tecla enquanto agachado desativará o monóculo."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:targeting_monocle": 1
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 11,
+  "description": {
+    "translate": "item.goety.music_disc_rm.desc"
+  },
+  "length_in_seconds": 180.0,
+  "sound_event": "goety:rm_theme_disc"
+}

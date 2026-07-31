@@ -1,0 +1,38 @@
+{
+  "name": "灾厄宰相",
+  "icon": "goety:soul_ruby",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_vizier",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "作为所有灾厄村民中等级最高的一个，灾厄宰相似乎拥有一颗强大的红宝石，可以放大魔法和魔力"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:vizier",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "在战斗中，他会尝试用铁剑冲向目标，然后在目标脚下召唤皇家尖刺。当他受伤时，一些怒鬼会被召唤来保护他们的主人，它们是恼鬼的远房表亲"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:irk"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一旦受到足够的伤害，或者周围有很多怒鬼，灾厄宰相就会施法，吸取周围所有怒鬼的生命力并治愈自己。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_ruby",
+      "title": "Ruby of Souls",
+      "text": "当他被杀死时，击杀他的玩家会获得最高等级的不祥之兆。有传言说灾厄宰相会把他强大的红宝石碎片送给某些唤魔者。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:soul_ruby": 5
+  }
+}

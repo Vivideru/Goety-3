@@ -1,0 +1,20 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "lm",
+                    "ml"
+                ],
+    "key":  {
+                "m":  {
+                          "item":  "goety:end_basalt_bricks"
+                      },
+                "l":  {
+                          "item":  "goety:end_soil_debris"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:soiled_end_basalt_bricks",
+                   "count":  2
+               }
+}
+

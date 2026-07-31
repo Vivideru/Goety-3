@@ -1,0 +1,18 @@
+{
+  "name": "Máquinas Abomináveis",
+  "icon": "minecraft:end_stone",
+  "category": "goety:rumors",
+  "advancement": "goety:goety/read_warred_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Dos pergaminhos de guerra, há menção de uma variante poderosa, mais forte até que os Golems de Redstone, que foi criada e banida para uma terra perdida. Também é mencionado como alguns estudiosos registraram como essa besta foi feita antes de serem destruídos, mas certamente ainda resta algum registro..."
+    },
+    {
+      "type": "patchouli:quest",
+      "trigger": "goety:goety/get_shrouded_blueprint",
+      "text": "O pergaminho menciona que o design da besta pode ter vindo de um ser de $(l)O End$(), e seus segredos estão dentro de um $(l)terminal de poder$()."
+    }
+  ]
+}

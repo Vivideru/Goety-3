@@ -1,0 +1,220 @@
+package com.Polarice3.Goety.common.entities.util;
+
+import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.utils.ServerParticleUtil;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.server.level.ServerEntity;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
+
+import java.util.Optional;
+
+/**
+ * Code based of @BobMowzies EntityFallingBlock: <a href="https://github.com/BobMowzie/MowziesMobs/blob/1.16.5/src/main/java/com/bobmowzie/mowziesmobs/server/entity/effects/EntityFallingBlock.java">...</a>
+ */
+public class ModFallingBlock extends Entity {
+    public static float GRAVITY = 0.1F;
+    private static final EntityDataAccessor<Optional<BlockState>> BLOCK_STATE = SynchedEntityData.defineId(ModFallingBlock.class, EntityDataSerializers.OPTIONAL_BLOCK_STATE);
+    private static final EntityDataAccessor<Integer> DURATION = SynchedEntityData.defineId(ModFallingBlock.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<String> MODE = SynchedEntityData.defineId(ModFallingBlock.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<Float> POP_UP_LEVEL = SynchedEntityData.defineId(ModFallingBlock.class, EntityDataSerializers.FLOAT);
+    public double prevMotionX, prevMotionY, prevMotionZ;
+    public float animY = 0;
+    public float prevAnimY = 0;
+
+    public ModFallingBlock(EntityType<?> entityTypeIn, Level worldIn) {
+        super(entityTypeIn, worldIn);
+        this.setBlock(Blocks.DIRT.defaultBlockState());
+        this.setDuration(70);
+    }
+
+    public ModFallingBlock(Level worldIn, int duration, BlockState blockState) {
+        super(ModEntityType.FALLING_BLOCK.get(), worldIn);
+        this.setBlock(blockState);
+        this.setDuration(duration);
+    }
+
+    public ModFallingBlock(Level worldIn, BlockState blockState, float popUp) {
+        super(ModEntityType.FALLING_BLOCK.get(), worldIn);
+        this.setBlock(blockState);
+        this.setMode(FallingBlockMode.POPUP_ANIM);
+        this.setPopUp(popUp);
+    }
+
+    public ModFallingBlock(Level worldIn, Vec3 vec3, BlockState blockState, float popUp) {
+        this(worldIn, blockState, popUp);
+        this.setPos(vec3);
+    }
+
+    public ModFallingBlock(Level worldIn, double x, double y, double z, BlockState blockState, int duration) {
+        this(ModEntityType.FALLING_BLOCK.get(), worldIn);
+        this.setBlock(blockState);
+        this.setPos(x, y + (double)((1.0F - this.getBbHeight()) / 2.0F), z);
+        this.setDeltaMovement(Vec3.ZERO);
+        this.setDuration(duration);
+        this.setMode(FallingBlockMode.DEBRIS);
+    }
+
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        builder.define(BLOCK_STATE, Optional.of(Blocks.DIRT.defaultBlockState()));
+        builder.define(DURATION, 70);
+        builder.define(MODE, FallingBlockMode.MOBILE.toString());
+        builder.define(POP_UP_LEVEL, 1.0F);
+    }
+
+    @Override
+    protected void readAdditionalSaveData(CompoundTag compound) {
+        Tag blockStateCompound = compound.get("BlockState");
+        if (blockStateCompound != null) {
+            BlockState blockState = NbtUtils.readBlockState(this.level().holderLookup(Registries.BLOCK), compound.getCompound("BlockState"));
+            this.setBlock(blockState);
+        }
+        this.setDuration(compound.getInt("duration"));
+        this.tickCount = compound.getInt("tickCount");
+        this.entityData.set(MODE, compound.getString("mode"));
+        this.setPopUp(compound.getFloat("popUp"));
+
+    }
+
+    @Override
+    protected void addAdditionalSaveData(CompoundTag compound) {
+        BlockState blockState = getBlock();
+        if (blockState != null) {
+            compound.put("BlockState", NbtUtils.writeBlockState(blockState));
+        }
+        compound.putInt("duration", this.getDuration());
+        compound.putInt("tickCount", this.tickCount);
+        compound.putString("mode", this.entityData.get(MODE));
+        compound.putFloat("popUp", this.entityData.get(POP_UP_LEVEL));
+    }
+    @Override
+    public void onAddedToLevel() {
+        if (this.getDeltaMovement().x() > 0.0D || this.getDeltaMovement().z() > 0.0D) {
+            this.setYRot((float) ((180.0F / Math.PI) * Math.atan2(getDeltaMovement().x(), getDeltaMovement().z())));
+        }
+        this.setXRot(getXRot() + this.random.nextFloat() * 360.0F);
+        super.onAddedToLevel();
+    }
+
+    @Override
+    public void tick() {
+        if (this.getMode() == FallingBlockMode.POPUP_ANIM) {
+            this.setDeltaMovement(0.0F, 0.0F, 0.0F);
+            this.gameEvent(GameEvent.BLOCK_DETACH);
+        }
+        this.prevMotionX = this.getDeltaMovement().x;
+        this.prevMotionY = this.getDeltaMovement().y;
+        this.prevMotionZ = this.getDeltaMovement().z;
+        super.tick();
+        if (this.getMode() == FallingBlockMode.DEBRIS){
+            if (!this.isNoGravity()) {
+                this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
+            }
+            this.move(MoverType.SELF, this.getDeltaMovement());
+            this.setDeltaMovement(this.getDeltaMovement().scale(0.98D));
+
+            if (this.onGround() && this.tickCount > this.getDuration()) {
+                if (this.level() instanceof ServerLevel serverLevel) {
+                    ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, new BlockParticleOption(ParticleTypes.BLOCK, this.getBlock()), this);
+                }
+                this.discard();
+            }
+            if (this.tickCount > 300) {
+                if (this.level() instanceof ServerLevel serverLevel) {
+                    ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, new BlockParticleOption(ParticleTypes.BLOCK, this.getBlock()), this);
+                }
+                this.discard();
+            }
+        }
+        if (this.getMode() == FallingBlockMode.MOBILE) {
+            this.setDeltaMovement(this.getDeltaMovement().subtract(0.0F, GRAVITY, 0.0F));
+            if (this.onGround()) {
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.7F));
+            } else {
+                this.setXRot(this.getXRot() + 15.0F);
+            }
+            this.move(MoverType.SELF, this.getDeltaMovement());
+
+            if (this.tickCount > this.getDuration()) {
+                if (this.level() instanceof ServerLevel serverLevel) {
+                    ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, new BlockParticleOption(ParticleTypes.BLOCK, this.getBlock()), this);
+                }
+                this.discard();
+            }
+        } else {
+            this.prevAnimY = this.animY;
+            this.animY += this.getPopUp();
+            this.setPopUp(this.getPopUp() - GRAVITY);
+            if (this.animY < -0.5F) {
+                this.discard();
+            }
+        }
+    }
+
+    public BlockState getBlock() {
+        Optional<BlockState> blockState = this.entityData.get(BLOCK_STATE);
+        // Client-side spawn data may arrive before the optional block state is populated; render and particles need a safe fallback.
+        return blockState.orElse(Blocks.DIRT.defaultBlockState());
+    }
+
+    public void setBlock(BlockState block) {
+        this.entityData.set(BLOCK_STATE, Optional.ofNullable(block));
+    }
+
+    public int getDuration() {
+        return this.entityData.get(DURATION);
+    }
+
+    public void setDuration(int duration) {
+        this.entityData.set(DURATION, duration);
+    }
+
+    public FallingBlockMode getMode() {
+        String mode = this.entityData.get(MODE);
+        if (mode.isEmpty()) {
+            return FallingBlockMode.MOBILE;
+        }
+        return FallingBlockMode.valueOf(this.entityData.get(MODE));
+    }
+
+    public void setMode(FallingBlockMode mode) {
+        this.entityData.set(MODE, mode.toString());
+    }
+
+    public float getPopUp() {
+        return this.entityData.get(POP_UP_LEVEL);
+    }
+
+    private void setPopUp(float power) {
+        this.entityData.set(POP_UP_LEVEL, power);
+    }
+
+    @Override
+    public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
+        return super.getAddEntityPacket(serverEntity);
+    }
+
+    public enum FallingBlockMode {
+        MOBILE,
+        POPUP_ANIM,
+        DEBRIS
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Unholy Robes",
+  "icon": "goety:unholy_robe",
+  "category": "goety:crafts/garment",
+  "advancement": "goety:goety/kill_a_apostle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Using the $(l)purest$() blood of the dark emissary, $(l)which can only be obtained by slaying them within the Nether$(), you've made replica of their garments. The Robes gives you immunity to fire and Burn Hexes, and both robe and hat empowers some spells with hellfire."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:unholy_fabric"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:unholy_robe"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:unholy_hat"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Unholy Hat reduces all incoming damage towards the wearer when within the Nether, as well as capping the configurable max amount of damage the wearer can take much like Apostles. The Unholy Robes grants resistance to hellfire damage."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:unholy_fabric": 1,
+    "goety:unholy_robe": 2,
+    "goety:unholy_hat": 3,
+    "goety:unholy_hat_halo": 3
+  }
+}

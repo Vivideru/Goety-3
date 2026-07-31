@@ -1,0 +1,22 @@
+{
+  "name": "Phantasm Focus",
+  "icon": "goety:phantasm_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Phantoms are quite an oddity, beings that fly between reality and un-reality, only appearing towards the sleep-deprived. With this focus, you're able to summon and bind them to your will."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/phantasm_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more phantoms at once."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:phantasm_focus": 1
+  }
+}

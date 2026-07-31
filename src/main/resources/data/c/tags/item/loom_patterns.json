@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "goety:cross_banner_pattern",
+    "goety:gale_banner_pattern",
+    "goety:moon_banner_pattern"
+  ]
+}

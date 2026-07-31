@@ -1,0 +1,30 @@
+{
+  "name": "Топотун",
+  "icon": "minecraft:saddle",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/read_ravaging_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Похоже, что вы нашли способ создать свирепого скакуна, похожего на лошадь, из злодеянина, а не крестьянина. В отличие от разорителей, на этих скакунах можно кататься сразу после превращения."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_pillager_to_trampler"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Как и у верблюдов, нажатие прыжка позволяет совершить рывок вперёд, чтобы приблизиться к врагам."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:trampler_servant",
+      "scale": 0.5
+    },
+	{
+      "type": "patchouli:text",
+      "text": "Топотуны могут быть частью $(l:goety:mutations/illager_servants)рейдерского отряда$(), но не могут быть его лидерами."
+    }
+  ]
+}

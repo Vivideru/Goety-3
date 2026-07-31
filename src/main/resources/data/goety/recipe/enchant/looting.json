@@ -1,0 +1,27 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:enchant",
+    "activation_item":  {
+                            "item":  "minecraft:book"
+                        },
+    "craftType":  "magic",
+    "soulCost":  25,
+    "duration":  10,
+    "enchantment":  "minecraft:looting",
+    "xpLevelCost":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:storage_blocks/gold"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/emerald"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:enchanted_book"
+               }
+}
+

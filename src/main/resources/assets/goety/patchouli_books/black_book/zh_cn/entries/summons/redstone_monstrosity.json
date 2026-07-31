@@ -1,0 +1,48 @@
+{
+  "name": "红石巨兽",
+  "icon": "goety:reinforced_redstone_block",
+  "category": "goety:summons",
+  "advancement": "goety:goety/read_terminus_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在古代，一位君主在指引下打造了这些比红石傀儡更强大的战争兵器，却因未知缘由将其放逐。然而这份工艺却被别有用心之人秘密记录，这使你能重现这早已被遗忘的可怖造物。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:redstone_monstrosity",
+      "scale": 0.75
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "goety:redstone_monstrosity",
+      "text": "对中央的强化红石块右键使用活力核心。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:reinforced_redstone_block"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "石砖可以作为模具基材，亦可替换为深板岩砖等同类型方块。这种可怖造物堪称您麾下的最强战力，其实力远非其他仆从所能企及。手持红石块对其右键点击便可回复血量。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:redstone_monstrosity_head",
+      "text": "红石巨兽死亡时必定掉落其头颅。头颅可用于以更低的代价复活仆从。并且始终铭记其最初创造者与主人，复活后的红石巨兽仅会听命于原主。"
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "goety:redstone_monstrosity_revive",
+      "enable_visualize": false
+    },
+    {
+      "type": "patchouli:text",
+      "text": "红石巨兽可以加入$(l:goety:mutations/illager_servants)袭击$()，但不能被任命为队长。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:reinforced_redstone_block": 3
+  }
+}

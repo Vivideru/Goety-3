@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "#":  {
+                          "item":  "goety:detritus"
+                      }
+            },
+    "pattern":  [
+        "###"
+    ],
+    "result":  {
+                   "count":  6,
+                   "id":  "goety:detritus_dust"
+               }
+}
+
+

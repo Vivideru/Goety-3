@@ -1,0 +1,20 @@
+{
+  "name": "灵魂束聚晶",
+  "icon": "goety:soul_bolt_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "拥有这个聚晶，你就能够迅速向你的敌人发射灵魂能量，造成击退和魔法伤害。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/soul_bolt_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_forbidden_scroll",
+      "text": "使用$(l:crafts/staff/nameless_staff)无名魔杖$()承载此聚晶施法会发射死灵束，造成远比灵魂束高的伤害，且可以穿透多个敌人并造成伤害。"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "type": "apotheosis:invader",
+  "basic_data": {
+    "bonus_loot": [
+      "apotheosis:entity/boss_drops"
+    ],
+    "constraints": {
+      "dimensions": [
+        "minecraft:overworld"
+      ]
+    },
+    "name": "use_name_generation",
+    "support": [
+      {
+        "entity": "goety:wraith",
+        "x": 1.5,
+        "z": 1.5
+      },
+      {
+        "entity": "goety:border_wraith",
+        "x": -1.5,
+        "z": 1.5
+      }
+    ],
+    "valid_gear_sets": {
+      "frontier": [
+        "#frontier_melee"
+      ],
+      "ascent": [
+        "#ascent_melee"
+      ],
+      "summit": [
+        "#summit_melee"
+      ]
+    },
+    "weights": {
+      "frontier": {
+        "quality": 0.75,
+        "weight": 70
+      },
+      "ascent": {
+        "quality": 0.75,
+        "weight": 70
+      },
+      "summit": {
+        "quality": 0.75,
+        "weight": 40
+      }
+    }
+  },
+  "entity": "goety:wraith",
+  "size": {
+    "height": 2.3,
+    "width": 0.7
+  },
+  "stats": {
+    "apotheosis:rare": {
+      "attribute_modifiers": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "operation": "add_value",
+          "value": {
+            "min": 45.0,
+            "max": 75.0
+          }
+        },
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "add_multiplied_base",
+          "value": {
+            "min": 0.25,
+            "max": 0.5
+          }
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "operation": "add_value",
+          "value": 0.35
+        }
+      ],
+      "effects": [
+        {
+          "amplifier": 1.0,
+          "effect": "minecraft:fire_resistance"
+        }
+      ],
+      "enchant_chance": 0.35,
+      "enchantment_levels": {
+        "primary": 23,
+        "secondary": 15
+      }
+    },
+    "apotheosis:epic": {
+      "attribute_modifiers": [
+        {
+          "attribute": "minecraft:generic.max_health",
+          "operation": "add_value",
+          "value": {
+            "min": 80.0,
+            "max": 115.0
+          }
+        },
+        {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "add_multiplied_base",
+          "value": {
+            "min": 0.4,
+            "max": 0.7
+          }
+        },
+        {
+          "attribute": "minecraft:generic.knockback_resistance",
+          "operation": "add_value",
+          "value": 0.55
+        }
+      ],
+      "effects": [
+        {
+          "amplifier": 1.0,
+          "effect": "minecraft:fire_resistance"
+        }
+      ],
+      "enchant_chance": 0.6,
+      "enchantment_levels": {
+        "primary": 35,
+        "secondary": 25
+      }
+    }
+  }
+}

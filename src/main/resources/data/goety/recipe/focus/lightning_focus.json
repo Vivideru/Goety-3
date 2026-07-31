@@ -1,0 +1,34 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:thunderbolt_focus"
+                        },
+    "craftType":  "storm",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:lightning_rod"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/copper"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/copper"
+                        },
+                        {
+                            "tag":  "c:gems/prismarine"
+                        },
+                        {
+                            "tag":  "c:dusts/prismarine"
+                        },
+                        {
+                            "tag":  "c:tools/tridents"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:lightning_focus"
+               }
+}
+

@@ -1,0 +1,11 @@
+﻿{
+    "type":  "goety:pulverize",
+    "ingredient":  {
+                       "item":  "minecraft:quartz_block"
+                   },
+    "item_result":  {
+                        "id":  "minecraft:quartz",
+                        "count":  4
+                    }
+}
+

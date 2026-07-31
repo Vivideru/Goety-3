@@ -1,0 +1,31 @@
+{
+  "name": "烈风长袍",
+  "icon": "goety:wind_robe",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "烈风长袍可让你缓慢降落（按住潜行键时降落速度会加快），并使你免疫摔落伤害。然而，长袍每使你缓降一秒，都会消耗灵魂能量。穿着烈风长袍亦能使烈风法术的灵魂消耗减半。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_robe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "倘若召唤者身着烈风长袍，则烈风仆从将会使用召唤者的灵魂能量治愈自己。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_crown"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "佩戴此烈风王冠可将施展烈风法术所需的时间减半，并能防止你的烈风仆从像恼鬼那样自然消亡。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:wind_robe": 1,
+    "goety:wind_crown": 3
+  }
+}

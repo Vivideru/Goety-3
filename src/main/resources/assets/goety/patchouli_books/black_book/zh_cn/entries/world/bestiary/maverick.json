@@ -1,0 +1,21 @@
+{
+  "name": "独行者",
+  "icon": "minecraft:iron_sword",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_maverick",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "比起他们的近亲，他们更擅长近身作战，他们会通过剑刃施加药水效果，然后逃离并饮用药水强化自身。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:maverick",
+      "text": "和他们的女巫近亲一样，他们对魔法有抗性。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "如果流浪商人在哭泣黑曜石方块下方，他们有一定几率会转变为特立行者。"
+    }
+  ]
+}

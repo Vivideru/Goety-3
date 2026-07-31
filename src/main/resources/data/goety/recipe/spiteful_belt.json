@@ -1,0 +1,28 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:iron_ingot"
+                        },
+    "craftType":  "geoturgy",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:cactus"
+                        },
+                        {
+                            "item":  "goety:occult_fabric"
+                        },
+                        {
+                            "item":  "minecraft:sweet_berries"
+                        },
+                        {
+                            "tag":  "c:leather"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:spiteful_belt"
+               }
+}
+

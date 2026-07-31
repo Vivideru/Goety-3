@@ -1,0 +1,290 @@
+﻿{
+    "type":  "minecraft:entity",
+    "pools":  [
+                  {
+                      "bonus_rolls":  0,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:glowstone_dust"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:sugar"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:redstone"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:spider_eye"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  2,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:glass_bottle"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "add":  false,
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:set_count"
+                                                            },
+                                                            {
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "max":  1,
+                                                                              "min":  0
+                                                                          },
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:gunpowder"
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "minecraft:pufferfish",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "add":  false,
+                                                                "conditions":  [
+
+                                                                               ]
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "minecraft:golden_carrot",
+                                          "conditions":  [
+
+                                                         ],
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "add":  false
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "minecraft:magma_cream",
+                                          "conditions":  [
+                                                             {
+                                                                 "condition":  "minecraft:random_chance_with_enchanted_bonus",
+                                                                 "unenchanted_chance":  0.11,
+                                                                 "enchanted_chance":  {
+                                                                                          "type":  "minecraft:linear",
+                                                                                          "base":  0.13,
+                                                                                          "per_level_above_first":  0.02
+                                                                                      },
+                                                                 "enchantment":  "minecraft:looting"
+                                                             }
+                                                         ],
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "minecraft:glistering_melon_slice",
+                                          "conditions":  [
+                                                             {
+                                                                 "condition":  "minecraft:random_chance_with_enchanted_bonus",
+                                                                 "unenchanted_chance":  0.025,
+                                                                 "enchanted_chance":  {
+                                                                                          "type":  "minecraft:linear",
+                                                                                          "base":  0.035,
+                                                                                          "per_level_above_first":  0.01
+                                                                                      },
+                                                                 "enchantment":  "minecraft:looting"
+                                                             }
+                                                         ],
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ]
+                                      },
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "minecraft:rabbit_foot",
+                                          "conditions":  [
+                                                             {
+                                                                 "condition":  "minecraft:random_chance_with_enchanted_bonus",
+                                                                 "unenchanted_chance":  0.025,
+                                                                 "enchanted_chance":  {
+                                                                                          "type":  "minecraft:linear",
+                                                                                          "base":  0.035,
+                                                                                          "per_level_above_first":  0.01
+                                                                                      },
+                                                                 "enchantment":  "minecraft:looting"
+                                                             }
+                                                         ],
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "type":  "minecraft:uniform",
+                                                                              "min":  0,
+                                                                              "max":  1
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ]
+                                      }
+                                  ],
+                      "rolls":  1
+                  }
+              ]
+}

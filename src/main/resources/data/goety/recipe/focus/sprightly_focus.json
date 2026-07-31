@@ -1,0 +1,30 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "efe",
+                    "gcg",
+                    "ele"
+                ],
+    "key":  {
+                "c":  {
+                          "item":  "goety:animation_core"
+                      },
+                "f":  {
+                          "item":  "goety:electrocute_focus"
+                      },
+                "g":  {
+                          "tag":  "c:glass"
+                      },
+                "l":  {
+                          "item":  "goety:glow_light_focus"
+                      },
+                "e":  {
+                          "item":  "goety:ectoplasm"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:sprightly_focus",
+                   "count":  1
+               }
+}
+

@@ -1,0 +1,31 @@
+{
+  "name": "Haunted Jug",
+  "icon": "goety:haunted_jug",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_dark_altar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes a dark wizard needs more than just two water source blocks to obtain infinite water, something more compact and manageable perhaps."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:haunted/haunted_jug"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Haunted Jug holds infinite supply of water that anyone can take through buckets, bottles and even pipes! However, what truly makes this jug special is that, as it's name suggests, is that it's haunted with spiritual energies."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The jug will attempt to fill in any nearby valid container, such as cauldrons, with water, and will even extinguish any creature that's lit aflame near itself."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Right-clicking on the jug with a Wand/Staff will put a lid on it, disabling the feature, or remove it if it's lidded."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:haunted_jug": 1
+  }
+}

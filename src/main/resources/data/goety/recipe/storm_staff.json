@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:dark_wand"
+                        },
+    "craftType":  "storm",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:lightning_rod"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/copper"
+                        },
+                        {
+                            "tag":  "c:dusts/redstone"
+                        },
+                        {
+                            "tag":  "c:gems/diamond"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        },
+                        {
+                            "item":  "goety:magic_fabric"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:storm_staff"
+               }
+}
+

@@ -1,0 +1,48 @@
+{
+  "name": "Призраки-прислужники",
+  "icon": "goety:wraith_servant_spawn_egg",
+  "category": "goety:summons",
+  "advancement": "goety:goety/kill_a_wraith",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Эти призраки связаны вашей волей до такой степени, что их ледяное пламя не наносит урон ни вам, ни вашим союзникам."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:wraith_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Можно вызвать этих существ с помощью $(l:focuses/necromancy/spooky_focus)фокуса страха$() или ритуала, который призывает призраков с неограниченным сроком жизни."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_wraith_thrall"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Призраков-прислужников можно исцелять, нажав по ним ПКМ эктоплазмой."
+    },
+	{
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/kill_a_muck_wraith",
+      "entity": "goety:muck_wraith_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/kill_a_muck_wraith",
+      "text": "Разновидность призраков, создающая кислотный газ и вызываемая в болоте."
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/kill_a_border_wraith",
+      "entity": "goety:border_wraith_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/kill_a_border_wraith",
+      "text": "Разновидность призраков, плюющаяся льдом и вызываемая в $(l:world/crypts)склепе$()."
+    }
+  ]
+}

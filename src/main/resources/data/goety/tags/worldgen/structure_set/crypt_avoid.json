@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:mineshafts",
+    {
+      "id": "dungeonnowloading:labyrinth",
+      "required": false
+    }
+  ]
+}

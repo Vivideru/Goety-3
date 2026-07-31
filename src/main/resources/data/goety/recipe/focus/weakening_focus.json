@@ -1,0 +1,29 @@
+﻿{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:empty_focus"
+                        },
+    "craftType":  "magic",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "goety:mystic_core"
+                        },
+                        {
+                            "item":  "goety:wind_blast_focus"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        { "item": "minecraft:potion" }
+                    ],
+    "result":  {
+                   "id":  "goety:weakening_focus"
+               }
+}
+

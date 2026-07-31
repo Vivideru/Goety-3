@@ -1,0 +1,27 @@
+{
+  "name": "缠魂魔镜",
+  "icon": "goety:haunted_mirror",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_dark_altar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "通过一些研究和试验，你发现了一种将缠魂玻璃变成镜子的方法，这种镜子能让你从一个地方传送到另一个地方。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:haunted/haunted_mirror"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "为了通过镜子进行瞬移，你必须在世界上放置两个镜子，它们必须位于相同的X和Z轴或Y轴上。对于X和Z轴，也就是水平轴，两个镜子必须放置在相同的Y轴上，每个镜子面向对方，距离不超过32个方块，这样看起来就像是墙壁之间的隧道或孔洞。."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "对于Y轴（即垂直轴）而言，镜子必须朝向相同方向，并且共享相同的XZ坐标，彼此上下相距16个方块。镜子会先尝试寻找自身上方的另一块镜子，然后才会搜索下方。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:haunted_mirror": 1
+  }
+}

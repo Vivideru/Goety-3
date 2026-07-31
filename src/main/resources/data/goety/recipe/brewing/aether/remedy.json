@@ -1,0 +1,13 @@
+﻿{
+    "type":  "goety:brewing",
+    "ingredient":  {
+                       "item":  "aether:skyroot_remedy_bucket"
+                   },
+    "effect":  "aether:remedy",
+    "soulCost":  25,
+    "capacityExtra":  4,
+    "duration":  1800,
+    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "aether" } ]
+}
+
+

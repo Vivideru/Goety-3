@@ -1,0 +1,20 @@
+{
+  "name": "灵魂修补器",
+  "icon": "goety:soul_mender",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_dark_ingot",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "灵魂修补器是一个强大的设备，可以使用灵魂能量修复损坏的武器和工具。灵魂修补器必须放置在含有图腾或$(l:crafts/soul_transfer_gem)连接宝石$()的$(l:intro/cursed_cage)诅咒之笼$()的顶部才会激活, 然后它会慢慢地修复放在自己里面的物品"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:soul_mender"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:soul_mender": 1
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "黑暗铁砧",
+  "icon": "goety:dark_anvil",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_dark_ingot",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "铁砧的处理非常麻烦。它们不仅容易损坏，而且对经验值需求极大，并对过高的经验值需求产生限制。使用黑暗合金锭，你可以打造出更强大的铁砧"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark/dark_anvil"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当它被放在$(l:intro/cursed_cage)诅咒之笼$()上方的时候，黑暗铁砧可以修复自己，这种修复并不经常发生，并且修复过程会从诅咒之笼吸收大量灵魂能量。物品在黑暗铁砧使用后，修复它所需要的经验并不会翻倍，只会增加1级。“过于昂贵”的情况也不会发生，消耗的经验上限只取决于你的等级，物品可以随意使用"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:chipped_dark_anvil": 1,
+    "goety:damaged_dark_anvil": 1
+  }
+}

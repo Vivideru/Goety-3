@@ -1,0 +1,24 @@
+{
+  "name": "Phantom Servants",
+  "icon": "minecraft:phantom_membrane",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "While phantoms usually appear to hunt the sleep-deprived, you've nonetheless found a way to bind these creatures into your service."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:phantom_servant",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When summoned while wearing a Necro Cape, the resulting phantom would appear translucent and gain the ability to pass through blocks! One can call these creatures through the use of a $(l:focuses/necromancy/phantasm_focus)Phantasm Focus$(), or through a ritual which summons one without a limited lifespan."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_phantom_servant_thrall"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "name": "Скелеты-прислужники",
+  "icon": "minecraft:skeleton_skull",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Скелеты немного умнее и проворнее своих разлагающихся собратьев, но в остальном по-прежнему выполняют простейшие функции."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "В следующих абзацах будут подробно описаны варианты скелетов, которых может вызвать некромант."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Можно вызвать этих существ с помощью $(l:focuses/necromancy/osseous_focus)фокуса кости$() или ритуала, который призывает скелетов с неограниченным сроком жизни."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_skeleton_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:skeleton_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Скелеты-прислужники попытаются убить тех, кто причинит вам вред, или ближайших враждебных существ. Если вы носите некро-плащ, то их стрелы будут проходить сквозь других ваших прислужников."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:stray_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Попытка призвать скелета-прислужника под открытым небом холодной тундры или с помощью $(l:crafts/staff/frost_staff)морозного посоха$() приведёт к появлению зимогора-прислужника."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:mossy_skeleton_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Находясь в биоме джунглей, у вас есть шанс призвать замшелого скелета-прислужника, и он будет 100%-ный, если призывать скелета с помощью $(l:crafts/staff/wild_staff)дикого посоха$(). Его стрелы отравляют, а если на вас $(l:crafts/garment/wild_robe)дикая мантия$(), то накладывают кислотный яд."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:sunken_skeleton_servant",
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
+      "text": "В мире морском скелеты не только плавают, но и орудуют арбалетами, стреляющими гарпунами, которые летят сквозь воду лучше, чем обычные стрелы."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:skeleton_pillager"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Попытка призвать скелета-прислужника на аванпосте разбойников вызовет прислуживающего вам разбойника-скелета, у которого больше здоровья, чем у обычных скелетов, и который орудует арбалетом."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Скелеты-прислужники могут носить любую броню, мечи и луки, то есть могут атаковать как на расстоянии, так и в ближнем бою."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Любопытно, что заклинание не может вызвать прислуживающего вам визер-скелета, если оно применяется в крепости Незера. Визер-скелеты, похоже, обладают огромной магической силой и преданностью своему дому, раз их нельзя так просто призвать..."
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "entity": "goety:wither_skeleton_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "text": "После долгих поисков вы нашли способ призвать бывших обитателей крепости и подчинить их своей воле. Они накладывают иссушение в ближнем бою и стреляют огненными стрелами, если им дать лук."
+    },
+    {
+      "type": "goety:ritual",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "recipe": "goety:thrall/summon_wither_skeleton_thrall"
+    }
+  ]
+}

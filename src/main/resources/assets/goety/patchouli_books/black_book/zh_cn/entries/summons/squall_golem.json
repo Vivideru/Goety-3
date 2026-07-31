@@ -1,0 +1,40 @@
+{
+  "name": "呼啸傀儡",
+  "icon": "goety:jade_block",
+  "category": "goety:summons",
+  "advancement": "goety:goety/read_mistral_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "山峰上的神祠似乎存有一份制造风力驱动傀儡的蓝图副本。这些傀儡似乎与同类傀儡大不相同，因为它们似乎需要外部能量才能运转。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:squall_golem",
+      "scale": 0.75
+    },
+    {
+      "type": "multiblock",
+      "multiblock_id": "goety:squall_golem",
+      "text": "手持活力核心右键最中间的玉块。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "被制造出来时，傀儡将处于未激活、无法移动的状态，并且不知为何不会受到伤害。傀儡需要从一种名为$(l:goety:crafts/artifice/resonance_crystal)共振水晶$()的方块才会运行。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:resonance_crystal",
+      "text": "要激活傀儡，应该通过用$(l:goety:crafts/artifice/resonance_crystal)共振水晶$()左键它，一旦注册完成，就必须使用鼓风机向其吹风来为其供能。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当供能后，水晶将激活傀儡。如果水晶被破坏或者失去能量，傀儡将会关闭并再次处于未激活状态。$(br2)傀儡只能跟随或待命，不能像其他仆从那样四处游荡。如果傀儡受损，可以使用玉或者玉块来修复。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当傀儡处于未激活状态时，空手右键点击傀儡将会使其朝着你的方向旋转一定角度。."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "雷霆之锤",
+  "icon": "goety:stormlander",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/get_stormlander",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "雷霆之锤，附有强大风暴之力的锤子，是灾厄村民的宝藏"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "它拥有普通大锤的所有功能，另外，你可以在铁砧上使用$(l:crafts/pale_steel_ingot)苍白金属锭$()修复它"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:stormlander": 1
+  }
+}

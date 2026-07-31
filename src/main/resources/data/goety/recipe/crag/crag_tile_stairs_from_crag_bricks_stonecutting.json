@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:crag_bricks"
+                   },
+    "result":  {
+                   "id":  "goety:crag_tile_stairs",
+                   "count":  1
+               }
+}

@@ -1,0 +1,31 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:wind_crown"
+                        },
+    "craftType":  "storm",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "item":  "minecraft:lightning_rod"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/redstone"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:storm_crown"
+               }
+}
+

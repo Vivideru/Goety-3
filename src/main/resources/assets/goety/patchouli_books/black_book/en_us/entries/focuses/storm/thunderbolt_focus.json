@@ -1,0 +1,19 @@
+{
+  "name": "Thunderbolt Focus",
+  "icon": "goety:thunderbolt_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Instead of multiple electric sparks, you shoot one big spark that deals more damage. When not casted from $(l:crafts/staff/storm_staff)Storm Staff$(), the thunderbolt will be affected by Lightning Rods."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/thunderbolt_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/storm_staff)Storm Staff$() will also deal a chain lightning effect and have an increased chance of inflicting Spasms effect."
+    }
+  ]
+}

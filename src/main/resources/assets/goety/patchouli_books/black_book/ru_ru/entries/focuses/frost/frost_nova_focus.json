@@ -1,0 +1,22 @@
+{
+  "name": "Фокус ледяного взрыва",
+  "icon": "goety:frost_nova_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы создаёте вокруг себя ледяной взрыв (а если присели — вокруг жертвы), нанося урон всем находящимся поблизости существам и замораживая их. Взрыв наносит ледяной урон и не причиняет вреда владельцу фокуса."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/frost_nova_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/frost_staff)морозного посоха$() увеличит радиус взрыва и скорость замерзания врагов."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:frost_nova_focus": 1
+  }
+}

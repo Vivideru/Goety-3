@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "goety:block/pine_slab"
+    },
+    "type=double": {
+      "model": "goety:block/pine_planks"
+    },
+    "type=top": {
+      "model": "goety:block/pine_slab_top"
+    }
+  }
+}

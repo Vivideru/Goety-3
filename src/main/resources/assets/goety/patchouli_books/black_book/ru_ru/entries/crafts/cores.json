@@ -1,0 +1,40 @@
+{
+  "name": "Cores of Magic",
+  "icon": "goety:empty_focus",
+  "category": "goety:crafts",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Magical cores are used to create all kinds of spells and equipments and can be crafted through all kinds of rituals."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:empty_focus",
+      "title": "Empty Focus",
+      "text": "The $(l:intro/magical_components)Empty Focus$() is the core for all magical Focuses."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:animation_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:hunger_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:mystic_core"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:animation_core": 2,
+    "goety:hunger_core": 3,
+    "goety:wind_core": 4,
+    "goety:mystic_core": 5
+  }
+}

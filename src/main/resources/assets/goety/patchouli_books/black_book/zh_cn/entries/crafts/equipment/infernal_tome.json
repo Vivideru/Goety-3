@@ -1,0 +1,23 @@
+{
+  "name": "炼狱魔典",
+  "icon": "goety:infernal_tome",
+  "category": "goety:crafts/equipment",
+  "advancement": "minecraft:story/enter_the_nether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "异教徒有概率掉落或通过以物易物的方式产出炼狱魔典，这本魔典可用于释放他们那些地狱深处的魔法，令那些不配获予下界赠礼的家伙感到灼热和恶心"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:infernal_tome"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "炼狱魔典可以在铁砧上用纸修复（不要问为什么纸可以修复书）。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:infernal_tome": 1
+  }
+}

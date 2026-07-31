@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:necromancer/hostile",
+    "#goety:mini_bosses",
+    "goety:apostle",
+    "goety:haunted_armor",
+    "goety:bone_lord"
+  ]
+}

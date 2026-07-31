@@ -1,0 +1,24 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "lgl",
+                    "gsg",
+                    " g "
+                ],
+    "key":  {
+                "l":  {
+                          "tag":  "c:gems/lapis"
+                      },
+                "g":  {
+                          "tag":  "c:rods/wooden"
+                      },
+                "s":  {
+                          "item":  "goety:ectoplasm"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:totem_of_roots",
+                   "count":  1
+               }
+}
+

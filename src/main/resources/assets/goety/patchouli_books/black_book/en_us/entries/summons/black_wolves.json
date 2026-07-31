@@ -1,0 +1,84 @@
+{
+  "name": "Black Wolves",
+  "icon": "minecraft:bone",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Thought to be fairy tales, these omens of death are very real and loyal to their summoner."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "One can call upon a loyal black wolf through the use of a $(l:focuses/wild/hunting_focus)Hunting Focus$(), or through a ritual which summons one without a limited lifespan."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_black_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:black_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Right-clicking on a loyal Black Wolf with meat will heal them."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Summoning Black Wolves through certain ways may also yield variants of the beast or even other types of hounds."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:skeleton_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "An undead version of regular wolves, though unlike them, these wolves may emit a howl that boosts the damage of their skeleton allies. Unlike the other two variants, these wolves don't turn invisible when hunting their query. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/necro_staff)Necro Staff$(), or through another ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_skeleton_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:winter_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "These white furred canines are a terror to people living in cold areas, with their icy fangs and resistance to frost. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/frost_staff)Frost Staff$(), summoned in snowing biomes, or through another ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_winter_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:stormhound",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Legends of fiendish hounds that appear in a clap of thunder have been abound, now their lightning jaws are yours to command. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/frost_staff)Storm Staff$(), summoned in an exposed storm, or through another ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_stormhound_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:hellhound",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You've heard of tales and myths of hounds dragging the damned to the fires of the Nether, perhaps it's time to put these hounds to heel. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/nether_staff)Nether Staff$(), summoned in Nether biomes, or through another ritual."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_hellhound_thrall"
+    }
+  ]
+}

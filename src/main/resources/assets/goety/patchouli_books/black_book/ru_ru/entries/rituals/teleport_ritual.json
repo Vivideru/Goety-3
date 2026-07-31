@@ -1,0 +1,17 @@
+{
+  "name": "Teleporting With Rituals",
+  "icon": "goety:waystone",
+  "category": "goety:rituals",
+  "sortnum": 2,
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With $(l:crafts/waystone)Waystones$(), you're able to teleport to areas using Rituals, provided the area is within the same dimension. "
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:teleport_ritual"
+    }
+  ]
+}

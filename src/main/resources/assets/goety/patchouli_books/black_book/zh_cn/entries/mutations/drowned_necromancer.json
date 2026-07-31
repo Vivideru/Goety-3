@@ -1,0 +1,32 @@
+{
+  "name": "溺尸死灵法师",
+  "icon": "goety:abyss_staff",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/unlock_necromancer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "你发现了一种比普通死灵法师更强大的变体，这种变体仍然保留着自己的肉体，并且对海洋有着强大的掌控力，能够发射出大量飞弹，并在自己周围召唤出三叉戟进行攻击。与骷髅不同的是，这种仪式是在溺尸身上施展的。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_drowned_to_drowned_necromancer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "与普通的死灵法师很相似的是，他们可以召唤更多种类的生物，而不仅仅是溺尸。你需要使用特定的死灵类聚晶右键点击他们，就能让他们召唤更多类型的仆从。空手右键点击他们，会使死灵法师为你召唤不死仆从。他们的治疗方式与普通的溺尸仆从相同。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:drowned_necromancer_servant"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_jar[minecraft:custom_data={Drowned:1b}]",
+      "text": "如果一个溺尸死灵法师死亡，而你正好有一个$(l:crafts/empty_soul_jar)空灵魂罐$()将会使他们的灵魂填充进去，当在一个溺尸身上右键点击这个魂罐时，将会用该溺尸作为新的躯体来复活死灵法师。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:soul_jar[minecraft:custom_data={Drowned:1b}]": 4
+  }
+}

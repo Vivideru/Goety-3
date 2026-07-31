@@ -1,0 +1,32 @@
+{
+  "name": "НекромансEутопленник",
+  "icon": "goety:abyss_staff",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/unlock_necromancer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "ВсEобнаружили более могущесE�веннусEразновидносE�сEнекромантов, которые сE�сE�анили сE�осEплотсEи обрели власE�сEнад океаном, сE�релясEпотоками клубов пара и сE�здавасEвокруг сE�бсEпадающие трезубсE�E Ритуал проводитсE�Eне над сE�елетом, а над утопленником."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_drowned_to_drowned_necromancer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Как и обысE�ысEнекромантов, исEможно наусE�тсEпризыватсEне только утопленников. Нажатие по ним ПКЁEопределёнными некро-сE�кусE�ми позволяесEим призыватсEбольше разлисE�ысEприсE�ужников. Нажатие ПКЁEпусE�ой рукой засE�ависEисEпризыватсEприсE�ужников-нежитсE ИсEможно исE�E�лятсEтакже, как и утопленников-присE�ужников."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:drowned_necromancer_servant"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_jar[minecraft:custom_data={Drowned:1b}]",
+      "text": "ЕсE�и некромансEутопленник погибнесE то его душа можесEперемесE�итьсE�Eв $(l:crafts/empty_soul_jar)пусE�усEбанксEдусE(), которасEсE�осE�бна его оживитсE ДлсEэтого нужно нажатсEПКЁEбанкой дусEпо утопленниксE"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:soul_jar[minecraft:custom_data={Drowned:1b}]": 4
+  }
+}

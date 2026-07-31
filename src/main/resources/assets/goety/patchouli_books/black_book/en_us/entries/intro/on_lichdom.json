@@ -1,0 +1,29 @@
+{
+  "name": "Caveats of being a Lich",
+  "icon": "minecraft:skeleton_skull",
+  "category": "goety:intro",
+  "advancement": "goety:goety/become_lich",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You have finally become the ultimate Undead. As you may have guessed, you have the strengths and weaknesses of Undeath. For starters, your hunger no longer goes up or down. When injured, you will use up the Soul Energy within your Totem to heal up all injuries (unless you're on fire)."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Second, you cannot get the Poison, Regeneration, Hunger and/or Saturation effect. You will burn up in Sunlight unless you have something on your head and you gain more injuries from the Smite Enchantment. Also Villagers hate you unless you've cured a lot of them from being Zombies."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "On the plus side, most Undead creatures no longer attack you, you can never drown and you can stay in the Sunlight all day long as you're wearing a Helmet or have Fire Resistance! Being Undead also means that Potions of Harming heals you while Potions of Healing harms you the same way as your Undead brethren."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(l:crafts/artifice/arca)Arca$() resurrections are initiated no matter the amount of Soul Energy is within it. However, should the number of Soul Energy be less that the usual number needed to revive you or that your Arca has been destroyed, you will lose your lichdom upon death."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can also regain your living form by pressing the Lich Form key (Default: N). The form somehow does not fool anyone, but at least you have your former looks back."
+    }
+  ]
+}

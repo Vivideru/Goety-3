@@ -1,0 +1,21 @@
+{
+  "name": "独行者仆从",
+  "icon": "minecraft:iron_sword",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/craft_unholy_robe",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "独行者们似乎对下界极为虔诚，以至于它们只服从那些同样对下界高度虔诚的人。然而，如果在哭泣黑曜石方块下方的旅商附近穿戴不洁套装，新转化而成的独行者将会视你为下界之主，并服从你的命令。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:maverick_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "你也可以通过给独行者仆从一颗绿宝石来与其交易，而无需穿戴特定的服装。如果有个独行者仆从有主，且你与其主人结盟，同时你穿戴了正确的服装，你也可以与它们进行交易。"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:golems",
+    "goety:blaze_servant",
+    "goety:wildfire",
+    "goety:inferno"
+  ]
+}

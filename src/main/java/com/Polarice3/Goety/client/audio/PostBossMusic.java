@@ -1,0 +1,33 @@
+package com.Polarice3.Goety.client.audio;
+
+import com.Polarice3.Goety.client.events.ClientEvents;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Mob;
+
+public class PostBossMusic extends AbstractTickableSoundInstance {
+    protected final Mob mobEntity;
+
+    public PostBossMusic(SoundEvent soundEvent, Mob mobEntity, float volume, float pitch) {
+        super(soundEvent, SoundSource.RECORDS, SoundInstance.createUnseededRandom());
+        this.mobEntity = mobEntity;
+        this.x = (double)((float)mobEntity.getX());
+        this.y = (double)((float)mobEntity.getY());
+        this.z = (double)((float)mobEntity.getZ());
+        this.looping = false;
+        this.delay = 0;
+        this.volume = volume;
+        this.pitch = pitch;
+    }
+
+    @Override
+    public boolean canPlaySound() {
+        return ClientEvents.PRE_BOSS_MUSIC == null && ClientEvents.BOSS_MUSIC == null;
+    }
+
+    @Override
+    public void tick() {
+    }
+}

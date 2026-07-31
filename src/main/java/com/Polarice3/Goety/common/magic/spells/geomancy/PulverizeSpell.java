@@ -1,0 +1,109 @@
+package com.Polarice3.Goety.common.magic.spells.geomancy;
+
+import com.Polarice3.Goety.api.magic.SpellType;
+import com.Polarice3.Goety.common.crafting.ModRecipeSerializer;
+import com.Polarice3.Goety.common.crafting.PulverizeRecipe;
+import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Polarice3.Goety.common.magic.BlockSpell;
+import com.Polarice3.Goety.common.magic.SpellStat;
+import com.Polarice3.Goety.config.SpellConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.BlockFinder;
+import com.Polarice3.Goety.utils.ItemHelper;
+import com.Polarice3.Goety.utils.WandUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PulverizeSpell extends BlockSpell {
+    @Override
+    public int defaultSoulCost() {
+        return SpellConfig.PulverizeCost.get();
+    }
+
+    @Override
+    public SoundEvent CastingSound() {
+        return ModSounds.PREPARE_SPELL.get();
+    }
+
+    @Override
+    public int defaultSpellCooldown() {
+        return SpellConfig.PulverizeCoolDown.get();
+    }
+
+    @Override
+    public SpellType getSpellType() {
+        return SpellType.GEOMANCY;
+    }
+
+    @Override
+    public List<ResourceKey<Enchantment>> acceptedEnchantments() {
+        List<ResourceKey<Enchantment>> list = new ArrayList<>();
+        list.add(ModEnchantments.RADIUS);
+        return list;
+    }
+
+    @Override
+    public boolean rightBlock(ServerLevel worldIn, LivingEntity caster, BlockPos target, Direction direction, SpellStat spellStat) {
+        BlockState blockState = worldIn.getBlockState(target);
+        PulverizeRecipe pulverizeRecipe = worldIn.getRecipeManager()
+                .getAllRecipesFor(ModRecipeSerializer.PULVERIZE_TYPE.get())
+                .stream()
+                .map(recipeHolder -> recipeHolder.value())
+                .filter(pulverizeRecipe1 -> pulverizeRecipe1.ingredient.test(new ItemStack(blockState.getBlock())))
+                .findFirst().orElse(null);
+        return pulverizeRecipe != null;
+    }
+
+    @Override
+    public void blockResult(ServerLevel worldIn, LivingEntity caster, ItemStack staff, BlockPos target, Direction direction, SpellStat spellStat) {
+        int radius = (int) spellStat.getRadius();
+        if (WandUtil.enchantedFocus(caster)){
+            radius += WandUtil.getLevels(ModEnchantments.RADIUS, caster);
+        }
+        if (this.rightStaff(staff)) {
+            radius += 1;
+        }
+        if (radius > 0) {
+            for (BlockPos blockPos : BlockFinder.multiBlockBreak(caster, target, radius, radius, radius)) {
+                this.pulverize(worldIn, caster, blockPos);
+            }
+        } else {
+            this.pulverize(worldIn, caster, target);
+        }
+    }
+
+    public void pulverize(ServerLevel worldIn, LivingEntity caster, BlockPos target){
+        BlockState blockState = worldIn.getBlockState(target);
+        PulverizeRecipe pulverizeRecipe = worldIn.getRecipeManager()
+                .getAllRecipesFor(ModRecipeSerializer.PULVERIZE_TYPE.get())
+                .stream()
+                .map(recipeHolder -> recipeHolder.value())
+                .filter(pulverizeRecipe1 -> pulverizeRecipe1.ingredient.test(new ItemStack(blockState.getBlock())))
+                .findFirst().orElse(null);
+        if (pulverizeRecipe != null){
+            worldIn.levelEvent(2001, target, Block.getId(worldIn.getBlockState(target)));
+            BlockState pulverized = Blocks.CAVE_AIR.defaultBlockState();
+            if (pulverizeRecipe.getBlockResult() != Blocks.CAVE_AIR){
+                pulverized = pulverizeRecipe.getBlockResult().withPropertiesOf(blockState);
+            }
+            if (pulverizeRecipe.getResultItem(worldIn.registryAccess()) != null){
+                for (int i = 0; i < pulverizeRecipe.getResultItem(worldIn.registryAccess()).copy().getCount(); ++i){
+                    ItemHelper.addItemEntity(worldIn, target, new ItemStack(pulverizeRecipe.getResultItem(worldIn.registryAccess()).getItem()));
+                }
+            }
+            worldIn.setBlockAndUpdate(target, pulverized);
+        }
+    }
+}

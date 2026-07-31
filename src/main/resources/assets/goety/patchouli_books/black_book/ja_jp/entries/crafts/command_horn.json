@@ -1,0 +1,23 @@
+{
+  "name": "Commanding Horn",
+  "icon": "goety:command_horn",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Commanding Horn allows you to change movement stances of your servants, that are within 4 blocks from you, and comes with multiple modes that can be changed by shift-right clicking while holding it."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:command_horn"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "On None mode, the horn makes the servants go between Standing By and Following. On others it will cause all servant nearby to enter the mode the horn is set to."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can also right click on a block to have them move towards it, unless the servants are guarding and the horn is not in Guard mode. However, servants that are already commanded or part of a $(l:crafts/grimoire_of_grounding)Grimoire of Grounding$() are unaffected by the horn."
+    }
+  ]
+}

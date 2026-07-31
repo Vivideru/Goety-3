@@ -1,0 +1,19 @@
+{
+  "name": "Killing Focus",
+  "icon": "goety:killing_focus",
+  "category": "goety:focuses/necromancy",
+  "advancement": "goety:goety/kill_a_apostle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The spell deals an amount of damage equal to the target's current health, but also deals 125%% of it upon the caster. If the caster has enough health to survive, the target will take the full damage, otherwise it will deal as much damage upon both the target and the caster as possible without killing the latter."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/killing_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:killing_focus": 1
+  }
+}

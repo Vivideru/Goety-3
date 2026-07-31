@@ -1,0 +1,31 @@
+{
+  "name": "Wind Robes",
+  "icon": "goety:wind_robe",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Wind Robes allows you to fall slowly(or not so slowly when holding shift) and make you immune to fall damage. However, every second the robes slow your fall, Soul Energy is consumed. Wearing the Robes also halves the Soul Cost for Wind Spells."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_robe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The creatures of the winds can use their summoner's soul energy to slowly heal themselves, should they wear this robe."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_crown"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The jade crown will halved the time to cast Wind spells and keeps your wind servants from dying off, like Vexes, when worn."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:wind_robe": 1,
+    "goety:wind_crown": 3
+  }
+}

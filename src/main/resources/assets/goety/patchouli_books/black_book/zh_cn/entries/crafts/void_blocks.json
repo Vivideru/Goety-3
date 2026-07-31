@@ -1,0 +1,142 @@
+{
+  "name": "虚空方块与液体",
+  "icon": "goety:void_block",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "你曾听闻末地中存在着某些奇特的方块与液体，它们对踏足其上的生灵有害——除非这些生灵本就源自末地……"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:void_bottle",
+      "text": "若要获取虚空瓶，你必须在维度最低建造高度以下使用空玻璃瓶。主世界为Y=-64，下界与末地皆为0。不过可以说在末地获取更为容易，因为那里没有维度的壁垒去阻挡虚空。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:void_block"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:void_bucket",
+      "text": "若要获取液态虚空桶，你需要先用虚空瓶填满一个炼药锅，再对其使用桶。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "虚空方块与液体皆会造成等同于生命上限5%%的每秒伤害，同时还会赋予并增强穿行其中生物的'虚空之蚀'效果。末影人、末影螨与末影灵们对此效果免疫，但奇怪的是，潜影贝却并非如此。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:void_barrel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "虚空桶是一种不稳定的方块，被触发时会释放出虚空爆炸，并在此过程中自行损毁。要引爆此桶，可对其右键点击、用红石激活，或向其发射抛射物。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当液态虚空与水或熔岩相互作用时，亦可生成装饰性方块。将水倾倒在液态虚空源块上会将其转化为虚空方块。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_basalt_slab",
+      "recipe2": "goety:end/end_basalt_stairs"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_basalt_bricks",
+      "recipe2": "goety:end/end_basalt_brick_slab"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_basalt_brick_stairs"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_rock_slab",
+      "recipe2": "goety:end/end_rock_bricks"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_rock_brick_slab",
+      "recipe2": "goety:end/end_rock_brick_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_rock_brick_fence",
+      "recipe2": "goety:end/end_rock_chiseled"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:end_soil",
+      "text": "当流动的水与流动的虚空相遇，便会生成末地壤土。紫颂花不仅能生长于其上，若有熔岩流至其上且毗邻蓝冰，更能生成可再生的黑曜石。对其使用骨粉则会催生一些似乎与紫颂植物相关的植株。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:chorus/chorus_sapling",
+      "text": "亦可从虚空中制得树苗，从而获得一类不可燃烧的类木质方块。它们仅能种植于末地壤土之上。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:chorus_sapling",
+      "text": "将4株紫颂树苗以2x2的格局种植，将会长成一棵参天紫颂巨树，其内含腐化紫颂原木——这提供了另一套类木质方块，或是树体内部的液态虚空。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:chorus/chorus_growth",
+      "text": "你已发现利用此生长物构建生态体系之法。它可用于创造植被，或对某些末地相关的方块右键使用以生成绿叶装饰。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:chorus/chorus_grass_block",
+      "recipe2": "goety:chorus/chorus_grass_block2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:chorus/chorus_grass_block_slab",
+      "recipe2": "goety:chorus/chorus_grass_slab"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:chorus/cobbled_chorus_grass_block"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:bone_meal",
+      "text": "对这些方块使用骨粉，会在其顶部催生出紫颂蕨与高株紫颂草。紫颂草方块能向邻近的光滑末地石蔓延。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_growth_block",
+      "text": "你还发现了另一种可引入末地的植被，其形貌似血肉，施用骨粉后会生长出藤蔓，与下界的缠怨藤颇为相似。末地生长方块能向邻近的末地岩蔓延。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:end/end_dirt",
+      "text": "将虚空直接作用于泥土，似乎会使其泛紫且无法用锄耕犁，但施用骨粉后可生长出一些紫颂茎秆，并能用作地形装饰。它可向其他泥土蔓延。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:chorus_blossom_leaves",
+      "text": "紫颂树苗虽可种植于末地生长方块与末地泥土上，但待其完全长成，所生并非黄叶，而是形似紫颂花的叶片。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:end_mud",
+      "text": "对末地壤使用水瓶会将其转化为末地泥浆。对其使用玻璃瓶则可将其复转为末地壤，但同时会给予你末地泥浆瓶，末地泥浆瓶可注入炼药锅以制得一锅末地泥浆。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:end_mud_bucket",
+      "text": "用桶盛取装满炼药锅的末地泥浆，就可以得到一桶液态末地泥浆。其功能与水相似，但不会伤害到末地住民，且流动略为迟缓。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:void_bottle": 1,
+    "goety:void_bucket": 3,
+    "goety:end_soil": 11,
+    "goety:chorus_blossom_leaves": 21,
+    "goety:end_mud_bottle": 22,
+    "goety:end_mud_bucket": 23
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Foco de Nevasca",
+  "icon": "goety:blizzard_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Infundindo o Foco de Chuva de Flechas com o poder do gelo, você invoca uma chuva de espinhos de gelo em vez de flechas."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blizzard_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/frost_staff)Cajado Gélido$() faz chover lanças de gelo, versões maiores e perfurantes dos espinhos de gelo."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blizzard_focus": 1
+  }
+}

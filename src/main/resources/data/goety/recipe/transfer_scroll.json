@@ -1,0 +1,19 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:paper"
+                        },
+                        {
+                            "tag":  "c:feathers"
+                        },
+                        {
+                            "item":  "minecraft:ink_sac"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:transfer_scroll",
+                   "count":  1
+               }
+}
+

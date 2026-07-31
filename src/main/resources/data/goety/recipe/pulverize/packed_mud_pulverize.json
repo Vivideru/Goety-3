@@ -1,0 +1,8 @@
+﻿{
+    "type":  "goety:pulverize",
+    "ingredient":  {
+                       "item":  "minecraft:mud_bricks"
+                   },
+    "block_result":  "minecraft:packed_mud"
+}
+

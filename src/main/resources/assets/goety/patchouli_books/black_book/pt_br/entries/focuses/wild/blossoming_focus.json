@@ -1,0 +1,22 @@
+{
+  "name": "Foco do Florescimento",
+  "icon": "goety:blossoming_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O feitiço lança uma bola de energias selvagens coberta de espinhos que cresce vários espinhos venenosos ao redor do local do impacto."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blossoming_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/wild_staff)Cajado Selvagem$() aumenta o raio."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blossoming_focus": 1
+  }
+}

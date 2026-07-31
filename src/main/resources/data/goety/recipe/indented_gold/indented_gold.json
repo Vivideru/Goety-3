@@ -1,0 +1,11 @@
+{
+    "type":  "goety:cursed_infuser_recipes",
+    "ingredient":  {
+                       "tag":  "c:storage_blocks/gold"
+                   },
+    "result":  {
+                   "id":  "goety:indented_gold"
+               },
+    "cookingTime":  20
+}
+

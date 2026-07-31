@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smelting",
+  "category": "blocks",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "goety:cobbled_siltstone"
+  },
+  "result": {
+    "id": "goety:smooth_siltstone"
+  }
+}

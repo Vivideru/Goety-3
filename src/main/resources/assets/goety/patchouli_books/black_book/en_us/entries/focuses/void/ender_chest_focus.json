@@ -1,0 +1,18 @@
+{
+  "name": "Ender Chest Focus",
+  "icon": "goety:ender_chest_focus",
+  "category": "goety:focuses/void",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A simple focus, that when cast allows you to access your Ender Chest from the tip of your wand."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/ender_chest_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ender_chest_focus": 1
+  }
+}

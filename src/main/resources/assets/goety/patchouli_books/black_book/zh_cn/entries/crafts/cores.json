@@ -1,0 +1,40 @@
+{
+  "name": "魔法核心",
+  "icon": "goety:empty_focus",
+  "category": "goety:crafts",
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "魔法核心被用于制造各种法术和装备，可以通过各种仪式制作。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:empty_focus",
+      "title": "空法术聚晶",
+      "text": "$(l:intro/magical_components)空法术聚晶$()是各种魔法聚晶的核心，将紫水晶碎片放入诅咒注入器即可合成它"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:animation_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:hunger_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wind_core"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:mystic_core"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:animation_core": 2,
+    "goety:hunger_core": 3,
+    "goety:wind_core": 4,
+    "goety:mystic_core": 5
+  }
+}

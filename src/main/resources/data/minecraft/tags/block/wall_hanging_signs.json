@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "goety:haunted_wall_hanging_sign",
+    "goety:rotten_wall_hanging_sign",
+    "goety:windswept_wall_hanging_sign",
+    "goety:pine_wall_hanging_sign",
+    "goety:chorus_wall_hanging_sign",
+    "goety:corrupt_chorus_wall_hanging_sign"
+  ]
+}

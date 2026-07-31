@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "goety:haunted_log",
+    "goety:haunted_wood",
+    "goety:haunted_planks",
+    "goety:haunted_door",
+    "goety:haunted_fence",
+    "goety:haunted_fence_gate",
+    "goety:haunted_slab",
+    "goety:haunted_stairs",
+    "goety:haunted_trapdoor",
+    "goety:haunted_button",
+    "goety:haunted_pressure_plate",
+    "goety:haunted_bookshelf",
+    "goety:haunted_sign",
+    "goety:haunted_wall_sign",
+    "goety:haunted_hanging_sign",
+    "goety:haunted_wall_hanging_sign",
+    "goety:dark_pressure_plate",
+    "goety:apparition_door",
+    "goety:haunted_jug",
+    "goety:stripped_haunted_log",
+    "goety:stripped_haunted_wood"
+  ]
+}

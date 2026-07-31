@@ -1,0 +1,21 @@
+{
+  "name": "Maverick Servant",
+  "icon": "minecraft:iron_sword",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/craft_unholy_robe",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mavericks appear to be highly devoted to the Nether that they only obey those that are highly devoted to it. However, wearing the Unholy set near a trader that's underneath a block of Crying Obsidian will cause the newly convert to see you as a master of the Nether and obey your commands."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:maverick_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You're also able to trade with your Maverick Servant by giving them an Emerald, without needing to wear appropriate attire to do so. You can also trade with other Maverick Servants, provided you're allied to their master, if they have one, and wearing the appropriate attire."
+    }
+  ]
+}

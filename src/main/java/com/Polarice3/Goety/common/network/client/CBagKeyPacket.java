@@ -1,0 +1,46 @@
+package com.Polarice3.Goety.common.network.client;
+
+import com.Polarice3.Goety.client.inventory.container.FocusBagContainer;
+import com.Polarice3.Goety.client.inventory.container.FocusPackContainer;
+import com.Polarice3.Goety.common.items.handler.FocusBagItemHandler;
+import com.Polarice3.Goety.common.items.magic.FocusPack;
+import com.Polarice3.Goety.utils.TotemFinder;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.item.ItemStack;
+import com.Polarice3.Goety.common.network.ModNetwork;
+
+import java.util.function.Supplier;
+
+public class CBagKeyPacket {
+
+    public static void encode(CBagKeyPacket packet, FriendlyByteBuf buffer) {
+    }
+
+    public static CBagKeyPacket decode(FriendlyByteBuf buffer) {
+        return new CBagKeyPacket();
+    }
+
+    public static void consume(CBagKeyPacket packet, Supplier<ModNetwork.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            ServerPlayer playerEntity = ctx.get().getSender();
+
+            if (playerEntity != null) {
+                ItemStack stack = TotemFinder.findBag(playerEntity);
+
+                if (!stack.isEmpty()){
+                    SimpleMenuProvider provider = new SimpleMenuProvider(
+                            (id, inventory, player) -> new FocusBagContainer(id, inventory, FocusBagItemHandler.get(stack), stack), Component.translatable(stack.getDescriptionId()));
+                    if (stack.getItem() instanceof FocusPack){
+                        provider = new SimpleMenuProvider(
+                                (id, inventory, player) -> new FocusPackContainer(id, inventory, FocusBagItemHandler.get(stack), stack), Component.translatable(stack.getDescriptionId()));
+                    }
+                    playerEntity.openMenu(provider);
+                }
+            }
+        });
+        ctx.get().setPacketHandled(true);
+    }
+}

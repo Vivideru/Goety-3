@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:swords",
+    "#malum:scythe",
+    "#c:tools/daggers",
+    "goety:philosophers_mace"
+  ]
+}

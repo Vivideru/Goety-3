@@ -1,0 +1,21 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "sss",
+                    "sps",
+                    "sss"
+                ],
+    "key":  {
+                "s":  {
+                          "item":  "goety:polished_ominous_stone"
+                      },
+                "p":  {
+                          "tag":  "minecraft:coals"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:polished_dark_ominous_stone",
+                   "count":  8
+               }
+}
+

@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "##",
+                    "##"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:cragrocks"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:crag_bricks",
+                   "count":  4
+               }
+}
+

@@ -1,0 +1,30 @@
+{
+  "name": "践踏者",
+  "icon": "minecraft:saddle",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/read_ravaging_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "看来你已经找到了一种方法，用灾厄村民而不是村民制作出一匹像马一样的暴烈坐骑。与劫掠兽不同的是，这些战马在出生起就可乘坐。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_pillager_to_trampler"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "就像骆驼一样，按下跳跃键将为它们的冲刺蓄力，使你能够手动冲向敌人。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:trampler_servant",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "践踏者可以成为$(l:goety:mutations/illager_servants)袭击队伍$()的一员，但它不能被设定为队长。"
+    }
+  ]
+}

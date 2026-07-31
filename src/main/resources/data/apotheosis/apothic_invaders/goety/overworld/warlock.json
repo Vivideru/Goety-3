@@ -1,0 +1,134 @@
+{
+    "type":  "apotheosis:invader",
+    "basic_data":  {
+                       "bonus_loot":  [
+                                          "apotheosis:entity/boss_drops"
+                                      ],
+                       "constraints":  {
+                                           "dimensions":  [
+                                                              "minecraft:overworld"
+                                                          ]
+                                       },
+                       "name":  "use_name_generation",
+                       "support":  [
+                                       {
+                                           "entity":  "goety:wartling",
+                                           "x":  1.5,
+                                           "z":  1.5
+                                       },
+                                       {
+                                           "entity":  "goety:reprobate",
+                                           "x":  -1.5,
+                                           "z":  1.5
+                                       },
+                                       {
+                                           "entity":  "goety:hellhound",
+                                           "z":  -1.5
+                                       }
+                                   ],
+                       "valid_gear_sets":  {
+                                               "ascent":  [
+                                                              "#ascent_ranged"
+                                                          ],
+                                               "summit":  [
+                                                              "#summit_ranged"
+                                                          ],
+                                               "pinnacle":  [
+                                                                "#pinnacle_ranged"
+                                                            ]
+                                           },
+                       "weights":  {
+                                       "ascent":  {
+                                                      "quality":  1.0,
+                                                      "weight":  50
+                                                  },
+                                       "summit":  {
+                                                      "quality":  1.0,
+                                                      "weight":  50
+                                                  },
+                                       "pinnacle":  {
+                                                        "quality":  1.0,
+                                                        "weight":  50
+                                                    }
+                                   }
+                   },
+    "entity":  "goety:warlock",
+    "size":  {
+                 "height":  2.45,
+                 "width":  0.75
+             },
+    "stats":  {
+                  "apotheosis:epic":  {
+                                          "attribute_modifiers":  [
+                                                                      {
+                                                                          "attribute":  "minecraft:generic.max_health",
+                                                                          "operation":  "add_value",
+                                                                          "value":  {
+                                                                                        "min":  65.0,
+                                                                                        "max":  105.0
+                                                                                    }
+                                                                      },
+                                                                      {
+                                                                          "attribute":  "apothic_attributes:projectile_damage",
+                                                                          "operation":  "add_multiplied_base",
+                                                                          "value":  {
+                                                                                        "min":  0.35,
+                                                                                        "max":  0.65
+                                                                                    }
+                                                                      },
+                                                                      {
+                                                                          "attribute":  "minecraft:generic.knockback_resistance",
+                                                                          "operation":  "add_value",
+                                                                          "value":  0.45
+                                                                      }
+                                                                  ],
+                                          "effects":  [
+                                                          {
+                                                              "amplifier":  1.0,
+                                                              "effect":  "minecraft:fire_resistance"
+                                                          }
+                                                      ],
+                                          "enchant_chance":  0.55,
+                                          "enchantment_levels":  {
+                                                                     "primary":  35,
+                                                                     "secondary":  25
+                                                                 }
+                                      },
+                  "apotheosis:mythic":  {
+                                            "attribute_modifiers":  [
+                                                                        {
+                                                                            "attribute":  "minecraft:generic.max_health",
+                                                                            "operation":  "add_value",
+                                                                            "value":  {
+                                                                                          "min":  105.0,
+                                                                                          "max":  145.0
+                                                                                      }
+                                                                        },
+                                                                        {
+                                                                            "attribute":  "apothic_attributes:projectile_damage",
+                                                                            "operation":  "add_multiplied_base",
+                                                                            "value":  {
+                                                                                          "min":  0.7,
+                                                                                          "max":  1.05
+                                                                                      }
+                                                                        },
+                                                                        {
+                                                                            "attribute":  "minecraft:generic.knockback_resistance",
+                                                                            "operation":  "add_value",
+                                                                            "value":  0.7
+                                                                        }
+                                                                    ],
+                                            "effects":  [
+                                                            {
+                                                                "amplifier":  1.0,
+                                                                "effect":  "minecraft:fire_resistance"
+                                                            }
+                                                        ],
+                                            "enchant_chance":  0.75,
+                                            "enchantment_levels":  {
+                                                                       "primary":  50,
+                                                                       "secondary":  35
+                                                                   }
+                                        }
+              }
+}

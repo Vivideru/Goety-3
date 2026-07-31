@@ -1,0 +1,1893 @@
+package com.Polarice3.Goety.utils;
+
+import com.Polarice3.Goety.init.ModMobType;
+
+import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.ally.IAquaServant;
+import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.api.items.magic.IWand;
+import com.Polarice3.Goety.common.entities.ally.Summoned;
+import com.Polarice3.Goety.common.entities.hostile.Irk;
+import com.Polarice3.Goety.common.entities.hostile.cultists.Cultist;
+import com.Polarice3.Goety.common.entities.neutral.AbstractHauntedArmor;
+import com.Polarice3.Goety.common.entities.neutral.Owned;
+import com.Polarice3.Goety.common.entities.projectiles.BlastFungus;
+import com.Polarice3.Goety.common.entities.projectiles.SnapFungus;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.network.ModNetwork;
+import com.Polarice3.Goety.common.network.server.SInstaLookPacket;
+import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.config.MobsConfig;
+import com.Polarice3.Goety.init.ModTags;
+import com.google.common.collect.Lists;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.core.component.DataComponents;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.random.WeightedRandomList;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.CombatRules;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.memory.MemoryModuleType;
+import net.minecraft.world.entity.animal.horse.AbstractHorse;
+import net.minecraft.world.entity.decoration.ArmorStand;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.item.component.FireworkExplosion;
+import net.minecraft.world.item.component.Fireworks;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.*;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.entity.PartEntity;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+public class MobUtil {
+    public static final Predicate<LivingEntity> NO_CREATIVE_OR_SPECTATOR = (p_200824_0_) -> {
+        return !(p_200824_0_ instanceof Player) || !p_200824_0_.isSpectator() && !((Player)p_200824_0_).isCreative();
+    };
+
+    public static final Predicate<Entity> LIVING_OR_PART = (entity) -> {
+        return entity.isAlive() && (entity instanceof LivingEntity || entity instanceof PartEntity<?> partEntity && partEntity.getParent() instanceof LivingEntity);
+    };
+
+    public static boolean isShifting(Entity entity){
+        return entity.isCrouching() || entity.isShiftKeyDown();
+    }
+
+    public static boolean validEntity(Entity entity){
+        return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(entity) && entity.isAttackable();
+    }
+
+    public static boolean isRaider(Entity entity) {
+        // Goety raiders inherit Raider, but 1.21 tag data may be absent before generated tags are packed.
+        return entity instanceof Raider || entity.getType().is(EntityTypeTags.RAIDERS);
+    }
+
+    public static boolean validNonLich(Player player){
+        return validEntity(player) && !LichdomHelper.isLich(player);
+    }
+
+    public static boolean areAllies(@Nullable Entity entity, @Nullable Entity entity1){
+        if (entity != null && entity1 != null) {
+            if (entity instanceof Player player && entity1 instanceof Player player1) {
+                if (entity == entity1) {
+                    return true;
+                }
+                if (SEHelper.isAlly(player, player1) && SEHelper.isAlly(player1, player)) {
+                    return true;
+                }
+                return entity.isAlliedTo(entity1) && entity1.isAlliedTo(entity);
+            } else {
+                return entity.isAlliedTo(entity1) || entity1.isAlliedTo(entity) || entity == entity1
+                        || (entity instanceof Player player && entity1 instanceof LivingEntity living && SEHelper.isAlly(player, living))
+                        || (entity1 instanceof Player player1 && entity instanceof LivingEntity living1 && SEHelper.isAlly(player1, living1));
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public static LivingEntity getSummonOwner(LivingEntity caster) {
+        // Servant-created summons should inherit the player/master owner so owner-gated effects do not treat them as unowned.
+        if (caster instanceof IServant servant && servant.getMasterOwner() != null) {
+            return servant.getMasterOwner();
+        }
+        return caster;
+    }
+
+    public static boolean illagerAllies(Entity self, Entity target){
+        if (target == self) {
+            return true;
+        } else if (target.getTeam() != null && self.isAlliedTo(target.getTeam())) {
+            return true;
+        } else if (target instanceof Vex vex && vex.getOwner() != null) {
+            return self.isAlliedTo(vex.getOwner());
+        } else if (target instanceof Irk irk && irk.getTrueOwner() != null) {
+            return self.isAlliedTo(irk.getTrueOwner());
+        } else if (target instanceof LivingEntity livingEntity && MobTypeHelper.getMobType(livingEntity) == ModMobType.ILLAGER) {
+            if (livingEntity instanceof IOwned owned){
+                if (owned.getTrueOwner() != null){
+                    return self.isAlliedTo(owned.getTrueOwner());
+                } else if (!owned.isHostile()){
+                    return livingEntity.isAlliedTo(self);
+                }
+            }
+            return self.getTeam() == null && target.getTeam() == null;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean sameDimension(@Nullable Entity entity1, @Nullable Entity entity2){
+        if (entity1 == null || entity2 == null){
+            return false;
+        }
+        return entity1.level().dimension() == entity2.level().dimension();
+    }
+
+    public static BlockHitResult rayTrace(Entity entity, double distance, boolean fluids) {
+        return (BlockHitResult) entity.pick(distance, 1.0F, fluids);
+    }
+
+    public static void ClimbAnyWall(LivingEntity livingEntity){
+        Vec3 movement = livingEntity.getDeltaMovement();
+        if (livingEntity instanceof Player player){
+            if (!player.getAbilities().flying && player.horizontalCollision){
+                movement = new Vec3(movement.x, 0.2D, movement.z);
+            }
+            player.setDeltaMovement(movement);
+        } else {
+            if (livingEntity.horizontalCollision){
+                movement = new Vec3(movement.x, 0.2D, movement.z);
+            }
+            livingEntity.setDeltaMovement(movement);
+        }
+    }
+
+    public static List<BlockState> surroundingBlocks(LivingEntity livingEntity, Predicate<BlockState> blockPredicate){
+        List<BlockState> blockStates = new ArrayList<>();
+        AABB axisalignedbb = livingEntity.getBoundingBox();
+        BlockPos blockpos = BlockPos.containing(axisalignedbb.minX + 0.001D, axisalignedbb.minY + 0.001D, axisalignedbb.minZ + 0.001D);
+        BlockPos blockpos1 = BlockPos.containing(axisalignedbb.maxX - 0.001D, axisalignedbb.maxY - 0.001D, axisalignedbb.maxZ - 0.001D);
+        BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+        if (livingEntity.level().hasChunksAt(blockpos, blockpos1)) {
+            for(int i = blockpos.getX(); i <= blockpos1.getX(); ++i) {
+                for(int j = blockpos.getY(); j <= blockpos1.getY(); ++j) {
+                    for(int k = blockpos.getZ(); k <= blockpos1.getZ(); ++k) {
+                        blockpos$mutable.set(i, j, k);
+                        BlockState blockstate = livingEntity.level().getBlockState(blockpos$mutable);
+                        if (blockPredicate.test(blockstate)){
+                            blockStates.add(blockstate);
+                        }
+                    }
+                }
+            }
+        }
+        return blockStates;
+    }
+
+    public static boolean isInBlock(LivingEntity livingEntity, Predicate<BlockState> blockPredicate){
+        return !surroundingBlocks(livingEntity, blockPredicate).isEmpty();
+    }
+
+    public static boolean isInWeb(LivingEntity livingEntity){
+        return isInBlock(livingEntity, blockState -> blockState.getBlock() instanceof WebBlock);
+    }
+
+    public static void WebMovement(LivingEntity livingEntity){
+        for (BlockState blockState : surroundingBlocks(livingEntity, blockState -> blockState.getBlock() instanceof WebBlock)){
+            livingEntity.makeStuckInBlock(blockState, Vec3.ZERO);
+        }
+    }
+
+    public static void PowderedSnowMovement(LivingEntity livingEntity){
+        for (BlockState blockState : surroundingBlocks(livingEntity, blockState -> blockState.getBlock() instanceof PowderSnowBlock)){
+            livingEntity.makeStuckInBlock(blockState, Vec3.ZERO);
+        }
+    }
+
+    public static void dropFromLootTable(LivingEntity living, float luck) {
+        ResourceKey<LootTable> resourcelocation = living.getLootTable();
+        LootTable loottable = living.level().getServer().reloadableRegistries().getLootTable(resourcelocation);
+        LootParams.Builder lootcontext$builder = MobUtil.createLootContext(living.damageSources().generic(), living, luck);
+        LootParams ctx = lootcontext$builder.create(LootContextParamSets.ENTITY);
+        loottable.getRandomItems(ctx).forEach(living::spawnAtLocation);
+    }
+
+    public static LootParams.Builder createLootContext(DamageSource pDamageSource, LivingEntity livingEntity, float luck) {
+        return (new LootParams.Builder((ServerLevel) livingEntity.level())).withParameter(LootContextParams.THIS_ENTITY, livingEntity).withParameter(LootContextParams.ORIGIN, livingEntity.position()).withParameter(LootContextParams.DAMAGE_SOURCE, pDamageSource).withOptionalParameter(LootContextParams.ATTACKING_ENTITY, pDamageSource.getEntity()).withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, pDamageSource.getDirectEntity()).withLuck(luck);
+    }
+
+    public static LootParams.Builder createLootContext(DamageSource pDamageSource, LivingEntity livingEntity) {
+        LootParams.Builder lootparams$builder = (new LootParams.Builder((ServerLevel)livingEntity.level())).withParameter(LootContextParams.THIS_ENTITY, livingEntity).withParameter(LootContextParams.ORIGIN, livingEntity.position()).withParameter(LootContextParams.DAMAGE_SOURCE, pDamageSource).withOptionalParameter(LootContextParams.ATTACKING_ENTITY, pDamageSource.getEntity()).withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, pDamageSource.getDirectEntity());
+        if (livingEntity.getLastHurtByMob() != null && livingEntity.getLastHurtByMob() instanceof Player player) {
+            lootparams$builder = lootparams$builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, player).withLuck(player.getLuck());
+        }
+
+        return lootparams$builder;
+    }
+
+    public static void knockBack(Entity knocked, Entity knocker, double xPower, double yPower, double zPower) {
+        Vec3 vec3 = new Vec3(knocker.getX() - knocked.getX(), knocker.getY() - knocked.getY(), knocker.getZ() - knocked.getZ()).normalize();
+        double pY0 = Math.max(-vec3.y, yPower);
+        Vec3 vec31 = new Vec3(-vec3.x * xPower, pY0, -vec3.z * zPower);
+        double resist = knocked instanceof LivingEntity livingEntity ? livingEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) : 0.0D;
+        double resist1 = Math.max(0.0D, 1.0D - resist);
+        if (knocked instanceof Player player) {
+            if (MobUtil.validEntity(player)) {
+                player.hurtMarked = true;
+                if (!player.level().isClientSide){
+                    player.setOnGround(false);
+                }
+            }
+        }
+        knocked.setDeltaMovement(knocked.getDeltaMovement().add(vec31).scale(resist1));
+        knocked.hasImpulse = true;
+    }
+
+    public static void forcefulKnockBack(LivingEntity knocked, double strength, double ratioX, double ratioZ, double reduction) {
+        net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent event = CommonHooks.onLivingKnockBack(knocked, (float) strength, ratioX, ratioZ);
+        if(event.isCanceled()) return;
+        strength = event.getStrength();
+        ratioX = event.getRatioX();
+        ratioZ = event.getRatioZ();
+        strength *= 1.0D - (knocked.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) * reduction);
+        if (!(strength <= 0.0D)) {
+            knocked.hasImpulse = true;
+            Vec3 vec3 = knocked.getDeltaMovement();
+            Vec3 vec31 = (new Vec3(ratioX, 0.0D, ratioZ)).normalize().scale(strength);
+            knocked.setDeltaMovement(vec3.x / 2.0D - vec31.x, knocked.onGround() ? Math.min(0.4D, vec3.y / 2.0D + strength) : vec3.y, vec3.z / 2.0D - vec31.z);
+        }
+    }
+
+    public static void pull(Entity pEntity, double pX, double pY, double pZ){
+        push(pEntity, -pX, -pY, -pZ);
+    }
+
+    public static void pull(Entity pEntity, double pX, double pY, double pZ, double reduction){
+        push(pEntity, -pX, -pY, -pZ, reduction);
+    }
+
+    public static void push(Entity pEntity, Vec3 vec3) {
+        push(pEntity, vec3, 1.0D);
+    }
+
+    public static void push(Entity pEntity, Vec3 vec3, double reduction) {
+        push(pEntity, vec3.x, vec3.y, vec3.z, reduction);
+    }
+
+    public static void push(Entity pEntity, double pX, double pY, double pZ) {
+        push(pEntity, pX, pY, pZ, 1.0D);
+    }
+
+    public static void push(Entity pEntity, double pX, double pY, double pZ, double reduction) {
+        if (pEntity instanceof Player player) {
+            if (MobUtil.validEntity(player)) {
+                player.hurtMarked = true;
+                if (!player.level().isClientSide){
+                    player.setOnGround(false);
+                }
+            }
+        }
+        double resist = 0.0D;
+        if (pEntity instanceof LivingEntity living && living.getAttribute(Attributes.KNOCKBACK_RESISTANCE) != null) {
+            resist = living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) * reduction;
+        }
+        double resist1 = Math.max(0.0D, 1.0D - resist);
+        pEntity.setDeltaMovement(pEntity.getDeltaMovement().add(pX, pY, pZ).scale(resist1));
+        pEntity.hasImpulse = true;
+    }
+
+    public static void forcePush(Entity pEntity, double pX, double pY, double pZ) {
+        if (pEntity instanceof Player player) {
+            if (MobUtil.validEntity(player)) {
+                player.hurtMarked = true;
+                if (!player.level().isClientSide){
+                    player.setOnGround(false);
+                }
+            }
+        }
+        pEntity.setDeltaMovement(pEntity.getDeltaMovement().add(pX, pY, pZ));
+        pEntity.hasImpulse = true;
+    }
+
+    public static void twister(Entity pEntity, double pX, double pY, double pZ){
+        if (pEntity instanceof Player player) {
+            if (MobUtil.validEntity(player)) {
+                player.hurtMarked = true;
+                if (!player.level().isClientSide){
+                    player.setOnGround(false);
+                }
+            }
+        }
+        pEntity.setDeltaMovement(pX, pY, pZ);
+        pEntity.hasImpulse = true;
+    }
+
+    public static void drag(Entity pEntity, double pX, double pY, double pZ){
+        drag(pEntity, pX, pY, pZ, 1.0D);
+    }
+
+    public static void drag(Entity pEntity, double pX, double pY, double pZ, double reduction){
+        pEntity.hurtMarked = true;
+        double resist = 0.0D;
+        if (pEntity instanceof LivingEntity living && living.getAttribute(Attributes.KNOCKBACK_RESISTANCE) != null) {
+            resist = living.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) * reduction;
+        }
+        double resist1 = Math.max(0.0D, 1.0D - resist);
+        Vec3 vec3 = new Vec3(pX, pY, pZ).scale(resist1);
+        pEntity.setDeltaMovement(vec3);
+        pEntity.lerpMotion(vec3.x, vec3.y, vec3.z);
+    }
+
+    public static int getSummonLifespan(Level world){
+        return 20 * (30 + world.random.nextInt(90));
+    }
+
+    public static List<EntityType<?>> getEntityTypesConfig(List<? extends String> config){
+        List<EntityType<?>> list = new ArrayList<>();
+        if (!config.isEmpty()){
+            for (String id : config){
+                BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.parse(id)).ifPresent(list::add);
+            }
+        }
+        return list;
+    }
+
+    public static boolean hasEntityTypesConfig(List<? extends String> config, EntityType<?> entityType){
+        return !getEntityTypesConfig(config).isEmpty() && getEntityTypesConfig(config).contains(entityType);
+    }
+
+    public static class MinionMoveControl extends MoveControl {
+        public MinionMoveControl(Mob mob) {
+            super(mob);
+        }
+
+        public void tick() {
+            if (this.operation == Operation.MOVE_TO) {
+                Vec3 vector3d = new Vec3(this.wantedX - this.mob.getX(), this.wantedY - this.mob.getY(), this.wantedZ - this.mob.getZ());
+                double d0 = vector3d.length();
+                if (d0 < this.mob.getBoundingBox().getSize()) {
+                    this.operation = Operation.WAIT;
+                    this.mob.setDeltaMovement(this.mob.getDeltaMovement().scale(0.5D));
+                } else {
+                    this.mob.setDeltaMovement(this.mob.getDeltaMovement().add(vector3d.scale(this.speedModifier * 0.05D / d0)));
+                    if (this.mob.getTarget() == null) {
+                        Vec3 vec31 = this.mob.getDeltaMovement();
+                        this.mob.setYRot(-((float) Mth.atan2(vec31.x, vec31.z)) * (180F / (float)Math.PI));
+                        this.mob.yBodyRot = this.mob.getYRot();
+                    } else {
+                        double d2 = this.mob.getTarget().getX() - this.mob.getX();
+                        double d1 = this.mob.getTarget().getZ() - this.mob.getZ();
+                        this.mob.setYRot(-((float)Mth.atan2(d2, d1)) * (180F / (float)Math.PI));
+                    }
+                    this.mob.yBodyRot = this.mob.getYRot();
+                }
+
+            }
+        }
+    }
+
+    public static class WraithMoveController extends MoveControl {
+        public WraithMoveController(Mob mob) {
+            super(mob);
+        }
+
+        public void tick() {
+            if (this.mob.isNoGravity()) {
+                if (this.operation == Operation.MOVE_TO) {
+                    Vec3 vector3d = new Vec3(this.wantedX - this.mob.getX(), this.wantedY - this.mob.getY(), this.wantedZ - this.mob.getZ());
+                    double d0 = vector3d.length();
+                    if (d0 < this.mob.getBoundingBox().getSize()) {
+                        this.operation = Operation.WAIT;
+                        this.mob.setDeltaMovement(this.mob.getDeltaMovement().scale(0.5D));
+                    } else {
+                        this.mob.setDeltaMovement(this.mob.getDeltaMovement().add(vector3d.scale(this.speedModifier * 0.05D / d0)));
+                        if (this.mob.getTarget() == null) {
+                            Vec3 vector3d1 = this.mob.getDeltaMovement();
+                            this.mob.setYRot(-((float) Mth.atan2(vector3d1.x, vector3d1.z)) * (180F / (float) Math.PI));
+                        } else {
+                            double d2 = this.mob.getTarget().getX() - this.mob.getX();
+                            double d1 = this.mob.getTarget().getZ() - this.mob.getZ();
+                            this.mob.setYRot(-((float) Mth.atan2(d2, d1)) * (180F / (float) Math.PI));
+                        }
+                        this.mob.yBodyRot = this.mob.getYRot();
+                    }
+
+                }
+            } else {
+                super.tick();
+            }
+        }
+    }
+
+    //Based on @iron431's fix: https://github.com/iron431/irons-spells-n-spellbooks/blob/1.20.1/src/main/java/io/redspace/ironsspellbooks/entity/mobs/keeper/KeeperEntity.java
+    public static class noSpinControl extends MoveControl {
+
+        public noSpinControl(Mob mob) {
+            super(mob);
+        }
+
+        @Override
+        protected float rotlerp(float pSourceAngle, float pTargetAngle, float pMaximumChange) {
+            double d0 = this.wantedX - this.mob.getX();
+            double d1 = this.wantedZ - this.mob.getZ();
+            if (d0 * d0 + d1 * d1 < 0.5F) {
+                return pSourceAngle;
+            } else {
+                return super.rotlerp(pSourceAngle, pTargetAngle, pMaximumChange * 0.25F);
+            }
+        }
+    }
+
+    static class MoveHelperController<T extends Mob & IAquaServant> extends MoveControl {
+        private final T drowned;
+
+        public MoveHelperController(T p_i48909_1_) {
+            super(p_i48909_1_);
+            this.drowned = p_i48909_1_;
+        }
+
+        public void tick() {
+            LivingEntity livingentity = this.drowned.getTarget();
+            LivingEntity owner = this.drowned.getTrueOwner();
+            if (this.drowned.wantsToSwim() && this.drowned.isInWater()) {
+                if ((livingentity != null && livingentity.getY() > this.drowned.getY())
+                        || this.drowned.isSearchingForLand()
+                        || (owner != null && owner.getY() > this.drowned.getY() && this.drowned.isFollowing())) {
+                    this.drowned.setDeltaMovement(this.drowned.getDeltaMovement().add(0.0D, 0.002D, 0.0D));
+                }
+
+                if (this.operation != Operation.MOVE_TO || this.drowned.getNavigation().isDone()) {
+                    this.drowned.setSpeed(0.0F);
+                    return;
+                }
+
+                double d0 = this.wantedX - this.drowned.getX();
+                double d1 = this.wantedY - this.drowned.getY();
+                double d2 = this.wantedZ - this.drowned.getZ();
+                double d3 = Mth.sqrt((float) (d0 * d0 + d1 * d1 + d2 * d2));
+                d1 = d1 / d3;
+                float f = (float)(Mth.atan2(d2, d0) * (double)(180F / (float)Math.PI)) - 90.0F;
+                this.drowned.setYRot(this.rotlerp(this.drowned.getYRot(), f, 90.0F));
+                this.drowned.setYBodyRot(this.drowned.getYRot());
+                float f1 = (float)(this.speedModifier * this.drowned.getAttributeValue(Attributes.MOVEMENT_SPEED));
+                float f2 = Mth.lerp(0.125F, this.drowned.getSpeed(), f1);
+                this.drowned.setSpeed(f2);
+                this.drowned.setDeltaMovement(this.drowned.getDeltaMovement().add((double)f2 * d0 * 0.005D, (double)f2 * d1 * 0.1D, (double)f2 * d2 * 0.005D));
+            } else {
+                if (!this.drowned.onGround()) {
+                    this.drowned.setDeltaMovement(this.drowned.getDeltaMovement().add(0.0D, -0.008D, 0.0D));
+                }
+
+                super.tick();
+            }
+
+        }
+    }
+
+    public static boolean isInRain(Entity pEntity){
+        BlockPos blockpos = pEntity.blockPosition();
+        return pEntity.level().isRainingAt(blockpos) || pEntity.level().isRainingAt(BlockPos.containing((double)blockpos.getX(), pEntity.getBoundingBox().maxY, (double)blockpos.getZ()));
+    }
+
+    public static boolean healthIsHalved(LivingEntity livingEntity){
+        return livingEntity.getHealth() <= livingEntity.getMaxHealth()/2;
+    }
+
+    public static boolean starAmuletActive(LivingEntity livingEntity){
+        return CuriosFinder.hasCurio(livingEntity, ModItems.STAR_AMULET.get()) && MobUtil.healthIsHalved(livingEntity);
+    }
+
+    public static void releaseAllPois(Villager villager){
+        villager.releasePoi(MemoryModuleType.HOME);
+        villager.releasePoi(MemoryModuleType.JOB_SITE);
+        villager.releasePoi(MemoryModuleType.POTENTIAL_JOB_SITE);
+        villager.releasePoi(MemoryModuleType.MEETING_POINT);
+    }
+
+    /**
+     * Target Codes based of codes from @TeamTwilight
+     */
+    public static List<Entity> getTargets(Level level, LivingEntity pSource, double pRange, double pRadius) {
+        return getTargets(level, pSource, pRange, pRadius, EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(LIVING_OR_PART).and(entity -> !MobUtil.areAllies(entity, pSource)));
+    }
+
+    public static List<Entity> getTargets(Level level, LivingEntity pSource, double pRange, double pRadius, Predicate<? super Entity> predicate) {
+        List<Entity> list = new ArrayList<>();
+        Vec3 srcVec = pSource.getEyePosition();
+        Vec3 lookVec = pSource.getViewVector(1.0F);
+        double[] lookRange = new double[] {lookVec.x() * pRange, lookVec.y() * pRange, lookVec.z() * pRange};
+        Vec3 destVec = srcVec.add(lookRange[0], lookRange[1], lookRange[2]);
+        List<Entity> possibleList = level.getEntities(pSource, pSource.getBoundingBox().expandTowards(lookRange[0], lookRange[1], lookRange[2]).inflate(pRadius, pRadius, pRadius),
+                predicate);
+        double hitDist = 0.0D;
+
+        for (Entity hit : possibleList) {
+            if (hit.isPickable() && pSource.hasLineOfSight(hit) && hit != pSource) {
+                float maxSize = pSource instanceof Mob ? 2.0F : 0.8F;
+                float borderSize = Math.max(maxSize, hit.getPickRadius());
+                AABB collisionBB = hit.getBoundingBox().inflate(borderSize);
+                Optional<Vec3> interceptPos = collisionBB.clip(srcVec, destVec);
+                if (collisionBB.contains(srcVec)) {
+                    if (0.0D <= hitDist) {
+                        list.add(hit);
+                        hitDist = 0.0D;
+                    }
+                } else if (interceptPos.isPresent()) {
+                    double possibleDist = srcVec.distanceTo(interceptPos.get());
+
+                    if (possibleDist < hitDist || hitDist == 0.0D) {
+                        list.add(hit);
+                        hitDist = possibleDist;
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    @Nullable
+    public static Entity getSingleTarget(Level pLevel, LivingEntity pSource, double pRange, double pRadius) {
+        return getSingleTarget(pLevel, pSource, pRange, pRadius, EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(EntitySelector.ENTITY_STILL_ALIVE).and(entity -> !MobUtil.areAllies(entity, pSource) && entity.isPickable()));
+    }
+
+    @Nullable
+    public static Entity getSingleTarget(Level pLevel, LivingEntity pSource, double pRange, double pRadius, Predicate<? super Entity> predicate) {
+        Entity target = null;
+        Vec3 srcVec = pSource.getEyePosition();
+        Vec3 lookVec = pSource.getViewVector(1.0F);
+        double[] lookRange = new double[] {lookVec.x() * pRange, lookVec.y() * pRange, lookVec.z() * pRange};
+        Vec3 destVec = srcVec.add(lookRange[0], lookRange[1], lookRange[2]);
+        List<Entity> possibleList = pLevel.getEntities(pSource, pSource.getBoundingBox().expandTowards(lookRange[0], lookRange[1], lookRange[2]).inflate(pRadius, pRadius, pRadius),
+                predicate);
+        double hitDist = 0.0D;
+
+        for (Entity hit : possibleList) {
+            if (pSource.hasLineOfSight(hit) && hit != pSource) {
+                float borderSize = Math.max(0.8F, hit.getPickRadius());
+                AABB collisionBB = hit.getBoundingBox().inflate(borderSize, borderSize, borderSize);
+                Optional<Vec3> interceptPos = collisionBB.clip(srcVec, destVec);
+
+                if (collisionBB.contains(srcVec)) {
+                    if (0.0D <= hitDist) {
+                        target = hit;
+                        hitDist = 0.0D;
+                    }
+                } else if (interceptPos.isPresent()) {
+                    double possibleDist = srcVec.distanceTo(interceptPos.get());
+
+                    if (possibleDist < hitDist || hitDist == 0.0D) {
+                        target = hit;
+                        hitDist = possibleDist;
+                    }
+                }
+            }
+        }
+        return target;
+    }
+
+    @Nullable
+    public static Entity getNearbyTarget(Level pLevel, LivingEntity pSource, double pRange, double pRadius) {
+        Entity target = null;
+        if (getSingleTarget(pLevel, pSource, pRange, pRadius) != null){
+            target = getSingleTarget(pLevel, pSource, pRange, pRadius);
+        } else {
+            Vec3 lookVec = pSource.getViewVector(1.0F);
+            double[] lookRange = new double[] {lookVec.x() * pRange, lookVec.y() * pRange, lookVec.z() * pRange};
+            List<Entity> possibleList = pLevel.getEntities(pSource, pSource.getBoundingBox().move(lookVec.x / 2, 0, lookVec.z / 2).expandTowards(lookRange[0], lookRange[1], lookRange[2]).inflate(pRadius, pRadius, pRadius),
+                    EntitySelector.NO_CREATIVE_OR_SPECTATOR.and(LIVING_OR_PART).and(entity -> !MobUtil.areAllies(entity, pSource)));
+
+            for (Entity hit : possibleList) {
+                if (hit.isPickable() && pSource.hasLineOfSight(hit)) {
+                    target = hit;
+                }
+            }
+        }
+        return target;
+    }
+
+    /**
+     * Code based of @BobMowzies Sunstrike positioning.
+     */
+    public static void moveDownToGround(Entity entity) {
+        HitResult rayTrace = rayTrace(entity);
+        if (rayTrace.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult hitResult = (BlockHitResult) rayTrace;
+            if (hitResult.getDirection() == Direction.UP) {
+                BlockState hitBlock = entity.level().getBlockState(hitResult.getBlockPos());
+                if (hitBlock.getBlock() instanceof SlabBlock && hitBlock.getValue(BlockStateProperties.SLAB_TYPE) == SlabType.BOTTOM) {
+                    entity.setPos(entity.getX(), hitResult.getBlockPos().getY() + 1.0625F - 0.5f, entity.getZ());
+                } else {
+                    entity.setPos(entity.getX(), hitResult.getBlockPos().getY() + 1.0625F, entity.getZ());
+                }
+                if (entity.level() instanceof ServerLevel serverLevel) {
+                    serverLevel.getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
+                }
+            }
+        }
+    }
+
+    public static void moveUpFromGround(Entity entity, int distance) {
+        HitResult rayTrace = rayTraceToAir(entity, distance);
+        if (rayTrace.getType() == HitResult.Type.BLOCK) {
+            BlockHitResult hitResult = (BlockHitResult) rayTrace;
+            if (hitResult.getDirection() == Direction.DOWN) {
+                entity.setPos(entity.getX(), hitResult.getBlockPos().getY() - 1.0625F, entity.getZ());
+                if (entity.level() instanceof ServerLevel) {
+                    ((ServerLevel) entity.level()).getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
+                }
+            }
+        }
+    }
+
+    private static HitResult rayTrace(Entity entity) {
+        Vec3 startPos = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+        Vec3 endPos = new Vec3(entity.getX(), entity.level().getMinBuildHeight(), entity.getZ());
+        return entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+    }
+
+    private static HitResult rayTraceToAir(Entity entity, int distance) {
+        Vec3 startPos = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+        Vec3 endPos = new Vec3(entity.getX(), entity.getY() + distance, entity.getZ());
+        return entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+    }
+
+    public static void throwSnapFungus(LivingEntity livingEntity, Level level){
+        SnapFungus blastFungus = new SnapFungus(livingEntity, level);
+        throwFungus(blastFungus, livingEntity);
+    }
+
+    public static void throwBlastFungus(LivingEntity livingEntity, Level level){
+        BlastFungus blastFungus = new BlastFungus(livingEntity, level);
+        throwFungus(blastFungus, livingEntity);
+    }
+
+    public static void throwFungus(Projectile projectile, LivingEntity livingEntity){
+        shootUp(projectile, livingEntity);
+    }
+
+    public static float ceilingVelocity(Entity entity){
+        return ceilingVelocity(entity, 0.75F);
+    }
+
+    public static float ceilingVelocity(Entity entity, float initialV){
+        float f2 = 0.35F;
+        if (BlockFinder.emptySquareSpace(entity.level(), entity.blockPosition(), 13, true)){
+            f2 = initialV;
+        } else if (BlockFinder.emptySquareSpace(entity.level(), entity.blockPosition(), 6, true)){
+            f2 = 0.55F;
+        }
+        return f2;
+    }
+
+    public static void shootUp(Projectile projectile, Entity entity){
+        shootUp(projectile, entity, ceilingVelocity(entity));
+    }
+
+    public static void shootUp(Projectile projectile, Entity entity, float velocity){
+        projectile.shootFromRotation(entity, -90.0F, 0.0F, 0.0F, velocity, 12.0F);
+        entity.level().addFreshEntity(projectile);
+    }
+
+    public static void shootUp(Projectile projectile, float velocity){
+        shootFromRotation(projectile, -90.0F, 0.0F, 0.0F, velocity, 12.0F);
+        projectile.level().addFreshEntity(projectile);
+    }
+
+    public static void shoot(Entity entity, double p_37266_, double p_37267_, double p_37268_, float p_37269_, float p_37270_) {
+        Vec3 vec3 = (new Vec3(p_37266_, p_37267_, p_37268_)).normalize().add(entity.level().getRandom().triangle(0.0D, 0.0172275D * (double)p_37270_), entity.level().getRandom().triangle(0.0D, 0.0172275D * (double)p_37270_), entity.level().getRandom().triangle(0.0D, 0.0172275D * (double)p_37270_)).scale((double)p_37269_);
+        entity.setDeltaMovement(vec3);
+    }
+
+    public static void shootFromRotation(Projectile projectile, float p_37253_, float p_37254_, float p_37255_, float p_37256_, float p_37257_) {
+        float f = -Mth.sin(p_37254_ * ((float)Math.PI / 180F)) * Mth.cos(p_37253_ * ((float)Math.PI / 180F));
+        float f1 = -Mth.sin((p_37253_ + p_37255_) * ((float)Math.PI / 180F));
+        float f2 = Mth.cos(p_37254_ * ((float)Math.PI / 180F)) * Mth.cos(p_37253_ * ((float)Math.PI / 180F));
+        projectile.shoot((double)f, (double)f1, (double)f2, p_37256_, p_37257_);
+    }
+
+    public static int getPotentialBonusSpawns(Raid.RaiderType p_219829_, RandomSource p_219830_, int p_219831_, DifficultyInstance p_219832_, boolean p_219833_) {
+        Difficulty difficulty = p_219832_.getDifficulty();
+        boolean flag = difficulty == Difficulty.EASY;
+        boolean flag1 = difficulty == Difficulty.NORMAL;
+        int i;
+        switch (p_219829_) {
+            case WITCH -> {
+                if (flag || p_219831_ <= 2 || p_219831_ == 4) {
+                    return 0;
+                }
+                i = 1;
+            }
+            case PILLAGER, VINDICATOR -> {
+                if (flag) {
+                    i = p_219830_.nextInt(2);
+                } else if (flag1) {
+                    i = 1;
+                } else {
+                    i = 2;
+                }
+            }
+            case RAVAGER -> i = !flag && p_219833_ ? 1 : 0;
+            default -> {
+                return 0;
+            }
+        }
+
+        return i > 0 ? p_219830_.nextInt(i + 1) : 0;
+    }
+
+    public static boolean isFinalWave(Raid raid) {
+        return raid.getGroupsSpawned() == raid.getNumGroups(raid.getLevel().getDifficulty());
+    }
+
+    public static boolean hasBonusWave(Raid raid) {
+        // Bonus waves require raid-omen state that is not exposed through the public 1.21 Raid API.
+        return false;
+    }
+
+    public static boolean shouldSpawnBonusGroup(Raid raid) {
+        return isFinalWave(raid) && raid.getTotalRaidersAlive() == 0 && hasBonusWave(raid);
+    }
+
+    public static void explosionDamage(Level level, Entity source, DamageSource damageSource, BlockPos blockPos, float radius, float damage){
+        explosionDamage(level, source, damageSource, blockPos.getX(), blockPos.getY(), blockPos.getZ(), radius, damage);
+    }
+
+    public static void explosionDamage(Level level, Entity source, DamageSource damageSource, double x, double y, double z, float radius, float damage){
+        new SpellExplosion(level, source, damageSource, x, y, z, radius, damage);
+    }
+
+    public static boolean canPositionBeSeen(Level level, LivingEntity living, Vec3 vec3) {
+        return canPositionBeSeen(level, living, vec3.x, vec3.y, vec3.z);
+    }
+
+    public static boolean canPositionBeSeen(Level level, LivingEntity living, double x, double y, double z) {
+        HitResult result = level.clip(new ClipContext(new Vec3(living.getX(), living.getY() + (double) living.getEyeHeight(), living.getZ()), new Vec3(x, y, z), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, living));
+        double dist = result.getLocation().distanceToSqr(x, y, z);
+        return dist <= 1.0D || result.getType() == HitResult.Type.MISS;
+    }
+
+    /**
+     * Copy of Vanilla's getEquipmentDropChance. Had to accesstransformer handDropChances and armorDropChances
+     */
+    public static float getEquipmentDropChance(Mob mob, EquipmentSlot p_21520_) {
+        // Equipment drop chance arrays are not exposed by the public 1.21 API; callers only need a conservative chance gate here.
+        return 0.0F;
+    }
+
+    /**
+     * Copy of Vanilla's Mob convertTo to be able to accept Entity class instead of just Mob class.
+     */
+    @Nullable
+    public static Entity convertTo(Entity originalEntity, EntityType<?> convertedType, boolean loot, Player player) {
+        return convertTo(originalEntity, convertedType, loot, false, player);
+    }
+
+    @Nullable
+    public static Entity convertTo(Entity originalEntity, EntityType<?> convertedType, boolean loot, boolean newEquip, Player player) {
+        if (originalEntity.isRemoved()) {
+            return null;
+        } else {
+            Entity newEntity = convertedType.create(originalEntity.level());
+            if (newEntity != null) {
+                newEntity.copyPosition(originalEntity);
+                if (originalEntity instanceof Mob originalMob && newEntity instanceof Mob newMob) {
+                    newMob.setBaby(originalMob.isBaby());
+                    newMob.setNoAi(originalMob.isNoAi());
+                    if (originalMob.hasCustomName()) {
+                        newEntity.setCustomName(originalMob.getCustomName());
+                        newEntity.setCustomNameVisible(originalMob.isCustomNameVisible());
+                    }
+
+                    if (originalMob.isPersistenceRequired()) {
+                        newMob.setPersistenceRequired();
+                    }
+
+                    newMob.setInvulnerable(originalMob.isInvulnerable());
+                    if (loot) {
+                        newMob.setCanPickUpLoot(originalMob.canPickUpLoot());
+
+                        for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
+                            ItemStack itemstack = originalMob.getItemBySlot(equipmentslot);
+                            if (!itemstack.isEmpty()) {
+                                newMob.setItemSlot(equipmentslot, itemstack.copy());
+                                newMob.setDropChance(equipmentslot, getEquipmentDropChance(originalMob, equipmentslot));
+                                itemstack.setCount(0);
+                            }
+                        }
+                    }
+                    if (player != null){
+                        summonTame(newMob, player);
+                    }
+
+                    if (originalMob.level() instanceof ServerLevel serverLevel) {
+                        if (originalMob instanceof Villager villager && newMob instanceof ZombieVillager zombievillager) {
+                            zombievillager.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(zombievillager.blockPosition()), MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, true));
+                            zombievillager.setVillagerData(villager.getVillagerData());
+                            zombievillager.setGossips(villager.getGossips().store(NbtOps.INSTANCE));
+                            zombievillager.setTradeOffers(villager.getOffers().copy());
+                            zombievillager.setVillagerXp(villager.getVillagerXp());
+                            if (!originalMob.isSilent()) {
+                                serverLevel.levelEvent((Player)null, 1026, originalMob.blockPosition(), 0);
+                            }
+                        } else if (newEquip && newMob instanceof IOwned owned){
+                            owned.convertNewEquipment(originalEntity);
+                        }
+                    }
+
+                    if (originalMob instanceof Villager villager) {
+                        releaseAllPois(villager);
+                    }
+
+                    originalMob.level().addFreshEntity(newEntity);
+                    if (originalMob.isPassenger()) {
+                        Entity entity = originalMob.getVehicle();
+                        if (entity != null) {
+                            originalMob.stopRiding();
+                            newEntity.startRiding(entity, true);
+                        }
+                    }
+                }
+
+                originalEntity.discard();
+            }
+            return newEntity;
+        }
+    }
+
+    public static void summonTame(Entity entity, Player player){
+        if (entity instanceof TamableAnimal tamableAnimal){
+            tamableAnimal.tame(player);
+        } else if (entity instanceof AbstractHorse horse){
+            horse.setTamed(true);
+            horse.setOwnerUUID(player.getUUID());
+        } else if (entity instanceof IOwned summonedEntity && entity instanceof Mob mob) {
+            mob.setPersistenceRequired();
+            summonedEntity.setTrueOwner(player);
+            if (summonedEntity instanceof IServant summoned){
+                summoned.setWandering(false);
+            }
+            if (summonedEntity instanceof Summoned summoned){
+                summoned.spawnUpgraded();
+            }
+        }
+    }
+
+    public static void explodeCreeper(Creeper creeper) {
+        if (!creeper.level().isClientSide) {
+            float f = creeper.isPowered() ? 2.0F : 1.0F;
+            creeper.level().explode(creeper, creeper.getX(), creeper.getY(), creeper.getZ(), 3.0F * f, Level.ExplosionInteraction.MOB);
+            creeper.discard();
+            spawnLingeringCloud(creeper);
+        }
+    }
+
+    public static void spawnLingeringCloud(Creeper creeper) {
+        Collection<MobEffectInstance> collection = creeper.getActiveEffects();
+        if (!collection.isEmpty()) {
+            AreaEffectCloud areaeffectcloud = new AreaEffectCloud(creeper.level(), creeper.getX(), creeper.getY(), creeper.getZ());
+            areaeffectcloud.setRadius(2.5F);
+            areaeffectcloud.setRadiusOnUse(-0.5F);
+            areaeffectcloud.setWaitTime(10);
+            areaeffectcloud.setDuration(areaeffectcloud.getDuration() / 2);
+            areaeffectcloud.setRadiusPerTick(-areaeffectcloud.getRadius() / (float)areaeffectcloud.getDuration());
+
+            for(MobEffectInstance mobeffectinstance : collection) {
+                areaeffectcloud.addEffect(new MobEffectInstance(mobeffectinstance));
+            }
+
+            creeper.level().addFreshEntity(areaeffectcloud);
+        }
+
+    }
+
+    public static boolean hasNegativeEffects(LivingEntity livingEntity){
+        return !livingEntity.getActiveEffects().isEmpty() && livingEntity.getActiveEffects().stream().anyMatch((mobEffectInstance2 -> mobEffectInstance2.getEffect().value().getCategory() == MobEffectCategory.HARMFUL));
+    }
+
+    public static boolean hasLongNegativeEffects(LivingEntity livingEntity){
+        return !livingEntity.getActiveEffects().isEmpty() && livingEntity.getActiveEffects().stream().anyMatch((mobEffectInstance2 -> mobEffectInstance2.getEffect().value().getCategory() == MobEffectCategory.HARMFUL && mobEffectInstance2.getDuration() > MathHelper.secondsToTicks(5)));
+    }
+
+    public static boolean isMoving(LivingEntity livingEntity){
+        return livingEntity.onGround() && livingEntity.getDeltaMovement().horizontalDistanceSqr() > (double) 2.5000003E-7F;
+    }
+
+    public static boolean hasVisualLineOfSight(LivingEntity looker, Entity target) {
+        if (target.level() != looker.level()) {
+            return false;
+        } else {
+            Vec3 vec3 = new Vec3(looker.getX(), looker.getEyeY(), looker.getZ());
+            Vec3 vec31 = new Vec3(target.getX(), target.getEyeY(), target.getZ());
+            if (vec31.distanceTo(vec3) > 128.0D) {
+                return false;
+            } else {
+                return looker.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, looker)).getType() == HitResult.Type.MISS;
+            }
+        }
+    }
+
+    public static boolean hasLineOfSight(Entity looker, Entity target) {
+        if (target.level() != looker.level()) {
+            return false;
+        } else {
+            Vec3 vec3 = new Vec3(looker.getX(), looker.getEyeY(), looker.getZ());
+            Vec3 vec31 = new Vec3(target.getX(), target.getEyeY(), target.getZ());
+            if (vec31.distanceTo(vec3) > 128.0D) {
+                return false;
+            } else {
+                return looker.level().clip(new ClipContext(vec3, vec31, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, looker)).getType() == HitResult.Type.MISS;
+            }
+        }
+    }
+
+    public static boolean isPushed(LivingEntity livingEntity){
+        List<Entity> list = livingEntity.level().getEntities(livingEntity, livingEntity.getBoundingBox(), EntitySelector.pushableBy(livingEntity));
+        return !list.isEmpty() && livingEntity.isPushable();
+    }
+
+    public static boolean isInBrightLight(LivingEntity livingEntity){
+        float f = livingEntity.getLightLevelDependentMagicValue();
+        return f >= 0.5F;
+    }
+
+    public static boolean isInSunlight(LivingEntity livingEntity){
+        if (livingEntity.level().isDay() && !livingEntity.level().isClientSide) {
+            float f = livingEntity.getLightLevelDependentMagicValue();
+            BlockPos blockpos = BlockPos.containing(livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ());
+            boolean flag = livingEntity.isInWaterRainOrBubble() || livingEntity.isInPowderSnow || livingEntity.wasInPowderSnow;
+            return f > 0.5F && livingEntity.getRandom().nextFloat() * 30.0F < (f - 0.4F) * 2.0F && !flag && livingEntity.level().canSeeSky(blockpos);
+        }
+
+        return false;
+    }
+
+    public static boolean isInSunlightNoChance(LivingEntity livingEntity){
+        if (livingEntity.level().isDay() && !livingEntity.level().isClientSide) {
+            float f = livingEntity.getLightLevelDependentMagicValue();
+            BlockPos blockpos = BlockPos.containing(livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ());
+            boolean flag = livingEntity.isInWaterRainOrBubble() || livingEntity.isInPowderSnow || livingEntity.wasInPowderSnow;
+            return f > 0.5F && !flag && livingEntity.level().canSeeSky(blockpos);
+        }
+
+        return false;
+    }
+
+    public static boolean isInSunlightNoRain(LivingEntity livingEntity){
+        return isInSunlight(livingEntity) && !livingEntity.level().isRaining();
+    }
+
+    public static boolean ownerStack(IOwned owned0, IOwned owned1) {
+        LivingEntity master0 = owned0.getMasterOwner();
+        LivingEntity master1 = owned1.getMasterOwner();
+        return master0 != null && master1 != null && (master0 == master1 || master0.getUUID().equals(master1.getUUID()));
+    }
+
+    public static boolean isSpellCasting(LivingEntity livingEntity){
+        return livingEntity.isUsingItem() && livingEntity.getUseItem().getItem() instanceof IWand && !WandUtil.findFocus(livingEntity).isEmpty();
+    }
+
+    public static void instaLook(Mob mob, Vec3 vec3){
+        mob.getLookControl().setLookAt(vec3.x, vec3.y, vec3.z, 200.0F, mob.getMaxHeadXRot());
+        double d2 = vec3.x - mob.getX();
+        double d1 = vec3.z - mob.getZ();
+        float rotate = -((float) Mth.atan2(d2, d1)) * (180F / (float) Math.PI);
+        mob.setYRot(rotate);
+        mob.yBodyRot = rotate;
+        mob.yHeadRot = rotate;
+    }
+
+    public static void instaLook(Mob looker, Entity target){
+        instaLook(looker, target, false);
+    }
+
+    public static void instaLook(Mob looker, Entity target, boolean clientSent){
+        looker.lookAt(target, 100.0F, 100.0F);
+        instaLook(looker, target.getEyePosition());
+        if (clientSent) {
+            if (!looker.level().isClientSide) {
+                ModNetwork.sendToALL(new SInstaLookPacket(looker, target));
+            }
+        }
+    }
+
+    public static void rotateTo(Mob looker, LivingEntity target){
+        rotateTo(looker, target, 90.0F);
+    }
+
+    public static void rotateTo(Mob looker, LivingEntity target, float speed){
+        double d2 = target.getX() - looker.getX();
+        double d1 = target.getZ() - looker.getZ();
+        float rotate = -((float) Mth.atan2(d2, d1)) * (180F / (float) Math.PI);
+        looker.setYRot(rotLerp(looker.getYRot(), rotate, speed));
+        looker.yBodyRot = looker.getYRot();
+        looker.yHeadRotO = looker.getYRot();
+        looker.yHeadRot = looker.getYRot();
+    }
+
+    public static float rotLerp(float start, float end, float speed) {
+        float f = Mth.wrapDegrees(end - start);
+        if (f > speed) {
+            f = speed;
+        }
+
+        if (f < -speed) {
+            f = -speed;
+        }
+
+        return start + f;
+    }
+
+    public static ItemStack createFirework(int explosions, DyeColor[] dyeColor) {
+        ItemStack firework = new ItemStack(Items.FIREWORK_ROCKET);
+        ItemStack star = new ItemStack(Items.FIREWORK_STAR);
+        IntArrayList colorList = new IntArrayList();
+        for (DyeColor color : dyeColor) {
+            colorList.add(color.getFireworkColor());
+        }
+        FireworkExplosion explosion = new FireworkExplosion(FireworkExplosion.Shape.BURST, colorList, colorList, false, false);
+        star.set(DataComponents.FIREWORK_EXPLOSION, explosion);
+        // Firework NBT moved to data components in 1.21, so build the rocket payload from the same explosion component stored on the star.
+        firework.set(DataComponents.FIREWORKS, new Fireworks(1, java.util.Collections.nCopies(explosions, explosion)));
+        return firework;
+    }
+
+    public static void hurtUsedShield(LivingEntity living, float p_36383_) {
+        if (living.getUseItem().canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SHIELD_BLOCK)) {
+            if (!living.level().isClientSide && living instanceof ServerPlayer player) {
+                player.awardStat(Stats.ITEM_USED.get(player.getUseItem().getItem()));
+            }
+
+            if (p_36383_ >= 3.0F) {
+                int i = 1 + Mth.floor(p_36383_);
+                InteractionHand interactionhand = living.getUsedItemHand();
+                EquipmentSlot equipmentSlot = interactionhand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                // ItemStack break callbacks now use EquipmentSlot in 1.21; the vanilla helper handles the break broadcast for that slot.
+                living.getUseItem().hurtAndBreak(i, living, equipmentSlot);
+                if (living.getUseItem().isEmpty()) {
+                    if (interactionhand == InteractionHand.MAIN_HAND) {
+                        living.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                    } else {
+                        living.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+                    }
+                    living.playSound(SoundEvents.SHIELD_BREAK, 0.8F, 0.8F + living.level().random.nextFloat() * 0.4F);
+                }
+            }
+
+        }
+    }
+
+    public static void disableShield(LivingEntity livingEntity, int ticks) {
+        if (livingEntity instanceof Player player) {
+            if (player.isBlocking() && !player.level().isClientSide) {
+                player.getCooldowns().addCooldown(player.getUseItem().getItem(), ticks);
+                player.stopUsingItem();
+                player.level().broadcastEntityEvent(player, (byte) 30);
+            }
+        } else {
+            MobUtil.disableShield(livingEntity);
+        }
+    }
+
+    public static boolean canAttack(LivingEntity attacker, LivingEntity target){
+        return !areAllies(attacker, target) && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(target) && attacker.canAttack(target);
+    }
+
+    public static boolean mobCanAttack(Mob attacker, LivingEntity target){
+        if (attacker.getTarget() == target){
+            return EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(target) && attacker.canAttack(target);
+        }
+        return canAttack(attacker, target);
+    }
+
+    public static boolean ownedCanAttack(Owned attacker, LivingEntity target){
+        if (attacker.getTrueOwner() != null){
+            LivingEntity owner = attacker.getTrueOwner();
+            if (owner instanceof Mob mob){
+                return mobCanAttack(mob, target);
+            } else {
+                return canAttack(owner, target);
+            }
+        }
+        return mobCanAttack(attacker, target);
+    }
+
+    public static void sweepAttack(LivingEntity attacker, Entity target, DamageSource damageSource, float damage){
+        sweepAttack(attacker, target, damageSource, 1.0D, damage);
+    }
+
+    public static void sweepAttack(LivingEntity attacker, Entity target, DamageSource damageSource, double radius, float damage){
+        for(LivingEntity livingentity : attacker.level().getEntitiesOfClass(LivingEntity.class, target.getBoundingBox().inflate(radius, 0.25D, radius))) {
+            if (livingentity != attacker && livingentity != target && !attacker.isAlliedTo(livingentity) && (!(livingentity instanceof ArmorStand) || !((ArmorStand)livingentity).isMarker()) && attacker.canAttack(livingentity)) {
+                livingentity.knockback((double)0.4F, (double)Mth.sin(attacker.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(attacker.getYRot() * ((float)Math.PI / 180F))));
+                livingentity.hurt(damageSource, damage);
+            }
+        }
+    }
+
+    /**
+     * Code based of @BobMowzies sweep codes. From Here
+     */
+    public static List<LivingEntity> getAttackableLivingEntitiesNearby(LivingEntity source, double distanceX, double distanceY, double distanceZ, double radius) {
+        return getLivingEntitiesNearby(source, distanceX, distanceY, distanceZ, radius).stream().filter(target -> canAttack(source, target)).toList();
+    }
+
+    public static List<LivingEntity> getLivingEntitiesNearby(Entity source, double distanceX, double distanceY, double distanceZ, double radius) {
+        return getEntitiesNearby(source, LivingEntity.class, distanceX, distanceY, distanceZ, radius);
+    }
+
+    public static <T extends Entity> List<T> getEntitiesNearby(Entity source, Class<T> entityClass, double dX, double dY, double dZ, double radius) {
+        return source.level().getEntitiesOfClass(entityClass, source.getBoundingBox().inflate(dX, dY, dZ), target -> target != source && source.distanceTo(target) <= radius + target.getBbWidth() / 2.0F && target.getY() <= (source.getY() + dY));
+    }
+    /**
+     * To Here
+    */
+
+    public static WeightedRandomList<MobSpawnSettings.SpawnerData> mobsAt(ServerLevel p_220444_, StructureManager p_220445_, ChunkGenerator p_220446_, MobCategory p_220447_, BlockPos p_220448_, @Nullable Holder<Biome> p_220449_) {
+        return net.neoforged.neoforge.event.EventHooks.getPotentialSpawns(p_220444_, p_220447_, p_220448_, NaturalSpawner.isInNetherFortressBounds(p_220448_, p_220444_, p_220447_, p_220445_) ? p_220445_.registryAccess().registryOrThrow(Registries.STRUCTURE).getOrThrow(BuiltinStructures.FORTRESS).spawnOverrides().get(MobCategory.MONSTER).spawns() : p_220446_.getMobsAt(p_220449_ != null ? p_220449_ : p_220444_.getBiome(p_220448_), p_220445_, p_220447_, p_220448_));
+    }
+
+    public static Vec3 calculateViewVector(float p_20172_, float p_20173_) {
+        float f = p_20172_ * ((float)Math.PI / 180F);
+        float f1 = -p_20173_ * ((float)Math.PI / 180F);
+        float f2 = Mth.cos(f1);
+        float f3 = Mth.sin(f1);
+        float f4 = Mth.cos(f);
+        float f5 = Mth.sin(f);
+        return new Vec3((double)(f3 * f4), (double)(-f5), (double)(f2 * f4));
+    }
+
+    public static Vec3 getHorizontalLeftLookAngle(Entity entity) {
+        return MobUtil.calculateViewVector(0, entity.getYRot() - 90);
+    }
+
+    public static Vec3 getHorizontalRightLookAngle(Entity entity) {
+        return MobUtil.calculateViewVector(0, entity.getYRot() + 90);
+    }
+
+    public static Vec3 getHorizontalLookAngle(Entity entity) {
+        return MobUtil.calculateViewVector(0, entity.getYRot());
+    }
+
+    public static Vec3 getLeftPos(Entity entity, double scale) {
+        Vec3 left = getHorizontalLeftLookAngle(entity);
+        double x = left.x * scale;
+        double z = left.z * scale;
+        return entity.position().add(x, 0, z);
+    }
+
+    public static Vec3 getRightPos(Entity entity, double scale) {
+        Vec3 right = getHorizontalRightLookAngle(entity);
+        double x = right.x * scale;
+        double z = right.z * scale;
+        return entity.position().add(x, 0, z);
+    }
+
+    public static Vec3 getFrontPos(Entity entity, double scale) {
+        Vec3 front = getHorizontalLookAngle(entity);
+        double x = front.x * scale;
+        double z = front.z * scale;
+        return entity.position().add(x, 0, z);
+    }
+
+    public static Vec3 getBackPos(Entity entity, double scale) {
+        Vec3 front = getHorizontalLookAngle(entity).reverse();
+        double x = front.x * scale;
+        double z = front.z * scale;
+        return entity.position().add(x, 0, z);
+    }
+
+    public static void setRot(Entity entity, float p_19916_, float p_19917_) {
+        entity.setYRot(p_19916_ % 360.0F);
+        entity.setXRot(p_19917_ % 360.0F);
+    }
+
+    /**
+     * Based on Dweller code by Gargin: <a href="https://github.com/maow-tty/cave-dweller-decompiled/blob/master/src/main/java/com/gargin/cavenoise/entity/custom/DwellerStareGoal.java#L118">...</a>
+     */
+    public static boolean isPlayerLookingTowards(Player player, float fov, Mob mob) {
+        boolean yawPlayerLookingTowards = false;
+        float yFovMod = 0.65F;
+        float fovMod = (35.0F / fov - 1.0F) * 0.4F + 1.0F;
+        fov *= fovMod;
+        Vec3 a = player.position();
+        Vec3 b = mob.position();
+        Vec2 dist = new Vec2((float)b.x - (float)a.x, (float)b.z - (float)a.z);
+        dist = dist.normalized();
+        double newAngle = Math.toDegrees(Math.atan2(dist.x, dist.y));
+        float lookX = (float)player.getViewVector(1.0F).x;
+        float lookZ = (float)player.getViewVector(1.0F).z;
+        double newLookAngle = Math.toDegrees(Math.atan2(lookX, lookZ));
+        double newNewAngle = loopAngle(newAngle - newLookAngle) + (double)fov;
+        newNewAngle = loopAngle(newNewAngle);
+        if (newNewAngle > 0.0 && newNewAngle < (double)(fov * 2.0F)) {
+            yawPlayerLookingTowards = true;
+        }
+
+        boolean pitchPlayerLookingTowards = false;
+        boolean shouldOnlyUsePitch = false;
+        float yFov = fov * yFovMod;
+        Vec2 yDist = new Vec2((float)Math.sqrt((b.x - a.x) * (b.x - a.x) + (b.z - a.z) * (b.z - a.z)), (float)(b.y - a.y));
+        yDist = yDist.normalized();
+        double yAngle = Math.toDegrees(Math.atan2(yDist.x, yDist.y));
+        float lookY = (float)player.getViewVector(1.0F).y;
+        Vec2 lookDist = new Vec2((float)Math.sqrt(lookX * lookX + lookZ * lookZ), lookY);
+        lookDist = lookDist.normalized();
+        double yLookAngle = Math.toDegrees(Math.atan2(lookDist.x, lookDist.y));
+        double newYAngle = loopAngle(yAngle - yLookAngle) + (double)yFov;
+        newYAngle = loopAngle(newYAngle);
+        if (newYAngle > 0.0 && newYAngle < (double)(yFov * 2.0F)) {
+            pitchPlayerLookingTowards = true;
+        }
+
+        if (!(yLookAngle < (double)(180.0F - yFov)) || !(yLookAngle > (double)yFov)) {
+            shouldOnlyUsePitch = true;
+        }
+
+        return (yawPlayerLookingTowards || shouldOnlyUsePitch) && pitchPlayerLookingTowards;
+    }
+
+    public static double loopAngle(double angle) {
+        if (angle > 360.0) {
+            return angle - 360.0;
+        } else {
+            return angle < 0.0 ? angle + 360.0 : angle;
+        }
+    }
+
+    public static void setBaseAttributes(AttributeInstance attribute, double value){
+        if (attribute != null){
+            attribute.setBaseValue(value);
+        }
+    }
+
+    public static double getAttributeValue(LivingEntity livingEntity, Attribute attribute){
+        return getAttributeValue(livingEntity, attribute, 0.0D);
+    }
+
+    public static double getAttributeValue(LivingEntity livingEntity, Attribute attribute, double nullCheck){
+        Optional<Holder.Reference<Attribute>> holder = BuiltInRegistries.ATTRIBUTE.getResourceKey(attribute).flatMap(BuiltInRegistries.ATTRIBUTE::getHolder);
+        if (holder.isPresent() && livingEntity.getAttribute(holder.get()) != null){
+            return livingEntity.getAttributeValue(holder.get());
+        } else {
+            return nullCheck;
+        }
+    }
+
+    public static void circleEntity(Mob mob, Entity target, float radius, float speed, boolean goRight, int circleFrame, float offset, float moveSpeed) {
+        int direction = goRight ? 1 : -1;
+        double t = (double)(direction * circleFrame) * 0.5 * (double)speed / (double)radius + (double)offset;
+        Vec3 movePos = target.position().add((double)radius * Math.cos(t), 0.0, (double)radius * Math.sin(t));
+        mob.getNavigation().moveTo(movePos.x, movePos.y, movePos.z, (double)(speed * moveSpeed));
+    }
+
+    //Enderman Teleport
+    public static boolean teleport(LivingEntity livingEntity) {
+        return teleport(livingEntity, 0);
+    }
+
+    public static boolean teleport(LivingEntity livingEntity, int level) {
+        return teleport(livingEntity, 64, level);
+    }
+
+    public static boolean teleport(LivingEntity livingEntity, int initialDistance, int level) {
+        int distance = initialDistance + (level * 2);
+        if (!livingEntity.level().isClientSide() && livingEntity.isAlive()) {
+            double d0 = livingEntity.getX() + (livingEntity.getRandom().nextDouble() - 0.5D) * distance;
+            double d1 = livingEntity.getY() + (double)(livingEntity.getRandom().nextInt(distance) - (distance / 2));
+            double d2 = livingEntity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5D) * distance;
+            return teleport(livingEntity, d0, d1, d2);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean teleportTowards(LivingEntity livingEntity, Entity target) {
+        Vec3 vec3 = new Vec3(livingEntity.getX() - target.getX(), livingEntity.getY(0.5D) - target.getEyeY(), livingEntity.getZ() - target.getZ());
+        vec3 = vec3.normalize();
+        double d0 = 16.0D;
+        double d1 = livingEntity.getX() + (livingEntity.getRandom().nextDouble() - 0.5D) * 8.0D - vec3.x * 16.0D;
+        double d2 = livingEntity.getY() + (double)(livingEntity.getRandom().nextInt(16) - 8) - vec3.y * 16.0D;
+        double d3 = livingEntity.getZ() + (livingEntity.getRandom().nextDouble() - 0.5D) * 8.0D - vec3.z * 16.0D;
+        return teleport(livingEntity, d1, d2, d3);
+    }
+
+    public static boolean teleport(LivingEntity livingEntity, double x, double y, double z) {
+        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(x, y, z);
+
+        while(blockpos$mutableblockpos.getY() > livingEntity.level().getMinBuildHeight() && !livingEntity.level().getBlockState(blockpos$mutableblockpos).blocksMotion()) {
+            blockpos$mutableblockpos.move(Direction.DOWN);
+        }
+
+        BlockState blockstate = livingEntity.level().getBlockState(blockpos$mutableblockpos);
+        boolean flag = blockstate.blocksMotion();
+        boolean flag1 = blockstate.getFluidState().is(FluidTags.WATER);
+        if (flag && !flag1) {
+            net.neoforged.neoforge.event.entity.EntityTeleportEvent.EnderEntity event = net.neoforged.neoforge.event.EventHooks.onEnderTeleport(livingEntity, x, y, z);
+            if (event.isCanceled()) return false;
+            Vec3 vec3 = livingEntity.position();
+            boolean flag2 = livingEntity.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true);
+            if (flag2) {
+                livingEntity.level().gameEvent(GameEvent.TELEPORT, vec3, GameEvent.Context.of(livingEntity));
+                if (!livingEntity.isSilent()) {
+                    livingEntity.level().playSound((Player)null, livingEntity.xo, livingEntity.yo, livingEntity.zo, SoundEvents.ENDERMAN_TELEPORT, livingEntity.getSoundSource(), 1.0F, 1.0F);
+                    livingEntity.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F);
+                }
+            }
+
+            return flag2;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean randomWaterTeleport(LivingEntity livingEntity, double p_20985_, double p_20986_, double p_20987_, boolean p_20988_) {
+        double d0 = livingEntity.getX();
+        double d1 = livingEntity.getY();
+        double d2 = livingEntity.getZ();
+        double d3 = p_20986_;
+        boolean flag = false;
+        BlockPos blockpos = BlockPos.containing(p_20985_, p_20986_, p_20987_);
+        Level level = livingEntity.level();
+        if (level.isLoaded(blockpos)) {
+            boolean flag1 = false;
+
+            while(!flag1 && blockpos.getY() > level.getMinBuildHeight()) {
+                BlockPos blockpos1 = blockpos.below();
+                BlockState blockstate = level.getBlockState(blockpos1);
+                if (blockstate.blocksMotion()) {
+                    flag1 = true;
+                } else if (blockstate.getFluidState().is(FluidTags.WATER)){
+                    --d3;
+                    flag1 = true;
+                } else {
+                    --d3;
+                    blockpos = blockpos1;
+                }
+            }
+
+            if (flag1) {
+                livingEntity.teleportTo(p_20985_, d3, p_20987_);
+                if (level.noCollision(livingEntity)) {
+                    flag = true;
+                }
+            }
+        }
+
+        if (!flag) {
+            livingEntity.teleportTo(d0, d1, d2);
+            return false;
+        } else {
+            if (p_20988_) {
+                level.broadcastEntityEvent(livingEntity, (byte)46);
+            }
+
+            if (livingEntity instanceof PathfinderMob) {
+                ((PathfinderMob)livingEntity).getNavigation().stop();
+            }
+
+            return true;
+        }
+    }
+
+    public static Predicate<LivingEntity> ownedPredicate(Entity entity){
+        return target -> isOwnedTargetable(entity, target);
+    }
+
+    public static boolean isOwnedTargetable(Entity attacker, LivingEntity target){
+        LivingEntity owner = null;
+        if (MobUtil.getOwner(attacker) != null){
+            owner = MobUtil.getOwner(attacker);
+        } else if (attacker instanceof Projectile projectile && projectile.getOwner() instanceof LivingEntity livingEntity){
+            owner = livingEntity;
+        }
+        if (owner instanceof Enemy
+                || (owner instanceof IOwned owned && owned.isHostile())
+                || (attacker instanceof Enemy && !(attacker instanceof IOwned))
+                || (attacker instanceof IOwned ownedAttacker && ownedAttacker.isHostile())){
+            return target instanceof Player player && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(player);
+        } else if (target instanceof NeutralMob neutralMob) {
+            return (owner instanceof Player player && SEHelper.isGrudged(player, target))
+                    || (owner instanceof IOwned owned && owned.isGrudgedTowards(target))
+                    || (attacker instanceof IOwned owned2 && owned2.isGrudgedTowards(target))
+                    || (owner != null && neutralMob.getTarget() == owner) || (neutralMob.getTarget() == attacker);
+        } else {
+            return (((target instanceof Enemy && !(target instanceof IOwned)) || (target instanceof IOwned ownedTarget && ownedTarget.isHostile()))
+                    && !((MobTypeHelper.getMobType(target) == ModMobType.UNDEAD || target.getType().is(ModTags.EntityTypes.LICH_NEUTRAL)) && LichdomHelper.isLich(owner) && MainConfig.LichUndeadFriends.get())
+                    && !(owner != null && ((CuriosFinder.hasNecroSet(owner) && CuriosFinder.validNecroUndead(target)) || (CuriosFinder.neutralNamelessSet(owner) && CuriosFinder.validNamelessUndead(target))) && !MobsConfig.NecroRobeUndead.get())
+                    && !(MobUtil.isWitchType(target) && owner != null && CuriosFinder.isWitchFriendly(owner) && !MobsConfig.VariousRobeWitch.get())
+                    && !(CuriosFinder.validGeoMob(target) && owner != null && CuriosFinder.neutralGeoSet(owner))
+                    && !(CuriosFinder.validFrostMob(target) && owner != null && CuriosFinder.neutralFrostSet(owner))
+                    && !(CuriosFinder.validWindMob(target) && owner != null && CuriosFinder.neutralWindSet(owner))
+                    && !(CuriosFinder.validStormMob(target) && owner != null && CuriosFinder.neutralStormSet(owner))
+                    && !(CuriosFinder.validWildMob(target) && owner != null && CuriosFinder.neutralWildSet(owner))
+                    && !(CuriosFinder.validVoidMob(target) && owner != null && CuriosFinder.neutralVoidSet(owner))
+                    && !(CuriosFinder.validNetherMob(target) && owner != null && CuriosFinder.neutralNetherSet(owner))
+                    && !(MobTypeHelper.getMobType(target) == ModMobType.ARTHROPOD && owner != null && CuriosFinder.hasWarlockRobe(owner))
+                    && !(target instanceof Creeper && target.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && MobsConfig.ServantsAttackCreepers.get())
+                    && !(target instanceof AbstractPiglin piglin && ((owner != null && piglin.getTarget() != owner) || piglin.getTarget() != attacker))
+                    && !(target instanceof IOwned ownedTarget && (owner != null && ownedTarget.getTrueOwner() == owner))
+                    || (owner instanceof Player player && (SEHelper.isGrudged(player, target)))
+                    || (owner instanceof IOwned owned && owned.isGrudgedTowards(target))
+                    || (attacker instanceof IOwned owned2 && owned2.isGrudgedTowards(target)));
+        }
+    }
+
+    public static boolean isWitchType(Entity target){
+        return target instanceof Witch || (target instanceof Cultist && !target.getType().is(Tags.EntityTypes.BOSSES)) || target.getType().is(ModTags.EntityTypes.WITCH_SET_NEUTRAL);
+    }
+
+    public static void createWitherRose(LivingEntity target, @Nullable LivingEntity killer) {
+        createBlockUponDeath(target, killer, Blocks.WITHER_ROSE);
+    }
+
+    public static void createBlockUponDeath(LivingEntity target, @Nullable LivingEntity killer, Block block) {
+        if (!target.level().isClientSide) {
+            boolean flag = false;
+            if (net.neoforged.neoforge.event.EventHooks.canEntityGrief(target.level(), killer)) {
+                BlockPos blockpos = target.blockPosition();
+                BlockState blockstate = block.defaultBlockState();
+                if (target.level().isEmptyBlock(blockpos) && blockstate.canSurvive(target.level(), blockpos)) {
+                    target.level().setBlock(blockpos, blockstate, 3);
+                    flag = true;
+                }
+            }
+
+            if (!flag) {
+                ItemEntity itementity = new ItemEntity(target.level(), target.getX(), target.getY(), target.getZ(), new ItemStack(block));
+                target.level().addFreshEntity(itementity);
+            }
+
+        }
+    }
+
+    public static boolean isDirectlyLooking(LivingEntity looker, LivingEntity looked) {
+        Vec3 vec3 = looker.getViewVector(1.0F).normalize();
+        Vec3 vec31 = new Vec3(looked.getX() - looker.getX(), looked.getEyeY() - looker.getEyeY(), looked.getZ() - looker.getZ());
+        double d0 = vec31.length();
+        vec31 = vec31.normalize();
+        double d1 = vec3.dot(vec31);
+        return d1 > 1.0D - 0.025D / d0 && looker.hasLineOfSight(looked);
+    }
+
+    /**
+     * Based on code by @Crimson_Steve.
+     */
+    public static AABB makeAttackRange(double x, double y, double z, double sizeX, double sizeY, double sizeZ) {
+        return new AABB(x - (sizeX / 2.0D), y - (sizeY / 2.0D), z - (sizeZ / 2.0D), x + (sizeX / 2.0D), y + (sizeY / 2.0D), z + (sizeZ / 2.0D));
+    }
+
+    public static float hurtCalculation(LivingEntity livingEntity, DamageSource damageSource, float amount) {
+        // NeoForge 1.21 routes hurt/damage events through the vanilla damage container pipeline; keep this helper as a local calculation without firing legacy ForgeHooks.
+        amount = getDamageAfterArmorAbsorb(livingEntity, damageSource, amount);
+        amount = getDamageAfterMagicAbsorb(livingEntity, damageSource, amount);
+        float f1 = Math.max(amount - livingEntity.getAbsorptionAmount(), 0.0F);
+        return f1;
+    }
+
+    public static float getDamageAfterArmorAbsorb(LivingEntity livingEntity, DamageSource damageSource, float amount) {
+        if (!damageSource.is(DamageTypeTags.BYPASSES_ARMOR)) {
+            amount = CombatRules.getDamageAfterAbsorb(livingEntity, amount, damageSource, (float)livingEntity.getArmorValue(), (float)livingEntity.getAttributeValue(Attributes.ARMOR_TOUGHNESS));
+        }
+
+        return amount;
+    }
+
+    public static float getDamageAfterMagicAbsorb(LivingEntity livingEntity, DamageSource damageSource, float amount) {
+        if (damageSource.is(DamageTypeTags.BYPASSES_EFFECTS)) {
+            return amount;
+        } else {
+            if (livingEntity.hasEffect(MobEffects.DAMAGE_RESISTANCE) && !damageSource.is(DamageTypeTags.BYPASSES_RESISTANCE)) {
+                int i = (livingEntity.getEffect(MobEffects.DAMAGE_RESISTANCE).getAmplifier() + 1) * 5;
+                int j = 25 - i;
+                float f = amount * (float)j;
+                amount = Math.max(f / 25.0F, 0.0F);
+            }
+
+            if (amount <= 0.0F) {
+                return 0.0F;
+            } else if (damageSource.is(DamageTypeTags.BYPASSES_ENCHANTMENTS)) {
+                return amount;
+            } else {
+                int k = getDamageProtection(livingEntity, damageSource);
+                if (k > 0) {
+                    amount = CombatRules.getDamageAfterMagicAbsorb(amount, (float)k);
+                }
+
+                return amount;
+            }
+        }
+    }
+
+    public static boolean doHurtTarget(Mob mob, Entity target, DamageSource damageSource) {
+        float f = (float)mob.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        if (target instanceof LivingEntity livingEntity) {
+            f = getEnchantedDamage(mob, mob.getMainHandItem(), livingEntity, damageSource, f);
+        }
+
+        int i = getFireAspect(mob);
+        if (i > 0) {
+            target.igniteForSeconds(i * 4.0F);
+        }
+        return doHurtTarget(mob, target, damageSource, f);
+    }
+
+    public static float getSpecialAttackDamage(LivingEntity attacker, float baseDamage) {
+        // Special/projectile attacks do not run through vanilla melee damage, so add the current temporary attack bonus explicitly.
+        float bonus = 0.0F;
+        AttributeInstance attribute = attacker.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attribute != null) {
+            bonus = (float)(attribute.getValue() - attribute.getBaseValue());
+        } else if (attacker.hasEffect(GoetyEffects.BUFF)) {
+            bonus = EffectsUtil.getAmplifier(attacker, GoetyEffects.BUFF.get()) + 1.0F;
+        }
+        return Math.max(0.0F, baseDamage + bonus);
+    }
+
+    public static float getEnchantedDamage(Entity levelSource, ItemStack weapon, Entity target, DamageSource damageSource, float damage) {
+        // Minecraft 1.21 applies weapon damage enchantments through modifyDamage instead of mob-type bonus lookups.
+        if (levelSource.level() instanceof ServerLevel serverLevel) {
+            return EnchantmentHelper.modifyDamage(serverLevel, weapon, target, damageSource, damage);
+        }
+        return damage;
+    }
+
+    public static int getDamageProtection(LivingEntity livingEntity, DamageSource damageSource) {
+        if (livingEntity.level() instanceof ServerLevel serverLevel) {
+            return (int)EnchantmentHelper.getDamageProtection(serverLevel, livingEntity, damageSource);
+        }
+        return 0;
+    }
+
+    public static int getEnchantmentLevel(LivingEntity livingEntity, ResourceKey<Enchantment> enchantment) {
+        return EnchantmentHelper.getEnchantmentLevel(getEnchantmentHolder(livingEntity, enchantment), livingEntity);
+    }
+
+    public static int getEnchantmentLevel(LivingEntity livingEntity, Holder<Enchantment> enchantment) {
+        return EnchantmentHelper.getEnchantmentLevel(enchantment, livingEntity);
+    }
+
+    public static int getItemEnchantmentLevel(Entity levelSource, ItemStack itemStack, ResourceKey<Enchantment> enchantment) {
+        return EnchantmentHelper.getItemEnchantmentLevel(getEnchantmentHolder(levelSource, enchantment), itemStack);
+    }
+
+    public static int getItemEnchantmentLevel(ItemStack itemStack, Holder<Enchantment> enchantment) {
+        return EnchantmentHelper.getItemEnchantmentLevel(enchantment, itemStack);
+    }
+
+    private static Holder<Enchantment> getEnchantmentHolder(Entity levelSource, ResourceKey<Enchantment> enchantment) {
+        return levelSource.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(enchantment);
+    }
+
+    public static int getFireAspect(LivingEntity livingEntity) {
+        return getEnchantmentLevel(livingEntity, Enchantments.FIRE_ASPECT);
+    }
+
+    public static float getSweepingDamageRatio(LivingEntity livingEntity) {
+        return getSweepingDamageRatio(getEnchantmentLevel(livingEntity, Enchantments.SWEEPING_EDGE));
+    }
+
+    public static float getSweepingDamageRatio(int level) {
+        // Minecraft 1.21 removed SweepingEdgeEnchantment#getSweepingDamageRatio; this preserves the vanilla 1.20 formula.
+        return level > 0 ? 1.0F - 1.0F / (float)(level + 1) : 0.0F;
+    }
+
+    public static float getEnchantedKnockback(Entity levelSource, ItemStack weapon, Entity target, DamageSource damageSource, float knockback) {
+        if (levelSource.level() instanceof ServerLevel serverLevel) {
+            return EnchantmentHelper.modifyKnockback(serverLevel, weapon, target, damageSource, knockback);
+        }
+        return knockback;
+    }
+
+    public static void doPostAttackEffects(Entity levelSource, Entity target, DamageSource damageSource, ItemStack weapon) {
+        if (levelSource.level() instanceof ServerLevel serverLevel) {
+            EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, damageSource, weapon);
+        }
+    }
+
+    public static boolean doHurtTarget(Mob mob, Entity target, DamageSource damageSource, float damage) {
+        boolean flag = target.hurt(damageSource, damage);
+        if (flag) {
+            postHurtTarget(mob, target);
+        }
+
+        return flag;
+    }
+
+    public static void postHurtTarget(Mob mob, Entity target) {
+        float f1 = (float)mob.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+        if (target instanceof LivingEntity) {
+            f1 = getEnchantedKnockback(mob, mob.getMainHandItem(), target, mob.damageSources().mobAttack(mob), f1);
+        }
+        postHurtTarget(mob, target, f1);
+    }
+
+    public static void postHurtTarget(Mob mob, Entity target, float knockback) {
+        if (knockback > 0.0F && target instanceof LivingEntity livingEntity) {
+            livingEntity.knockback((double)(knockback * 0.5F), (double)Mth.sin(mob.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(mob.getYRot() * ((float)Math.PI / 180F))));
+            mob.setDeltaMovement(mob.getDeltaMovement().multiply(0.6D, 1.0D, 0.6D));
+        }
+
+        if (target instanceof Player player) {
+            maybeDisableShield(mob, player, mob.getMainHandItem(), player.isUsingItem() ? player.getUseItem() : ItemStack.EMPTY);
+        }
+
+        doPostAttackEffects(mob, target, mob.damageSources().mobAttack(mob), mob.getMainHandItem());
+        mob.setLastHurtMob(target);
+    }
+
+    private static void maybeDisableShield(LivingEntity attacker, Player player, ItemStack mainItem, ItemStack shield) {
+        if (!mainItem.isEmpty() && !shield.isEmpty() && mainItem.getItem() instanceof AxeItem && shield.is(Items.SHIELD)) {
+            float f = 0.25F + (float)getEnchantmentLevel(attacker, Enchantments.EFFICIENCY) * 0.05F;
+            if (attacker.getRandom().nextFloat() < f) {
+                player.getCooldowns().addCooldown(Items.SHIELD, 100);
+                attacker.level().broadcastEntityEvent(player, (byte)30);
+            }
+        }
+
+    }
+
+    public static boolean isFireImmune(LivingEntity livingEntity){
+        return livingEntity.hasEffect(MobEffects.FIRE_RESISTANCE) || livingEntity.fireImmune();
+    }
+
+    @Nullable
+    public static LivingEntity getLivingTarget(Entity target){
+        LivingEntity livingEntity = null;
+        if (target instanceof PartEntity<?> partEntity && partEntity.getParent() instanceof LivingEntity living){
+            livingEntity = living;
+        } else if (target instanceof LivingEntity living){
+            livingEntity = living;
+        }
+        return livingEntity;
+    }
+
+    @Nullable
+    public static LivingEntity getOwner(Entity owned) {
+        if (owned instanceof IOwned owned1) {
+            return owned1.getTrueOwner();
+        } else if (owned instanceof OwnableEntity ownable) {
+            return ownable.getOwner();
+        } else if (owned instanceof Projectile projectile && projectile.getOwner() instanceof LivingEntity living) {
+            if (living instanceof IOwned owned1) {
+                return owned1.getTrueOwner();
+            } else if (living instanceof OwnableEntity ownable) {
+                return ownable.getOwner();
+            } else {
+                return living;
+            }
+        }
+        return null;
+    }
+
+    public static void disableShield(Entity target) {
+        if (target instanceof AbstractHauntedArmor hauntedArmor && hauntedArmor.isBlocking()){
+            hauntedArmor.disableShield(true);
+        } else if (target.getType().is(ModTags.EntityTypes.BIC_SHIELDED_MOBS) && target instanceof LivingEntity target1) {
+            Optional<Holder.Reference<MobEffect>> mobEffect = BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.fromNamespaceAndPath("born_in_chaos_v1", "block_break"));
+            if (mobEffect.isPresent()) {
+                Holder.Reference<MobEffect> effect = mobEffect.get();
+                if (!target1.hasEffect(effect)) {
+                    target1.addEffect(new MobEffectInstance(effect, 120, 0, false, false));
+                    if (!target.level().isClientSide()) {
+                        target.level().playSound(null, target.getX(), target.getY(), target.getZ(), SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, SoundSource.NEUTRAL, 0.2F, 1.0F);
+                    } else {
+                        target.level().playLocalSound(target.getX(), target.getY(), target.getZ(), SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, SoundSource.NEUTRAL, 0.2F, 1.0F, false);
+                    }
+
+                    if (target.level() instanceof ServerLevel serverLevel) {
+                        serverLevel.sendParticles(ParticleTypes.CRIT, target.getX(), target.getY(), target.getZ(), 9, 0.6, 1.0, 0.6, 0.6);
+                    }
+
+                    if (target1.hasEffect(MobEffects.DAMAGE_RESISTANCE)) {
+                        target1.removeEffect(MobEffects.DAMAGE_RESISTANCE);
+                    }
+                }
+            }
+        } else if (target instanceof Player player) {
+            disableShield(player, 100);
+        }
+    }
+
+    public static <T extends LivingEntity & IServant> DamageSource getServantAttack(T servant) {
+        return servant.getTrueOwner() != null ? ModDamageSource.summonAttack(servant, servant.getTrueOwner()) : servant.damageSources().mobAttack(servant);
+    }
+
+    public static void deflectProjectile(Projectile projectile, Entity shooter, LivingEntity victim) {
+        if (shooter != null) {
+            projectile.hasImpulse = true;
+            Vec3 deltaMovement = projectile.getDeltaMovement();
+            projectile.setPos(projectile.getX() + deltaMovement.x, projectile.getY() + deltaMovement.y, projectile.getZ() + deltaMovement.z);
+            projectile.setOwner(victim);
+            if (projectile instanceof AbstractHurtingProjectile projectile1) {
+                projectile1.hurtMarked = true;
+                double d1 = shooter.getX() - victim.getX();
+                double d2 = shooter.getY(0.5D) - victim.getY(0.5D);
+                double d3 = shooter.getZ() - victim.getZ();
+                Vec3 vec3 = new Vec3(d1, d2, d3);
+                // 1.21 removed public x/y/z projectile power fields; redirect by replacing motion and let AbstractHurtingProjectile apply its internal acceleration.
+                projectile1.setDeltaMovement(vec3);
+            } else {
+                float speed = Mth.sqrt((float) (deltaMovement.x * deltaMovement.x + deltaMovement.y * deltaMovement.y + deltaMovement.z * deltaMovement.z));
+                speed = speed < 1.0E-4F ? 0.0F : speed;
+                double d0 = shooter.getX() - victim.getX();
+                double d1 = shooter.getY(0.3333333333333333D) - (victim.getEyeY() - (double) 0.1F);
+                double d2 = shooter.getZ() - victim.getZ();
+                double d3 = Mth.sqrt((float) (d0 * d0 + d2 * d2));
+                projectile.shoot(d0, d1 + d3 * (double) 0.2F, d2, speed, (float) (14 - victim.level().getDifficulty().getId() * 4));
+            }
+        }
+    }
+
+    public static boolean canHitEntity(AbstractArrow arrow, Entity pEntity) {
+        if (arrow.getOwner() != null){
+            if (pEntity == arrow.getOwner()){
+                return false;
+            }
+            if (arrow.getOwner() instanceof Mob mob && mob.getTarget() == pEntity){
+                return true;
+            } else {
+                if (MobUtil.areAllies(arrow.getOwner(), pEntity)){
+                    return false;
+                }
+                if (arrow.getOwner() instanceof Enemy && pEntity instanceof Enemy){
+                    return false;
+                }
+                if (pEntity instanceof Projectile projectile && projectile.getOwner() == arrow.getOwner()){
+                    return false;
+                }
+                if (pEntity instanceof IOwned owned0 && arrow.getOwner() instanceof IOwned owned1){
+                    return !MobUtil.ownerStack(owned0, owned1);
+                }
+            }
+        }
+        return true;
+    }
+
+    /*
+     * Adapted from @L_Ender's code.
+     * From Here:
+     */
+    public static double calculateRange(LivingEntity livingEntity, DamageSource source) {
+        return source.getEntity() != null ? livingEntity.distanceToSqr(source.getEntity()) : -1;
+    }
+
+    public static List<LivingEntity> getEntityLivingBaseNearby(LivingEntity livingEntity, double distanceX, double distanceY, double distanceZ, double radius) {
+        return getEntitiesNearby(livingEntity, LivingEntity.class, distanceX, distanceY, distanceZ, radius);
+    }
+
+    public static  <T extends Entity> List<T> getEntitiesNearby(LivingEntity livingEntity, Class<T> entityClass, double dX, double dY, double dZ, double r) {
+        return livingEntity.level().getEntitiesOfClass(entityClass, livingEntity.getBoundingBox().inflate(dX, dY, dZ), e -> e != livingEntity && livingEntity.distanceTo(e) <= r + e.getBbWidth() / 2.0F && e.getY() <= livingEntity.getY() + dY);
+    }
+
+    public static void areaAttack(LivingEntity attacker, float range, float height, float arc, float damage, float hpDamage, int shieldBreak, DamageSource damageSource, boolean knockback) {
+        areaAttack(attacker, range, height, arc, damage, hpDamage, shieldBreak, damageSource, knockback, null);
+    }
+
+    public static void areaAttack(LivingEntity attacker, float range, float height, float arc, float damage, float hpDamage, int shieldBreak, DamageSource damageSource, boolean knockback, @Nullable Consumer<Entity> attackEffect) {
+        List<LivingEntity> entitiesHit = getEntityLivingBaseNearby(attacker, range, height, range, range);
+        if (!attacker.level().isClientSide) {
+            for (LivingEntity entityHit : entitiesHit) {
+                float entityRelativeAngle = getRelativeAngle(attacker, entityHit);
+                float entityHitDistance = (float) Math.sqrt((entityHit.getZ() - attacker.getZ()) * (entityHit.getZ() - attacker.getZ()) + (entityHit.getX() - attacker.getX()) * (entityHit.getX() - attacker.getX()));
+                if (entityHitDistance <= range && (entityRelativeAngle <= arc / 2 && entityRelativeAngle >= -arc / 2) || (entityRelativeAngle >= 360 - arc / 2 || entityRelativeAngle <= -360 + arc / 2)) {
+                    if (!areAllies(attacker, entityHit)) {
+                        boolean flag = entityHit.hurt(damageSource, damage + (entityHit.getMaxHealth() * hpDamage));
+                        if (entityHit.isDamageSourceBlocked(damageSource) && shieldBreak > 0) {
+                            disableShield(entityHit, shieldBreak);
+                        }
+                        if (flag) {
+                            double d0 = entityHit.getX() - attacker.getX();
+                            double d1 = entityHit.getZ() - attacker.getZ();
+                            double d2 = Math.max(d0 * d0 + d1 * d1, 0.001D);
+                            if (knockback) {
+                                entityHit.push(d0 / d2 * 2.5D, 0.18D, d1 / d2 * 2.2D);
+                            }
+                            if (attackEffect != null) {
+                                attackEffect.accept(entityHit);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static float getRelativeAngle(LivingEntity attacker, LivingEntity entityHit) {
+        float entityHitAngle = (float) ((Math.atan2(entityHit.getZ() - attacker.getZ(), entityHit.getX() - attacker.getX()) * (180 / Math.PI) - 90) % 360);
+        float entityAttackingAngle = attacker.yBodyRot % 360;
+        if (entityHitAngle < 0) {
+            entityHitAngle += 360;
+        }
+        if (entityAttackingAngle < 0) {
+            entityAttackingAngle += 360;
+        }
+        return entityHitAngle - entityAttackingAngle;
+    }
+    /*
+      To Here
+     */
+
+    @Nullable
+    public static LivingEntity getTarget(Entity attacker) {
+        if (attacker instanceof Mob mob) {
+            return mob.getTarget();
+        }
+        return null;
+    }
+
+    public static boolean notTargetingAlly(Entity attacker, Entity defender) {
+        if (getTarget(attacker) == defender) {
+            return false;
+        } else if (getTarget(attacker) == getOwner(defender)) {
+            return false;
+        } else return !areAllies(defender, getTarget(attacker));
+    }
+}

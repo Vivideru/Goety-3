@@ -1,0 +1,20 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+        "gmg"
+    ],
+    "key":  {
+                "m":  {
+                          "item":  "goety:highrock_bricks"
+                      },
+                "g":  {
+                          "tag":  "c:nuggets/gold"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:gold_indented_highrock_bricks",
+                   "count":  1
+               }
+}
+
+

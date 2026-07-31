@@ -1,0 +1,18 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#  ",
+                    "## ",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:shade_stone"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:shade_stone_stairs",
+                   "count":  4
+               }
+}
+

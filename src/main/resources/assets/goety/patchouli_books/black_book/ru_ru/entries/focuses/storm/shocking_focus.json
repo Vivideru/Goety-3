@@ -1,0 +1,19 @@
+{
+  "name": "Фокус шока",
+  "icon": "goety:shocking_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Испускает электрический разряд, поражающий любое существо на вашем пути. Если вы используете штормовой посох, то на направление разряда не повлияют громоотводы."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/shocking_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/storm_staff)штормового посоха$() также увеличивает шанс вызвать у врагов судороги и создать цепную молнию."
+    }
+  ]
+}

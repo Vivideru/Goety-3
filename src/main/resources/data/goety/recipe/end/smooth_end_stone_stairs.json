@@ -1,0 +1,18 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "#":  {
+                          "item":  "goety:smooth_end_stone"
+                      }
+            },
+    "pattern":  [
+                    "#  ",
+                    "## ",
+                    "###"
+                ],
+    "result":  {
+                   "count":  4,
+                   "id":  "goety:smooth_end_stone_stairs"
+               }
+}
+

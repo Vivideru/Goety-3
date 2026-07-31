@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "goety:rotting_focus",
+    {
+      "id": "twilightforest:zombie_scepter",
+      "required": false
+    }
+  ]
+}

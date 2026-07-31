@@ -1,0 +1,23 @@
+{
+  "name": "Hungry Dagger",
+  "icon": "goety:hungry_dagger",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/craft_necro_brazier",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A version of the Fanged Dagger that, while no longer venomous, will heal the wielder 5%% of damage dealt by it. The lifesteal percentage increases with each Soul Eater enchantment level."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:hungry_dagger"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The dagger can be repaired on an anvil with a $(l:crafts/dark_alloy_ingot)Dark Alloy Ingot$(), though it will self repair if the wielder has Soul Energy."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hungry_dagger": 1
+  }
+}

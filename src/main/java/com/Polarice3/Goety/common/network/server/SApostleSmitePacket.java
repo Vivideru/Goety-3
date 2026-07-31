@@ -1,0 +1,45 @@
+package com.Polarice3.Goety.common.network.server;
+
+import com.Polarice3.Goety.Goety;
+import com.Polarice3.Goety.common.entities.boss.Apostle;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import com.Polarice3.Goety.common.network.ModNetwork;
+
+import java.util.function.Supplier;
+
+public class SApostleSmitePacket {
+    private final int apostle;
+    private final int antiRegen;
+
+    public SApostleSmitePacket(int apostle, int antiRegen){
+        this.apostle = apostle;
+        this.antiRegen = antiRegen;
+    }
+
+    public static void encode(SApostleSmitePacket packet, FriendlyByteBuf buffer) {
+        buffer.writeInt(packet.apostle);
+        buffer.writeInt(packet.antiRegen);
+    }
+
+    public static SApostleSmitePacket decode(FriendlyByteBuf buffer) {
+        return new SApostleSmitePacket(buffer.readInt(), buffer.readInt());
+    }
+
+    public static void consume(SApostleSmitePacket packet, Supplier<ModNetwork.Context> ctx) {
+        ctx.get().enqueueWork(() -> {
+            Level level = Goety.PROXY.getLevel();
+            if (level instanceof ClientLevel clientWorld) {
+                Entity entity = clientWorld.getEntity(packet.apostle);
+                if (entity instanceof Apostle apostle) {
+                    apostle.antiRegenTotal = packet.antiRegen;
+                    apostle.antiRegen = packet.antiRegen;
+                }
+            }
+        });
+        ctx.get().setPacketHandled(true);
+    }
+
+}

@@ -1,0 +1,61 @@
+{
+    "type":  "apotheosis:gem",
+    "constraints":  {
+                        "dimensions":  [
+                                           "minecraft:the_end"
+                                       ]
+                    },
+    "min_purity":  "flawless",
+    "unique":  true,
+    "weights":  {
+                    "summit":  {
+                                   "quality":  2.0,
+                                   "weight":  50
+                               },
+                    "pinnacle":  {
+                                     "quality":  2.0,
+                                     "weight":  50
+                                 }
+                },
+    "bonuses":  [
+                    {
+                        "type":  "apotheosis:enchantment",
+                        "enchantment":  "minecraft:sharpness",
+                        "gem_class":  {
+                                          "key":  "anything_except_dark_wand",
+                                          "types":  [
+                                                        "apotheosis:bow",
+                                                        "apotheosis:breaker",
+                                                        "apotheosis:helmet",
+                                                        "apotheosis:chestplate",
+                                                        "apotheosis:leggings",
+                                                        "apotheosis:boots",
+                                                        "apotheosis:shield",
+                                                        "apotheosis:trident",
+                                                        "apotheosis:melee_weapon",
+                                                        "apotheosis:shears"
+                                                    ]
+                                      },
+                        "mode":  "global",
+                        "values":  {
+                                       "flawless":  1,
+                                       "perfect":  2
+                                   }
+                    },
+                    {
+                        "type":  "apotheosis:attribute",
+                        "attribute":  "goety:void_potency",
+                        "gem_class":  {
+                                          "key":  "dark_wand",
+                                          "types":  [
+                                                        "goety_apotheosis:dark_wand"
+                                                    ]
+                                      },
+                        "operation":  "add_value",
+                        "values":  {
+                                       "flawless":  4,
+                                       "perfect":  5
+                                   }
+                    }
+                ]
+}

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "goety:absorb",
+    "goety:burning",
+    "goety:duration",
+    "goety:magnet",
+    "goety:potency",
+    "goety:radius",
+    "goety:range",
+    "goety:royalty",
+    "goety:soul_eater",
+    "goety:velocity",
+    "goety:wanting"
+  ]
+}

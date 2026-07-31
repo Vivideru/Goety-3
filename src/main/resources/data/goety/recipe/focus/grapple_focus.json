@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:empty_focus"
+                        },
+    "craftType":  "overgrown",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:slimeballs"
+                        },
+                        {
+                            "tag":  "c:string"
+                        },
+                        {
+                            "item":  "minecraft:cobweb"
+                        },
+                        {
+                            "tag":  "c:slimeballs"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        },
+                        {
+                            "item":  "minecraft:vine"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:grapple_focus"
+               }
+}
+

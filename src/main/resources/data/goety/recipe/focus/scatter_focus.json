@@ -1,0 +1,24 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "rgr",
+                    "geg",
+                    "rgr"
+                ],
+    "key":  {
+                "e":  {
+                          "item":  "goety:empty_focus"
+                      },
+                "r":  {
+                          "tag":  "c:storage_blocks/redstone"
+                      },
+                "g":  {
+                          "tag":  "c:gunpowder"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:scatter_focus",
+                   "count":  1
+               }
+}
+

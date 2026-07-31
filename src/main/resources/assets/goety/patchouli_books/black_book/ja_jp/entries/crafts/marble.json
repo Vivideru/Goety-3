@@ -1,0 +1,53 @@
+{
+  "name": "Marble Blocks & Variants",
+  "icon": "goety:marble",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Marble is a fancy looking block found on the highest peaks of the world. Unfortunately, such peaks are far beyond your reach, but with Soul Energy, Cursed Infusion and Calcite, you can get these wondrous blocks for yourself."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:marble/marble_craft",
+      "recipe2": "goety:marble/slate_marble"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Indented Gold blocks, while less shiny than a full Block of Gold, are still capable of being symbols of pure opulence and wealth. An odd building block for what you've heard as an ancient sanctum."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:indented_gold/indented_gold_craft"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Highrock blocks are said to be the rocks that make up the tallest peaks of the world. From what you've heard, they seemed to be a variant of Andesite and its polished version is used on the highest forges."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:highrock/highrock"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Cragrocks are also said to make up the peaks of the world, being used to make walls for the villages up there and pavement."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:crag/cragrocks"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Siltstones are strange blocks that have the most variable looks from other blocks. They can be messy and combine with marble and jade, but also be used to make several decorative blocks."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:silt/siltstone_craft"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:rusty_iron_grate",
+      "recipe2": "goety:rusty_iron_bars"
+    }
+  ]
+}

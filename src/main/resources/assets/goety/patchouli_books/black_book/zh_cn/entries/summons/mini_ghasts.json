@@ -1,0 +1,33 @@
+{
+  "name": "迷你恶魂",
+  "icon": "goety:mini_ghast_spawn_egg",
+  "category": "goety:summons",
+  "advancement": "minecraft:story/enter_the_nether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这些小家伙比普通的恶魂更小，它们无法发射具有爆炸性的火球，而是只发射类似烈焰人的小型火球"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:mini_ghast",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "text": "这些巨大且脆弱的生物围绕着它的召唤者飘浮，径直面对并向目标直射爆炸性火球，这与它们移动射击的表亲有所不同"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "entity": "goety:ghast_servant",
+      "scale": 0.5
+    },
+    {
+      "type": "goety:ritual",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "recipe": "goety:thrall/summon_ghast_servant_thrall"
+    }
+  ]
+}

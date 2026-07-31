@@ -1,0 +1,23 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:diamond_trampler_armor"
+                        },
+    "craftType":  "forge",
+    "soulCost":  1,
+    "duration":  10,
+    "research":  "ravaging",
+    "ingredients":  [
+                        {
+                            "tag":  "c:ingots/netherite"
+                        },
+                        {
+                            "tag":  "c:ingots/netherite"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:netherite_trampler_armor"
+               }
+}
+

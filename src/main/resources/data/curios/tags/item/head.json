@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:plushie",
+    "goety:targeting_monocle",
+    "goety:dark_hat",
+    "goety:grand_turban",
+    "goety:frost_crown",
+    "goety:wind_crown",
+    "goety:storm_crown",
+    "goety:wild_crown",
+    "goety:abyss_crown",
+    "goety:void_crown",
+    "goety:nether_crown",
+    "goety:witch_hat",
+    "goety:witch_hat_hedge",
+    "goety:crone_hat",
+    "goety:unholy_hat",
+    "goety:unholy_hat_halo",
+    "goety:necro_crown",
+    "goety:nameless_crown"
+  ]
+}

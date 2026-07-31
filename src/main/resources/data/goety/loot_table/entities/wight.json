@@ -1,0 +1,113 @@
+﻿{
+    "type":  "minecraft:entity",
+    "pools":  [
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "name":  "goety:music_disc_enderman"
+                                      }
+                                  ],
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:killed_by_player"
+                                         },
+                                         {
+                                             "condition":  "minecraft:random_chance_with_enchanted_bonus",
+                                             "unenchanted_chance":  0.025,
+                                             "enchanted_chance":  {
+                                                                      "type":  "minecraft:linear",
+                                                                      "base":  0.035,
+                                                                      "per_level_above_first":  0.01
+                                                                  },
+                                             "enchantment":  "minecraft:looting"
+                                         }
+                                     ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  4.0,
+                                                                              "max":  8.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "goety:ectoplasm"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  2.0,
+                                                                              "max":  4.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:ender_pearl"
+                                      }
+                                  ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  2.0,
+                                                                              "max":  4.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  1.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "goety:shadow_essence"
+                                      }
+                                  ]
+                  }
+              ]
+}

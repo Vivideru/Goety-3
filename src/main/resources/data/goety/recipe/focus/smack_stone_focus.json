@@ -1,0 +1,26 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "gdg",
+                    "cec",
+                    "gdg"
+                ],
+    "key":  {
+                "e":  {
+                          "item":  "goety:empty_focus"
+                      },
+                "c":  {
+                          "tag":  "c:stone"
+                      },
+                "g":  {
+                          "tag":  "c:gunpowder"
+                      },
+                "d":  {
+                          "item":  "minecraft:dispenser"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:smack_stone_focus"
+               }
+}
+

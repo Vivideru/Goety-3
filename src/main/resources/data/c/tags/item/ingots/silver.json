@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "iceandfire:silver_ingot",
+      "required": false
+    },
+    {
+      "id": "occultism:silver_ingot",
+      "required": false
+    },
+    {
+      "id": "thermal:silver_ingot",
+      "required": false
+    }
+  ]
+}

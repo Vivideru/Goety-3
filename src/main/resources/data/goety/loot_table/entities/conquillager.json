@@ -1,0 +1,137 @@
+﻿{
+    "pools":  [
+                  {
+                      "name":  "conquillager",
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  2.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:emerald"
+                                      }
+                                  ],
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:killed_by_player"
+                                         }
+                                     ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  2.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:gold_ingot"
+                                      }
+                                  ],
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:killed_by_player"
+                                         }
+                                     ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  2.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:cocoa_beans"
+                                      }
+                                  ],
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:killed_by_player"
+                                         }
+                                     ]
+                  },
+                  {
+                      "rolls":  1,
+                      "entries":  [
+                                      {
+                                          "type":  "minecraft:item",
+                                          "functions":  [
+                                                            {
+                                                                "function":  "minecraft:set_count",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  2.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          }
+                                                            },
+                                                            {
+                                                                "function":  "minecraft:enchanted_count_increase",
+                                                                "count":  {
+                                                                              "min":  0.0,
+                                                                              "max":  1.0,
+                                                                              "type":  "minecraft:uniform"
+                                                                          },
+                                                                "enchantment":  "minecraft:looting"
+                                                            }
+                                                        ],
+                                          "name":  "minecraft:gunpowder"
+                                      }
+                                  ],
+                      "conditions":  [
+                                         {
+                                             "condition":  "minecraft:killed_by_player"
+                                         }
+                                     ]
+                  }
+              ]
+}

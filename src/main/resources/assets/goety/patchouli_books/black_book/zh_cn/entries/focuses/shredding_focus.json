@@ -1,0 +1,16 @@
+{
+  "name": "尖刺聚晶",
+  "icon": "goety:shredding_focus",
+  "category": "goety:focuses",
+  "advancement": "goety:goety/get_ruby",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在你面前召唤一排皇家尖刺，持续对任何处于其中的目标造成伤害，可无视盔甲值（除非是附魔的）。潜行时施法会改为在自身身边召唤一圈皇家尖刺"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/shredding_focus"
+    }
+  ]
+}

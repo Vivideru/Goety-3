@@ -1,0 +1,23 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "asa",
+                    "ses",
+                    "asa"
+                ],
+    "key":  {
+                "e":  {
+                          "item":  "goety:empty_focus"
+                      },
+                "a":  {
+                          "tag":  "c:gems/amethyst"
+                      },
+                "s":  {
+                          "tag":  "c:dusts/redstone"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:sensing_focus"
+               }
+}
+

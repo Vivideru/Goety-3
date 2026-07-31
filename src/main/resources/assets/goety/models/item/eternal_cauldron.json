@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "goety:item/eternal_cauldron_empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "filled": 0.00000
+      },
+      "model": "goety:item/eternal_cauldron_empty"
+    },
+    {
+      "predicate": {
+        "filled": 1.00000
+      },
+      "model": "goety:item/eternal_cauldron_filled"
+    }
+  ]
+}

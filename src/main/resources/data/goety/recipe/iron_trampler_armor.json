@@ -1,0 +1,23 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:iron_horse_armor"
+                        },
+    "craftType":  "forge",
+    "soulCost":  1,
+    "duration":  10,
+    "research":  "ravaging",
+    "ingredients":  [
+                        {
+                            "tag":  "c:storage_blocks/iron"
+                        },
+                        {
+                            "tag":  "c:ingots/iron"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:iron_trampler_armor"
+               }
+}
+

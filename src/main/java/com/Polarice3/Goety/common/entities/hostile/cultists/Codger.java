@@ -1,0 +1,388 @@
+package com.Polarice3.Goety.common.entities.hostile.cultists;
+
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.ai.WitchBarterGoal;
+import com.Polarice3.Goety.common.entities.neutral.Wartling;
+import com.Polarice3.Goety.common.entities.projectiles.BerserkFungus;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.network.ModServerBossInfo;
+import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.MathHelper;
+import com.Polarice3.Goety.utils.MobUtil;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableWitchTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestHealableRaiderTargetGoal;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.function.Predicate;
+
+public class Codger extends Cultist implements RangedAttackMob {
+    private int coolDown;
+    private int totalCool;
+    private int hitTimes;
+    private int lastHitTime;
+    private int overwhelmed;
+    private final ModServerBossInfo bossInfo;
+    private NearestHealableRaiderTargetGoal<Raider> healRaidersGoal;
+    private NearestAttackableWitchTargetGoal<Player> attackPlayersGoal;
+
+    public Codger(EntityType<? extends Cultist> type, Level worldIn) {
+        super(type, worldIn);
+        this.bossInfo = new ModServerBossInfo(this, BossEvent.BossBarColor.GREEN, false, false);
+        this.xpReward = 99;
+        ((GroundPathNavigation)this.getNavigation()).setCanOpenDoors(true);
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.healRaidersGoal = new NearestHealableRaiderTargetGoal<>(this, Raider.class, true, (target) -> {
+            return target != null && this.hasActiveRaid() && target.getType() != EntityType.WITCH && target.getType() != ModEntityType.WARLOCK.get();
+        });
+        this.attackPlayersGoal = new NearestAttackableWitchTargetGoal<>(this, Player.class, 10, true, false, (Predicate<LivingEntity>)null);
+        this.goalSelector.addGoal(2, new RangedAttackGoal(this, 1.0D, 20, 40, 10.0F));
+        this.goalSelector.addGoal(1, new WitchBarterGoal(this));
+        this.goalSelector.addGoal(1, new CodgerTeleportGoal(this));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, Raider.class));
+        this.targetSelector.addGoal(2, this.healRaidersGoal);
+        this.targetSelector.addGoal(3, this.attackPlayersGoal);
+    }
+
+    public static AttributeSupplier.Builder setCustomAttributes() {
+        return Monster.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, AttributesConfig.get(AttributesConfig.CroneHealth))
+                .add(Attributes.FOLLOW_RANGE, 32.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
+    }
+
+    public void setConfigurableAttributes(){
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.MAX_HEALTH), AttributesConfig.get(AttributesConfig.CroneHealth));
+    }
+
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("hitTimes", this.hitTimes);
+        pCompound.putInt("lastHitTime", this.lastHitTime);
+        pCompound.putInt("overwhelmed", this.overwhelmed);
+    }
+
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.hitTimes = pCompound.getInt("hitTimes");
+        this.lastHitTime = pCompound.getInt("lastHitTime");
+        this.overwhelmed = pCompound.getInt("overwhelmed");
+        if (this.hasCustomName()) {
+            this.bossInfo.setName(this.getDisplayName());
+        }
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.WARLOCK_AMBIENT.get();
+    }
+
+    protected SoundEvent getHurtSound(DamageSource p_34154_) {
+        return ModSounds.WARLOCK_HURT.get();
+    }
+
+    protected SoundEvent getDeathSound() {
+        return ModSounds.WARLOCK_DEATH.get();
+    }
+
+    public SoundEvent getCelebrateSound() {
+        return ModSounds.WARLOCK_CELEBRATE.get();
+    }
+
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        this.bossInfo.setName(this.getDisplayName());
+    }
+
+    public void startSeenByPlayer(ServerPlayer pPlayer) {
+        super.startSeenByPlayer(pPlayer);
+        if (MainConfig.SpecialBossBar.get()) {
+            this.bossInfo.addPlayer(pPlayer);
+        }
+    }
+
+    public void stopSeenByPlayer(ServerPlayer pPlayer) {
+        super.stopSeenByPlayer(pPlayer);
+        this.bossInfo.removePlayer(pPlayer);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.tickCount % 5 == 0) {
+            this.bossInfo.update();
+        }
+        this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+
+        if (this.coolDown > 0){
+            --this.coolDown;
+        }
+
+        if (!this.level().isClientSide){
+            if (this.isAlive()){
+                this.healRaidersGoal.decrementCooldown();
+                this.attackPlayersGoal.setCanAttack(this.healRaidersGoal.getCooldown() <= 0);
+            }
+            if (this.random.nextFloat() < 7.5E-4F) {
+                this.level().broadcastEntityEvent(this, (byte)15);
+            }
+            if (this.getTarget() != null) {
+                if (!(this.getTarget() instanceof Raider)) {
+                    if (this.getTarget().distanceTo(this) < 6.0F && this.coolDown <= this.totalCool / 2) {
+                        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BLAST_FUNGUS.get()));
+                    } else {
+                        this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                    }
+                    if (this.getHealth() <= this.getMaxHealth() / 4 && this.tickCount % 10 == 0 && this.random.nextBoolean()){
+                        MobUtil.throwBlastFungus(this, this.level());
+                    }
+                } else {
+                    this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ModItems.BERSERK_FUNGUS.get()));
+                }
+            } else {
+                if (this.getMainHandItem().is(ModItems.BLAST_FUNGUS.get()) || this.getMainHandItem().is(ModItems.BERSERK_FUNGUS.get())){
+                    this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                }
+                boolean flag = false;
+                if (!this.isInLava()) {
+                    if (this.getHealth() < this.getMaxHealth()) {
+                        flag = true;
+                    }
+                    if (!this.getActiveEffects().isEmpty()) {
+                        if (this.getActiveEffects().stream().anyMatch((mobEffectInstance -> mobEffectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL))){
+                            flag = true;
+                        }
+                    }
+                    if (flag){
+                        if (this.tickCount % 60 == 0){
+                            Wartling wartling = new Wartling(ModEntityType.WARTLING.get(), this.level());
+                            wartling.moveTo(this.blockPosition(), this.getYRot(), this.getXRot());
+                            this.summonWartlings(wartling);
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void handleEntityEvent(byte p_34138_) {
+        if (p_34138_ == 15) {
+            for(int i = 0; i < this.random.nextInt(35) + 10; ++i) {
+                this.level().addParticle(ModParticleTypes.WARLOCK.get(), this.getX() + this.random.nextGaussian() * (double)0.13F, this.getBoundingBox().maxY + this.random.nextGaussian() * (double)0.13F, this.getZ() + this.random.nextGaussian() * (double)0.13F, 0.0D, 0.0D, 0.0D);
+            }
+        } else {
+            super.handleEntityEvent(p_34138_);
+        }
+
+    }
+
+    protected float getDamageAfterMagicAbsorb(DamageSource damageSource, float damage) {
+        damage = super.getDamageAfterMagicAbsorb(damageSource, damage);
+        if (damageSource.getEntity() == this) {
+            damage = 0.0F;
+        }
+
+        if (damageSource.is(DamageTypeTags.IS_EXPLOSION)) {
+            damage *= 0.15F;
+        }
+
+        return damage;
+    }
+
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        this.lastHitTime = MathHelper.secondsToTicks(15);
+
+        if (pAmount >= 15){
+            this.overwhelmed = MathHelper.secondsToTicks(15);
+        }
+
+        if (this.getHealth() <= 10.0F){
+            if (pSource.is(DamageTypeTags.IS_EXPLOSION)){
+                return false;
+            }
+        }
+
+        if (!pSource.is(DamageTypeTags.AVOIDS_GUARDIAN_THORNS) && !pSource.is(DamageTypes.THORNS) && pSource.getEntity() instanceof LivingEntity livingentity && livingentity != this) {
+            float thorn = 2.0F;
+            if (this.level().getDifficulty() == Difficulty.HARD){
+                thorn *= 2.0F;
+            }
+            livingentity.hurt(this.damageSources().thorns(this), thorn);
+        }
+
+        return super.hurt(pSource, pAmount);
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity p_33317_, float p_33318_) {
+        if (p_33317_.distanceTo(this) < 6.0F && this.coolDown <= 0 && this.level().getBlockState(this.blockPosition().above(2)).isAir() && !(this.getTarget() instanceof Raider)) {
+            this.totalCool = Mth.nextInt(this.random, 6, 10);
+            for (int i = 0; i < this.totalCool; ++i) {
+                MobUtil.throwBlastFungus(this, this.level());
+            }
+            if (this.getHealth() <= this.getMaxHealth() / 2){
+                this.coolDown = MathHelper.secondsToTicks(this.totalCool / 2);
+            } else {
+                this.coolDown = MathHelper.secondsToTicks(this.totalCool);
+            }
+            if (!this.isSilent()) {
+                this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), ModSounds.BLAST_FUNGUS_THROW.get(), this.getSoundSource(), 2.0F, 0.8F + this.random.nextFloat() * 0.4F);
+            }
+        } else {
+            if (this.getTarget() instanceof Raider){
+                if (!this.isSilent()) {
+                    this.level().playSound((Player) null, this.getX(), this.getY(), this.getZ(), ModSounds.BLAST_FUNGUS_THROW.get(), this.getSoundSource(), 2.0F, 0.8F + this.random.nextFloat() * 0.4F);
+                }
+            }
+            if (this.level() instanceof ServerLevel) {
+                if (this.getTarget() instanceof Raider raider){
+                    Vec3 vec3 = raider.getDeltaMovement();
+                    double d0 = raider.getX() + vec3.x - this.getX();
+                    double d1 = raider.getEyeY() - (double)1.1F - this.getY();
+                    double d2 = raider.getZ() + vec3.z - this.getZ();
+                    double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+                    BerserkFungus berserkFungus = new BerserkFungus(this, this.level());
+                    berserkFungus.setXRot(berserkFungus.getXRot() - 20.0F);
+                    berserkFungus.shoot(d0, d1 + d3 * 0.2D, d2, 0.75F, 8.0F);
+                    this.level().addFreshEntity(berserkFungus);
+                } else {
+                    Wartling wartling = new Wartling(ModEntityType.WARTLING.get(), this.level());
+                    wartling.setTarget(p_33317_);
+                    if (this.isInFluidType()){
+                        wartling.setPos(this.getX(), this.getY(0.5F), this.getZ());
+                        wartling.setXRot(this.getXRot());
+                        wartling.setYRot(this.getYRot());
+                        double d0 = p_33317_.getX() - wartling.getX();
+                        double d1 = p_33317_.getY(0.3333333333333333D) - wartling.getY();
+                        double d2 = p_33317_.getZ() - wartling.getZ();
+                        double d3 = Mth.sqrt((float) (d0 * d0 + d2 * d2));
+                        MobUtil.shoot(wartling, d0, d1 + d3 * (double)0.2F, d2, 1.6F, 1.0F);
+                    } else {
+                        wartling.moveTo(this.blockPosition(), this.getYRot(), this.getXRot());
+                    }
+                    this.summonWartlings(wartling);
+                }
+            }
+        }
+    }
+
+    private void summonWartlings(Wartling wartling){
+        if (this.level() instanceof ServerLevel serverLevel) {
+            // Summons spawned by an owned Codger should belong to the same effective owner.
+            wartling.setTrueOwner(MobUtil.getSummonOwner(this));
+            wartling.setLimitedLife(MathHelper.secondsToTicks(9));
+            // 1.21 removed public per-effect curative item lists; transferring the first harmful effect preserves the Codger's wartling cleanse behavior.
+            this.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL).findFirst().ifPresent(effect -> {
+                wartling.setStoredEffect(effect);
+                this.removeEffect(effect.getEffect());
+            });
+            wartling.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.MOB_SUMMONED, null);
+            wartling.setMega();
+            this.level().addFreshEntity(wartling);
+        }
+    }
+
+    private boolean teleportTowards(Entity entity) {
+        if (!this.level().isClientSide() && this.isAlive()) {
+            for(int i = 0; i < 128; ++i) {
+                Vec3 vector3d = new Vec3(this.getX() - entity.getX(), this.getY(0.5D) - entity.getEyeY(), this.getZ() - entity.getZ());
+                vector3d = vector3d.normalize();
+                double d0 = 16.0D;
+                double d1 = this.getX() + (this.random.nextDouble() - 0.5D) * 8.0D - vector3d.x * d0;
+                double d2 = this.getY() + (double)(this.random.nextInt(16) - 8) - vector3d.y * d0;
+                double d3 = this.getZ() + (this.random.nextDouble() - 0.5D) * 8.0D - vector3d.z * d0;
+                if (this.getHealth() <= 0.0F){
+                    return false;
+                }
+                net.neoforged.neoforge.event.entity.EntityTeleportEvent.EnderEntity event = net.neoforged.neoforge.event.EventHooks.onEnderTeleport(this, d1, d2, d3);
+                if (event.isCanceled()) {
+                    return false;
+                }
+                if (this.randomTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ(), true)) {
+                    this.teleportHits();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void teleportHits(){
+        this.level().broadcastEntityEvent(this, (byte) 46);
+        this.level().gameEvent(GameEvent.TELEPORT, this.position(), GameEvent.Context.of(this));
+        if (!this.isSilent()) {
+            this.level().playSound((Player) null, this.xo, this.yo, this.zo, SoundEvents.ENDERMAN_TELEPORT, this.getSoundSource(), 1.0F, 0.75F);
+            this.playSound(SoundEvents.ENDERMAN_TELEPORT, 1.0F, 0.75F);
+        }
+    }
+
+    static class CodgerTeleportGoal extends Goal {
+        private final Codger codger;
+        private int teleportTime;
+
+        public CodgerTeleportGoal(Codger p_32573_) {
+            this.codger = p_32573_;
+        }
+
+        public boolean canUse() {
+            return this.codger.getTarget() != null;
+        }
+
+        public void start() {
+            super.start();
+            this.teleportTime = 0;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.codger.getTarget() != null;
+        }
+
+        public void tick() {
+            super.tick();
+            if (this.codger.getTarget() != null && !this.codger.isPassenger()) {
+                if ((this.codger.getTarget().distanceToSqr(this.codger) > 256 || !MobUtil.hasVisualLineOfSight(this.codger, this.codger.getTarget())) && this.teleportTime++ >= this.adjustedTickDelay(30) && this.codger.teleportTowards(this.codger.getTarget())) {
+                    this.teleportTime = 0;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:end_stone"
+                      }
+            },
+    "pattern":  [
+        "###"
+    ],
+    "result":  {
+                   "count":  6,
+                   "id":  "goety:end_stone_slab"
+               }
+}
+
+

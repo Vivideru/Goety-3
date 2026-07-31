@@ -1,0 +1,116 @@
+{
+  "name": "灾厄猎杀队",
+  "icon": "minecraft:crossbow",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_hunting_illagers",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在杀死一群因为你偷了他们的知识而来攻击你的灾厄村民之后，你成功地记录下了你以前从未见过的那些灾厄村民。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "这些灾厄村民中的大多数似乎只追捕那些发现或窃取了他们秘密的人，因为在林地府邸或前哨站里并没有发现他们的踪迹，而且似乎只有当那些发现秘密的人在村庄里时，他们才会参与袭击。可以确定的是，这类灾厄村民的等级很高，甚至能在追捕时启用劫掠兽。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:envioker"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一个强大且博学的唤魔者，似乎正在使用一块奇特的红宝石碎片置于头顶来增强他们的魔法。他们的图腾要么是别人赠予的，要么是从别人那里夺取的。."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:tormentor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "看起来是恼鬼和卫道士之间实验的产物，这些生物在不冲向目标时保持隐形状态。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:sorcerer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "这些魔法师是黑暗魔法的全能修行者，他们不像其他灾厄村民施法者那样专注于一种元素，这使得他们比其他施法者更难以预测。训练有素的巫师往往用珍贵材料装饰他们的长袍。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:piker",
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
+      "text": "比普通掠夺者更强大，比卫道士稍弱但触及范围更广，这些纪律严明的步兵可能是受到了沙漠卷轴的启发。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:ripper",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "被灾厄村民驯服和繁育的狼和狗，目的是追踪猎物或者在部队之前攻击敌人。它们可能体型各异，属性不同，而且很少有增援出现在附近。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:trampler",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "灾厄村民的暴烈坐骑，据传是由他们中最弱的成员制成，或者作为一种惩罚而存在，无论有无骑手都会向目标发起冲锋。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:crusher"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "铁匠和战士，这些灾厄村民要么在隐蔽的地方锻造，要么在特定区域执行任务。据说他们的一些锤子是用来吸收和控制闪电本身的。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:storm_caster"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "有些人认为他们是曾经的地卜师或唤风者，在争论过后，他们决定驾驭闪电的力量。于是他们寻找最高的圣所来掠夺其中的秘密。."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:cryologer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "与冰术师有亲缘关系，但是这些泣术士比只会一种法术的同类有更多的手段。灾厄村民认为他们哭泣是出于对寒冷的崇敬。."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:preacher"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "像附魔师一样，传教士是一种罕见的灾厄村民类型，他们致力于支援自己的同胞而非正面战斗。这些灾厄村民会跟随并治疗附近任何受伤的掠夺者。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:conquillager",
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
+      "text": "身患疾病的贵族，他们将终结文明的瘟疫传播给外来者。幸运的是，他们更喜欢远距离射击而不是进行野蛮的近战。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:inquillager"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "出人意料的灾厄村民，由于对魔法免疫而被训练来攻击魔法使用者。他们挥舞着燃烧着的剑，投掷着伤害药水."
+    }
+  ]
+}

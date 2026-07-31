@@ -1,0 +1,8 @@
+{
+  "comparator_output": 14,
+  "description": {
+    "translate": "item.goety.music_disc_apostle.desc"
+  },
+  "length_in_seconds": 180.0,
+  "sound_event": "goety:apostle_theme_disc"
+}

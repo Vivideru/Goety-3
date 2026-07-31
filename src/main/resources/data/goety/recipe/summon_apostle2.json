@@ -1,0 +1,41 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:summon",
+    "activation_item":  {
+                            "tag":  "c:ingots/netherite"
+                        },
+    "craftType":  "sabbath",
+    "entity_to_summon":  "goety:summon_apostle",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        },
+                        {
+                            "tag":  "goety:sabbath_ritual"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:jei_dummy/none"
+               }
+}
+

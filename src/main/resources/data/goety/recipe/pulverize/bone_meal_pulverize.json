@@ -1,0 +1,11 @@
+﻿{
+    "type":  "goety:pulverize",
+    "ingredient":  {
+                       "item":  "minecraft:bone_block"
+                   },
+    "item_result":  {
+                        "id":  "minecraft:bone_meal",
+                        "count":  9
+                    }
+}
+

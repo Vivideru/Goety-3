@@ -1,0 +1,15 @@
+{
+  "name": "缠魂之画",
+  "icon": "goety:haunted_painting",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "将普通的画和缠魂木板一起合成即可制成缠魂之画，拥有全新名字的它们似乎是一套完全不同的新画作，仅此而已。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:haunted_painting"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "充能聚晶",
+  "icon": "goety:charge_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "一种需要施法者直接右键点击活体目标的咒语。让目标获得充能效果，再次对同一目标施展该法术可以提升目标持有的充能等级。1级充能使目标提升10%%的移动速度与伤害，2级充能使目标移动速度加快25%%，但造成的伤害减少25%%。三级充能会使目标受到伤害并失去所有充能效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/charge_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶的添加来自pvzfan的建议"
+    }
+  ]
+}

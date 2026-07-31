@@ -1,0 +1,41 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:osseous_focus"
+                        },
+    "craftType":  "necroturgy",
+    "soulCost":  1,
+    "duration":  10,
+    "research":  "front",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:shield"
+                        },
+                        {
+                            "item":  "minecraft:anvil"
+                        },
+                        {
+                            "tag":  "c:ingots/iron"
+                        },
+                        {
+                            "tag":  "c:ingots/iron"
+                        },
+                        {
+                            "item":  "minecraft:leather_helmet"
+                        },
+                        {
+                            "tag":  "c:leather"
+                        },
+                        {
+                            "tag":  "c:leather"
+                        },
+                        {
+                            "tag":  "c:ingots/gold"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:vanguard_focus"
+               }
+}
+

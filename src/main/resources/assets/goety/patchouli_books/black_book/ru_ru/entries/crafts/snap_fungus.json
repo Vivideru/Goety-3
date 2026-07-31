@@ -1,0 +1,34 @@
+{
+  "name": "Snap Fungus",
+  "icon": "goety:snap_warts",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You've discovered a new type of fungus that can only grow on Crimson or Warped Stems/Hyphae called Snap Fungus. The Fungus is a ball full of toxins that one can't help but throw upwards in the air. When hitting something, they will explode, with a chance of leaving behind a small cloud of poison. Curiously, the explosion does not effect the thrower nor their servants."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:snap_warts"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:snap_fungus",
+      "text": "It appears that you can only throw a large amount of them at a time. On one hand, you get to throw multiple at once, on the other, you can't throw any more for a couple of seconds."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:blast_fungus",
+      "text": "You've also discovered a way to increase the potency of the fungi by combining 4 of them with a Ghast Tear. These fungi's explosions have larger radius but no longer leave any poison clouds."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:berserk_fungus",
+      "text": "By putting Snap Fungi with a Lily of the Valley in a Brewing Stand, you've managed to create the Berserk Fungus. Unlike the other two fungi, the fungus throws much like Snowballs and Eggs, and grants whoever gets hit with Strength, Speed and, unfortunately for beings like you, Nausea."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:snap_fungus": 2,
+    "goety:berserk_fungus": 4
+  }
+}

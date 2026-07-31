@@ -1,0 +1,12 @@
+{
+  "name": "info.goety.black_book.title",
+  "landing_text": "info.goety.black_book.landing",
+  "book_texture": "goety:textures/gui/black_book.png",
+  "version": 1,
+  "model": "goety:black_book",
+  "show_toasts": true,
+  "creative_tab": "goety",
+  "text_overflow_mode": "resize",
+  "use_resource_pack": true,
+  "i18n": true
+}

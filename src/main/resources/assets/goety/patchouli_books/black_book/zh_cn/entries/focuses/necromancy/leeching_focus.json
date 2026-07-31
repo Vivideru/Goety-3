@@ -1,0 +1,22 @@
+{
+  "name": "水蛭聚晶",
+  "icon": "goety:leeching_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "夺走敌人的生命是一回事，但充分利用它是另一回事。该法术会虹吸施法者看到的非友军目标，伤害他们的同时治愈施法者。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/leeching_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/necro_staff)死灵魔杖$()施法时还可以额外对目标施加虚弱效果"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:leeching_focus": 1
+  }
+}

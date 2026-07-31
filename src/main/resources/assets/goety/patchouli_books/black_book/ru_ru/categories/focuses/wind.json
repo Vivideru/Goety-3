@@ -1,0 +1,6 @@
+{
+  "name": "Ветряные",
+  "description": "Власть над ветрами.",
+  "icon": "goety:whirlwind_focus",
+  "parent": "goety:focuses"
+}

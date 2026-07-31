@@ -1,0 +1,45 @@
+﻿{
+  "type": "goety:cauldron",
+  "id": "goety:cauldron/flying_ointment",
+  "soulCost": 2000,
+  "color": 15002780,
+  "levelLeft": 1,
+  "take_with": {
+    "item": "minecraft:glass_bottle"
+  },
+  "ingredients": [
+    {
+      "item": "goety:henbane_flower"
+    },
+    {
+      "item": "minecraft:poppy"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "item": "goety:jade"
+    },
+    {
+      "item": "goety:wind_core"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    }
+  ],
+  "result": { "id": "goety:flying_ointment", "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "goety_revelation"
+      }
+    }
+  ]
+}
+

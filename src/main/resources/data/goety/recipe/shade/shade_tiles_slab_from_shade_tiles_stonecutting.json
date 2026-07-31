@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:shade_tiles"
+                   },
+    "result":  {
+                   "id":  "goety:shade_tiles_slab",
+                   "count":  2
+               }
+}

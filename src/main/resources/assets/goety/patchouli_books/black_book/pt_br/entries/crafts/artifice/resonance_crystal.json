@@ -1,0 +1,28 @@
+{
+  "name": "Cristal de Ressonância",
+  "icon": "goety:resonance_crystal",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/read_mistral_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Um bloco misterioso que é ativado por ventos fortes, como os de $(l:goety:crafts/artifice/wind_blower)Sopradores de Vento$(). O Cristal pode armazenar $(l:goety:summons/squall_golem)Golems de Tempestade$() dentro dele quando usas o botão esquerdo neles, e ativa-os quando é acionado."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:resonance_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Podem ativar não apenas Golems de Tempestade, mas também outros Cristais de Ressonância. Usar o botão direito com uma $(l:goety:crafts/waystone)Pedra de Portal$() que tenha a localização de outro cristal fará com que ele guarde essa localização. Isto não consumirá a Pedra de Portal e podes marcar várias localizações de cristais de uma vez, mas apenas se estiverem num raio de 64 blocos."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Se estiverem marcados desta forma, usar o botão direito com a mão vazia mostrará as posições às quais está ligado, e fazer o mesmo enquanto agachado removerá todas as marcações. Destruir o cristal também removerá as localizações marcadas. Quando o cristal está ativo, emite um sinal de Redstone."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:resonance_crystal": 1
+  }
+}

@@ -1,0 +1,114 @@
+package com.Polarice3.Goety.common.magic.spells.void_spells;
+
+import com.Polarice3.Goety.api.magic.SpellType;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
+import com.Polarice3.Goety.common.blocks.entities.HoleBlockEntity;
+import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Polarice3.Goety.common.magic.BlockSpell;
+import com.Polarice3.Goety.common.magic.SpellStat;
+import com.Polarice3.Goety.config.SpellConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.init.ModTags;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.WandUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TunnelSpell extends BlockSpell {
+
+    @Override
+    public SpellStat defaultStats() {
+        return super.defaultStats().setRange(SpellConfig.TunnelDefaultDistance.get());
+    }
+
+    @Override
+    public int defaultSoulCost() {
+        return SpellConfig.TunnelCost.get();
+    }
+
+    @Nullable
+    @Override
+    public SoundEvent CastingSound() {
+        return ModSounds.PREPARE_SPELL.get();
+    }
+
+    @Override
+    public int defaultSpellCooldown() {
+        return SpellConfig.TunnelCoolDown.get();
+    }
+
+    @Override
+    public SpellType getSpellType() {
+        return SpellType.VOID;
+    }
+
+    @Override
+    public List<ResourceKey<Enchantment>> acceptedEnchantments() {
+        List<ResourceKey<Enchantment>> list = new ArrayList<>();
+        list.add(ModEnchantments.RANGE);
+        list.add(ModEnchantments.DURATION);
+        return list;
+    }
+
+    @Override
+    public boolean rightBlock(ServerLevel worldIn, LivingEntity caster, BlockPos target, Direction direction, SpellStat spellStat) {
+        BlockState blockState = worldIn.getBlockState(target);
+        BlockState blockState2 = worldIn.getBlockState(target.relative(direction));
+        return !blockState.hasBlockEntity() && blockState2.getBlock() != ModBlocks.HOLE.get() && !blockState.is(ModTags.Blocks.TUNNEL_BLACKLIST) && blockState.getDestroySpeed(worldIn, target) != -1.0F;
+    }
+
+    @Override
+    public void blockResult(ServerLevel worldIn, LivingEntity caster, ItemStack staff, BlockPos target, Direction direction, SpellStat spellStat) {
+        BlockHitResult blockHitResult = MobUtil.rayTrace(caster, 8, false);
+        BlockPos blockPos = new BlockPos(blockHitResult.getBlockPos());
+        int totalDistance = spellStat.getRange();
+        int extraLife = spellStat.getDuration();
+        if (WandUtil.enchantedFocus(caster)) {
+            totalDistance += WandUtil.getRangeLevel(caster);
+            extraLife += WandUtil.getLevels(ModEnchantments.DURATION, caster);
+        }
+        for (int distance = 0; distance < totalDistance; ++distance) {
+            BlockState blockState = worldIn.getBlockState(blockPos);
+            if (blockState.is(ModTags.Blocks.TUNNEL_BLACKLIST) || !blockState.getFluidState().isEmpty() || blockState.getBlock() == ModBlocks.HOLE.get() || blockState.isAir()) {
+                break;
+            }
+            if (blockState.getDestroySpeed(worldIn, blockPos) == -1.0F) {
+                break;
+            }
+            blockPos = blockPos.relative(direction.getOpposite());
+        }
+        createHole(worldIn, blockHitResult.getBlockPos(), direction, (byte)Math.round((float)(totalDistance + 1)), this.rightStaff(staff), SpellConfig.TunnelDefaultLifespan.get() + (extraLife * 20));
+        this.playSound(worldIn, caster, ModSounds.CAST_SPELL.get());
+    }
+
+    public static boolean createHole(Level world, BlockPos blockPos, Direction direction, int count, boolean staff, int lifespan) {
+        BlockState blockState = world.getBlockState(blockPos);
+        if (!world.isClientSide && world.getBlockEntity(blockPos) == null
+                && !blockState.is(ModTags.Blocks.TUNNEL_BLACKLIST)
+                && blockState.getFluidState().isEmpty()
+                && blockState.getBlock() != ModBlocks.HOLE.get()
+                && blockState.getDestroySpeed(world, blockPos) != -1.0F) {
+            if (world.setBlockAndUpdate(blockPos, ModBlocks.HOLE.get().defaultBlockState())) {
+                HoleBlockEntity newHole = (HoleBlockEntity)world.getBlockEntity(blockPos);
+                if (newHole != null) {
+                    newHole.setStats(blockState, lifespan, count, staff ? 5 : 3, direction);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}

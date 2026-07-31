@@ -1,0 +1,28 @@
+{
+  "values": {
+    "goety:haunted_log": {
+      "stripped_block": "goety:stripped_haunted_log"
+    },
+    "goety:haunted_wood": {
+      "stripped_block": "goety:stripped_haunted_wood"
+    },
+    "goety:rotten_log": {
+      "stripped_block": "goety:stripped_rotten_log"
+    },
+    "goety:rotten_wood": {
+      "stripped_block": "goety:stripped_rotten_wood"
+    },
+    "goety:windswept_log": {
+      "stripped_block": "goety:stripped_windswept_log"
+    },
+    "goety:windswept_wood": {
+      "stripped_block": "goety:stripped_windswept_wood"
+    },
+    "goety:pine_log": {
+      "stripped_block": "goety:stripped_pine_log"
+    },
+    "goety:pine_wood": {
+      "stripped_block": "goety:stripped_pine_wood"
+    }
+  }
+}

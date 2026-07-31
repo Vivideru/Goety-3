@@ -1,0 +1,23 @@
+{
+  "name": "Фокус авангарда",
+  "icon": "goety:vanguard_focus",
+  "category": "goety:focuses/necromancy",
+  "advancement": "goety:goety/read_front_scroll",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вы нашли способ вызывать верных стражников из загробного мира, используя этот фокус. У вас есть ощущение, что это заклинание было украдено у древнего короля."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/vanguard_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/necro_staff)некро-посоха$() позволяет вызывать больше стражников."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:vanguard_focus": 1
+  }
+}

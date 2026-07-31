@@ -1,0 +1,40 @@
+﻿{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:campfire"
+                        },
+    "craftType":  "forge",
+    "soulCost":  5,
+    "duration":  30,
+    "ingredients":  [
+                        {
+                            "item":  "goety:ominous_stone_bricks"
+                        },
+                        {
+                            "item":  "goety:magic_emerald"
+                        },
+                        {
+                            "item":  "goety:ominous_stone_bricks"
+                        },
+                        {
+                            "item":  "goety:magic_emerald"
+                        },
+                        {
+                            "item":  "goety:ominous_stone_bricks"
+                        },
+                        {
+                            "item":  "goety:magic_emerald"
+                        },
+                        {
+                            "item":  "goety:ominous_stone_bricks"
+                        },
+                        {
+                            "item":  "goety:magic_emerald"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:ominous_pyre"
+               }
+}
+

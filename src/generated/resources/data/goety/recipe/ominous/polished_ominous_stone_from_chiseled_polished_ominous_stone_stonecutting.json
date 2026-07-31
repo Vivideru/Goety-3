@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:polished_ominous_stone"
+  },
+  "result": {
+    "id": "goety:chiseled_polished_ominous_stone",
+    "count": 1
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:rotten_planks"
+                      },
+                "C":  {
+                          "tag":  "c:chests/wooden"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:rotten_chest",
+                   "count":  2
+               }
+}
+

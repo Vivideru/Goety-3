@@ -1,0 +1,22 @@
+{
+  "name": "Leeching Focus",
+  "icon": "goety:leeching_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Taking the life out of your enemies is one thing, but actually eating it is another. The spell siphons a non-allied target the caster's looking at, hurting them and healing the caster the amount the target lost."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/leeching_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() will give Weakness effect to target."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:leeching_focus": 1
+  }
+}

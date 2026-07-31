@@ -1,0 +1,42 @@
+{
+  "name": "神奇的部件",
+  "icon": "goety:magic_emerald",
+  "category": "goety:intro",
+  "sortnum": 3,
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "有了你的初始图腾，你发现你可以用它来制作全新的物品，这些物品可以用来创造各种神奇的装置和聚晶！ 尽管肯定还有更多$(l:intro/cursed_infuser)更便宜的方式$()去获得这些东西..."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:cursed_ingot_craft",
+      "recipe2": "goety:empty_focus_craft"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:shade/shade_stone_craft",
+      "recipe2": "goety:haunted/haunted_sapling_craft"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:savage_tooth_craft"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "唤魔者的图腾似乎在眼睛所在的地方放置了绿宝石。这玩意跟平时的绿宝石完全不同...有没有办法“激活”它们？"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:magic_emerald_craft",
+      "recipe2": "goety:soul_emerald"
+    },
+    {
+      "anchor": "totem",
+      "type": "patchouli:crafting",
+      "recipe": "goety:totem_of_souls",
+      "text": "你终于制作出了一个真正的不死图腾的赝品，尽管它是一个赝品，但是这个图腾能够储存比根之图腾更多的灵魂能量，而且灵魂图腾比正品还要强大"
+    }
+  ]
+}

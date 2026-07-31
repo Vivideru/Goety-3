@@ -1,0 +1,24 @@
+{
+  "name": "Foco Flamejante",
+  "icon": "goety:blazing_focus",
+  "category": "goety:focuses/nether",
+  "advancement": "goety:goety/read_bygone_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Embora haja mistério sobre a rebelião dos Blazes, mesmo após aprender os métodos de sua criação, você criou um foco que invoca um que não tem uma vara rebelde em seu corpo."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blazing_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/nether_staff)Cajado do Nether$() invoca mais Blazes de uma vez."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blazing_focus": 1
+  }
+}

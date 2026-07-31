@@ -1,0 +1,27 @@
+{
+  "name": "Haunted Mirror",
+  "icon": "goety:haunted_mirror",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_dark_altar",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With some studies and experimentation, you've discovered a way to transform a piece of Haunted Glass into a mirror that allows you to essentially teleport from one place to another."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:haunted/haunted_mirror"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "In order to teleport by using Mirrors, you must have two placed down in the world on the same X and Z or Y-Axis. For the X and Z, or horizontal axis, two mirrors must be placed on the same Y axis, each facing way from each other, within 32 blocks, making it seem like a tunnel or hole between walls."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "For a the Y, or vertical, axis, the Mirrors must be facing the same way, and share the same XZ coordinates, either 16 blocks below or above each other. Mirrors will attempt to find another mirror above itself before searching below."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:haunted_mirror": 1
+  }
+}

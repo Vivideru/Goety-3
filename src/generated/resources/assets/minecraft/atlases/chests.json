@@ -1,0 +1,172 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/haunted/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/rotten/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/windswept/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/pine/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/chorus/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/corrupt_chorus/trapped_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/normal"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/normal_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/normal_right"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/trapped"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/trapped_left"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "goety:entity/chest/raiding/trapped_right"
+    }
+  ]
+}

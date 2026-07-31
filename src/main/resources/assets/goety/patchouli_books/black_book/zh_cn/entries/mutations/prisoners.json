@@ -1,0 +1,55 @@
+{
+  "name": "囚犯",
+  "icon": "goety:ominous_shackles",
+  "category": "goety:mutations",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这算不上是真正的突变，除非你将“被镣铐锁住并捕获”也算作突变的一种。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:prisoner"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "跟随生物的囚犯会像其他仆从一样跟随它们。但如果是直接跟随你（表现为被锁链拴在你身上），它们会像被拴绳牵着一样跟随。囚犯在“警戒”模式下，不会像其他仆从那样在区域内四处游荡，而是会待在原地，但仍能移动以与特定物体互动。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要释放囚犯，请蹲下并右键点击他们。如果囚犯在远离其抓捕者或主人的地方受到足够多的伤害，也可以被释放。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:iron_pickaxe",
+      "anchor": "mining",
+      "title": "囚犯矿场",
+      "text": "手持任意镐子右键点击囚犯，可以让他们进入挖矿模式。首先，他们需要靠近矿石，其次，他们不能处于跟随模式，这样才能开始挖矿。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "囚犯会偶尔收集掉落的矿石，但会在镐子耗尽、感到饥饿或背包满时停止挖矿。他们会将挖到的物品交给附近的灾厄村民，如果绑定了箱子，则会放入箱子中。当囚犯在挖矿时，空手右键点击他们，会让他们面朝向你——这个方向会成为他们（如果之前停止挖矿后）再次开始挖矿时的朝向。手持木棍右键点击囚犯，可以让他们放下手中的镐子。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:cooked_beef",
+      "title": "饥饿",
+      "text": "挖矿时，囚犯会感到饥饿，一旦开始挨饿，他们就会停止挖矿。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要喂食他们，可以直接把食物给他们，或者把食物放入他们绑定的箱子里。有趣的是，如果你的灾厄村民仆从有多余的食物，他们也会帮忙喂食囚犯。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:chest",
+      "title": "箱子交互",
+      "text": "手持绑定到未上锁箱子的路石右键点击囚犯，会让囚犯将该箱子注册为存放他们掉落物的有效容器。如果他们绑定的箱子里有镐子，并且附近有仆从或主人，囚犯会在自己手上没有镐子时去拿取。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:raiding_chest",
+      "text": "囚犯也可以注册除了普通箱子以外的另一种箱子。当注册到这个箱子时，囚犯会优先把身上的战利品存入此箱子，并且不会从中取走物品。"
+    }
+  ]
+}

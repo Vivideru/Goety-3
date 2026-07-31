@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:snowy_cobbled_siltstone"
+  },
+  "result": {
+    "id": "goety:snowy_cobbled_siltstone_wall",
+    "count": 1
+  }
+}

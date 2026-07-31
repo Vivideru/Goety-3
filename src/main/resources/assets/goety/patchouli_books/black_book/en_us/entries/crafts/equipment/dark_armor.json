@@ -1,0 +1,39 @@
+{
+  "name": "Dark Armor",
+  "icon": "goety:dark_helmet",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/craft_dark_ingot",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "While Dark Alloy can be used to craft regular tools, when it comes to armor, it seems to require more... elaborate ways of crafting them. The armor looks nothing like the others you have crafted, looking more elaborate yet intimidating, but it still provides Diamond level protection and toughness, as well as some knockback resistance."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Much like the Black Iron Armor set, the armor also provides discount on Soul Energy, but also slightly mitigates magic, fire and explosive damage."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_helmet"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_chestplate"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_leggings"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_boots"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_helmet": 2,
+    "goety:dark_chestplate": 3,
+    "goety:dark_leggings": 4,
+    "goety:dark_boots": 5
+  }
+}

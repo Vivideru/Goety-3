@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:enchantable/focus/radius",
+    "#c:tools/hammers",
+    "goety:blade_of_ender",
+    "goety:black_crystal",
+    "goety:sculk_devourer",
+    "goety:sculk_grower"
+  ]
+}

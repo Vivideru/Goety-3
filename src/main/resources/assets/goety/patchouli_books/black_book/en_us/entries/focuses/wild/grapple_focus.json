@@ -1,0 +1,22 @@
+{
+  "name": "Grapple Focus",
+  "icon": "goety:grapple_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This focus allows you to shoot a grappling hook made of vines and thorns that will attach itself to any solid surface it lands on, pulling you along the way."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/grapple_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() allows the hook to shoot further and negates fall damage when attached to a grappling hook."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:grapple_focus": 1
+  }
+}

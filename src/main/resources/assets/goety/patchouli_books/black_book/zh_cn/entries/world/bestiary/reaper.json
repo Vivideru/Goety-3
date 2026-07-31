@@ -1,0 +1,25 @@
+{
+  "name": "收割者",
+  "icon": "goety:spirit_fabric",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_reaper",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "戴着兜帽的幽灵，擅使镰刀，且对灵魂充满渴望"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:reaper"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:grave_dust",
+      "title": "坟尘",
+      "text": "收割者有概率掉落坟尘，这对制作某些与死灵相关的物品很有用"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:grave_dust": 2
+  }
+}

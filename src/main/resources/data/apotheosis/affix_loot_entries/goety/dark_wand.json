@@ -1,0 +1,18 @@
+{
+  "type": "apotheosis:affix_loot_entry",
+  "stack": {
+    "count": 1,
+    "id": "goety:dark_wand"
+  },
+  "weights": {
+    "ascent": {
+      "weight": 25
+    },
+    "summit": {
+      "weight": 25
+    },
+    "pinnacle": {
+      "weight": 5
+    }
+  }
+}

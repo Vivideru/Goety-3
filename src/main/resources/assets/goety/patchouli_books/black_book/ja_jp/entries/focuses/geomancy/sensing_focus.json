@@ -1,0 +1,19 @@
+{
+  "name": "Sensing Focus",
+  "icon": "goety:sensing_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The focus grants you Tremor Sense, which causes any creature that's on the ground to appear as though they're glowing for you. The effect only works if you're also standing on the ground."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/sensing_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Potency enchantment increases the effect level of Tremor Sense, doubling the radius per level."
+    }
+  ]
+}

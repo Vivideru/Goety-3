@@ -1,0 +1,31 @@
+{
+  "name": "Túnica da Tempestade",
+  "icon": "goety:storm_robe",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Uma variante da Túnica do Vento que incorpora relâmpagos em seus tecidos. Assim como a Túnica do Vento, ela permite cair lentamente. Usar a Túnica também reduz pela metade o custo de Alma para Feitiços de Tempestade, mas infelizmente não para Feitiços do Vento."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:storm_robe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Criaturas das tempestades curam-se lentamente com a energia da alma de seu invocador, se este vestir esta túnica."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:storm_crown"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A Coroa da Tempestade reduz pela metade o tempo de conjuração de magias de tempestade e impede que seus servos das tempestades desapareçam como Vexes."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:storm_robe": 1,
+    "goety:storm_crown": 3
+  }
+}

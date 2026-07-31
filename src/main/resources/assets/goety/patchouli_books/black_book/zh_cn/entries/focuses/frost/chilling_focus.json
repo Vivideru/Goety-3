@@ -1,0 +1,19 @@
+{
+  "name": "冷静聚晶",
+  "icon": "goety:chilling_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶不仅能够提升你的盔甲值，还可以把对你进行近战攻击的敌人冰冻，潜行时对准任意友方生物施法即可让他获得该法术的效果"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/chilling_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/frost_staff)霜冻魔杖$()施法时，该法术的效果可以给予至自身和小范围内所有友方生物"
+    }
+  ]
+}

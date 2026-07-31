@@ -1,0 +1,208 @@
+package com.Polarice3.Goety.common.entities.neutral;
+
+import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.ally.Summoned;
+import com.Polarice3.Goety.common.entities.ally.undead.ReaperServant;
+import com.Polarice3.Goety.common.entities.ally.undead.WraithServant;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.AbstractSkeletonServant;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.SkeletonServant;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.StrayServant;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.VanguardServant;
+import com.Polarice3.Goety.common.entities.ally.undead.zombie.BlackguardServant;
+import com.Polarice3.Goety.common.entities.ally.undead.zombie.FrozenZombieServant;
+import com.Polarice3.Goety.common.entities.projectiles.IceSpike;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.config.MobsConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.init.ModTags;
+import com.Polarice3.Goety.utils.BlockFinder;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.ServerParticleUtil;
+import com.Polarice3.Goety.utils.SoundUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.function.Predicate;
+
+public class AbstractCairnNecromancer extends AbstractNecromancer{
+
+    public AbstractCairnNecromancer(EntityType<? extends AbstractSkeletonServant> type, Level level) {
+        super(type, level);
+    }
+
+    public void projectileGoal(int priority) {
+        this.goalSelector.addGoal(priority, new NecromancerRangedGoal(this, 1.0D, 20, 10.0F));
+    }
+
+    public void summonSpells(int priority){
+        this.goalSelector.addGoal(priority, new SummonServantSpell());
+        this.goalSelector.addGoal(priority + 1, new SummonUndeadGoal());
+    }
+
+    public static AttributeSupplier.Builder setCustomAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, AttributesConfig.get(AttributesConfig.CairnNecromancerHealth))
+                .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.CairnNecromancerArmor))
+                .add(Attributes.FOLLOW_RANGE, AttributesConfig.get(AttributesConfig.CairnNecromancerFollowRange))
+                .add(Attributes.MOVEMENT_SPEED, 0.25F)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.CairnNecromancerDamage));
+    }
+
+    public void setConfigurableAttributes(){
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.MAX_HEALTH), AttributesConfig.get(AttributesConfig.CairnNecromancerHealth));
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.ARMOR), AttributesConfig.get(AttributesConfig.CairnNecromancerArmor));
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.FOLLOW_RANGE), AttributesConfig.get(AttributesConfig.CairnNecromancerFollowRange));
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.ATTACK_DAMAGE), AttributesConfig.get(AttributesConfig.CairnNecromancerDamage));
+    }
+
+    @Override
+    public float getVoicePitch() {
+        return 0.75F;
+    }
+
+    @Override
+    public void performRangedAttack(@NotNull LivingEntity p_33317_, float p_33318_) {
+        if (this.getNecroLevel() <= 0) {
+            IceSpike iceSpike = new IceSpike(this, this.level());
+            double d0 = p_33317_.getX() - this.getX();
+            double d1 = p_33317_.getY(0.3333333333333333D) - iceSpike.getY();
+            double d2 = p_33317_.getZ() - this.getZ();
+            double d3 = Mth.sqrt((float) (d0 * d0 + d2 * d2));
+            iceSpike.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, 1.0F);
+            if (this.level().addFreshEntity(iceSpike)){
+                this.playSound(ModSounds.ICE_SPIKE_CAST.get());
+                this.swing(InteractionHand.MAIN_HAND);
+            }
+        } else {
+            for (int i = -this.getNecroLevel(); i <= this.getNecroLevel(); i++) {
+                Vec3 vector3d = this.getViewVector(1.0F);
+                IceSpike iceSpike = new IceSpike(this, this.level());
+                iceSpike.shoot(vector3d.x + (i / 10.0F), vector3d.y, vector3d.z + (i / 10.0F), 1.6F, 1.0F);
+                if (this.level().addFreshEntity(iceSpike)) {
+                    this.playSound(ModSounds.ICE_SPIKE_CAST.get());
+                    this.swing(InteractionHand.MAIN_HAND);
+                }
+            }
+        }
+    }
+
+    public Summoned getDefaultSummon(){
+        return new SkeletonServant(ModEntityType.STRAY_SERVANT.get(), this.level());
+    }
+
+    public Summoned getSummon(){
+        Summoned summoned = getDefaultSummon();
+        if (this.getSummonList().stream().anyMatch(entityType -> entityType.is(ModTags.EntityTypes.ZOMBIE_SERVANTS))) {
+            if (this.level().random.nextBoolean()) {
+                summoned = new FrozenZombieServant(ModEntityType.FROZEN_ZOMBIE_SERVANT.get(), this.level());
+            }
+        }
+        if (this.getSummonList().stream().anyMatch(entityType -> entityType.is(ModTags.EntityTypes.SKELETON_SERVANTS))) {
+            if (this.level().random.nextBoolean()) {
+                summoned = new StrayServant(ModEntityType.STRAY_SERVANT.get(), this.level());
+            }
+        }
+        if (this.getSummonList().contains(ModEntityType.WRAITH_SERVANT.get())) {
+            if (this.level().random.nextFloat() <= 0.05F) {
+                summoned = new WraithServant(ModEntityType.BORDER_WRAITH_SERVANT.get(), this.level());
+            }
+        }
+        if (this.getSummonList().contains(ModEntityType.REAPER_SERVANT.get())) {
+            if (this.level().random.nextFloat() <= 0.05F) {
+                summoned = new ReaperServant(ModEntityType.REAPER_SERVANT.get(), this.level());
+            }
+        }
+        if (this.getSummonList().contains(ModEntityType.VANGUARD_SERVANT.get())){
+            if (this.level().random.nextFloat() <= 0.15F) {
+                summoned = new VanguardServant(ModEntityType.VANGUARD_SERVANT.get(), this.level());
+            }
+        }
+        if (this.getSummonList().contains(ModEntityType.BLACKGUARD_SERVANT.get())) {
+            if (this.level().random.nextFloat() <= 0.05F) {
+                summoned = new BlackguardServant(ModEntityType.BLACKGUARD_SERVANT.get(), this.level());
+            }
+        }
+        return summoned;
+    }
+
+    @Override
+    public boolean summonVariants() {
+        return this.level().isWaterAt(this.blockPosition());
+    }
+
+    public class SummonServantSpell extends SummoningSpellGoal {
+
+        public boolean canUse() {
+            return super.canUse() && AbstractCairnNecromancer.this.remainingOwnedSummonSlots(6) > 0;
+        }
+
+        protected void castSpell(){
+            if (AbstractCairnNecromancer.this.level() instanceof ServerLevel serverLevel) {
+                int slots = AbstractCairnNecromancer.this.remainingOwnedSummonSlots(6);
+                for (int i1 = 0; i1 < Math.min(2, slots); ++i1) {
+                    Summoned summonedentity = AbstractCairnNecromancer.this.getSummon();
+                    BlockPos blockPos = BlockFinder.SummonRadius(AbstractCairnNecromancer.this.blockPosition(), summonedentity, serverLevel);
+                    summonedentity.setTrueOwner(MobUtil.getSummonOwner(AbstractCairnNecromancer.this));
+                    summonedentity.moveTo(blockPos, 0.0F, 0.0F);
+                    MobUtil.moveDownToGround(summonedentity);
+                    if (MobsConfig.NecromancerSummonsLife.get()) {
+                        summonedentity.setLimitedLife(MobUtil.getSummonLifespan(serverLevel));
+                    }
+                    summonedentity.setPersistenceRequired();
+                    summonedentity.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(AbstractCairnNecromancer.this.blockPosition()), MobSpawnType.MOB_SUMMONED, null);
+                    if (BlockFinder.findStructure(serverLevel, AbstractCairnNecromancer.this, ModTags.Structures.CRYPT)) {
+                        for(EquipmentSlot equipmentslottype : EquipmentSlot.values()) {
+                if (equipmentslottype.getType() == EquipmentSlot.Type.HUMANOID_ARMOR) {
+                                ItemStack itemstack = summonedentity.getItemBySlot(equipmentslottype);
+                                if (itemstack.isEmpty()) {
+                                    Item item = cursedKnightArmor(equipmentslottype);
+                                    if (item != null && serverLevel.random.nextFloat() <= 0.25F) {
+                                        summonedentity.setItemSlot(equipmentslottype, new ItemStack(item));
+                                    }
+                                }
+                            }
+                            summonedentity.setDropChance(equipmentslottype, 0.0F);
+                        }
+                        summonedentity.setItemInHand(InteractionHand.MAIN_HAND, Items.IRON_SWORD.getDefaultInstance());
+                        summonedentity.setDropChance(EquipmentSlot.MAINHAND, 0.0F);
+                    }
+                    if (serverLevel.addFreshEntity(summonedentity)){
+                        SoundUtil.playNecromancerSummon(summonedentity);
+                        ServerParticleUtil.summonUndeadParticles(serverLevel, summonedentity);
+                    }
+                }
+            }
+        }
+
+        @Nullable
+        public Item cursedKnightArmor(EquipmentSlot pSlot) {
+            return switch (pSlot) {
+                case HEAD -> Items.CHAINMAIL_HELMET;
+                case CHEST -> ModItems.CURSED_KNIGHT_CHESTPLATE.get();
+                case LEGS -> Items.CHAINMAIL_LEGGINGS;
+                case FEET -> ModItems.CURSED_KNIGHT_BOOTS.get();
+                default -> null;
+            };
+        }
+
+        @Override
+        protected NecromancerSpellType getNecromancerSpellType() {
+            return NecromancerSpellType.ZOMBIE;
+        }
+    }
+}

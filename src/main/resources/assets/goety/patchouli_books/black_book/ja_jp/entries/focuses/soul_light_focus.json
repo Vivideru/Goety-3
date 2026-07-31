@@ -1,0 +1,25 @@
+{
+  "name": "Soul Light Focus",
+  "icon": "goety:soul_light_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You are able to make a magical light source by shooting a bolt of Soul Energy on a Block. At first, the light isn't as strong as a Torch, but it does drive Piglins away, but with some glowstone and netherrack, your light shines brighter. It also illuminates a creature if it's hit by it."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/soul_light_focus",
+      "recipe2": "goety:focus/glow_light_focus"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:illuminate_focus",
+      "text": "While throwing light around is well and good, there are times where you wish to light up entire caverns and rooms. With this focus, you're able to summon glow lights, and replace soul lights with them, around the area as you cast."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/illuminate_focus"
+    }
+  ]
+}

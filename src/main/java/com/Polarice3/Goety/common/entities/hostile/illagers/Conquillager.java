@@ -1,0 +1,392 @@
+package com.Polarice3.Goety.common.entities.hostile.illagers;
+
+import com.Polarice3.Goety.utils.MobTypeHelper;
+
+import com.Polarice3.Goety.init.ModMobType;
+
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.ally.illager.raider.RaiderServant;
+import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.google.common.collect.Maps;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.monster.CrossbowAttackMob;
+import net.minecraft.world.entity.monster.PatrollingMonster;
+import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.entity.raid.Raider;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ChargedProjectiles;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.pathfinder.NodeEvaluator;
+import net.minecraft.world.phys.Vec3;
+import org.joml.Vector3f;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.EnumSet;
+import java.util.Map;
+
+public class Conquillager extends HuntingIllagerEntity implements CrossbowAttackMob {
+    private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(Conquillager.class, EntityDataSerializers.BOOLEAN);
+
+    public Conquillager(EntityType<? extends Conquillager> p_i48556_1_, Level p_i48556_2_) {
+        super(p_i48556_1_, p_i48556_2_);
+        this.xpReward = 20;
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new HoldGroundAttackGoal(this, 10.0F));
+        this.goalSelector.addGoal(3, new IllagerCrossbowGoal<>(this, 1.0D, 16.0F));
+    }
+
+    public static AttributeSupplier.Builder setCustomAttributes(){
+        return Mob.createMobAttributes()
+                .add(Attributes.FOLLOW_RANGE, 32.0D)
+                .add(Attributes.MAX_HEALTH, AttributesConfig.get(AttributesConfig.ConquillagerHealth))
+                .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.ConquillagerArmor))
+                .add(Attributes.MOVEMENT_SPEED, 0.35D)
+                .add(Attributes.ATTACK_DAMAGE, 5.0D);
+    }
+
+    public void setConfigurableAttributes(){
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.MAX_HEALTH), AttributesConfig.get(AttributesConfig.ConquillagerHealth));
+        MobUtil.setBaseAttributes(this.getAttribute(Attributes.ARMOR), AttributesConfig.get(AttributesConfig.ConquillagerArmor));
+    }
+
+    public void tick() {
+        super.tick();
+        for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(8.0D), EntitySelector.NO_CREATIVE_OR_SPECTATOR)) {
+            if (entity.isAlive() && !(entity instanceof PatrollingMonster) && !(entity instanceof RaiderServant) && MobTypeHelper.getMobType(entity) != ModMobType.UNDEAD) {
+                if (this.tickCount % 100 == 0 && this.getRandom().nextInt(20) == 0) {
+                    entity.addEffect(new MobEffectInstance(GoetyEffects.ILLAGUE, 2000, 0, false, false));
+                }
+            }
+        }
+        if (this.level().isClientSide) {
+            if (this.tickCount % 20 == 0){
+                for(int i = 0; i < 8; ++i) {
+                    this.level().addParticle(ModParticleTypes.PLAGUE_EFFECT.get(), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0.0D, 0.5D, 0.0D);
+                }
+            }
+        }
+    }
+
+    public void pickUpItem(ItemEntity pItemEntity) {
+        if (!(pItemEntity.getItem().getItem() instanceof TieredItem)){
+            super.pickUpItem(pItemEntity);
+        }
+    }
+
+    @Override
+    protected SoundEvent getCastingSoundEvent() {
+        return null;
+    }
+
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(IS_CHARGING_CROSSBOW, false);
+    }
+
+    public boolean canFireProjectileWeapon(ProjectileWeaponItem p_230280_1_) {
+        return p_230280_1_ == Items.CROSSBOW;
+    }
+
+    public boolean isChargingCrossbow() {
+        return this.entityData.get(IS_CHARGING_CROSSBOW);
+    }
+
+    public void setChargingCrossbow(boolean pIsCharging) {
+        this.entityData.set(IS_CHARGING_CROSSBOW, pIsCharging);
+    }
+
+    public void onCrossbowAttackPerformed() {
+        this.noActionTime = 0;
+    }
+
+    public IllagerArmPose getArmPose() {
+        if (this.isChargingCrossbow()) {
+            return IllagerArmPose.CROSSBOW_CHARGE;
+        } else if (this.isHolding(item -> item.getItem() instanceof CrossbowItem)) {
+            return IllagerArmPose.CROSSBOW_HOLD;
+        } else {
+            return this.isAggressive() ? IllagerArmPose.ATTACKING : IllagerArmPose.NEUTRAL;
+        }
+    }
+
+    public float getWalkTargetValue(BlockPos pPos, LevelReader pLevel) {
+        BlockState blockstate = pLevel.getBlockState(pPos.below());
+        return !blockstate.is(Blocks.GRASS_BLOCK) && !blockstate.is(Blocks.SAND) ? 0.5F - pLevel.getPathfindingCostFromLightLevels(pPos) : 10.0F;
+    }
+
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_33282_, DifficultyInstance p_33283_, MobSpawnType p_33284_, @Nullable SpawnGroupData p_33285_) {
+        RandomSource randomsource = p_33282_.getRandom();
+        this.populateDefaultEquipmentSlots(randomsource, p_33283_);
+        this.populateDefaultEquipmentEnchantments(p_33282_, randomsource, p_33283_);
+        if (p_33284_ == MobSpawnType.EVENT) {
+            if (p_33282_.getLevel().random.nextFloat() <= 0.25F && !this.isPassenger()) {
+                Trampler trampler = new Trampler(ModEntityType.TRAMPLER.get(), p_33282_.getLevel());
+                trampler.finalizeSpawn(p_33282_, p_33282_.getLevel().getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.EVENT, null);
+                trampler.setPos(this.position());
+                p_33282_.getLevel().addFreshEntity(trampler);
+                this.startRiding(trampler);
+            }
+        }
+        return super.finalizeSpawn(p_33282_, p_33283_, p_33284_, p_33285_);
+    }
+
+    protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance pDifficulty) {
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
+    }
+
+    protected void enchantSpawnedWeapon(ServerLevelAccessor pLevel, RandomSource randomsource, DifficultyInstance pDifficulty) {
+        super.enchantSpawnedWeapon(pLevel, randomsource, pDifficulty);
+        ItemStack itemstack = this.getMainHandItem();
+        if (itemstack.getItem() instanceof CrossbowItem) {
+            Holder<Enchantment> piercing = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING);
+            if (itemstack.getEnchantmentLevel(piercing) <= 0) {
+                itemstack.enchant(piercing, 4);
+            }
+            this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
+        }
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return ModSounds.CONQUILLAGER_AMBIENT.get();
+    }
+
+    protected SoundEvent getDeathSound() {
+        return ModSounds.CONQUILLAGER_DEATH.get();
+    }
+
+    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return ModSounds.CONQUILLAGER_HURT.get();
+    }
+
+    public void performRangedAttack(LivingEntity pTarget, float pDistanceFactor) {
+        this.performCrossbowAttack(this, 1.6F);
+    }
+
+    public void shootCrossbowProjectile(LivingEntity shooter, ItemStack itemStack, Projectile projectileEntity, float p_230284_4_) {
+        this.shootCrossbowProjectile(this, shooter, projectileEntity, p_230284_4_, 1.6F);
+    }
+
+    public void performCrossbowAttack(LivingEntity shooter, float velocity) {
+        InteractionHand hand = ProjectileUtil.getWeaponHoldingHand(shooter, item -> item instanceof CrossbowItem);
+        ItemStack itemstack = shooter.getItemInHand(hand);
+        if (shooter.isHolding(itemStack -> itemStack.getItem() instanceof CrossbowItem)) {
+            if (itemstack.getItem() instanceof CrossbowItem crossbowItem) {
+                crossbowItem.performShooting(shooter.level(), shooter, hand, itemstack, velocity, (float)(14 - shooter.level().getDifficulty().getId() * 4), this.getTarget());
+            }
+        }
+
+        this.onCrossbowAttackPerformed();
+    }
+
+    public void shootCrossbowProjectile(LivingEntity shooter, LivingEntity target, Projectile projectileEntity, float p_234279_4_, float velocity) {
+        double d0 = target.getX() - shooter.getX();
+        double d1 = target.getY(0.5F) - shooter.getY(0.5F);
+        double d2 = target.getZ() - shooter.getZ();
+        projectileEntity.shoot(d0, d1, d2, velocity, (float)(14 - shooter.level().getDifficulty().getId() * 4));
+        shooter.playSound(SoundEvents.CROSSBOW_SHOOT, 1.0F, 1.0F / (shooter.getRandom().nextFloat() * 0.4F + 0.8F));
+    }
+
+    public ItemStack getProjectile(ItemStack pShootable) {
+        int difficulty = this.level().getCurrentDifficultyAt(this.blockPosition()).getDifficulty().getId();
+        return MobUtil.createFirework(difficulty * 2, DyeColor.values());
+    }
+
+    public void applyRaidBuffs(ServerLevel pLevel, int pWave, boolean p_213660_2_) {
+        Raid raid = this.getCurrentRaid();
+        boolean flag = this.random.nextFloat() <= raid.getEnchantOdds();
+        if (flag) {
+            ItemStack itemstack = new ItemStack(Items.CROSSBOW);
+            Holder<Enchantment> quickCharge = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.QUICK_CHARGE);
+            Holder<Enchantment> multishot = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.MULTISHOT);
+            if (pWave > raid.getNumGroups(Difficulty.NORMAL)) {
+                itemstack.enchant(quickCharge, 3);
+            } else if (pWave > raid.getNumGroups(Difficulty.EASY)) {
+                itemstack.enchant(quickCharge, 2);
+            }
+
+            itemstack.enchant(multishot, 1);
+            this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
+        }
+
+    }
+
+    public SoundEvent getCelebrateSound() {
+        return ModSounds.CONQUILLAGER_CELEBRATE.get();
+    }
+
+    //Improved codes based on @TeamAbnormal's codes: https://github.com/team-abnormals/savage-and-ravage/blob/1.20.x/src/main/java/com/teamabnormals/savage_and_ravage/common/entity/ai/goal/ImprovedCrossbowGoal.java
+    public static class IllagerCrossbowGoal<T extends PathfinderMob & RangedAttackMob & CrossbowAttackMob> extends Goal {
+        private final T mob;
+        private CrossbowState crossbowState = CrossbowState.UNCHARGED;
+        private final double speedModifier;
+        private final float attackRadiusSqr;
+        private int seeTime;
+        private int attackDelay;
+
+        public IllagerCrossbowGoal(T p_i50322_1_, double p_i50322_2_, float p_i50322_4_) {
+            this.mob = p_i50322_1_;
+            this.speedModifier = p_i50322_2_;
+            this.attackRadiusSqr = p_i50322_4_ * p_i50322_4_;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
+
+        public boolean canUse() {
+            return this.isValidTarget() && this.isHoldingCrossbow();
+        }
+
+        private boolean isHoldingCrossbow() {
+            return this.mob.isHolding(is -> is.getItem() instanceof CrossbowItem);
+        }
+
+        public boolean canContinueToUse() {
+            return this.isValidTarget() && (this.canUse() || !this.mob.getNavigation().isDone()) && this.isHoldingCrossbow();
+        }
+
+        private boolean isValidTarget() {
+            return this.mob.getTarget() != null && this.mob.getTarget().isAlive();
+        }
+
+        public void start() {
+            super.start();
+            this.mob.setAggressive(true);
+        }
+
+        public void stop() {
+            super.stop();
+            this.mob.setAggressive(false);
+            this.mob.setTarget((LivingEntity)null);
+            this.seeTime = 0;
+            if (this.mob.isUsingItem()) {
+                this.mob.stopUsingItem();
+                this.mob.setChargingCrossbow(false);
+                this.mob.getUseItem().set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
+            }
+        }
+
+        public void tick() {
+            LivingEntity livingentity = this.mob.getTarget();
+            if (livingentity != null) {
+                boolean canSeeEnemy = this.mob.getSensing().hasLineOfSight(livingentity);
+                boolean noRaiders = livingentity.level().getEntitiesOfClass(Raider.class, livingentity.getBoundingBox().inflate(5.0D), (entity) -> entity != this.mob && this.mob.hasLineOfSight(entity) && !(entity instanceof Tormentor)).isEmpty();
+
+                if (canSeeEnemy) {
+                    ++this.seeTime;
+                } else {
+                    this.seeTime = 0;
+                }
+
+                double distanceSq = this.mob.distanceToSqr(livingentity);
+                double distance = Mth.sqrt((float) distanceSq);
+                if (distance <= 5.0F) {
+                    if (this.isWalkable()) {
+                        this.mob.getMoveControl().strafe(mob.isUsingItem() ? -0.5F : -3.0F, 0);
+                    }
+                }
+
+                ItemStack activeStack = this.mob.getUseItem();
+                boolean shouldMoveTowardsEnemy = ((distanceSq > (double) this.attackRadiusSqr) || this.seeTime < 5) && this.attackDelay == 0;
+                if (shouldMoveTowardsEnemy) {
+                    double speedChange = this.isCrossbowUncharged() ? this.speedModifier : this.speedModifier * 0.5D;
+                    this.mob.getNavigation().moveTo(livingentity, speedChange);
+                } else {
+                    this.mob.getNavigation().stop();
+                }
+
+                this.mob.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
+
+                if (this.crossbowState == CrossbowState.UNCHARGED && !CrossbowItem.isCharged(activeStack)) {
+                    if (canSeeEnemy) {
+                        this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof CrossbowItem));
+                        this.crossbowState = CrossbowState.CHARGING;
+                        this.mob.setChargingCrossbow(true);
+                    }
+                } else if (this.crossbowState == CrossbowState.CHARGING) {
+                    if (!this.mob.isUsingItem()) {
+                        this.crossbowState = CrossbowState.UNCHARGED;
+                    }
+
+                    int i = this.mob.getTicksUsingItem();
+                    if (i >= CrossbowItem.getChargeDuration(activeStack, this.mob) || CrossbowItem.isCharged(activeStack)) {
+                        this.mob.releaseUsingItem();
+                        this.crossbowState = CrossbowState.CHARGED;
+                        this.attackDelay = 20 + this.mob.getRandom().nextInt(20);
+                        if (this.mob.getOffhandItem().getItem() instanceof FireworkRocketItem) {
+                            this.mob.startUsingItem(InteractionHand.OFF_HAND);
+                        }
+                        this.mob.setChargingCrossbow(false);
+                    }
+                } else if (this.crossbowState == CrossbowState.CHARGED) {
+                    --this.attackDelay;
+                    if (this.attackDelay == 0) {
+                        this.crossbowState = CrossbowState.READY_TO_ATTACK;
+                    }
+                } else if (this.crossbowState == CrossbowState.READY_TO_ATTACK && canSeeEnemy && noRaiders) {
+                    this.mob.performRangedAttack(livingentity, 1.0F);
+                    this.mob.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof CrossbowItem)).set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
+                    this.crossbowState = CrossbowState.UNCHARGED;
+                }
+
+            }
+        }
+
+        private boolean isWalkable() {
+            PathNavigation pathnavigator = this.mob.getNavigation();
+            NodeEvaluator nodeprocessor = pathnavigator.getNodeEvaluator();
+            return nodeprocessor.getPathType(this.mob, BlockPos.containing(this.mob.getX() + 1.0D, this.mob.getY(), this.mob.getZ() + 1.0D)) == PathType.WALKABLE;
+        }
+
+        private boolean isCrossbowUncharged() {
+            return this.crossbowState == CrossbowState.UNCHARGED;
+        }
+
+        enum CrossbowState {
+            UNCHARGED,
+            CHARGING,
+            CHARGED,
+            READY_TO_ATTACK;
+        }
+    }
+}

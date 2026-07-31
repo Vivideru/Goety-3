@@ -1,0 +1,93 @@
+package com.Polarice3.Goety.compat.jei;
+
+import com.Polarice3.Goety.Goety;
+import com.Polarice3.Goety.api.ritual.IRitualType;
+import com.Polarice3.Goety.api.ritual.RitualType;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
+import com.Polarice3.Goety.common.crafting.*;
+import com.Polarice3.Goety.common.items.ModItems;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.helpers.IJeiHelpers;
+import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.runtime.IIngredientManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+
+import java.util.List;
+import java.util.Objects;
+
+@JeiPlugin
+public class GoetyJeiPlugin implements IModPlugin {
+    public static IJeiHelpers jeiHelper;
+
+    public void registerCategories(IRecipeCategoryRegistration registration) {
+        jeiHelper = registration.getJeiHelpers();
+        registration.addRecipeCategories(new CursedInfuserCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ModRitualCategory(registration.getJeiHelpers().getGuiHelper(), ""));
+        for (IRitualType ritualType : RitualType.getAllRitualType()) {
+            registration.addRecipeCategories(new ModRitualCategory(registration.getJeiHelpers().getGuiHelper(), ritualType.getName()));
+        }
+        registration.addRecipeCategories(new ModBrazierCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new PulverizeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new WitchBrewCategory(registration.getJeiHelpers().getGuiHelper()));
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.CURSED_INFUSER.get()), JeiRecipeTypes.CURSED_INFUSER);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.GRIM_INFUSER.get()), JeiRecipeTypes.CURSED_INFUSER);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.DARK_ALTAR.get()), JeiRecipeTypes.RITUAL);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PEDESTAL.get()), JeiRecipeTypes.RITUAL);
+        for (IRitualType ritualType : RitualType.getAllRitualType()) {
+            registration.addRecipeCatalyst(ritualType.getJeiIcon(), JeiRecipeTypes.getRitual(ritualType.getName()));
+        }
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.NECRO_BRAZIER.get()), JeiRecipeTypes.BRAZIER);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.PULVERIZE_FOCUS.get()), JeiRecipeTypes.PULVERIZE);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.BREWING_CAULDRON.get()), JeiRecipeTypes.BREWING);
+    }
+
+    public void registerRecipes(IRecipeRegistration registration) {
+        ClientLevel world = Objects.requireNonNull(Minecraft.getInstance().level);
+        RecipeManager recipeManager = world.getRecipeManager();
+        IIngredientManager ingredientManager = registration.getIngredientManager();
+        IVanillaRecipeFactory vanillaRecipeFactory = registration.getVanillaRecipeFactory();
+        // RecipeManager returns RecipeHolder in 1.21; JEI categories still consume the recipe values.
+        List<CursedInfuserRecipes> cursedRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.CURSED_INFUSER.get()).stream().map(RecipeHolder::value).toList();
+        registration.addRecipes(JeiRecipeTypes.CURSED_INFUSER, cursedRecipes);
+        List<RitualRecipe> ritualRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.RITUAL_TYPE.get()).stream().map(RecipeHolder::value).toList();
+        registration.addRecipes(JeiRecipeTypes.RITUAL, ritualRecipes);
+        for (IRitualType ritualType : RitualType.getAllRitualType()) {
+            this.registerRitualType(registration, recipeManager, ritualType.getName());
+        }
+        List<BrazierRecipe> brazierRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.BRAZIER_TYPE.get()).stream().map(RecipeHolder::value).toList();
+        registration.addRecipes(JeiRecipeTypes.BRAZIER, brazierRecipes);
+        List<PulverizeRecipe> pulverizeRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.PULVERIZE_TYPE.get()).stream().map(RecipeHolder::value).toList();
+        registration.addRecipes(JeiRecipeTypes.PULVERIZE, pulverizeRecipes);
+        registration.addRecipes(JeiRecipeTypes.BREWING, WitchBrewMaker.getRecipes(recipeManager, vanillaRecipeFactory, ingredientManager));
+    }
+
+    public void registerRitualType(IRecipeRegistration registration, RecipeManager recipeManager, String type){
+        this.registerRitualType(registration, recipeManager, type, type);
+    }
+
+    public void registerRitualType(IRecipeRegistration registration, RecipeManager recipeManager, String type, String type2){
+        registration.addRecipes(JeiRecipeTypes.getRitual(type), this.ritualTypeRecipe(recipeManager, type2));
+    }
+
+    public List<RitualRecipe> ritualTypeRecipe(RecipeManager recipeManager, String type){
+        return recipeManager.getAllRecipesFor(ModRecipeSerializer.RITUAL_TYPE.get()).stream().map(RecipeHolder::value).filter(ritualRecipe -> ritualRecipe.getCraftType().contains(type)).toList();
+    }
+
+    @Override
+    public ResourceLocation getPluginUid() {
+        return ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "jei_plugin");
+    }
+}

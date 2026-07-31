@@ -1,0 +1,23 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    " c ",
+                    "c c",
+                    "psp"
+                ],
+    "key":  {
+                "p":  {
+                          "item":  "goety:pale_steel_ingot"
+                      },
+                "s":  {
+                          "tag":  "c:slimeballs"
+                      },
+                "c":  {
+                          "item":  "minecraft:chain"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:ominous_shackles"
+               }
+}
+

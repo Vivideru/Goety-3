@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "__comment": "all mobs that are immune to the effects of the irradiated effect.",
+  "values": [
+    "goety:apostle",
+    "goety:vizier",
+    "goety:redstone_golem",
+    "goety:hostile_redstone_golem",
+    "goety:redstone_monstrosity",
+    "goety:redstone_cube",
+    "goety:hostile_redstone_monstrosity"
+  ]
+}

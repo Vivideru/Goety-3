@@ -1,0 +1,20 @@
+{
+  "description": {
+    "translate": "enchantment.goety.royalty"
+  },
+  "supported_items": "#goety:enchantable/throne",
+  "weight": 1,
+  "max_level": 1,
+  "min_cost": {
+    "base": 20,
+    "per_level_above_first": 0
+  },
+  "max_cost": {
+    "base": 70,
+    "per_level_above_first": 0
+  },
+  "anvil_cost": 8,
+  "slots": [
+    "mainhand"
+  ]
+}

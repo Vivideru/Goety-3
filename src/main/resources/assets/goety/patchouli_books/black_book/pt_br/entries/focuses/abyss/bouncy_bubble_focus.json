@@ -1,0 +1,22 @@
+{
+  "name": "Foco de Bolha Saltitante",
+  "icon": "goety:bouncy_bubble_focus",
+  "category": "goety:focuses/abyss",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Um feitiço estranho que invoca uma bolha que quica em superfícies e criaturas, causando dano como se fosse afiada ou feita de ácido. Após quicar várias vezes, a bolha estoura, danificando criaturas não aliadas próximas."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/bouncy_bubble_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/abyss_staff)Cajado Abissal$() invoca várias bolhas saltitantes em vez de uma."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:bouncy_bubble_focus": 1
+  }
+}

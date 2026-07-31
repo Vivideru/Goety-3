@@ -1,0 +1,34 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:empty_focus"
+                        },
+    "craftType":  "end",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:ender_pearls"
+                        },
+                        {
+                            "tag":  "c:gems/quartz"
+                        },
+                        {
+                            "tag":  "c:gems/diamond"
+                        },
+                        {
+                            "item":  "minecraft:chorus_fruit"
+                        },
+                        {
+                            "item":  "minecraft:name_tag"
+                        },
+                        {
+                            "tag":  "c:bones"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:banish_focus"
+               }
+}
+

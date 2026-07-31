@@ -1,0 +1,21 @@
+﻿{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:dirt"
+                        },
+                        {
+                            "item":  "goety:red_moss_growth"
+                        },
+                        {
+                            "item":  "minecraft:bone_meal"
+                        },
+                        {
+                            "item":  "minecraft:snow_block"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:red_moss_dirt"
+               }
+}
+

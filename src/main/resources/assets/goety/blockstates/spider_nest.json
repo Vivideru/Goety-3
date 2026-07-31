@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "goety:block/spider_nest",
+      "x": 180
+    },
+    "facing=east,powered=false": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "goety:block/spider_nest",
+      "x": 90
+    },
+    "facing=south,powered=false": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,powered=false": {
+      "model": "goety:block/spider_nest"
+    },
+    "facing=west,powered=false": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 270
+    },
+    "facing=down,powered=true": {
+      "model": "goety:block/spider_nest",
+      "x": 180
+    },
+    "facing=east,powered=true": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north,powered=true": {
+      "model": "goety:block/spider_nest",
+      "x": 90
+    },
+    "facing=south,powered=true": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up,powered=true": {
+      "model": "goety:block/spider_nest"
+    },
+    "facing=west,powered=true": {
+      "model": "goety:block/spider_nest",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

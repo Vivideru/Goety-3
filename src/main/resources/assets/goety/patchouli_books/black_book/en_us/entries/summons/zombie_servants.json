@@ -1,0 +1,107 @@
+{
+  "name": "Zombie Servant",
+  "icon": "minecraft:zombie_head",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Zombies are the most common undead creature to crawl out of the dark, and it's no surprise that summoning and controlling them aren't exactly hard to do, whether it be from spell or ritual."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The following texts will detail the variants of zombies a necromancer can summon."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "One can call these creatures through the use of a $(l:focuses/necromancy/rotting_focus)Rotting Focus$(), or through a ritual which summons one without a limited lifespan."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_zombie_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:zombie_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Zombie Servants are simple in their functions, kill anyone who hurts you or any hostile creatures and follow you much like Tamed Wolves, only taller and stinkier. "
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:husk_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Zombie Servants can be summoned or converted into different variants. Casting the Rotting Focus in a Desert exposed to the sky will summon a Husk Servant."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:drowned_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Trying to summon a Zombie underwater would summon a Drowned Servant instead. Drowned Servants can accept Tridents and will attack the same way as a regular Drowned."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:zombie_villager_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A simple Zombie Villager, only more loyal and less curable. Summoning a zombie in a Village will summon a Zombie Villager Servant."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:frozen_zombie_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Summoning a Zombie in a cold, snowy environment, or with a $(l:crafts/staff/frost_staff)Frost Staff$(), will call forth a Frozen Zombie Servant. Frozen Zombie Servants will slow down their targets through their fists or their snowballs they chuck. Much like Strays, they don't take damage from Freezing."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:jungle_zombie_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While being in a Jungle biome, one might have a chance of summoning a Jungle Zombie Servant instead, a 100%% if summoned with a $(l:crafts/staff/wild_staff)Wild Staff$(). Their attacks inflicts Poison, but if their summoner dons the $(l:crafts/garment/wild_robe)Wild Robes$(), they will inflict Acid Venom."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:frayed_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When exposed to an open thunderstorm, there's a 50%% chance of summoning a Frayed Servant instead of a regular Zombie, a 100%% when summoned with a $(l:crafts/staff/storm_staff)Storm Staff$(). They inflict Spasms when they attack and take 50%% less damage from shock or lightning attacks."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:zombie_vindicator"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Summoning a zombie within the mansions of the Illagers, will summon forth loyal Zombie Vindicators instead. It appears that many Vindicators are buried within their homes, still clutching their axes."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:zpiglin_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Nether is full of Zombified Piglins that it comes to no surprised that casting the spell within the abominable realm will call forth one that's loyal towards you. Fire-resistant and scares Piglins like any other of its kind."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:zpiglin_brute_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Brutish guardians of the bastions rarely, if ever, leave their home, and most have their bodies burnt by the surrounding lava. Nonetheless, there's still a chance of summoning a Zombified version when casting within their holds."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Zombie Servants in all variants can accept any Armor but only accept Swords or Axes."
+    }
+  ]
+}

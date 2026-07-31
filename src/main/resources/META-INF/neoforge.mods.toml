@@ -1,0 +1,46 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="MIT License"
+[[mixins]]
+config="goety.mixins.json"
+[[mixins]]
+config="vivideru.mixins.json"
+[[mods]]
+modId="goety"
+version="${file.jarVersion}"
+displayName="Goety"
+enumExtensions="META-INF/enumextensions.json"
+displayURL="https://github.com/Polarice3/Goety-2"
+logoFile="Goety.png" #optional
+credits="Tutorial/Help: GentlemanRevvnar, Technovision, Cy4's Modding, TelepathicGrunt, diesieben07.\n\nMajor Bug Testing: Mich705, pantman687, glacial_flower, Mephodio.\n\nSeveral textures made by zozozrob. Several item retextures made by mongoose_artist, amyspiralvt and mercurialsynthesis. Necromancer Servant texture by frosty_gg. Wither Necromancer Servant texture by xby123896_88452. Brood Mother Textures by xiaowu. Void Flame Textures by emptyCoso. Piker, Conquillager, Inquillager, Maverick, Heretic and Vizier remodel and base textures by luomu05. Ender Keeper's design by vulkan9346, most animations by joturtleguy21. Additional special effects by LeoLezury\n\nBlighted Shack, Graveyard, Ominous Blacksmith and Buried Ritual build by boxman. Dark Manor and Sorcerous Keep build by trufflehistorian.\n\nChinese Translation: NUTTAR, Player_7, Japanese Translation: SAGA, 蝮ゆｸ企ｧ貞ｭ・ Russian Translation: .cool_nickname, Ukrainian Translation: catvasilthefirst, Polish Translation: darknetherlord, Portuguﾃｪs Translation: crougamer.exe\n"
+authors="Polarice3"
+description='''
+Goety adds new mobs that can help or hinder players and a magic system that gives players a different way to fight.
+'''
+[[dependencies.goety]]
+modId="neoforge"
+type="required"
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.goety]]
+modId = "curios"
+type = "required"
+versionRange = "[9.5.1,)"
+ordering="NONE"
+side = "BOTH"
+
+[[dependencies.goety]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.goety]]
+modId="apotheosis"
+type="optional"
+versionRange="[8.5.4,)"
+ordering="AFTER"
+side="BOTH"

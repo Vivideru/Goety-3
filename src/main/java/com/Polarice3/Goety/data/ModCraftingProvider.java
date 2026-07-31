@@ -1,0 +1,421 @@
+package com.Polarice3.Goety.data;
+
+import com.Polarice3.Goety.Goety;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import net.minecraft.core.HolderLookup;
+
+public class ModCraftingProvider extends RecipeProvider {
+    public ModCraftingProvider(PackOutput p_248933_, CompletableFuture<HolderLookup.Provider> registries) {
+        super(p_248933_, registries);
+    }
+
+    @Override
+    protected void buildRecipes(RecipeOutput consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYPT_PILLAR_BLOCK.get(), 2)
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.CRYPT_STONE_POLISHED_BLOCK.get())
+                .unlockedBy("has_item", has(ModBlocks.CRYPT_STONE_POLISHED_BLOCK.get()))
+                .save(consumer, loc("crypt/crypt_pillar"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYPT_STONE_CHISELED_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.CRYPT_STONE_POLISHED_SLAB_BLOCK.get())
+                .unlockedBy("has_item", has(ModBlocks.CRYPT_STONE_POLISHED_SLAB_BLOCK.get()))
+                .save(consumer, loc("crypt/crypt_stone_chiseled"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CRYPT_PLINTH_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.CRYPT_STONE_SLAB_BLOCK.get())
+                .unlockedBy("has_item", has(ModBlocks.CRYPT_STONE_SLAB_BLOCK.get()))
+                .save(consumer, loc("crypt/crypt_plinth"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SILTSTONE_PILLAR_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.SILTSTONE_TILE_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.SILTSTONE_TILE_SLAB.get()))
+                .save(consumer, loc("silt/siltstone_pillar"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_SILTSTONE_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.SILTSTONE_PAVEMENT_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.SILTSTONE_PAVEMENT_SLAB.get()))
+                .save(consumer, loc("silt/chiseled_siltstone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.SILTSTONE_BRICK_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.SILTSTONE_BRICK_SLAB.get()))
+                .save(consumer, loc("silt/chiseled_siltstone_bricks"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OMINOUS_STONE_PILLAR_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.OMINOUS_STONE_TILE_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.OMINOUS_STONE_TILE_SLAB.get()))
+                .save(consumer, loc("ominous/ominous_stone_pillar"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_OMINOUS_STONE_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.OMINOUS_STONE_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.OMINOUS_STONE_SLAB.get()))
+                .save(consumer, loc("ominous/chiseled_ominous_stone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_POLISHED_OMINOUS_STONE_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.POLISHED_OMINOUS_STONE_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.POLISHED_OMINOUS_STONE_SLAB.get()))
+                .save(consumer, loc("ominous/chiseled_polished_ominous_stone"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.CHISELED_OMINOUS_STONE_BRICKS_BLOCK.get())
+                .pattern("#")
+                .pattern("#")
+                .define('#', ModBlocks.OMINOUS_STONE_BRICK_SLAB.get())
+                .unlockedBy("has_item", has(ModBlocks.OMINOUS_STONE_BRICK_SLAB.get()))
+                .save(consumer, loc("ominous/chiseled_ominous_stone_bricks"));
+
+        smelting(consumer,"silt/smooth_siltstone", ModBlocks.COBBLED_SILTSTONE_BLOCK.get(), ModBlocks.SMOOTH_SILTSTONE_BLOCK.get());
+        smelting(consumer,"crypt/crypt_stone_polished", ModBlocks.CRYPT_STONE_BLOCK.get(), ModBlocks.CRYPT_STONE_POLISHED_BLOCK.get());
+        smelting(consumer,"ominous/ominous_stone", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK.get(), ModBlocks.OMINOUS_STONE_BLOCK.get());
+        smelting(consumer,"ominous/cracked_polished_ominous_stone", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK.get(), ModBlocks.CRACKED_POLISHED_OMINOUS_STONE_BLOCK.get());
+        smelting(consumer,"ominous/cracked_ominous_stone_bricks", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK.get(), ModBlocks.CRACKED_OMINOUS_STONE_BRICKS_BLOCK.get());
+
+        twoByTwo(consumer, "crypt/crypt_bricks", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_BRICKS_BLOCK);
+        twoByTwo(consumer, "crypt/crypt_tiles", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_TILES_BLOCK);
+
+        twoByTwo(consumer, "silt/smooth_siltstone", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_BLOCK);
+        twoByTwo(consumer, "silt/siltstone_bricks", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICKS_BLOCK);
+        twoByTwo(consumer, "silt/siltstone_tiles", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_TILES_BLOCK);
+        twoByTwo(consumer, "silt/siltstone_pavement", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_BLOCK);
+
+        twoByTwo(consumer, "ominous/polished_ominous_stone", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_BLOCK);
+        twoByTwo(consumer, "ominous/ominous_stone_bricks", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICKS_BLOCK);
+        twoByTwo(consumer, "ominous/ominous_stone_tiles", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_TILES_BLOCK);
+        twoByTwo(consumer, "ominous/ominous_stone_pavement", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK);
+
+        slabBlock(consumer, "crypt/crypt_stone", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_STONE_SLAB_BLOCK);
+        slabBlock(consumer, "crypt/crypt_stone_polished", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_SLAB_BLOCK);
+        slabBlock(consumer, "crypt/crypt_bricks", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_SLAB_BLOCK);
+        slabBlock(consumer, "crypt/crypt_tiles", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_SLAB_BLOCK);
+
+        slabBlock(consumer, "silt/siltstone", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_SLAB);
+        slabBlock(consumer, "silt/smooth_siltstone", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_SLAB);
+        slabBlock(consumer, "silt/cobbled_siltstone", ModBlocks.COBBLED_SILTSTONE_BLOCK, ModBlocks.COBBLED_SILTSTONE_SLAB);
+        slabBlock(consumer, "silt/snowy_cobbled_siltstone", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_SLAB);
+        slabBlock(consumer, "silt/siltstone_bricks", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_SLAB);
+        slabBlock(consumer, "silt/snowy_siltstone_bricks_slight", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_SLAB);
+        slabBlock(consumer, "silt/snowy_siltstone_bricks", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLAB);
+        slabBlock(consumer, "silt/siltstone_tiles", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_SLAB);
+        slabBlock(consumer, "silt/siltstone_pavement", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB);
+
+        slabBlock(consumer, "ominous/ominous_stone", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_SLAB);
+        slabBlock(consumer, "ominous/cobbled_ominous_stone", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_SLAB);
+        slabBlock(consumer, "ominous/polished_ominous_stone", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_SLAB);
+        slabBlock(consumer, "ominous/polished_dark_ominous_stone", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_SLAB);
+        slabBlock(consumer, "ominous/ominous_stone_bricks", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_SLAB);
+        slabBlock(consumer, "ominous/ominous_stone_tiles", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_TILE_SLAB);
+        slabBlock(consumer, "ominous/ominous_stone_pavement", ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB);
+        slabBlock(consumer, "ominous/ominous_stone_pillar", ModBlocks.OMINOUS_STONE_PILLAR_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB);
+
+        stairsBlock(consumer, "crypt/crypt_stone", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_STONE_STAIRS_BLOCK);
+        stairsBlock(consumer, "crypt/crypt_stone_polished", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_STAIRS_BLOCK);
+        stairsBlock(consumer, "crypt/crypt_bricks", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_STAIRS_BLOCK);
+        stairsBlock(consumer, "crypt/crypt_tiles", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_STAIRS_BLOCK);
+
+        stairsBlock(consumer, "silt/siltstone", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_STAIRS);
+        stairsBlock(consumer, "silt/smooth_siltstone", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_STAIRS);
+        stairsBlock(consumer, "silt/cobbled_siltstone", ModBlocks.COBBLED_SILTSTONE_BLOCK, ModBlocks.COBBLED_SILTSTONE_STAIRS);
+        stairsBlock(consumer, "silt/snowy_cobbled_siltstone", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_STAIRS);
+        stairsBlock(consumer, "silt/siltstone_bricks", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_STAIRS);
+        stairsBlock(consumer, "silt/snowy_siltstone_bricks_slight", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_STAIRS);
+        stairsBlock(consumer, "silt/snowy_siltstone_bricks", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_STAIRS);
+        stairsBlock(consumer, "silt/siltstone_tiles", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_STAIRS);
+        stairsBlock(consumer, "silt/siltstone_pavement", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+
+        stairsBlock(consumer, "ominous/ominous_stone", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_STAIRS);
+        stairsBlock(consumer, "ominous/cobbled_ominous_stone", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_STAIRS);
+        stairsBlock(consumer, "ominous/polished_ominous_stone", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_STAIRS);
+        stairsBlock(consumer, "ominous/polished_dark_ominous_stone", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_STAIRS);
+        stairsBlock(consumer, "ominous/ominous_stone_bricks", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_STAIRS);
+        stairsBlock(consumer, "ominous/ominous_stone_tiles", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_TILE_STAIRS);
+        stairsBlock(consumer, "ominous/ominous_stone_pavement", ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_STAIRS);
+
+        wallBlock(consumer, "crypt/crypt_stone_polished", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_WALL_BLOCK);
+        wallBlock(consumer, "crypt/crypt_bricks", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_WALL_BLOCK);
+        wallBlock(consumer, "crypt/crypt_tiles", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_WALL_BLOCK);
+
+        wallBlock(consumer, "silt/siltstone", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_WALL_BLOCK);
+        wallBlock(consumer, "silt/smooth_siltstone", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_WALL_BLOCK);
+        wallBlock(consumer, "silt/cobbled_siltstone", ModBlocks.COBBLED_SILTSTONE_BLOCK, ModBlocks.COBBLED_SILTSTONE_WALL_BLOCK);
+        wallBlock(consumer, "silt/snowy_cobbled_siltstone", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_WALL_BLOCK);
+        wallBlock(consumer, "silt/siltstone_bricks", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_WALL_BLOCK);
+        wallBlock(consumer, "silt/snowy_siltstone_bricks_slight", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_WALL_BLOCK);
+        wallBlock(consumer, "silt/snowy_siltstone_bricks", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_WALL_BLOCK);
+        wallBlock(consumer, "silt/siltstone_tiles", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_WALL_BLOCK);
+        wallBlock(consumer, "silt/siltstone_pavement", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+
+        wallBlock(consumer, "ominous/cobbled_ominous_stone", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_WALL_BLOCK);
+        wallBlock(consumer, "ominous/polished_ominous_stone", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_WALL_BLOCK);
+        wallBlock(consumer, "ominous/polished_dark_ominous_stone", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_WALL_BLOCK);
+        wallBlock(consumer, "ominous/ominous_stone_bricks", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_WALL_BLOCK);
+        wallBlock(consumer, "ominous/ominous_stone_tiles", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_TILE_WALL_BLOCK);
+
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_STONE_SLAB_BLOCK, 2);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_TILES_SLAB_BLOCK, 2);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_SLAB_BLOCK, 2);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_BRICKS_SLAB_BLOCK, 2);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_SLAB_BLOCK, 2);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_SLAB_BLOCK, 2);
+
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_STONE_STAIRS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_TILES_STAIRS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_STAIRS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_BRICKS_STAIRS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_STAIRS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_STAIRS_BLOCK);
+
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_TILES_WALL_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_POLISHED_WALL_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_BRICKS_WALL_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_BRICKS_BLOCK, ModBlocks.CRYPT_BRICKS_WALL_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_TILES_BLOCK, ModBlocks.CRYPT_TILES_WALL_BLOCK);
+
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_TILES_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_BLOCK, ModBlocks.CRYPT_PLINTH_BLOCK);
+
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_BRICKS_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_PILLAR_BLOCK);
+        stoneCutting(consumer, "crypt", ModBlocks.CRYPT_STONE_POLISHED_BLOCK, ModBlocks.CRYPT_STONE_CHISELED_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_SLAB, 2);
+
+        stoneCutting(consumer, "silt", ModBlocks.COBBLED_SILTSTONE_SLAB, ModBlocks.COBBLED_SILTSTONE_SLAB, 2);
+
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_SLAB, 2);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLAB, 2);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_TILE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_STAIRS);
+
+        stoneCutting(consumer, "silt", ModBlocks.COBBLED_SILTSTONE_BLOCK, ModBlocks.COBBLED_SILTSTONE_STAIRS);
+
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_STAIRS);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_STAIRS);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SMOOTH_SILTSTONE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.SILTSTONE_PAVEMENT_WALL_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.COBBLED_SILTSTONE_BLOCK, ModBlocks.COBBLED_SILTSTONE_WALL_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_COBBLED_SILTSTONE_BLOCK, ModBlocks.SNOWY_COBBLED_SILTSTONE_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_SLIGHT_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_SLIGHT_WALL_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SNOWY_SILTSTONE_BRICKS_BLOCK, ModBlocks.SNOWY_SILTSTONE_BRICK_WALL_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.CHISELED_SILTSTONE_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.CHISELED_SILTSTONE_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.CHISELED_SILTSTONE_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.CHISELED_SILTSTONE_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_PAVEMENT_BLOCK, ModBlocks.CHISELED_SILTSTONE_BRICKS_BLOCK);
+
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SMOOTH_SILTSTONE_BLOCK, ModBlocks.SILTSTONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_BRICKS_BLOCK, ModBlocks.SILTSTONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "silt", ModBlocks.SILTSTONE_TILES_BLOCK, ModBlocks.SILTSTONE_PILLAR_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_TILE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_PILLAR_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_SLAB, 2);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_TILE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_TILE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_STAIRS);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILE_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_BRICK_WALL_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_TILE_WALL_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_OMINOUS_STONE_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILES_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.CHISELED_OMINOUS_STONE_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.CHISELED_POLISHED_OMINOUS_STONE_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BLOCK, ModBlocks.CHISELED_OMINOUS_STONE_BRICKS_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_BRICKS_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_TILES_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.CHISELED_POLISHED_OMINOUS_STONE_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_OMINOUS_STONE_BLOCK, ModBlocks.CHISELED_OMINOUS_STONE_BRICKS_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_TILES_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_BRICKS_BLOCK, ModBlocks.CHISELED_OMINOUS_STONE_BRICKS_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PAVEMENT_BLOCK);
+        stoneCutting(consumer, "ominous", ModBlocks.OMINOUS_STONE_TILES_BLOCK, ModBlocks.OMINOUS_STONE_PILLAR_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.COBBLED_OMINOUS_STONE_BLOCK, ModBlocks.COBBLED_OMINOUS_STONE_WALL_BLOCK);
+
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_SLAB, 2);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_STAIRS);
+        stoneCutting(consumer, "ominous", ModBlocks.POLISHED_DARK_OMINOUS_STONE_BLOCK, ModBlocks.POLISHED_DARK_OMINOUS_STONE_WALL_BLOCK);
+    }
+
+    protected final void twoByTwo(RecipeOutput consumer, String name, Supplier<? extends Block> input, Supplier<? extends Block> output) {
+        twoByTwo(consumer, name, input, output, 4);
+    }
+
+    protected final void twoByTwo(RecipeOutput consumer, String name, Supplier<? extends Block> input, Supplier<? extends Block> output, int amount) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), amount)
+                .pattern("##")
+                .pattern("##")
+                .define('#', input.get())
+                .unlockedBy("has_item", has(input.get()))
+                .save(consumer, loc(name));
+    }
+
+    protected final void stairsBlock(RecipeOutput consumer, String name, Supplier<? extends Block> input, Supplier<? extends Block> output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', input.get())
+                .unlockedBy("has_item", has(input.get()))
+                .save(consumer, loc(name + "_stairs"));
+    }
+
+    protected final void slabBlock(RecipeOutput consumer, String name, Supplier<? extends Block> input, Supplier<? extends Block> output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 6)
+                .pattern("###")
+                .define('#', input.get())
+                .unlockedBy("has_item", has(input.get()))
+                .save(consumer, loc(name + "_slab"));
+    }
+
+    protected final void wallBlock(RecipeOutput consumer, String name, Supplier<? extends Block> input, Supplier<? extends Block> output) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output.get(), 6)
+                .pattern("###")
+                .pattern("###")
+                .define('#', input.get())
+                .unlockedBy("has_item", has(input.get()))
+                .save(consumer, loc(name + "_wall"));
+    }
+
+    protected final ResourceLocation loc(String name) {
+        return Goety.location(name);
+    }
+
+    public final void stoneCutting(RecipeOutput consumer, String folder, Supplier<? extends Block> input, Supplier<? extends Block> output) {
+        stoneCutting(consumer, folder, input, output, 1);
+    }
+
+    public final void stoneCutting(RecipeOutput consumer, String folder, Supplier<? extends Block> input, Supplier<? extends Block> output, int amount) {
+        SingleItemRecipeBuilder
+                .stonecutting(Ingredient.of(input.get()), RecipeCategory.BUILDING_BLOCKS, output.get(), amount)
+                .unlockedBy("has_item", has(input.get()))
+                .save(consumer, loc(folder + "/" + getConversionRecipeName(input.get(), output.get()) + "_stonecutting"));
+    }
+
+    public final void smelting(RecipeOutput consumer, String name, ItemLike input, ItemLike output){
+        SimpleCookingRecipeBuilder
+                .smelting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, output, 0.35F, 200)
+                .unlockedBy("has_item", has(input))
+                .save(consumer, loc(name + "_smelting"));
+    }
+}
+

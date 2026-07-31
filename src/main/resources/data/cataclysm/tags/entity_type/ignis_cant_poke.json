@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:bosses",
+    "goety:slime_servant",
+    "goety:magma_cube_servant",
+    "goety:crypt_slime_servant",
+    "goety:crypt_slime",
+    "goety:tropical_slime_servant",
+    "goety:redstone_golem",
+    "goety:hostile_redstone_golem",
+    "goety:grave_golem",
+    "goety:redstone_monstrosity",
+    "goety:hostile_redstone_monstrosity"
+  ]
+}

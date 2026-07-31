@@ -1,0 +1,19 @@
+{
+  "name": "感应聚晶",
+  "icon": "goety:sensing_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶允许玩家感应到生物，站在地面上的生物将会以发光来展示他们的位置。同时，只有当你也站在地面上时，聚晶才会生效。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/sensing_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "强效附魔可提升震颤感知的效果等级，每级效果可以让感应半径翻一倍。"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Фокус града",
+  "icon": "goety:hail_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Вызывает над блоком или существом облако снега, из которого идёт ледяной дождь, наносящий небольшой урон и оледеняющий на 5 секунд."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/hail_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/frost_staff)морозного посоха$() позволит облаку снега преследовать жертву."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hail_focus": 1
+  }
+}

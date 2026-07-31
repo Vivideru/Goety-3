@@ -1,0 +1,39 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:saddle"
+                        },
+    "craftType":  "forge",
+    "soulCost":  1,
+    "duration":  30,
+    "research":  "ravaging",
+    "ingredients":  [
+                        {
+                            "tag":  "c:storage_blocks/silver"
+                        },
+                        {
+                            "item":  "minecraft:chain"
+                        },
+                        {
+                            "item":  "minecraft:chain"
+                        },
+                        {
+                            "item":  "minecraft:chain"
+                        },
+                        {
+                            "item":  "minecraft:chain"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:ominous_saddle"
+               },
+    "neoforge:conditions": [ {
+                                "type":  "neoforge:not",
+                                "value":  {
+                                              "tag":  "c:storage_blocks/silver",
+                                              "type": "neoforge:tag_empty"
+                                          }
+                            } ]
+}
+

@@ -1,0 +1,22 @@
+{
+  "name": "释放聚晶",
+  "icon": "goety:discharge_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在你的位置释放出电流爆炸，伤害附近的所有生物并击飞它们，爆炸会造成闪电伤害，但不会伤害施法者."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/discharge_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/storm_staff)风暴魔杖$()施法会提升该法术施加痉挛效果的概率，并触发连锁闪电攻击。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:discharge_focus": 1
+  }
+}

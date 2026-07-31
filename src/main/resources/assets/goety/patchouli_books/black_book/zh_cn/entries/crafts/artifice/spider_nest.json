@@ -1,0 +1,36 @@
+{
+  "name": "蜘蛛巢",
+  "icon": "goety:spider_nest",
+  "category": "goety:crafts/artifice",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在一块生肉周围放一堆蜘蛛卵，可以让你创建一个蜘蛛巢。用鼠标右键点击它，或者用一个带肉的漏斗接上它，这样它就可以产生一个忠诚的$(l:summons/spider_servants)蜘蛛仆从$()。根据周围环境的不同，就像是 $(l:rituals/dark_altar)祭坛$()一样, 它也会产生不同的蜘蛛仆从。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:spider_nest",
+      "text": "用魔杖或法杖右键点击蜘蛛巢，那么它只会在附近存在有效目标的情况下才会生成仆从，如果手持魔杖或法杖潜行右键，则可以改变仆从的初始行为（在该方块附近巡逻或跟随玩家）"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "洞穴蜘蛛仆从",
+      "text": "需要: $(li)巢穴位于矿井之中$(br)$(l)或是$()$() $(li)8个灰化土 $(li)8个任意种类的蘑菇 $(li)8块石头"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "织网蜘蛛仆从",
+      "text": "需要: $(li)16个树叶 $(li)8张蜘蛛网"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "冰冻蜘蛛仆从",
+      "text": "需要: $(li)巢穴必须位于降雪群系中$(br)$(l)或是$()$() $(li)16个任意种类的冰块 $(li)8个雪块 $(li)4盏极寒冰灯"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "骸骨蜘蛛仆从",
+      "text": "需要: $(li)巢穴必须处于墓穴之中$(br)$(l)或是$()$() $(li)16个骨块 $(li)4个骷髅堆"
+    }
+  ]
+}

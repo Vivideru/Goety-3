@@ -1,0 +1,18 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "#":  {
+                          "item":  "goety:snowy_jade_tiles"
+                      }
+            },
+    "pattern":  [
+                    "#  ",
+                    "## ",
+                    "###"
+                ],
+    "result":  {
+                   "count":  4,
+                   "id":  "goety:snowy_jade_stairs"
+               }
+}
+

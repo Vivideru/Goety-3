@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "goety:haunted_glass",
+    "goety:haunted_glass_mob",
+    "goety:haunted_glass_tinted",
+    "goety:haunted_glass_mob_tinted"
+  ]
+}

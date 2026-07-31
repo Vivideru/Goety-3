@@ -1,0 +1,20 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "$#",
+                    "#$"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:end_stone"
+                      },
+                "$":  {
+                          "item":  "goety:smooth_end_stone"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:mixed_end_stone",
+                   "count":  4
+               }
+}
+

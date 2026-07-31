@@ -1,0 +1,21 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "l",
+                    "s",
+                    "l"
+                ],
+    "key":  {
+                "l":  {
+                          "tag":  "goety:slab_deepslate_craft"
+                      },
+                "s":  {
+                          "tag":  "goety:full_deepslate_craft"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:pedestal_deepslate",
+                   "count":  1
+               }
+}
+

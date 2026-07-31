@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:enchantable/armor",
+    "#minecraft:enchantable/weapon",
+    "#minecraft:enchantable/mining",
+    "#minecraft:enchantable/bow",
+    "goety:philosophers_mace",
+    "goety:infernal_tome"
+  ]
+}

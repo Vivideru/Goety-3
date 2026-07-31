@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:tunnel_focus"
+                        },
+    "craftType":  "end",
+    "soulCost":  5,
+    "duration":  30,
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:crying_obsidian"
+                        },
+                        {
+                            "tag":  "c:ender_pearls"
+                        },
+                        {
+                            "item":  "minecraft:crying_obsidian"
+                        },
+                        {
+                            "tag":  "c:ender_pearls"
+                        },
+                        {
+                            "item":  "minecraft:crying_obsidian"
+                        },
+                        {
+                            "item":  "minecraft:dragon_head"
+                        },
+                        {
+                            "item":  "minecraft:crying_obsidian"
+                        },
+                        {
+                            "item":  "minecraft:dragon_breath"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:rupture_focus"
+               }
+}
+

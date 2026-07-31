@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#c:is_swamp",
+    "#c:is_lush",
+    {
+      "id": "#c:is_jungle",
+      "required": false
+    }
+  ]
+}

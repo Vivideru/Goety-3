@@ -1,0 +1,20 @@
+{
+  "name": "猛击聚晶",
+  "icon": "goety:mauling_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "熊很强壮，又很狂野，但凭借你的黑暗力量，你可以召唤出对你忠诚至死的熊，使用 $(l:crafts/staff/wild_staff)荒野魔杖$() 施法时可一次召唤两只熊，穿戴荒野长袍可以召唤出更强大的熊，它们的进攻甚至能让受害者更加脆弱"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/mauling_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "minecraft:story/enter_the_nether",
+      "text": "当在下界使用该聚晶时，会召唤出忠诚的疣猪兽仆从"
+    }
+  ]
+}

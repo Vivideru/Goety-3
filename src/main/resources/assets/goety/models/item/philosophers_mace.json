@@ -1,0 +1,15 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "goety:item/philosophers_mace_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "goety:item/philosophers_mace_inventory"
+    },
+    "fixed": {
+      "parent": "goety:item/philosophers_mace_inventory"
+    }
+  }
+}

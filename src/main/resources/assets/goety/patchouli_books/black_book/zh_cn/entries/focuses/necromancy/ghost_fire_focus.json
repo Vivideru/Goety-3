@@ -1,0 +1,22 @@
+{
+  "name": "幽灵火聚晶",
+  "icon": "goety:ghost_fire_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "逝者之火可能很冰冷刺骨。但是借助灵质，你也可以成功地在某个地方或敌人脚下召唤出冰之火。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/ghost_fire_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/necro_staff)死灵魔杖$()施法时，召唤的冰之火范围升至3*3格，而不是2*2格"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ghost_fire_focus": 1
+  }
+}

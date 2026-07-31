@@ -1,0 +1,33 @@
+{
+  "name": "Ominous Scythe",
+  "icon": "goety:dark_scythe",
+  "category": "goety:crafts/equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Ominous Scythe is a powerful weapon capable of hitting multiple beings per hit. Not only does it hit hard, but the wielder gains Soul Energy with each hit. If the wielder's attack recharge meter is full, the scythe will hit beings at a higher radius though it will take quite a while for the meter to recover which can be mitigated if the wielder doesn't hold anything offhand."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark_scythe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The scythe can be repaired on an anvil with a $(l:intro/magical_components)Cursed Metal Ingot$() or a $(l:crafts/pale_steel_ingot)Pale Steel Ingot$(). It can also be used as a tool to clear out grass or harvest crops in a large area or to collect Sculk blocks without Silk Touch."
+    },
+    {
+      "type": "goety:ritual",
+      "advancement": "goety:goety/craft_necro_brazier",
+      "recipe": "goety:dark/dark_metal_scythe"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/craft_necro_brazier",
+      "text": "An upgraded version of the Ominous Scythe, possessing the qualities of other $(l:crafts/dark_alloy_ingot)Dark Alloy$() equipment."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_scythe": 1,
+    "goety:dark_metal_scythe": 3
+  }
+}

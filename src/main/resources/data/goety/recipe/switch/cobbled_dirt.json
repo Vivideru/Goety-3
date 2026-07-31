@@ -1,0 +1,13 @@
+﻿{
+    "type":  "goety:cursed_infuser_recipes",
+    "ingredient":  {
+                       "item":  "caverns_and_chasms:rocky_dirt"
+                   },
+    "result":  {
+                   "id":  "goety:cobbled_dirt"
+               },
+    "cookingTime":  20,
+    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "caverns_and_chasms" } ]
+}
+
+

@@ -1,0 +1,28 @@
+{
+  "name": "Resonance Crystal",
+  "icon": "goety:resonance_crystal",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/read_mistral_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A mystical block that powers up when strong winds are blown upon it, much like ones made by $(l:goety:crafts/artifice/wind_blower)Wind Blowers$(). The crystal can store $(l:goety:summons/squall_golem)Squall Golems$() upon itself, when left-clicking it on one, and will activate them once powered."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:resonance_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Not only can they power Squall Golems, they can also power other Resonance Crystals as well. Right-clicking on one with a $(l:goety:crafts/waystone)Waystone$() that has registered a location that has a different crystal will have it store the location. It will not use up the waystone and can store multiple crystal locations at once, but only if said crystal is less, or equal to, 64 blocks from it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "If it has stored any locations, right-clicking on the crystal with an empty hand will show the positions it's connected to, shift-right clicking, however, will remove all positions from the crystal. Breaking the crystal will also remove all recorded locations. When active, it emits Redstone power."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:resonance_crystal": 1
+  }
+}

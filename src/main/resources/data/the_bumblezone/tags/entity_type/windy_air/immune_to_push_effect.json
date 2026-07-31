@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:golems",
+    "goety:vex_servant",
+    "goety:irk_servant",
+    "goety:irk",
+    "goety:tormentor"
+  ]
+}

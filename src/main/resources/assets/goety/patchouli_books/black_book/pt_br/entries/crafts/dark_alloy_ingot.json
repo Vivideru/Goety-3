@@ -1,0 +1,38 @@
+{
+  "name": "Ligas Sombrias",
+  "icon": "goety:dark_ingot",
+  "category": "goety:crafts",
+  "advancement": "goety:goety/craft_necro_brazier",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Você conseguiu canalizar as energias das Profundezas sombrias em um metal que se repara usando Energia de Alma. A quantidade de Energia de Alma necessária para criar um lingote é muito substancial, mas você conseguiu mesmo assim. O metal parece ser um material tão resistente quanto os Diamantes e quase tão encantável quanto o Ouro. Ele também parece desacelerar e enfraquecer qualquer criatura que for atingida por ele."
+    },
+    {
+      "type": "goety:brazier",
+      "recipe": "goety:dark/dark_ingot"
+    },
+    {
+      "type": "goety:brazier",
+      "recipe": "goety:dark/dark_ingot_2"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark/dark_sword",
+      "recipe2": "goety:dark/dark_pickaxe"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark/dark_axe",
+      "recipe2": "goety:dark/dark_shovel"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark/dark_hoe"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_ingot": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "弱化聚晶",
+  "icon": "goety:weakening_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这种法术可以释放一种极具威胁性的嗡嗡声，削弱施法者周围大片区域内的非友方目标，降低其攻击力和防御力"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/weakening_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:weakening_focus": 1
+  }
+}

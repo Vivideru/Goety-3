@@ -1,0 +1,32 @@
+{
+  "values": [
+    "goety:wraith",
+    "goety:wraith_servant",
+    "goety:border_wraith",
+    "goety:border_wraith_servant",
+    "goety:muck_wraith",
+    "goety:muck_wraith_servant",
+    "goety:reaper",
+    "goety:reaper_servant",
+    "goety:frozen_zombie_servant",
+    "goety:stray_servant",
+    "goety:icy_spider_servant",
+    "goety:mountaineer_servant",
+    "goety:iceologer_servant",
+    "goety:cryologer_servant",
+    "goety:polar_bear_servant",
+    "goety:bound_iceologer",
+    "goety:icy_spider",
+    "goety:winter_wolf",
+    "goety:cairn_necromancer",
+    "goety:cairn_necromancer_servant",
+    "goety:wight",
+    "goety:bone_lord",
+    "goety:skull_lord",
+    "goety:haunted_armor",
+    "goety:haunted_armor_servant",
+    "goety:ice_golem",
+    "goety:cryologer",
+    "goety:glacial_wall"
+  ]
+}

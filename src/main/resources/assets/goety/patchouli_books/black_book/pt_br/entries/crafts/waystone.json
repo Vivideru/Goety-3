@@ -1,0 +1,20 @@
+{
+  "name": "Pedras da Orientação",
+  "icon": "goety:waystone",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Pedras da Orientação podem ser vinculadas a um local clicando em um bloco. Usadas para magias sombrias (no mesmo dimensão)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:waystone",
+      "text": "A pedra marca quem a usar como seu dono."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Clique em servos com uma Orientação vinculada para fazê-los guardar o local (Modo de Guarda). Shift + clique para apagar a localização."
+    }
+  ]
+}

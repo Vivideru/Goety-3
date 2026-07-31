@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "goety:haunted_fence",
+    "goety:rotten_fence",
+    "goety:windswept_fence",
+    "goety:pine_fence",
+    "goety:steep_fence",
+    "goety:chorus_fence",
+    "goety:corrupt_chorus_fence",
+    "goety:cragrocks_fence",
+    "goety:end_rock_brick_fence",
+    "goety:smooth_end_stone_fence"
+  ]
+}

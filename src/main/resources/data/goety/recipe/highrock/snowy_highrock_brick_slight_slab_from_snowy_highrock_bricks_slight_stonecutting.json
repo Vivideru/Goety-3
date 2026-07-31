@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:snowy_highrock_bricks_slight"
+                   },
+    "result":  {
+                   "id":  "goety:snowy_highrock_brick_slight_slab",
+                   "count":  2
+               }
+}

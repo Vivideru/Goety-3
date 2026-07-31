@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#c:raw_beef",
+    "#c:raw_chicken",
+    "#c:raw_rabbit",
+    "#c:raw_mutton",
+    "#c:raw_pork"
+  ]
+}

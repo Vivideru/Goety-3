@@ -1,0 +1,26 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "tag":  "c:storage_blocks/jade"
+                        },
+    "craftType":  "sky",
+    "soulCost":  1,
+    "duration":  10,
+    "research":  "mistral",
+    "ingredients":  [
+                        {
+                            "tag":  "c:gems/prismarine"
+                        },
+                        {
+                            "tag":  "c:gems/quartz"
+                        },
+                        {
+                            "item":  "goety:wind_core"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:resonance_crystal"
+               }
+}
+

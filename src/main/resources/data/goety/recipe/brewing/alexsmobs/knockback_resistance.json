@@ -1,0 +1,13 @@
+﻿{
+    "type":  "goety:brewing",
+    "ingredient":  {
+                       "item":  "alexsmobs:bear_fur"
+                   },
+    "effect":  "alexsmobs:knockback_resistance",
+    "soulCost":  25,
+    "capacityExtra":  0,
+    "duration":  3600,
+    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "alexsmobs" } ]
+}
+
+

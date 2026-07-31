@@ -1,0 +1,41 @@
+{
+  "name": "史莱姆仆从",
+  "icon": "minecraft:slime_block",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/cores)活力核心$()右键一个黏液块或使用黏泞聚晶，你就能召唤一个拥有生命的史莱姆仆从，使用黏液球可以治愈它们，而给予它们一个黏液块则会在将其治愈的同时增大它们的体型"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:slime_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "如果用于生成它的黏液块处于水中，或是使用深渊魔杖承载黏泞聚晶施法，那就会改为召唤一只热带史莱姆仆从，这些体内游动着许多小鱼的家伙能比其它变种的史莱姆更好地在水下穿梭，当它被杀死时，附近所有的生物都能恢复氧气值，恢复量和恢复范围取决于它的体型"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:tropical_slime_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "黏液块并不是唯一能转化成你忠诚仆从的东西，对岩浆块右键使用活力核心或使用下界魔杖承载黏泞聚晶施法，就可以召唤忠诚的岩浆怪仆从，使用岩浆膏可以治愈它们，而增生它们的体型需要使用岩浆块而非黏液块"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:magma_cube_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/find_crypt",
+      "text": "在墓穴中对黏液块使用$(l:crafts/cores)活力核心$()，或是使用死灵魔杖承载黏泞聚晶施法，就可以召唤忠诚的墓穴史莱姆仆从"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/find_crypt",
+      "entity": "goety:crypt_slime_servant"
+    }
+  ]
+}

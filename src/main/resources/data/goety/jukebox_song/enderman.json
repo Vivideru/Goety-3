@@ -1,0 +1,8 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "item.goety.music_disc_enderman.desc"
+  },
+  "length_in_seconds": 180.0,
+  "sound_event": "goety:enderman_theme_disc"
+}

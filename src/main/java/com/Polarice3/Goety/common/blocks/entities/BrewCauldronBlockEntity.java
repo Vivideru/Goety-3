@@ -1,0 +1,1284 @@
+package com.Polarice3.Goety.common.blocks.entities;
+
+import com.Polarice3.Goety.api.blocks.entities.ISoulCandle;
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
+import com.Polarice3.Goety.common.blocks.properties.ModStateProperties;
+import com.Polarice3.Goety.common.crafting.BrewingRecipe;
+import com.Polarice3.Goety.common.crafting.CauldronRecipe;
+import com.Polarice3.Goety.common.crafting.ModRecipeSerializer;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.effects.brew.BrewEffect;
+import com.Polarice3.Goety.common.effects.brew.BrewEffectInstance;
+import com.Polarice3.Goety.common.effects.brew.BrewEffects;
+import com.Polarice3.Goety.common.effects.brew.PotionBrewEffect;
+import com.Polarice3.Goety.common.effects.brew.modifiers.BrewModifier;
+import com.Polarice3.Goety.common.effects.brew.modifiers.CapacityModifier;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.WaystoneItem;
+import com.Polarice3.Goety.common.items.curios.WitchHatItem;
+import com.Polarice3.Goety.common.items.magic.TaglockKit;
+import com.Polarice3.Goety.config.BrewConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.BrewUtils;
+import com.Polarice3.Goety.utils.ColorUtil;
+import com.Polarice3.Goety.utils.CuriosFinder;
+import com.Polarice3.Goety.utils.MathHelper;
+import com.Polarice3.Goety.utils.SEHelper;
+import com.google.common.collect.Lists;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.Cat;
+import net.minecraft.world.entity.animal.CatVariant;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.CustomData;
+import com.Polarice3.Goety.utils.ModPotionUtil;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.LavaFluid;
+import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Based and modified from @MoriyaShiine's Witch Cauldron codes.
+ */
+public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyContainer {
+    private final List<BlockEntity> candlestickBlockEntityList = Lists.newArrayList();
+    private final List<BlockPos> witchPoles = Lists.newArrayList();
+    public static int WATER_COLOR = 0x3F76E4, FAILED_COLOR = 0x6D4423;
+    public NonNullList<ItemStack> container = NonNullList.withSize(32, ItemStack.EMPTY);
+    public final SimpleContainer craftContainer = new SimpleContainer(32){
+        @Override
+        public int getMaxStackSize() {
+            return 1;
+        }
+    };
+    public Map<Integer, EntityType<?>> sacrificed = new HashMap<>();
+    public Mode mode = Mode.IDLE;
+    public boolean isBrewing = false;
+    public boolean isCrafting = false;
+    public int liquidColor = WATER_COLOR, capacity = 0, capacityUsed = 0, duration = 0, amplifier = 0, aoe = 0, heatTime = 0, totalCost = 0, soulTime = 0, quaff = 0, takeBrew = 0, update = 0;
+    public float velocity = 0;
+    public boolean isAquatic, isFireProof;
+    public float lingering = 0;
+    public CauldronRecipe recipe;
+    public ResourceLocation recipeId;
+
+    public BrewCauldronBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
+        super(ModBlockEntities.BREWING_CAULDRON.get(), p_155229_, p_155230_);
+    }
+
+    public void tick(){
+        if (this.level != null) {
+            if (!this.level.isClientSide) {
+                if (this.checkFire()) {
+                    int waterLevel = this.getBlockState().getValue(ModStateProperties.LEVEL_BREW);
+                    if (!this.isHeated()) {
+                        ++this.heatTime;
+                    } else if (waterLevel > 0){
+                        int bubbleTime = this.isBrewing || this.isCrafting ? 20 : 60;
+                        if (this.level.getGameTime() % bubbleTime == 0) {
+                            this.level.playSound(null, this.getBlockPos(), ModSounds.CAULDRON_BUBBLES.get(), SoundSource.BLOCKS, 0.33F, this.mode == Mode.FAILED ? 0.5F : 1);
+                        }
+                        if (this.mode == Mode.BREWING){
+                            if (this.level.getGameTime() % 60 == 0 && this.level.random.nextBoolean()){
+                                this.level.playSound(null, this.getBlockPos(), ModSounds.CAULDRON_CHIMES.get(), SoundSource.BLOCKS, 0.15F, this.level.random.nextFloat() * 0.4F + 0.8F);
+                            }
+                        }
+                        this.findCandlesticks();
+                        if (this.isBrewing && mode == Mode.BREWING) {
+                            if (!this.candlestickBlockEntityList.isEmpty() || this.getBrewCost() <= 0) {
+                                if (this.soulTime < this.getBrewCost() && this.getBrewCost() > 0) {
+                                    this.drainSouls();
+                                } else {
+                                    this.setColor(ModPotionUtil.getColor(this.getBrew()));
+                                    this.level.playSound(null, this.getBlockPos(), ModSounds.CAST_SPELL.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                                    this.soulTime = 0;
+                                    this.totalCost = 0;
+                                    this.isBrewing = false;
+                                    this.mode = Mode.COMPLETED;
+                                }
+                            } else {
+                                this.mode = this.fail();
+                            }
+                        }
+                        if (mode == Mode.COMPLETED || mode == Mode.CRAFTED){
+                            if (this.level instanceof ServerLevel serverLevel){
+                                float f = 1.0F;
+                                serverLevel.sendParticles(ParticleTypes.WITCH, this.worldPosition.getX() + 0.5F + Math.cos(serverLevel.getGameTime() * 0.25) * f, this.worldPosition.getY(), this.worldPosition.getZ() + 0.5F + Math.sin(serverLevel.getGameTime() * 0.25) * f, 0, 0, 0, 0, 0.5F);
+                                serverLevel.sendParticles(ParticleTypes.WITCH, this.worldPosition.getX() + 0.5F + Math.cos(serverLevel.getGameTime() * 0.25 + Math.PI) * f, this.worldPosition.getY(), this.worldPosition.getZ() + 0.5F + Math.sin(serverLevel.getGameTime() * 0.25 + Math.PI) * f, 0, 0, 0, 0, 0.5F);
+                            }
+                        }
+                        if (this.mode == Mode.CRAFTING) {
+                            CauldronRecipe recipe = this.getRecipe();
+                            if (this.isCrafting) {
+                                if (this.canCraft(this.level) && recipe != null) {
+                                    if (!this.candlestickBlockEntityList.isEmpty() || recipe.getSoulCost() <= 0) {
+                                        if (recipe.getSoulCost() > 0) {
+                                            this.drainSouls();
+                                        }
+                                        if (this.soulTime >= recipe.getSoulCost()) {
+                                            if (waterLevel > recipe.getLevelLeft()) {
+                                                if (this.level instanceof ServerLevel serverLevel) {
+                                                    for (int i = 0; i < 8; ++i) {
+                                                        Vec3 vec3 = this.worldPosition.getCenter().offsetRandom(serverLevel.getRandom(), 0.1F);
+                                                        ColorUtil colorUtil = new ColorUtil(recipe.getColor());
+                                                        serverLevel.sendParticles(ModParticleTypes.BIG_CULT_SPELL.get(), vec3.x, vec3.y, vec3.z, 0, colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F);
+                                                    }
+                                                }
+                                                this.level.setBlock(this.getBlockPos(), this.getBlockState().setValue(ModStateProperties.LEVEL_BREW, recipe.getLevelLeft()), 11);
+                                            }
+                                            this.level.playSound(null, this.getBlockPos(), ModSounds.CAST_SPELL.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                                            this.soulTime = 0;
+                                            this.totalCost = 0;
+                                            this.isCrafting = false;
+                                            this.mode = Mode.CRAFTED;
+                                        } else {
+                                            this.updateRecipe(this.level);
+                                        }
+                                    } else {
+                                        this.mode = this.fail();
+                                    }
+                                } else {
+                                    this.mode = this.fail();
+                                }
+                            } else if (recipe != null) {
+                                ItemStack result = this.getCraftedItem();
+                                if (!result.isEmpty() && !result.is(Items.AIR)) {
+                                    if (this.getColor() != recipe.getColor()) {
+                                        this.setColor(recipe.getColor());
+                                    }
+                                    if (this.totalCost <= 0 && recipe.getSoulCost() > 0) {
+                                        this.addCost(recipe.getSoulCost());
+                                    }
+                                } else {
+                                    this.setColor(0x5fd01a);
+                                }
+                            }
+                        }
+                    } else {
+                        this.fullReset();
+                    }
+                } else {
+                    this.isBrewing = false;
+                    this.isCrafting = false;
+                    this.soulTime = 0;
+                    this.totalCost = 0;
+                    this.mode = Mode.IDLE;
+                    if (this.heatTime > 0) {
+                        --this.heatTime;
+                    }
+                }
+                if (this.update > 0){
+                    --this.update;
+                    if (this.update <= 1) {
+                        this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(ModStateProperties.LEVEL_BREW, 3));
+                        this.update = 0;
+                    }
+                }
+                this.level.setBlock(this.getBlockPos(), this.getBlockState().setValue(ModStateProperties.FAILED, this.mode == Mode.FAILED).setValue(ModStateProperties.CRAFTING, this.mode == Mode.CRAFTING || this.mode == Mode.CRAFTED), 11);
+                this.markUpdated();
+            }
+        }
+    }
+
+    public void drainSouls() {
+        if (!this.candlestickBlockEntityList.isEmpty()) {
+            for (BlockEntity blockEntity : this.candlestickBlockEntityList) {
+                if (blockEntity instanceof ISoulCandle soulCandle && soulCandle.getSouls() > 0) {
+                    // 1.21.1 keeps the cauldron recipe and brew recipe paths together, so both share the candle drain helper.
+                    soulCandle.drainSouls(1, this.getBlockPos());
+                    this.soulTime++;
+                }
+            }
+        } else {
+            this.mode = this.fail();
+        }
+    }
+
+    public boolean isHeated(){
+        return this.heatTime == MathHelper.secondsToTicks(5);
+    }
+
+    public Container getCraftContainer() {
+        return this.craftContainer;
+    }
+
+    public boolean addCraftItem(ItemStack stack) {
+        if (this.soulTime > 0){
+            return false;
+        }
+        for (int i = 0; i < this.getCraftContainer().getContainerSize(); i++) {
+            if (this.getCraftContainer().getItem(i).isEmpty()) {
+                this.getCraftContainer().setItem(i, stack.copyWithCount(1));
+                this.markUpdated();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setCraftItems(NonNullList<ItemStack> items){
+        for (int i = 0; i < items.size(); i++) {
+            this.getCraftContainer().setItem(i, items.get(i));
+        }
+    }
+
+    public NonNullList<ItemStack> getCraftItems(){
+        NonNullList<ItemStack> itemStacks = NonNullList.withSize(this.getCraftContainer().getContainerSize(), ItemStack.EMPTY);
+        for (int i = 0; i < this.getCraftContainer().getContainerSize(); i++) {
+            itemStacks.set(i, this.getCraftContainer().getItem(i));
+        }
+        return itemStacks;
+    }
+
+    public boolean canCraft(Level world) {
+        Container container = this.getCraftContainer();
+        if (this.recipe != null) {
+            if (this.recipe.couldMatch(container, world)) {
+                return true;
+            }
+            this.recipe = null;
+        }
+        List<CauldronRecipe> candidates = world.getRecipeManager()
+                .getAllRecipesFor(ModRecipeSerializer.CAULDRON_TYPE.get()).stream()
+                .map(holder -> holder.value())
+                .filter(r -> r.couldMatch(container, world))
+                .toList();
+        if (candidates.isEmpty()) {
+            return false;
+        }
+        CauldronRecipe exact = candidates.stream()
+                .filter(r -> r.matches(container, world))
+                .findFirst().orElse(null);
+        if (exact != null) {
+            this.recipe = exact;
+        } else if (candidates.size() == 1) {
+            this.recipe = candidates.get(0);
+        }
+        return true;
+    }
+
+    public CauldronRecipe getRecipe(){
+        if (this.recipeId != null && this.level != null){
+            this.level.getRecipeManager().byKey(this.recipeId)
+                    .map(holder -> holder.value())
+                    .filter(CauldronRecipe.class::isInstance)
+                    .map(CauldronRecipe.class::cast)
+                    .ifPresent(r -> this.recipe = r);
+            this.recipeId = null;
+        }
+        return this.recipe;
+    }
+
+    public void updateRecipe(Level world) {
+        if (this.getRecipe() != null) {
+            if (!this.getRecipe().matches(this.getCraftContainer(), world) && !this.canCraft(world)) {
+                this.mode = this.fail();
+            }
+        } else if (!this.canCraft(world)) {
+            this.mode = this.fail();
+        }
+    }
+
+    private int getFirstEmptySlot() {
+        for (int i = 0; i < this.getCapacity(); i++) {
+            if (this.getItem(i).isEmpty() && this.getSacrificed(i) == null) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void brew(){
+        this.brew(null);
+    }
+
+    public void brew(@Nullable Player player){
+        if (this.level != null && !this.level.isClientSide) {
+            if (this.candlestickBlockEntityList.isEmpty()) {
+                if (player != null) {
+                    player.displayClientMessage(Component.translatable("info.goety.brew.candlesticks"), true);
+                }
+                this.level.playSound(null, this.getBlockPos(), SoundEvents.NOTE_BLOCK_SNARE.value(), SoundSource.BLOCKS, 1.0F, 0.75F);
+            } else if (this.mode == Mode.BREWING && !this.isBrewing) {
+                    this.isBrewing = true;
+                    this.level.playSound(null, this.getBlockPos(), ModSounds.PREPARE_SPELL.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+            } else if (this.mode == Mode.CRAFTING && !this.isCrafting) {
+                if (this.canCraft(this.level)) {
+                    this.isCrafting = true;
+                    if (this.totalCost > 0) {
+                        this.level.playSound(null, this.getBlockPos(), ModSounds.PREPARE_SPELL.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                    }
+                } else {
+                    if (player != null) {
+                        player.displayClientMessage(Component.translatable("info.goety.cauldron.craft.fail"), true);
+                    }
+                    this.level.playSound(null, this.getBlockPos(), SoundEvents.NOTE_BLOCK_SNARE.value(), SoundSource.BLOCKS, 1.0F, 0.75F);
+                }
+            }
+            this.markUpdated();
+        }
+    }
+
+    public Mode addSacrifice(Entity entity){
+        if (this.level != null && !this.level.isClientSide){
+            int firstEmpty = getFirstEmptySlot();
+            if (firstEmpty != -1) {
+                if (this.mode == Mode.BREWING && this.getOccupiedSlots() >= this.getCapacity()) {
+                    return fail();
+                }
+                this.setSacrificed(firstEmpty, entity.getType());
+                if (this.mode == Mode.BREWING) {
+                    BrewingRecipe brewingRecipe = this.level.getRecipeManager().getAllRecipesFor(ModRecipeSerializer.BREWING_TYPE.get()).stream()
+                            .map(holder -> holder.value())
+                            .filter(recipe -> {
+                                if (recipe.getEntityTypeTag() != null){
+                                    return entity.getType().is(recipe.getEntityTypeTag());
+                                } else if (recipe.getEntityType() != null) {
+                                    return entity.getType() == recipe.getEntityType();
+                                }
+                                return false;
+                            }).findFirst().orElse(null);
+                    BrewEffect brewEffect = new BrewEffects().getEffectFromSacrifice(entity.getType());
+                    if (brewingRecipe != null){
+                        if ((brewingRecipe.getCapacityExtra() + this.getCapacityUsed()) <= this.getCapacity()) {
+                            this.capacityUsed += brewingRecipe.getCapacityExtra();
+                            this.addCost(brewingRecipe.soulCost);
+                            this.setColor(BrewUtils.getColor(this.getBrew()));
+                            return Mode.BREWING;
+                        }
+                    }
+                    if (brewEffect != null){
+                        if ((brewEffect.getCapacityExtra() + this.getCapacityUsed()) <= this.getCapacity()) {
+                            this.capacityUsed += brewEffect.getCapacityExtra();
+                            this.addCost(brewEffect.getSoulCost());
+                            this.setColor(BrewUtils.getColor(this.getBrew()));
+                            return Mode.BREWING;
+                        }
+                    }
+                }
+            }
+            this.markUpdated();
+        }
+        return fail();
+    }
+
+    public Mode insertItem(ItemStack itemStack){
+        if (this.level != null && !this.level.isClientSide){
+            boolean craft = itemStack.is(ModItems.NIGHTSHADE_BLOSSOM.get());
+            if (this.mode == Mode.IDLE && craft) {
+                this.clearContent();
+                return Mode.CRAFTING;
+            } else if (this.mode == Mode.CRAFTING && this.addCraftItem(itemStack)) {
+                if (!this.canCraft(this.level)) {
+                    return this.fail();
+                }
+                return Mode.CRAFTING;
+            }
+            Item ingredient = itemStack.getItem();
+            BrewModifier brewModifier = new BrewEffects().getModifier(ingredient);
+            int modLevel = brewModifier != null ? brewModifier.getLevel() : -1;
+            boolean activate = brewModifier instanceof CapacityModifier && brewModifier.getLevel() == 0;
+            int firstEmpty = getFirstEmptySlot();
+            if (firstEmpty != -1 && this.mode != Mode.CRAFTING) {
+                if (this.mode == Mode.BREWING && !this.freeModifier(brewModifier) && !activate) {
+                    if (this.getOccupiedSlots() >= this.getCapacity()) {
+                        return fail();
+                    }
+                }
+
+                this.setItem(firstEmpty, itemStack);
+                if (this.mode == Mode.IDLE && this.getCapacity() < BrewConfig.InitialCapacity.get() && activate) {
+                    this.clearContent();
+                    this.capacity = BrewConfig.InitialCapacity.get();
+                    if (this.level instanceof ServerLevel serverLevel){
+                        for(int k = 0; k < 20; ++k) {
+                            float f2 = serverLevel.random.nextFloat() * 4.0F;
+                            float f1 = serverLevel.random.nextFloat() * ((float)Math.PI * 2F);
+                            double d1 = Mth.cos(f1) * f2;
+                            double d2 = 0.01D + serverLevel.random.nextDouble() * 0.5D;
+                            double d3 = Mth.sin(f1) * f2;
+                            serverLevel.sendParticles(ParticleTypes.WITCH, (this.getBlockPos().getX() + 0.5D) + d1 * 0.1D, (this.getBlockPos().getY() + 0.5D) + 0.3D, (this.getBlockPos().getZ() + 0.5D) + d3 * 0.1D, 0, d1, d2, d3, 0.25F);
+                        }
+                    }
+                    return Mode.BREWING;
+                }
+                if (this.mode == Mode.BREWING) {
+                    BrewingRecipe brewingRecipe = this.level.getRecipeManager().getAllRecipesFor(ModRecipeSerializer.BREWING_TYPE.get()).stream().map(holder -> holder.value()).filter(recipe -> recipe.input.test(itemStack)).findFirst().orElse(null);
+                    BrewEffect brewEffect = new BrewEffects().getEffectFromCatalyst(ingredient);
+                    if (this.hasNoAugmentation()) {
+                        if (brewingRecipe != null || brewEffect != null) {
+                            if (brewingRecipe != null){
+                                if ((brewingRecipe.getCapacityExtra() + this.getCapacityUsed()) <= this.getCapacity()) {
+                                    this.capacityUsed += brewingRecipe.getCapacityExtra();
+                                    this.addCost(brewingRecipe.soulCost);
+                                    this.setColor(BrewUtils.getColor(this.getBrew()));
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewEffect != null){
+                                if ((brewEffect.getCapacityExtra() + this.getCapacityUsed()) <= this.getCapacity()) {
+                                    this.capacityUsed += brewEffect.getCapacityExtra();
+                                    this.addCost(brewEffect.getSoulCost());
+                                    this.setColor(BrewUtils.getColor(this.getBrew()));
+                                    return Mode.BREWING;
+                                }
+                            }
+                        }
+                    }
+
+                    if (brewModifier != null) {
+                        if (BrewUtils.hasEffect(this.getBrew())) {
+                            if (brewModifier.getId().equals(BrewModifier.HIDDEN) || brewModifier.getId().equals(BrewModifier.SPLASH) || brewModifier.getId().equals(BrewModifier.LINGERING) || brewModifier.getId().equals(BrewModifier.GAS)) {
+                                if (brewModifier.getId().equals(BrewModifier.HIDDEN)) {
+                                    this.addCost(10);
+                                }
+                                return Mode.BREWING;
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.DURATION)) {
+                                if (this.getDuration() == 0 && modLevel == 0) {
+                                    this.duration++;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getDuration() == 1 && modLevel == 1) {
+                                    this.duration++;
+                                    this.multiplyCost(1.5F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getDuration() == 2 && modLevel == 2) {
+                                    this.duration++;
+                                    this.multiplyCost(2.0F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.AMPLIFIER)) {
+                                if (this.getAmplifier() == 0 && modLevel == 0) {
+                                    this.amplifier++;
+                                    this.multiplyCost(2.0F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getAmplifier() == 1 && modLevel == 1) {
+                                    this.amplifier++;
+                                    this.multiplyCost(2.5F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getAmplifier() == 2 && modLevel == 2) {
+                                    this.amplifier++;
+                                    this.multiplyCost(3.0F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.AOE)) {
+                                if (this.getAoE() == 0 && modLevel == 0) {
+                                    this.aoe++;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getAoE() == 1 && modLevel == 1) {
+                                    this.aoe++;
+                                    this.multiplyCost(1.5F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getAoE() == 2 && modLevel == 2) {
+                                    this.aoe++;
+                                    this.multiplyCost(2.0F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.LINGER)) {
+                                if (this.getLingering() == 0 && modLevel == 0) {
+                                    this.lingering++;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getLingering() == 1 && modLevel == 1) {
+                                    this.lingering++;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getLingering() == 2 && modLevel == 2) {
+                                    this.lingering++;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.QUAFF)) {
+                                if (this.getQuaff() == 0 && modLevel == 0) {
+                                    this.quaff += 8;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getQuaff() == 8 && modLevel == 1) {
+                                    this.quaff += 8;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getQuaff() == 16 && modLevel == 2) {
+                                    this.quaff += 8;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.VELOCITY)) {
+                                if (this.getVelocity() == 0 && modLevel == 0) {
+                                    this.velocity += 0.1F;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getVelocity() == 0.1F && modLevel == 1) {
+                                    this.velocity += 0.2F;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                                if (this.getVelocity() == 0.3F && modLevel == 2) {
+                                    this.velocity += 0.2F;
+                                    this.multiplyCost(1.25F);
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.AQUATIC)) {
+                                if (!this.isAquatic() && modLevel == 0) {
+                                    this.isAquatic = true;
+                                    return Mode.BREWING;
+                                }
+                            }
+                            if (brewModifier.getId().equals(BrewModifier.FIRE_PROOF)) {
+                                if (!this.isFireProof() && modLevel == 0) {
+                                    this.isFireProof = true;
+                                    return Mode.BREWING;
+                                }
+                            }
+                        } else if (brewModifier instanceof CapacityModifier capacityModifier) {
+                            int initial = BrewConfig.InitialCapacity.get();
+                            int level1 = BrewConfig.Level1Capacity.get();
+                            int level2 = BrewConfig.Level2Capacity.get();
+                            int level3 = BrewConfig.Level3Capacity.get();
+                            int level4 = BrewConfig.Level4Capacity.get();
+                            int level5 = BrewConfig.Level5Capacity.get();
+                            if (this.getCapacity() == initial && capacityModifier.getLevel() == 1) {
+                                this.capacity += level1;
+                                this.clearContent();
+                                return Mode.BREWING;
+                            }
+                            if (this.getCapacity() == (initial + level1) && capacityModifier.getLevel() == 2) {
+                                this.capacity += level2;
+                                this.clearContent();
+                                return Mode.BREWING;
+                            }
+                            if (this.getCapacity() == (initial + level1 + level2) && capacityModifier.getLevel() == 3) {
+                                this.capacity += level3;
+                                this.clearContent();
+                                return Mode.BREWING;
+                            }
+                            if (this.getCapacity() == (initial + level1 + level2 + level3) && capacityModifier.getLevel() == 4) {
+                                this.capacity += level4;
+                                this.clearContent();
+                                return Mode.BREWING;
+                            }
+                            if (this.getCapacity() == (initial + level1 + level2 + level3 + level4) && capacityModifier.getLevel() == 5) {
+                                this.capacity += level5;
+                                this.clearContent();
+                                return Mode.BREWING;
+                            }
+                        }
+                    }
+                }
+            } else if (this.mode == Mode.IDLE && this.getCapacity() < BrewConfig.InitialCapacity.get() && activate) {
+                this.clearContent();
+                this.capacity = BrewConfig.InitialCapacity.get();
+                if (this.level instanceof ServerLevel serverLevel){
+                    for(int k = 0; k < 20; ++k) {
+                        float f2 = serverLevel.random.nextFloat() * 4.0F;
+                        float f1 = serverLevel.random.nextFloat() * ((float)Math.PI * 2F);
+                        double d1 = Mth.cos(f1) * f2;
+                        double d2 = 0.01D + serverLevel.random.nextDouble() * 0.5D;
+                        double d3 = Mth.sin(f1) * f2;
+                        serverLevel.sendParticles(ParticleTypes.WITCH, (this.getBlockPos().getX() + 0.5D) + d1 * 0.1D, (this.getBlockPos().getY() + 0.5D) + 0.3D, (this.getBlockPos().getZ() + 0.5D) + d3 * 0.1D, 0, d1, d2, d3, 0.25F);
+                    }
+                }
+                return Mode.BREWING;
+            }
+            this.markUpdated();
+        }
+        return fail();
+    }
+
+    public void commonReset(){
+        if (this.level != null && !this.level.isClientSide) {
+            this.setColor(WATER_COLOR, false);
+            this.isBrewing = false;
+            this.isCrafting = false;
+            this.capacity = 0;
+            this.capacityUsed = 0;
+            this.soulTime = 0;
+            this.totalCost = 0;
+            this.duration = 0;
+            this.amplifier = 0;
+            this.aoe = 0;
+            this.quaff = 0;
+            this.velocity = 0;
+            this.lingering = 0;
+            this.takeBrew = 0;
+            this.isAquatic = false;
+            this.isFireProof = false;
+            this.recipe = null;
+            this.recipeId = null;
+            this.clearContent();
+            this.markUpdated();
+            this.level.setBlock(this.worldPosition, this.getBlockState().setValue(ModStateProperties.LEVEL_BREW, 0), 3);
+        }
+    }
+
+    public void fullReset(){
+        if (this.level != null && !this.level.isClientSide) {
+            this.commonReset();
+            this.mode = Mode.IDLE;
+        }
+    }
+
+    public Mode reset() {
+        this.commonReset();
+        return Mode.IDLE;
+    }
+
+    public Mode fail() {
+        if (this.level != null && !this.level.isClientSide) {
+            this.setColor(FAILED_COLOR);
+            this.isBrewing = false;
+            this.isCrafting = false;
+            this.capacity = 0;
+            this.soulTime = 0;
+            this.totalCost = 0;
+            this.level.playSound(null, this.worldPosition, SoundEvents.NOTE_BLOCK_SNARE.value(), SoundSource.BLOCKS, 5.0F, 0.75F);
+            this.markUpdated();
+        }
+        return Mode.FAILED;
+    }
+
+    public void setColor(int color){
+        this.setColor(color, true);
+    }
+
+    public void setColor(int color, boolean update) {
+        if (this.level != null) {
+            this.liquidColor = color;
+            if (!this.level.isClientSide) {
+                if (update) {
+                    if (this.level.getBlockState(this.getBlockPos()).getValue(ModStateProperties.LEVEL_BREW) == 3) {
+                        this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(ModStateProperties.LEVEL_BREW, 4));
+                        this.update = 3;
+                    }
+                }
+                this.markUpdated();
+            }
+        }
+    }
+
+    public int getColor(){
+        return this.liquidColor;
+    }
+
+    public ItemStack getBrew() {
+        ItemStack brew = new ItemStack(ModItems.BREW.get());
+        if (this.level != null && !this.level.isClientSide) {
+            List<MobEffectInstance> effects = new ArrayList<>();
+            List<BrewEffectInstance> blockEffects = new ArrayList<>();
+            int hidden = 0;
+            for (int i = 0; i < this.getCapacity(); i++) {
+                ItemStack itemStack = this.getItem(i);
+                Item item = itemStack.getItem();
+                BrewModifier brewModifier = new BrewEffects().getModifier(item);
+                BrewEffect brewEffect = new BrewEffects().getEffectFromCatalyst(item);
+                BrewingRecipe brewingRecipe = this.level.getRecipeManager().getAllRecipesFor(ModRecipeSerializer.BREWING_TYPE.get()).stream().map(holder -> holder.value()).filter(recipe -> recipe.input.test(itemStack)).findFirst().orElse(null);
+                EntityType<?> entityType = this.getSacrificed(i);
+                if (entityType != null){
+                    brewingRecipe = this.level.getRecipeManager().getAllRecipesFor(ModRecipeSerializer.BREWING_TYPE.get()).stream()
+                            .map(holder -> holder.value())
+                            .filter(recipe -> {
+                                if (recipe.getEntityTypeTag() != null){
+                                    return entityType.is(recipe.getEntityTypeTag());
+                                } else if (recipe.getEntityType() != null) {
+                                    return entityType == recipe.getEntityType();
+                                }
+                                return false;
+                            }).findFirst().orElse(null);
+                    brewEffect = new BrewEffects().getEffectFromSacrifice(entityType);
+                }
+                BrewingRecipe finalBrewingRecipe = brewingRecipe;
+                if (brewingRecipe != null && effects.stream().noneMatch(effect -> effect.getEffect() == finalBrewingRecipe.output)) {
+                    effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(brewingRecipe.output), brewingRecipe.duration));
+                } else if (brewEffect != null){
+                    if (brewEffect instanceof PotionBrewEffect potionBrewEffect){
+                        effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(potionBrewEffect.mobEffect), potionBrewEffect.duration));
+                    } else {
+                        // Instant custom brew effects need a non-zero stored duration so 1.21 components and tooltips do not treat them like empty water.
+                        blockEffects.add(new BrewEffectInstance(brewEffect, brewEffect.isInstantenous() ? Math.max(1, brewEffect.duration) : brewEffect.duration));
+                    }
+                } else if (brewModifier != null) {
+                    if (brewModifier.getId().equals(BrewModifier.HIDDEN)) {
+                        hidden++;
+                    } else if (brewModifier.getId().equals(BrewModifier.SPLASH) && brew.is(ModItems.BREW.get())) {
+                        brew = new ItemStack(ModItems.SPLASH_BREW.get());
+                    } else if (brewModifier.getId().equals(BrewModifier.LINGERING) && brew.is(ModItems.SPLASH_BREW.get())) {
+                        brew = new ItemStack(ModItems.LINGERING_BREW.get());
+                    } else if (brewModifier.getId().equals(BrewModifier.GAS) && brew.is(ModItems.LINGERING_BREW.get())) {
+                        brew = new ItemStack(ModItems.GAS_BREW.get());
+                    }
+                }
+            }
+            for (int i = 0; i < effects.size(); i++) {
+                for (int j = 0; j < this.getDuration(); j++) {
+                    MobEffect type = effects.get(i).getEffect().value();
+                    int duration = effects.get(i).getDuration();
+                    effects.set(i, new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(type), type.isInstantenous() ? duration : duration * 2));
+                }
+                for (int j = 0; j < this.getAmplifier(); j++) {
+                    MobEffect type = effects.get(i).getEffect().value();
+                    int duration = effects.get(i).getDuration();
+                    effects.set(i, new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(type), type.isInstantenous() ? duration : duration / 2, effects.get(i).getAmplifier() + 1));
+                }
+                for (int j = 0; j < hidden; j++) {
+                    MobEffect type = effects.get(i).getEffect().value();
+                    int duration = effects.get(i).getDuration();
+                    int amplifier = effects.get(i).getAmplifier();
+                    effects.set(i, new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(type), duration, amplifier, false, false, false));
+                }
+            }
+            for (int i = 0; i < blockEffects.size(); i++) {
+                for (int j = 0; j < this.getDuration(); j++) {
+                    BrewEffect type = blockEffects.get(i).getEffect();
+                    int duration = blockEffects.get(i).getDuration();
+                    blockEffects.set(i, new BrewEffectInstance(type, type.isInstantenous() ? Math.max(1, duration) : duration * 2));
+                }
+                for (int j = 0; j < this.getAmplifier(); j++) {
+                    BrewEffect type = blockEffects.get(i).getEffect();
+                    int duration = blockEffects.get(i).getDuration();
+                    blockEffects.set(i, new BrewEffectInstance(type, duration, blockEffects.get(i).getAmplifier() + 1));
+                }
+            }
+            BrewUtils.setCustomEffects(brew, effects, blockEffects);
+            BrewUtils.setAreaOfEffect(brew, this.getAoE());
+            BrewUtils.setLingering(brew, this.getLingering());
+            BrewUtils.setQuaff(brew, this.getQuaff());
+            BrewUtils.setVelocity(brew, this.getVelocity());
+            BrewUtils.setAquatic(brew, this.isAquatic());
+            BrewUtils.setFireProof(brew, this.isFireProof());
+            CompoundTag customData = brew.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+            customData.putInt("CustomPotionColor", BrewUtils.getColor(effects, blockEffects));
+            customData.putBoolean("CustomBrew", true);
+            brew.set(DataComponents.CUSTOM_DATA, CustomData.of(customData));
+            this.markUpdated();
+        }
+        return brew;
+    }
+
+    public ItemStack getCraftedItem() {
+        if (this.level == null) {
+            return ItemStack.EMPTY;
+        }
+        CauldronRecipe cauldronRecipe = this.getRecipe();
+        if (cauldronRecipe != null && cauldronRecipe.matches(this.getCraftContainer(), this.level)) {
+            // The custom cauldron recipe is not a grid recipe in 1.21.1, so use its stored result directly after a container match.
+            return cauldronRecipe.getResultItem(this.level.registryAccess()).copy();
+        }
+        return ItemStack.EMPTY;
+    }
+
+    public boolean hasNoAugmentation(){
+        return this.duration <= 0 && this.amplifier <= 0 && this.aoe <= 0 && this.quaff <= 0 && this.velocity <= 0 && this.lingering <= 0;
+    }
+
+    public void multiplyCost(float cost){
+        this.totalCost *= cost;
+        this.discountCost();
+    }
+
+    public void addCost(float cost){
+        this.totalCost += cost;
+        this.discountCost();
+    }
+
+    public void discountCost(){
+        this.findWitchPoles();
+        int size = Mth.clamp(this.witchPoles.size(), 0, 3);
+        if (size > 0) {
+            for (int i = 0; i < size; ++i) {
+                totalCost *= 0.99F;
+            }
+        }
+        if (this.level != null){
+            if (this.level.getBiome(this.worldPosition).is(BiomeTags.HAS_SWAMP_HUT)){
+                totalCost *= 0.99F;
+            }
+        }
+    }
+
+    public int getBrewCost() {
+        return this.totalCost;
+    }
+
+    public boolean freeModifier(BrewModifier brewModifier) {
+        return brewModifier != null && (brewModifier.getId().equals(BrewModifier.HIDDEN) ||
+                        brewModifier.getId().equals(BrewModifier.SPLASH) ||
+                        brewModifier.getId().equals(BrewModifier.LINGERING)||
+                        brewModifier.getId().equals(BrewModifier.GAS) ||
+                        brewModifier.getId().equals(BrewModifier.AQUATIC) ||
+                        brewModifier.getId().equals(BrewModifier.FIRE_PROOF));
+    }
+
+    public int getOccupiedSlots() {
+        int count = 0;
+        for (int i = 0; i < this.getCapacity(); i++) {
+            if (!this.getItem(i).isEmpty() || this.getSacrificed(i) != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getCapacityUsed(){
+        int number = this.capacityUsed;
+        for (int i = 0; i < this.getContainerSize(); i++) {
+            if (!this.getItem(i).isEmpty()) {
+                ++number;
+            }
+        }
+        for(EntityType<?> entityType : this.sacrificed.values()) {
+            if (entityType != null) {
+                ++number;
+            }
+        }
+        return number;
+    }
+
+    public int getCapacity(){
+        return this.capacity;
+    }
+
+    public int getDuration(){
+        return this.duration;
+    }
+
+    public int getAmplifier(){
+        return this.amplifier;
+    }
+
+    public int getAoE(){
+        return this.aoe;
+    }
+
+    public int getQuaff(){
+        return this.quaff;
+    }
+
+    public float getVelocity(){
+        return this.velocity;
+    }
+
+    public boolean isAquatic(){
+        return this.isAquatic;
+    }
+
+    public boolean isFireProof(){
+        return this.isFireProof;
+    }
+
+    public float getLingering(){
+        return this.lingering;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return container.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        for(ItemStack itemstack : this.container) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+        for(EntityType<?> entityType : this.sacrificed.values()) {
+            if (entityType != null) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public EntityType<?> getSacrificed(int pIndex) {
+        return this.sacrificed.get(pIndex);
+    }
+
+    public void setSacrificed(int pIndex, EntityType<?> pStack){
+        this.sacrificed.put(pIndex, pStack);
+    }
+
+    @Override
+    public @NotNull ItemStack getItem(int pIndex) {
+        return this.container.get(pIndex);
+    }
+
+    @Override
+    public @NotNull ItemStack removeItem(int pIndex, int pCount) {
+        return ContainerHelper.removeItem(this.container, pIndex, pCount);
+    }
+
+    @Override
+    public @NotNull ItemStack removeItemNoUpdate(int pIndex) {
+        return ContainerHelper.takeItem(this.container, pIndex);
+    }
+
+    @Override
+    public void setItem(int pIndex, @NotNull ItemStack pStack) {
+        this.container.set(pIndex, pStack);
+    }
+
+    @Override
+    public boolean stillValid(Player pPlayer) {
+        return pPlayer.distanceToSqr(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 0.5D, this.getBlockPos().getZ() + 0.5D) < 16.0D;
+    }
+
+    @Override
+    public void clearContent() {
+        this.container.clear();
+        this.clearSacrifices();
+        this.getCraftContainer().clearContent();
+    }
+
+    public void clearSacrifices() {
+        this.sacrificed.clear();
+    }
+
+    protected void loadAdditional(CompoundTag compoundNBT, HolderLookup.Provider provider) {
+        super.loadAdditional(compoundNBT, provider);
+        this.capacity = compoundNBT.getInt("Capacity");
+        this.capacityUsed = compoundNBT.getInt("CapacityUsed");
+        this.duration = compoundNBT.getInt("Duration");
+        this.amplifier = compoundNBT.getInt("Amplifier");
+        this.aoe = compoundNBT.getInt("AreaOfEffect");
+        this.quaff = compoundNBT.getInt("Quaff");
+        this.heatTime = compoundNBT.getInt("HeatTime");
+        this.soulTime = compoundNBT.getInt("SoulTime");
+        this.takeBrew = compoundNBT.getInt("TakeBrew");
+        this.totalCost = compoundNBT.getInt("TotalCost");
+        this.update = compoundNBT.getInt("ColorUpdate");
+        if (compoundNBT.contains("Color")) {
+            this.liquidColor = compoundNBT.getInt("Color");
+        }
+        this.velocity = compoundNBT.getFloat("Velocity");
+        this.isAquatic = compoundNBT.getBoolean("Aquatic");
+        this.isFireProof = compoundNBT.getBoolean("FireProof");
+        this.lingering = compoundNBT.getFloat("Lingering");
+        this.isBrewing = compoundNBT.getBoolean("Brewing");
+        this.isCrafting = compoundNBT.getBoolean("Crafting");
+        if (compoundNBT.contains("Mode")) {
+            this.mode = Mode.valueOf(compoundNBT.getString("Mode"));
+        }
+        this.container = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compoundNBT, this.container, provider);
+        this.sacrificed = new HashMap<>();
+        loadAllSacrificed(compoundNBT, this.sacrificed);
+        NonNullList<ItemStack> items = NonNullList.withSize(this.getCraftContainer().getContainerSize(), ItemStack.EMPTY);
+        ContainerHelper.loadAllItems(compoundNBT.getCompound("CraftItems"), items, provider);
+        this.setCraftItems(items);
+        if (compoundNBT.contains("currentCraftRecipe")) {
+            this.recipeId = ResourceLocation.parse(compoundNBT.getString("currentCraftRecipe"));
+        }
+    }
+
+    protected void saveAdditional(CompoundTag pCompound, HolderLookup.Provider provider) {
+        super.saveAdditional(pCompound, provider);
+        pCompound.putInt("Capacity", this.capacity);
+        pCompound.putInt("CapacityUsed", this.capacityUsed);
+        pCompound.putInt("Duration", this.duration);
+        pCompound.putInt("Amplifier", this.amplifier);
+        pCompound.putInt("AreaOfEffect", this.aoe);
+        pCompound.putInt("Quaff", this.quaff);
+        pCompound.putInt("HeatTime", this.heatTime);
+        pCompound.putInt("SoulTime", this.soulTime);
+        pCompound.putInt("TakeBrew", this.takeBrew);
+        pCompound.putInt("TotalCost", this.totalCost);
+        pCompound.putInt("ColorUpdate", this.update);
+        pCompound.putInt("Color", this.liquidColor);
+        pCompound.putFloat("Velocity", this.velocity);
+        pCompound.putBoolean("Aquatic", this.isAquatic);
+        pCompound.putBoolean("FireProof", this.isFireProof);
+        pCompound.putFloat("Lingering", this.lingering);
+        pCompound.putBoolean("Brewing", this.isBrewing);
+        pCompound.putBoolean("Crafting", this.isCrafting);
+        pCompound.putString("Mode", this.mode.name());
+        ContainerHelper.saveAllItems(pCompound, this.container, provider);
+        saveEntities(pCompound, this.sacrificed);
+        CompoundTag craftItemsTag = new CompoundTag();
+        ContainerHelper.saveAllItems(craftItemsTag, this.getCraftItems(), true, provider);
+        pCompound.put("CraftItems", craftItemsTag);
+        if (this.recipe != null) {
+            pCompound.putString("currentCraftRecipe", this.recipe.getId().toString());
+        }
+    }
+
+    public static CompoundTag saveEntities(CompoundTag p_18977_, Map<Integer, EntityType<?>> p_18978_) {
+        ListTag listtag = new ListTag();
+
+        for (int i : p_18978_.keySet()) {
+            EntityType<?> entityType = p_18978_.get(i);
+            if (entityType != null) {
+                CompoundTag compoundtag = new CompoundTag();
+                ResourceLocation resourceLocation = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
+                if (resourceLocation != null) {
+                    compoundtag.putInt("Slot", i);
+                    compoundtag.putString("Type", resourceLocation.toString());
+                    listtag.add(compoundtag);
+                }
+            }
+        }
+
+        if (!listtag.isEmpty()) {
+            p_18977_.put("Sacrificed", listtag);
+        }
+
+        return p_18977_;
+    }
+
+    public static void loadAllSacrificed(CompoundTag p_18981_, Map<Integer, EntityType<?>> p_18982_) {
+        ListTag listtag = p_18981_.getList("Sacrificed", 10);
+
+        for(int i = 0; i < listtag.size(); ++i) {
+            CompoundTag compoundtag = listtag.getCompound(i);
+            ResourceLocation resourceLocation = ResourceLocation.parse(compoundtag.getString("Type"));
+            EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(resourceLocation);
+            int j = compoundtag.getInt("Slot");
+            if (entityType != null) {
+                p_18982_.put(j, entityType);
+            }
+        }
+
+    }
+
+    public int getTargetLevel(ItemStack stack, Player player) {
+        if (this.level != null) {
+            Item item = stack.getItem();
+            int waterLevel = this.level.getBlockState(this.worldPosition).getValue(ModStateProperties.LEVEL_BREW);
+            if (mode == Mode.IDLE || mode == Mode.FAILED) {
+                if (item == Items.BUCKET && waterLevel == 3) {
+                    return 0;
+                } else if (item == Items.WATER_BUCKET && waterLevel < 3) {
+                    return 3;
+                } else if (item == Items.GLASS_BOTTLE) {
+                    return waterLevel - 1;
+                } else if (item == Items.POTION && waterLevel < 3 && ModPotionUtil.getPotion(stack) == Potions.WATER) {
+                    return waterLevel + 1;
+                }
+            } else if (mode == Mode.COMPLETED) {
+                if (waterLevel >= 3 && TaglockKit.canAffect(player, stack, Vec3.atCenterOf(this.getBlockPos()), getWitchPoles(this))){
+                    return 0;
+                } else if (waterLevel >= 3 && WaystoneItem.canAffect(player, stack, Vec3.atCenterOf(this.getBlockPos()), getWitchPoles(this))){
+                    return 0;
+                } else if (item == Items.GLASS_BOTTLE || BrewUtils.brewableFood(stack)) {
+                    boolean hat = CuriosFinder.hasCurio(player, itemStack -> itemStack.getItem() instanceof WitchHatItem),
+                            croneHat = CuriosFinder.hasCurio(player, ModItems.CRONE_HAT.get()),
+                            robe = CuriosFinder.hasWitchRobe(player);
+                    boolean blackCat = !player.level().getEntitiesOfClass(Cat.class,
+                            player.getBoundingBox().inflate(16, 8, 16),
+                            cat -> cat.getVariant().is(CatVariant.ALL_BLACK) && cat.getOwner() == player).isEmpty();
+                    float chance = 1.0F;
+                    int times = 0;
+                    int bottle = 0;
+                    if (croneHat){
+                        times += 2;
+                        chance -= 0.25F;
+                    } else if (hat){
+                        times += 1;
+                        chance -= 0.25F;
+                    }
+                    if (robe){
+                        times += 1;
+                        chance -= 0.25F;
+                    }
+                    if (blackCat){
+                        times += 1;
+                        chance -= 0.25F;
+                    }
+                    bottle += SEHelper.getBottleLevel(player);
+                    MobEffectInstance mobEffectInstance = player.getEffect(GoetyEffects.BOTTLING);
+                    if (mobEffectInstance != null){
+                        bottle += mobEffectInstance.getAmplifier() + 1;
+                    }
+                    times += bottle;
+                    if (this.takeBrew < bottle){
+                        this.takeBrew++;
+                        return waterLevel;
+                    } else if (player.level().random.nextFloat() <= chance || this.takeBrew >= times) {
+                        return waterLevel - 1;
+                    } else {
+                        this.takeBrew++;
+                        return waterLevel;
+                    }
+                } else {
+                    return waterLevel;
+                }
+            } else if (this.mode == Mode.CRAFTED) {
+                CauldronRecipe cauldronRecipe = this.getRecipe();
+                if (cauldronRecipe == null) {
+                    return waterLevel;
+                }
+                Ingredient takeWith = cauldronRecipe.getTakeWith();
+                boolean canTake = stack.isEmpty();
+                if (!takeWith.isEmpty()) {
+                    canTake = takeWith.test(stack);
+                }
+                return canTake ? waterLevel - 1 : waterLevel;
+            } else {
+                return waterLevel;
+            }
+        }
+        return -1;
+    }
+
+    private boolean checkFire() {
+        if (this.level != null) {
+            BlockPos pos = new BlockPos(this.getBlockPos().getX(), this.getBlockPos().getY() - 1, this.getBlockPos().getZ());
+            BlockState blockState = this.level.getBlockState(pos);
+            return blockState.getBlock() instanceof BaseFireBlock || blockState.getFluidState().getType() instanceof LavaFluid || blockState.getBlock() instanceof MagmaBlock || (blockState.getBlock() instanceof CampfireBlock && blockState.getValue(BlockStateProperties.LIT));
+        } else {
+            return false;
+        }
+    }
+
+    public void findWitchPoles(){
+        if (this.level != null){
+            this.witchPoles.clear();
+            for (int i = -8; i <= 8; ++i) {
+                for (int j = -8; j <= 8; ++j) {
+                    for (int k = -8; k <= 8; ++k) {
+                        BlockPos blockpos1 = this.getBlockPos().offset(i, j, k);
+                        if (this.level.getBlockState(blockpos1).is(ModBlocks.WITCH_POLE.get())) {
+                            this.witchPoles.add(blockpos1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static int getWitchPoles(BrewCauldronBlockEntity cauldronBlock){
+        cauldronBlock.findWitchPoles();
+        return Mth.clamp(cauldronBlock.witchPoles.size(), 0, 3);
+    }
+
+    private void findCandlesticks(){
+        if (this.level != null){
+            this.candlestickBlockEntityList.clear();
+            for (int i = -8; i <= 8; ++i) {
+                for (int j = -8; j <= 8; ++j) {
+                    for (int k = -8; k <= 8; ++k) {
+                        BlockPos blockpos1 = this.getBlockPos().offset(i, j, k);
+                        if (this.level.getBlockEntity(blockpos1) instanceof ISoulCandle soulCandle) {
+                            if (soulCandle.getSouls() > 0) {
+                                this.candlestickBlockEntityList.add(this.level.getBlockEntity(blockpos1));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        CompoundTag tag = super.getUpdateTag(provider);
+        this.saveAdditional(tag, provider);
+        return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider provider) {
+        this.loadWithComponents(tag, provider);
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public void markUpdated() {
+        this.setChanged();
+        if (this.level != null && !this.level.isClientSide) {
+            this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_ALL);
+        }
+    }
+
+    @Override
+    public int @NotNull [] getSlotsForFace(Direction p_19238_) {
+        return new int[0];
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int p_19235_, ItemStack p_19236_, @Nullable Direction p_19237_) {
+        return false;
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int p_19239_, ItemStack p_19240_, Direction p_19241_) {
+        return false;
+    }
+
+    public enum Mode {
+        IDLE("idle"),
+        BREWING("brewing"),
+        COMPLETED("completed"),
+        CRAFTING("crafting"),
+        CRAFTED("crafted"),
+        FAILED("failed");
+
+        public final String name;
+
+        Mode(String name) {
+            this.name = name;
+        }
+    }
+
+}

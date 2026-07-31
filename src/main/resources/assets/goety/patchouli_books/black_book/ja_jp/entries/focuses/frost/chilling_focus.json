@@ -1,0 +1,19 @@
+{
+  "name": "Chilling Focus",
+  "icon": "goety:chilling_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The focus not only increases your armor points, but it also cause any being that attacks you in melee to freeze. The spell can also be casted onto an allied creature by looking at them while crouch casting."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/chilling_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will apply the effect to nearby allies around the caster or the target."
+    }
+  ]
+}

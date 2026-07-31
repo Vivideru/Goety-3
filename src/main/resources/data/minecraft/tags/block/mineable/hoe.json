@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:leaves",
+    "goety:shriek_obelisk",
+    "goety:sculk_converter",
+    "goety:sculk_grower",
+    "goety:sculk_relay",
+    "goety:chorus_grass_slab"
+  ]
+}

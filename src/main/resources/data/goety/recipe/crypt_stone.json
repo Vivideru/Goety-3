@@ -1,0 +1,12 @@
+{
+    "type":  "goety:cursed_infuser_recipes",
+    "ingredient":  {
+                       "tag":  "c:obsidian"
+                   },
+    "grim":  true,
+    "result":  {
+                   "id":  "goety:crypt_stone"
+               },
+    "cookingTime":  20
+}
+

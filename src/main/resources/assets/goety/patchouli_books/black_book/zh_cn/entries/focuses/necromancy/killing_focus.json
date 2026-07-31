@@ -1,0 +1,19 @@
+{
+  "name": "索命聚晶",
+  "icon": "goety:killing_focus",
+  "category": "goety:focuses/necromancy",
+  "advancement": "goety:goety/kill_a_apostle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶对生物造成的伤害等于目标当前生命值，但同时也会对施法者造成125%的伤害。如果施法者有足够的生命值存活下来，目标将承受全部伤害；否则，它将尽可能多地对目标和施法者造成伤害，而不会杀死施法者."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/killing_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:killing_focus": 1
+  }
+}

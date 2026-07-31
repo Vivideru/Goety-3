@@ -1,0 +1,70 @@
+package com.Polarice3.Goety.common.magic.spells;
+
+import com.Polarice3.Goety.api.magic.ITouchSpell;
+import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Polarice3.Goety.common.magic.BlockSpell;
+import com.Polarice3.Goety.common.magic.SpellStat;
+import com.Polarice3.Goety.config.SpellConfig;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.WandUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.resources.ResourceKey;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class IgniteSpell extends BlockSpell implements ITouchSpell {
+    @Override
+    public int defaultSoulCost() {
+        return SpellConfig.IgniteCost.get();
+    }
+
+    @Override
+    public SoundEvent CastingSound() {
+        return SoundEvents.FIRECHARGE_USE;
+    }
+
+    @Override
+    public int defaultSpellCooldown() {
+        return SpellConfig.IgniteCoolDown.get();
+    }
+
+    @Override
+    public List<ResourceKey<Enchantment>> acceptedEnchantments() {
+        List<ResourceKey<Enchantment>> list = new ArrayList<>();
+        list.add(ModEnchantments.BURNING);
+        return list;
+    }
+
+    public InteractionResult interact(ServerLevel worldIn, LivingEntity caster){
+        double d0 = caster.getAttributeValue(Attributes.BLOCK_INTERACTION_RANGE);
+        double entityReach = caster.getAttributeValue(Attributes.ENTITY_INTERACTION_RANGE);
+        return Items.FIRE_CHARGE.useOn(new UseOnContext(worldIn, null, caster.getUsedItemHand(), new ItemStack(Items.FIRE_CHARGE), MobUtil.rayTrace(caster, Math.max(d0, entityReach), false)));
+    }
+
+    @Override
+    public boolean rightBlock(ServerLevel worldIn, LivingEntity caster, BlockPos target, Direction direction, SpellStat spellStat) {
+        return interact(worldIn, caster) != InteractionResult.FAIL;
+    }
+
+    @Override
+    public void blockResult(ServerLevel worldIn, LivingEntity caster, ItemStack staff, BlockPos target, Direction direction, SpellStat spellStat) {
+    }
+
+    @Override
+    public void touchResult(ServerLevel worldIn, LivingEntity caster, LivingEntity target, ItemStack staff, SpellStat spellStat) {
+        this.playSound(worldIn, target, SoundEvents.FIRECHARGE_USE);
+        target.igniteForSeconds(SpellConfig.IgniteFireSeconds.get() + spellStat.getBurning() + WandUtil.getLevels(ModEnchantments.BURNING, caster));
+    }
+}

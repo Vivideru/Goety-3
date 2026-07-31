@@ -1,0 +1,122 @@
+package com.Polarice3.Goety.common.entities.projectiles;
+
+import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.boss.Apostle;
+import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.CuriosFinder;
+import com.Polarice3.Goety.utils.MathHelper;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.ModDamageSource;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.neoforged.neoforge.common.Tags;
+
+public class FireTornado extends AbstractCyclone {
+
+    public FireTornado(EntityType<? extends AbstractCyclone> p_i50173_1_, Level p_i50173_2_) {
+        super(p_i50173_1_, p_i50173_2_);
+        this.setSize(2.0F);
+    }
+
+    public FireTornado(Level level, LivingEntity shooter, double xPower, double yPower, double zPower) {
+        super(ModEntityType.FIRE_TORNADO.get(), shooter, xPower, yPower, zPower, level);
+        this.setSize(2.0F);
+    }
+
+    public FireTornado(Level p_i1795_1_, double p_i1795_2_, double p_i1795_4_, double p_i1795_6_, double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
+        super(ModEntityType.FIRE_TORNADO.get(), p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_, p_i1795_12_, p_i1795_1_);
+        this.setSize(2.0F);
+    }
+
+    public void tick() {
+        super.tick();
+        if (this.isInPowderSnow){
+            this.lifespan += 10;
+        }
+        if (this.tickCount % 20 == 0){
+            this.playSound(ModSounds.FIRE_TORNADO_AMBIENT.get(), 1.0F, 0.5F);
+        }
+        if (this.getTrueOwner() != null && this.getTrueOwner().getType().is(Tags.EntityTypes.BOSSES)){
+            if (this.getTrueOwner().isDeadOrDying()){
+                this.discard();
+            }
+        }
+    }
+
+    public void fakeRemove(double x, double y, double z){
+        FireTornado cyclone = new FireTornado(this.level(), this.getTrueOwner(), x, y, z);
+        cyclone.setOwner(this.getTrueOwner());
+        cyclone.setTarget(this.getTarget());
+        cyclone.setLifespan(this.getLifespan());
+        cyclone.setTotalLife(this.getTotalLife());
+        cyclone.setSpun(this.getSpun());
+        cyclone.setSize(this.getSize());
+        cyclone.setDamage(this.getDamage());
+        cyclone.setExtraDamage(this.getExtraDamage());
+        cyclone.setPos(this.getX(), this.getY(), this.getZ());
+        this.level().addFreshEntity(cyclone);
+        this.remove();
+    }
+
+    public void remove() {
+        if (!this.level().isClientSide){
+            if (this.getLifespan() >= this.getTotalLife()) {
+                ServerLevel serverWorld = (ServerLevel) this.level();
+                for (int k = 0; k < 200; ++k) {
+                    float f2 = random.nextFloat() * 4.0F;
+                    float f1 = random.nextFloat() * ((float) Math.PI * 2F);
+                    double d1 = Mth.cos(f1) * f2;
+                    double d2 = 0.01D + random.nextDouble() * 0.5D;
+                    double d3 = Mth.sin(f1) * f2;
+                    serverWorld.sendParticles(ParticleTypes.FLAME, this.getX() + d1 * 0.1D, this.getY() + 0.3D, this.getZ() + d3 * 0.1D, 0, d1, d2, d3, 0.5F);
+                }
+                if (this.getTrueOwner() instanceof Apostle apostle){
+                    apostle.setTornadoCoolDown(apostle.getTornadoCoolDown() + MathHelper.secondsToTicks(45));
+                }
+            }
+        }
+        this.discard();
+    }
+
+    public void hurtMobs(LivingEntity living){
+        // Cyclones hit every tick; skip damage calls during i-frames so failed damage does not spam hurt sounds.
+        boolean hellfire = this.getTrueOwner() != null && CuriosFinder.hasUnholySet(this.getTrueOwner());
+        if (living.invulnerableTime <= 0) {
+            if (this.getTrueOwner() != null) {
+                if (hellfire) {
+                    // Keep the hellfire damage type/effect, but do not reset hurt cooldown on a per-tick cyclone.
+                    if (living.hurt(ModDamageSource.hellfire(this, this.getTrueOwner()), (AttributesConfig.get(AttributesConfig.ApostleMagicDamage).floatValue() / 1.5F) + this.getDamage())){
+                        living.addEffect(new MobEffectInstance(GoetyEffects.BURN_HEX, 1200));
+                    }
+                } else {
+                    living.hurt(ModDamageSource.magicFireBreath(this, this.getTrueOwner()), 4.0F + this.getDamage());
+                }
+            } else {
+                if (!living.fireImmune()) {
+                    living.hurt(this.damageSources().inFire(), 4.0F + this.getDamage());
+                }
+            }
+        }
+        if (living instanceof Player player){
+            if (player.isBlocking()) {
+                player.disableShield();
+            }
+        } else {
+            MobUtil.disableShield(living);
+        }
+    }
+
+    protected ParticleOptions getTrailParticle() {
+        return ParticleTypes.FLAME;
+    }
+
+}

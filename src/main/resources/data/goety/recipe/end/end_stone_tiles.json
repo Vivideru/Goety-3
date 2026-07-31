@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "S":  {
+                          "item":  "minecraft:end_stone_bricks"
+                      }
+            },
+    "pattern":  [
+                    "SS",
+                    "SS"
+                ],
+    "result":  {
+                   "count":  4,
+                   "id":  "goety:end_stone_tiles"
+               }
+}
+

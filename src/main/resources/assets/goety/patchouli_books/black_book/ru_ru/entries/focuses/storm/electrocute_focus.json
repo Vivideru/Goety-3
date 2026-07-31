@@ -1,0 +1,19 @@
+{
+  "name": "Фокус электризации",
+  "icon": "goety:electrocute_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Выстреливает электрическим шаром, который следует за жертвой, на которую вы смотрели, а затем поражает её или любой твердый объект."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/electrocute_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Использование $(l:crafts/staff/storm_staff)штормового посоха$() позволяет создавать электрические сферы, которые с большим шансом вызывают у врагов судороги и взрываются, нанося урон по области."
+    }
+  ]
+}

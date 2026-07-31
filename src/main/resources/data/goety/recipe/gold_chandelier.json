@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "GGG",
+                    "GIG",
+                    "GGG"
+                ],
+    "key":  {
+                "G":  {
+                          "item":  "goety:gold_candlestick"
+                      },
+                "I":  {
+                          "tag":  "c:storage_blocks/gold"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:gold_chandelier",
+                   "count":  1
+               }
+}
+

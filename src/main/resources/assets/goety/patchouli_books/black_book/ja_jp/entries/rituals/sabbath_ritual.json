@@ -1,0 +1,34 @@
+{
+  "name": "Sabbath Ritual",
+  "icon": "minecraft:crying_obsidian",
+  "category": "goety:rituals",
+  "sortnum": 10,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Requirements: $(li)8 Crying Obsidian $(li)16 Obsidian $(li)4 Soul Fires"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["goety:textures/gui/entries/sabbath_ritual.png"],
+      "border": true,
+      "text": "An example of how the ritual can be placed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You've heard rumors of a powerful being that lurks within the Nether. Rumor has it that a cabal of Nether Cultists met with what a being they called an 'Apostle' in a circle of Obsidian where they appeared before them and told them secrets."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:summon_apostle2"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:summon_apostle"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Perhaps, with some trickery, magic and a baiting material, you are capable of summoning one for your own purposes, though you shouldn't summon one within the Nether where they're at their most powerful. (Recommended Equipment: Enchanted Armor, Smite Weapons and Efficiency Pickaxe)"
+    }
+  ]
+}

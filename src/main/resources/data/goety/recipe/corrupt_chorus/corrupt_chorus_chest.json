@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:corrupt_chorus_planks"
+                      },
+                "C":  {
+                          "tag":  "c:chests/wooden"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:corrupt_chorus_chest",
+                   "count":  2
+               }
+}
+

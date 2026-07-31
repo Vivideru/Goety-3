@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:mossy_cragrocks_heavy"
+                   },
+    "result":  {
+                   "id":  "goety:mossy_cragrocks_heavy_slab",
+                   "count":  2
+               }
+}

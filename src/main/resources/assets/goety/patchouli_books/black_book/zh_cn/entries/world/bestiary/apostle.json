@@ -1,0 +1,64 @@
+{
+  "name": "下界使徒",
+  "icon": "goety:unholy_blood",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_apostle",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "作为亚波伦最亲近的下界教追随者，这些可怕的生物在他们的主人行走于主世界时，便与其一同传播神圣之火的教义。一些使徒曾经是国王、领主或者贵族，而其他的则从普通村民到最愚蠢的笨蛋都有。当使徒出现时，海洋会沸腾，天空也会被雾所笼罩。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:apostle",
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当面对一个暴力的异教徒时，使徒不屑于使用自己的真正力量。他们会向异教徒射箭，偶尔发射一道狱火爆破或者召唤恶魔仆人来保护自己。这个恶魔在被击中若干次或者释放完几个法术后会瞬移，并留下一团烟雾。."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当生命值降至最大生命值的一半时，使徒将恢复生命值并展现出他们真正的力量。当在主世界或类似的维度中战斗时，一旦他们以恐怖的形态现身，风暴将会降临在主世界。下界流星将在他们周围坠落，真正的战斗就此开始。使徒会更频繁地尝试瞬移，并且他们射出的箭在伤害和效果方面都比第一阶段时强大得多。."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "在整个战斗过程中，他们会向目标施放出恐怖的法术，从狱云火雨、再到火焰龙卷风、再到唤起曾坠入地狱之火的狱魂轰炸敌人，若目标靠近，使徒会就会召唤出一个炎爆陷阱，陷阱会在片刻后爆炸并将附近的任何生物抛向天空，炎爆和火焰龙卷风会用灼烧魔印诅咒目标，使目标的防火效果失效"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "一旦使徒的箭射中受害者，他们就会恢复生命值。然而，当被带有亡灵杀手附魔的武器击中时，根据附魔等级的不同，他们将在一段时间内无法恢复生命值。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:unholy_blood",
+      "text": "使徒的血液中流淌着死灵和下界的能量。有了它，人们不仅能够欺骗死亡，还能够创造奇迹。似乎一名使徒的血液并不太多，只有将其杀死才能提取到可观的量。当使徒被杀死时，暴风雨将会平息，流星也将停止坠落。有传言说，他们的血液在下界内时会保持纯净……"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:inferno",
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
+      "text": "狱焰是烈焰人的近亲，但它们被特地增强过，不会被普通的水所阻挡，而且它们的火焰甚至能灼伤那些对火免疫的生物。."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:malghast",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "这些痛苦的怪物体型较小，但远胜于恶魂，它们喷出能烧穿一切的狱火爆破。偶尔，这些生物会发射出一个普通的火球，这中火球可以被回击到它们。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:unholy_blood[minecraft:custom_data={Pure:1b}]",
+      "text": "有传言说，他们在下界掉落的血液，是最为至纯的..."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:unholy_blood": 6
+  }
+}

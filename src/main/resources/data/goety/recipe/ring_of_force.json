@@ -1,0 +1,31 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:gold_ingot"
+                        },
+    "craftType":  "magic",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "tag":  "c:sand"
+                        },
+                        {
+                            "item":  "minecraft:piston"
+                        },
+                        {
+                            "tag":  "c:ender_pearls"
+                        },
+                        {
+                            "tag":  "c:gems/lapis"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:ring_of_force"
+               }
+}
+

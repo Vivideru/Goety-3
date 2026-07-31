@@ -1,0 +1,22 @@
+{
+  "name": "Foco de Granizo",
+  "icon": "goety:hail_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Invoca uma nuvem de neve acima de um bloco ou criatura alvo, onde irá chover neve congelante, causando pequeno dano e aplicando Congelamento por 5 segundos."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/hail_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/frost_staff)Cajado Gélido$() faz a nuvem de granizo seguir um alvo válido."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hail_focus": 1
+  }
+}

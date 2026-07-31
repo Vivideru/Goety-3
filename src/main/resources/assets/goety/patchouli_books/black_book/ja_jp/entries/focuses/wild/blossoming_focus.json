@@ -1,0 +1,22 @@
+{
+  "name": "Blossoming Focus",
+  "icon": "goety:blossoming_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The spell lobs an thorny ball of wild energies that will grow several poisonous thorns around the area of its impact."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blossoming_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() increases the radius."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blossoming_focus": 1
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Anel da Ganância",
+  "icon": "goety:ring_of_want",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O Anel da Ganância faz com que criaturas derrubem mais saque quando mortas por suas magias ou por criaturas conjuradas por você. Para que o Anel funcione, você deve encantá-lo, onde ele aceitará o Encantamento de Ganância, que funciona de forma semelhante ao Saque."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:ring_of_want"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar uma magia ou fazer um Servo matar enquanto segura uma arma com Saque pode fazer com que o encantamento substitua o Anel, se o nível de Saque for maior que o nível de Ganância do Anel. Usar o Anel da Ganância com Ganância III ou mais fará com que suas Presas tenham 25%% de chance (100%% se for um Jogador) de derrubar a cabeça/crânio de uma criatura."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ring_of_want": 1
+  }
+}

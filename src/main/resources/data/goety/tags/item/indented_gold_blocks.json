@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:indented_golds",
+    "goety:indented_gold_slab",
+    "goety:indented_gold_stairs",
+    "goety:indented_gold_wall",
+    "goety:gold_trapdoor"
+  ]
+}

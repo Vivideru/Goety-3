@@ -1,0 +1,2034 @@
+package com.Polarice3.Goety.config;
+
+import com.google.common.collect.Lists;
+import net.neoforged.neoforge.common.ModConfigSpec;
+
+import java.util.List;
+
+public class SpellConfig {
+
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SpellDamageMultiplier;
+    public static final ModConfigSpec.ConfigValue<Double> SpellDamageMultiplierDecimal;
+
+    public static final ModConfigSpec.ConfigValue<Integer> VexCost;
+    public static final ModConfigSpec.ConfigValue<Integer> VexDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> VexCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> VexSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> VexLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FangCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FangDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FangCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FangDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> FangGainSouls;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SpikeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SpikeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SpikeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SpikeDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> SpikeGainSouls;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ZombieCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ZombieDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ZombieCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> ZombieSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> ZombieLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SkeletonCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SkeletonDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SkeletonCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SkeletonSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SkeletonLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ReaperCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ReaperDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ReaperCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> ReaperSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> ReaperLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WraithCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WraithDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WraithCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WraithSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WraithLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> PhantomCost;
+    public static final ModConfigSpec.ConfigValue<Integer> PhantomDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> PhantomCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> PhantomSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> PhantomLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardCost;
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> GhostFireCost;
+    public static final ModConfigSpec.ConfigValue<Integer> GhostFireDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> GhostFireCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> LeechingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> LeechingChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> LeechingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> LeechingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> LeechingPercent;
+    public static final ModConfigSpec.ConfigValue<Double> LeechingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> KillingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> KillingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> KillingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> KillingFeedback;
+
+    public static final ModConfigSpec.ConfigValue<Integer> HauntedSkullCost;
+    public static final ModConfigSpec.ConfigValue<Integer> HauntedSkullDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> HauntedSkullCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> HauntedSkullSummonDown;
+    public static final ModConfigSpec.ConfigValue<Double> HauntedSkullDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> HauntedSkullGriefing;
+    public static final ModConfigSpec.ConfigValue<Integer> SkullLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WitherSkullCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WitherSkullDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WitherSkullCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> WitherSkullDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> WitherSkullGriefing;
+
+    public static final ModConfigSpec.ConfigValue<Integer> GhastCost;
+    public static final ModConfigSpec.ConfigValue<Integer> GhastDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> GhastCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> GhastSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> GhastLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlazeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlazeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlazeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlazeSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlazeLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> HoggingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> HoggingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> HoggingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> HoggingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> HoggingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FeastCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FeastChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> FeastDuration;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TeethCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TeethDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> TeethCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ViciousToothDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FireballCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FireballDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FireballCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FireballDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> FireballGriefing;
+
+    public static final ModConfigSpec.ConfigValue<Integer> LavaballCost;
+    public static final ModConfigSpec.ConfigValue<Integer> LavaballDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> LavaballCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> LavaballDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> LavaballGriefing;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BombardmentCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BombardmentChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> BombardmentShots;
+    public static final ModConfigSpec.ConfigValue<Integer> BombardmentDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BombardmentCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MeteorShowerCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MeteorShowerChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> MeteorShowerShots;
+    public static final ModConfigSpec.ConfigValue<Integer> MeteorShowerDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MeteorShowerCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MagmaBombCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MagmaBombDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MagmaBombCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FireBlastCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FireBlastDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FireBlastCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FireBlastDamage;
+    public static final ModConfigSpec.ConfigValue<Double> FireBlastMaxDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FlameStrikeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FlameStrikeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FlameStrikeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FlameStrikeDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SoulBoltCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulBoltDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulBoltCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SoulBoltDamage;
+    public static final ModConfigSpec.ConfigValue<Double> PoisonBoltDamage;
+    public static final ModConfigSpec.ConfigValue<Double> WitherBoltDamage;
+    public static final ModConfigSpec.ConfigValue<Double> NecroBoltDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MagicBoltCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MagicBoltDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MagicBoltCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> MagicBoltDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SwordCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SwordDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SwordCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IceSpikeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IceSpikeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IceSpikeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> IceSpikeDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IceStormCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IceStormDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IceStormCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> IceStormDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ChargeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ChargeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ChargeDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IllusionCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IllusionDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IllusionCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IgniteCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IgniteCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> IgniteFireSeconds;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FireBreathCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FireBreathChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> FireBreathDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FireBreathCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FireBreathDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> DragonFireGriefing;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FrostBreathCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostBreathChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostBreathDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostBreathCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FrostBreathDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> DragonFrostGriefing;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ShockingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ShockingChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> ShockingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ShockingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ShockingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WaterJetCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WaterJetChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> WaterJetDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WaterJetCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> WaterJetDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SoulLightCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulLightDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulLightCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> GlowLightCost;
+    public static final ModConfigSpec.ConfigValue<Integer> GlowLightDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> GlowLightCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IlluminateCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IlluminateChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> IlluminateDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IlluminateMinLightLevel;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IceChunkCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IceChunkDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IceChunkCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> IceChunkDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> HailCost;
+    public static final ModConfigSpec.ConfigValue<Integer> HailDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> HailCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> HailDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlizzardCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlizzardChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> BlizzardDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlizzardCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ChillingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ChillingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ChillingCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FrostNovaCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostNovaDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostNovaCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostNovaTargetCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> FrostNovaDamage;
+    public static final ModConfigSpec.ConfigValue<Double> FrostNovaMaxDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FrostbornCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostbornDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostbornCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> FrostbornSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> IceGolemLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BarricadeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BarricadeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BarricadeCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> QuakingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> QuakingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> QuakingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> QuakingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> EarthFistCost;
+    public static final ModConfigSpec.ConfigValue<Integer> EarthFistDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> EarthFistCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> EarthFistDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SmackStoneCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SmackStoneDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SmackStoneCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SmackStoneDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MinistrousCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MinistrousDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MinistrousCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> MinistrousSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> MinistrousLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> PulverizeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> PulverizeCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> RotationCost;
+    public static final ModConfigSpec.ConfigValue<Integer> RotationCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BurrowingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BurrowingChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> BurrowingInitialSpeed;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SensingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SensingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SensingCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> EruptionCost;
+    public static final ModConfigSpec.ConfigValue<Integer> EruptionDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> EruptionCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> PyroclastDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> PyroclastStun;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ScatterCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ScatterDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ScatterCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ScatterMineDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> LaunchCost;
+    public static final ModConfigSpec.ConfigValue<Integer> LaunchDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> LaunchCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> FlyingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> FlyingChargeUp;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WhirlwindCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WhirlwindChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> WhirlwindDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WhirlwindCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CushionCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CushionDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CushionCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CycloneCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CycloneDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CycloneCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> UpdraftCost;
+    public static final ModConfigSpec.ConfigValue<Integer> UpdraftDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> UpdraftCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> UpdraftBlastDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WindBlastCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WindBlastDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WindBlastCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> RazorWindCost;
+    public static final ModConfigSpec.ConfigValue<Integer> RazorWindDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> RazorWindCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> RazorWindDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TremblingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TremblingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> TremblingCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SwarmCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SwarmChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> SwarmDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SwarmCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SwarmDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> PoisonDartCost;
+    public static final ModConfigSpec.ConfigValue<Integer> PoisonDartDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> PoisonDartCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> PoisonDartDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlossomCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlossomDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlossomCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> BlossomDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> GrappleCost;
+    public static final ModConfigSpec.ConfigValue<Integer> GrappleDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> GrappleCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> HuntingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> HuntingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> HuntingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> HuntingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> HuntingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MaulingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MaulingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MaulingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> MaulingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> MaulingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SlimyCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SlimyDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SlimyCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SlimySummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SlimyLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CarrionCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CarrionDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CarrionCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> CarrionSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> CarrionLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> OvergrowthCost;
+    public static final ModConfigSpec.ConfigValue<Integer> OvergrowthDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> OvergrowthCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> EntanglingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> EntanglingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> EntanglingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> EntanglingStaffAmount;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WhisperCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WhisperDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WhisperCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WhisperSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WhisperLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> LeapingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> LeapingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> LeapingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> LeapingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> LeapleafLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderboltCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderboltDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderboltCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ThunderboltDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ElectroOrbCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ElectroOrbDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ElectroOrbCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ElectroOrbDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SurgingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SurgingChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> SurgingShots;
+    public static final ModConfigSpec.ConfigValue<Integer> SurgingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SurgingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SurgingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SpriteCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SpriteDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SpriteCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SpriteSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SpriteLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MonsoonCost;
+    public static final ModConfigSpec.ConfigValue<Integer> MonsoonDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> MonsoonCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> DischargeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> DischargeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> DischargeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> DischargeDamage;
+    public static final ModConfigSpec.ConfigValue<Double> DischargeMaxDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BoltingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BoltingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BoltingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> BoltingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> LightningCost;
+    public static final ModConfigSpec.ConfigValue<Integer> LightningDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> LightningCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> LightningDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderstormCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderstormDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ThunderstormCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ThunderstormDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BouncyBubbleCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BouncyBubbleDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BouncyBubbleCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> BouncyBubbleDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SteamingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SteamingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SteamingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SteamingDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TridentStormCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TridentStormCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> TridentStormDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> PrismaBeamCost;
+    public static final ModConfigSpec.ConfigValue<Integer> PrismaBeamDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> PrismaBeamCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> PrismaBeamDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> GuardianCost;
+    public static final ModConfigSpec.ConfigValue<Integer> GuardianDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> GuardianCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> GuardianSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> GuardianLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BiomineCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BiomineDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BiomineCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> BiomineDamage;
+    public static final ModConfigSpec.ConfigValue<Double> BiomineAcidDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WaterWhipCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WaterWhipDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WaterWhipCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> WaterWhipDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TidalCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TidalDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> TidalCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> TidalBaseDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CallCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CallDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CallCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TroopCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TroopDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> TroopCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> RecallCost;
+    public static final ModConfigSpec.ConfigValue<Integer> RecallDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> RecallCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> EnderChestCost;
+    public static final ModConfigSpec.ConfigValue<Integer> EnderChestDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> EnderChestCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BanishCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BanishCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BanishMaxHealth;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlinkCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlinkDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlinkCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> EndWalkCost;
+    public static final ModConfigSpec.ConfigValue<Integer> EndWalkDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> EndWalkCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> EndWalkEffectDuration;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TunnelCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TunnelCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> TunnelDefaultLifespan;
+    public static final ModConfigSpec.ConfigValue<Integer> TunnelDefaultDistance;
+    public static final ModConfigSpec.ConfigValue<Boolean> TunnelHaveBlacklist;
+
+    public static final ModConfigSpec.ConfigValue<Integer> RuptureCost;
+    public static final ModConfigSpec.ConfigValue<Integer> RuptureDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> RuptureCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> RuptureDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> VoidShockCost;
+    public static final ModConfigSpec.ConfigValue<Integer> VoidShockDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> VoidShockCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> VoidShockDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> VoidBombCost;
+    public static final ModConfigSpec.ConfigValue<Integer> VoidBombDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> VoidBombCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> VoidBombDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WatchlingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WatchlingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WatchlingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WatchlingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> WatchlingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BlastlingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BlastlingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BlastlingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlastlingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BlastlingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SnarelingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SnarelingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SnarelingCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SnarelingSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SnarelingLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CraftingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CraftingDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CraftingCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ShockwaveCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ShockwaveDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ShockwaveCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ShockwaveDamage;
+    public static final ModConfigSpec.ConfigValue<Double> ShockwaveMaxDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> IronHideCost;
+    public static final ModConfigSpec.ConfigValue<Integer> IronHideDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> IronHideCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> BulwarkCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BulwarkDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BulwarkCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BulwarkShieldAmount;
+    public static final ModConfigSpec.ConfigValue<Integer> BulwarkShieldTime;
+    public static final ModConfigSpec.ConfigValue<Double> BulwarkShieldBreakExtra;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SoulHealCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulHealDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulHealCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> SoulHealAmount;
+
+    public static final ModConfigSpec.ConfigValue<Integer> WeakeningCost;
+    public static final ModConfigSpec.ConfigValue<Integer> WeakeningDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> WeakeningCoolDown;
+
+    public static final ModConfigSpec.ConfigValue<Integer> ArrowRainCost;
+    public static final ModConfigSpec.ConfigValue<Integer> ArrowRainChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> ArrowRainDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> ArrowRainCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> ArrowRainExtraDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> TelekinesisCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TelekinesisChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> TelekinesisMaxHealth;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SonicBoomCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SonicBoomDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> SonicBoomCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> SonicBoomDamage;
+
+    public static final ModConfigSpec.ConfigValue<Integer> CorruptionCost;
+    public static final ModConfigSpec.ConfigValue<Integer> CorruptionChargeUp;
+    public static final ModConfigSpec.ConfigValue<Integer> CorruptionDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> CorruptionCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> CorruptedBeamDamage;
+    public static final ModConfigSpec.ConfigValue<Boolean> CorruptionImmobile;
+
+    public static final ModConfigSpec.ConfigValue<Integer> SpiderLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> BroodMotherLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> NecromancerLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> DrownedNecromancerLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> WitherNecromancerLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> BoundIllagerLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackBeastLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> WildfireLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> RedstoneGolemLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> GraveGolemLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> RedstoneMonstrosityGlobalLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> RedstoneMonstrosityPlayerLimit;
+
+    public static final ModConfigSpec.ConfigValue<Integer> MaxSoulEaterLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxWantingLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxPotencyLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxRadiusLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxRangeLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxDurationLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxBurningLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> MaxVelocityLevel;
+    public static final ModConfigSpec.ConfigValue<Integer> PotencyPower;
+    public static final ModConfigSpec.ConfigValue<Boolean> FocusEnchantsTrades;
+
+    public static final ModConfigSpec.ConfigValue<Boolean> OwnerHitCommand;
+    public static final ModConfigSpec.ConfigValue<Integer> OwnerHitKill;
+    public static final ModConfigSpec.ConfigValue<Boolean> EnvironmentalCost;
+    public static final ModConfigSpec.ConfigValue<Boolean> EnchantMultiCost;
+    public static final ModConfigSpec.ConfigValue<Boolean> SummonDown;
+    public static final ModConfigSpec.ConfigValue<Boolean> SpellDamageEnderDragon;
+    public static final ModConfigSpec.ConfigValue<Boolean> FullStopCast;
+    public static final ModConfigSpec.ConfigValue<Boolean> SpellExplosionDouble;
+
+    public static ModConfigSpec.ConfigValue<List<? extends String>> TelekinesisBlackList;
+    public static ModConfigSpec.ConfigValue<List<? extends String>> BanishBlackList;
+
+    public static <T> T get(ModConfigSpec.ConfigValue<T> configValue) {
+        try {
+            return configValue.get();
+        } catch (IllegalStateException exception) {
+            if (!"Cannot get config value before config is loaded.".equals(exception.getMessage())) {
+                throw exception;
+            }
+            // Some entity bootstrap paths still read spell tuning before NeoForge binds common configs.
+            return configValue.getDefault();
+        }
+    }
+
+    static {
+        BUILDER.push("General");
+        SpellDamageMultiplier = BUILDER.comment("Multiplies the damage of spells by this amount, this will will be multiplied by 'spellDamageMultiplierDecimal', Default: 1")
+                .defineInRange("spellDamageMultiplier", 1, 1, Integer.MAX_VALUE);
+        SpellDamageMultiplierDecimal = BUILDER.comment("Multiplies the damage of spells by this amount in decimals, this will will be multiplied by 'spellDamageMultiplier', Default: 1.0")
+                .defineInRange("spellDamageMultiplierDecimal", 1.0, 0.0, Double.MAX_VALUE);
+        OwnerHitCommand = BUILDER.comment("Whether Servants change navigation modes by hitting them, put false to make them change by right-clicking on them, Default: true")
+                .define("ownerHitCommand", true);
+        OwnerHitKill = BUILDER.comment("Whether Servants are killed/dismissed by hitting them while crouching with a wand or staff, put 1 to make them change by right-clicking on them while crouching, put 2 to disable it, Default: 0")
+                .defineInRange("ownerHitKill", 0, 0, 2);
+        EnvironmentalCost = BUILDER.comment("Spells have their soul cost reduced or increased depending on the surroundings around the caster, Default: true")
+                .define("environmentalCost", true);
+        EnchantMultiCost = BUILDER.comment("Spells cost double soul cost if enchanted, Default: true")
+                .define("enchantMultiCost", true);
+        SummonDown = BUILDER.comment("Certain spells that summons servants will give player Summon Down effect, Default: true")
+                .define("summonDown", true);
+        SpellDamageEnderDragon = BUILDER.comment("Certain spells can damage the Ender Dragon, Default: true")
+                .define("spellDamageEnderDragon", true);
+        FullStopCast = BUILDER.comment("Casting Spells will cause the caster to completely stop moving, Default: false")
+                .define("fullStopCast", false);
+        SpellExplosionDouble = BUILDER.comment("Whether explosions made by SpellExplosion class has double the radius, Default: false")
+                .define("spellExplosionDouble", false);
+        BUILDER.pop();
+        BUILDER.push("Spells");
+            BUILDER.push("Vexing Spell");
+            VexCost = BUILDER.comment("Vexing Spell Cost, Default: 18")
+                    .defineInRange("vexCost", 18, 0, Integer.MAX_VALUE);
+            VexDuration = BUILDER.comment("Time to cast Vexing Spell, Default: 100")
+                    .defineInRange("vexTime", 100, 0, 72000);
+            VexCoolDown = BUILDER.comment("Vexing Spell Cooldown, Default: 340")
+                    .defineInRange("vexCoolDown", 340, 0, Integer.MAX_VALUE);
+            VexSummonDown = BUILDER.comment("Vexing Spell Summon Down, Default: 340")
+                    .defineInRange("vexSummonDown", 340, 0, 72000);
+            VexLimit = BUILDER.comment("Number of Vex Servants that an individual player can have in total, Default: 8")
+                    .defineInRange("vexLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Biting Spell && Magic Fangs");
+            FangCost = BUILDER.comment("Biting Spell Cost, Default: 8")
+                    .defineInRange("fangCost", 8, 0, Integer.MAX_VALUE);
+            FangDuration = BUILDER.comment("Time to cast Biting Spell, Default: 40")
+                    .defineInRange("fangTime", 40, 0, 72000);
+            FangCoolDown = BUILDER.comment("Biting Spell Cooldown, Default: 100")
+                    .defineInRange("fangCoolDown", 100, 0, Integer.MAX_VALUE);
+            FangDamage = BUILDER.comment("How much base damage Magic Fangs deals, Default: 6.0")
+                    .defineInRange("fangDamage", 6.0, 1.0, Double.MAX_VALUE);
+            FangGainSouls = BUILDER.comment("Amount of Soul Energy Magic Fangs gives when hitting mob(s), Default: 1")
+                    .defineInRange("fangGainSouls", 1, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Shredding Spell && Royal Spikes");
+            SpikeCost = BUILDER.comment("Shredding Spell Cost, Default: 16")
+                    .defineInRange("spikeCost", 16, 0, Integer.MAX_VALUE);
+            SpikeDuration = BUILDER.comment("Time to cast Shredding Spell, Default: 160")
+                    .defineInRange("spikeTime", 160, 0, 72000);
+            SpikeCoolDown = BUILDER.comment("Shredding Spell Cooldown, Default: 100")
+                    .defineInRange("spikeCoolDown", 100, 0, Integer.MAX_VALUE);
+            SpikeDamage = BUILDER.comment("How much base damage Royal Spikes deals per second, Default: 1.0")
+                    .defineInRange("spikeDamage", 1.0, 1.0, Double.MAX_VALUE);
+            SpikeGainSouls = BUILDER.comment("Amount of Soul Energy Royal Spikes gives when hitting mob(s), Default: 1")
+                    .defineInRange("spikeGainSouls", 1, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Rotting Spell");
+            ZombieCost = BUILDER.comment("Rotting Spell Cost, Default: 5")
+                    .defineInRange("zombieCost", 5, 0, Integer.MAX_VALUE);
+            ZombieDuration = BUILDER.comment("Time to cast Rotting Spell, Default: 20")
+                    .defineInRange("zombieTime", 20, 0, 72000);
+            ZombieCoolDown = BUILDER.comment("Rotting Spell Cooldown, Default: 100")
+                    .defineInRange("zombieCoolDown", 100, 0, Integer.MAX_VALUE);
+            ZombieSummonDown = BUILDER.comment("Rotting Spell Summon Down, Default: 120")
+                    .defineInRange("zombieSummonDown", 120, 0, 72000);
+            ZombieLimit = BUILDER.comment("Number of Zombie Servants that can a player can have, Default: 32")
+                    .defineInRange("zombieLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Osseous Spell");
+            SkeletonCost = BUILDER.comment("Osseous Spell Cost, Default: 8")
+                    .defineInRange("skeletonCost", 8, 0, Integer.MAX_VALUE);
+            SkeletonDuration = BUILDER.comment("Time to cast Osseous Spell, Default: 60")
+                    .defineInRange("skeletonTime", 60, 0, 72000);
+            SkeletonCoolDown = BUILDER.comment("Osseous Spell Cooldown, Default: 100")
+                    .defineInRange("skeletonCoolDown", 100, 0, Integer.MAX_VALUE);
+            SkeletonSummonDown = BUILDER.comment("Osseous Spell Summon Down, Default: 120")
+                    .defineInRange("skeletonSummonDown", 120, 0, 72000);
+            SkeletonLimit = BUILDER.comment("Number of Skeleton Servants that an individual player can have in total, Default: 32")
+                    .defineInRange("skeletonLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Reaping Spell");
+            ReaperCost = BUILDER.comment("Reaping Spell Cost, Default: 24")
+                    .defineInRange("reaperCost", 24, 0, Integer.MAX_VALUE);
+            ReaperDuration = BUILDER.comment("Time to cast Reaping Spell, Default: 60")
+                    .defineInRange("reaperTime", 60, 0, 72000);
+            ReaperCoolDown = BUILDER.comment("Reaping Spell Cooldown, Default: 100")
+                    .defineInRange("reaperCoolDown", 100, 0, Integer.MAX_VALUE);
+            ReaperSummonDown = BUILDER.comment("Reaping Spell Summon Down, Default: 300")
+                    .defineInRange("reaperSummonDown", 300, 0, 72000);
+            ReaperLimit = BUILDER.comment("Number of Reaper Servants that a player can have, Default: 8")
+                    .defineInRange("reaperLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Spooky Spell");
+            WraithCost = BUILDER.comment("Spooky Spell Cost, Default: 24")
+                    .defineInRange("wraithCost", 24, 0, Integer.MAX_VALUE);
+            WraithDuration = BUILDER.comment("Time to cast Spooky Spell, Default: 60")
+                    .defineInRange("wraithTime", 60, 0, 72000);
+            WraithCoolDown = BUILDER.comment("Spooky Spell Cooldown, Default: 100")
+                    .defineInRange("wraithCoolDown", 100, 0, Integer.MAX_VALUE);
+            WraithSummonDown = BUILDER.comment("Spooky Spell Summon Down, Default: 300")
+                    .defineInRange("wraithSummonDown", 300, 0, 72000);
+            WraithLimit = BUILDER.comment("Number of Wraith Servants that a player can have, Default: 6")
+                    .defineInRange("wraithLimit", 6, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Phantasm Spell");
+            PhantomCost = BUILDER.comment("Phantasm Spell Cost, Default: 24")
+                    .defineInRange("phantomCost", 24, 0, Integer.MAX_VALUE);
+            PhantomDuration = BUILDER.comment("Time to cast Phantasm Spell, Default: 60")
+                    .defineInRange("phantomTime", 60, 0, 72000);
+            PhantomCoolDown = BUILDER.comment("Phantasm Spell Cooldown, Default: 100")
+                    .defineInRange("phantomCoolDown", 100, 0, Integer.MAX_VALUE);
+            PhantomSummonDown = BUILDER.comment("Phantasm Spell Summon Down, Default: 300")
+                    .defineInRange("phantomSummonDown", 300, 0, 72000);
+            PhantomLimit = BUILDER.comment("Number of Phantom Servants that a player can have, Default: 16")
+                    .defineInRange("phantomLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Vanguard Spell");
+            VanguardCost = BUILDER.comment("Vanguard Spell Cost, Default: 24")
+                    .defineInRange("vanguardCost", 24, 0, Integer.MAX_VALUE);
+            VanguardDuration = BUILDER.comment("Time to cast Vanguard Spell, Default: 180")
+                    .defineInRange("vanguardTime", 180, 0, 72000);
+            VanguardCoolDown = BUILDER.comment("Vanguard Spell Cooldown, Default: 100")
+                    .defineInRange("vanguardCoolDown", 100, 0, Integer.MAX_VALUE);
+            VanguardSummonDown = BUILDER.comment("Vanguard Spell Summon Down, Default: 300")
+                    .defineInRange("vanguardSummonDown", 300, 0, 72000);
+            VanguardLimit = BUILDER.comment("Number of Vanguard Servants that an individual player can have in total, Default: 16")
+                    .defineInRange("vanguardLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Blackguard Spell");
+            BlackguardCost = BUILDER.comment("Blackguard Spell Cost, Default: 48")
+                    .defineInRange("blackguardCost", 48, 0, Integer.MAX_VALUE);
+            BlackguardDuration = BUILDER.comment("Time to cast Blackguard Spell, Default: 180")
+                    .defineInRange("blackguardTime", 180, 0, 72000);
+            BlackguardCoolDown = BUILDER.comment("Blackguard Spell Cooldown, Default: 1200")
+                    .defineInRange("blackguardCoolDown", 1200, 0, Integer.MAX_VALUE);
+            BlackguardSummonDown = BUILDER.comment("Blackguard Spell Summon Down, Default: 300")
+                    .defineInRange("blackguardSummonDown", 300, 0, 72000);
+            BlackguardLimit = BUILDER.comment("Number of Blackguard Servants that an individual player can have in total, Default: 16")
+                    .defineInRange("blackguardLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ghost Fire Spell");
+            GhostFireCost = BUILDER.comment("Ghost Fire Spell Cost, Default: 16")
+                    .defineInRange("ghostFireCost", 16, 0, Integer.MAX_VALUE);
+            GhostFireDuration = BUILDER.comment("Time to cast Ghost Fire Spell, Default: 40")
+                    .defineInRange("ghostFireTime", 40, 0, 72000);
+            GhostFireCoolDown = BUILDER.comment("Ghost Fire Spell Cooldown, Default: 200")
+                    .defineInRange("ghostFireCoolDown", 200, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Leeching Spell");
+            LeechingCost = BUILDER.comment("Leeching Spell Cost, Default: 8")
+                    .defineInRange("leechingCost", 8, 0, Integer.MAX_VALUE);
+            LeechingChargeUp = BUILDER.comment("How many ticks the Leeching Spell much charge before casting, Default: 0")
+                    .defineInRange("leechingChargeUp", 0, 0, Integer.MAX_VALUE);
+            LeechingDuration = BUILDER.comment("How long the Leeching Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 0")
+                    .defineInRange("leechingTime", 0, 0, 72000);
+            LeechingCoolDown = BUILDER.comment("Leeching Spell Cooldown, Default: 0")
+                    .defineInRange("leechingCoolDown", 0, 0, 72000);
+            LeechingPercent = BUILDER.comment("Leeching Spell healing percentage, Default: 100")
+                    .defineInRange("leechingPercent", 100, 1, 100);
+            LeechingDamage = BUILDER.comment("How much base damage Leeching Spell deals per second, Default: 1.0")
+                    .defineInRange("leechingDamage", 1.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Killing Spell");
+            KillingCost = BUILDER.comment("Killing Spell Cost, Default: 444")
+                    .defineInRange("killingCost", 444, 0, Integer.MAX_VALUE);
+            KillingDuration = BUILDER.comment("Time to cast Killing Spell, Default: 60")
+                    .defineInRange("killingTime", 60, 0, 72000);
+            KillingCoolDown = BUILDER.comment("Killing Spell Cooldown, Default: 200")
+                    .defineInRange("killingCoolDown", 200, 0, Integer.MAX_VALUE);
+            KillingFeedback = BUILDER.comment("How much damage percentage multiplier of the target's health is applied back to caster, Default: 1.1")
+                    .defineInRange("killingFeedback", 1.1, 0.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Skull Spell");
+            HauntedSkullCost = BUILDER.comment("Skull Spell Cost, Default: 16")
+                    .defineInRange("hauntedSkullCost", 16, 0, Integer.MAX_VALUE);
+            HauntedSkullDuration = BUILDER.comment("Time to cast Haunted Skull Spell, Default: 20")
+                    .defineInRange("hauntedSkullTime", 20, 0, 72000);
+            HauntedSkullCoolDown = BUILDER.comment("Skull Spell Cooldown, Default: 20")
+                    .defineInRange("hauntedSkullCoolDown", 20, 0, Integer.MAX_VALUE);
+            HauntedSkullSummonDown = BUILDER.comment("Skull Spell Summon Down, Default: 0")
+                    .defineInRange("hauntedSkullSummonDown", 0, 0, 72000);
+            HauntedSkullDamage = BUILDER.comment("How much base damage Haunted Skulls deal when directly hitting a mob, Default: 5.0")
+                    .defineInRange("hauntedSkullDamage", 5.0, 1.0, Double.MAX_VALUE);
+            HauntedSkullGriefing = BUILDER.comment("Enable Haunted Skull projectile griefing, Default: true")
+                    .define("hauntedSkullGriefing", true);
+            SkullLimit = BUILDER.comment("Number of Haunted Skulls that can a player can have, Default: 8")
+                    .defineInRange("skullLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Wither Skull Spell");
+            WitherSkullCost = BUILDER.comment("Wither Skull Spell Cost, Default: 24")
+                    .defineInRange("witherSkullCost", 24, 0, Integer.MAX_VALUE);
+            WitherSkullDuration = BUILDER.comment("Time to cast Wither Skull Spell, Default: 0")
+                    .defineInRange("witherSkullTime", 0, 0, 72000);
+            WitherSkullCoolDown = BUILDER.comment("Wither Skull Spell Cooldown, Default: 0")
+                    .defineInRange("witherSkullCoolDown", 0, 0, Integer.MAX_VALUE);
+            WitherSkullDamage = BUILDER.comment("How much base damage Wither Skulls deal when directly hitting a mob, Default: 8.0")
+                    .defineInRange("witherSkullDamage", 8.0, 1.0, Double.MAX_VALUE);
+            WitherSkullGriefing = BUILDER.comment("Enable Wither Skull projectile griefing, Default: true")
+                    .define("witherSkullGriefing", true);
+            BUILDER.pop();
+            BUILDER.push("Ghastly Spell");
+            GhastCost = BUILDER.comment("Ghastly Spell Cost, Default: 24")
+                    .defineInRange("ghastCost", 24, 0, Integer.MAX_VALUE);
+            GhastDuration = BUILDER.comment("Time to cast Ghastly Spell, Default: 100")
+                    .defineInRange("ghastDuration", 100, 0, 72000);
+            GhastCoolDown = BUILDER.comment("Ghastly Spell Cooldown, Default: 200")
+                    .defineInRange("ghastCoolDown", 200, 0, Integer.MAX_VALUE);
+            GhastSummonDown = BUILDER.comment("Ghastly Spell Summon Down, Default: 300")
+                    .defineInRange("ghastSummonDown", 300, 0, 72000);
+            GhastLimit = BUILDER.comment("Number of Mini Ghasts that can exist around the player, Default: 8")
+                    .defineInRange("ghastLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Blazing Spell");
+            BlazeCost = BUILDER.comment("Blazing Spell Cost, Default: 16")
+                    .defineInRange("blazeCost", 16, 0, Integer.MAX_VALUE);
+            BlazeDuration = BUILDER.comment("Time to cast Blazing Spell, Default: 100")
+                    .defineInRange("blazeDuration", 100, 0, 72000);
+            BlazeCoolDown = BUILDER.comment("Blazing Spell Cooldown, Default: 200")
+                    .defineInRange("blazeCoolDown", 200, 0, Integer.MAX_VALUE);
+            BlazeSummonDown = BUILDER.comment("Blazing Spell Summon Down, Default: 400")
+                    .defineInRange("blazeSummonDown", 400, 0, 72000);
+            BlazeLimit = BUILDER.comment("Number of Blaze Servants that can exist around the player, Default: 16")
+                    .defineInRange("blazeLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Hogging Spell");
+            HoggingCost = BUILDER.comment("Hogging Spell Cost, Default: 24")
+                    .defineInRange("hoggingCost", 24, 0, Integer.MAX_VALUE);
+            HoggingDuration = BUILDER.comment("Time to cast Hogging Spell, Default: 40")
+                    .defineInRange("hoggingDuration", 40, 0, 72000);
+            HoggingCoolDown = BUILDER.comment("Hogging Spell Cooldown, Default: 300")
+                    .defineInRange("hoggingCoolDown", 300, 0, Integer.MAX_VALUE);
+            HoggingSummonDown = BUILDER.comment("Hogging Spell Summon Down, Default: 100")
+                    .defineInRange("hoggingSummonDown", 100, 0, 72000);
+            HoggingLimit = BUILDER.comment("Number of Blazing Hoglins that can exist around the player, Default: 4")
+                    .defineInRange("hoggingLimit", 4, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Feasting Spell");
+            FeastCost = BUILDER.comment("Feasting Spell Cost, Default: 16")
+                    .defineInRange("feastCost", 16, 0, Integer.MAX_VALUE);
+            FeastChargeUp = BUILDER.comment("How many ticks the Feasting Spell much charge before casting, Default: 0")
+                    .defineInRange("feastChargeUp", 0, 0, Integer.MAX_VALUE);
+            FeastDuration = BUILDER.comment("Time to cast Feasting Spell per second, Default: 20")
+                    .defineInRange("feastTime", 20, 0, 72000);
+            BUILDER.pop();
+            BUILDER.push("Teeth Spell");
+            TeethCost = BUILDER.comment("Teeth Spell Cost, Default: 8")
+                    .defineInRange("teethCost", 8, 0, Integer.MAX_VALUE);
+            TeethDuration = BUILDER.comment("Time to cast Teeth Spell, Default: 60")
+                    .defineInRange("teethTime", 60, 0, 72000);
+            TeethCoolDown = BUILDER.comment("Teeth Spell Cooldown, Default: 20")
+                    .defineInRange("teethCoolDown", 20, 0, Integer.MAX_VALUE);
+            ViciousToothDamage = BUILDER.comment("How much base damage Vicious Tooth deals, Default: 12.0")
+                    .defineInRange("viciousToothDamage", 12.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Fireball Spell");
+            FireballCost = BUILDER.comment("Fireball Spell Cost, Default: 4")
+                    .defineInRange("fireballCost", 4, 0, Integer.MAX_VALUE);
+            FireballDuration = BUILDER.comment("Time to cast Fireball Spell, Default: 0")
+                    .defineInRange("fireballTime", 0, 0, 72000);
+            FireballCoolDown = BUILDER.comment("Fireball Spell Cooldown, Default: 40")
+                    .defineInRange("fireballCoolDown", 40, 0, Integer.MAX_VALUE);
+            FireballDamage = BUILDER.comment("How much base damage Fireballs deal when directly hitting a mob, Default: 5.0")
+                    .defineInRange("fireballDamage", 5.0, 1.0, Double.MAX_VALUE);
+            FireballGriefing = BUILDER.comment("Enable Fireball projectile griefing, Default: true")
+                    .define("fireballGriefing", true);
+            BUILDER.pop();
+            BUILDER.push("Lava Bomb Spell");
+            LavaballCost = BUILDER.comment("Lava Bomb Spell Cost, Default: 16")
+                    .defineInRange("lavaBombCost", 16, 0, Integer.MAX_VALUE);
+            LavaballDuration = BUILDER.comment("Time to cast Lava Bomb Spell, Default: 40")
+                    .defineInRange("lavaBombTime", 40, 0, 72000);
+            LavaballCoolDown = BUILDER.comment("Lava Bomb Spell Cooldown, Default: 40")
+                    .defineInRange("lavaBombCoolDown", 40, 0, Integer.MAX_VALUE);
+            LavaballDamage = BUILDER.comment("How much base damage Lavaballs deal when directly hitting a mob, Default: 6.0")
+                    .defineInRange("lavaballDamage", 6.0, 1.0, Double.MAX_VALUE);
+            LavaballGriefing = BUILDER.comment("Enable Lavaball projectile griefing, Default: true")
+                    .define("lavaballGriefing", true);
+            BUILDER.pop();
+            BUILDER.push("Bombardment Spell");
+            BombardmentCost = BUILDER.comment("Bombardment Spell Cost, Default: 8")
+                    .defineInRange("bombardmentCost", 8, 0, Integer.MAX_VALUE);
+            BombardmentChargeUp = BUILDER.comment("How many ticks the Bombardment Spell much charge before casting, Default: 60")
+                    .defineInRange("bombardmentChargeUp", 60, 0, Integer.MAX_VALUE);
+            BombardmentShots = BUILDER.comment("How many shots are allowed to be fired before spell ends, set 0 to allow spell to be cast indefinitely, Default: 6")
+                    .defineInRange("bombardmentShots", 6, 0, 72000);
+            BombardmentDuration = BUILDER.comment("Time to cast Bombardment Spell per tick, Default: 6")
+                    .defineInRange("bombardmentTime", 6, 0, 72000);
+            BombardmentCoolDown = BUILDER.comment("Bombardment Spell Cooldown, Default: 100")
+                    .defineInRange("bombardmentCoolDown", 100, 0, 72000);
+            BUILDER.pop();
+            BUILDER.push("Meteor Shower Spell");
+            MeteorShowerCost = BUILDER.comment("Meteor Shower Spell Cost, Default: 64")
+                    .defineInRange("meteorShowerCost", 64, 0, Integer.MAX_VALUE);
+            MeteorShowerChargeUp = BUILDER.comment("How many ticks the Meteor Shower Spell much charge before casting, Default: 60")
+                    .defineInRange("meteorShowerChargeUp", 60, 0, Integer.MAX_VALUE);
+            MeteorShowerShots = BUILDER.comment("How many shots are allowed to be fired before spell ends, set 0 to allow spell to be cast indefinitely, Default: 20")
+                    .defineInRange("meteorShowerShots", 20, 0, 72000);
+            MeteorShowerDuration = BUILDER.comment("Time to cast Meteor Shower Spell per second, Default: 10")
+                    .defineInRange("meteorShowerTime", 10, 0, 72000);
+            MeteorShowerCoolDown = BUILDER.comment("Meteor Shower Spell Cooldown, Default: 400")
+                    .defineInRange("meteorShowerCoolDown", 400, 0, 72000);
+            BUILDER.pop();
+            BUILDER.push("Magma Bomb Spell");
+            MagmaBombCost = BUILDER.comment("Magma Bomb Spell Cost, Default: 16")
+                    .defineInRange("magmaBombCost", 16, 0, Integer.MAX_VALUE);
+            MagmaBombDuration = BUILDER.comment("Time to cast Magma Bomb Spell, Default: 100")
+                    .defineInRange("magmaBombTime", 100, 0, 72000);
+            MagmaBombCoolDown = BUILDER.comment("Magma Bomb Spell Cooldown, Default: 400")
+                    .defineInRange("magmaBombCoolDown", 400, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Fire Blast Spell");
+            FireBlastCost = BUILDER.comment("Fire Blast Spell Cost, Default: 40")
+                    .defineInRange("fireBlastCost", 40, 0, Integer.MAX_VALUE);
+            FireBlastDuration = BUILDER.comment("Time to cast Fire Blast Spell, Default: 0")
+                    .defineInRange("fireBlastDuration", 0, 0, 72000);
+            FireBlastCoolDown = BUILDER.comment("Fire Blast Spell Cooldown, Default: 100")
+                    .defineInRange("fireBlastCoolDown", 100, 0, Integer.MAX_VALUE);
+            FireBlastDamage = BUILDER.comment("How much base minimum damage Fire Blast Spell deals, Default: 6.0")
+                    .defineInRange("fireBlastDamage", 6.0, 1.0, Double.MAX_VALUE);
+            FireBlastMaxDamage = BUILDER.comment("How much base maximum damage Fire Blast Spell deals, Default: 12.0")
+                    .defineInRange("fireBlastMaxDamage", 12.0, 2.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Flame Strike Spell");
+            FlameStrikeCost = BUILDER.comment("Flame Strike Spell Cost, Default: 32")
+                    .defineInRange("flameStrikeCost", 32, 0, Integer.MAX_VALUE);
+            FlameStrikeDuration = BUILDER.comment("Time to cast Flame Strike Spell, Default: 120")
+                    .defineInRange("flameStrikeTime", 120, 0, 72000);
+            FlameStrikeCoolDown = BUILDER.comment("Flame Strike Spell Cooldown, Default: 200")
+                    .defineInRange("flameStrikeCoolDown", 200, 0, Integer.MAX_VALUE);
+            FlameStrikeDamage = BUILDER.comment("How much base damage Flame Strike deals, Default: 4.0")
+                    .defineInRange("flameStrikeDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Soul Bolt Spell");
+            SoulBoltCost = BUILDER.comment("Soul Bolt Spell Cost, Default: 4")
+                    .defineInRange("soulBoltCost", 4, 0, Integer.MAX_VALUE);
+            SoulBoltDuration = BUILDER.comment("Time to cast Soul Bolt Spell, Default: 0")
+                    .defineInRange("soulBoltTime", 0, 0, 72000);
+            SoulBoltCoolDown = BUILDER.comment("Soul Bolt Spell Cooldown, Default: 20")
+                    .defineInRange("soulBoltCoolDown", 20, 0, Integer.MAX_VALUE);
+            SoulBoltDamage = BUILDER.comment("How much base damage Soul Bolts deals, Default: 4.0")
+                    .defineInRange("soulBoltDamage", 4.0, 1.0, Double.MAX_VALUE);
+            PoisonBoltDamage = BUILDER.comment("How much base damage Poison Bolts deals, Default: 3.0")
+                    .defineInRange("poisonBoltDamage", 3.0, 1.0, Double.MAX_VALUE);
+            WitherBoltDamage = BUILDER.comment("How much base damage Wither Bolts deals directly, Default: 4.0")
+                    .defineInRange("witherBoltDamage", 4.0, 1.0, Double.MAX_VALUE);
+            NecroBoltDamage = BUILDER.comment("How much base damage Necro Bolts deals, Default: 12.0")
+                    .defineInRange("necroBoltDamage", 12.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Magic Bolt Spell");
+            MagicBoltCost = BUILDER.comment("Magic Bolt Spell Cost, Default: 8")
+                    .defineInRange("magicBoltCost", 8, 0, Integer.MAX_VALUE);
+            MagicBoltDuration = BUILDER.comment("Time to cast Magic Bolt Spell, Default: 0")
+                    .defineInRange("magicBoltTime", 0, 0, 72000);
+            MagicBoltCoolDown = BUILDER.comment("Magic Bolt Spell Cooldown, Default: 20")
+                    .defineInRange("magicBoltCoolDown", 20, 0, Integer.MAX_VALUE);
+            MagicBoltDamage = BUILDER.comment("How much base damage Magic Bolts deals, Default: 4.0")
+                    .defineInRange("magicBoltDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Sword Spell");
+            SwordCost = BUILDER.comment("Sword Spell Cost, Default: 16")
+                    .defineInRange("swordCost", 16, 0, Integer.MAX_VALUE);
+            SwordDuration = BUILDER.comment("Time to cast Flying Sword Spell, Default: 0")
+                    .defineInRange("swordTime", 0, 0, 72000);
+            SwordCoolDown = BUILDER.comment("Sword Spell Cooldown, Default: 20")
+                    .defineInRange("swordCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ice Spike Spell");
+            IceSpikeCost = BUILDER.comment("Ice Spike Spell Cost, Default: 8")
+                    .defineInRange("iceSpikeCost", 8, 0, Integer.MAX_VALUE);
+            IceSpikeDuration = BUILDER.comment("Time to cast Ice Spike Spell, Default: 0")
+                    .defineInRange("iceSpikeTime", 0, 0, 72000);
+            IceSpikeCoolDown = BUILDER.comment("Ice Spike Spell Cooldown, Default: 20")
+                    .defineInRange("iceSpikeCoolDown", 20, 0, Integer.MAX_VALUE);
+            IceSpikeDamage = BUILDER.comment("How much base damage Ice Spike deals, Default: 3.0")
+                    .defineInRange("iceSpikeDamage", 3.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ice Storm Spell");
+            IceStormCost = BUILDER.comment("Ice Storm Spell Cost, Default: 16")
+                    .defineInRange("iceStormCost", 16, 0, Integer.MAX_VALUE);
+            IceStormDuration = BUILDER.comment("Time to cast Ice Storm Spell, Default: 40")
+                    .defineInRange("iceStormTime", 40, 0, 72000);
+            IceStormCoolDown = BUILDER.comment("Ice Storm Spell Cooldown, Default: 100")
+                    .defineInRange("iceStormCoolDown", 100, 0, Integer.MAX_VALUE);
+            IceStormDamage = BUILDER.comment("How much base damage Ice Storm deals, Default: 5.0")
+                    .defineInRange("iceStormDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Charge Spell");
+            ChargeCost = BUILDER.comment("Charge Spell Cost, Default: 4")
+                    .defineInRange("chargeCost", 4, 0, Integer.MAX_VALUE);
+            ChargeCoolDown = BUILDER.comment("Charge Spell Cooldown, Default: 20")
+                    .defineInRange("chargeCoolDown", 20, 0, Integer.MAX_VALUE);
+            ChargeDamage = BUILDER.comment("How much base damage Charge deals after gaining 2 Levels, Default: 4.0")
+                    .defineInRange("chargeDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Mirror Spell");
+            IllusionCost = BUILDER.comment("Mirror Spell Cost, Default: 20")
+                    .defineInRange("illusionCost", 20, 0, Integer.MAX_VALUE);
+            IllusionDuration = BUILDER.comment("Time to cast Mirror Spell, Default: 40")
+                    .defineInRange("illusionTime", 40, 0, 72000);
+            IllusionCoolDown = BUILDER.comment("Mirror Spell Cooldown, Default: 340")
+                    .defineInRange("illusionCoolDown", 340, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ignite Spell");
+            IgniteCost = BUILDER.comment("Ignite Spell Cost, Default: 2")
+                    .defineInRange("igniteCost", 2, 0, Integer.MAX_VALUE);
+            IgniteCoolDown = BUILDER.comment("Ignite Spell Cooldown, Default: 10")
+                    .defineInRange("igniteCoolDown", 10, 0, Integer.MAX_VALUE);
+            IgniteFireSeconds = BUILDER.comment("How many seconds Ignite Spell sets target on fire unenchanted, Default: 5")
+                    .defineInRange("igniteFireSeconds", 5, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Fire Breath Spell");
+            FireBreathCost = BUILDER.comment("Fire Breath Spell Cost per second, Default: 2")
+                    .defineInRange("fireBreathCost", 2, 0, Integer.MAX_VALUE);
+            FireBreathChargeUp = BUILDER.comment("How many ticks the Fire Breath Spell much charge before casting, Default: 0")
+                    .defineInRange("fireBreathChargeUp", 0, 0, Integer.MAX_VALUE);
+            FireBreathDuration = BUILDER.comment("How long the Fire Breath Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("fireBreathTime", 100, 0, 72000);
+            FireBreathCoolDown = BUILDER.comment("Fire Breath Spell Cooldown, Default: 100")
+                    .defineInRange("fireBreathCoolDown", 100, 0, 72000);
+            FireBreathDamage = BUILDER.comment("How much base damage Fire Breath deals, Default: 2.0")
+                    .defineInRange("fireBreathDamage", 2.0, 1.0, Double.MAX_VALUE);
+            DragonFireGriefing = BUILDER.comment("Ring of the Dragon Fire Breath deals environmental damage, Default: true")
+                    .define("dragonFireGriefing", true);
+            BUILDER.pop();
+            BUILDER.push("Frost Breath Spell");
+            FrostBreathCost = BUILDER.comment("Frost Breath Spell Cost per second, Default: 2")
+                    .defineInRange("frostBreathCost", 2, 0, Integer.MAX_VALUE);
+            FrostBreathChargeUp = BUILDER.comment("How many ticks the Frost Breath Spell much charge before casting, Default: 0")
+                    .defineInRange("frostBreathChargeUp", 0, 0, Integer.MAX_VALUE);
+            FrostBreathDuration = BUILDER.comment("How long the Frost Breath Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("frostBreathTime", 100, 0, 72000);
+            FrostBreathCoolDown = BUILDER.comment("Frost Breath Spell Cooldown, Default: 100")
+                    .defineInRange("frostBreathCoolDown", 100, 0, 72000);
+            FrostBreathDamage = BUILDER.comment("How much base damage Frost Breath deals, Default: 1.0")
+                    .defineInRange("frostBreathDamage", 1.0, 1.0, Double.MAX_VALUE);
+            DragonFrostGriefing = BUILDER.comment("Ring of the Dragon Frost Breath deals environmental damage, Default: true")
+                    .define("dragonFrostGriefing", true);
+            BUILDER.pop();
+            BUILDER.push("Shocking Spell");
+            ShockingCost = BUILDER.comment("Shocking Spell Cost per second, Default: 4")
+                    .defineInRange("shockingCost", 4, 0, Integer.MAX_VALUE);
+            ShockingChargeUp = BUILDER.comment("How many ticks the Shocking Spell much charge before casting, Default: 0")
+                    .defineInRange("shockingChargeUp", 0, 0, Integer.MAX_VALUE);
+            ShockingDuration = BUILDER.comment("How long the Shocking Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("shockingTime", 100, 0, 72000);
+            ShockingCoolDown = BUILDER.comment("Shocking Spell Cooldown, Default: 100")
+                    .defineInRange("shockingCoolDown", 100, 0, 72000);
+            ShockingDamage = BUILDER.comment("How much base damage Shocking Sparks deals, Default: 2.0")
+                    .defineInRange("shockingDamage", 2.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Water Jet Spell");
+            WaterJetCost = BUILDER.comment("Water Jet Spell Cost per second, Default: 2")
+                    .defineInRange("waterJetCost", 2, 0, Integer.MAX_VALUE);
+            WaterJetChargeUp = BUILDER.comment("How many ticks the Water Jet Spell much charge before casting, Default: 0")
+                    .defineInRange("waterJetChargeUp", 0, 0, Integer.MAX_VALUE);
+            WaterJetDuration = BUILDER.comment("How long the Water Jet Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("waterJetTime", 100, 0, 72000);
+            WaterJetCoolDown = BUILDER.comment("Water Jet Spell Cooldown, Default: 100")
+                    .defineInRange("waterJetCoolDown", 100, 0, 72000);
+            WaterJetDamage = BUILDER.comment("How much base damage Water Jet deals, Default: 2.0")
+                    .defineInRange("waterJetDamage", 2.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Soul Light Spell");
+            SoulLightCost = BUILDER.comment("Soul Light Spell Cost, Default: 1")
+                    .defineInRange("soulLightCost", 1, 0, Integer.MAX_VALUE);
+            SoulLightDuration = BUILDER.comment("Time to cast Soul Light Spell, Default: 0")
+                    .defineInRange("soulLightTime", 0, 0, 72000);
+            SoulLightCoolDown = BUILDER.comment("Soul Light Spell Cooldown, Default: 10")
+                    .defineInRange("soulLightCoolDown", 10, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Glow Light Spell");
+            GlowLightCost = BUILDER.comment("Glow Light Spell Cost, Default: 2")
+                    .defineInRange("glowLightCost", 2, 0, Integer.MAX_VALUE);
+            GlowLightDuration = BUILDER.comment("Time to cast Glow Light Spell, Default: 0")
+                    .defineInRange("glowLightTime", 0, 0, 72000);
+            GlowLightCoolDown = BUILDER.comment("Glow Light Spell Cooldown, Default: 10")
+                    .defineInRange("glowLightCoolDown", 10, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Illuminate Spell");
+            IlluminateCost = BUILDER.comment("Illuminate Spell Cost, Default: 4")
+                    .defineInRange("illuminateCost", 4, 0, Integer.MAX_VALUE);
+            IlluminateChargeUp = BUILDER.comment("How many ticks the Illuminate Spell much charge before casting, Default: 0")
+                    .defineInRange("illuminateChargeUp", 0, 0, Integer.MAX_VALUE);
+            IlluminateDuration = BUILDER.comment("Time to cast Illuminate Spell per second, Default: 5")
+                    .defineInRange("illuminateTime", 5, 0, 72000);
+            IlluminateMinLightLevel = BUILDER.comment("Minimum block light level below which the spell attempts to light up, Default: 5")
+                    .defineInRange("illuminateMinLightLevel", 5, 0, 15);
+            BUILDER.pop();
+            BUILDER.push("Iceology Spell");
+            IceChunkCost = BUILDER.comment("Iceology Spell Cost, Default: 16")
+                    .defineInRange("iceChunkCost", 16, 0, Integer.MAX_VALUE);
+            IceChunkDuration = BUILDER.comment("Time to cast Iceology Spell, Default: 0")
+                    .defineInRange("iceChunkTime", 0, 0, 72000);
+            IceChunkCoolDown = BUILDER.comment("Iceology Spell Cooldown, Default: 300")
+                    .defineInRange("iceChunkCoolDown", 300, 0, Integer.MAX_VALUE);
+            IceChunkDamage = BUILDER.comment("How much base damage Iceology deals, Default: 8.0")
+                    .defineInRange("iceChunkDamage", 8.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Hail Spell");
+            HailCost = BUILDER.comment("Hail Spell Cost, Default: 8")
+                    .defineInRange("hailCost", 8, 0, Integer.MAX_VALUE);
+            HailDuration = BUILDER.comment("Time to cast Hail Spell, Default: 40")
+                    .defineInRange("hailTime", 40, 0, 72000);
+            HailCoolDown = BUILDER.comment("Hail Spell Cooldown, Default: 100")
+                    .defineInRange("hailCoolDown", 100, 0, Integer.MAX_VALUE);
+            HailDamage = BUILDER.comment("How much base damage Hail deals, Default: 1.0")
+                    .defineInRange("hailDamage", 1.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Blizzard Spell");
+            BlizzardCost = BUILDER.comment("Blizzard Spell Cost, Default: 8")
+                    .defineInRange("blizzardCost", 8, 0, Integer.MAX_VALUE);
+            BlizzardChargeUp = BUILDER.comment("How many ticks the Blizzard Spell much charge before casting, Default: 20")
+                    .defineInRange("blizzardChargeUp", 20, 0, Integer.MAX_VALUE);
+            BlizzardDuration = BUILDER.comment("How long the Blizzard Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("blizzardTime", 100, 0, 72000);
+            BlizzardCoolDown = BUILDER.comment("Blizzard Spell Cooldown, Default: 400")
+                    .defineInRange("blizzardCoolDown", 400, 0, 72000);
+            BUILDER.pop();
+            BUILDER.push("Chilling Spell");
+            ChillingCost = BUILDER.comment("Chilling Spell Cost, Default: 48")
+                    .defineInRange("chillingCost", 48, 0, Integer.MAX_VALUE);
+            ChillingDuration = BUILDER.comment("Time to cast Chilling Spell, Default: 60")
+                    .defineInRange("chillingTime", 60, 0, 72000);
+            ChillingCoolDown = BUILDER.comment("Chilling Spell Cooldown, Default: 500")
+                    .defineInRange("chillingCoolDown", 500, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Frost Nova Spell");
+            FrostNovaCost = BUILDER.comment("Frost Nova Spell Cost, Default: 40")
+                    .defineInRange("frostNovaCost", 40, 0, Integer.MAX_VALUE);
+            FrostNovaDuration = BUILDER.comment("Time to cast Frost Nova Spell, Default: 0")
+                    .defineInRange("frostNovaTime", 0, 0, 72000);
+            FrostNovaCoolDown = BUILDER.comment("Frost Nova Spell Cooldown, Default: 100")
+                    .defineInRange("frostNovaCoolDown", 100, 0, Integer.MAX_VALUE);
+            FrostNovaTargetCoolDown = BUILDER.comment("Frost Nova Spell Cooldown when cast on a target, Default: 160")
+                    .defineInRange("frostNovaTargetCoolDown", 160, 0, Integer.MAX_VALUE);
+            FrostNovaDamage = BUILDER.comment("How much base minimum damage Frost Nova Spell deals, Default: 5.0")
+                    .defineInRange("frostNovaMinDamage", 5.0, 1.0, Double.MAX_VALUE);
+            FrostNovaMaxDamage = BUILDER.comment("How much base maximum damage Frost Nova Spell deals, Default: 10.0")
+                    .defineInRange("frostNovaMaxDamage", 10.0, 2.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Frostborn Spell");
+            FrostbornCost = BUILDER.comment("Frostborn Spell Cost, Default: 24")
+                    .defineInRange("frostbornCost", 24, 0, Integer.MAX_VALUE);
+            FrostbornDuration = BUILDER.comment("Time to cast Frostborn Spell, Default: 20")
+                    .defineInRange("frostbornDuration", 20, 0, 72000);
+            FrostbornCoolDown = BUILDER.comment("Frostborn Spell Cooldown, Default: 1200")
+                    .defineInRange("frostbornCoolDown", 1200, 0, Integer.MAX_VALUE);
+            FrostbornSummonDown = BUILDER.comment("Frostborn Spell Summon Down, Default: 300")
+                    .defineInRange("frostbornSummonDown", 300, 300, 72000);
+            IceGolemLimit = BUILDER.comment("Number of Ice Golems that can exist around the player, Default: 2")
+                    .defineInRange("iceGolemLimit", 2, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Barricade Spell");
+            BarricadeCost = BUILDER.comment("Barricade Spell Cost, Default: 16")
+                    .defineInRange("barricadeCost", 16, 0, Integer.MAX_VALUE);
+            BarricadeDuration = BUILDER.comment("Time to cast Barricade Spell, Default: 0")
+                    .defineInRange("barricadeTime", 0, 0, 72000);
+            BarricadeCoolDown = BUILDER.comment("Barricade Spell Cooldown, Default: 100")
+                    .defineInRange("barricadeCoolDown", 100, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Quaking Spell");
+            QuakingCost = BUILDER.comment("Quaking Spell Cost, Default: 8")
+                    .defineInRange("quakingCost", 8, 0, Integer.MAX_VALUE);
+            QuakingDuration = BUILDER.comment("Time to cast Quaking Spell, Default: 20")
+                    .defineInRange("quakingTime", 20, 0, 72000);
+            QuakingCoolDown = BUILDER.comment("Quaking Spell Cooldown, Default: 100")
+                    .defineInRange("quakingCoolDown", 100, 0, Integer.MAX_VALUE);
+            QuakingDamage = BUILDER.comment("How much base damage Quaking Spell deals, Default: 4.0")
+                    .defineInRange("quakingDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Quaking Spell");
+            EarthFistCost = BUILDER.comment("Earth Fist Spell Cost, Default: 8")
+                    .defineInRange("earthFistCost", 8, 0, Integer.MAX_VALUE);
+            EarthFistDuration = BUILDER.comment("Time to cast Earth Fist Spell, Default: 0")
+                    .defineInRange("earthFistTime", 0, 0, 72000);
+            EarthFistCoolDown = BUILDER.comment("Earth Fist Spell Cooldown, Default: 60")
+                    .defineInRange("earthFistCoolDown", 60, 0, Integer.MAX_VALUE);
+            EarthFistDamage = BUILDER.comment("How much base damage Earth Fists deals, Default: 6.0")
+                    .defineInRange("earthFistDamage", 6.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Smack Stone Spell");
+            SmackStoneCost = BUILDER.comment("Smack Stone Spell Cost, Default: 4")
+                    .defineInRange("smackStoneCost", 4, 0, Integer.MAX_VALUE);
+            SmackStoneDuration = BUILDER.comment("Time to cast Smack Stone Spell, Default: 0")
+                    .defineInRange("smackStoneTime", 0, 0, 72000);
+            SmackStoneCoolDown = BUILDER.comment("Smack Stone Spell Cooldown, Default: 40")
+                    .defineInRange("smackStoneCoolDown", 40, 0, Integer.MAX_VALUE);
+            SmackStoneDamage = BUILDER.comment("How much base damage Smack Stones deals, Default: 4.0")
+                    .defineInRange("smackStoneDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ministrous Spell");
+            MinistrousCost = BUILDER.comment("Ministrous Spell Cost, Default: 8")
+                    .defineInRange("ministrousCost", 8, 0, Integer.MAX_VALUE);
+            MinistrousDuration = BUILDER.comment("Time to cast Ministrous Spell, Default: 20")
+                    .defineInRange("ministrousTime", 20, 0, 72000);
+            MinistrousCoolDown = BUILDER.comment("Ministrous Spell Cooldown, Default: 200")
+                    .defineInRange("ministrousCoolDown", 200, 0, Integer.MAX_VALUE);
+            MinistrousSummonDown = BUILDER.comment("Ministrous Spell Summon Down, Default: 100")
+                    .defineInRange("ministrousSummonDown", 100, 0, 72000);
+            MinistrousLimit = BUILDER.comment("Number of Ministrosities that can exist around the player, Default: 16")
+                    .defineInRange("ministrousLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Pulverize Spell");
+            PulverizeCost = BUILDER.comment("Pulverize Spell Cost, Default: 16")
+                    .defineInRange("pulverizeCost", 16, 0, Integer.MAX_VALUE);
+            PulverizeCoolDown = BUILDER.comment("Pulverize Spell Cooldown, Default: 20")
+                    .defineInRange("pulverizeCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Rotation Spell");
+            RotationCost = BUILDER.comment("Rotation Spell Cost, Default: 2")
+                    .defineInRange("rotationCost", 2, 0, Integer.MAX_VALUE);
+            RotationCoolDown = BUILDER.comment("Rotation Spell Cooldown, Default: 0")
+                    .defineInRange("rotationCoolDown", 0, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Burrowing Spell");
+            BurrowingCost = BUILDER.comment("Burrowing Spell Cost per second, Default: 4")
+                    .defineInRange("burrowingCost", 4, 0, Integer.MAX_VALUE);
+            BurrowingChargeUp = BUILDER.comment("How many ticks the Burrowing Spell much charge before casting, Default: 0")
+                    .defineInRange("burrowingCoolDown", 0, 0, Integer.MAX_VALUE);
+            BurrowingInitialSpeed = BUILDER.comment("The initial breaking speed of the Burrowing spell, the lower the value the quicker, Default: 4")
+                    .defineInRange("burrowingInitialSpeed", 4, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Sensing Spell");
+            SensingCost = BUILDER.comment("Sensing Spell Cost, Default: 8")
+                    .defineInRange("sensingCost", 8, 0, Integer.MAX_VALUE);
+            SensingDuration = BUILDER.comment("Time to cast Sensing Spell, Default: 20")
+                    .defineInRange("sensingTime", 20, 0, 72000);
+            SensingCoolDown = BUILDER.comment("Sensing Spell Cooldown, Default: 200")
+                    .defineInRange("sensingCoolDown", 200, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Eruption Spell");
+            EruptionCost = BUILDER.comment("Eruption Spell Cost, Default: 32")
+                    .defineInRange("eruptionCost", 32, 0, Integer.MAX_VALUE);
+            EruptionDuration = BUILDER.comment("Time to cast Eruption Spell, Default: 60")
+                    .defineInRange("eruptionTime", 60, 0, 72000);
+            EruptionCoolDown = BUILDER.comment("Eruption Spell Cooldown, Default: 100")
+                    .defineInRange("eruptionCoolDown", 100, 0, Integer.MAX_VALUE);
+            PyroclastDamage = BUILDER.comment("How much base damage Pyroclasts deal when directly hitting a mob, Default: 6.0")
+                    .defineInRange("pyroclastDamage", 6.0, 1.0, Double.MAX_VALUE);
+            PyroclastStun = BUILDER.comment("Whether Pyroclasts inflicts a 2 second Stun, Default: true")
+                    .define("pyroclastStun", true);
+            BUILDER.pop();
+            BUILDER.push("Scatter Spell");
+            ScatterCost = BUILDER.comment("Scatter Spell Cost, Default: 16")
+                    .defineInRange("scatterCost", 16, 0, Integer.MAX_VALUE);
+            ScatterDuration = BUILDER.comment("Time to cast Scatter Spell, Default: 0")
+                    .defineInRange("scatterTime", 0, 0, 72000);
+            ScatterCoolDown = BUILDER.comment("Scatter Spell Cooldown, Default: 240")
+                    .defineInRange("scatterCoolDown", 240, 0, Integer.MAX_VALUE);
+            ScatterMineDamage = BUILDER.comment("How much base damage Scatter Mines deal when directly hitting a mob, Default: 6.0")
+                    .defineInRange("scatterMinesDamage", 6.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Launching Spell");
+            LaunchCost = BUILDER.comment("Launch Spell Cost, Default: 4")
+                    .defineInRange("launchCost", 4, 0, Integer.MAX_VALUE);
+            LaunchDuration = BUILDER.comment("Time to cast Launching Spell, Default: 0")
+                    .defineInRange("launchTime", 0, 0, 72000);
+            LaunchCoolDown = BUILDER.comment("Launch Spell Cooldown, Default: 20")
+                    .defineInRange("launchCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Flight Spell");
+            FlyingCost = BUILDER.comment("Flight Spell Cost, Default: 4")
+                    .defineInRange("flightCost", 4, 0, Integer.MAX_VALUE);
+            FlyingChargeUp = BUILDER.comment("How many ticks the Flight Spell much charge before casting, Default: 0")
+                    .defineInRange("flightChargeUp", 0, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Whirlwind Spell");
+            WhirlwindCost = BUILDER.comment("Whirlwind Spell Cost, Default: 4")
+                    .defineInRange("whirlwindCost", 4, 0, Integer.MAX_VALUE);
+            WhirlwindChargeUp = BUILDER.comment("How many ticks the Whirlwind Spell much charge before casting, Default: 0")
+                    .defineInRange("whirlwindChargeUp", 0, 0, Integer.MAX_VALUE);
+            WhirlwindDuration = BUILDER.comment("How long the Whirlwind Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 0")
+                    .defineInRange("whirlwindTime", 0, 0, 72000);
+            WhirlwindCoolDown = BUILDER.comment("Whirlwind Spell Cooldown, Default: 0")
+                    .defineInRange("whirlwindCoolDown", 0, 0, 72000);
+            BUILDER.pop();
+            BUILDER.push("Cushion Spell");
+            CushionCost = BUILDER.comment("Cushion Spell Cost, Default: 8")
+                    .defineInRange("cushionCost", 8, 0, Integer.MAX_VALUE);
+            CushionDuration = BUILDER.comment("Time to cast Cushion Spell, Default: 0")
+                    .defineInRange("cushionTime", 0, 0, 72000);
+            CushionCoolDown = BUILDER.comment("Cushion Spell Cooldown, Default: 40")
+                    .defineInRange("cushionCoolDown", 40, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Cyclone Spell");
+            CycloneCost = BUILDER.comment("Cyclone Spell Cost, Default: 16")
+                    .defineInRange("cycloneCost", 16, 0, Integer.MAX_VALUE);
+            CycloneDuration = BUILDER.comment("Time to cast Cyclone Spell, Default: 0")
+                    .defineInRange("cycloneTime", 0, 0, 72000);
+            CycloneCoolDown = BUILDER.comment("Cyclone Spell Cooldown, Default: 300")
+                    .defineInRange("cycloneCoolDown", 300, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Updraft Spell");
+            UpdraftCost = BUILDER.comment("Updraft Spell Cost, Default: 8")
+                    .defineInRange("updraftCost", 8, 0, Integer.MAX_VALUE);
+            UpdraftDuration = BUILDER.comment("Time to cast Updraft Spell, Default: 0")
+                    .defineInRange("updraftTime", 0, 0, 72000);
+            UpdraftCoolDown = BUILDER.comment("Updraft Spell Cooldown, Default: 60")
+                    .defineInRange("updraftCoolDown", 60, 0, Integer.MAX_VALUE);
+            UpdraftBlastDamage = BUILDER.comment("How much base damage Updraft Blasts deals, Default: 5.0")
+                    .defineInRange("updraftBlastDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Wind Blast Spell");
+            WindBlastCost = BUILDER.comment("Wind Blast Spell Cost, Default: 4")
+                    .defineInRange("windBlastCost", 4, 0, Integer.MAX_VALUE);
+            WindBlastDuration = BUILDER.comment("Time to cast Wind Blast Spell, Default: 0")
+                    .defineInRange("windBlastTime", 0, 0, 72000);
+            WindBlastCoolDown = BUILDER.comment("Wind Blast Spell Cooldown, Default: 60")
+                    .defineInRange("windBlastCoolDown", 60, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Razor Wind Spell");
+            RazorWindCost = BUILDER.comment("Razor Wind Spell Cost, Default: 24")
+                    .defineInRange("razorWindCost", 24, 0, Integer.MAX_VALUE);
+            RazorWindDuration = BUILDER.comment("Time to cast Razor Wind Spell, Default: 0")
+                    .defineInRange("razorWindDuration", 0, 0, 72000);
+            RazorWindCoolDown = BUILDER.comment("Razor Wind Spell Cooldown, Default: 60")
+                    .defineInRange("razorWindCoolDown", 60, 0, Integer.MAX_VALUE);
+            RazorWindDamage = BUILDER.comment("How much base damage Razor Winds deals, Default: 6.0")
+                    .defineInRange("razorWindDamage", 6.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Trembling Spell");
+            TremblingCost = BUILDER.comment("Trembling Spell Cost, Default: 8")
+                    .defineInRange("tremblingCost", 8, 0, Integer.MAX_VALUE);
+            TremblingDuration = BUILDER.comment("Time to cast Trembling Spell, Default: 0")
+                    .defineInRange("tremblingTime", 0, 0, 72000);
+            TremblingCoolDown = BUILDER.comment("Trembling Spell Cooldown, Default: 200")
+                    .defineInRange("tremblingCoolDown", 200, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Swarm Spell");
+            SwarmCost = BUILDER.comment("Swarm Spell Cost per second, Default: 2")
+                    .defineInRange("swarmCost", 2, 0, Integer.MAX_VALUE);
+            SwarmChargeUp = BUILDER.comment("How many ticks the Swarm Spell much charge before casting, Default: 0")
+                    .defineInRange("swarmChargeUp", 0, 0, Integer.MAX_VALUE);
+            SwarmDuration = BUILDER.comment("How long the Swarm Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("swarmTime", 100, 0, 72000);
+            SwarmCoolDown = BUILDER.comment("Swarm Spell Cooldown, Default: 100")
+                    .defineInRange("swarmCoolDown", 100, 0, 72000);
+            SwarmDamage = BUILDER.comment("How much base damage Swarm deals, Default: 2.0")
+                    .defineInRange("swarmDamage", 2.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Poison Dart Spell");
+            PoisonDartCost = BUILDER.comment("Poison Dart Spell Cost, Default: 8")
+                    .defineInRange("poisonDartCost", 8, 0, Integer.MAX_VALUE);
+            PoisonDartDuration = BUILDER.comment("Time to cast Poison Dart Spell, Default: 0")
+                    .defineInRange("poisonDartTime", 0, 0, 72000);
+            PoisonDartCoolDown = BUILDER.comment("Poison Dart Spell Cooldown, Default: 20")
+                    .defineInRange("poisonDartCoolDown", 20, 0, Integer.MAX_VALUE);
+            PoisonDartDamage = BUILDER.comment("How much base damage Poison Quills deals, Default: 2.5")
+                    .defineInRange("poisonDartDamage", 2.5, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Blossoming Spell");
+            BlossomCost = BUILDER.comment("Blossoming Spell Cost, Default: 32")
+                    .defineInRange("blossomCost", 32, 0, Integer.MAX_VALUE);
+            BlossomDuration = BUILDER.comment("Time to cast Blossoming Spell, Default: 40")
+                    .defineInRange("blossomTime", 40, 0, 72000);
+            BlossomCoolDown = BUILDER.comment("Blossoming Spell Cooldown, Default: 200")
+                    .defineInRange("blossomCoolDown", 200, 0, Integer.MAX_VALUE);
+            BlossomDamage = BUILDER.comment("How much base damage Blossoming Balls and Thorns deals, Default: 6.0")
+                    .defineInRange("blossomDamage", 6.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Grapple Spell");
+            GrappleCost = BUILDER.comment("Grapple Spell Cost, Default: 4")
+                    .defineInRange("grappleCost", 4, 0, Integer.MAX_VALUE);
+            GrappleDuration = BUILDER.comment("Time to cast Grapple Spell, Default: 0")
+                    .defineInRange("grappleTime", 0, 0, 72000);
+            GrappleCoolDown = BUILDER.comment("Grapple Spell Cooldown, Default: 20")
+                    .defineInRange("grappleCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Hunting Spell");
+            HuntingCost = BUILDER.comment("Hunting Spell Cost, Default: 8")
+                    .defineInRange("huntingCost", 8, 0, Integer.MAX_VALUE);
+            HuntingDuration = BUILDER.comment("Time to cast Hunting Spell, Default: 20")
+                    .defineInRange("huntingTime", 20, 0, 72000);
+            HuntingCoolDown = BUILDER.comment("Hunting Spell Cooldown, Default: 200")
+                    .defineInRange("huntingCoolDown", 200, 0, Integer.MAX_VALUE);
+            HuntingSummonDown = BUILDER.comment("Hunting Spell Summon Down, Default: 100")
+                    .defineInRange("huntingSummonDown", 100, 0, 72000);
+            HuntingLimit = BUILDER.comment("Number of Black Wolves that can exist around the player, Default: 16")
+                    .defineInRange("huntingLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Mauling Spell");
+            MaulingCost = BUILDER.comment("Mauling Spell Cost, Default: 16")
+                    .defineInRange("maulingCost", 16, 0, Integer.MAX_VALUE);
+            MaulingDuration = BUILDER.comment("Time to cast Mauling Spell, Default: 20")
+                    .defineInRange("maulingTime", 20, 0, 72000);
+            MaulingCoolDown = BUILDER.comment("Mauling Spell Cooldown, Default: 600")
+                    .defineInRange("maulingCoolDown", 600, 0, Integer.MAX_VALUE);
+            MaulingSummonDown = BUILDER.comment("Mauling Spell Summon Down, Default: 150")
+                    .defineInRange("maulingSummonDown", 150, 0, 72000);
+            MaulingLimit = BUILDER.comment("Number of Bear Servants that can exist around the player, Default: 8")
+                    .defineInRange("maulingLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Slimy Spell");
+            SlimyCost = BUILDER.comment("Slimy Spell Cost, Default: 16")
+                    .defineInRange("slimyCost", 16, 0, Integer.MAX_VALUE);
+            SlimyDuration = BUILDER.comment("Time to cast Slimy Spell, Default: 20")
+                    .defineInRange("slimyTime", 20, 0, 72000);
+            SlimyCoolDown = BUILDER.comment("Slimy Spell Cooldown, Default: 200")
+                    .defineInRange("slimyCoolDown", 200, 0, Integer.MAX_VALUE);
+            SlimySummonDown = BUILDER.comment("Slimy Spell Summon Down, Default: 100")
+                    .defineInRange("slimySummonDown", 100, 0, 72000);
+            SlimyLimit = BUILDER.comment("Number of Slime Servants and variants a player can have, Default: 16")
+                    .defineInRange("slimyLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Carrion Spell");
+            CarrionCost = BUILDER.comment("Carrion Spell Cost, Default: 16")
+                    .defineInRange("carrionCost", 16, 0, Integer.MAX_VALUE);
+            CarrionDuration = BUILDER.comment("Time to cast Carrion Spell, Default: 100")
+                    .defineInRange("carrionTime", 100, 0, 72000);
+            CarrionCoolDown = BUILDER.comment("Carrion Spell Cooldown, Default: 300")
+                    .defineInRange("carrionCoolDown", 300, 0, Integer.MAX_VALUE);
+            CarrionSummonDown = BUILDER.comment("Carrion Spell Summon Down, Default: 200")
+                    .defineInRange("carrionSummonDown", 200, 0, 72000);
+            CarrionLimit = BUILDER.comment("Number of Carrion Maggots and Flies a player can have, Default: 32")
+                    .defineInRange("carrionLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Overgrowth Spell");
+            OvergrowthCost = BUILDER.comment("Overgrowth Spell Cost, Default: 8")
+                    .defineInRange("overgrowthCost", 8, 0, Integer.MAX_VALUE);
+            OvergrowthDuration = BUILDER.comment("Time to cast Overgrowth Spell, Default: 0")
+                    .defineInRange("overgrowthTime", 0, 0, 72000);
+            OvergrowthCoolDown = BUILDER.comment("Overgrowth Spell Cooldown, Default: 120")
+                    .defineInRange("overgrowthCoolDown", 120, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Entangling Spell");
+            EntanglingCost = BUILDER.comment("Entangling Spell Cost, Default: 8")
+                    .defineInRange("entanglingCost", 8, 0, Integer.MAX_VALUE);
+            EntanglingDuration = BUILDER.comment("Time to cast Entangling Spell, Default: 50")
+                    .defineInRange("entanglingTime", 50, 0, 72000);
+            EntanglingCoolDown = BUILDER.comment("Entangling Spell Cooldown, Default: 400")
+                    .defineInRange("entanglingCoolDown", 400, 0, Integer.MAX_VALUE);
+            EntanglingStaffAmount = BUILDER.comment("Maximum amount of targets that can be entangled when cast using Wild Staff, Default: 8")
+                    .defineInRange("entanglingStaffAmount", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Whispering Spell");
+            WhisperCost = BUILDER.comment("Whispering Spell Cost, Default: 16")
+                    .defineInRange("whisperCost", 16, 0, Integer.MAX_VALUE);
+            WhisperDuration = BUILDER.comment("Time to cast Whispering Spell, Default: 100")
+                    .defineInRange("whisperTime", 100, 0, 72000);
+            WhisperCoolDown = BUILDER.comment("Whispering Spell Cooldown, Default: 1200")
+                    .defineInRange("whisperCoolDown", 1200, 0, Integer.MAX_VALUE);
+            WhisperSummonDown = BUILDER.comment("Whispering Spell Summon Down, Default: 300")
+                    .defineInRange("whisperSummonDown", 300, 300, 72000);
+            WhisperLimit = BUILDER.comment("Number of Whisperers that can exist around the player, Default: 4")
+                    .defineInRange("whisperLimit", 4, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Leaping Spell");
+            LeapingCost = BUILDER.comment("Leaping Spell Cost, Default: 32")
+                    .defineInRange("leapingCost", 32, 0, Integer.MAX_VALUE);
+            LeapingDuration = BUILDER.comment("Time to cast Leaping Spell, Default: 100")
+                    .defineInRange("leapingTime", 100, 0, 72000);
+            LeapingCoolDown = BUILDER.comment("Leaping Spell Cooldown, Default: 1200")
+                    .defineInRange("leapingCoolDown", 1200, 0, Integer.MAX_VALUE);
+            LeapingSummonDown = BUILDER.comment("Leaping Spell Summon Down, Default: 300")
+                    .defineInRange("leapingSummonDown", 300, 300, 72000);
+            LeapleafLimit = BUILDER.comment("Number of Leapleaves that an individual player can have in total, Default: 2")
+                    .defineInRange("leapleafLimit", 2, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Thunderbolt Spell");
+            ThunderboltCost = BUILDER.comment("Thunderbolt Spell Cost, Default: 16")
+                    .defineInRange("thunderboltCost", 16, 0, Integer.MAX_VALUE);
+            ThunderboltDuration = BUILDER.comment("Time to cast Thunderbolt Spell, Default: 40")
+                    .defineInRange("thunderboltTime", 40, 0, 72000);
+            ThunderboltCoolDown = BUILDER.comment("Thunderbolt Spell Cooldown, Default: 0")
+                    .defineInRange("thunderboltCoolDown", 0, 0, Integer.MAX_VALUE);
+            ThunderboltDamage = BUILDER.comment("How much base damage Thunderbolts deals, Default: 5.0")
+                    .defineInRange("thunderboltDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Electro Orb Spell");
+            ElectroOrbCost = BUILDER.comment("Electro Orb Spell Cost, Default: 8")
+                    .defineInRange("electroOrbCost", 8, 0, Integer.MAX_VALUE);
+            ElectroOrbDuration = BUILDER.comment("Time to cast Electro Orb Spell, Default: 0")
+                    .defineInRange("electroOrbTime", 0, 0, 72000);
+            ElectroOrbCoolDown = BUILDER.comment("Electro Orb Spell Cooldown, Default: 40")
+                    .defineInRange("electroOrbCoolDown", 40, 0, Integer.MAX_VALUE);
+            ElectroOrbDamage = BUILDER.comment("How much base damage Electro Orbs deals, Default: 4.0")
+                    .defineInRange("electroOrbDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Surging Spell");
+            SurgingCost = BUILDER.comment("Surging Spell Cost, Default: 24")
+                    .defineInRange("surgingCost", 24, 0, Integer.MAX_VALUE);
+            SurgingChargeUp = BUILDER.comment("How many ticks the Surging Spell much charge before casting, Default: 80")
+                    .defineInRange("surgingChargeUp", 80, 0, Integer.MAX_VALUE);
+            SurgingShots = BUILDER.comment("How many shots are allowed to be fired before spell ends, set 0 to allow spell to be cast indefinitely, Default: 0")
+                    .defineInRange("surgingShots", 0, 0, 72000);
+            SurgingDuration = BUILDER.comment("Time to cast Surging Spell per tick, Default: 6")
+                    .defineInRange("surgingTime", 6, 0, 72000);
+            SurgingCoolDown = BUILDER.comment("Surging Spell Cooldown, Default: 200")
+                    .defineInRange("surgingCoolDown", 200, 0, 72000);
+            SurgingDamage = BUILDER.comment("How much base damage Surging Orbs deals, Default: 3.0")
+                    .defineInRange("surgingDamage", 3.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Sprightly Spell");
+            SpriteCost = BUILDER.comment("Sprightly Spell Cost, Default: 24")
+                    .defineInRange("spriteCost", 24, 0, Integer.MAX_VALUE);
+            SpriteDuration = BUILDER.comment("Time to cast Sprightly Spell, Default: 100")
+                    .defineInRange("spriteDuration", 100, 0, 72000);
+            SpriteCoolDown = BUILDER.comment("Sprightly Spell Cooldown, Default: 200")
+                    .defineInRange("spriteCoolDown", 200, 0, Integer.MAX_VALUE);
+            SpriteSummonDown = BUILDER.comment("Sprightly Spell Summon Down, Default: 200")
+                    .defineInRange("spriteSummonDown", 200, 0, 72000);
+            SpriteLimit = BUILDER.comment("Number of Sprites that can exist around the player, Default: 8")
+                    .defineInRange("spriteLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Monsoon Spell");
+            MonsoonCost = BUILDER.comment("Monsoon Spell Cost, Default: 8")
+                    .defineInRange("monsoonCost", 8, 0, Integer.MAX_VALUE);
+            MonsoonDuration = BUILDER.comment("Time to cast Monsoon Spell, Default: 40")
+                    .defineInRange("monsoonTime", 40, 0, 72000);
+            MonsoonCoolDown = BUILDER.comment("Monsoon Spell Cooldown, Default: 100")
+                    .defineInRange("monsoonCoolDown", 100, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Discharge Spell");
+            DischargeCost = BUILDER.comment("Discharge Spell Cost, Default: 40")
+                    .defineInRange("dischargeCost", 40, 0, Integer.MAX_VALUE);
+            DischargeDuration = BUILDER.comment("Time to cast Discharge Spell, Default: 0")
+                    .defineInRange("dischargeTime", 0, 0, 72000);
+            DischargeCoolDown = BUILDER.comment("Discharge Spell Cooldown, Default: 100")
+                    .defineInRange("dischargeCoolDown", 100, 0, Integer.MAX_VALUE);
+            DischargeDamage = BUILDER.comment("How much base minimum damage Discharge Spell deals, Default: 6.0")
+                    .defineInRange("dischargeMinDamage", 6.0, 1.0, Double.MAX_VALUE);
+            DischargeMaxDamage = BUILDER.comment("How much base maximum damage Discharge Spell deals, Default: 12.0")
+                    .defineInRange("dischargeMaxDamage", 12.0, 2.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Bolting Spell");
+            BoltingCost = BUILDER.comment("Bolting Spell Cost, Default: 40")
+                    .defineInRange("boltingCost", 40, 0, Integer.MAX_VALUE);
+            BoltingDuration = BUILDER.comment("Time to cast Bolting Spell, Default: 0")
+                    .defineInRange("boltingTime", 0, 0, 72000);
+            BoltingCoolDown = BUILDER.comment("Bolting Spell Cooldown, Default: 200")
+                    .defineInRange("boltingCoolDown", 200, 0, Integer.MAX_VALUE);
+            BoltingDamage = BUILDER.comment("How much base damage Bolting Spell deals, Default: 5.0")
+                    .defineInRange("boltingDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Lightning Spell");
+            LightningCost = BUILDER.comment("Lightning Spell Cost, Default: 16")
+                    .defineInRange("lightningCost", 16, 0, Integer.MAX_VALUE);
+            LightningDuration = BUILDER.comment("Time to cast Lightning Spell, Default: 0")
+                    .defineInRange("lightningTime", 0, 0, 72000);
+            LightningCoolDown = BUILDER.comment("Lightning Spell Cooldown, Default: 100")
+                    .defineInRange("lightningCoolDown", 100, 0, Integer.MAX_VALUE);
+            LightningDamage = BUILDER.comment("How much base damage Lightning from the spell deals, Default: 5.0")
+                    .defineInRange("lightningDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Thunderstorm Spell");
+            ThunderstormCost = BUILDER.comment("Thunderstorm Spell Cost, Default: 64")
+                    .defineInRange("thunderstormCost", 64, 0, Integer.MAX_VALUE);
+            ThunderstormDuration = BUILDER.comment("Time to cast Thunderstorm Spell, Default: 60")
+                    .defineInRange("thunderstormTime", 60, 0, 72000);
+            ThunderstormCoolDown = BUILDER.comment("Thunderstorm Spell Cooldown, Default: 300")
+                    .defineInRange("thunderstormCoolDown", 300, 0, Integer.MAX_VALUE);
+            ThunderstormDamage = BUILDER.comment("How much base damage Thunderstorm deals, Default: 5.0")
+                    .defineInRange("thunderstormDamage", 5.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Bouncy Bubble Spell");
+            BouncyBubbleCost = BUILDER.comment("Bouncy Bubble Spell Cost, Default: 8")
+                    .defineInRange("bouncyBubbleCost", 8, 0, Integer.MAX_VALUE);
+            BouncyBubbleDuration = BUILDER.comment("Time to cast Bouncy Bubble Spell, Default: 0")
+                    .defineInRange("bouncyBubbleTime", 0, 0, 72000);
+            BouncyBubbleCoolDown = BUILDER.comment("Bouncy Bubble Spell Cooldown, Default: 100")
+                    .defineInRange("bouncyBubbleCoolDown", 100, 0, Integer.MAX_VALUE);
+            BouncyBubbleDamage = BUILDER.comment("How much base damage Bouncy Bubble from the spell deals, Default: 4.0")
+                    .defineInRange("bouncyBubbleDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Steaming Spell");
+            SteamingCost = BUILDER.comment("Steaming Spell Cost, Default: 4")
+                    .defineInRange("steamingCost", 4, 0, Integer.MAX_VALUE);
+            SteamingDuration = BUILDER.comment("Time to cast Steaming Spell, Default: 0")
+                    .defineInRange("steamingTime", 0, 0, 72000);
+            SteamingCoolDown = BUILDER.comment("Steaming Spell Cooldown, Default: 20")
+                    .defineInRange("steamingCoolDown", 20, 0, Integer.MAX_VALUE);
+            SteamingDamage = BUILDER.comment("How much base damage Steam Missiles deals, Default: 4.0")
+                    .defineInRange("steamingDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Trident Storm Spell");
+            TridentStormCost = BUILDER.comment("Trident Storm Spell Cost, Default: 48")
+                    .defineInRange("tridentStormCost", 48, 0, Integer.MAX_VALUE);
+            TridentStormCoolDown = BUILDER.comment("Trident Storm Spell Cooldown, Default: 200")
+                    .defineInRange("tridentStormCoolDown", 200, 0, Integer.MAX_VALUE);
+            TridentStormDamage = BUILDER.comment("How much base damage Trident Storm from the spell deals, Default: 16.0")
+                    .defineInRange("tridentStormDamage", 16.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Prisma Beam Spell");
+            PrismaBeamCost = BUILDER.comment("Prisma Beam Spell Cost, Default: 8")
+                    .defineInRange("prismaBeamCost", 8, 0, Integer.MAX_VALUE);
+            PrismaBeamDuration = BUILDER.comment("Time to cast Prisma Beam Spell, Default: 80")
+                    .defineInRange("prismaBeamTime", 80, 0, 72000);
+            PrismaBeamCoolDown = BUILDER.comment("Prisma Beam Spell Cooldown, Default: 20")
+                    .defineInRange("prismaBeamCoolDown", 20, 0, Integer.MAX_VALUE);
+            PrismaBeamDamage = BUILDER.comment("How much base damage the spell deals, Default: 6.0")
+                    .defineInRange("prismaBeamDamage", 6.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Guardian Spell");
+            GuardianCost = BUILDER.comment("Guardian Spell Cost, Default: 16")
+                    .defineInRange("guardianCost", 16, 0, Integer.MAX_VALUE);
+            GuardianDuration = BUILDER.comment("Time to cast Guardian Spell, Default: 20")
+                    .defineInRange("guardianTime", 20, 0, 72000);
+            GuardianCoolDown = BUILDER.comment("Guardian Spell Cooldown, Default: 600")
+                    .defineInRange("guardianCoolDown", 600, 0, Integer.MAX_VALUE);
+            GuardianSummonDown = BUILDER.comment("Guardian Spell Summon Down, Default: 150")
+                    .defineInRange("guardianSummonDown", 150, 0, 72000);
+            GuardianLimit = BUILDER.comment("Number of Guardian Servants that can exist around the player, Default: 8")
+                    .defineInRange("guardianLimit", 8, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Biomine Spell");
+            BiomineCost = BUILDER.comment("Biomine Spell Cost, Default: 16")
+                    .defineInRange("biomineCost", 16, 0, Integer.MAX_VALUE);
+            BiomineDuration = BUILDER.comment("Time to cast Biomine Spell, Default: 40")
+                    .defineInRange("biomineTime", 40, 0, 72000);
+            BiomineCoolDown = BUILDER.comment("Biomine Spell Cooldown, Default: 200")
+                    .defineInRange("biomineCoolDown", 200, 0, Integer.MAX_VALUE);
+            BiomineDamage = BUILDER.comment("How much base damage Biomine explosion deals, Default: 3.0")
+                    .defineInRange("biomineDamage", 3.0, 1.0, Double.MAX_VALUE);
+            BiomineAcidDamage = BUILDER.comment("How much base damage Biomine acid cloud deals, Default: 2.0")
+                    .defineInRange("biomineAcidDamage", 2.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Water Whip Spell");
+            WaterWhipCost = BUILDER.comment("Water Whip Spell Cost, Default: 16")
+                    .defineInRange("waterWhipCost", 16, 0, Integer.MAX_VALUE);
+            WaterWhipDuration = BUILDER.comment("Time to cast Water Whip Spell, Default: 0")
+                    .defineInRange("waterWhipTime", 0, 0, 72000);
+            WaterWhipCoolDown = BUILDER.comment("Water Whip Spell Cooldown, Default: 10")
+                    .defineInRange("waterWhipCoolDown", 10, 0, Integer.MAX_VALUE);
+            WaterWhipDamage = BUILDER.comment("How much base damage the spell deals, Default: 4.0")
+                    .defineInRange("waterWhipDamage", 4.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Tidal Spell");
+            TidalCost = BUILDER.comment("Tidal Spell Cost, Default: 24")
+                    .defineInRange("tidalCost", 24, 0, Integer.MAX_VALUE);
+            TidalDuration = BUILDER.comment("Time to cast Tidal Spell, Default: 20")
+                    .defineInRange("tidalTime", 20, 0, 72000);
+            TidalCoolDown = BUILDER.comment("Tidal Spell Cooldown, Default: 60")
+                    .defineInRange("tidalCoolDown", 60, 0, Integer.MAX_VALUE);
+            TidalBaseDamage = BUILDER.comment("How much base damage the spell deals, Default: 1.0")
+                    .defineInRange("tidalBaseDamage", 1.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Call Spell");
+            CallCost = BUILDER.comment("Call Spell Cost, Default: 16")
+                    .defineInRange("callCost", 16, 0, Integer.MAX_VALUE);
+            CallDuration = BUILDER.comment("Time to cast Call Spell, Default: 100")
+                    .defineInRange("callTime", 100, 0, 72000);
+            CallCoolDown = BUILDER.comment("Call Spell Cooldown, Default: 0")
+                    .defineInRange("callCoolDown", 0, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Troop Spell");
+            TroopCost = BUILDER.comment("Troop Spell Cost, Default: 32")
+                    .defineInRange("troopCost", 32, 0, Integer.MAX_VALUE);
+            TroopDuration = BUILDER.comment("Time to cast Troop Spell, Default: 100")
+                    .defineInRange("troopTime", 100, 0, 72000);
+            TroopCoolDown = BUILDER.comment("Troop Spell Cooldown, Default: 20")
+                    .defineInRange("troopCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Recall Spell");
+            RecallCost = BUILDER.comment("Recall Spell Cost, Default: 1000")
+                    .defineInRange("recallCost", 1000, 0, Integer.MAX_VALUE);
+            RecallDuration = BUILDER.comment("Time to cast Recall Spell, Default: 160")
+                    .defineInRange("recallTime", 160, 0, 72000);
+            RecallCoolDown = BUILDER.comment("Recall Spell Cooldown, Default: 100")
+                    .defineInRange("recallCoolDown", 100, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Ender Chest Spell");
+            EnderChestCost = BUILDER.comment("Ender Chest Spell Cost, Default: 8")
+                    .defineInRange("enderChestCost", 8, 0, Integer.MAX_VALUE);
+            EnderChestDuration = BUILDER.comment("Time to cast Ender Chest Spell, Default: 0")
+                    .defineInRange("enderChestDuration", 0, 0, 72000);
+            EnderChestCoolDown = BUILDER.comment("Ender Chest Spell Cooldown, Default: 20")
+                    .defineInRange("enderChestCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Banish Spell");
+            BanishCost = BUILDER.comment("Banish Spell Cost, Default: 16")
+                    .defineInRange("banishCost", 16, 0, Integer.MAX_VALUE);
+            BanishCoolDown = BUILDER.comment("Banish Spell Cooldown, Default: 400")
+                    .defineInRange("banishCoolDown", 400, 0, Integer.MAX_VALUE);
+            BanishMaxHealth = BUILDER.comment("The highest maximum health an entity can possess to be affected by Banish spell, Default: 100")
+                .defineInRange("banishMaxHealth", 100, 1, Integer.MAX_VALUE);
+            BanishBlackList = BUILDER.comment("""
+                            Add mobs that Banish Spell don't work on.\s
+                            To do so, enter the namespace ID of the mob, like "minecraft:zombie, minecraft:skeleton".""")
+                .defineList("banishBlackList", Lists.newArrayList(),
+                        (itemRaw) -> itemRaw instanceof String);
+            BUILDER.pop();
+            BUILDER.push("Blink Spell");
+            BlinkCost = BUILDER.comment("Blink Spell Cost, Default: 8")
+                    .defineInRange("blinkCost", 8, 0, Integer.MAX_VALUE);
+            BlinkDuration = BUILDER.comment("Time to cast Blink Spell, Default: 0")
+                    .defineInRange("blinkDuration", 0, 0, 72000);
+            BlinkCoolDown = BUILDER.comment("Blink Spell Cooldown, Default: 20")
+                    .defineInRange("blinkCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("End Walker Spell");
+            EndWalkCost = BUILDER.comment("End Walk Spell Cost, Default: 48")
+                    .defineInRange("endWalkCost", 48, 0, Integer.MAX_VALUE);
+            EndWalkDuration = BUILDER.comment("Time to cast End Walk Spell, Default: 60")
+                    .defineInRange("endWalkDuration", 60, 0, 72000);
+            EndWalkCoolDown = BUILDER.comment("End Walk Spell Cooldown, Default: 1200")
+                    .defineInRange("endWalkCoolDown", 1200, 0, Integer.MAX_VALUE);
+            EndWalkEffectDuration = BUILDER.comment("How long the effect is applied from the spell, Default: 200")
+                    .defineInRange("endWalkEffectDuration", 200, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Tunnel Spell");
+            TunnelCost = BUILDER.comment("Tunnel Spell Cost, Default: 16")
+                    .defineInRange("tunnelCost", 16, 0, Integer.MAX_VALUE);
+            TunnelCoolDown = BUILDER.comment("Tunnel Spell Cooldown, Default: 100")
+                    .defineInRange("tunnelCoolDown", 100, 0, Integer.MAX_VALUE);
+            TunnelDefaultLifespan = BUILDER.comment("The initial duration for the Tunnel lifespan in ticks, Default: 100")
+                    .defineInRange("tunnelDefaultLifespan", 100, 0, Integer.MAX_VALUE);
+            TunnelDefaultDistance = BUILDER.comment("The initial distance of the Tunnel, Default: 8")
+                    .defineInRange("tunnelDefaultDistance", 8, 0, Integer.MAX_VALUE);
+            TunnelHaveBlacklist = BUILDER.comment("Whether Tunnel Holes disallows certain mobs from falling or moving through it, Default: true")
+                    .define("tunnelHaveBlacklist", true);
+            BUILDER.pop();
+            BUILDER.push("Rupture Spell");
+            RuptureCost = BUILDER.comment("Rupture Spell Cost, Default: 250")
+                    .defineInRange("ruptureCost", 250, 0, Integer.MAX_VALUE);
+            RuptureDuration = BUILDER.comment("Time to cast Rupture Spell, Default: 120")
+                    .defineInRange("ruptureTime", 120, 0, 72000);
+            RuptureCoolDown = BUILDER.comment("Rupture Spell Cooldown, Default: 6000")
+                    .defineInRange("ruptureCoolDown", 6000, 0, Integer.MAX_VALUE);
+            RuptureDamage = BUILDER.comment("How much base damage the Void Rift deals, Default: 2.0")
+                    .defineInRange("ruptureDamage", 2.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Stellar Spell");
+            VoidShockCost = BUILDER.comment("Stellar Spell Cost, Default: 16")
+                    .defineInRange("stellarCost", 16, 0, Integer.MAX_VALUE);
+            VoidShockDuration = BUILDER.comment("Time to cast Stellar Spell, Default: 35")
+                    .defineInRange("stellarDuration", 35, 15, 72000);
+            VoidShockCoolDown = BUILDER.comment("Stellar Spell Cooldown, Default: 100")
+                    .defineInRange("stellarCoolDown", 100, 0, Integer.MAX_VALUE);
+            VoidShockDamage = BUILDER.comment("How much base damage the Void Shocks from Stellar spell deals, Default: 7.0")
+                    .defineInRange("stellarDamage", 7.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Void Flash Spell");
+            VoidBombCost = BUILDER.comment("Void Flash Spell Cost, Default: 32")
+                    .defineInRange("voidFlashCost", 32, 0, Integer.MAX_VALUE);
+            VoidBombDuration = BUILDER.comment("Time to cast Void Flash Spell, Default: 86")
+                    .defineInRange("voidFlashDuration", 86, 0, 72000);
+            VoidBombCoolDown = BUILDER.comment("Void Flash Spell Cooldown, Default: 200")
+                    .defineInRange("voidFlashCoolDown", 200, 0, Integer.MAX_VALUE);
+            VoidBombDamage = BUILDER.comment("How much base damage the Void Shock Bombs from Void Flash spell deals, Default: 7.0")
+                    .defineInRange("voidFlashDamage", 7.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Watching Spell");
+            WatchlingCost = BUILDER.comment("Watching Spell Cost, Default: 20")
+                    .defineInRange("watchlingCost", 20, 0, Integer.MAX_VALUE);
+            WatchlingDuration = BUILDER.comment("Time to cast Watching Spell, Default: 40")
+                    .defineInRange("watchlingTime", 40, 0, 72000);
+            WatchlingCoolDown = BUILDER.comment("Watching Spell Cooldown, Default: 300")
+                    .defineInRange("watchlingCoolDown", 300, 0, Integer.MAX_VALUE);
+            WatchlingSummonDown = BUILDER.comment("Watching Spell Summon Down, Default: 120")
+                    .defineInRange("watchlingSummonDown", 120, 0, 72000);
+            WatchlingLimit = BUILDER.comment("Number of Watchling Servants that can a player can have, Default: 32")
+                    .defineInRange("watchlingLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Blasting Spell");
+            BlastlingCost = BUILDER.comment("Blasting Spell Cost, Default: 32")
+                    .defineInRange("blastlingCost", 32, 0, Integer.MAX_VALUE);
+            BlastlingDuration = BUILDER.comment("Time to cast Blasting Spell, Default: 60")
+                    .defineInRange("blastlingTime", 60, 0, 72000);
+            BlastlingCoolDown = BUILDER.comment("Blasting Spell Cooldown, Default: 400")
+                    .defineInRange("blastlingCoolDown", 400, 0, Integer.MAX_VALUE);
+            BlastlingSummonDown = BUILDER.comment("Blasting Spell Summon Down, Default: 120")
+                    .defineInRange("blastlingSummonDown", 120, 0, 72000);
+            BlastlingLimit = BUILDER.comment("Number of Blastling Servants that an individual player can have in total, Default: 32")
+                    .defineInRange("blastlingLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Snaring Spell");
+            SnarelingCost = BUILDER.comment("Snaring Spell Cost, Default: 24")
+                    .defineInRange("snarelingCost", 24, 0, Integer.MAX_VALUE);
+            SnarelingDuration = BUILDER.comment("Time to cast Snaring Spell, Default: 40")
+                    .defineInRange("snarelingTime", 40, 0, 72000);
+            SnarelingCoolDown = BUILDER.comment("Snaring Spell Cooldown, Default: 350")
+                    .defineInRange("snarelingCoolDown", 350, 0, Integer.MAX_VALUE);
+            SnarelingSummonDown = BUILDER.comment("Snaring Spell Summon Down, Default: 120")
+                    .defineInRange("snarelingSummonDown", 120, 0, 72000);
+            SnarelingLimit = BUILDER.comment("Number of Snareling Servants that an individual player can have in total, Default: 32")
+                    .defineInRange("snarelingLimit", 32, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Crafting Spell");
+            CraftingCost = BUILDER.comment("Crafting Spell Cost, Default: 2")
+                    .defineInRange("craftingCost", 2, 0, Integer.MAX_VALUE);
+            CraftingDuration = BUILDER.comment("Time to cast Crafting Spell, Default: 0")
+                    .defineInRange("craftingDuration", 0, 0, 72000);
+            CraftingCoolDown = BUILDER.comment("Crafting Spell Cooldown, Default: 20")
+                    .defineInRange("craftingCoolDown", 20, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Shockwave Spell");
+            ShockwaveCost = BUILDER.comment("Shockwave Spell Cost, Default: 80")
+                    .defineInRange("shockwaveCost", 80, 0, Integer.MAX_VALUE);
+            ShockwaveDuration = BUILDER.comment("Time to cast Shockwave Spell, Default: 0")
+                    .defineInRange("shockwaveTime", 0, 0, 72000);
+            ShockwaveCoolDown = BUILDER.comment("Shockwave Spell Cooldown, Default: 80")
+                    .defineInRange("shockwaveCoolDown", 80, 0, Integer.MAX_VALUE);
+            ShockwaveDamage = BUILDER.comment("How much base minimum damage Shockwave Spell deals, Default: 5.0")
+                    .defineInRange("shockwaveMinDamage", 5.0, 1.0, Double.MAX_VALUE);
+            ShockwaveMaxDamage = BUILDER.comment("How much base maximum damage Shockwave Spell deals, Default: 24.0")
+                    .defineInRange("shockwaveMaxDamage", 24.0, 2.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Iron Hide Spell");
+            IronHideCost = BUILDER.comment("Iron Hide Spell Cost, Default: 24")
+                    .defineInRange("ironHideCost", 24, 0, Integer.MAX_VALUE);
+            IronHideDuration = BUILDER.comment("Time to cast Iron Hide Spell, Default: 60")
+                    .defineInRange("ironHideTime", 60, 0, 72000);
+            IronHideCoolDown = BUILDER.comment("Iron Hide Spell Cooldown, Default: 500")
+                    .defineInRange("ironHideCoolDown", 500, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Bulwark Spell");
+            BulwarkCost = BUILDER.comment("Bulwark Spell Cost, Default: 100")
+                    .defineInRange("bulwarkCost", 100, 0, Integer.MAX_VALUE);
+            BulwarkDuration = BUILDER.comment("Time to cast Bulwark Spell, Default: 100")
+                    .defineInRange("bulwarkDuration", 100, 0, 72000);
+            BulwarkCoolDown = BUILDER.comment("Bulwark Spell Cooldown, Default: 6000")
+                    .defineInRange("bulwarkCoolDown", 6000, 0, Integer.MAX_VALUE);
+            BulwarkShieldAmount = BUILDER.comment("Initial amount of shields the Bulwark Spell summons, Default: 4")
+                    .defineInRange("bulwarkShieldAmount", 4, 1, Integer.MAX_VALUE);
+            BulwarkShieldTime = BUILDER.comment("Initial lifespan of the Bulwark Spell's shields, count in ticks, Default: 1500")
+                    .defineInRange("bulwarkShieldTime", 1500, 1, Integer.MAX_VALUE);
+            BulwarkShieldBreakExtra = BUILDER.comment("If damage received exceeds this amount, an additional shield will be broken per exceeded amount. Set to 0.0 to disable, Default: 15.0")
+                    .defineInRange("bulwarkShieldBreakExtra", 15.0, 0.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Soul Heal Spell");
+            SoulHealCost = BUILDER.comment("Soul Heal Spell Cost, Default: 250")
+                    .defineInRange("soulHealCost", 250, 0, Integer.MAX_VALUE);
+            SoulHealDuration = BUILDER.comment("Time to cast Soul Heal Spell, Default: 0")
+                    .defineInRange("soulHealDuration", 0, 0, 72000);
+            SoulHealCoolDown = BUILDER.comment("Soul Heal Spell Cooldown, Default: 200")
+                    .defineInRange("soulHealCoolDown", 200, 0, Integer.MAX_VALUE);
+            SoulHealAmount = BUILDER.comment("Initial amount of health the Soul Heal Spell heals, Default: 8")
+                    .defineInRange("soulHealAmount", 8, 2, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Weakening Spell");
+            WeakeningCost = BUILDER.comment("Weakening Spell Cost, Default: 100")
+                    .defineInRange("weakeningCost", 100, 0, Integer.MAX_VALUE);
+            WeakeningDuration = BUILDER.comment("Time to cast Weakening Spell, Default: 0")
+                    .defineInRange("weakeningDuration", 0, 0, 72000);
+            WeakeningCoolDown = BUILDER.comment("Weakening Spell Cooldown, Default: 400")
+                    .defineInRange("weakeningCoolDown", 400, 0, Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Telekinesis Spell");
+            TelekinesisCost = BUILDER.comment("Telekinesis Spell Cost, Default: 4")
+                    .defineInRange("telekinesisCost", 4, 0, Integer.MAX_VALUE);
+            TelekinesisChargeUp = BUILDER.comment("How many ticks the Telekinesis Spell much charge before casting, Default: 0")
+                    .defineInRange("telekinesisChargeUp", 0, 0, Integer.MAX_VALUE);
+            TelekinesisMaxHealth = BUILDER.comment("The highest maximum health an entity can possess to be affected by Telekinesis spell, Default: 100")
+                .defineInRange("telekinesisMaxHealth", 100, 1, Integer.MAX_VALUE);
+            TelekinesisBlackList = BUILDER.comment("""
+                            Add mobs that Telekinesis Spell don't work on.\s
+                            To do so, enter the namespace ID of the mob, like "minecraft:zombie, minecraft:skeleton".""")
+                    .defineList("telekinesisBlackList", Lists.newArrayList(),
+                            (itemRaw) -> itemRaw instanceof String);
+            BUILDER.pop();
+            BUILDER.push("Arrow Rain Spell");
+            ArrowRainCost = BUILDER.comment("Arrow Rain Spell Cost, Default: 4")
+                    .defineInRange("arrowRainCost", 4, 0, Integer.MAX_VALUE);
+            ArrowRainChargeUp = BUILDER.comment("How many ticks the Arrow Rain Spell much charge before casting, Default: 20")
+                    .defineInRange("arrowRainChargeUp", 20, 0, Integer.MAX_VALUE);
+            ArrowRainDuration = BUILDER.comment("How long the Arrow Rain Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 100")
+                    .defineInRange("arrowRainTime", 100, 0, 72000);
+            ArrowRainCoolDown = BUILDER.comment("Arrow Rain Spell Cooldown, Default: 400")
+                    .defineInRange("arrowRainCoolDown", 400, 0, 72000);
+            ArrowRainExtraDamage = BUILDER.comment("How much extra damage the arrows deals, Default: 0.0")
+                    .defineInRange("arrowRainDamage", 0.0, 0.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Sonic Boom Spell");
+            SonicBoomCost = BUILDER.comment("Sonic Boom Spell Cost, Default: 16")
+                    .defineInRange("sonicBoomCost", 16, 0, Integer.MAX_VALUE);
+            SonicBoomDuration = BUILDER.comment("Time to cast Sonic Boom Spell, Default: 60")
+                    .defineInRange("sonicBoomTime", 60, 0, 72000);
+            SonicBoomCoolDown = BUILDER.comment("Sonic Boom Spell Cooldown, Default: 40")
+                    .defineInRange("sonicBoomCoolDown", 40, 0, Integer.MAX_VALUE);
+            SonicBoomDamage = BUILDER.comment("How much base damage Sonic Boom Spell deals, Default: 10.0")
+                    .defineInRange("sonicBoomDamage", 10.0, 1.0, Double.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("Corruption Spell");
+            CorruptionCost = BUILDER.comment("Corruption Spell Cost, Default: 2500")
+                    .defineInRange("corruptionCost", 2500, 0, Integer.MAX_VALUE);
+            CorruptionChargeUp = BUILDER.comment("How many ticks the Corruption Spell much charge before casting, Default: 0")
+                    .defineInRange("corruptionChargeUp", 0, 0, Integer.MAX_VALUE);
+            CorruptionDuration = BUILDER.comment("How long the Corruption Spell can be casted, setting it to 0 will allow the spell to be cast indefinitely, Default: 0")
+                    .defineInRange("corruptionTime", 0, 0, 72000);
+            CorruptionCoolDown = BUILDER.comment("Corruption Spell Cooldown, Default: 50")
+                    .defineInRange("corruptionCoolDown", 50, 0, Integer.MAX_VALUE);
+            CorruptedBeamDamage = BUILDER.comment("How much base damage Corrupted Beam Spell deals per tick, Default: 10.0")
+                    .defineInRange("corruptedBeamDamage", 10.0, 0.0, Double.MAX_VALUE);
+            CorruptionImmobile = BUILDER.comment("Whether casting Corruption spell immobilizes the caster, Default: true")
+                        .define("corruptionImmobile", true);
+            BUILDER.pop();
+        BUILDER.pop();
+        BUILDER.push("Servant Limits");
+        SpiderLimit = BUILDER.comment("Number of Spider Servants that an individual player can have in total, Default: 32")
+                .defineInRange("spiderLimit", 32, 1, Integer.MAX_VALUE);
+        BroodMotherLimit = BUILDER.comment("Number of Brood Mother Servants that an individual player can have in total, Default: 2")
+                .defineInRange("broodMotherLimit", 2, 1, Integer.MAX_VALUE);
+        NecromancerLimit = BUILDER.comment("Number of Necromancer Servants that an individual player can have in total, Default: 8")
+                .defineInRange("necromancerLimit", 8, 1, Integer.MAX_VALUE);
+        DrownedNecromancerLimit = BUILDER.comment("Number of Drowned Necromancer Servants that an individual player can have in total, Default: 2")
+                .defineInRange("drownedNecromancerLimit", 2, 1, Integer.MAX_VALUE);
+        WitherNecromancerLimit = BUILDER.comment("Number of Wither Necromancer Servants that an individual player can have in total, Default: 2")
+                .defineInRange("witherNecromancerLimit", 2, 1, Integer.MAX_VALUE);
+        BoundIllagerLimit = BUILDER.comment("Number of Bound Illager Servants that an individual player can have in total, Default: 8")
+                .defineInRange("boundIllagerLimit", 8, 1, Integer.MAX_VALUE);
+        BlackBeastLimit = BUILDER.comment("Number of Black Beast Servants that an individual player can have in total, Default: 2")
+                .defineInRange("blackBeastLimit", 2, 1, Integer.MAX_VALUE);
+        WildfireLimit = BUILDER.comment("Number of Wildfire Servants that an individual player can have in total, Default: 2")
+                .defineInRange("wildfireLimit", 2, 1, Integer.MAX_VALUE);
+        RedstoneGolemLimit = BUILDER.comment("Total number of Redstone Golems an individual player can have, Default: 2")
+                .defineInRange("redstoneGolemLimit", 2, 0, Integer.MAX_VALUE);
+        GraveGolemLimit = BUILDER.comment("Total number of Grave Golems an individual player can have, Default: 2")
+                .defineInRange("graveGolemLimit", 2, 0, Integer.MAX_VALUE);
+        RedstoneMonstrosityGlobalLimit = BUILDER.comment("Total number of Redstone Monstrosities that can be summoned in total on a world, Default: 2")
+                .defineInRange("redstoneMonstrosityGlobalLimit", 2, 0, Integer.MAX_VALUE);
+        RedstoneMonstrosityPlayerLimit = BUILDER.comment("Total number of Redstone Monstrosities an individual player can have, Default: 1")
+                .defineInRange("redstoneMonstrosityPlayerLimit", 1, 0, Integer.MAX_VALUE);
+        BUILDER.pop();
+        BUILDER.push("Enchantments");
+        FocusEnchantsTrades = BUILDER.comment("Whether Focus Enchantments can appear on Villager Trade Pools, Default: true")
+                .define("focusEnchantsTrades", true);
+        PotencyPower = BUILDER.comment("How much power Potency increases, Default: 1")
+                .defineInRange("potencyPower", 1, 1, Integer.MAX_VALUE);
+        MaxSoulEaterLevel = BUILDER.comment("Soul Eater Maximum Enchantment Level, Default: 5")
+                .defineInRange("maxSoulEaterLevel", 5, 1, 10);
+        MaxWantingLevel = BUILDER.comment("Wanting Maximum Enchantment Level, Default: 3")
+                .defineInRange("maxWantingLevel", 3, 1, 10);
+        MaxPotencyLevel = BUILDER.comment("Potency Maximum Enchantment Level, Default: 3")
+                .defineInRange("maxPotencyLevel", 3, 1, 10);
+        MaxRadiusLevel = BUILDER.comment("Radius Maximum Enchantment Level, Default: 2")
+                .defineInRange("maxRadiusLevel", 2, 1, 10);
+        MaxRangeLevel = BUILDER.comment("Range Maximum Enchantment Level, Default: 5")
+                .defineInRange("maxRangeLevel", 5, 1, 10);
+        MaxDurationLevel = BUILDER.comment("Duration Maximum Enchantment Level, Default: 3")
+                .defineInRange("maxDurationLevel", 3, 1, 10);
+        MaxBurningLevel = BUILDER.comment("Burning Maximum Enchantment Level, Default: 3")
+                .defineInRange("maxBurningLevel", 3, 1, 10);
+        MaxVelocityLevel = BUILDER.comment("Velocity Maximum Enchantment Level, Default: 5")
+                .defineInRange("maxVelocityLevel", 5, 1, 10);
+        BUILDER.pop();
+        SPEC = BUILDER.build();
+    }
+
+}

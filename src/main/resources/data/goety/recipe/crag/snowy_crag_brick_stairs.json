@@ -1,0 +1,18 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#  ",
+                    "## ",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:snowy_crag_bricks"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:snowy_crag_brick_stairs",
+                   "count":  4
+               }
+}
+

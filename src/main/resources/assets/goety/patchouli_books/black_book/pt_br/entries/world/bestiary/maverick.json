@@ -1,0 +1,21 @@
+{
+  "name": "Mavericks",
+  "icon": "minecraft:iron_sword",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_maverick",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Mais práticos do que seus primos, eles aplicam efeitos de poção através de suas lâminas, antes de fugirem e beberem uma poção para se buffarem."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:maverick",
+      "text": "Eles são resistentes à magia, assim como seus primos Bruxos."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Se um Vendedor Ambulante estiver sob um Bloco de Obsidiana Chorona, ele tem uma chance de se transformar em um Maverick."
+    }
+  ]
+}

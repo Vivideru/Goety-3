@@ -1,0 +1,40 @@
+{
+  "name": "Necromante",
+  "icon": "goety:necro_cape",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/unlock_necromancer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "O pergaminho ensina a conceder inteligência aos mortos, permitindo criar e comandar Necromantes a partir de Esqueletos."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_skeleton_to_necromancer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Necromantes podem aprender a invocar mais que Zumbis. Clique com Focos de Necromancia neles para ensinar novos servos."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Eles só aceitam focos que invocam criaturas que não podem invocar. Aceitam Foco da Putrefação, Foco Ósseo, Foco Assustador, Foco dos Ceifadores, Foco da Vanguarda e Foco do Guarda Negra."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_mossy_skeleton_to_mossy_necromancer"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:mossy_necromancer_servant"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_jar",
+      "text": "Se um Necromante morrer, um $(l:crafts/empty_soul_jar)Jarra de Alma Vazia$() capturará sua alma. Clique em um Esqueleto para revivê-lo. Alimentá-lo com a alma de outro Necromante aumenta seu poder..."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:soul_jar": 6
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "诡异之镐",
+  "icon": "goety:eerie_pickaxe",
+  "category": "goety:crafts/equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "诡异之镐是一个功能强大的工具，可以让持有者的触及距离增加3格。用这个镐破坏的方块会让产出掉落物和经验球立即传送到持有者的位置上。不过，镐之所以被命名为诡异是有原因的..."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:eerie_pickaxe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "这把镐子可以在铁砧上用$(l:intro/magical_components)诅咒金属锭$()修复."
+    }
+  ]
+}

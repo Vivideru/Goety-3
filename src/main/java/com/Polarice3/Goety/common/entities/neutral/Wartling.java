@@ -1,0 +1,357 @@
+package com.Polarice3.Goety.common.entities.neutral;
+
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.common.entities.ally.spider.AbstractSpiderServant;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.utils.MathHelper;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.util.DefaultRandomPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.EnumSet;
+
+public class Wartling extends AbstractSpiderServant {
+    private static final EntityDataAccessor<Boolean> MEGA = SynchedEntityData.defineId(Wartling.class, EntityDataSerializers.BOOLEAN);
+    private int searchTime;
+    private MobEffectInstance effect;
+
+    public Wartling(EntityType<? extends Wartling> p_33002_, Level p_33003_) {
+        super(p_33002_, p_33003_);
+    }
+
+    public void tick() {
+        if (!this.level().isClientSide) {
+            ServerLevel serverLevel = (ServerLevel) this.level();
+            if (this.getStoredEffect() != null){
+                int i = getColor(this.getStoredEffect());
+                if (i > 0) {
+                    boolean flag;
+                    if (this.isInvisible()) {
+                        flag = this.random.nextInt(15) == 0;
+                    } else {
+                        flag = this.random.nextBoolean();
+                    }
+
+                    if (flag) {
+                        double d0 = (double)(i >> 16 & 255) / 255.0D;
+                        double d1 = (double)(i >> 8 & 255) / 255.0D;
+                        double d2 = (double)(i >> 0 & 255) / 255.0D;
+                        serverLevel.sendParticles(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, (float)d0, (float)d1, (float)d2), this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0, 0.0D, 0.0D, 0.0D, 0.5F);
+                    }
+                }
+            }
+        }
+        super.tick();
+    }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new AvoidOwnerGoal(this, 8.0F, 0.6D, 1.0D));
+        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D, 10));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
+    }
+
+    public static AttributeSupplier.Builder setCustomAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 4.0D)
+                .add(Attributes.FOLLOW_RANGE, 35.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.3F)
+                .add(Attributes.ATTACK_DAMAGE, 2.0D);
+    }
+
+    @Override
+    public int xpReward() {
+        return 1;
+    }
+
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(MEGA, false);
+    }
+
+    public void addAdditionalSaveData(CompoundTag p_21145_) {
+        super.addAdditionalSaveData(p_21145_);
+        if (this.getStoredEffect() != null){
+            p_21145_.put("StoredEffect", this.getStoredEffect().save());
+        }
+        p_21145_.putInt("SearchTime", this.searchTime);
+        p_21145_.putBoolean("Mega", this.isMega());
+    }
+
+    public void readAdditionalSaveData(CompoundTag p_21096_) {
+        super.readAdditionalSaveData(p_21096_);
+        if (p_21096_.contains("StoredEffect")){
+            this.setStoredEffect(MobEffectInstance.load(p_21096_.getCompound("StoredEffect")));
+        }
+        this.searchTime = p_21096_.getInt("SearchTime");
+        if (p_21096_.getBoolean("Mega")) {
+            this.setMega();
+        }
+    }
+
+    public void onSyncedDataUpdated(EntityDataAccessor<?> p_33134_) {
+        if (MEGA.equals(p_33134_)) {
+            this.refreshDimensions();
+        }
+
+        super.onSyncedDataUpdated(p_33134_);
+    }
+
+    public float getVoicePitch() {
+        return super.getVoicePitch() * 1.5F;
+    }
+
+    public boolean isMega(){
+        return this.entityData.get(MEGA);
+    }
+
+    public void setMega(){
+        this.entityData.set(MEGA, true);
+        AttributeInstance attack = this.getAttribute(Attributes.ATTACK_DAMAGE);
+        AttributeInstance health = this.getAttribute(Attributes.MAX_HEALTH);
+        if (attack != null){
+            attack.setBaseValue(4.0F);
+        }
+        if (health != null){
+            health.setBaseValue(8.0F);
+            this.setHealth(8.0F);
+        }
+    }
+
+    protected void pushEntities() {
+    }
+
+    public void push(Entity p_20293_) {
+    }
+
+    public boolean isPushable() {
+        return false;
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entityIn) {
+        if (this.isMega()){
+            if (entityIn instanceof LivingEntity livingEntity){
+                if (this.getStoredEffect() != null) {
+                    if (!this.getStoredEffect().getEffect().value().isBeneficial()) {
+                        livingEntity.addEffect(this.getStoredEffect());
+                    }
+                } else if (!livingEntity.getActiveEffects().isEmpty()){
+                    // 1.21 no longer exposes curative item lists on MobEffect; keep the stored-effect choice beneficial-only.
+                    livingEntity.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().isBeneficial()).findFirst().ifPresent(effect -> {
+                        this.setStoredEffect(effect);
+                        livingEntity.removeEffect(effect.getEffect());
+                        this.playSound(ModSounds.SPIDER_BITE.get());
+                    });
+                }
+            }
+        }
+        return super.doHurtTarget(entityIn);
+    }
+
+    @Override
+    public void die(DamageSource pCause) {
+        super.die(pCause);
+        if (!this.level().isClientSide) {
+            if (this.getStoredEffect() != null) {
+                AreaEffectCloud areaEffectCloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
+                areaEffectCloud.setRadius(1.0F);
+                areaEffectCloud.setWaitTime(0);
+                areaEffectCloud.setDuration(MathHelper.secondsToTicks(2));
+                areaEffectCloud.addEffect(this.getStoredEffect());
+                this.level().addFreshEntity(areaEffectCloud);
+            }
+        }
+    }
+
+    @Override
+    public void healServant() {
+    }
+
+    public boolean isLimitedLife(){
+        return this.limitedLifespan;
+    }
+
+    public void lifeSpanDamage(){
+        if (this.getTrueOwner() != null
+                && this.getTrueOwner().isAlive()
+                && !this.getTrueOwner().isDeadOrDying()
+                && (this.getStoredEffect() == null || this.getStoredEffect().getEffect().value().isBeneficial())){
+            this.getNavigation().moveTo(this.getTrueOwner(), 1.25F);
+            this.setTarget(null);
+            ++this.searchTime;
+            if (this.getBoundingBox().intersects(this.getTrueOwner().getBoundingBox())){
+                this.getTrueOwner().heal(this.getHealth());
+                for (MobEffectInstance mobEffectInstance : this.getActiveEffects()){
+                    if (mobEffectInstance.getEffect().value().isBeneficial()){
+                        this.getTrueOwner().addEffect(mobEffectInstance);
+                    }
+                }
+                if (this.getStoredEffect() != null && this.getStoredEffect().getEffect().value().isBeneficial()){
+                    this.getTrueOwner().addEffect(this.getStoredEffect());
+                }
+                this.playSound(SoundEvents.SCULK_BLOCK_SPREAD, 1.0F, 1.0F);
+                if (!this.level().isClientSide) {
+                    this.level().broadcastEntityEvent(this, (byte) 15);
+                }
+                this.discard();
+            } else if (this.searchTime >= MathHelper.secondsToTicks(5)){
+                this.hurt(this.damageSources().starve(), this.getMaxHealth());
+            }
+        } else {
+            this.limitedLifeTicks = 20;
+            this.hurt(this.damageSources().starve(), this.getMaxHealth());
+        }
+    }
+
+    public boolean canBeAffected(MobEffectInstance potionEffectIn) {
+        if (this.getStoredEffect() != null){
+            return potionEffectIn.getEffect() != this.getStoredEffect().getEffect() && super.canBeAffected(potionEffectIn);
+        }
+        return super.canBeAffected(potionEffectIn);
+    }
+
+    public void setStoredEffect(MobEffectInstance effect){
+        this.effect = effect;
+    }
+
+    public MobEffectInstance getStoredEffect() {
+        return this.effect;
+    }
+
+    public static int getColor(MobEffectInstance mobEffectInstance) {
+        if (mobEffectInstance == null) {
+            return 3694022;
+        } else {
+            float f = 0.0F;
+            float f1 = 0.0F;
+            float f2 = 0.0F;
+            int j = 0;
+
+            int k = mobEffectInstance.getEffect().value().getColor();
+            int l = mobEffectInstance.getAmplifier() + 1;
+            f += (float)(l * (k >> 16 & 255)) / 255.0F;
+            f1 += (float)(l * (k >> 8 & 255)) / 255.0F;
+            f2 += (float)(l * (k >> 0 & 255)) / 255.0F;
+            j += l;
+
+            if (j == 0) {
+                return 0;
+            } else {
+                f = f / (float)j * 255.0F;
+                f1 = f1 / (float)j * 255.0F;
+                f2 = f2 / (float)j * 255.0F;
+                return (int)f << 16 | (int)f1 << 8 | (int)f2;
+            }
+        }
+    }
+
+    public void handleEntityEvent(byte p_34138_) {
+        if (p_34138_ == 15) {
+            for(int i = 0; i < this.random.nextInt(35) + 10; ++i) {
+                this.level().addParticle(ModParticleTypes.CULT_SPELL.get(), this.getX() + this.random.nextGaussian() * (double)0.13F, this.getY() + this.random.nextGaussian() * (double)0.13F, this.getZ() + this.random.nextGaussian() * (double)0.13F, 1.0D, 1.0D, 1.0D);
+            }
+        } else {
+            super.handleEntityEvent(p_34138_);
+        }
+
+    }
+
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor worldIn, DifficultyInstance difficultyIn, MobSpawnType reason, @Nullable SpawnGroupData spawnDataIn) {
+        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn);
+        return spawnDataIn;
+    }
+
+    protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
+        // 1.21 makes getDimensions final; scale the default dimensions here to preserve mega Wartling size.
+        EntityDimensions entitydimensions = super.getDefaultDimensions(p_33113_);
+        return this.isMega() ? entitydimensions.scale(2.0F) : entitydimensions;
+    }
+
+    public static class AvoidOwnerGoal extends Goal {
+        protected final Wartling mob;
+        private final double walkSpeedModifier;
+        private final double sprintSpeedModifier;
+        protected final float maxDist;
+        @Nullable
+        protected Path path;
+        protected final PathNavigation pathNav;
+
+        public AvoidOwnerGoal(Wartling p_25040_, float p_25043_, double p_25044_, double p_25045_) {
+            this.mob = p_25040_;
+            this.maxDist = p_25043_;
+            this.walkSpeedModifier = p_25044_;
+            this.sprintSpeedModifier = p_25045_;
+            this.pathNav = p_25040_.getNavigation();
+            this.setFlags(EnumSet.of(Flag.MOVE));
+        }
+
+        public boolean canUse() {
+            if (this.mob.getTrueOwner() == null || this.mob.getTrueOwner().isDeadOrDying()) {
+                return false;
+            } else {
+                Vec3 vec3 = DefaultRandomPos.getPosAway(this.mob, 16, 7, this.mob.getTrueOwner().position());
+                if (vec3 == null) {
+                    return false;
+                } else if (this.mob.getTrueOwner().distanceToSqr(vec3.x, vec3.y, vec3.z) < this.mob.getTrueOwner().distanceToSqr(this.mob)) {
+                    return false;
+                } else {
+                    this.path = this.pathNav.createPath(vec3.x, vec3.y, vec3.z, 0);
+                    return this.path != null
+                            && this.mob.getStoredEffect() != null
+                            && this.mob.getStoredEffect().getEffect().value().getCategory() != MobEffectCategory.BENEFICIAL
+                            && this.mob.getTarget() == null;
+                }
+            }
+        }
+
+        public boolean canContinueToUse() {
+            return !this.pathNav.isDone() && this.mob.getTrueOwner() != null && this.mob.getTrueOwner().isAlive();
+        }
+
+        public void start() {
+            this.pathNav.moveTo(this.path, this.walkSpeedModifier);
+        }
+
+        public void stop() {
+            this.pathNav.stop();
+        }
+
+        public void tick() {
+            if (this.mob.getTrueOwner() != null) {
+                if (this.mob.distanceToSqr(this.mob.getTrueOwner()) < 49.0D) {
+                    this.mob.getNavigation().setSpeedModifier(this.sprintSpeedModifier);
+                } else {
+                    this.mob.getNavigation().setSpeedModifier(this.walkSpeedModifier);
+                }
+            }
+        }
+    }
+}

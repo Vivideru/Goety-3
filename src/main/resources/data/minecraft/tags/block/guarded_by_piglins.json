@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:indented_gold_blocks",
+    "goety:gold_dungeon_torch",
+    "goety:wall_gold_dungeon_torch",
+    "goety:gold_candlestick",
+    "goety:wall_gold_candlestick",
+    "goety:necrotic_gold_candlestick",
+    "goety:wall_necrotic_gold_candlestick",
+    "goety:gold_candelabra",
+    "goety:gold_chandelier",
+    "goety:gold_dungeon_chain",
+    "goety:gold_arch_marble",
+    "goety:gold_banded_marble",
+    "goety:gold_covered_marble",
+    "goety:gold_plated_marble",
+    "goety:gold_indented_highrock_bricks",
+    "goety:gold_chiseled_highrock_bricks",
+    "goety:studded_steep_wood",
+    "goety:studded_steep_wall",
+    "goety:rimmed_steep_wood",
+    "goety:rimmed_steep_wall",
+    "goety:lined_steep_wood",
+    "goety:lined_steep_wall",
+    "goety:steep_lamp",
+    "goety:haunted_mirror"
+  ]
+}

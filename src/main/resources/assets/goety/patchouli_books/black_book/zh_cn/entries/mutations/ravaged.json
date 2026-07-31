@@ -1,0 +1,30 @@
+{
+  "name": "蹂躏者",
+  "icon": "goety:savage_tooth",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/read_ravaging_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "创造劫掠兽的秘密已经向你揭示。正如你长期以来所怀疑的那样，劫掠兽是由普通村民通过魔法手段制造的。然而，转换并不是瞬间的。村民会先变成称为“蹂躏者”的怪物，它需要消耗大量的肉才能成长为一个劫掠兽"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_villager_to_ravaged"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "你可以向蹂躏者丢腐肉来喂养它，或者让它去攻击村民或灾厄村民直到其杀死其中一者，而不出所料，村民提供的肉比其他任何生物都多。一旦蹂躏者开始变化，你就需要给它装备一个专门的不祥之鞍，使其不仅可以骑行，而且更强壮"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:ravaged",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "成长至最大阶段的劫掠兽可以成为$(l:goety:mutations/illager_servants)袭击队伍$()的一员, 但它不能被设定为队长。"
+    }
+  ]
+}

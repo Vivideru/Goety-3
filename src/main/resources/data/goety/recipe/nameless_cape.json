@@ -1,0 +1,38 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:necro_cape"
+                        },
+    "craftType":  "necroturgy",
+    "research":  "forbidden",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "goety:illusion_robe"
+                        },
+                        {
+                            "item":  "goety:soul_emerald"
+                        },
+                        {
+                            "item":  "goety:ectoplasm"
+                        },
+                        {
+                            "item":  "goety:ectoplasm"
+                        },
+                        {
+                            "item":  "goety:forbidden_piece"
+                        },
+                        {
+                            "item":  "goety:forbidden_piece"
+                        },
+                        {
+                            "tag":  "c:bones"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:nameless_cape"
+               }
+}
+

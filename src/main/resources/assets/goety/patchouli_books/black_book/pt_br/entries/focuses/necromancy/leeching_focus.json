@@ -1,0 +1,22 @@
+{
+  "name": "Foco de Sucção",
+  "icon": "goety:leeching_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Extrair a vida dos seus inimigos é uma coisa, mas consumi-la é outra. O feitiço drena um alvo não aliado que o conjurador está mirando, causando dano e curando o conjurador na mesma quantidade perdida pelo alvo."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/leeching_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/necro_staff)Cajado Necro$() aplica o efeito de Fraqueza ao alvo."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:leeching_focus": 1
+  }
+}

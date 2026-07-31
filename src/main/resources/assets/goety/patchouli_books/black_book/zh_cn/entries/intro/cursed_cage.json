@@ -1,0 +1,23 @@
+{
+  "name": "混杂之音",
+  "icon": "goety:cursed_cage",
+  "category": "goety:intro",
+  "sortnum": 7,
+  "priority": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在黑魔法中，你会遇到各种需要灵魂能量来驱动的神奇设备。诅咒之笼可以将灵魂能量传递到这些设备，前提是它里面有一个灵魂图腾，并能够与灵魂能量持有者建立联系"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:cursed_cage"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "minecraft:enchanted_book",
+      "title": "噬魂",
+      "text": "你还发现了一种新的附魔：噬魂。使用任何拥有噬魂魔咒的武器或工具杀死一个生物后，都会翻倍增加该生物产出的灵魂能量"
+    }
+  ]
+}

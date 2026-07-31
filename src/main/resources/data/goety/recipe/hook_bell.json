@@ -1,0 +1,28 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "minecraft:bell"
+                        },
+    "craftType":  "forge",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:chests/ender"
+                        },
+                        {
+                            "item":  "minecraft:sculk_shrieker"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "tag":  "c:gems/emerald"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:hook_bell"
+               }
+}
+

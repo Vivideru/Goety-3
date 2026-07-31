@@ -1,0 +1,39 @@
+{
+  "name": "黑暗盔甲",
+  "icon": "goety:dark_helmet",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/craft_dark_ingot",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "虽然黑暗合金锭制作的工具和其他材料并无大的区别，但它们制成的盔甲似乎有所不同，这需要额外的阐述。因为这些盔甲看上去和你制作的其他盔甲一点也不相似：更精致，也更可怕，但它仍然提供钻石盔甲那样的保护和韧性，以及一些击退抗性。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "与黑铁盔甲套装类似，该盔甲也能产生降低灵魂能量的消耗，并略微减轻魔法、火焰和爆炸伤害。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_helmet"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_chestplate"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_leggings"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark/dark_boots"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_helmet": 2,
+    "goety:dark_chestplate": 3,
+    "goety:dark_leggings": 4,
+    "goety:dark_boots": 5
+  }
+}

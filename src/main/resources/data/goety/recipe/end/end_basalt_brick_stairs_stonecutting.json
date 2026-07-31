@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:end_basalt_bricks"
+                   },
+    "result":  {
+                   "id":  "goety:end_basalt_brick_stairs",
+                   "count":  1
+               }
+}

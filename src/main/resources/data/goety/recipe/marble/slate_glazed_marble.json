@@ -1,0 +1,16 @@
+{
+    "type":  "minecraft:crafting_shapeless",
+    "ingredients":  [
+                        {
+                            "item":  "goety:marble"
+                        },
+                        {
+                            "tag":  "c:gems/lapis"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:slate_glazed_marble",
+                   "count":  1
+               }
+}
+

@@ -1,0 +1,20 @@
+{
+  "name": "Philosopher's Stone",
+  "icon": "goety:philosophers_stone",
+  "category": "goety:crafts",
+  "advancement": "goety:goety/kill_a_apostle",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Blood of an Apostle allows one to craft the mythical Philosopher's Stone. With this, one can duplicate gold by putting this stone with raw gold. Doing this will cause the stone to take durability, but it can repair itself using Soul Energy."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:philosophers_stone"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:philosophers_stone": 1
+  }
+}

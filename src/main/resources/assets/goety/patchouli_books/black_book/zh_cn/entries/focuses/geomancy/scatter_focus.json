@@ -1,0 +1,19 @@
+{
+  "name": "分散聚晶",
+  "icon": "goety:scatter_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶会让人联想到红石傀儡布设的地雷，它们会在两秒后引爆，并在非友方目标靠近时产生不损坏地形的爆炸。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/scatter_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/geo_staff)地卜魔杖$()承载该聚晶时，该聚晶的施法方式会改变，施法者必须长按以持续施法，直到施法者周围生成的红石地雷数量达到14颗，而不是和此前一样立刻召唤3颗红石地雷"
+    }
+  ]
+}

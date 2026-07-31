@@ -1,0 +1,38 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "goety:item/soul_jar"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "type": 0.00000
+      },
+      "model": "goety:item/soul_jar_regular"
+    },
+    {
+      "predicate": {
+        "type": 1.00000
+      },
+      "model": "goety:item/soul_jar_drowned"
+    },
+    {
+      "predicate": {
+        "type": 2.00000
+      },
+      "model": "goety:item/soul_jar_wither"
+    },
+    {
+      "predicate": {
+        "type": 3.00000
+      },
+      "model": "goety:item/soul_jar_cairn"
+    },
+    {
+      "predicate": {
+        "type": 4.00000
+      },
+      "model": "goety:item/soul_jar_mossy"
+    }
+  ]
+}

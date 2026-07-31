@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:enchantable/focus/velocity",
+    "goety:blade_of_ender",
+    "goety:haunted_broom"
+  ]
+}

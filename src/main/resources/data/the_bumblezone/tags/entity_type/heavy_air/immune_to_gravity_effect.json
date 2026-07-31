@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:bound_illagers",
+    "#goety:reapers",
+    "goety:vex_servant",
+    "goety:irk_servant",
+    "goety:irk",
+    "goety:tormentor",
+    "goety:mini_ghast",
+    "goety:ghast_servant",
+    "goety:malghast",
+    "goety:blaze_servant",
+    "goety:wildfire",
+    "goety:inferno",
+    "goety:haunted_skull"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Vácuo",
+  "description": "O poder sobre o vácuo.",
+  "icon": "goety:ender_chest_focus",
+  "parent": "goety:focuses"
+}

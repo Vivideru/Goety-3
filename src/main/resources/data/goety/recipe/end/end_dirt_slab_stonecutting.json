@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:end_dirt"
+                   },
+    "result":  {
+                   "id":  "goety:end_dirt_slab",
+                   "count":  2
+               }
+}

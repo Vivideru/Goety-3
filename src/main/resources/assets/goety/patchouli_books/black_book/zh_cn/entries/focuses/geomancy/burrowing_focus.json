@@ -1,0 +1,23 @@
+{
+  "name": "穿凿聚晶",
+  "icon": "goety:burrowing_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "此聚晶能射出一道魔法能量束，可直接开采岩石与矿石——材质越坚硬的方块所需开采时间越长。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/burrowing_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "强效附魔能提升开采速度，更高级别时甚至可使法术开采需要钻石或下界合金工具才能破坏的方块。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/geo_staff)地卜魔杖$()施法时，只要范围内的方块可用镐或锹采集，该法术将实现3x3区域的范围开采。"
+    }
+  ]
+}

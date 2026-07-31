@@ -1,0 +1,28 @@
+{
+  "name": "阴森聚晶",
+  "icon": "goety:ghastly_focus",
+  "category": "goety:focuses/nether",
+  "advancement": "minecraft:story/enter_the_nether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "该聚晶可以让你召唤出小型的恶魂，它们虽然破坏性较小，但仍然是强大的地狱轰炸机."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/ghastly_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/nether_staff)下界魔杖$()施法可以一次生成更多的恶魂。"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_bygone_scroll",
+      "text": "身着下界长袍施放该法术时，将召唤真正的恶魂仆从而非迷你恶魂，但召唤数量较少——即便使用下界法杖施法也不例外."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ghastly_focus": 1
+  }
+}

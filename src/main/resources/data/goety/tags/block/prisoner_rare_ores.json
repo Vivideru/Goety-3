@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "__comment": "blocks that Prisoners would rarely mine from",
+  "values": [
+    "minecraft:diamond_ore",
+    "minecraft:deepslate_diamond_ore",
+    "minecraft:ancient_debris"
+  ]
+}

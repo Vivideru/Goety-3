@@ -1,0 +1,18 @@
+{
+  "name": "Фокус града стрел",
+  "icon": "goety:arrow_rain_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "С помощью энергии душ вы можете создавать град стрел над определённым местом или целью."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/arrow_rain_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:arrow_rain_focus": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "灵魂盾护身符",
+  "icon": "goety:star_amulet",
+  "category": "goety:crafts/garment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "当来自你的力量减弱时，灵魂护身符会模仿凋灵的护盾。 如果佩戴者的生命值只有最大生命值的一半或更少，箭就会从他们身上弹开。如果一个人能够在生存模式下创造飞行，那么当护盾升起时，他们会失去飞行的能力。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:star_amulet"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:star_amulet": 1
+  }
+}

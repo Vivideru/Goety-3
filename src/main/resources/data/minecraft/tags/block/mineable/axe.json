@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:haunted_wood_blocks",
+    "#goety:rotten_wood_blocks",
+    "#goety:windswept_wood_blocks",
+    "#goety:pine_wood_blocks",
+    "#goety:steep_wood_blocks",
+    "#goety:sky_wood_blocks",
+    "#goety:chorus_wood_blocks",
+    "#goety:end_plants",
+    "#goety:chests",
+    "#goety:trapped_chests",
+    "#goety:wooden_throne",
+    "goety:sienna_vine",
+    "goety:soiled_spruce_planks",
+    "goety:soiled_spruce_planks_heavy",
+    "goety:witch_pole",
+    "goety:magic_thorn",
+    "goety:overgrown_roots",
+    "goety:corpse_blossom"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "info.goety.witch_brew.title",
+  "landing_text": "info.goety.witch_brew.landing",
+  "book_texture": "goety:textures/gui/witch_book.png",
+  "version": 1,
+  "model": "goety:witches_brew",
+  "show_toasts": false,
+  "show_progress": false,
+  "creative_tab": "goety",
+  "text_overflow_mode": "overflow",
+  "use_resource_pack": true,
+  "i18n": true
+}

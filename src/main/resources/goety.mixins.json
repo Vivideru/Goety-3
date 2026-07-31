@@ -1,0 +1,52 @@
+{
+  "required": true,
+  "package": "com.Polarice3.Goety.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "goety.refmap.json",
+  "mixins": [
+    "AbstractArrowMixin",
+    "ApplyBonusCountMixin",
+    "ArrowItemMixin",
+    "BaseFireBlockMixin",
+    "BlockPlaceContextMixin",
+    "ChorusFlowerBlockMixin",
+    "ChorusPlantBlockMixin",
+    "EnchantRandomlyFunctionMixin",
+    "EnchantedCountIncreaseFunctionMixin",
+    "EnderDragonMixin",
+    "EntityMixin",
+    "FireBlockAccessor",
+    "FlowingFluidMixin",
+    "FrogMixin",
+    "ItemEntityMixin",
+    "LivingEntityMixin",
+    "MobAccessor",
+    "PatrolSpawnerMixin",
+    "PlayerMixin",
+    "RaiderMixin",
+    "RaidMixin",
+    "SensorMixin",
+    "SlimePredicateMixin",
+    "StructureProcessorAccessor",
+    "StructureTemplateMixin",
+    "VillagerAccessor",
+    "VillagerMixin",
+    "compat.SiphonEnchantmentMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ClientModLoaderAccessor",
+    "EntityRenderDispatcherMixin",
+    "EntityRenderersMixin",
+    "GuiGraphicsMixin",
+    "LevelRendererMixin",
+    "LivingEntityRendererMixin",
+    "MinecraftMixin",
+    "MouseHandlerMixin",
+    "PlayerRendererAccessor",
+    "SpinAttackEffectLayerMixin"
+  ]
+}

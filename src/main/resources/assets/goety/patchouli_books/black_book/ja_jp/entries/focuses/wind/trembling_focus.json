@@ -1,0 +1,22 @@
+{
+  "name": "Trembling Focus",
+  "icon": "goety:trembling_focus",
+  "category": "goety:focuses/wind",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The spell emits a circular wind blast around the caster, pushing back non-allied creatures a certain distance away, and slowing them down briefly."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/trembling_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/wind_staff)Wind Staff$() increases the area of effect."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:trembling_focus": 1
+  }
+}

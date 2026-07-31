@@ -1,0 +1,25 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:hunger_core"
+                        },
+    "craftType":  "geoturgy",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "tag":  "c:ingots/gold"
+                        },
+                        {
+                            "tag":  "c:gems/lapis"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:pendant_of_hunger"
+               }
+}
+

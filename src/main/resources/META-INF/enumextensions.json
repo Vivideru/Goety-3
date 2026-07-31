@@ -1,0 +1,31 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "GOETY_SPELL",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/Polarice3/Goety/client/SpellPoseEnumParams",
+        "field": "SPELL"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "GOETY_FLYING",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/Polarice3/Goety/client/SpellPoseEnumParams",
+        "field": "FLYING"
+      }
+    },
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "GOETY_HOLD_STAFF",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "com/Polarice3/Goety/client/SpellPoseEnumParams",
+        "field": "HOLD_STAFF"
+      }
+    }
+  ]
+}

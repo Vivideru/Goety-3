@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:dark_wand"
+                        },
+    "craftType":  "deep",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "tag":  "c:tools/tridents"
+                        },
+                        {
+                            "tag":  "c:gems/prismarine"
+                        },
+                        {
+                            "tag":  "c:gems/prismarine"
+                        },
+                        {
+                            "tag":  "c:gems/prismarine"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        },
+                        {
+                            "item":  "goety:chill_fabric"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:abyss_staff"
+               }
+}
+

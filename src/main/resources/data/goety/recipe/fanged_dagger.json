@@ -1,0 +1,26 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "sf ",
+                    " c ",
+                    "  r"
+                ],
+    "key":  {
+                "s":  {
+                          "item":  "goety:savage_tooth"
+                      },
+                "f":  {
+                          "item":  "goety:venomous_fang"
+                      },
+                "c":  {
+                          "item":  "goety:cursed_ingot"
+                      },
+                "r":  {
+                          "tag":  "c:rods/wooden"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:fanged_dagger"
+               }
+}
+

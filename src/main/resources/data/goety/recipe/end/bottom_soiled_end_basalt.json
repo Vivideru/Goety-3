@@ -1,0 +1,19 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#",
+                    "S"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:end_basalt"
+                      },
+                "S":  {
+                          "item":  "goety:end_soil_debris"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:bottom_soiled_end_basalt"
+               }
+}
+

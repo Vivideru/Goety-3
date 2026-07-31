@@ -1,0 +1,47 @@
+{
+  "name": "goety:graveyard/loot",
+
+  "fallback": "minecraft:empty",
+
+  "elements": [
+    {
+      "weight": 11,
+      "element": {
+
+        "location": "goety:graveyard/podzol",
+
+        "processors": "minecraft:empty",
+
+        "projection": "rigid",
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+
+        "location": "goety:graveyard/chest",
+
+        "processors": "minecraft:empty",
+
+        "projection": "rigid",
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+
+        "location": "goety:graveyard/wolf",
+
+        "processors": "minecraft:empty",
+
+        "projection": "rigid",
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

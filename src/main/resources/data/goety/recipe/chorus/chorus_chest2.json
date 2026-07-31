@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "###",
+                    "# #",
+                    "###"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:chorus_planks"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:chorus_chest"
+               }
+}
+

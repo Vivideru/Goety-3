@@ -1,0 +1,24 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "CGC",
+                    "GIG",
+                    " I "
+                ],
+    "key":  {
+                "G":  {
+                          "item":  "goety:gold_candlestick"
+                      },
+                "C":  {
+                          "tag":  "minecraft:candles"
+                      },
+                "I":  {
+                          "tag":  "c:ingots/gold"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:gold_candelabra",
+                   "count":  1
+               }
+}
+

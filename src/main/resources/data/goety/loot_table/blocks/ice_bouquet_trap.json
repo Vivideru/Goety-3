@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "goety:ice_bouquet_trap"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "goety:blocks/ice_bouquet_trap"
+}

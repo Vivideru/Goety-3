@@ -1,0 +1,22 @@
+{
+  "name": "狂暴之斧",
+  "icon": "goety:rampaging_axe",
+  "category": "goety:crafts/equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "一把渴望鲜血和木头的斧头。当杀死一个生物或砍倒木头时，使用者会变得稍微强壮一些，他们的手会更快，这会持续10秒。持续不断的杀戮和砍伐会放大这种效果。如果持有者将效果放大5倍，那会是一种“爆炸性”的效果。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:rampaging_axe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "斧头可以在铁砧上使用 $(l:intro/magical_components)诅咒金属锭$()修复."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:rampaging_axe": 1
+  }
+}

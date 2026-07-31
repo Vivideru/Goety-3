@@ -1,0 +1,23 @@
+{
+  "name": "Foco do Sussurro",
+  "icon": "goety:whispering_focus",
+  "category": "goety:focuses/wild",
+  "advancement": "goety:goety/read_floral_scroll",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Após pesquisar a selva, você criou uma maneira de invocar seus Sussurradores como servos leais. Conjurar isso debaixo d'água invocará os sussurradores das ondas."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/whispering_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/wild_staff)Cajado Selvagem$() invoca um sussurrador adicional."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:whispering_focus": 1
+  }
+}

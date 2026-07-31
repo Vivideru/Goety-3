@@ -1,0 +1,22 @@
+{
+  "name": "Hail Focus",
+  "icon": "goety:hail_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Summons a cloud of snow high above a target block or creature, where it will rain freezing snow, that deals small damage and gives Freezing for 5 seconds."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/hail_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will cause the hail cloud to follow a valid target."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hail_focus": 1
+  }
+}

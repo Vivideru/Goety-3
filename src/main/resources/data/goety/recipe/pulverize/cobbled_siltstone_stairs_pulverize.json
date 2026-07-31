@@ -1,0 +1,8 @@
+﻿{
+    "type":  "goety:pulverize",
+    "ingredient":  {
+                       "item":  "goety:smooth_siltstone_stairs"
+                   },
+    "block_result":  "goety:cobbled_siltstone_stairs"
+}
+

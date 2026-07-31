@@ -1,0 +1,30 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:enchant",
+    "activation_item":  {
+                            "item":  "minecraft:book"
+                        },
+    "craftType":  "magic",
+    "soulCost":  25,
+    "duration":  10,
+    "enchantment":  "minecraft:silk_touch",
+    "xpLevelCost":  10,
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:cobweb"
+                        },
+                        {
+                            "tag":  "c:ender_pearls"
+                        },
+                        {
+                            "item":  "minecraft:cake"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        }
+                    ],
+    "result":  {
+                   "id":  "minecraft:enchanted_book"
+               }
+}
+

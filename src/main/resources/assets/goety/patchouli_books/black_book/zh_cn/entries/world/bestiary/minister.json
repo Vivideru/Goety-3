@@ -1,0 +1,34 @@
+{
+  "name": "灾厄教父",
+  "icon": "goety:ominous_orb",
+  "category": "goety:world/bestiary",
+  "advancement": "goety:goety/kill_a_minister",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "灾厄教父在等级和声望上比唤魔者高。事实上，他们很可能是他们所属的灾厄村民的首领。灾厄教父们以掠夺文明和他们的演讲技巧而臭名昭著，他们利用这些技巧来增强其他掠夺者的力量或恶毒地嘲笑他们的敌人。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:minister"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:ominous_orb",
+      "title": "Minister's Staff",
+      "text": "据说，他们的法杖要么是受某个无名王国启发而制成，要么就是从那里掠夺而来并加以改良，法杖上的法球散发着强大的魔力。灾厄教父们还擅长用法杖格挡攻击，但不幸的是，他们的法杖并不像盾牌那样耐用。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:ominous_shard",
+      "text": "或许有办法在不破坏法杖的情况下将其掠夺，或者至少是掠夺其球体部分，不过至少你可以用剩下的材料重新制作。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:ominous_orb"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:ominous_shard": 2
+  }
+}

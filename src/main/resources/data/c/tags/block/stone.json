@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stone",
+    "minecraft:granite",
+    "minecraft:polished_granite",
+    "minecraft:diorite",
+    "minecraft:polished_diorite",
+    "minecraft:andesite",
+    "minecraft:polished_andesite",
+    "minecraft:deepslate",
+    "minecraft:cobbled_deepslate",
+    "minecraft:polished_deepslate",
+    "minecraft:tuff",
+    "minecraft:polished_tuff",
+    "minecraft:calcite",
+    "minecraft:dripstone_block",
+    "minecraft:basalt",
+    "minecraft:smooth_basalt",
+    "minecraft:blackstone",
+    "minecraft:polished_blackstone",
+    "goety:highrock",
+    "goety:cragrocks",
+    "goety:ominous_stone"
+  ]
+}

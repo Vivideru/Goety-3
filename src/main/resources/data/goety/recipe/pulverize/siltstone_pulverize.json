@@ -1,0 +1,8 @@
+﻿{
+    "type":  "goety:pulverize",
+    "ingredient":  {
+                       "item":  "goety:siltstone_bricks"
+                   },
+    "block_result":  "goety:siltstone"
+}
+

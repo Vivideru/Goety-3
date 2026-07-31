@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "sss",
+                    "sts",
+                    "sss"
+                ],
+    "key":  {
+                "s":  {
+                          "tag":  "c:storage_blocks/gold"
+                      },
+                "t":  {
+                          "tag":  "goety:totems"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:indented_gold",
+                   "count":  8
+               }
+}
+

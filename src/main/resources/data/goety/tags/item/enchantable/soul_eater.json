@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:enchantable/weapon",
+    "goety:black_crystal",
+    "goety:sculk_devourer"
+  ]
+}

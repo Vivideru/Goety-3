@@ -1,0 +1,22 @@
+{
+  "name": "掘墓者之铲",
+  "icon": "goety:graverobber_shovel",
+  "category": "goety:crafts/equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "适用于掘墓人和盗墓者的铲子，现在铲子可以直接挖出一条两格高的通道，让持用者可以随时挖出坟墓。它之所以得名，是因为当铲子打碎泥土或沙子等方块时，它有10%%的机会挖出战利品。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:graverobber_shovel"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "铲子可以在铁砧上用$(l:intro/magical_components)诅咒金属锭$()进行修理."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:graverobber_shovel": 1
+  }
+}

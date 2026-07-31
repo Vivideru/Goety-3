@@ -1,0 +1,38 @@
+{
+  "name": "Besta Negra",
+  "icon": "minecraft:chain",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/read_haunting_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Quando um Espectro possuir um Lobo Negro, nasce uma besta forte e sobrenatural, capaz de lutar com ataques de garras, mas também, se o inimigo estiver longe, invocando a sua cabeça em forma de aparição para os atacar."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_black_wolf_to_black_beast"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:black_beast",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A Besta pode ser curada com carne, tal como os lobos normais, e regenera-se passivamente se o dono tiver um Manto da Natureza. Clicar com o botão direito usando um Marcador com uma criatura marcada fará com que a besta comece a caçar essa criatura e só regresse após uma caça bem-sucedida."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:howling_soul",
+      "text": "Após a morte, a besta deixa para trás uma alma, que pode ser usada num Lobo Negro, seja ele leal ou não, para o mutar sob o controlo do dono original."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Baseado no 'Nightmare Stalker' de 'Born In Chaos' por 'mongoose_artist'."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:howling_soul": 5
+  }
+}

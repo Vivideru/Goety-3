@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "#",
+                    "S",
+                    "#"
+                ],
+    "key":  {
+                "#":  {
+                          "tag":  "c:nuggets/iron"
+                      },
+                "S":  {
+                          "item":  "goety:pale_steel_ingot"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:iron_dungeon_chain",
+                   "count":  1
+               }
+}
+

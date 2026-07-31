@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "goety:apostle",
+    "goety:ender_keeper",
+    "goety:vizier",
+    "goety:hostile_redstone_monstrosity"
+  ]
+}

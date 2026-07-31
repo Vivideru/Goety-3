@@ -1,0 +1,10 @@
+{
+    "type":  "minecraft:stonecutting",
+    "ingredient":  {
+                       "item":  "goety:shade_bricks"
+                   },
+    "result":  {
+                   "id":  "goety:shade_pillar",
+                   "count":  1
+               }
+}

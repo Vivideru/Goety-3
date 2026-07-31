@@ -1,0 +1,23 @@
+{
+  "name": "Голодный кинжал",
+  "icon": "goety:hungry_dagger",
+  "category": "goety:crafts/equipment",
+  "advancement": "goety:goety/craft_necro_brazier",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Разновидность клыкастого кинжала, которая не отравляет жертву, но исцеляет владельца на 5%% от нанесенного урона. Процент кражи жизни увеличивается с каждым уровнем «пожирателя души»."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:hungry_dagger"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Кинжал можно починить на наковальне с помощью $(l:crafts/dark_alloy_ingot)слитков из тёмного сплава$(), хотя он будет самостоятельно восстанавливаться, если у его владельца есть энергия душ."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:hungry_dagger": 1
+  }
+}

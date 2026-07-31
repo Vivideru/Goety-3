@@ -1,0 +1,181 @@
+package com.Polarice3.Goety.client.render;
+
+import com.Polarice3.Goety.client.render.model.DarkRobeModel;
+import com.Polarice3.Goety.client.render.model.GloveModel;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.curios.UnholyHatItem;
+import com.Polarice3.Goety.config.ItemConfig;
+import com.Polarice3.Goety.utils.CuriosFinder;
+import com.Polarice3.Goety.utils.MobUtil;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.PlayerModelPart;
+import net.minecraft.world.item.ElytraItem;
+import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.client.CuriosRendererRegistry;
+import top.theillusivec4.curios.api.client.ICurioRenderer;
+
+import org.jetbrains.annotations.Nullable;
+import java.util.Objects;
+
+public record WearRenderer(ResourceLocation texture,
+                           HumanoidModel<LivingEntity> model) implements ICurioRenderer {
+
+    private ResourceLocation getTexture(LivingEntity livingEntity) {
+        if (Objects.equals(this.texture, CuriosRenderer.render("necro_cape.png"))){
+            if (ItemConfig.NecroCapeChangeTexture.get()) {
+                if (CuriosFinder.hasFrostRobes(livingEntity)) {
+                    return CuriosRenderer.render("necro_cape_crypt.png");
+                } else if (CuriosFinder.hasAbyssRobes(livingEntity)){
+                    return CuriosRenderer.render("necro_cape_abyss.png");
+                } else if (CuriosFinder.hasNetherRobe(livingEntity)){
+                    return CuriosRenderer.render("necro_cape_nether.png");
+                } else if (CuriosFinder.hasWildRobe(livingEntity)){
+                    return CuriosRenderer.render("necro_cape_wild.png");
+                }
+            }
+        } else if (Objects.equals(this.texture, CuriosRenderer.render("unholy_hat.png"))){
+            if (MobUtil.healthIsHalved(livingEntity)) {
+                return CuriosRenderer.render("unholy_hat_red.png");
+            }
+        } else if (Objects.equals(this.texture, CuriosRenderer.render("unholy_hat_halo.png"))){
+            if (MobUtil.healthIsHalved(livingEntity)) {
+                return CuriosRenderer.render("unholy_hat_halo_red.png");
+            }
+        }
+        return texture;
+    }
+
+    private HumanoidModel<LivingEntity> getModel() {
+        return model;
+    }
+
+    @Nullable
+    public static WearRenderer getRenderer(ItemStack stack) {
+        if (!stack.isEmpty()) {
+            return (WearRenderer) CuriosRendererRegistry.getRenderer(stack.getItem()).orElse(null);
+        }
+        return null;
+    }
+
+    public boolean hasCape(AbstractClientPlayer p_116618_){
+        // 1.21 exposes cape data through PlayerSkin instead of the old AbstractClientPlayer cape accessors.
+        return !p_116618_.isInvisible() && p_116618_.isModelPartShown(PlayerModelPart.CAPE) && p_116618_.getSkin().capeTexture() != null;
+    }
+
+    public static boolean capedRobe(ItemStack stack){
+        return stack.getItem() == ModItems.GRAND_ROBE.get() || stack.getItem() == ModItems.FROST_ROBE.get() || stack.getItem() == ModItems.FROST_ROBE_CRYO.get() || stack.getItem() == ModItems.WIND_ROBE.get() || stack.getItem() == ModItems.STORM_ROBE.get();
+    }
+
+    @Override
+    public <T extends LivingEntity, M extends EntityModel<T>> void render(ItemStack stack, SlotContext slotContext, PoseStack matrixStack, RenderLayerParent<T, M> renderLayerParent, MultiBufferSource renderTypeBuffer, int light, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        LivingEntity livingEntity = slotContext.entity();
+        HumanoidModel<LivingEntity> model = this.getModel();
+
+        model.setupAnim(slotContext.entity(), limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        model.prepareMobModel(slotContext.entity(), limbSwing, limbSwingAmount, partialTicks);
+        ICurioRenderer.followBodyRotations(slotContext.entity(), model);
+        render(livingEntity, stack, matrixStack, renderTypeBuffer, light);
+
+        if (capedRobe(stack)){
+            if (livingEntity instanceof AbstractClientPlayer p_116618_) {
+                if (ItemConfig.RobeCape.get()
+                        && capedRobe(stack)
+                        && !CuriosFinder.hasUndeadCape(p_116618_)
+                        && !hasCape(p_116618_)
+                        && !p_116618_.isInvisible()) {
+                    ItemStack itemstack = p_116618_.getItemBySlot(EquipmentSlot.CHEST);
+                    if (!(itemstack.getItem() instanceof ElytraItem)) {
+                        matrixStack.pushPose();
+                        matrixStack.translate(0.0D, 0.0D, 0.125D);
+                        double d0 = Mth.lerp((double)partialTicks, p_116618_.xCloakO, p_116618_.xCloak) - Mth.lerp((double)partialTicks, p_116618_.xo, p_116618_.getX());
+                        double d1 = Mth.lerp((double)partialTicks, p_116618_.yCloakO, p_116618_.yCloak) - Mth.lerp((double)partialTicks, p_116618_.yo, p_116618_.getY());
+                        double d2 = Mth.lerp((double)partialTicks, p_116618_.zCloakO, p_116618_.zCloak) - Mth.lerp((double)partialTicks, p_116618_.zo, p_116618_.getZ());
+                        float f = p_116618_.yBodyRotO + (p_116618_.yBodyRot - p_116618_.yBodyRotO);
+                        double d3 = (double)Mth.sin(f * ((float)Math.PI / 180F));
+                        double d4 = (double)(-Mth.cos(f * ((float)Math.PI / 180F)));
+                        float f1 = (float)d1 * 10.0F;
+                        f1 = Mth.clamp(f1, -6.0F, 32.0F);
+                        float f2 = (float)(d0 * d3 + d2 * d4) * 100.0F;
+                        f2 = Mth.clamp(f2, 0.0F, 150.0F);
+                        float f3 = (float)(d0 * d4 - d2 * d3) * 100.0F;
+                        f3 = Mth.clamp(f3, -20.0F, 20.0F);
+                        if (f2 < 0.0F) {
+                            f2 = 0.0F;
+                        }
+
+                        float f4 = Mth.lerp(partialTicks, p_116618_.oBob, p_116618_.bob);
+                        f1 += Mth.sin(Mth.lerp(partialTicks, p_116618_.walkDistO, p_116618_.walkDist) * 6.0F) * 32.0F * f4;
+                        if (p_116618_.isCrouching()) {
+                            f1 += 25.0F;
+                            matrixStack.translate(0.0D, 0.1D, 0.0D);
+                        }
+
+                        matrixStack.mulPose(Axis.XP.rotationDegrees(6.0F + f2 / 2.0F + f1));
+                        matrixStack.mulPose(Axis.ZP.rotationDegrees(f3 / 2.0F));
+                        matrixStack.mulPose(Axis.YP.rotationDegrees(180.0F - f3 / 2.0F));
+                        VertexConsumer vertexconsumer = renderTypeBuffer.getBuffer(RenderType.entityCutoutNoCull(this.getTexture(livingEntity)));
+                        new DarkRobeModel(Minecraft.getInstance().getEntityModels().bakeLayer(ModModelLayer.DARK_ROBE)).renderCape(matrixStack, vertexconsumer, light, OverlayTexture.NO_OVERLAY);
+                        matrixStack.popPose();
+                    }
+                }
+            }
+        }
+    }
+
+    private void render(LivingEntity livingEntity, ItemStack stack, PoseStack matrixStack, MultiBufferSource buffer, int light) {
+        RenderType renderType = this.getModel().renderType(getTexture(livingEntity));
+        VertexConsumer vertexBuilder = buffer.getBuffer(renderType);
+        this.getModel().renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, -1);
+        if (stack.getItem() instanceof UnholyHatItem) {
+            String glow = "unholy_hat_halo.png";
+            if (MobUtil.healthIsHalved(livingEntity)) {
+                glow = "unholy_hat_halo_red.png";
+            }
+            VertexConsumer vertexBuilder2 = buffer.getBuffer(ModRenderType.wraith(CuriosRenderer.render(glow)));
+            this.getModel().renderToBuffer(matrixStack, vertexBuilder2, 15728640, OverlayTexture.NO_OVERLAY, 0x26FFFFFF);
+        }
+    }
+
+    public void renderFirstPersonArm(PoseStack matrixStack, MultiBufferSource buffer, int light, AbstractClientPlayer player, HumanoidArm side, boolean hasFoil) {
+        if (!player.isSpectator()) {
+            GloveModel model = (GloveModel) getModel();
+
+            ModelPart arm = side == HumanoidArm.LEFT ? model.leftArm : model.rightArm;
+
+            model.setAllVisible(false);
+            arm.visible = true;
+
+            model.crouching = false;
+            model.attackTime = 0;
+            model.swimAmount = 0;
+            model.setupAnim(player, 0, 0, 0, 0, 0);
+            arm.xRot = 0;
+
+            renderFirstPersonArm(player, model, arm, matrixStack, buffer, light, hasFoil);
+        }
+    }
+
+    private void renderFirstPersonArm(LivingEntity livingEntity, GloveModel model, ModelPart arm, PoseStack matrixStack, MultiBufferSource buffer, int light, boolean hasFoil) {
+        RenderType renderType = model.renderType(getTexture(livingEntity));
+        VertexConsumer builder = ItemRenderer.getFoilBuffer(buffer, renderType, false, hasFoil);
+        arm.render(matrixStack, builder, light, OverlayTexture.NO_OVERLAY);
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "骇人聚晶",
+  "icon": "goety:spooky_focus",
+  "category": "goety:focuses/necromancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "幽灵并不是最常见的不死生物，只是在最近才开始出现。使用一些精神布料，你可以召唤并命令一个幽灵。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/spooky_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/necro_staff)死灵魔杖$()施法时，一次可以召唤更多幽灵"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:spooky_focus": 1
+  }
+}

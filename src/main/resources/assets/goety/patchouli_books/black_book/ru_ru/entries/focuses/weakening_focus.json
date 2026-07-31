@@ -1,0 +1,18 @@
+{
+  "name": "Weakening Focus",
+  "icon": "goety:weakening_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This spell lets loose a menacing hum that weakens non-allied creatures in a large area around the caster, decreasing their damage and their defenses."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/weakening_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:weakening_focus": 1
+  }
+}

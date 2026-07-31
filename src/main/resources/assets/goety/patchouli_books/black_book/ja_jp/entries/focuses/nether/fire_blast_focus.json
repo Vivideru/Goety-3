@@ -1,0 +1,22 @@
+{
+  "name": "Fire Blast Focus",
+  "icon": "goety:fire_blast_focus",
+  "category": "goety:focuses/nether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "You emit an fiery explosion at your position, hurting all nearby creatures and burning them. The explosion deals fire damage and does not harm the caster or their allies."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/fire_blast_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() increases explosion range a bit."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:fire_blast_focus": 1
+  }
+}

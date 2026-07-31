@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "goety:jade_tiles",
+    "goety:jade_pillar",
+    "goety:jade_stairs",
+    "goety:jade_slab",
+    "goety:silt_jade_tiles",
+    "goety:silt_jade_slab",
+    "goety:silt_jade_stairs",
+    "goety:snowy_jade_tiles",
+    "goety:snowy_jade_slab",
+    "goety:snowy_jade_stairs",
+    "goety:jade_block",
+    "goety:jade_light",
+    "goety:resonance_crystal"
+  ]
+}

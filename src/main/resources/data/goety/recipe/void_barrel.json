@@ -1,0 +1,24 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    " e ",
+                    "gvg",
+                    " e "
+                ],
+    "key":  {
+                "g":  {
+                          "tag":  "c:glass/magenta"
+                      },
+                "v":  {
+                          "item":  "goety:void_bucket"
+                      },
+                "e":  {
+                          "tag":  "c:ender_pearls"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:void_barrel",
+                   "count":  1
+               }
+}
+

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:enchantable/focus/potency",
+    "goety:infernal_tome",
+    "goety:sculk_converter",
+    "goety:sculk_grower"
+  ]
+}

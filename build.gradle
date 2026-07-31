@@ -1,0 +1,191 @@
+//file:noinspection InconsistentLineSeparators
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.1.38'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+runs {
+    configureEach {
+        workingDirectory project.layout.projectDirectory.dir('run').dir(name)
+
+        systemProperty 'mixin.env.disableRefMap', 'true'
+        systemProperty 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+        systemProperty 'forge.logging.console.level', 'debug'
+
+        argument '-mixin.config=goety.mixins.json'
+
+        modSource project.sourceSets.main
+    }
+
+    client {
+        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+    }
+
+    server {
+        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        argument '--nogui'
+    }
+
+    gameTestServer {
+        systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+    }
+
+    data {
+        arguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    maven {
+        name = "CurseForge"
+        url = "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
+        name = "Modrinth Maven"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
+        name = "Curios"
+        url = "https://maven.theillusivec4.top"
+    }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        name = "Shadows of Fire"
+        url = "https://maven.shadowsoffire.dev/releases"
+    }
+    flatDir {
+        dirs 'runtime-mods'
+    }
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${neo_version}"
+
+    // Refmap generation is disabled because the annotation processor cannot resolve NeoGradle's official mappings in this workspace.
+    // annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    //JEI
+    compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
+    //Curios
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curio_version}+${minecraft_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curio_version}+${minecraft_version}"
+
+    //Patchouli
+    compileOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouli_version}"
+
+    //Jade
+    compileOnly "maven.modrinth:jade:15.10.5+neoforge"
+    runtimeOnly "maven.modrinth:jade:15.10.5+neoforge"
+
+    // Apotheosis compat
+    compileOnly "dev.shadowsoffire:Placebo:${minecraft_version}-9.9.1"
+    compileOnly "dev.shadowsoffire:ApothicAttributes:${minecraft_version}-2.7.0"
+    compileOnly "dev.shadowsoffire:Apotheosis:${minecraft_version}-8.5.4"
+    runtimeOnly "dev.shadowsoffire:Placebo:${minecraft_version}-9.9.1"
+    runtimeOnly "dev.shadowsoffire:ApothicAttributes:${minecraft_version}-2.7.0"
+    runtimeOnly "dev.shadowsoffire:Apotheosis:${minecraft_version}-8.5.4"
+    runtimeOnly "dev.shadowsoffire:ApothicSpawners:${minecraft_version}-1.3.0"
+    runtimeOnly "dev.shadowsoffire:ApothicEnchanting:${minecraft_version}-1.5.2"
+
+    //Botania
+    compileOnly "vazkii.botania:Botania:1.20.1-445-FORGE-SNAPSHOT"
+
+    //Serene Seasons
+    compileOnly "curse.maven:serene-seasons-291874:5790653"
+
+    //Testing Only
+    // Keep optional runtime test mods disabled unless a NeoForge 1.21.1-compatible artifact is selected.
+    // runtimeOnly "curse.maven:yeetus-635427:4680832"
+    // runtimeOnly "curse.maven:jeed-532286:4599236"
+    // runtimeOnly "curse.maven:worldedit-225608:4586218"
+    // runtimeOnly "curse.maven:mob-battle-mod-268746:6596542"
+    // runtimeOnly "curse.maven:lionfish-api-1001614:8095554"
+    // runtimeOnly "curse.maven:lendercataclysm-551586:8095632"
+    // runtimeOnly "curse.maven:retro-damage-indicators-1003431:5268035"
+    // runtimeOnly "curse.maven:kiwi-303657:4688568"
+    // runtimeOnly "curse.maven:wiki-zoomer-383277:4576732"
+    // runtimeOnly "curse.maven:geckolib-388172:5414523"
+    // runtimeOnly "curse.maven:born-in-chaos-686437:7917933"
+    // runtimeOnly "curse.maven:framework-549225:5180972"
+    // runtimeOnly "curse.maven:configured-457570:5180900"
+    // runtimeOnly "curse.maven:spark-361579:4738952"
+    // runtimeOnly "curse.maven:illage-and-spillage-finally-ported-1079714:6156035"
+    // runtimeOnly "curse.maven:free-cam-557076:4643128"
+    // runtimeOnly "curse.maven:mob-battle-extra-853296:4810120"
+    // runtimeOnly "curse.maven:guard-villagers-360203:6793945"
+    // runtimeOnly "curse.maven:vanillatweaks-272637:5004559"
+    // runtimeOnly "curse.maven:placebo-283644:6274231"
+    // runtimeOnly "curse.maven:apothic-attributes-898963:5634071"
+    // runtimeOnly "curse.maven:bookshelf-228525:7612389"
+    // runtimeOnly "curse.maven:enchantment-descriptions-250419:7612607"
+    // runtimeOnly "curse.maven:xaeros-minimap-263420:8046960"
+    // runtimeOnly "curse.maven:xaeros-world-map-317780:8042194"
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : mod_id,
+                'Specification-Vendor'    : mod_authors,
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : mod_authors,
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": "goety.mixins.json"
+        ])
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    if (project.hasProperty('maxCompileDiagnostics')) {
+        options.compilerArgs += ['-Xmaxerrs', '5000', '-Xmaxwarns', '5000']
+    }
+}

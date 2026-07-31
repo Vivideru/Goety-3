@@ -1,0 +1,53 @@
+{
+  "name": "大理石方块与其变体",
+  "icon": "goety:marble",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "大理石是世界上超高峰上发现的一种外观奇特的石块。不幸的是，这种高度的山峰远远超出了你的能力，但有了灵魂能量、诅咒注入和方解石，你可以自己获得这些奇妙的方块。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:marble/marble_craft",
+      "recipe2": "goety:marble/slate_marble"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "平滑金块虽然没有完整的金块那么闪亮，但仍然能够成为纯粹富裕和财富的象征。这是一个奇怪的建筑块，你听说一个古老的圣地曾经使用过它。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:indented_gold/indented_gold_craft"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "据说，高岭石是构成世界最高峰的岩石。据你所知，它们似乎是安山岩的一种变种，其磨制版本被用于高山上的铁匠铺。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:highrock/highrock"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "据说，峭壁岩也构成了世界上的山峰，被用来为那里的村庄建造墙壁和铺设路面。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:crag/cragrocks"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "粉砂岩是外观与其他岩石截然不同的奇特岩石。它们可能杂乱无章，与大理石和玉石混杂在一起，但也可用于制作多种装饰性石块。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:silt/siltstone_craft"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:rusty_iron_grate",
+      "recipe2": "goety:rusty_iron_bars"
+    }
+  ]
+}

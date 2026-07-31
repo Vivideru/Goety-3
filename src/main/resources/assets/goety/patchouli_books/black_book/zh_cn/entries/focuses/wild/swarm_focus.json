@@ -1,0 +1,19 @@
+{
+  "name": "虫群聚晶",
+  "icon": "goety:swarm_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "这个聚晶允许你召唤并向目标喷出一大群虫子，它们可以对目标造成伤害，一旦目标死亡，一群新的忠诚的虫子将从目标的尸体上爬起来，并且转而攻击其他目标。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/swarm_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/wild_staff)荒野魔杖$()施法会给予目标中毒效果."
+    }
+  ]
+}

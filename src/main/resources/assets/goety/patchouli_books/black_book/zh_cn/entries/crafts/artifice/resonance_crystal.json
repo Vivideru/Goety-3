@@ -1,0 +1,28 @@
+{
+  "name": "共振晶体",
+  "icon": "goety:resonance_crystal",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/read_mistral_scroll",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "一种神秘的方块，当强风吹拂时就会获得能量；例如$(l:goety:crafts/artifice/wind_blower)鼓风机$()的强风，手持这块晶体右键$(l:goety:summons/squall_golem)呼啸傀儡$()可以储存它的信息，当这块晶体被充能后，与之绑定的呼啸傀儡就会激活"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:resonance_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "它不仅能为呼啸傀儡供能，还能为其它共振晶体供能，手持一个已标有其它晶体所在位置的$(l:goety:crafts/waystone)指路石$()右键点击它，它就会储存该位置的信息。这不会消耗掉这块指路石，并且一块指路石可以同时存储多个共振晶体的位置，但前提是所述晶体距离它不超过64格方块。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "如果共振晶体已经存储了任何位置信息，空手右键点击该晶体就会显示它所连接的位置，然而，在按住潜行键的同时右键点击则会清除晶体中所有位置信息，破坏水晶也会清除晶体中所有位置信息。当共振晶体被激活后，它可以发出红石信号。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:resonance_crystal": 1
+  }
+}

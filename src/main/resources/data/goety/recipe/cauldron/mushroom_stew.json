@@ -1,0 +1,29 @@
+﻿{
+  "type": "goety:cauldron",
+  "id": "goety:cauldron/mushroom_stew",
+  "soulCost": 0,
+  "color": 12482654,
+  "take_with": {
+    "item": "minecraft:bowl"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:red_mushroom"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "result": { "id": "minecraft:mushroom_stew", "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "goety_revelation"
+      }
+    }
+  ]
+}
+

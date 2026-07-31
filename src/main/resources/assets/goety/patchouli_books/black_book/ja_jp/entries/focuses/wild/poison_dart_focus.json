@@ -1,0 +1,19 @@
+{
+  "name": "Poison Dart Focus",
+  "icon": "goety:poison_dart_focus",
+  "category": "goety:focuses/wild",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Shoots a poison quill towards the caster's line of sight. Creatures struck by the quill will be poisoned."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/poison_dart_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() will shoot a quill that pierces through multiple targets."
+    }
+  ]
+}

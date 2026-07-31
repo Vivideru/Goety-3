@@ -1,0 +1,40 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:dark_wand"
+                        },
+    "craftType":  "overgrown",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "goety:corpse_blossom"
+                        },
+                        {
+                            "tag":  "c:slimeballs"
+                        },
+                        {
+                            "item":  "minecraft:fermented_spider_eye"
+                        },
+                        {
+                            "tag":  "c:bones"
+                        },
+                        {
+                            "item":  "goety:cursed_ingot"
+                        },
+                        {
+                            "tag":  "minecraft:logs"
+                        },
+                        {
+                            "tag":  "c:storage_blocks/lapis"
+                        },
+                        {
+                            "item":  "goety:magic_fabric"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:wild_staff"
+               }
+}
+

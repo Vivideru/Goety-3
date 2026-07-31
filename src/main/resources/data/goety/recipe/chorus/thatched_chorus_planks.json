@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "group":  "bark",
+    "pattern":  [
+                    "#s#",
+                    "s s",
+                    "#s#"
+                ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:chorus_slab"
+                      },
+                "s":  {
+                          "tag":  "c:rods/wooden"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:thatched_chorus_planks"
+               }
+}
+

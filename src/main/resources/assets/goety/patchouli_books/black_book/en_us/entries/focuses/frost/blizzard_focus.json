@@ -1,0 +1,22 @@
+{
+  "name": "Blizzard Focus",
+  "icon": "goety:blizzard_focus",
+  "category": "goety:focuses/frost",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Infusing the Arrow Rain Focus with the power of frost, you call upon a rain of ice spikes instead of arrows."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/blizzard_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will rain ice spears, larger and piercing version of ice spikes, instead."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:blizzard_focus": 1
+  }
+}

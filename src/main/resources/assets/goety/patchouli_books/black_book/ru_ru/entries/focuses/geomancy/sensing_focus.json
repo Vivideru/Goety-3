@@ -1,0 +1,19 @@
+{
+  "name": "Фокус чувства",
+  "icon": "goety:sensing_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Фокус дарует вам приземлённое чувство, которое подвечивает для вас любое существо, находящееся на земле. Эффект работает, только если вы тоже стоите на земле."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/sensing_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "«Мощность» увеличивает уровень приземлённого чувства, удваивая радиус действия."
+    }
+  ]
+}

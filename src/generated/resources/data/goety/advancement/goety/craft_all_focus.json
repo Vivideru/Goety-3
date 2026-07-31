@@ -1,0 +1,1856 @@
+{
+  "parent": "goety:goety/craft_empty_focus",
+  "criteria": {
+    "item.goety.arrow_rain_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:arrow_rain_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.banish_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:banish_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.barricade_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:barricade_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.biomine_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:biomine_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.biting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:biting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blackguard_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blackguard_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blasting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blasting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blazing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blazing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blink_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blink_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blizzard_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blizzard_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.blossoming_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blossoming_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.bolting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:bolting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.bombardment_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:bombardment_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.bouncy_bubble_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:bouncy_bubble_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.bulwark_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:bulwark_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.burrowing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:burrowing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.call_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:call_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.carrion_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:carrion_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.charge_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:charge_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.chilling_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:chilling_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.command_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:command_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.corruption_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:corruption_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.crafting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:crafting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.cushion_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:cushion_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.cyclone_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:cyclone_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.discharge_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:discharge_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.earth_punch_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:earth_punch_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.electrocute_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:electrocute_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.end_walk_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:end_walk_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ender_chest_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ender_chest_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.entangling_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:entangling_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.eruption_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:eruption_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.feast_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:feast_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.fire_blast_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:fire_blast_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.fire_breath_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:fire_breath_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.fireball_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:fireball_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.flame_strike_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:flame_strike_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.flying_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:flying_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.frost_breath_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:frost_breath_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.frost_nova_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:frost_nova_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.frostborn_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:frostborn_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ghastly_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ghastly_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ghost_fire_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ghost_fire_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.glow_light_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:glow_light_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.grapple_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:grapple_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.guardian_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:guardian_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.hail_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:hail_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.hogging_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:hogging_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.hunting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:hunting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ice_spike_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ice_spike_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ice_storm_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ice_storm_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.iceology_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:iceology_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ignite_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ignite_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.illuminate_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:illuminate_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.illusion_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:illusion_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.iron_hide_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:iron_hide_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.killing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:killing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.launch_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:launch_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.lavaball_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:lavaball_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.leaping_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:leaping_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.leeching_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:leeching_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.lightning_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:lightning_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.magic_bolt_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:magic_bolt_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.magma_bomb_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:magma_bomb_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.mauling_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:mauling_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.meteor_shower_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:meteor_shower_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.ministrous_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:ministrous_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.monsoon_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:monsoon_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.order_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:order_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.osseous_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:osseous_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.overgrowth_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:overgrowth_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.phantasm_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:phantasm_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.poison_dart_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:poison_dart_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.prisma_beam_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:prisma_beam_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.pulverize_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:pulverize_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.quaking_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:quaking_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.razor_wind_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:razor_wind_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.reaping_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:reaping_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.recall_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:recall_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.rotation_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:rotation_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.rotting_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:rotting_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.rupture_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:rupture_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.scatter_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:scatter_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.sensing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:sensing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.shocking_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:shocking_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.shockwave_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:shockwave_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.shredding_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:shredding_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.skull_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:skull_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.slimy_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:slimy_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.snaring_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:snaring_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.sonic_boom_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:sonic_boom_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.soul_bolt_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:soul_bolt_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.soul_heal_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:soul_heal_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.soul_light_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:soul_light_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.spooky_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:spooky_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.sprightly_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:sprightly_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.steaming_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:steaming_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.stellar_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:stellar_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.surging_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:surging_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.swarm_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:swarm_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.sword_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:sword_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.teeth_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:teeth_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.telekinesis_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:telekinesis_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.thunderbolt_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:thunderbolt_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.thunderstorm_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:thunderstorm_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.tidal_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:tidal_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.trembling_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:trembling_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.trident_storm_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:trident_storm_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.troop_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:troop_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.tunnel_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:tunnel_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.updraft_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:updraft_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.vanguard_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:vanguard_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.vexing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:vexing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.void_flash_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:void_flash_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.watching_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:watching_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.water_jet_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:water_jet_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.water_whip_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:water_whip_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.weakening_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:weakening_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.whirlwind_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:whirlwind_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.whispering_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:whispering_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.wind_blast_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:wind_blast_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "item.goety.wither_skull_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:wither_skull_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.goety.craft_all_focus.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "goety:focus_pack"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.goety.craft_all_focus.title"
+    }
+  },
+  "requirements": [
+    [
+      "item.goety.vexing_focus"
+    ],
+    [
+      "item.goety.biting_focus"
+    ],
+    [
+      "item.goety.feast_focus"
+    ],
+    [
+      "item.goety.teeth_focus"
+    ],
+    [
+      "item.goety.shredding_focus"
+    ],
+    [
+      "item.goety.illusion_focus"
+    ],
+    [
+      "item.goety.ignite_focus"
+    ],
+    [
+      "item.goety.fire_breath_focus"
+    ],
+    [
+      "item.goety.soul_bolt_focus"
+    ],
+    [
+      "item.goety.magic_bolt_focus"
+    ],
+    [
+      "item.goety.sword_focus"
+    ],
+    [
+      "item.goety.soul_light_focus"
+    ],
+    [
+      "item.goety.glow_light_focus"
+    ],
+    [
+      "item.goety.illuminate_focus"
+    ],
+    [
+      "item.goety.crafting_focus"
+    ],
+    [
+      "item.goety.iron_hide_focus"
+    ],
+    [
+      "item.goety.bulwark_focus"
+    ],
+    [
+      "item.goety.soul_heal_focus"
+    ],
+    [
+      "item.goety.shockwave_focus"
+    ],
+    [
+      "item.goety.weakening_focus"
+    ],
+    [
+      "item.goety.arrow_rain_focus"
+    ],
+    [
+      "item.goety.telekinesis_focus"
+    ],
+    [
+      "item.goety.command_focus"
+    ],
+    [
+      "item.goety.order_focus"
+    ],
+    [
+      "item.goety.sonic_boom_focus"
+    ],
+    [
+      "item.goety.corruption_focus"
+    ],
+    [
+      "item.goety.rotting_focus"
+    ],
+    [
+      "item.goety.osseous_focus"
+    ],
+    [
+      "item.goety.ghost_fire_focus"
+    ],
+    [
+      "item.goety.reaping_focus"
+    ],
+    [
+      "item.goety.spooky_focus"
+    ],
+    [
+      "item.goety.phantasm_focus"
+    ],
+    [
+      "item.goety.vanguard_focus"
+    ],
+    [
+      "item.goety.blackguard_focus"
+    ],
+    [
+      "item.goety.leeching_focus"
+    ],
+    [
+      "item.goety.killing_focus"
+    ],
+    [
+      "item.goety.skull_focus"
+    ],
+    [
+      "item.goety.barricade_focus"
+    ],
+    [
+      "item.goety.quaking_focus"
+    ],
+    [
+      "item.goety.earth_punch_focus"
+    ],
+    [
+      "item.goety.ministrous_focus"
+    ],
+    [
+      "item.goety.pulverize_focus"
+    ],
+    [
+      "item.goety.rotation_focus"
+    ],
+    [
+      "item.goety.burrowing_focus"
+    ],
+    [
+      "item.goety.sensing_focus"
+    ],
+    [
+      "item.goety.scatter_focus"
+    ],
+    [
+      "item.goety.eruption_focus"
+    ],
+    [
+      "item.goety.frost_breath_focus"
+    ],
+    [
+      "item.goety.ice_spike_focus"
+    ],
+    [
+      "item.goety.ice_storm_focus"
+    ],
+    [
+      "item.goety.hail_focus"
+    ],
+    [
+      "item.goety.iceology_focus"
+    ],
+    [
+      "item.goety.blizzard_focus"
+    ],
+    [
+      "item.goety.chilling_focus"
+    ],
+    [
+      "item.goety.frost_nova_focus"
+    ],
+    [
+      "item.goety.frostborn_focus"
+    ],
+    [
+      "item.goety.swarm_focus"
+    ],
+    [
+      "item.goety.poison_dart_focus"
+    ],
+    [
+      "item.goety.blossoming_focus"
+    ],
+    [
+      "item.goety.grapple_focus"
+    ],
+    [
+      "item.goety.hunting_focus"
+    ],
+    [
+      "item.goety.mauling_focus"
+    ],
+    [
+      "item.goety.slimy_focus"
+    ],
+    [
+      "item.goety.carrion_focus"
+    ],
+    [
+      "item.goety.overgrowth_focus"
+    ],
+    [
+      "item.goety.entangling_focus"
+    ],
+    [
+      "item.goety.whispering_focus"
+    ],
+    [
+      "item.goety.leaping_focus"
+    ],
+    [
+      "item.goety.launch_focus"
+    ],
+    [
+      "item.goety.flying_focus"
+    ],
+    [
+      "item.goety.cushion_focus"
+    ],
+    [
+      "item.goety.whirlwind_focus"
+    ],
+    [
+      "item.goety.cyclone_focus"
+    ],
+    [
+      "item.goety.updraft_focus"
+    ],
+    [
+      "item.goety.wind_blast_focus"
+    ],
+    [
+      "item.goety.razor_wind_focus"
+    ],
+    [
+      "item.goety.trembling_focus"
+    ],
+    [
+      "item.goety.charge_focus"
+    ],
+    [
+      "item.goety.shocking_focus"
+    ],
+    [
+      "item.goety.thunderbolt_focus"
+    ],
+    [
+      "item.goety.electrocute_focus"
+    ],
+    [
+      "item.goety.surging_focus"
+    ],
+    [
+      "item.goety.sprightly_focus"
+    ],
+    [
+      "item.goety.monsoon_focus"
+    ],
+    [
+      "item.goety.discharge_focus"
+    ],
+    [
+      "item.goety.bolting_focus"
+    ],
+    [
+      "item.goety.lightning_focus"
+    ],
+    [
+      "item.goety.thunderstorm_focus"
+    ],
+    [
+      "item.goety.water_jet_focus"
+    ],
+    [
+      "item.goety.bouncy_bubble_focus"
+    ],
+    [
+      "item.goety.steaming_focus"
+    ],
+    [
+      "item.goety.trident_storm_focus"
+    ],
+    [
+      "item.goety.prisma_beam_focus"
+    ],
+    [
+      "item.goety.guardian_focus"
+    ],
+    [
+      "item.goety.biomine_focus"
+    ],
+    [
+      "item.goety.water_whip_focus"
+    ],
+    [
+      "item.goety.tidal_focus"
+    ],
+    [
+      "item.goety.fireball_focus"
+    ],
+    [
+      "item.goety.lavaball_focus"
+    ],
+    [
+      "item.goety.bombardment_focus"
+    ],
+    [
+      "item.goety.meteor_shower_focus"
+    ],
+    [
+      "item.goety.magma_bomb_focus"
+    ],
+    [
+      "item.goety.fire_blast_focus"
+    ],
+    [
+      "item.goety.flame_strike_focus"
+    ],
+    [
+      "item.goety.wither_skull_focus"
+    ],
+    [
+      "item.goety.ghastly_focus"
+    ],
+    [
+      "item.goety.blazing_focus"
+    ],
+    [
+      "item.goety.hogging_focus"
+    ],
+    [
+      "item.goety.call_focus"
+    ],
+    [
+      "item.goety.troop_focus"
+    ],
+    [
+      "item.goety.recall_focus"
+    ],
+    [
+      "item.goety.ender_chest_focus"
+    ],
+    [
+      "item.goety.end_walk_focus"
+    ],
+    [
+      "item.goety.blink_focus"
+    ],
+    [
+      "item.goety.banish_focus"
+    ],
+    [
+      "item.goety.tunnel_focus"
+    ],
+    [
+      "item.goety.rupture_focus"
+    ],
+    [
+      "item.goety.stellar_focus"
+    ],
+    [
+      "item.goety.void_flash_focus"
+    ],
+    [
+      "item.goety.watching_focus"
+    ],
+    [
+      "item.goety.blasting_focus"
+    ],
+    [
+      "item.goety.snaring_focus"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

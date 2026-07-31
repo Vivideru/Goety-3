@@ -1,0 +1,21 @@
+{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    " m ",
+                    "mlm",
+                    " m "
+                ],
+    "key":  {
+                "m":  {
+                          "tag":  "minecraft:planks"
+                      },
+                "l":  {
+                          "tag":  "c:gems/lapis"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:sky_wood_planks",
+                   "count":  4
+               }
+}
+

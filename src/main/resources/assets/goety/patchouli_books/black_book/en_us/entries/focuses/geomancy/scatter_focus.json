@@ -1,0 +1,19 @@
+{
+  "name": "Scatter Focus",
+  "icon": "goety:scatter_focus",
+  "category": "goety:focuses/geomancy",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The focus conjures up mines around the caster, where they will prime after a second and explode, non-destructively, when a non-allied target steps near them."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/scatter_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() changes how the spell is cast. Instead of, by default, instantly summoning three scatter mines, the caster must continuously cast the spell until up to fourteen mines has spawned around them."
+    }
+  ]
+}

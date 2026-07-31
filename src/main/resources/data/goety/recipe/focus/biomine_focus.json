@@ -1,0 +1,28 @@
+{
+    "type":  "goety:ritual",
+    "ritual_type":  "goety:craft",
+    "activation_item":  {
+                            "item":  "goety:empty_focus"
+                        },
+    "craftType":  "deep",
+    "soulCost":  1,
+    "duration":  10,
+    "ingredients":  [
+                        {
+                            "item":  "goety:overgrown_roots"
+                        },
+                        {
+                            "item":  "minecraft:kelp"
+                        },
+                        {
+                            "item":  "goety:venomous_fang"
+                        },
+                        {
+                            "tag":  "c:eggs"
+                        }
+                    ],
+    "result":  {
+                   "id":  "goety:biomine_focus"
+               }
+}
+

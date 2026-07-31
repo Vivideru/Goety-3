@@ -1,0 +1,185 @@
+package com.Polarice3.Goety.client.particles;
+
+import com.Polarice3.Goety.utils.ColorUtil;
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+
+import java.util.Locale;
+
+public class ShockwaveParticleOption implements ParticleOptions {
+   public static final MapCodec<ShockwaveParticleOption> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+           Codec.FLOAT.fieldOf("red").forGetter(d -> d.red),
+           Codec.FLOAT.fieldOf("green").forGetter(d -> d.green),
+           Codec.FLOAT.fieldOf("blue").forGetter(d -> d.blue),
+           Codec.FLOAT.fieldOf("originSize").forGetter(d -> d.originSize),
+           Codec.FLOAT.fieldOf("size").forGetter(d -> d.size),
+           Codec.INT.fieldOf("speed").forGetter(d -> d.speed),
+           Codec.INT.fieldOf("life").forGetter(d -> d.speed),
+           Codec.BOOL.fieldOf("fade").forGetter(d -> d.fade)
+   ).apply(instance, ShockwaveParticleOption::new));
+   public static final StreamCodec<RegistryFriendlyByteBuf, ShockwaveParticleOption> STREAM_CODEC = StreamCodec.of(
+           (buffer, option) -> option.writeToNetwork(buffer),
+           ShockwaveParticleOption::fromNetwork
+   );
+
+   private static ShockwaveParticleOption fromNetwork(RegistryFriendlyByteBuf buffer) {
+         return new ShockwaveParticleOption(buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readInt(), buffer.readInt(), buffer.readBoolean());
+   }
+   private final float red;
+   private final float green;
+   private final float blue;
+   private final float originSize;
+   private final float size;
+   private final int speed;
+   private final int life;
+   private final boolean fade;
+
+   public ShockwaveParticleOption() {
+      this.red = 1.0F;
+      this.green = 1.0F;
+      this.blue = 1.0F;
+      this.originSize = 20;
+      this.size = 10;
+      this.speed = 0;
+      this.life = 30;
+      this.fade = true;
+   }
+
+   public ShockwaveParticleOption(float size, int speed) {
+      this.red = 1.0F;
+      this.green = 1.0F;
+      this.blue = 1.0F;
+      this.originSize = size * 2;
+      this.size = size;
+      this.speed = speed;
+      this.life = 30;
+      this.fade = true;
+   }
+
+   public ShockwaveParticleOption(float originSize, float size, int speed) {
+      this.red = 1.0F;
+      this.green = 1.0F;
+      this.blue = 1.0F;
+      this.originSize = originSize;
+      this.size = size;
+      this.speed = speed;
+      this.life = 30;
+      this.fade = true;
+   }
+
+   public ShockwaveParticleOption(ColorUtil colorUtil) {
+      this.red = colorUtil.red;
+      this.green = colorUtil.green;
+      this.blue = colorUtil.blue;
+      this.originSize = 20;
+      this.size = 10;
+      this.speed = 0;
+      this.life = 30;
+      this.fade = true;
+   }
+
+   public ShockwaveParticleOption(float r, float g, float b) {
+      this.red = r;
+      this.green = g;
+      this.blue = b;
+      this.originSize = 20;
+      this.size = 10;
+      this.speed = 0;
+      this.life = 30;
+      this.fade = true;
+   }
+
+   public ShockwaveParticleOption(float r, float g, float b, float size, int speed, boolean fade) {
+      this.red = r;
+      this.green = g;
+      this.blue = b;
+      this.originSize = size * 2.0F;
+      this.size = size;
+      this.speed = speed;
+      this.life = 30;
+      this.fade = fade;
+   }
+
+   public ShockwaveParticleOption(float r, float g, float b, float originSize, float size, int speed, boolean fade) {
+      this.red = r;
+      this.green = g;
+      this.blue = b;
+      this.originSize = originSize;
+      this.size = size;
+      this.speed = speed;
+      this.life = 30;
+      this.fade = fade;
+   }
+
+   public ShockwaveParticleOption(float r, float g, float b, float originSize, float size, int speed, int life, boolean fade) {
+      this.red = r;
+      this.green = g;
+      this.blue = b;
+      this.originSize = originSize;
+      this.size = size;
+      this.speed = speed;
+      this.life = life;
+      this.fade = fade;
+   }
+
+   public void writeToNetwork(FriendlyByteBuf p_235956_) {
+      p_235956_.writeFloat(this.red);
+      p_235956_.writeFloat(this.green);
+      p_235956_.writeFloat(this.blue);
+      p_235956_.writeFloat(this.originSize);
+      p_235956_.writeFloat(this.size);
+      p_235956_.writeInt(this.speed);
+      p_235956_.writeInt(this.life);
+      p_235956_.writeBoolean(this.fade);
+   }
+
+   public String writeToString() {
+      return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %.2f %.2f %s %s %s",
+              BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue, this.originSize, this.size, this.speed, this.life, this.fade);
+   }
+
+   public ParticleType<ShockwaveParticleOption> getType() {
+      return ModParticleTypes.SHOCKWAVE.get();
+   }
+
+   public float getRed() {
+      return this.red;
+   }
+
+   public float getGreen() {
+      return this.green;
+   }
+
+   public float getBlue() {
+      return this.blue;
+   }
+
+   public float getOriginSize(){
+      return this.originSize;
+   }
+
+   public float getSize(){
+      return this.size;
+   }
+
+   public int getSpeed(){
+      return this.speed;
+   }
+
+   public int getLife(){
+      return this.life;
+   }
+
+   public boolean isFade() {
+      return this.fade;
+   }
+}

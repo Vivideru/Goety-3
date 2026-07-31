@@ -1,0 +1,22 @@
+{
+  "name": "Foco de Retorno",
+  "icon": "goety:recall_focus",
+  "category": "goety:focuses/void",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Teleporta o conjurador para um local salvo. Para salvar, clique em uma $(l:crafts/artifice/arca)Arca$(), Cama ou Âncora de Ressurreição. Shift + clique para apagar."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/recall_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Clique em um servo para teleportá-lo ao local salvo (ele ficará em espera)."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:recall_focus": 1
+  }
+}

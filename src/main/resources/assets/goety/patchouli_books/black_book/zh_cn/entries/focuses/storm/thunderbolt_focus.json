@@ -1,0 +1,19 @@
+{
+  "name": "雷霆聚晶",
+  "icon": "goety:thunderbolt_focus",
+  "category": "goety:focuses/storm",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "与其发射连锁的小闪电，不如发射一个更强的大闪电，造成更大的伤害，当你不是使用$(l:crafts/staff/storm_staff)风暴魔杖$()施法，那么雷电会被避雷针吸引"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/thunderbolt_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/storm_staff)风暴魔杖$()施法会提升该法术施加痉挛效果的概率，并触发连锁闪电攻击。"
+    }
+  ]
+}

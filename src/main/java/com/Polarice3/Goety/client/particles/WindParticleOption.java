@@ -1,0 +1,130 @@
+package com.Polarice3.Goety.client.particles;
+
+import com.Polarice3.Goety.utils.ColorUtil;
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+
+import java.util.Locale;
+
+public class WindParticleOption implements ParticleOptions {
+    public static final MapCodec<WindParticleOption> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Codec.FLOAT.fieldOf("red").forGetter(d -> d.red),
+            Codec.FLOAT.fieldOf("green").forGetter(d -> d.green),
+            Codec.FLOAT.fieldOf("blue").forGetter(d -> d.blue),
+            Codec.FLOAT.fieldOf("width").forGetter(d -> d.width),
+            Codec.FLOAT.fieldOf("height").forGetter(d -> d.height),
+            Codec.INT.fieldOf("life").forGetter(d -> d.life),
+            Codec.INT.fieldOf("ownerId").forGetter(d -> d.ownerId)
+    ).apply(instance, WindParticleOption::new));
+    public static final StreamCodec<RegistryFriendlyByteBuf, WindParticleOption> STREAM_CODEC = StreamCodec.of(
+           (buffer, option) -> option.writeToNetwork(buffer),
+           WindParticleOption::fromNetwork
+   );
+
+   private static WindParticleOption fromNetwork(RegistryFriendlyByteBuf buffer) {
+            return new WindParticleOption(buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readFloat(), buffer.readInt(), buffer.readInt());
+   }
+    private final float red;
+    private final float green;
+    private final float blue;
+    private final float width;
+    private final float height;
+    private final int life;
+    private final int ownerId;
+
+    public WindParticleOption(ColorUtil color, float width, float height, int ownerId) {
+        this.red = color.red();
+        this.green = color.green();
+        this.blue = color.blue();
+        this.width = width;
+        this.height = height;
+        this.life = 0;
+        this.ownerId = ownerId;
+    }
+
+    public WindParticleOption(ColorUtil color, float width, float height, int life, int ownerId) {
+        this.red = color.red();
+        this.green = color.green();
+        this.blue = color.blue();
+        this.width = width;
+        this.height = height;
+        this.life = life;
+        this.ownerId = ownerId;
+    }
+
+    public WindParticleOption(float red, float green, float blue, float width, float height, int life, int ownerId) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.width = width;
+        this.height = height;
+        this.life = life;
+        this.ownerId = ownerId;
+    }
+
+    public WindParticleOption(float red, float green, float blue, float width, float height, int ownerId) {
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.width = width;
+        this.height = height;
+        this.life = 0;
+        this.ownerId = ownerId;
+    }
+
+    public void writeToNetwork(FriendlyByteBuf buffer) {
+        buffer.writeFloat(this.red);
+        buffer.writeFloat(this.green);
+        buffer.writeFloat(this.blue);
+        buffer.writeFloat(this.width);
+        buffer.writeFloat(this.height);
+        buffer.writeInt(this.life);
+        buffer.writeInt(this.ownerId);
+    }
+
+    public String writeToString() {
+        return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %.2f %.2f %d %d",
+                BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), this.red, this.green, this.blue, this.width, this.height, this.life, this.ownerId);
+    }
+
+    public ParticleType<WindParticleOption> getType() {
+        return ModParticleTypes.WIND.get();
+    }
+
+    public float getRed() {
+        return this.red;
+    }
+
+    public float getGreen() {
+        return this.green;
+    }
+
+    public float getBlue() {
+        return this.blue;
+    }
+
+    public float getWidth() {
+        return this.width;
+    }
+
+    public float getHeight() {
+        return this.height;
+    }
+
+    public int getLife() {
+        return this.life;
+    }
+
+    public int getOwnerId() {
+        return this.ownerId;
+    }
+}

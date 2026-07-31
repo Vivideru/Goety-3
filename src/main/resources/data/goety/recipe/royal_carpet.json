@@ -1,0 +1,21 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+                    "ccc",
+                    "csc",
+                    "ccc"
+                ],
+    "key":  {
+                "s":  {
+                          "item":  "goety:ominous_stone"
+                      },
+                "c":  {
+                          "item":  "minecraft:red_carpet"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:royal_carpet",
+                   "count":  8
+               }
+}
+

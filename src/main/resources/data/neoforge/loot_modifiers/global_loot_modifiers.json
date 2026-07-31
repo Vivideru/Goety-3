@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "entries": [
+    "goety:instant_pick",
+    "goety:occult_fabric_dig",
+    "goety:spirit_fabric_dig",
+    "goety:cross_pottery_sherd_dig",
+    "goety:dead_pottery_sherd_dig",
+    "goety:haunt_pottery_sherd_dig",
+    "goety:night_pottery_sherd_dig",
+    "goety:soul_pottery_sherd_dig",
+    "goety:forbidden_piece_dig"
+  ]
+}

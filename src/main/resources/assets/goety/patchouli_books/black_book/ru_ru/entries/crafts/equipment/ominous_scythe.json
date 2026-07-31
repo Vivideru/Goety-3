@@ -1,0 +1,33 @@
+{
+  "name": "Зловещая коса",
+  "icon": "goety:dark_scythe",
+  "category": "goety:crafts/equipment",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Зловещая коса — мощное оружие, способное поражать нескольких существ за один удар. Она не только наносит большой урон, но и даёт вам энергию душ с каждым ударом. Если индикатор атаки заполнен, коса поразит существ в большем радиусе, хотя на повторное заполнение индикатора уйдёт довольно много времени. Времени уйдёт меньше, если у вас ничего нет во второй руке."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark_scythe"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Косу можно починить на наковальне с помощью $(l:intro/magical_components)слитков проклятого металла$() или с помощью $(l:crafts/pale_steel_ingot)слитков бледного металла$(). Её также можно использовать как инструмент для уборки травы или сбора урожая на больших площадях, а также для добычи скалка без «шёлкового касания»."
+    },
+    {
+      "type": "goety:ritual",
+      "advancement": "goety:goety/craft_necro_brazier",
+      "recipe": "goety:dark/dark_metal_scythe"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/craft_necro_brazier",
+      "text": "Модернизированная версия зловещей косы, обладающая качествами других инструментов из $(l:crafts/dark_alloy_ingot)тёмного сплава$()."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_scythe": 1,
+    "goety:dark_metal_scythe": 3
+  }
+}

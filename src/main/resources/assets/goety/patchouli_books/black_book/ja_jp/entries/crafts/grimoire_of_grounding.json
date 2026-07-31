@@ -1,0 +1,28 @@
+{
+  "name": "Grimoire of Grounding",
+  "icon": "goety:grimoire_of_grounding",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Sometimes, you want some of your servants, or their subspecies so to speak, to stay where they are when mass teleporting them through crouch casting their associated summoning spell or through other spells."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When mentioning recording their subspecies, what it means is that if you were to add Jungle Zombie Servants to it, crouch casting Rotting Spell will summon all variants of Zombie Servants except for Jungle. "
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:grimoire_of_grounding",
+      "text": "Right clicking in the air shows who you have grounded. Shift right click to see the species."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Call Spell still works even if stored summon is recorded in the grimoire. For Troop Spell, only individuals recorded on the grimoire aren't teleported. The grimoire adds and erases servants the same way other grimoires do for creatures."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The grimoire also prevents temporary servants recorded in it to be dismissed via the 'Dismiss Temporary Servants' key."
+    }
+  ]
+}

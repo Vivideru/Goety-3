@@ -1,0 +1,20 @@
+{
+  "name": "Soul Bolt Focus",
+  "icon": "goety:soul_bolt_focus",
+  "category": "goety:focuses",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With this focus, you're capable of rapidly fire bolts of Soul Energy towards your foe, dealing knockback and magic damage."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/soul_bolt_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_forbidden_scroll",
+      "text": "Casting this spell with a $(l:crafts/staff/nameless_staff)Nameless Staff$() will shoot forth Necro Bolts, which does far more damage and can hit multiple targets, instead."
+    }
+  ]
+}

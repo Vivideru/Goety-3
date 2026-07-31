@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "pattern":  [
+        "###"
+    ],
+    "key":  {
+                "#":  {
+                          "item":  "goety:mossy_cragrocks"
+                      }
+            },
+    "result":  {
+                   "id":  "goety:mossy_cragrocks_slab",
+                   "count":  6
+               }
+}
+
+

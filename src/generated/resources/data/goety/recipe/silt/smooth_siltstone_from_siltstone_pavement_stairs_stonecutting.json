@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:smooth_siltstone"
+  },
+  "result": {
+    "id": "goety:siltstone_pavement_stairs",
+    "count": 1
+  }
+}

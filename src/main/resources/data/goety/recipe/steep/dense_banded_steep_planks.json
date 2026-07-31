@@ -1,0 +1,13 @@
+﻿{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:dense_steep_planks"
+    },
+    {
+      "item": "goety:gale_fabric"
+    }
+  ],
+  "result": { "id": "goety:dense_banded_steep_planks"
+  }
+}

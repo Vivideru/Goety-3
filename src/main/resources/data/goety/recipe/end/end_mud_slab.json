@@ -1,0 +1,17 @@
+﻿{
+    "type":  "minecraft:crafting_shaped",
+    "key":  {
+                "#":  {
+                          "item":  "goety:end_mud"
+                      }
+            },
+    "pattern":  [
+        "###"
+    ],
+    "result":  {
+                   "count":  6,
+                   "id":  "goety:end_mud_slab"
+               }
+}
+
+

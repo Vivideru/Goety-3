@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#c:is_mountain",
+    {
+      "id": "#aether:is_aether",
+      "required": false
+    }
+  ]
+}

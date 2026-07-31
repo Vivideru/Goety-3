@@ -1,0 +1,20 @@
+{
+  "name": "Sonic Boom Focus",
+  "icon": "goety:sonic_boom_focus",
+  "category": "goety:focuses",
+  "advancement": "goety:goety/get_ruby",
+  "secret": true,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "With the power of the Ruby, you've managed to replicate the power of the Warden's Sonic Boom, allowing you to use its ability against others!"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/sonic_boom_focus"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:sonic_boom_focus": 1
+  }
+}
