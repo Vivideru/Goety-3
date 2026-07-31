@@ -1,3 +1,18 @@
+Goety - The Dark Arts
+
+This repository contains code and assets derived from the original Goety project
+by Polarice3, together with additional code and assets authored by Vivideru.
+
+Original Goety Code and Assets
+==============================
+
+The original Goety code and assets, including code under:
+
+src/main/java/com/Polarice3/
+
+and original Goety resources retained from the upstream project, remain licensed
+under the MIT License.
+
 MIT License
 
 Copyright (c) 2023 Polarice3
@@ -19,3 +34,25 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Vivideru Additions
+==================
+
+Additional code and assets authored by Vivideru, including code under:
+
+src/main/java/com/Vivideru/
+
+and any resources explicitly marked or organized as Vivideru additions, are not
+covered by the MIT license above unless stated otherwise in the relevant file or
+directory.
+
+Copyright (c) 2026 Vivideru
+
+All rights reserved.
+
+No permission is granted to copy, modify, distribute, sublicense, sell, or use
+the Vivideru-authored additions separately from this repository without explicit
+written permission from Vivideru.
+
+This notice does not alter the MIT license terms for the original Goety code and
+assets authored by Polarice3.
