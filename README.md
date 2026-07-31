@@ -1,1 +1,1 @@
-Goety 2 for Minecraft 1.21.1 on NeoForge.
+Goety 3 for Minecraft 1.21.1 on NeoForge.
