@@ -37,6 +37,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
@@ -240,7 +241,7 @@ public class Endersent extends AbstractEnderling implements Enemy {
             DynamicOps<Tag> ops = this.effectOps();
 
             for(int i = 0; i < listtag.size(); ++i) {
-                MobEffectInstance.CODEC.parse(ops, listtag.get(i)).result().ifPresent(this.eyeEffects::add);
+                this.parseEyeEffect(listtag.getCompound(i), ops).ifPresent(this.eyeEffects::add);
             }
         }
         if (compound.contains("DropShard")) {
@@ -406,6 +407,10 @@ public class Endersent extends AbstractEnderling implements Enemy {
         return this.getEyeType() > 0;
     }
 
+    public boolean hasEyeBonuses() {
+        return this.hasEye() || !this.getEyeEffects().isEmpty();
+    }
+
     public void setEyeType(int eyeType) {
         this.entityData.set(EYE_TYPE, eyeType);
     }
@@ -429,6 +434,43 @@ public class Endersent extends AbstractEnderling implements Enemy {
                 // The Endersent refreshes eye effects every tick, so keep a detached copy instead of sharing the Void Frame list.
                 this.eyeEffects.add(new MobEffectInstance(instance));
             }
+        }
+    }
+
+    private java.util.Optional<MobEffectInstance> parseEyeEffect(CompoundTag tag, DynamicOps<Tag> ops) {
+        java.util.Optional<MobEffectInstance> parsed = MobEffectInstance.CODEC.parse(ops, tag).result();
+        if (parsed.isPresent()) {
+            return parsed;
+        }
+        // Older saved structures and command-edited NBT may still use the pre-1.21 effect field names.
+        Holder<MobEffect> effect = null;
+        if (tag.contains("Id", 99)) {
+            MobEffect legacyEffect = BuiltInRegistries.MOB_EFFECT.byId(tag.getInt("Id"));
+            if (legacyEffect != null) {
+                effect = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(legacyEffect);
+            }
+        } else if (tag.contains("Id", 8)) {
+            effect = this.resolveEyeEffect(tag.getString("Id"));
+        } else if (tag.contains("id", 8)) {
+            effect = this.resolveEyeEffect(tag.getString("id"));
+        }
+        if (effect == null || effect.value() == null) {
+            return java.util.Optional.empty();
+        }
+        int duration = tag.contains("Duration", 99) ? tag.getInt("Duration") : tag.getInt("duration");
+        int amplifier = tag.contains("Amplifier", 99) ? tag.getInt("Amplifier") : tag.getInt("amplifier");
+        boolean ambient = tag.contains("Ambient") ? tag.getBoolean("Ambient") : tag.getBoolean("ambient");
+        boolean visible = tag.contains("ShowParticles") ? tag.getBoolean("ShowParticles") : !tag.contains("show_particles") || tag.getBoolean("show_particles");
+        boolean showIcon = tag.contains("ShowIcon") ? tag.getBoolean("ShowIcon") : !tag.contains("show_icon") || tag.getBoolean("show_icon");
+        return java.util.Optional.of(new MobEffectInstance(effect, Math.max(duration, EYE_EFFECT_DURATION), amplifier, ambient, visible, showIcon));
+    }
+
+    @Nullable
+    private Holder<MobEffect> resolveEyeEffect(String effectId) {
+        try {
+            return BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(effectId)).<Holder<MobEffect>>map(holder -> holder).orElse(null);
+        } catch (IllegalArgumentException exception) {
+            return null;
         }
     }
 
@@ -564,7 +606,7 @@ public class Endersent extends AbstractEnderling implements Enemy {
     @Override
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData) {
         SpawnGroupData data = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData);
-        if (this.getEyeType() > 0) {
+        if (this.hasEyeBonuses()) {
             AttributeInstance health = this.getAttribute(Attributes.MAX_HEALTH);
             if (health != null) {
                 health.setBaseValue(AttributesConfig.get(AttributesConfig.EndersentHealth) * 1.15D);
@@ -716,7 +758,7 @@ public class Endersent extends AbstractEnderling implements Enemy {
         if (!this.level().isClientSide) {
             if (!this.isDeadOrDying()) {
                 this.setAggressive(this.getTarget() != null);
-                if (this.getEyeType() > 0 && !this.isHiding()) {
+                if (this.hasEyeBonuses() && !this.isHiding()) {
                     this.eyeTypeEffects();
                 }
                 if (this.getVoidFrame() instanceof VoidFrameBlockEntity voidFrameBlock) {

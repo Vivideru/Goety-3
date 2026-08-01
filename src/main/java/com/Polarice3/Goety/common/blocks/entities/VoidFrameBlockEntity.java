@@ -7,6 +7,8 @@ import com.Polarice3.Goety.init.ModSounds;
 import com.mojang.serialization.DynamicOps;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -14,15 +16,18 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +91,7 @@ public class VoidFrameBlockEntity extends BlockEntity {
             DynamicOps<Tag> ops = effectOps(provider);
 
             for(int i = 0; i < listtag.size(); ++i) {
-                MobEffectInstance.CODEC.parse(ops, listtag.get(i)).result().ifPresent(this.eyeEffects::add);
+                this.parseEyeEffect(listtag.getCompound(i), ops).ifPresent(this.eyeEffects::add);
             }
         }
         this.coolTick = compoundTag.getInt("CoolTick");
@@ -106,6 +111,43 @@ public class VoidFrameBlockEntity extends BlockEntity {
         }
         compoundTag.putInt("EyeType", this.getEyeType());
         compoundTag.putInt("CoolTick", this.coolTick);
+    }
+
+    private java.util.Optional<MobEffectInstance> parseEyeEffect(CompoundTag tag, DynamicOps<Tag> ops) {
+        java.util.Optional<MobEffectInstance> parsed = MobEffectInstance.CODEC.parse(ops, tag).result();
+        if (parsed.isPresent()) {
+            return parsed;
+        }
+        // Void Frame structure data can come from older saves, so keep a legacy NBT fallback for custom eye effects.
+        Holder<MobEffect> effect = null;
+        if (tag.contains("Id", 99)) {
+            MobEffect legacyEffect = BuiltInRegistries.MOB_EFFECT.byId(tag.getInt("Id"));
+            if (legacyEffect != null) {
+                effect = BuiltInRegistries.MOB_EFFECT.wrapAsHolder(legacyEffect);
+            }
+        } else if (tag.contains("Id", 8)) {
+            effect = this.resolveEyeEffect(tag.getString("Id"));
+        } else if (tag.contains("id", 8)) {
+            effect = this.resolveEyeEffect(tag.getString("id"));
+        }
+        if (effect == null || effect.value() == null) {
+            return java.util.Optional.empty();
+        }
+        int duration = tag.contains("Duration", 99) ? tag.getInt("Duration") : tag.getInt("duration");
+        int amplifier = tag.contains("Amplifier", 99) ? tag.getInt("Amplifier") : tag.getInt("amplifier");
+        boolean ambient = tag.contains("Ambient") ? tag.getBoolean("Ambient") : tag.getBoolean("ambient");
+        boolean visible = tag.contains("ShowParticles") ? tag.getBoolean("ShowParticles") : !tag.contains("show_particles") || tag.getBoolean("show_particles");
+        boolean showIcon = tag.contains("ShowIcon") ? tag.getBoolean("ShowIcon") : !tag.contains("show_icon") || tag.getBoolean("show_icon");
+        return java.util.Optional.of(new MobEffectInstance(effect, Math.max(duration, 80), amplifier, ambient, visible, showIcon));
+    }
+
+    @Nullable
+    private Holder<MobEffect> resolveEyeEffect(String effectId) {
+        try {
+            return BuiltInRegistries.MOB_EFFECT.getHolder(ResourceLocation.parse(effectId)).<Holder<MobEffect>>map(holder -> holder).orElse(null);
+        } catch (IllegalArgumentException exception) {
+            return null;
+        }
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {

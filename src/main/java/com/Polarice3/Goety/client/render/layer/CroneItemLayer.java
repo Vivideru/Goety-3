@@ -45,13 +45,13 @@ public class CroneItemLayer<T extends Crone> extends CrossedArmsItemLayer<T, Cro
       }
 
       // The Crone keeps her crossed-arm mesh while drinking, so the bottle needs to sit farther forward than the vanilla witch item pose.
-      p_117685_.translate(0.0F, 0.4F, -0.18F);
+      p_117685_.translate(0.0F, 0.4F, -0.12F);
       p_117685_.mulPose(Axis.XP.rotationDegrees(180.0F));
       if (this.isBrewFallback(itemstack, p_117688_)) {
          // The vanilla potion fallback uses a flat inventory-facing model, so rotate it toward the Crone's front after the witch drinking pose.
          p_117685_.mulPose(Axis.YP.rotationDegrees(180.0F));
          // After the fallback bottle is turned to face front, positive local Z keeps it clear of the Crone's face geometry.
-         p_117685_.translate(0.0F, 0.0F, 0.16F);
+         p_117685_.translate(0.0F, 0.0F, 0.1F);
       }
       this.itemInHandRenderer.renderItem(p_117688_, renderStack, ItemDisplayContext.GROUND, false, p_117685_, p_117686_, p_117687_);
       p_117685_.popPose();

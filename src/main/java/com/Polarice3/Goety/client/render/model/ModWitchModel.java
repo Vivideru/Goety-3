@@ -54,7 +54,8 @@ public class ModWitchModel<T extends LivingEntity> extends HumanoidModel<T> {
 
     @Override
     protected Iterable<ModelPart> bodyParts() {
-        return Iterables.concat(super.bodyParts(), ImmutableList.of(this.arms, this.clothes, this.all));
+        // The clothes are already a child of the body and the root contains every part, so rendering them again doubles the pose.
+        return Iterables.concat(super.bodyParts(), ImmutableList.of(this.arms));
     }
 
     public void setupAnim(T p_104067_, float p_104068_, float p_104069_, float p_104070_, float p_104071_, float p_104072_) {
