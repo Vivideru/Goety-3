@@ -50,6 +50,11 @@ public class ModCreativeTab {
                         output.accept(i.get());
                         if (i.get() == ModItems.NETHERITE_RAVAGER_ARMOR.get()) {
                             output.accept(VivideruItems.CURSED_METAL_WOLF_ARMOR.get());
+                            output.accept(VivideruItems.DARK_WOLF_ARMOR.get());
+                            output.accept(VivideruItems.BLACK_BEAST_CURSED_ARMOR.get());
+                            output.accept(VivideruItems.BLACK_BEAST_DARK_ARMOR.get());
+                            output.accept(VivideruItems.WARG_CURSED_ARMOR.get());
+                            output.accept(VivideruItems.WARG_DARK_ARMOR.get());
                         }
                     }
                 });
@@ -61,6 +66,7 @@ public class ModCreativeTab {
                 ModSpawnEggs.ITEMS.getEntries().forEach(i -> {
                     output.accept(i.get());
                 });
+                output.accept(VivideruItems.WARG_SPAWN_EGG.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCK_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_block", () -> CreativeModeTab.builder()
@@ -73,6 +79,7 @@ public class ModCreativeTab {
                         output.accept(i.get());
                     }
                 });
+                output.accept(VivideruItems.WOLF_TOTEM.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FOCUS_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_focus", () -> CreativeModeTab.builder()

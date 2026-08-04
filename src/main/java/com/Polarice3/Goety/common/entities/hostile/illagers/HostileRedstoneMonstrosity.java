@@ -1,6 +1,7 @@
 package com.Polarice3.Goety.common.entities.hostile.illagers;
 
 import com.Polarice3.Goety.api.entities.IRM;
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.client.particles.SlamParticleOption;
 import com.Polarice3.Goety.client.particles.SmashParticleOption;
@@ -74,7 +75,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
-public class HostileRedstoneMonstrosity extends HostileGolem implements IRM {
+public class HostileRedstoneMonstrosity extends HostileGolem implements IRM, ICustomAttributes {
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(HostileRedstoneMonstrosity.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(HostileRedstoneMonstrosity.class, EntityDataSerializers.BYTE);
     public static String ACTIVATE = "activate";

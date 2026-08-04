@@ -126,6 +126,7 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
                                             mob.spawnAnim();
                                             EventHooks.finalizeMobSpawn(mob, serverLevel, serverLevel.getCurrentDifficultyAt(blockPos), MobSpawnType.MOB_SUMMONED, null);
                                         }
+                                        blockEntity.onSummonedEntity(entity, serverLevel);
                                         if (entity instanceof IServant servant){
                                             if (this.isGuarding()) {
                                                 servant.setBoundPos(blockPos);
@@ -158,6 +159,9 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
                 level.setBlock(blockPos, blockState.setValue(BlockStateProperties.POWERED, blockEntity.isTraining()), 3);
             }
         }
+    }
+
+    protected void onSummonedEntity(Entity entity, ServerLevel serverLevel) {
     }
 
     public boolean hasNearbyTarget(){

@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.entities.ally.spider.SpiderServant;
 import com.Polarice3.Goety.common.entities.projectiles.BoneShard;
@@ -32,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumSet;
 import java.util.Objects;
 
-public class BoneSpider extends Spider implements RangedAttackMob {
+public class BoneSpider extends Spider implements RangedAttackMob, ICustomAttributes {
     public static final AttributeModifier STOP_MODIFIER = new AttributeModifier(Goety.location("bone_spider_stop_moving"), -1.0D, AttributeModifier.Operation.ADD_VALUE);
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(BoneSpider.class, EntityDataSerializers.INT);
     public static String ATTACK = "attack";

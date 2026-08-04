@@ -801,6 +801,11 @@ public class ClientEvents {
             return;
         }
 
+        // Mirror vanilla's survival HUD gate so custom hearts stay hidden in creative and spectator modes.
+        if (minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer()) {
+            return;
+        }
+
         if (!minecraft.options.hideGui
                 && (hasGoetyEffect(player, GoetyEffects.SPASMS)
                 || hasGoetyEffect(player, GoetyEffects.CURSED)

@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.config.AttributesConfig;
@@ -25,7 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 
-public class Frayed extends Zombie {
+public class Frayed extends Zombie implements ICustomAttributes {
     public Frayed(EntityType<? extends Zombie> p_34271_, Level p_34272_) {
         super(p_34271_, p_34272_);
     }

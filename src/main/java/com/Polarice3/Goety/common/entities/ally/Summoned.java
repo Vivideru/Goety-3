@@ -12,6 +12,7 @@ import com.Polarice3.Goety.common.entities.neutral.Owned;
 import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.config.MobsConfig;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -67,7 +68,9 @@ public class Summoned extends Owned implements IServant {
     public BlockPos commandPos;
     public BlockPos priorityPos;
     public BlockPos boundPos;
+    public BlockPos revivePos;
     public String boundDim = Level.OVERWORLD.location().toString();
+    public String reviveDim = Level.OVERWORLD.location().toString();
     public int priorityTime;
     public int commandTick;
     public int killChance;
@@ -480,6 +483,44 @@ public class Summoned extends Owned implements IServant {
 
     public void setBoundDim(String string) {
         this.boundDim = string;
+    }
+
+    @Nullable
+    @Override
+    public BlockPos getRevivePos() {
+        return this.revivePos;
+    }
+
+    @Override
+    public void setRevivePos(BlockPos revivePos) {
+        this.revivePos = revivePos;
+    }
+
+    @Override
+    public String getReviveDim() {
+        return this.reviveDim;
+    }
+
+    @Override
+    public void setReviveDim(String reviveDim) {
+        this.reviveDim = reviveDim;
+    }
+
+    @Override
+    public boolean canRevive(DamageSource damageSource) {
+        // Non-raider canine servants can be assigned to Wolf Totems, so they need the same death-event revival hook.
+        if (WolfTotemHooks.canRevive(this, damageSource)) {
+            return true;
+        }
+        return super.canRevive(damageSource);
+    }
+
+    @Override
+    public void reviveOwned() {
+        super.reviveOwned();
+        if (WolfTotemHooks.isAssignedToWolfTotem(this)) {
+            WolfTotemHooks.onRevive(this);
+        }
     }
 
     public void dropEquipment(EquipmentSlot equipmentSlot, ItemStack stack){

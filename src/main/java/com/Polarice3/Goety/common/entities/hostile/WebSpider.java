@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.ally.spider.SpiderServant;
 import com.Polarice3.Goety.common.entities.projectiles.WebShot;
@@ -34,7 +35,7 @@ import java.util.EnumSet;
 import java.util.Objects;
 import java.util.UUID;
 
-public class WebSpider extends Spider implements RangedAttackMob {
+public class WebSpider extends Spider implements RangedAttackMob, ICustomAttributes {
     private static final EntityDataAccessor<Boolean> WEB_SHOOTING = SynchedEntityData.defineId(WebSpider.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(WebSpider.class, EntityDataSerializers.INT);
     public static AttributeModifier SHOOT_SPEED_MODIFIER = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("b255663a-e3e3-4660-9ce2-1c76c5f98e72"), "Shooting speed penalty", -1.0D, AttributeModifier.Operation.ADD_VALUE);

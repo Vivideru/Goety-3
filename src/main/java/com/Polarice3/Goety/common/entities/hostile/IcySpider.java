@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.common.entities.ally.spider.SpiderServant;
 import com.Polarice3.Goety.config.AttributesConfig;
 import com.Polarice3.Goety.init.ModSounds;
@@ -17,7 +18,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.level.Level;
 
-public class IcySpider extends Spider {
+public class IcySpider extends Spider implements ICustomAttributes {
     public IcySpider(EntityType<? extends Spider> p_33786_, Level p_33787_) {
         super(p_33786_, p_33787_);
     }

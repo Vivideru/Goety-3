@@ -41,18 +41,20 @@ public class VoidKeyItem extends ItemBase{
                 Vec3 vec3 = blockPos.above().getCenter();
                 Endersent endersent = new Endersent(ModEntityType.ENDERSENT.get(), serverLevel);
                 //If Void Frame Block Entity is available and has saved custom EyeType, use that.
+                int eyeType;
                 if (blockEntity1 != null && blockEntity1.getEyeType() > 0) {
-                    endersent.setEyeType(blockEntity1.getEyeType());
+                    eyeType = blockEntity1.getEyeType();
                 } else {
                     //4 = Random Enchanted Endersent, 5 = Regular Endersent, 0-3 = Set Endersent
                     if (blockState2.getValue(VoidFrameBlock.TYPE) == 4) {
-                        endersent.setEyeType(serverLevel.getRandom().nextIntBetweenInclusive(1, 4));
+                        eyeType = serverLevel.getRandom().nextIntBetweenInclusive(1, 4);
                     } else if (blockState2.getValue(VoidFrameBlock.TYPE) == 5) {
-                        endersent.setEyeType(0);
+                        eyeType = 0;
                     } else {
-                        endersent.setEyeType(blockState2.getValue(VoidFrameBlock.TYPE) + 1);
+                        eyeType = blockState2.getValue(VoidFrameBlock.TYPE) + 1;
                     }
                 }
+                endersent.setEyeType(eyeType);
                 //If Void Frame Block Entity is available and has saved custom EyeEffects, use those.
                 if (blockEntity1 != null && !blockEntity1.getEyeEffects().isEmpty()) {
                     endersent.setEyeEffects(blockEntity1.getEyeEffects());
@@ -60,6 +62,8 @@ public class VoidKeyItem extends ItemBase{
                 endersent.setDropShard(true);
                 endersent.setPos(vec3);
                 endersent.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(blockPos), MobSpawnType.MOB_SUMMONED, null);
+                // finalizeSpawn can adjust synced data through vanilla spawn setup, so keep the Void Frame eye variant authoritative.
+                endersent.setEyeType(eyeType);
                 endersent.setVoidFramePos(blockPos);
                 endersent.setPersistenceRequired();
                 SummonCircleBoss circleBoss = new SummonCircleBoss(level, vec3, endersent);

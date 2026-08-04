@@ -23,8 +23,8 @@ public class CursedBlackWolfArmorLayer<T extends BlackWolf, M extends BlackWolfM
     @Override
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T blackWolf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack armor = blackWolf.getBodyArmorItem();
-        if (armor.is(VivideruItems.CURSED_METAL_WOLF_ARMOR.get())) {
-            coloredCutoutModelCopyLayerRender(this.getParentModel(), this.armorModel, CursedMetalWolfArmorItem.BLACK_WOLF_TEXTURE,
+        if (VivideruItems.isVivideruWolfArmor(armor) && armor.getItem() instanceof CursedMetalWolfArmorItem armorItem) {
+            coloredCutoutModelCopyLayerRender(this.getParentModel(), this.armorModel, armorItem.getBlackWolfTexture(),
                     poseStack, buffer, packedLight, blackWolf, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
         }
     }

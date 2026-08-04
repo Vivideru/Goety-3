@@ -52,6 +52,7 @@ import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumSet;
+import java.util.UUID;
 
 public class SkeletonWolf extends AnimalSummon implements IMobTyped {
     private static final EntityDataAccessor<Integer> DATA_COLLAR_COLOR = SynchedEntityData.defineId(SkeletonWolf.class, EntityDataSerializers.INT);
@@ -377,8 +378,8 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         Item item = itemstack.getItem();
-        if (this.getTrueOwner() != null && pPlayer == this.getTrueOwner()) {
-            if (VivideruItems.isCursedMetalWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
+        if (this.isOwnedByPlayer(pPlayer)) {
+            if (VivideruItems.isVivideruWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
                 // Skeleton Wolves use the same 1.21 body slot as canine armor, but they are not vanilla Wolf entities.
                 this.setBodyArmorItem(itemstack.copyWithCount(1));
                 if (!pPlayer.getAbilities().instabuild) {
@@ -387,7 +388,7 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
                 pPlayer.swing(pHand);
                 return InteractionResult.SUCCESS;
             } else if (itemstack.canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SHEARS_REMOVE_ARMOR)
-                    && VivideruItems.isCursedMetalWolfArmor(this.getBodyArmorItem())
+                    && VivideruItems.isVivideruWolfArmor(this.getBodyArmorItem())
                     && (!EnchantmentHelper.has(this.getBodyArmorItem(), EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE) || pPlayer.isCreative())) {
                 itemstack.hurtAndBreak(1, pPlayer, getSlotForHand(pHand));
                 ItemStack armor = this.getBodyArmorItem();
@@ -416,7 +417,7 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
                 return InteractionResult.SUCCESS;
             } else {
                 if (item instanceof DyeItem dyeitem) {
-                    if (this.getTrueOwner() == pPlayer) {
+                    if (this.isOwnedByPlayer(pPlayer)) {
                         DyeColor dyecolor = dyeitem.getDyeColor();
                         if (dyecolor != this.getCollarColor()) {
                             this.setCollarColor(dyecolor);
@@ -431,6 +432,12 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
             }
         }
         return super.mobInteract(pPlayer, pHand);
+    }
+
+    private boolean isOwnedByPlayer(Player player) {
+        UUID ownerId = this.getOwnerId();
+        // Owner lookups can return a different entity instance during sync edges, so body armor interactions compare the stable UUID.
+        return ownerId != null && ownerId.equals(player.getUUID());
     }
 
     @Override

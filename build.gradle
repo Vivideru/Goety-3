@@ -25,6 +25,7 @@ runs {
         systemProperty 'forge.logging.console.level', 'debug'
 
         argument '-mixin.config=goety.mixins.json'
+        argument '-mixin.config=vivideru.mixins.json'
 
         modSource project.sourceSets.main
     }
@@ -163,7 +164,7 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "goety.mixins.json"
+                "MixinConfigs": "goety.mixins.json,vivideru.mixins.json"
         ])
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE

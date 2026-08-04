@@ -2,6 +2,7 @@ package com.Polarice3.Goety.client.render.model;
 
 import com.Polarice3.Goety.client.render.animation.BlackBeastAnimations;
 import com.Polarice3.Goety.common.entities.ally.BlackBeast;
+import com.Vivideru.Goety.common.items.VivideruItems;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,19 +20,32 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 	private final ModelPart pelvis;
 	private final ModelPart upper;
 	private final ModelPart torso;
+	private final ModelPart fur;
 	private final ModelPart neck;
 	private final ModelPart head;
+	private final ModelPart rightLegFur;
+	private final ModelPart leftLegFur;
+	private final boolean hideFurWhenArmored;
 	private final List<ModelPart> parts;
 
 	public BlackBeastModel(ModelPart root) {
+		this(root, true);
+	}
+
+	protected BlackBeastModel(ModelPart root, boolean hideFurWhenArmored) {
 		this.root = root;
+		this.hideFurWhenArmored = hideFurWhenArmored;
 		this.stalker = root.getChild("stalker");
 		this.body = this.stalker.getChild("body");
 		this.pelvis = this.body.getChild("pelvis");
 		this.upper = this.pelvis.getChild("upper");
 		this.torso = this.upper.getChild("torso");
+		this.fur = this.torso.getChild("fur");
 		this.neck = this.torso.getChild("neck");
 		this.head = this.neck.getChild("head");
+		// The armor model has its own leg geometry and must not inherit the base-model visibility mask.
+		this.rightLegFur = hideFurWhenArmored ? this.stalker.getChild("right_leg").getChild("right_shin").getChild("fur") : null;
+		this.leftLegFur = hideFurWhenArmored ? this.stalker.getChild("left_leg").getChild("left_shin").getChild("fur") : null;
 		this.parts = root.getAllParts().filter((p_170824_) -> {
 			return !p_170824_.isEmpty();
 		}).collect(ImmutableList.toImmutableList());
@@ -136,8 +150,10 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 
 		PartDefinition right_thigh = right_leg.addOrReplaceChild("right_thigh", CubeListBuilder.create().texOffs(32, 36).addBox(-3.5F, -3.5F, -2.0F, 6.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.5F, 1.5F, -0.5236F, 0.0F, 0.0F));
 
-		PartDefinition right_shin = right_leg.addOrReplaceChild("right_shin", CubeListBuilder.create().texOffs(30, 51).addBox(-2.0F, -3.0F, -1.0F, 5.0F, 9.0F, 3.0F, new CubeDeformation(0.0F))
-				.texOffs(102, 52).addBox(-2.5F, 0.0F, -1.5F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 7.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
+		PartDefinition right_shin = right_leg.addOrReplaceChild("right_shin", CubeListBuilder.create().texOffs(30, 51).addBox(-2.0F, -3.0F, -1.0F, 5.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 7.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
+
+		// Keep the leg tufts separate so armor can replace them without hiding the lower legs.
+		right_shin.addOrReplaceChild("fur", CubeListBuilder.create().texOffs(102, 52).addBox(-2.5F, 0.0F, -1.5F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		PartDefinition right_toe = right_shin.addOrReplaceChild("right_toe", CubeListBuilder.create(), PartPose.offset(0.0F, 3.0F, -0.75F));
 
@@ -147,8 +163,9 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 
 		PartDefinition left_thigh = left_leg.addOrReplaceChild("left_thigh", CubeListBuilder.create().texOffs(32, 36).mirror().addBox(-2.5F, -3.5F, -2.0F, 6.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -0.5F, 1.5F, -0.5236F, 0.0F, 0.0F));
 
-		PartDefinition left_shin = left_leg.addOrReplaceChild("left_shin", CubeListBuilder.create().texOffs(30, 51).addBox(-3.0F, -3.0F, -1.0F, 5.0F, 9.0F, 3.0F, new CubeDeformation(0.0F))
-				.texOffs(102, 52).addBox(-3.5F, 0.0F, -1.5F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 7.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
+		PartDefinition left_shin = left_leg.addOrReplaceChild("left_shin", CubeListBuilder.create().texOffs(30, 51).addBox(-3.0F, -3.0F, -1.0F, 5.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 7.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
+
+		left_shin.addOrReplaceChild("fur", CubeListBuilder.create().texOffs(102, 52).addBox(-3.5F, 0.0F, -1.5F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		PartDefinition shin_chain = left_shin.addOrReplaceChild("shin_chain", CubeListBuilder.create(), PartPose.offset(-0.5F, 2.0F, 2.5F));
 
@@ -164,6 +181,12 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+		if (this.hideFurWhenArmored) {
+			boolean showFur = !VivideruItems.isVivideruBlackBeastArmor(entity.getBodyArmorItem());
+			this.fur.visible = showFur;
+			this.rightLegFur.visible = showFur;
+			this.leftLegFur.visible = showFur;
+		}
 		if (!entity.isSummoning() && !entity.isMeleeAttacking() && !entity.isDeadOrDying()){
 			this.animateHeadLookTarget(entity, netHeadYaw, headPitch);
 		}

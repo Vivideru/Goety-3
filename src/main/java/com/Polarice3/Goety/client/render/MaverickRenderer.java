@@ -1,7 +1,6 @@
 package com.Polarice3.Goety.client.render;
 
 import com.Polarice3.Goety.Goety;
-import com.Polarice3.Goety.client.render.layer.CultistDrinkingItemLayer;
 import com.Polarice3.Goety.client.render.model.MaverickModel;
 import com.Polarice3.Goety.client.render.model.VillagerArmorModel;
 import com.Polarice3.Goety.common.entities.hostile.cultists.Maverick;
@@ -16,7 +15,7 @@ public class MaverickRenderer extends CultistRenderer<Maverick>{
     public MaverickRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new MaverickModel<>(renderManagerIn.bakeLayer(ModModelLayer.MAVERICK)), 0.5F);
         this.addLayer(new HumanoidArmorLayer<>(this, new VillagerArmorModel<>(renderManagerIn.bakeLayer(ModModelLayer.VILLAGER_ARMOR_INNER)), new VillagerArmorModel<>(renderManagerIn.bakeLayer(ModModelLayer.VILLAGER_ARMOR_OUTER)), renderManagerIn.getModelManager()));
-        this.addLayer(new CultistDrinkingItemLayer<>(this, renderManagerIn.getItemInHandRenderer()));
+        // The standard hand layer already follows the drinking arm pose and must remain the sole item renderer.
         this.addLayer(new ItemInHandLayer<>(this, renderManagerIn.getItemInHandRenderer()));
     }
 

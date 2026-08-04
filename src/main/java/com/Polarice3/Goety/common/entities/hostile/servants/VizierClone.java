@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile.servants;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.common.entities.boss.Vizier;
 import com.Polarice3.Goety.common.entities.projectiles.SwordProjectile;
 import com.Polarice3.Goety.config.AttributesConfig;
@@ -47,7 +48,7 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.UUID;
 
-public class VizierClone extends SpellcasterIllager {
+public class VizierClone extends SpellcasterIllager implements ICustomAttributes {
     protected static final EntityDataAccessor<Optional<UUID>> OWNER_UNIQUE_ID = SynchedEntityData.defineId(VizierClone.class, EntityDataSerializers.OPTIONAL_UUID);
     protected static final EntityDataAccessor<Integer> OWNER_CLIENT_ID = SynchedEntityData.defineId(VizierClone.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Integer> POSITION = SynchedEntityData.defineId(VizierClone.class, EntityDataSerializers.INT);

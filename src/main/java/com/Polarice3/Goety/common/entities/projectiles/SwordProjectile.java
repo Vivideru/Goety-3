@@ -46,11 +46,12 @@ public class SwordProjectile extends AbstractArrow implements ItemSupplier {
     }
 
     public SwordProjectile(double p_i48547_2_, double p_i48547_4_, double p_i48547_6_, Level p_i48547_8_) {
-        super(ModEntityType.SWORD.get(), p_i48547_2_, p_i48547_4_, p_i48547_6_, p_i48547_8_, ItemStack.EMPTY, null);
+        super(ModEntityType.SWORD.get(), p_i48547_2_, p_i48547_4_, p_i48547_6_, p_i48547_8_, new ItemStack(Items.IRON_SWORD), null);
     }
 
     public SwordProjectile(LivingEntity p_i48548_2_, Level p_i48548_3_, ItemStack p_i48790_3_) {
-        super(ModEntityType.SWORD.get(), p_i48548_2_.getX(), p_i48548_2_.getY(0.5F), p_i48548_2_.getZ(), p_i48548_3_, ItemStack.EMPTY, null);
+        // AbstractArrow serializes its internal weapon stack in 1.21, so use the visible sword item instead of an empty stack.
+        super(ModEntityType.SWORD.get(), p_i48548_2_.getX(), p_i48548_2_.getY(0.5F), p_i48548_2_.getZ(), p_i48548_3_, p_i48790_3_.isEmpty() ? new ItemStack(Items.IRON_SWORD) : p_i48790_3_.copy(), null);
         this.setOwner(p_i48548_2_);
         this.setItem(p_i48790_3_.copy());
     }

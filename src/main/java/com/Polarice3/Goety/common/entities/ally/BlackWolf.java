@@ -57,6 +57,7 @@ import org.jetbrains.annotations.NotNull;
 
 import org.jetbrains.annotations.Nullable;
 import java.util.EnumSet;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public class BlackWolf extends AnimalSummon implements IMobTyped{
@@ -141,6 +142,10 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
         }
         if (compound.contains("RitualSummonedByPlayer")) {
             this.ritualSummonedByPlayer = compound.getBoolean("RitualSummonedByPlayer");
+            if (this.ritualSummonedByPlayer) {
+                // finalizeSpawn is not called for chunk-loaded entities, so restore the persistent ritual bonus without healing them.
+                this.applyRitualHealthBonus(false);
+            }
         }
     }
 
@@ -434,8 +439,8 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
 
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (this.getTrueOwner() != null && pPlayer == this.getTrueOwner()) {
-            if (VivideruItems.isCursedMetalWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
+        if (this.isOwnedByPlayer(pPlayer)) {
+            if (VivideruItems.isVivideruWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
                 // Black Wolves are not vanilla Wolf entities, so their canine armor has to use Mob's 1.21 body slot directly.
                 this.setBodyArmorItem(itemstack.copyWithCount(1));
                 if (!pPlayer.getAbilities().instabuild) {
@@ -444,7 +449,7 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
                 pPlayer.swing(pHand);
                 return InteractionResult.SUCCESS;
             } else if (itemstack.canPerformAction(net.neoforged.neoforge.common.ItemAbilities.SHEARS_REMOVE_ARMOR)
-                    && VivideruItems.isCursedMetalWolfArmor(this.getBodyArmorItem())
+                    && VivideruItems.isVivideruWolfArmor(this.getBodyArmorItem())
                     && (!EnchantmentHelper.has(this.getBodyArmorItem(), EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE) || pPlayer.isCreative())) {
                 itemstack.hurtAndBreak(1, pPlayer, getSlotForHand(pHand));
                 ItemStack armor = this.getBodyArmorItem();
@@ -479,6 +484,12 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
         return super.mobInteract(pPlayer, pHand);
     }
 
+    private boolean isOwnedByPlayer(Player player) {
+        UUID ownerId = this.getOwnerId();
+        // Owner lookups can return a different entity instance during sync edges, so body armor interactions compare the stable UUID.
+        return ownerId != null && ownerId.equals(player.getUUID());
+    }
+
     @Override
     public boolean canUseSlot(EquipmentSlot slot) {
         return slot == EquipmentSlot.BODY || super.canUseSlot(slot);
@@ -495,11 +506,17 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
     }
 
     private void applyRitualHealthBonus() {
+        this.applyRitualHealthBonus(true);
+    }
+
+    private void applyRitualHealthBonus(boolean healToFull) {
         AttributeInstance health = this.getAttribute(Attributes.MAX_HEALTH);
         if (health != null) {
-            // Ritual summons are permanent investments, so they get the requested health bonus without changing focus summons.
-            health.setBaseValue(health.getBaseValue() * 2.0D);
-            this.setHealth(this.getMaxHealth());
+            // Use the configured base value to keep repeated loads from multiplying the ritual bonus again.
+            health.setBaseValue(AttributesConfig.get(AttributesConfig.BlackWolfHealth) * 2.0D);
+            if (healToFull) {
+                this.setHealth(this.getMaxHealth());
+            }
         }
     }
 

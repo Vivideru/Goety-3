@@ -233,6 +233,9 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> BlackWolfHealth;
     public static final ModConfigSpec.ConfigValue<Double> BlackWolfArmor;
     public static final ModConfigSpec.ConfigValue<Double> BlackWolfDamage;
+    public static final ModConfigSpec.ConfigValue<Double> WargHealth;
+    public static final ModConfigSpec.ConfigValue<Double> WargArmor;
+    public static final ModConfigSpec.ConfigValue<Double> WargDamage;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfHealth;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfArmor;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfDamage;
@@ -961,6 +964,14 @@ public class AttributesConfig {
                         .defineInRange("blackWolfArmor", 0.0, 0.0, Double.MAX_VALUE);
                 BlackWolfDamage = BUILDER.comment("How much damage Black Wolves melee attack deals, Default: 4.0")
                         .defineInRange("blackWolfDamage", 4.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Warg");
+                WargHealth = BUILDER.comment("How much Max Health Wargs have, Default: 50.0")
+                        .defineInRange("wargHealth", 50.0, 1.0, Double.MAX_VALUE);
+                WargArmor = BUILDER.comment("How much natural Armor Wargs have, Default: 0.0")
+                        .defineInRange("wargArmor", 0.0, 0.0, Double.MAX_VALUE);
+                WargDamage = BUILDER.comment("How much damage Wargs melee attacks deal before weapon modifiers, Default: 8.0")
+                        .defineInRange("wargDamage", 8.0, 1.0, Double.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Skeleton Wolf");
                 SkeletonWolfHealth = BUILDER.comment("How much Max Health Skeleton Wolves have, Default: 10.0")

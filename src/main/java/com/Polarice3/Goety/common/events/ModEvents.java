@@ -5,6 +5,7 @@ import com.Polarice3.Goety.utils.MobTypeHelper;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.blocks.IEnchanteableBlock;
 import com.Polarice3.Goety.api.entities.IChunkLoader;
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.api.entities.IHiding;
 import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
@@ -51,6 +52,7 @@ import com.Polarice3.Goety.common.items.curios.WarlockGarmentItem;
 import com.Polarice3.Goety.common.items.equipment.DarkScytheItem;
 import com.Polarice3.Goety.common.items.equipment.IceAxeItem;
 import com.Polarice3.Goety.common.items.equipment.PhilosophersMaceItem;
+import com.Polarice3.Goety.common.items.equipment.SickleItem;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
 import com.Polarice3.Goety.common.network.server.SPlayWorldSoundPacket;
@@ -95,6 +97,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.DefaultAttributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.gossip.GossipType;
@@ -128,6 +131,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.saveddata.maps.MapDecorationTypes;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -239,6 +243,24 @@ public class ModEvents {
         Entity entity = event.getEntity();
         Level world = event.getLevel();
         if (entity instanceof LivingEntity && !world.isClientSide()) {
+            if (entity instanceof ICustomAttributes configurableAttributes) {
+                LivingEntity livingEntity = (LivingEntity) entity;
+                AttributeInstance maxHealth = livingEntity.getAttribute(Attributes.MAX_HEALTH);
+                boolean wasAtFullHealth = livingEntity.getHealth() >= livingEntity.getMaxHealth() - 0.001F;
+                @SuppressWarnings("unchecked")
+                EntityType<? extends LivingEntity> livingType = (EntityType<? extends LivingEntity>) livingEntity.getType();
+                boolean usesRegisteredBase = maxHealth == null || !DefaultAttributes.hasSupplier(livingType)
+                        || Math.abs(maxHealth.getBaseValue() - DefaultAttributes.getSupplier(livingType)
+                        .getBaseValue(Attributes.MAX_HEALTH)) < 0.000001D;
+                if (usesRegisteredBase) {
+                    // Attribute suppliers are built before common configs load in 1.21, so refresh untouched mobs when they enter the server level.
+                    configurableAttributes.setConfigurableAttributes();
+                    if (wasAtFullHealth) {
+                        // Keep freshly spawned mobs full while preserving damage already stored on loaded entities.
+                        livingEntity.setHealth(livingEntity.getMaxHealth());
+                    }
+                }
+            }
             if (entity instanceof Player player) {
                 SEHelper.sendSEUpdatePacket(player);
                 LichdomHelper.sendLichUpdatePacket(player);
@@ -878,6 +900,36 @@ public class ModEvents {
                     player.level().setBlockAndUpdate(event.getPos(), Blocks.AIR.defaultBlockState());
                     ItemHelper.hurtAndBreak(player.getMainHandItem(), 1, player);
                     event.setCanceled(true);
+                }
+            }
+        }
+        ItemStack tool = player.getMainHandItem();
+        BlockState blockState = event.getState();
+        if (tool.getItem() instanceof SickleItem
+                && !player.isCreative()
+                && !player.level().isClientSide
+                && player.level().getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
+                && (blockState.is(Blocks.SHORT_GRASS)
+                || blockState.is(Blocks.FERN)
+                || blockState.is(Blocks.TALL_GRASS)
+                || blockState.is(Blocks.LARGE_FERN))) {
+            Holder<Enchantment> silkTouch = player.level().registryAccess()
+                    .lookupOrThrow(Registries.ENCHANTMENT)
+                    .getOrThrow(Enchantments.SILK_TOUCH);
+            if (tool.getEnchantmentLevel(silkTouch) == 0) {
+                Holder<Enchantment> fortune = player.level().registryAccess()
+                        .lookupOrThrow(Registries.ENCHANTMENT)
+                        .getOrThrow(Enchantments.FORTUNE);
+                int fortuneLevel = tool.getEnchantmentLevel(fortune);
+
+                // These herb seeds were granted by the legacy break event rather than the grass loot tables.
+                if (player.level().getRandom().nextFloat() < 0.125F) {
+                    int count = 1 + RandomUtil.nextInt(player.level().getRandom(), fortuneLevel);
+                    Block.popResource(player.level(), event.getPos(), new ItemStack(ModBlocks.HENBANE_SEEDS.get(), count));
+                }
+                if (player.level().getRandom().nextFloat() < 0.1F) {
+                    int count = 1 + RandomUtil.nextInt(player.level().getRandom(), fortuneLevel);
+                    Block.popResource(player.level(), event.getPos(), new ItemStack(ModBlocks.NIGHTSHADE_SEEDS.get(), count));
                 }
             }
         }

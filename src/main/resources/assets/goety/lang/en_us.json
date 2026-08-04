@@ -699,6 +699,9 @@
   "item.goety.pure_unholy_blood": "Pure Unholy Blood",
   "item.goety.cursed_ingot": "Cursed Metal Ingot",
   "item.goety.cursed_metal_wolf_armor": "Cursed Metal Wolf Armor",
+  "item.goety.dark_wolf_armor": "Dark Wolf Armor",
+  "item.goety.black_beast_cursed_armor": "Cursed Black Beast Armor",
+  "item.goety.black_beast_dark_armor": "Dark Black Beast Armor",
   "item.goety.pale_steel_ingot": "Pale Steel Ingot",
   "item.goety.dark_ingot": "Dark Alloy Ingot",
   "item.goety.savage_tooth": "Savage Tooth",
@@ -3799,5 +3802,11 @@
   "enchantment.goety.fealty": "Fealty",
   "enchantment.goety.hardy": "Hardy",
   "enchantment.goety.fealty.desc": "Returns broom to placer's inventory when broken. Prevents other players from riding it as well.",
-  "enchantment.goety.hardy.desc": "Causes brooms to have a higher threshold of the amount of damage it can receive before breaking."
+  "enchantment.goety.hardy.desc": "Causes brooms to have a higher threshold of the amount of damage it can receive before breaking.",
+  "block.goety.wolf_totem": "Howling Totem",
+  "entity.goety.warg": "Warg",
+  "item.goety.warg_spawn_egg": "Warg Servant Spawn Egg",
+  "item.goety.warg_cursed_armor": "Cursed Metal Warg Armor",
+  "item.goety.warg_dark_armor": "Dark Warg Armor",
+  "info.goety.warg.created": "%s has become a Warg"
 }

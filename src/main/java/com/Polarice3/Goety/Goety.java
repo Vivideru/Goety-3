@@ -175,7 +175,10 @@ public class Goety {
         Goety.modEventBus = modEventBus;
 
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
+        com.Vivideru.Goety.common.blocks.VivideruBlocks.init();
+        com.Vivideru.Goety.common.blocks.entities.VivideruBlockEntities.init();
         ModEntityType.ENTITY_TYPE.register(modEventBus);
+        com.Vivideru.Goety.common.entities.VivideruEntityTypes.init();
         ModFeatures.FEATURES.register(modEventBus);
         ModTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
         ModParticleTypes.PARTICLE_TYPES.register(modEventBus);
@@ -701,6 +704,7 @@ public class Goety {
         event.put(ModEntityType.MAVERICK_SERVANT.get(), MaverickServant.setCustomAttributes().build());
         event.put(ModEntityType.REPROBATE_SERVANT.get(), ReprobateServant.setCustomAttributes().build());
         event.put(ModEntityType.BLACK_WOLF.get(), BlackWolf.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_WOLF.get(), SkeletonWolf.setCustomAttributes().build());
         event.put(ModEntityType.WINTER_WOLF.get(), WinterWolf.setCustomAttributes().build());
         event.put(ModEntityType.STORMHOUND.get(), Stormhound.setCustomAttributes().build());

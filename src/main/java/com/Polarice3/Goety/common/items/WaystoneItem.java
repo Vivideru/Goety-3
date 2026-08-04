@@ -4,6 +4,7 @@ import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
+import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.Direction;
@@ -176,6 +177,11 @@ public class WaystoneItem extends ItemBase {
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, Player player, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
         if (!player.level().isClientSide) {
             if (stack.getItem() instanceof WaystoneItem) {
+                // Wolf Totems use the Waystone's existing block binding path, but link canine servants to revival instead of guard mode.
+                InteractionResult wolfTotemResult = WolfTotemHooks.tryLinkToTotem(new WolfTotemHooks.ItemStackAccess(stack), player, entity, hand);
+                if (wolfTotemResult.consumesAction()) {
+                    return wolfTotemResult;
+                }
                 if (entity instanceof IServant owned) {
                     if (owned.getTrueOwner() == player) {
                         GlobalPos globalPos = getPosition(stack);

@@ -612,8 +612,19 @@ public class Endersent extends AbstractEnderling implements Enemy {
                 health.setBaseValue(AttributesConfig.get(AttributesConfig.EndersentHealth) * 1.15D);
                 this.setHealth(this.getMaxHealth());
             }
+            // Void Frame variants must enter the world with their eye effects already active so overlays and combat logic see them immediately.
+            this.eyeTypeEffects();
         }
         return data;
+    }
+
+    @Override
+    public void onAddedToLevel() {
+        super.onAddedToLevel();
+        if (!this.level().isClientSide && this.hasEyeBonuses()) {
+            // Summon circles add the prepared Endersent later, so refresh the eye effects at the actual world insertion point too.
+            this.eyeTypeEffects();
+        }
     }
 
     @Override

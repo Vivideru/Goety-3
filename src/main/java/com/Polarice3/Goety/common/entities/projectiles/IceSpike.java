@@ -29,6 +29,7 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -46,12 +47,13 @@ public class IceSpike extends AbstractArrow {
     }
 
     public IceSpike(double p_36712_, double p_36713_, double p_36714_, Level p_36715_) {
-        super(ModEntityType.ICE_SPIKE.get(), p_36712_, p_36713_, p_36714_, p_36715_, ItemStack.EMPTY, null);
+        super(ModEntityType.ICE_SPIKE.get(), p_36712_, p_36713_, p_36714_, p_36715_, new ItemStack(Items.ARROW), null);
         this.pickup = Pickup.DISALLOWED;
     }
 
     public IceSpike(LivingEntity p_36718_, Level p_36719_) {
-        super(ModEntityType.ICE_SPIKE.get(), p_36718_, p_36719_, ItemStack.EMPTY, null);
+        // AbstractArrow serializes its internal weapon stack in 1.21, so keep a harmless non-empty stack while pickup remains disabled.
+        super(ModEntityType.ICE_SPIKE.get(), p_36718_, p_36719_, new ItemStack(Items.ARROW), null);
         this.pickup = Pickup.DISALLOWED;
     }
 

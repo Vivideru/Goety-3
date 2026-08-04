@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.hostile.illagers;
 
+import com.Polarice3.Goety.api.entities.ICustomAttributes;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
 import com.Polarice3.Goety.common.entities.ModEntityType;
@@ -52,7 +53,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
-public class HostileRedstoneGolem extends HostileGolem {
+public class HostileRedstoneGolem extends HostileGolem implements ICustomAttributes {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(HostileRedstoneGolem.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(HostileRedstoneGolem.class, EntityDataSerializers.INT);
     public static String IDLE = "idle";

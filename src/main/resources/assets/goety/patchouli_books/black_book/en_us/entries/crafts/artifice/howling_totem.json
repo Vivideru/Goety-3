@@ -1,0 +1,73 @@
+{
+  "name": "Howling Totem",
+  "icon": "goety:wolf_totem",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Howling Totem is a monument for loyal hounds. It can call permanent wolf servants, bind canine servants to its protection, and elevate a worthy Black Wolf into a $(l:goety:summons/wargs)Warg$()."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wolf_totem"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Decorative Carvings$()$(br2)The upper half of a placed Howling Totem can take several different forms. Right-click the Totem with any pickaxe to cycle through its decorative carvings. This changes only its appearance and does not affect its servants or stored state."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Offer the Totem one piece of raw meat and one bone to call two permanent wolves with greater vitality. Hoppers can supply both offerings. The summoned breed follows the Totem's surroundings: Crypt blocks yield Skeleton Wolves, cold biomes yield Winter Wolves, storms may yield Stormhounds, and the Nether yields Hellhounds."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Bind a Waystone to the Totem, then use it on a compatible servant to make the Totem its point of return. A filled $(l:goety:intro/cursed_cage)Cursed Cage$() directly beneath it supplies the Soul Energy, with each rescue costing 100 Soul Energy. A rescued servant is left wounded and cannot be rescued again until it recovers."
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "canine_armor",
+      "text": "$(bold)Canine Armor$()$(br2)Every armor forged for Wolves, Black Beasts, or Wargs retaliates as though its wearer possessed one level of Thorns. Dark Alloy variants provide 20 armor and slowly restore the wearer's health. Armor can be equipped by using it on its matching servant."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:cursed_metal_wolf_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark_wolf_armor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Cursed Metal and Dark Wolf Armor fit adult Wolves, Black Wolves, and Skeleton Wolves. The Ring of the Forge may provide ritual-summoned Black Wolves with Cursed Metal Wolf Armor, but it will never provide the Dark Alloy version."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:black_beast_cursed_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:black_beast_dark_armor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Black Beasts and Wargs require armor made for their larger frames. Their harnesses cannot be exchanged with ordinary Wolf Armor, and each must be equipped by its owner."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:warg_cursed_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:warg_dark_armor"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:wolf_totem": 1,
+    "goety:cursed_metal_wolf_armor": 6,
+    "goety:dark_wolf_armor": 7,
+    "goety:black_beast_cursed_armor": 9,
+    "goety:black_beast_dark_armor": 10,
+    "goety:warg_cursed_armor": 12,
+    "goety:warg_dark_armor": 13
+  }
+}

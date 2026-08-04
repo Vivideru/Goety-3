@@ -1,0 +1,24 @@
+{
+  "multipart": [
+    { "when": { "half": "lower", "facing": "north" }, "apply": { "model": "goety:block/wolf_totem_bottom", "y": 180 } },
+    { "when": { "half": "lower", "facing": "south" }, "apply": { "model": "goety:block/wolf_totem_bottom" } },
+    { "when": { "half": "lower", "facing": "west" }, "apply": { "model": "goety:block/wolf_totem_bottom", "y": 90 } },
+    { "when": { "half": "lower", "facing": "east" }, "apply": { "model": "goety:block/wolf_totem_bottom", "y": 270 } },
+    { "when": { "half": "upper", "top_variant": "0", "facing": "north" }, "apply": { "model": "goety:block/wolf_totem_top_a", "y": 180 } },
+    { "when": { "half": "upper", "top_variant": "0", "facing": "south" }, "apply": { "model": "goety:block/wolf_totem_top_a" } },
+    { "when": { "half": "upper", "top_variant": "0", "facing": "west" }, "apply": { "model": "goety:block/wolf_totem_top_a", "y": 90 } },
+    { "when": { "half": "upper", "top_variant": "0", "facing": "east" }, "apply": { "model": "goety:block/wolf_totem_top_a", "y": 270 } },
+    { "when": { "half": "upper", "top_variant": "1", "facing": "north" }, "apply": { "model": "goety:block/wolf_totem_top_b", "y": 180 } },
+    { "when": { "half": "upper", "top_variant": "1", "facing": "south" }, "apply": { "model": "goety:block/wolf_totem_top_b" } },
+    { "when": { "half": "upper", "top_variant": "1", "facing": "west" }, "apply": { "model": "goety:block/wolf_totem_top_b", "y": 90 } },
+    { "when": { "half": "upper", "top_variant": "1", "facing": "east" }, "apply": { "model": "goety:block/wolf_totem_top_b", "y": 270 } },
+    { "when": { "half": "upper", "top_variant": "2", "facing": "north" }, "apply": { "model": "goety:block/wolf_totem_top_c", "y": 180 } },
+    { "when": { "half": "upper", "top_variant": "2", "facing": "south" }, "apply": { "model": "goety:block/wolf_totem_top_c" } },
+    { "when": { "half": "upper", "top_variant": "2", "facing": "west" }, "apply": { "model": "goety:block/wolf_totem_top_c", "y": 90 } },
+    { "when": { "half": "upper", "top_variant": "2", "facing": "east" }, "apply": { "model": "goety:block/wolf_totem_top_c", "y": 270 } },
+    { "when": { "half": "upper", "top_variant": "3", "facing": "north" }, "apply": { "model": "goety:block/wolf_totem_top_d", "y": 180 } },
+    { "when": { "half": "upper", "top_variant": "3", "facing": "south" }, "apply": { "model": "goety:block/wolf_totem_top_d" } },
+    { "when": { "half": "upper", "top_variant": "3", "facing": "west" }, "apply": { "model": "goety:block/wolf_totem_top_d", "y": 90 } },
+    { "when": { "half": "upper", "top_variant": "3", "facing": "east" }, "apply": { "model": "goety:block/wolf_totem_top_d", "y": 270 } }
+  ]
+}

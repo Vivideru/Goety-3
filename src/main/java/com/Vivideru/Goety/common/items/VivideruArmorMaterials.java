@@ -1,6 +1,7 @@
 package com.Vivideru.Goety.common.items;
 
 import com.Polarice3.Goety.Goety;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
 import com.Polarice3.Goety.common.items.ModItems;
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
@@ -33,6 +34,52 @@ public class VivideruArmorMaterials {
                     0.0F,
                     0.0F,
                     () -> Ingredient.of(ModItems.CURSED_METAL_INGOT.get())));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> DARK_WOLF = ARMOR_MATERIALS.register("dark_wolf",
+            () -> material("dark_wolf",
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> {
+                        protection.put(ArmorItem.Type.BODY, 20);
+                    }),
+                    15,
+                    SoundEvents.ARMOR_EQUIP_WOLF,
+                    2.0F,
+                    0.0F,
+                    () -> Ingredient.of(ModItems.DARK_ALLOY_INGOT.get())));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> CURSED_BLACK_BEAST = ARMOR_MATERIALS.register("cursed_black_beast",
+            () -> material("cursed_black_beast",
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> {
+                        protection.put(ArmorItem.Type.BODY, 15);
+                    }),
+                    10,
+                    SoundEvents.ARMOR_EQUIP_WOLF,
+                    1.0F,
+                    0.0F,
+                    () -> Ingredient.of(ModBlocks.CURSED_METAL_BLOCK.get().asItem())));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> DARK_BLACK_BEAST = ARMOR_MATERIALS.register("dark_black_beast",
+            () -> material("dark_black_beast",
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> {
+                        protection.put(ArmorItem.Type.BODY, 20);
+                    }),
+                    15,
+                    SoundEvents.ARMOR_EQUIP_WOLF,
+                    2.0F,
+                    0.0F,
+                    () -> Ingredient.of(ModItems.DARK_ALLOY_INGOT.get())));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> CURSED_WARG = ARMOR_MATERIALS.register("cursed_warg",
+            () -> material("cursed_warg",
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> protection.put(ArmorItem.Type.BODY, 15)),
+                    10,
+                    SoundEvents.ARMOR_EQUIP_WOLF,
+                    1.0F,
+                    0.0F,
+                    () -> Ingredient.of(ModBlocks.CURSED_METAL_BLOCK.get().asItem())));
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> DARK_WARG = ARMOR_MATERIALS.register("dark_warg",
+            () -> material("dark_warg",
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> protection.put(ArmorItem.Type.BODY, 20)),
+                    15,
+                    SoundEvents.ARMOR_EQUIP_WOLF,
+                    2.0F,
+                    0.0F,
+                    () -> Ingredient.of(ModItems.DARK_ALLOY_INGOT.get())));
 
     @SuppressWarnings("removal")
     public static void init() {

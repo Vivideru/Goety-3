@@ -44,6 +44,7 @@ public class MainConfig {
     public static final ModConfigSpec.ConfigValue<Integer> AnimatorCost;
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolReviveCost;
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> WargLimit;
     public static final ModConfigSpec.ConfigValue<Integer> VoidFrameCoolTime;
     public static final ModConfigSpec.ConfigValue<Double> SoulMenderSeconds;
     public static final ModConfigSpec.ConfigValue<Double> LichHealAmount;
@@ -229,6 +230,8 @@ public class MainConfig {
                 .defineInRange("ominousIdolReviveCost", 500, 0, Integer.MAX_VALUE);
         OminousIdolLimit = BUILDER.comment("The amount of Illager Servants an Ominous Idol can register to revive, Default: 16")
                 .defineInRange("ominousIdolLimit", 16, 0, Integer.MAX_VALUE);
+        WargLimit = BUILDER.comment("The maximum number of living Wargs owned by one player, Default: 3")
+                .defineInRange("wargLimit", 3, 0, Integer.MAX_VALUE);
         VoidFrameCoolTime = BUILDER.comment("How many ticks until Void Frames returns back to Locked State after being used, Default: 24000")
                 .defineInRange("voidFrameCoolTime", 24000, 0, Integer.MAX_VALUE);
         PithosRespawn = BUILDER.comment("Allow looted Pithos to regenerate Loot and spawn Skull Lord again when right-clicked with respawn_boss tagged item, Default: true")
