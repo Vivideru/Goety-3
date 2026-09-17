@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "l",
-                    "s",
-                    "l"
-                ],
-    "key":  {
-                "l":  {
-                          "tag":  "goety:slab_highrock_craft"
-                      },
-                "s":  {
-                          "tag":  "goety:full_highrock_craft"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:pedestal_highrock",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "l",
+    "s",
+    "l"
+  ],
+  "key": {
+    "l": {
+      "tag": "goety:slab_highrock_craft"
+    },
+    "s": {
+      "tag": "goety:full_highrock_craft"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:pedestal_highrock"
+  }
 }
-

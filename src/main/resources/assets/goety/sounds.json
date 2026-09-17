@@ -2446,6 +2446,43 @@
     ],
     "subtitle": "subtitle.goety.blackguard_step"
   },
+  "royal_guard_pre_attack": {
+    "sounds": [
+      {
+        "name": "goety:blackguard/pre_attack1"
+      },
+      {
+        "name": "goety:blackguard/pre_attack2"
+      },
+      {
+        "name": "goety:blackguard/pre_attack3"
+      }
+    ],
+    "subtitle": "subtitle.goety.royal_guard_pre_attack"
+  },
+  "royal_guard_step": {
+    "sounds": [
+      {
+        "name": "goety:blackguard/step1"
+      },
+      {
+        "name": "goety:blackguard/step2"
+      },
+      {
+        "name": "goety:blackguard/step3"
+      },
+      {
+        "name": "goety:blackguard/step4"
+      },
+      {
+        "name": "goety:blackguard/step5"
+      },
+      {
+        "name": "goety:blackguard/step6"
+      }
+    ],
+    "subtitle": "subtitle.goety.royal_guard_step"
+  },
   "mossy_skeleton_ambient": {
     "sounds": [
       {
@@ -8297,6 +8334,23 @@
       }
     ]
   },
+  "void_blast": {
+    "sounds": [
+      {
+        "name": "goety:item/void_blast1"
+      },
+      {
+        "name": "goety:item/void_blast2"
+      },
+      {
+        "name": "goety:item/void_blast3"
+      },
+      {
+        "name": "goety:item/void_blast4"
+      }
+    ],
+    "subtitle": "subtitle.goety.void_blast"
+  },
   "corrupt_beam_start": {
     "sounds": [
       {
@@ -9039,3 +9093,4 @@
     ]
   }
 }
+

@@ -1,0 +1,42 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "type": "forge:nbt",
+    "item": "goety:unholy_blood",
+    "nbt": "{\"Pure\": 1b}"
+  },
+  "craftType": "expert_nether",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    },
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    },
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    },
+    {
+      "item": "goety:dark_fabric"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    }
+  ],
+  "result": {
+    "id": "goety:unholy_fabric",
+    "count": 4
+  }
+}

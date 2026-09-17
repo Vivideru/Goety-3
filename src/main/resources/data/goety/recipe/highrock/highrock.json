@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#S",
-                    "S#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "minecraft:andesite"
-                      },
-                "S":  {
-                          "item":  "minecraft:stone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:highrock",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S",
+    "S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:andesite"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:highrock"
+  }
 }
-

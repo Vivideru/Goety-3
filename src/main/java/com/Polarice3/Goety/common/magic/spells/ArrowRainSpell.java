@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells;
 
 import com.Polarice3.Goety.client.particles.FoggyCloudParticleOption;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.RainArrow;
 import com.Polarice3.Goety.common.magic.EverChargeSpell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -66,6 +67,7 @@ public class ArrowRainSpell extends EverChargeSpell {
         list.add(ModEnchantments.RANGE);
         list.add(ModEnchantments.BURNING);
         list.add(ModEnchantments.VELOCITY);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

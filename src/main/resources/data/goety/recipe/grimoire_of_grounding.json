@@ -1,29 +1,28 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " i ",
-                    "rbv",
-                    " c "
-                ],
-    "key":  {
-                "i":  {
-                          "item":  "minecraft:ink_sac"
-                      },
-                "r":  {
-                          "tag":  "minecraft:banners"
-                      },
-                "v":  {
-                          "tag":  "c:ender_pearls"
-                      },
-                "b":  {
-                          "item":  "minecraft:book"
-                      },
-                "c":  {
-                          "tag":  "c:feathers"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:grimoire_of_grounding"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "rbv",
+    " c "
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:ink_sac"
+    },
+    "r": {
+      "tag": "minecraft:banners"
+    },
+    "v": {
+      "tag": "c:ender_pearls"
+    },
+    "b": {
+      "item": "minecraft:book"
+    },
+    "c": {
+      "tag": "c:feathers"
+    }
+  },
+  "result": {
+    "id": "goety:grimoire_of_grounding"
+  }
 }
-

@@ -275,6 +275,12 @@ public class HoglinServant extends AnimalSummon implements HoglinBase, PlayerRid
         return (double)this.getBbHeight() - (this.isBaby() ? 0.2D : 0.15D);
     }
 
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity passenger) {
+        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
+        return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
+    }
+
     @Nullable
     public LivingEntity getControllingPassenger() {
         if (!this.isNoAi()) {

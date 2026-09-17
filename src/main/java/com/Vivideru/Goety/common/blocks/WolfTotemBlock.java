@@ -133,7 +133,13 @@ public class WolfTotemBlock extends BaseEntityBlock implements SimpleWaterlogged
         BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
         BlockState otherState = level.getBlockState(otherPos);
         if (otherState.is(this) && otherState.getValue(HALF) != half) {
-            level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
+            // Only the lower half owns loot; harvest it explicitly when the player breaks the top.
+            if (!level.isClientSide && half == DoubleBlockHalf.UPPER && !player.isCreative()
+                    && player.hasCorrectToolForDrops(otherState)) {
+                Block.dropResources(otherState, level, otherPos, level.getBlockEntity(otherPos), player, player.getMainHandItem());
+            }
+            // Suppress shape propagation here so removing the partner cannot drop the clicked half in Creative.
+            level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS);
             level.levelEvent(player, 2001, otherPos, Block.getId(otherState));
         }
         return super.playerWillDestroy(level, pos, state, player);

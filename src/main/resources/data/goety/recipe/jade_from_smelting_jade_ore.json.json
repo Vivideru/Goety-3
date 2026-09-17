@@ -1,12 +1,12 @@
-﻿{
-    "type":  "minecraft:smelting",
-    "cookingtime":  200,
-    "experience":  1.0,
-    "ingredient":  {
-                       "item":  "goety:jade_ore"
-                   },
-    "result":  {
-                   "id":  "goety:jade"
-               }
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "goety:jade_ore"
+  },
+  "result": {
+    "id": "goety:jade",
+    "count": 1
+  }
 }
-

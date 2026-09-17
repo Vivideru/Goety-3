@@ -1,0 +1,42 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:convert_tamed",
+  "activation_item": {
+    "item": "goety:hunger_core"
+  },
+  "craftType": "magic",
+  "entity_to_convert": {
+    "tag": "goety:pillagers",
+    "display_name": "entity.minecraft.pillager"
+  },
+  "entity_to_convert_into": "goety:trampler_servant",
+  "soulCost": 5,
+  "duration": 30,
+  "research": "ravaging",
+  "ingredients": [
+    {
+      "item": "goety:savage_tooth"
+    },
+    {
+      "item": "goety:ominous_saddle"
+    },
+    {
+      "item": "goety:savage_tooth"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "goety:venomous_fang"
+    },
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "goety:jade"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
+}

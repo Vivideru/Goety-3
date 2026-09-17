@@ -1,24 +1,23 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sfs",
-                    "fef",
-                    "sfs"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "f":  {
-                          "tag":  "minecraft:coals"
-                      },
-                "s":  {
-                          "item":  "minecraft:gunpowder"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:fire_breath_focus",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sfs",
+    "fef",
+    "sfs"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "f": {
+      "tag": "minecraft:coals"
+    },
+    "s": {
+      "item": "minecraft:gunpowder"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:fire_breath_focus"
+  }
 }
-

@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:wind_core"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "forge:tools/bows"
+    },
+    {
+      "item": "minecraft:fletching_table"
+    },
+    {
+      "tag": "forge:tools/bows"
+    },
+    {
+      "item": "minecraft:fletching_table"
+    },
+    {
+      "tag": "forge:tools/bows"
+    },
+    {
+      "item": "minecraft:fletching_table"
+    },
+    {
+      "tag": "forge:tools/bows"
+    },
+    {
+      "item": "minecraft:fletching_table"
+    }
+  ],
+  "result": {
+    "id": "goety:arrow_rain_focus"
+  }
+}

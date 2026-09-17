@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "GGG",
-                    "GGG"
-                ],
-    "key":  {
-                "G":  {
-                          "item":  "goety:shade_glass"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:shade_glass_pane",
-                   "count":  16
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "goety:shade_glass"
+    }
+  },
+  "result": {
+    "count": 16,
+    "id": "goety:shade_glass_pane"
+  }
 }
-

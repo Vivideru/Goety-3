@@ -1,29 +1,28 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "animation",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:minecart"
-                        },
-                        {
-                            "tag":  "goety:boats"
-                        },
-                        {
-                            "tag":  "c:leather"
-                        },
-                        {
-                            "tag":  "c:feathers"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:animation_core",
-                   "count":  2
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "animation",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:minecart"
+    },
+    {
+      "tag": "goety:boats"
+    },
+    {
+      "tag": "c:leather"
+    },
+    {
+      "tag": "c:feathers"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "goety:animation_core"
+  }
 }
-

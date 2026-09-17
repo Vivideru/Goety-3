@@ -1,22 +1,21 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "goety:end_stone_slate"
-                        },
-                        {
-                            "item":  "goety:chorus_growth"
-                        },
-                        {
-                            "item":  "minecraft:bone_meal"
-                        },
-                        {
-                            "item":  "goety:end_soil_debris"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:chorus_grass_block",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:end_stone_slate"
+    },
+    {
+      "item": "goety:chorus_growth"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "goety:end_soil_debris"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "goety:chorus_grass_block"
+  }
 }
-

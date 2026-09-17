@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "goety:soul_bolt_focus",
+    "goety:magic_bolt_focus",
+    "goety:arrow_rain_focus",
+    "goety:ice_spike_focus",
+    "goety:ice_storm_focus",
+    "goety:poison_dart_focus",
+    "goety:razor_wind_focus",
+    "goety:electrocute_focus",
+    "goety:bouncy_bubble_focus",
+    "goety:fireball_focus",
+    "goety:lavaball_focus",
+    "goety:bombardment_focus",
+    "goety:meteor_shower_focus",
+    "goety:magma_bomb_focus",
+    "goety:wither_skull_focus"
+  ]
+}

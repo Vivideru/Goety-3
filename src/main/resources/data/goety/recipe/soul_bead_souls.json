@@ -1,11 +1,14 @@
-﻿{
-    "type":  "goety:soul_absorber_recipes",
-    "ingredient":  {
-                       "item":  "quark:soul_bead"
-                   },
-    "soulIncrease":  5,
-    "cookingtime":  50,
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "quark" } ]
+{
+  "type": "goety:soul_absorber_recipes",
+  "ingredient": {
+    "item": "quark:soul_bead"
+  },
+  "soulIncrease": 5,
+  "cookingtime": 50,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "quark"
+    }
+  ]
 }
-
-

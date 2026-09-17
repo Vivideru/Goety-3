@@ -1,35 +1,34 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "tag":  "goety:haunted_glasses"
-                        },
-    "craftType":  "necroturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "research":  "haunting",
-    "ingredients":  [
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "item":  "minecraft:phantom_membrane"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:haunted_mirror"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "goety:haunted_glasses"
+  },
+  "craftType": "necroturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "research": "haunting",
+  "ingredients": [
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    }
+  ],
+  "result": {
+    "id": "goety:haunted_mirror"
+  }
 }
-

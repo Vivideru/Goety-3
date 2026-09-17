@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " s ",
-                    "sts",
-                    " s "
-                ],
-    "key":  {
-                "s":  {
-                          "tag":  "c:gems/amethyst"
-                      },
-                "t":  {
-                          "tag":  "goety:totems"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:empty_focus",
-                   "count":  4
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "sts",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "tag": "c:gems/amethyst"
+    },
+    "t": {
+      "tag": "goety:totems"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:empty_focus"
+  }
 }
-

@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:cursed_infuser"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_infuser.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_infuser.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_totem_roots",
+  "criteria": {
+    "cursed_infuser": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:cursed_infuser"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "cursed_infuser"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

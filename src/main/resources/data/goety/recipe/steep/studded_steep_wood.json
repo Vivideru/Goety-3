@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " I ",
-                    "ILI",
-                    " I "
-                ],
-    "key":  {
-                "L":  {
-                          "item":  "goety:steep_wood"
-                      },
-                "I":  {
-                          "tag":  "c:ingots/gold"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:studded_steep_wood",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I ",
+    "ILI",
+    " I "
+  ],
+  "key": {
+    "L": {
+      "item": "goety:steep_wood"
+    },
+    "I": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:studded_steep_wood"
+  }
 }
-

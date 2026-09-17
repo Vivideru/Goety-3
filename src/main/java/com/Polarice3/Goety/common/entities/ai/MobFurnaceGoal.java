@@ -32,6 +32,7 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
     public float speedModifier;
     public boolean cachedCanSmelt = false;
     public boolean playSound = false;
+    protected boolean litByMob = false;
 
     public MobFurnaceGoal(T mob, int furnaceTime, float speedModifier) {
         this.mob = mob;
@@ -92,7 +93,10 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
                     if (this.getNearbyFurnaceUsers(serverLevel, new AABB(this.furnace).inflate(4.0D), this.furnace).isEmpty()) {
                         if (this.tryTicks <= 1200) {
                             BlockState blockState = this.mob.level().getBlockState(this.furnace);
-                            return this.mob.isFurnace(blockState) && super.canContinueToUse();
+                            // Goal#canContinueToUse delegates back to canUse().
+                            // canUse deliberately rejects an already-working mob, so
+                            // calling super here stopped and restarted the job every tick.
+                            return this.mob.isFurnace(blockState);
                         }
                     }
                 }
@@ -104,6 +108,8 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
     public void start() {
         this.moveMobToBlock();
         this.tryTicks = 0;
+        // Keep the work pose stable while the servant walks to its furnace.
+        this.mob.setUsingFurnace(true);
     }
 
     protected void moveMobToBlock() {
@@ -121,13 +127,15 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
 
     @Override
     public void stop() {
-        if (!this.mob.isFurnaceActuallyCooking()) {
+        if (this.litByMob) {
             this.mob.setFurnaceLit(false);
         }
         this.furnace = null;
         this.mob.setFurnacePos(null);
         this.tryTicks = 0;
         this.workTick = 0;
+        this.playSound = false;
+        this.litByMob = false;
         this.mob.setUsingFurnace(false);
     }
 
@@ -142,12 +150,8 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
                 if (this.shouldRecalculatePath()) {
                     this.mob.getNavigation().moveTo((double)((float)this.furnace.getX()) + 0.5D, (double)this.furnace.getY(), (double)((float)this.furnace.getZ()) + 0.5D, this.speedModifier);
                 }
-                if (this.mob.isUsingFurnace()) {
-                    this.mob.setUsingFurnace(false);
-                    if (!this.mob.isFurnaceActuallyCooking()) {
-                        this.mob.setFurnaceLit(false);
-                    }
-                }
+                // Do not clear the work state while navigating: pathing around
+                // the furnace used to make the chef's arms flash every tick.
             } else {
                 this.mob.getNavigation().stop();
                 this.mob.lookAt(EntityAnchorArgument.Anchor.EYES, Vec3.atCenterOf(this.furnace));
@@ -157,16 +161,16 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
                     this.mob.setUsingFurnace(true);
                 }
                 if (!this.playSound) {
-                    this.mob.setFurnaceLit(true);
+                    if (!this.mob.isFurnaceActuallyCooking()) {
+                        this.mob.setFurnaceLit(true);
+                        this.litByMob = true;
+                    }
                     this.playSound = true;
                 }
-                if (this.workTick > COOK_TIME) {
+                if (this.workTick > this.furnaceTime) {
                     this.onSmelt(serverLevel);
                     this.playSound = false;
                     this.workTick = 0;
-                    if (!this.mob.isFurnaceActuallyCooking()) {
-                        this.mob.setFurnaceLit(false);
-                    }
                 }
             }
         }

@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "overgrown",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:quick_growing_seed"
+    },
+    {
+      "item": "goety:quick_growing_seed"
+    },
+    {
+      "item": "goety:poison_quill_seed"
+    },
+    {
+      "item": "goety:poison_quill_seed"
+    },
+    {
+      "item": "goety:overgrown_roots"
+    }
+  ],
+  "result": {
+    "id": "goety:overgrowth_focus"
+  }
+}

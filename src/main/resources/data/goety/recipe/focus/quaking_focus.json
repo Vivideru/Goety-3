@@ -1,23 +1,22 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sfs",
-                    "fef",
-                    "sfs"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "f":  {
-                          "item":  "goety:magic_emerald"
-                      },
-                "s":  {
-                          "tag":  "c:stone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:quaking_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sfs",
+    "fef",
+    "sfs"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "f": {
+      "item": "goety:magic_emerald"
+    },
+    "s": {
+      "tag": "c:stone"
+    }
+  },
+  "result": {
+    "id": "goety:quaking_focus"
+  }
 }
-

@@ -1,28 +1,27 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "minecraft:rotten_flesh"
-                        },
-    "craftType":  "forge",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:leather"
-                        },
-                        {
-                            "item":  "goety:magic_emerald"
-                        },
-                        {
-                            "item":  "goety:pale_steel_ingot"
-                        },
-                        {
-                            "item":  "goety:pale_steel_ingot"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:thrash_glove"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:rotten_flesh"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:leather"
+    },
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "item": "goety:pale_steel_ingot"
+    },
+    {
+      "item": "goety:pale_steel_ingot"
+    }
+  ],
+  "result": {
+    "id": "goety:thrash_glove"
+  }
 }
-

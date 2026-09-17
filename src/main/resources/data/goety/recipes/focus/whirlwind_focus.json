@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:wind_core"
+  },
+  "craftType": "sky",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "forge:feathers"
+    },
+    {
+      "tag": "forge:feathers"
+    },
+    {
+      "tag": "forge:dusts/glowstone"
+    },
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "minecraft:shield"
+    }
+  ],
+  "result": {
+    "id": "goety:whirlwind_focus"
+  }
+}

@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "###",
-                    "#C#",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:haunted_planks"
-                      },
-                "C":  {
-                          "tag":  "c:chests/wooden"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:haunted_chest",
-                   "count":  2
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:haunted_planks"
+    },
+    "C": {
+      "tag": "c:chests/wooden"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:haunted_chest"
+  }
 }
-

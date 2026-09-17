@@ -1,35 +1,34 @@
-﻿{
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:hunger_core"
-                        },
-    "craftType":  "necroturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:skeleton_skull"
-                        },
-                        {
-                            "item":  "minecraft:beetroot_soup"
-                        },
-                        {
-                            "item":  "goety:shadow_essence"
-                        },
-                        {
-                            "item":  "goety:occult_fabric"
-                        },
-                        {
-                            "item":  "minecraft:short_grass"
-                        },
-                        {
-                            "item":  "minecraft:hanging_roots"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:leeching_focus"
-               }
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:hunger_core"
+  },
+  "craftType": "necroturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:skeleton_skull"
+    },
+    {
+      "item": "minecraft:beetroot_soup"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "minecraft:short_grass"
+    },
+    {
+      "item": "minecraft:hanging_roots"
+    }
+  ],
+  "result": {
+    "id": "goety:leeching_focus"
+  }
 }
-
 

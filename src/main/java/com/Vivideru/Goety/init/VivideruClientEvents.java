@@ -11,7 +11,10 @@ import com.Vivideru.Goety.client.render.layer.CursedBlackWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.CursedSkeletonWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.CursedWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.VivideruModelLayers;
+import com.Vivideru.Goety.client.render.CerberusRenderer;
 import com.Vivideru.Goety.client.render.WargRenderer;
+import com.Vivideru.Goety.client.render.model.CerberusArmorModel;
+import com.Vivideru.Goety.client.render.model.CerberusModel;
 import com.Vivideru.Goety.client.render.model.CursedBlackBeastArmorModel;
 import com.Vivideru.Goety.client.render.model.CursedBlackWolfArmorModel;
 import com.Vivideru.Goety.client.render.model.CursedSkeletonWolfArmorModel;
@@ -41,11 +44,14 @@ public class VivideruClientEvents {
         event.registerLayerDefinition(VivideruModelLayers.WARG, WargModel::createBodyLayer);
         event.registerLayerDefinition(VivideruModelLayers.WARG_ARMOR, WargArmorModel::createBodyLayer);
         event.registerLayerDefinition(VivideruModelLayers.WARG_SADDLE, WargSaddleModel::createBodyLayer);
+        event.registerLayerDefinition(VivideruModelLayers.CERBERUS, CerberusModel::createBodyLayer);
+        event.registerLayerDefinition(VivideruModelLayers.CERBERUS_ARMOR, CerberusArmorModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(VivideruEntityTypes.WARG.get(), WargRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.CERBERUS.get(), CerberusRenderer::new);
     }
 
     @SubscribeEvent

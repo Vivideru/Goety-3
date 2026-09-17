@@ -5,6 +5,8 @@ import com.Polarice3.Goety.client.inventory.container.FocusPackContainer;
 import com.Polarice3.Goety.common.items.handler.FocusBagItemHandler;
 import com.Polarice3.Goety.common.items.magic.FocusPack;
 import com.Polarice3.Goety.utils.TotemFinder;
+import com.Vivideru.Goety.common.items.magic.FocusBagBinding;
+import com.Vivideru.Goety.common.network.server.SFocusBagSyncPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,14 +30,19 @@ public class CBagKeyPacket {
             ServerPlayer playerEntity = ctx.get().getSender();
 
             if (playerEntity != null) {
-                ItemStack stack = TotemFinder.findBag(playerEntity);
+                FocusBagBinding.BagReference bagReference = TotemFinder.findBagReference(playerEntity);
+                ItemStack stack = bagReference.stack();
 
                 if (!stack.isEmpty()){
+                    Runnable saveBag = () -> {
+                        bagReference.save();
+                        SFocusBagSyncPacket.sendTo(playerEntity, stack);
+                    };
                     SimpleMenuProvider provider = new SimpleMenuProvider(
-                            (id, inventory, player) -> new FocusBagContainer(id, inventory, FocusBagItemHandler.get(stack), stack), Component.translatable(stack.getDescriptionId()));
+                            (id, inventory, player) -> new FocusBagContainer(id, inventory, FocusBagItemHandler.get(stack), stack, saveBag), Component.translatable(stack.getDescriptionId()));
                     if (stack.getItem() instanceof FocusPack){
                         provider = new SimpleMenuProvider(
-                                (id, inventory, player) -> new FocusPackContainer(id, inventory, FocusBagItemHandler.get(stack), stack), Component.translatable(stack.getDescriptionId()));
+                                (id, inventory, player) -> new FocusPackContainer(id, inventory, FocusBagItemHandler.get(stack), stack, saveBag), Component.translatable(stack.getDescriptionId()));
                     }
                     playerEntity.openMenu(provider);
                 }

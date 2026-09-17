@@ -1,12 +1,12 @@
-﻿{
-    "type":  "minecraft:smelting",
-    "cookingtime":  200,
-    "experience":  0.35,
-    "ingredient":  {
-                       "item":  "goety:slate_marble"
-                   },
-    "result":  {
-                   "id":  "goety:worn_slate_marble"
-               }
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "goety:slate_marble"
+  },
+  "result": {
+    "id": "goety:worn_slate_marble",
+    "count": 1
+  }
 }
-

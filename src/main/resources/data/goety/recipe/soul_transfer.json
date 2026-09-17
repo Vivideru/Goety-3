@@ -1,27 +1,26 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " p ",
-                    "rer",
-                    " s "
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:magic_emerald"
-                      },
-                "p":  {
-                          "tag":  "c:ender_pearls"
-                      },
-                "r":  {
-                          "tag":  "c:dusts/redstone"
-                      },
-                "s":  {
-                          "tag":  "minecraft:soul_fire_base_blocks"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:soul_transfer",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " p ",
+    "rer",
+    " s "
+  ],
+  "key": {
+    "e": {
+      "item": "goety:magic_emerald"
+    },
+    "p": {
+      "tag": "c:ender_pearls"
+    },
+    "r": {
+      "tag": "c:dusts/redstone"
+    },
+    "s": {
+      "tag": "minecraft:soul_fire_base_blocks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:soul_transfer"
+  }
 }
-

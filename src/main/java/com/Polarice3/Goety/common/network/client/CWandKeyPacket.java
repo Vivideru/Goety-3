@@ -32,12 +32,12 @@ public class CWandKeyPacket {
 
                 if (!stack.isEmpty() && stack.getItem() instanceof IWand) {
                     SimpleMenuProvider provider = new SimpleMenuProvider(
-                            (id, inventory, player) -> new SoulItemContainer(id, inventory, SoulUsingItemHandler.get(stack), stack, playerEntity.getUsedItemHand()), Component.translatable(stack.getDescriptionId()));
-                    playerEntity.openMenu(provider, (buffer) -> buffer.writeBoolean(playerEntity.getUsedItemHand() == InteractionHand.MAIN_HAND));
+                            (id, inventory, player) -> new SoulItemContainer(id, inventory, SoulUsingItemHandler.get(stack), stack, InteractionHand.MAIN_HAND), Component.translatable(stack.getDescriptionId()));
+                    playerEntity.openMenu(provider, (buffer) -> buffer.writeBoolean(true));
                 } else if (!stack2.isEmpty() && stack2.getItem() instanceof IWand){
                     SimpleMenuProvider provider = new SimpleMenuProvider(
-                            (id, inventory, player) -> new SoulItemContainer(id, inventory, SoulUsingItemHandler.get(stack2), stack2, playerEntity.getUsedItemHand()), Component.translatable(stack2.getDescriptionId()));
-                    playerEntity.openMenu(provider, (buffer) -> buffer.writeBoolean(playerEntity.getUsedItemHand() == InteractionHand.OFF_HAND));
+                            (id, inventory, player) -> new SoulItemContainer(id, inventory, SoulUsingItemHandler.get(stack2), stack2, InteractionHand.OFF_HAND), Component.translatable(stack2.getDescriptionId()));
+                    playerEntity.openMenu(provider, (buffer) -> buffer.writeBoolean(false));
                 }
             }
         });

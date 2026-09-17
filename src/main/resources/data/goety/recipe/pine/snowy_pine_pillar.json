@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "S#S",
@@ -9,11 +9,11 @@
     "#": {
       "item": "goety:pine_fence"
     },
-    "S":
-    {
+    "S": {
       "item": "minecraft:snowball"
     }
   },
-  "result": { "id": "goety:snowy_pine_pillar"
+  "result": {
+    "id": "goety:snowy_pine_pillar"
   }
 }

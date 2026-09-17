@@ -504,6 +504,7 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> GuardianCoolDown;
     public static final ModConfigSpec.ConfigValue<Integer> GuardianSummonDown;
     public static final ModConfigSpec.ConfigValue<Integer> GuardianLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> ElderGuardianLimit;
 
     public static final ModConfigSpec.ConfigValue<Integer> BiomineCost;
     public static final ModConfigSpec.ConfigValue<Integer> BiomineDuration;
@@ -673,6 +674,7 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> SpellDamageEnderDragon;
     public static final ModConfigSpec.ConfigValue<Boolean> FullStopCast;
     public static final ModConfigSpec.ConfigValue<Boolean> SpellExplosionDouble;
+    public static final ModConfigSpec.ConfigValue<Boolean> PartialMagicProjectileIFrames;
 
     public static ModConfigSpec.ConfigValue<List<? extends String>> TelekinesisBlackList;
     public static ModConfigSpec.ConfigValue<List<? extends String>> BanishBlackList;
@@ -693,6 +695,8 @@ public class SpellConfig {
         BUILDER.push("General");
         SpellDamageMultiplier = BUILDER.comment("Multiplies the damage of spells by this amount, this will will be multiplied by 'spellDamageMultiplierDecimal', Default: 1")
                 .defineInRange("spellDamageMultiplier", 1, 1, Integer.MAX_VALUE);
+        PartialMagicProjectileIFrames = BUILDER.comment("Allow player-cast magic projectiles to deal 25% damage during invulnerability frames without extending them, Default: true")
+                .define("partialMagicProjectileIFrames", true);
         SpellDamageMultiplierDecimal = BUILDER.comment("Multiplies the damage of spells by this amount in decimals, this will will be multiplied by 'spellDamageMultiplier', Default: 1.0")
                 .defineInRange("spellDamageMultiplierDecimal", 1.0, 0.0, Double.MAX_VALUE);
         OwnerHitCommand = BUILDER.comment("Whether Servants change navigation modes by hitting them, put false to make them change by right-clicking on them, Default: true")
@@ -1018,8 +1022,9 @@ public class SpellConfig {
             BUILDER.push("Flame Strike Spell");
             FlameStrikeCost = BUILDER.comment("Flame Strike Spell Cost, Default: 32")
                     .defineInRange("flameStrikeCost", 32, 0, Integer.MAX_VALUE);
-            FlameStrikeDuration = BUILDER.comment("Time to cast Flame Strike Spell, Default: 120")
-                    .defineInRange("flameStrikeTime", 120, 0, 72000);
+            // Current 1.20.1 balance halves the default charge time.
+            FlameStrikeDuration = BUILDER.comment("Time to cast Flame Strike Spell, Default: 60")
+                    .defineInRange("flameStrikeTime", 60, 0, 72000);
             FlameStrikeCoolDown = BUILDER.comment("Flame Strike Spell Cooldown, Default: 200")
                     .defineInRange("flameStrikeCoolDown", 200, 0, Integer.MAX_VALUE);
             FlameStrikeDamage = BUILDER.comment("How much base damage Flame Strike deals, Default: 4.0")
@@ -1114,8 +1119,8 @@ public class SpellConfig {
                     .defineInRange("fireBreathCoolDown", 100, 0, 72000);
             FireBreathDamage = BUILDER.comment("How much base damage Fire Breath deals, Default: 2.0")
                     .defineInRange("fireBreathDamage", 2.0, 1.0, Double.MAX_VALUE);
-            DragonFireGriefing = BUILDER.comment("Ring of the Dragon Fire Breath deals environmental damage, Default: true")
-                    .define("dragonFireGriefing", true);
+            DragonFireGriefing = BUILDER.comment("Staff Fire Breath deals environmental damage, Default: true")
+                    .define("staffFireGriefing", true);
             BUILDER.pop();
             BUILDER.push("Frost Breath Spell");
             FrostBreathCost = BUILDER.comment("Frost Breath Spell Cost per second, Default: 2")
@@ -1128,8 +1133,8 @@ public class SpellConfig {
                     .defineInRange("frostBreathCoolDown", 100, 0, 72000);
             FrostBreathDamage = BUILDER.comment("How much base damage Frost Breath deals, Default: 1.0")
                     .defineInRange("frostBreathDamage", 1.0, 1.0, Double.MAX_VALUE);
-            DragonFrostGriefing = BUILDER.comment("Ring of the Dragon Frost Breath deals environmental damage, Default: true")
-                    .define("dragonFrostGriefing", true);
+            DragonFrostGriefing = BUILDER.comment("Staff Frost Breath deals environmental damage, Default: true")
+                    .define("staffFrostGriefing", true);
             BUILDER.pop();
             BUILDER.push("Shocking Spell");
             ShockingCost = BUILDER.comment("Shocking Spell Cost per second, Default: 4")
@@ -1696,6 +1701,8 @@ public class SpellConfig {
                     .defineInRange("guardianSummonDown", 150, 0, 72000);
             GuardianLimit = BUILDER.comment("Number of Guardian Servants that can exist around the player, Default: 8")
                     .defineInRange("guardianLimit", 8, 1, Integer.MAX_VALUE);
+            ElderGuardianLimit = BUILDER.comment("Number of Elder Guardian Servants that an individual player can have in total, Default: 3")
+                    .defineInRange("elderGuardianLimit", 3, 1, Integer.MAX_VALUE);
             BUILDER.pop();
             BUILDER.push("Biomine Spell");
             BiomineCost = BUILDER.comment("Biomine Spell Cost, Default: 16")

@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "tag":  "c:string"
-                        },
-                        {
-                            "tag":  "c:string"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:spirit_fabric"
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "item": "goety:ectoplasm"
+    }
+  ],
+  "result": {
+    "id": "goety:spirit_fabric"
+  }
 }
-

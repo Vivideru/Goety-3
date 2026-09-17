@@ -2,7 +2,7 @@
   "name": "Devastador Zumbi",
   "icon": "minecraft:rotten_flesh",
   "category": "goety:mutations",
-  "advancement": "goety:goety/ler_pergaminho_devastador",
+  "advancement": "goety:goety/read_ravaging_scroll",
   "secret": true,
   "pages": [
     {
@@ -11,7 +11,7 @@
     },
     {
       "type": "goety:ritual",
-      "recipe": "goety:transformar_devastador_em_zumbi"
+      "recipe": "goety:convert_zombify_ravager"
     },
     {
       "type": "patchouli:entity",
@@ -20,3 +20,4 @@
     }
   ]
 }
+

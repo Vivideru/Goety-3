@@ -162,7 +162,8 @@ public class SurgingOrb extends SpellHurtingProjectile{
             this.discard();
         }
         if (this.getTarget() != null && this.getTarget().isAlive() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(this.getTarget())) {
-            if (this.tickCount > 2) {
+            // Start steering as soon as the client receives the synced target so the orb never appears parked at spawn.
+            if (this.tickCount >= 0) {
                 Vec3 toTarget = this.getTarget().position().add(0, 0.25F, 0).subtract(this.position());
 
                 double distToTarget = toTarget.length();

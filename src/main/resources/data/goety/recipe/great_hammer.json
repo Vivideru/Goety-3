@@ -1,37 +1,36 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "minecraft:iron_pickaxe"
-                        },
-    "craftType":  "forge",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:gems/emerald"
-                        },
-                        {
-                            "tag":  "minecraft:logs"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:great_hammer"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:iron_pickaxe"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "tag": "minecraft:logs"
+    }
+  ],
+  "result": {
+    "id": "goety:great_hammer"
+  }
 }
-

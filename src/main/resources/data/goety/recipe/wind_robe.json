@@ -1,35 +1,44 @@
-﻿{
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:wind_core"
-                        },
-    "craftType":  "sky",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "goety:gale_fabric"
-                        },
-                        {
-                            "item":  "goety:gale_fabric"
-                        },
-                        {
-                            "item":  "goety:gale_fabric"
-                        },
-                        {
-                            "item":  "goety:magic_fabric"
-                        },
-                        {
-                            "item":  "goety:magic_fabric"
-                        },
-                        {
-                            "item":  "minecraft:orange_dye"
-                        },
-                        { "item": "minecraft:potion" }
-                    ],
-    "result":  {
-                   "id":  "goety:wind_robe"
-               }
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:wind_core"
+  },
+  "craftType": "sky",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:gale_fabric"
+    },
+    {
+      "item": "goety:gale_fabric"
+    },
+    {
+      "item": "goety:gale_fabric"
+    },
+    {
+      "item": "goety:magic_fabric"
+    },
+    {
+      "item": "goety:magic_fabric"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    },
+    {
+      "type": "neoforge:components",
+      "items": [
+        "minecraft:potion"
+      ],
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:slow_falling"
+        }
+      }
+    }
+  ],
+  "result": {
+    "id": "goety:wind_robe"
+  }
 }
-

@@ -10,7 +10,7 @@
     {
       "type": "patchouli:entity",
       "entity": "goety:warg",
-      "scale": 0.35
+      "scale": 0.7
     },
     {
       "type": "patchouli:text",
@@ -27,6 +27,28 @@
     {
       "type": "patchouli:text",
       "text": "Wargs use their own larger armor harnesses. The recipes for these, together with armor for other canine servants, are recorded in the $(l:goety:crafts/artifice/howling_totem#canine_armor)Howling Totem entry$()."
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "cerberus",
+      "text": "$(l)The Cerberus$()$(br)Hellhounds cannot be raised into Wargs, for the fire in them answers to an older hunger. Bring three of them together and that hunger will do the raising itself, folding three beasts into one three-headed hound of the underworld."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:cerberus",
+      "scale": 0.4
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Gather three owned Hellhounds within eight blocks of your $(l:goety:crafts/artifice/howling_totem)Howling Totem$(), then offer a Netherite Ingot to one of them. That hound becomes the Cerberus; the other two are drawn into it and leave nothing but smoke. The ingot is consumed with them."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A Cerberus is far heavier than any Warg, unharmed by fire, and counts among the creatures of the Nether: a master wearing $(l:goety:crafts/garment/nether_robe)Nether Robes$() will mend it as it would any other Nether servant. Each Totem may raise only one, and a master may normally keep only one."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Its three mouths are always full of fire, so it will never carry a sword. Beyond its burning bite it breathes flame as the $(l:goety:focuses/nether/fire_breath_focus)Fire Breath$() focus does, each head spitting along its own line for several seconds before the beast must gather its breath again. It wears the same harness as a Warg."
     }
   ]
 }

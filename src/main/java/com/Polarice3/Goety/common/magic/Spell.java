@@ -147,7 +147,7 @@ public abstract class Spell implements ISpell {
                 serverLevel.sendParticles(new FoggyCloudParticleOption(new ColorUtil(0xcf75af), 0.25F, 6), caster.getX(), caster.getY() + 1.5D, caster.getZ(), 1, 0, 0, 0, 0);
             } else if (this.getSpellType() == SpellType.ABYSS){
                 int range = 1;
-                ColorUtil colorUtil = new ColorUtil(ChatFormatting.AQUA);
+                ColorUtil colorUtil = ColorUtil.AQUA;
                 if (caster instanceof Player player) {
                     for (int i = 0; i < (caster.getRandom().nextFloat() < 0.1F ? 3 : 1); i++) {
                         ModNetwork.sentToTrackingEntityAndPlayer(player, new SStaffParticlePacket(player.getId(), stack.getItem() instanceof IWand wand ? wand.getWandVisualHeight(serverLevel, player, stack) : 0.8F, range, colorUtil.colorCode(0), caster.getUsedItemHand() == InteractionHand.OFF_HAND));
@@ -157,7 +157,7 @@ public abstract class Spell implements ISpell {
                 }
             } else if (this.getSpellType() == SpellType.VOID){
                 int range = 1;
-                ColorUtil colorUtil = new ColorUtil(ChatFormatting.DARK_PURPLE);
+                ColorUtil colorUtil = ColorUtil.DARK_PURPLE;
                 if (caster instanceof Player player) {
                     for (int i = 0; i < (caster.getRandom().nextFloat() < 0.1F ? 3 : 1); i++) {
                         ModNetwork.sentToTrackingEntityAndPlayer(player, new SStaffParticlePacket(player.getId(), stack.getItem() instanceof IWand wand ? wand.getWandVisualHeight(serverLevel, player, stack) : 0.8F, range, colorUtil.colorCode(0), caster.getUsedItemHand() == InteractionHand.OFF_HAND));
@@ -170,7 +170,7 @@ public abstract class Spell implements ISpell {
                 }
             } else if (this.getSpellType() == SpellType.NETHER){
                 int range = 1;
-                ColorUtil colorUtil = new ColorUtil(ChatFormatting.GOLD);
+                ColorUtil colorUtil = ColorUtil.GOLD;
                 if (caster instanceof Player player) {
                     for (int i = 0; i < (caster.getRandom().nextFloat() < 0.1F ? 3 : 1); i++) {
                         ModNetwork.sentToTrackingEntityAndPlayer(player, new SStaffParticlePacket(player.getId(), stack.getItem() instanceof IWand wand ? wand.getWandVisualHeight(serverLevel, player, stack) : 0.8F, range, colorUtil.colorCode(0), caster.getUsedItemHand() == InteractionHand.OFF_HAND));

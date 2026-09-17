@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "R",
-                    "G",
-                    "R"
-                ],
-    "key":  {
-                "G":  {
-                          "item":  "goety:end_rod_block"
-                      },
-                "R":  {
-                          "item":  "minecraft:purpur_slab"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:purpur_lamp",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R",
+    "G",
+    "R"
+  ],
+  "key": {
+    "G": {
+      "item": "goety:end_rod_block"
+    },
+    "R": {
+      "item": "minecraft:purpur_slab"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:purpur_lamp"
+  }
 }
-

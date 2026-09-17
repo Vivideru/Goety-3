@@ -5,6 +5,7 @@ import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.items.magic.ITotem;
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.blocks.fluids.ModFluids;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.vehicle.ModBoat;
 import com.Polarice3.Goety.common.items.armor.*;
 import com.Polarice3.Goety.common.items.block.HauntedArmorStandItem;
@@ -52,9 +53,13 @@ import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import com.Polarice3.Goety.common.blocks.ModBlocks;
 
 public class ModItems {
     public static DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM, Goety.MOD_ID);
+    public static final DeferredHolder<Item, Item> REPAIR_PUTTY = ITEMS.register("repair_putty", () -> new RepairPuttyItem(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> PATROL_PLAN = ITEMS.register("patrol_plan", () -> new PatrolPlan(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> SOUL_HEALER = ITEMS.register("soul_healer", () -> new SoulHealer(new Item.Properties()));
     private static final double DEFAULT_STAFF_DAMAGE = 4.0D;
     private static final double DEFAULT_ABYSS_STAFF_DAMAGE = 9.0D;
 
@@ -160,6 +165,7 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> NIGHTSHADE_BLOSSOM = ITEMS.register("nightshade_blossom", () -> new Item(new Item.Properties().food(ModFoods.NIGHTSHADE)));
     public static final DeferredHolder<Item, Item> REFUSE_BOTTLE = ITEMS.register("refuse_bottle", RefuseBottleItem::new);
     public static final DeferredHolder<Item, Item> RESILIENCE_LOTION = ITEMS.register("resilience_lotion", () -> new UnguentItem(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, MathHelper.minutesToTicks(3))));
+    public static final DeferredHolder<Item, Item> AGING_CREAM = ITEMS.register("aging_cream", () -> new UnguentItem(new MobEffectInstance(GoetyEffects.WANE, MathHelper.minutesToTicks(3)), new MobEffectInstance(GoetyEffects.SAPPED, MathHelper.minutesToTicks(3))));
     public static final DeferredHolder<Item, Item> FLYING_OINTMENT = ITEMS.register("flying_ointment", FlyingOintmentItem::new);
     public static final DeferredHolder<Item, Item> ILL_BOMB = ITEMS.register("ill_bomb", IllBombItem::new);
     public static final DeferredHolder<Item, Item> OMINOUS_SHACKLES = ITEMS.register("ominous_shackles", OminousShacklesItem::new);
@@ -236,6 +242,7 @@ public class ModItems {
     public static final DeferredHolder<Item, ? extends SingleStackItem> RING_OF_FORCE = ITEMS.register("ring_of_force", RingItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> RING_OF_THE_FORGE = ITEMS.register("ring_of_the_forge", RingItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> RING_OF_THE_DRAGON = ITEMS.register("ring_of_the_dragon", RingItem::new);
+    public static final DeferredHolder<Item, ? extends SingleStackItem> RING_OF_WRECKING = ITEMS.register("ring_of_wrecking", RingItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> PENDANT_OF_HUNGER = ITEMS.register("pendant_of_hunger", PendantOfHungerItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> TARGETING_MONOCLE = ITEMS.register("targeting_monocle", TargetingMonocleItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> DARK_HAT = ITEMS.register("dark_hat", MagicHatItem::new);

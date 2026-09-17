@@ -1,23 +1,22 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " ic",
-                    " si",
-                    "s  "
-                ],
-    "key":  {
-                "i":  {
-                          "tag":  "c:ingots/iron"
-                      },
-                "c":  {
-                          "item":  "goety:pale_steel_ingot"
-                      },
-                "s":  {
-                          "tag":  "c:rods/wooden"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:iron_ice_axe"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ic",
+    " si",
+    "s  "
+  ],
+  "key": {
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "c": {
+      "item": "goety:pale_steel_ingot"
+    },
+    "s": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "result": {
+    "id": "goety:iron_ice_axe"
+  }
 }
-

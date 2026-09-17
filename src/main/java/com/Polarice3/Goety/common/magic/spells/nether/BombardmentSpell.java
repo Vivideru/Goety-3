@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.nether;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.HellBolt;
 import com.Polarice3.Goety.common.entities.projectiles.ModFireball;
 import com.Polarice3.Goety.common.magic.EverChargeSpell;
@@ -71,6 +72,7 @@ public class BombardmentSpell extends EverChargeSpell {
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.BURNING);
         list.add(ModEnchantments.DURATION);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

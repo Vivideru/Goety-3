@@ -1,17 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "#":  {
-                          "item":  "goety:end_basalt_bricks"
-                      }
-            },
-    "pattern":  [
-        "###"
-    ],
-    "result":  {
-                   "count":  6,
-                   "id":  "goety:end_basalt_brick_slab"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": [
+      {
+        "item": "goety:end_basalt_bricks"
+      }
+    ]
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "goety:end_basalt_brick_slab"
+  }
 }
-
-

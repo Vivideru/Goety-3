@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:warlock_robe"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_warlock_robe.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_warlock_robe.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_dark_altar",
+  "criteria": {
+    "warlock_robe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:warlock_robe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "warlock_robe"
+    ]
+  ]
+}

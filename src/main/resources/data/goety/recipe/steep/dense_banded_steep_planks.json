@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
@@ -8,6 +8,7 @@
       "item": "goety:gale_fabric"
     }
   ],
-  "result": { "id": "goety:dense_banded_steep_planks"
+  "result": {
+    "id": "goety:dense_banded_steep_planks"
   }
 }

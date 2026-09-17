@@ -2,9 +2,11 @@ package com.Polarice3.Goety.mixin;
 
 import com.Polarice3.Goety.api.entities.IAutoRideable;
 import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.ISpellEntity;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.config.MainConfig;
 import com.Polarice3.Goety.config.MobsConfig;
+import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.init.ModMobType;
 import com.Polarice3.Goety.utils.LichdomHelper;
@@ -12,17 +14,21 @@ import com.Polarice3.Goety.utils.MobTypeHelper;
 import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -45,12 +51,42 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Shadow protected int lastHurtByPlayerTime;
 
+    @Shadow protected float lastHurt;
+
+    @Unique
+    private boolean goety$dealingPartialProjectileDamage;
+
     @Shadow protected abstract boolean isAlwaysExperienceDropper();
 
     @Shadow public abstract Map<Holder<MobEffect>, MobEffectInstance> getActiveEffectsMap();
 
     protected LivingEntityMixin(EntityType<? extends Entity> p_20966_, Level p_20967_) {
         super(p_20966_, p_20967_);
+    }
+
+    @Inject(method = "hurt", at = @At("HEAD"), cancellable = true)
+    private void goety$partialMagicProjectileDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (!this.goety$dealingPartialProjectileDamage
+                && SpellConfig.get(SpellConfig.PartialMagicProjectileIFrames)
+                && this.invulnerableTime > 10
+                && amount > 0.0F
+                && !source.is(DamageTypeTags.BYPASSES_COOLDOWN)
+                && source.getDirectEntity() instanceof Projectile projectile
+                && projectile instanceof ISpellEntity
+                && projectile.getOwner() instanceof Player) {
+            int previousInvulnerableTime = this.invulnerableTime;
+            float previousLastHurt = this.lastHurt;
+            try {
+                // Run the reduced hit through the normal damage pipeline, then restore both values that govern i-frames so rapid spell hits never extend them.
+                this.goety$dealingPartialProjectileDamage = true;
+                this.invulnerableTime = 0;
+                cir.setReturnValue(((LivingEntity) (Object) this).hurt(source, amount * 0.25F));
+            } finally {
+                this.invulnerableTime = previousInvulnerableTime;
+                this.lastHurt = previousLastHurt;
+                this.goety$dealingPartialProjectileDamage = false;
+            }
+        }
     }
 
     @Inject(method = "dropExperience", at = @At("HEAD"))

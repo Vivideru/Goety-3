@@ -12,6 +12,8 @@ public class MainConfig {
 
     public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
     public static final ModConfigSpec SPEC;
+    public static final ModConfigSpec.ConfigValue<Boolean> SarcophagusSleep;
+    public static final ModConfigSpec.ConfigValue<Boolean> SarcophagusUndead;
 
     public static final ModConfigSpec.ConfigValue<Integer> MaxSouls;
     public static final ModConfigSpec.ConfigValue<Integer> MaxArcaSouls;
@@ -45,6 +47,7 @@ public class MainConfig {
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolReviveCost;
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolLimit;
     public static final ModConfigSpec.ConfigValue<Integer> WargLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> CerberusLimit;
     public static final ModConfigSpec.ConfigValue<Integer> VoidFrameCoolTime;
     public static final ModConfigSpec.ConfigValue<Double> SoulMenderSeconds;
     public static final ModConfigSpec.ConfigValue<Double> LichHealAmount;
@@ -172,6 +175,8 @@ public class MainConfig {
                 .define("ominousStoneGenerator", true);
         BUILDER.pop();
         BUILDER.push("Blocks");
+        SarcophagusSleep = BUILDER.comment("Whether a Sarcophagus can be slept in.").define("sarcophagusSleep", true);
+        SarcophagusUndead = BUILDER.comment("Whether non-undead sleepers receive debuffs without a cushion.").define("sarcophagusUndead", true);
         HookBellBlackList = BUILDER.comment("""
                         Add mobs that Hook Bells don't work on.\s
                         To do so, enter the namespace ID of the mob, like "minecraft:zombie, minecraft:skeleton".""")
@@ -232,6 +237,8 @@ public class MainConfig {
                 .defineInRange("ominousIdolLimit", 16, 0, Integer.MAX_VALUE);
         WargLimit = BUILDER.comment("The maximum number of living Wargs owned by one player, Default: 3")
                 .defineInRange("wargLimit", 3, 0, Integer.MAX_VALUE);
+        CerberusLimit = BUILDER.comment("The maximum number of living Cerberuses owned by one player, Default: 1")
+                .defineInRange("cerberusLimit", 1, 0, Integer.MAX_VALUE);
         VoidFrameCoolTime = BUILDER.comment("How many ticks until Void Frames returns back to Locked State after being used, Default: 24000")
                 .defineInRange("voidFrameCoolTime", 24000, 0, Integer.MAX_VALUE);
         PithosRespawn = BUILDER.comment("Allow looted Pithos to regenerate Loot and spawn Skull Lord again when right-clicked with respawn_boss tagged item, Default: true")

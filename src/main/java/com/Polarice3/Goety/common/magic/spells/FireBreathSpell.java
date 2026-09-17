@@ -1,8 +1,8 @@
 package com.Polarice3.Goety.common.magic.spells;
 
+import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
-import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.common.magic.BreathingSpell;
 import com.Polarice3.Goety.common.magic.SpellStat;
 import com.Polarice3.Goety.config.SpellConfig;
@@ -71,6 +71,11 @@ public class FireBreathSpell extends BreathingSpell {
     }
 
     @Override
+    public SpellType getSpellType() {
+        return SpellType.NETHER;
+    }
+
+    @Override
     public void useParticle(Level worldIn, LivingEntity caster, ItemStack stack) {
         if (worldIn instanceof ServerLevel serverLevel){
             ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, ParticleTypes.SMOKE, caster);
@@ -111,7 +116,8 @@ public class FireBreathSpell extends BreathingSpell {
         }
         float damage = this.baseDamage() + potency;
         if (!worldIn.isClientSide) {
-            if (CuriosFinder.hasCurio(caster, ModItems.RING_OF_THE_DRAGON.get())) {
+            // The Nether Staff is now the active source of Fire Breath empowerment.
+            if (this.rightStaff(staff)) {
                 damage *= 2.0F;
                 if (SpellConfig.DragonFireGriefing.get()) {
                     float flameRange = range * ((float) Math.PI / 180.0F);
@@ -152,10 +158,10 @@ public class FireBreathSpell extends BreathingSpell {
             range = WandUtil.getRangeLevel(entityLiving);
         }
 
-        if (!CuriosFinder.hasCurio(entityLiving, ModItems.RING_OF_THE_DRAGON.get())) {
-            this.dragonBreathAttack(ModParticleTypes.SMALL_DRAGON_FLAME.get(), entityLiving, 10, ((double) range / 10) * 0.5D, 1.0D);
-        } else {
+        if (this.rightStaff(staff)) {
             this.dragonBreathAttack(ModParticleTypes.DRAGON_FLAME.get(), entityLiving, ((double) range / 10) * 0.5D);
+        } else {
+            this.dragonBreathAttack(ModParticleTypes.SMALL_DRAGON_FLAME.get(), entityLiving, 10, ((double) range / 10) * 0.5D, 1.0D);
         }
     }
 }

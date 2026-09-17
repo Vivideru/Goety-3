@@ -1,11 +1,11 @@
 {
-  "name": "Ominous Pyre",
+  "name": "不吉な炎の台",
   "icon": "goety:ominous_pyre",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The pyre inspires loyal $(l:goety:mutations/illager_servants)Neollagers$() to train themselves. To have the Neollager train at a pyre, simply $(l:goety:focuses/command_focus)Command$() / $(l:goety:focuses/order_focus)Order$() them to it. If 'illagerServantAutoTrain' is enabled, simply have them near one. Depending on its surroundings, much like $(l:rituals/dark_altar)Altars$(), will allow the Neollager to train into a specific Illager subtype. Each pyre can only train up to 8 Trainable Illagers."
+      "text": "不吉な炎の台は、忠実な$(l:goety:mutations/illager_servants)ネオラジャー$()に訓練を促します。ネオラジャーを火葬場で訓練させるには、$(l:goety:focuses/command_focus)命令$() / $(l:goety:focuses/order_focus)体制$()の魔法で火葬場まで連れて行きます。illagerServantAutoTrainが有効になっている場合は、ネオラジャーを火葬場の近くに置くだけです。$(l:rituals/dark_altar)儀式$()と同様に、周囲の環境に応じてネオラジャーは特定のイリジャーへと訓練することができます。1つの火葬場で訓練できる訓練可能なイリジャーは最大8体です。"
     },
     {
       "type": "goety:ritual",
@@ -13,72 +13,77 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Pillager Servants",
-      "text": "$(o)Note: Neollagers are quicker to train into Pillager Servants$()$(br)Requirements: $(li)Neollager $(li)2 Hay/Target Blocks $(li)2 Carved Pumpkins $(li)16 Wooden Fences $(li)20 Wools"
+      "title": "ピリジャーの従者",
+      "text": "$(o)注:ネオラジャーはピリジャーの従者になるのが早い$()$(br)必要: $(li)2 干し草/ターゲット ブロック $(li)2 くりぬかれたカボチャ $(li)16 木のフェンス $(li)20 羊毛"
     },
     {
       "type": "patchouli:text",
-      "title": "Piker Servants",
-      "text": "$(o)Note: Owner must have read $(l:goety:rumors/desert)Front Scroll$()$()$(br)Requirements: $(li)Neollager $(li)2 Grindstone $(li)2 Smithing Tables $(li)16 Wooden Fences $(li)32 Logs $(li)4 Barrels $(li)4 Beds $(li)2 Anvils"
+      "title": "パイカーの従者",
+      "text": "$(o)注:$(l:goety:rumors/desert)前線のスクロール$()を読む必要がある$()$(br)必要: $(li)ネオラジャー $(li)2 砥石 $(li)2 鍛冶台 $(li)16 木のフェンス $(li)32 原木 $(li)4 樽 $(li)4 ベッド $(li)2 金床"
     },
     {
       "type": "patchouli:text",
-      "title": "Signaler Servants",
-      "text": "Requirements: $(li)Neollager $(li)2 Campfires $(li)4 Beds $(li)4 Barrels"
+      "title": "シグナラーの従者",
+      "text": "必要: $(li)ネオラジャー $(li)2 焚き火 $(li)4 ベッド $(li)4 樽"
     },
     {
       "type": "patchouli:text",
-      "title": "Vindicator Servants",
-      "text": "Requirements: $(li)Neollager $(li)1 Banner $(li)64 Wooden Planks $(li)60 Bricks Blocks Any $(li)10 Walls $(li)10 Fences $(li)2 Furnaces $(li)1 Crafting Table"
+      "title": "ヴィンディケーターの従者",
+      "text": "必要: $(li)ネオラジャー $(li)1 旗 $(li)64 板材 $(li)60 あらゆるレンガブロック $(li)10 塀 $(li)10 フェンス $(li)2 かまど $(li)1 作業台"
     },
     {
       "type": "patchouli:text",
-      "title": "Vindicator Chef Servants",
-      "text": "Requirements: $(li)Vindicator Servant $(li)4 Smokers/Furnaces $(li)16 Barrels $(li)2 Cakes"
+      "title": "ヴィンディケーターシェフの従者",
+      "text": "必要: $(li)ヴィンディケーターの従者 $(li)4 燻製器 $(li)2 かまど $(li)2 ケーキ $(li)16 樽"
     },
     {
       "type": "patchouli:text",
-      "title": "Mountaineer Servants",
-      "text": "Requirements: $(li)Vindicator Servant $(li)Pyre must be in snowing biomes $(li)16 Wooden Fences $(li)20 Wools $(li)8 Barrels $(li)4 Powered Wind Blowers"
+      "title": "マウンテニアの従者",
+      "text": "必要: $(li)ヴィンディケーターの従者 $(li)炎の台は雪のバイオームに設置 $(li)16 木のフェンス $(li)20 羊毛 $(li)8 樽 $(li)4 動力が与えられたウィンドブロワー"
     },
     {
       "type": "patchouli:text",
-      "title": "Crusher Servants",
-      "text": "Requirements: $(li)Vindicator Servant $(li)8 Blast Furnaces $(li)2 Lava Cauldrons $(li)2 Water Cauldrons $(li)4 Anvils $(li)1 Smithing Table"
+      "title": "クラッシャーの従者",
+      "text": "必要: $(li)ヴィンディケーターの従者 $(li)8 溶鉱炉 $(li)2 溶岩の入った大釜 $(li)2 水の入った大釜 $(li)4 金床 $(li)1 鍛冶台"
     },
     {
       "type": "patchouli:text",
-      "title": "Evoker Servants",
-      "text": "Requirements: $(li)Magic Neollager $(li)32 Bookshelves/Enchant Power $(li)16 Lit Candles $(li)4 Heads $(li)4 Filled Flower Pots $(li)2 Banners $(li)4 $(l:goety:crafts/stash_urn)Stash Urns$() $(li)1 Lectern"
+      "title": "ロイヤルガードの従者",
+      "text": "必要: $(li)ヴィンディケーターの従者 $(li)4 不吉な石像 $(li)16 ロイヤル/フロスト カーペット $(li)4 旗 $(li)4 金床 $(li)4 $(l:goety:crafts/stash_urn)隠し壺$()"
     },
     {
       "type": "patchouli:text",
-      "title": "Geomancer Servants",
-      "text": "Requirements: $(li)Magic Neollager $(li)16 Blocks of Amethysts $(li)64 Deepslate Blocks $(li)16 $(l:goety:crafts/creeper_totem)Creeper Totems$()"
+      "title": "エヴォーカーの従者",
+      "text": "必要: $(li)魔法ネオラジャー $(li)32 本棚/エンチャントパワー $(li)16 灯ったろうそく $(li)4 頭 $(li)4 植えられた植木鉢 $(li)2 旗 $(li)4 $(l:goety:crafts/stash_urn)隠し壺$() $(li)1 書見台"
     },
     {
       "type": "patchouli:text",
-      "title": "Iceologer Servants",
-      "text": "Requirements: $(li)Magic Neollager $(li)16 Blue Ice $(li)64 Snow Blocks $(li)4 $(l:goety:crafts/artifice/freezing_lamp)Freezing Lamps$()"
+      "title": "ジオマンサーの従者",
+      "text": "必要: $(li)魔法ネオラジャー $(li)16 アメジストブロック $(li)64 深層岩系ブロック $(li)16 $(l:goety:crafts/creeper_totem)クリーパートーテム$()"
     },
     {
       "type": "patchouli:text",
-      "title": "Cryologer Servants",
-      "text": "Requirements: $(li)Iceologer Servant $(li)Pyre must be in snowing biomes $(li)16 Bookshelves/Enchant Power $(li)32 Powdered Snow $(li)16 $(l:goety:crafts/creeper_totem)Creeper Totems$()"
+      "title": "アイソロジャーの従者",
+      "text": "必要: $(li)魔法ネオラジャー $(li)16 青い氷 $(li)48 雪ブロック $(li)16 粉雪 $(li)4 $(l:goety:crafts/artifice/freezing_lamp)フリージングランプ$()"
     },
     {
       "type": "patchouli:text",
-      "title": "Wind Caller Servants",
-      "text": "Requirements: $(li)Magic Neollager $(li)64 Marble Blocks $(li)32 Jade Blocks $(li)4 Indented Gold Blocks"
+      "title": "クライオロジャーの従者",
+      "text": "必要: $(li)アイソロジャーの従者 $(li)炎の台は雪のバイオームに設置 $(li)16 本棚/エンチャントパワー $(li)32 粉雪 $(li)16 $(l:goety:crafts/creeper_totem)クリーパートーテム$()"
     },
     {
       "type": "patchouli:text",
-      "title": "Storm Caster Servants",
-      "text": "Requirements: $(li)Geomancer or Wind Caller $(li)Pyre must be exposed to Thunderstorm $(li)32 Copper Blocks Any $(li)64 Bricks Blocks Any $(li)4 Lightning Rods"
+      "title": "ウィンドコーラーの従者",
+      "text": "必要: $(li)魔法ネオラジャー $(li)64 大理石系ブロック $(li)32 翡翠系ブロック $(li)4 インデントされた金系ブロック"
     },
     {
       "type": "patchouli:text",
-      "text": "To stop them from training, either remove the Pyre or move them more than 10 blocks away from it. If a training Illager is near Illagers they're training to become, they will train faster."
+      "title": "ストームキャスターの従者",
+      "text": "必要: $(li)ジオマンサーかウィンドコーラー $(li)炎の台が雷雨に当たっている $(li)32 あらゆる銅ブロック $(li)64 あらゆるレンガブロック $(li)4 避雷針"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "トレーニングを中止するには、火の台を壊すか、火の台から10ブロック以上離れた場所に、対象を移動させます。"
     }
   ],
   "extra_recipe_mappings": {

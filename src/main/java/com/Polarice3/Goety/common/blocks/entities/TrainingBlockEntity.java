@@ -272,7 +272,8 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
     public boolean placeItem(ItemStack pStack) {
         if (this.level != null) {
             if (this.isFuel(pStack) && this.trainAmount < this.maxTrainAmount()) {
-                this.itemStack = pStack;
+                // Keep the offering's variant after the player's or hopper's stack is consumed.
+                this.itemStack = pStack.copyWithCount(1);
                 this.startTraining(1, pStack);
                 if (pStack.hasCraftingRemainingItem()){
                     ItemHelper.addItemEntity(this.level, this.getBlockPos().above(), pStack.getCraftingRemainingItem());
@@ -493,7 +494,9 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
 
     @Override
     public boolean canPlaceItemThroughFace(int p_19235_, ItemStack pItemStack, @Nullable Direction p_19237_) {
-        return this.level != null && !this.level.isClientSide && this.placeItem(pItemStack);
+        // This is an acceptance query; training starts only when setItem commits the transfer.
+        return p_19235_ == 0 && this.level != null && !this.level.isClientSide
+                && !pItemStack.isEmpty() && this.isFuel(pItemStack) && this.trainAmount < this.maxTrainAmount();
     }
 
     @Override
@@ -503,12 +506,17 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
 
     @Override
     public int getContainerSize() {
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public int getMaxStackSize() {
+        return 1;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return true;
     }
 
     @Override
@@ -528,7 +536,10 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
 
     @Override
     public void setItem(int p_18944_, ItemStack p_18945_) {
-        this.placeItem(p_18945_);
+        // Offerings are consumed immediately, but the caller retains ownership of its stack.
+        if (this.canPlaceItemThroughFace(p_18944_, p_18945_, null)) {
+            this.placeItem(p_18945_.copy());
+        }
     }
 
     @Override

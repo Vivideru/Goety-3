@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.abyss;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.BouncyBubble;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -54,6 +55,7 @@ public class BouncyBubbleSpell extends Spell {
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.VELOCITY);
         list.add(ModEnchantments.RADIUS);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

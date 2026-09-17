@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:highrock"
+  },
+  "result": {
+    "id": "goety:polished_highrock",
+    "count": 1
+  }
+}

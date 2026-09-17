@@ -32,6 +32,7 @@ runs {
 
     client {
         systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        jvmArgument '-Xmx8G'
     }
 
     server {
@@ -49,6 +50,13 @@ runs {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+// Generated data may intentionally replace a hand-authored resource with the
+// same path (for example damage type definitions). Keep the generated/source
+// resource pipeline deterministic when Gradle encounters such an overlap.
+tasks.named('processResources', ProcessResources).configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 
 repositories {
     maven {
@@ -109,6 +117,16 @@ dependencies {
     compileOnly "maven.modrinth:jade:15.10.5+neoforge"
     runtimeOnly "maven.modrinth:jade:15.10.5+neoforge"
 
+    // Sophisticated Backpacks runtime testing
+    runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticated_backpacks_version}"
+    runtimeOnly "maven.modrinth:sophisticated-core:${sophisticated_core_version}"
+
+    // Shader runtime dependencies are client-only and can be skipped for dedicated server validation.
+    if (!project.hasProperty('skipShaderRuntime')) {
+        runtimeOnly "maven.modrinth:YL57xq9U:${iris_version_id}"
+        runtimeOnly "maven.modrinth:AANobbMI:${sodium_version_id}"
+    }
+
     // Apotheosis compat
     compileOnly "dev.shadowsoffire:Placebo:${minecraft_version}-9.9.1"
     compileOnly "dev.shadowsoffire:ApothicAttributes:${minecraft_version}-2.7.0"
@@ -168,6 +186,9 @@ tasks.named('jar', Jar).configure {
         ])
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    exclude 'assets/goety/goety/**'
+    exclude 'data/goety/goety/**'
+    exclude 'data/goety/structure/**'
 
 }
 

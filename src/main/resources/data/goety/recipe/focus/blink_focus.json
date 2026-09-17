@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "end",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "minecraft:chorus_fruit"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "minecraft:chorus_fruit"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "minecraft:chorus_fruit"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "minecraft:chorus_fruit"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:blink_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "end",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    }
+  ],
+  "result": {
+    "id": "goety:blink_focus"
+  }
 }
-

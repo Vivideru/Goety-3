@@ -1,18 +1,17 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "a a",
-                    "a a",
-                    "aaa"
-                ],
-    "key":  {
-                "a":  {
-                          "tag":  "c:storage_blocks/amethyst"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:amethyst_necklace",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "a a",
+    "a a",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "tag": "c:storage_blocks/amethyst"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:amethyst_necklace"
+  }
 }
-

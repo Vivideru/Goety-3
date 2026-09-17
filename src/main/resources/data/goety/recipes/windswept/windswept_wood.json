@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:windswept_log"
+    }
+  },
+  "result": {
+    "id": "goety:windswept_wood",
+    "count": 3
+  }
+}

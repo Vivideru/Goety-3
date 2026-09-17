@@ -203,8 +203,9 @@ public class WallCandlestickBlock extends Block implements SimpleWaterloggedBloc
             }
          }
 
-         p_220698_.addParticle(ModParticleTypes.SMALL_FIRE.get(), p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-         p_220698_.addParticle(ModParticleTypes.SMALL_FIRE_DROP.get(), p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+         // Alternating the reversible sprite avoids doubling the visible flame density.
+         var particle = p_220700_.nextBoolean() ? ModParticleTypes.SMALL_FIRE_REVERSED.get() : ModParticleTypes.SMALL_FIRE.get();
+         p_220698_.addParticle(particle, p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
       }
    }
 

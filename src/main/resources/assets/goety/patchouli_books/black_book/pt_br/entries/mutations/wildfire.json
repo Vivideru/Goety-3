@@ -11,7 +11,7 @@
     },
     {
       "type": "goety:ritual",
-      "recipe": "goety:transformar_blazes_em_incendio_florestal"
+      "recipe": "goety:convert_blazes_to_wildfire"
     },
     {
       "type": "patchouli:entity",

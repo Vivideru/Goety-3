@@ -1,6 +1,7 @@
 package com.Polarice3.Goety.common.entities.projectiles;
 
 import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.ISpellEntity;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.utils.ColorUtil;
@@ -16,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class RainArrow extends Arrow {
+public class RainArrow extends Arrow implements ISpellEntity {
     public RainArrow(EntityType<? extends Arrow> p_36858_, Level p_36859_) {
         super(p_36858_, p_36859_);
     }

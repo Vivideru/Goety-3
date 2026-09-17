@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " dc",
+    " sd",
+    "s  "
+  ],
+  "key":
+  {
+    "d":
+    {
+      "tag": "forge:gems/diamond"
+    },
+    "c":
+    {
+      "item": "goety:pale_steel_ingot"
+    },
+    "s":
+    {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result":
+  {
+    "id": "goety:diamond_ice_axe"
+  }
+}

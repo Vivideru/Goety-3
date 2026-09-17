@@ -1,26 +1,25 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:summon_tamed",
-    "activation_item":  {
-                            "item":  "minecraft:phantom_membrane"
-                        },
-    "craftType":  "necroturgy",
-    "entity_to_summon":  "goety:phantom_servant",
-    "soulCost":  5,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:phantom_membrane"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:jei_dummy/none"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:summon_tamed",
+  "activation_item": {
+    "item": "minecraft:phantom_membrane"
+  },
+  "craftType": "necroturgy",
+  "entity_to_summon": "goety:phantom_servant",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "tag": "c:bones"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
 }
-

@@ -1,0 +1,114 @@
+{
+  "parent": "goety:goety/craft_animation_core",
+  "display": {
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancements.goety.summon_skeleton.title"
+    },
+    "description": {
+      "translate": "advancements.goety.summon_skeleton.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "skeleton": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:skeleton_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "stray": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:stray_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "wither_skeleton": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:wither_skeleton_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "mossy_skeleton": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:mossy_skeleton_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "sunken_skeleton": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:sunken_skeleton_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "rattled": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:rattled_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "requirements": [
+    [
+      "skeleton",
+      "stray",
+      "wither_skeleton",
+      "mossy_skeleton",
+      "sunken_skeleton",
+      "rattled"
+    ]
+  ]
+}

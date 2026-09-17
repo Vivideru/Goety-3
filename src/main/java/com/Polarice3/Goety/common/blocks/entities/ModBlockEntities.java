@@ -12,6 +12,8 @@ import java.util.stream.Stream;
 
 public class ModBlockEntities {
     public static DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, Goety.MOD_ID);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SarcophagusBlockEntity>> SARCOPHAGUS = BLOCK_ENTITY.register("sarcophagus", () -> BlockEntityType.Builder.of(SarcophagusBlockEntity::new,
+            ModBlocks.SHADE_SARCOPHAGUS.get(), ModBlocks.STONE_SARCOPHAGUS.get(), ModBlocks.DEEPSLATE_SARCOPHAGUS.get(), ModBlocks.SANDSTONE_SARCOPHAGUS.get(), ModBlocks.OMINOUS_SARCOPHAGUS.get(), ModBlocks.CRYPT_SARCOPHAGUS.get()).build(null));
 
     private static Stream<Block> boundBlocks() {
         // Block entity registration can run while unrelated block holders from the same DeferredRegister are still unbound.
@@ -112,6 +114,9 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GravestoneBlockEntity>> SHADE_GRAVESTONE = BLOCK_ENTITY.register("shade_gravestone",
             () -> BlockEntityType.Builder.of(GravestoneBlockEntity::new, ModBlocks.SHADE_GRAVESTONE.get()).build(null));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OssuaryBlockEntity>> SHADE_OSSUARY = BLOCK_ENTITY.register("shade_ossuary",
+            () -> BlockEntityType.Builder.of(OssuaryBlockEntity::new, ModBlocks.SHADE_OSSUARY.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlazingCageBlockEntity>> BLAZING_CAGE = BLOCK_ENTITY.register("blazing_cage",
             () -> BlockEntityType.Builder.of(BlazingCageBlockEntity::new, ModBlocks.BLAZING_CAGE.get()).build(null));
@@ -246,5 +251,9 @@ public class ModBlockEntities {
                 return BlockEntityType.Builder.of(PlushieBlockEntity::new, blocks).build(null);
             }
     );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SculpturedStatueBlockEntity>> SCULPTURED_STATUE = BLOCK_ENTITY.register("sculptured_statue",
+            () -> BlockEntityType.Builder.of(SculpturedStatueBlockEntity::new,
+                    boundBlocks().filter(block -> block instanceof SculpturedStatueBlock).toArray(Block[]::new)).build(null));
 
 }

@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:cursed_cage"
-                        },
-    "craftType":  "forge",
-    "soulCost":  5,
-    "duration":  30,
-    "ingredients":  [
-                        {
-                            "item":  "goety:magic_emerald"
-                        },
-                        {
-                            "item":  "goety:animation_core"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/redstone"
-                        },
-                        {
-                            "item":  "minecraft:ender_eye"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "item":  "goety:soul_candlestick"
-                        },
-                        {
-                            "item":  "minecraft:crying_obsidian"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:animator"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:cursed_cage"
+  },
+  "craftType": "forge",
+  "soulCost": 5,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "item": "goety:animation_core"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "item": "goety:soul_candlestick"
+    },
+    {
+      "item": "minecraft:crying_obsidian"
+    }
+  ],
+  "result": {
+    "id": "goety:animator"
+  }
 }
-

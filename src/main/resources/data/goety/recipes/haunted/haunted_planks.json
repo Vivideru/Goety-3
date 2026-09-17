@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "goety:haunted_logs"
+    }
+  ],
+  "result": {
+    "id": "goety:haunted_planks",
+    "count": 4
+  }
+}

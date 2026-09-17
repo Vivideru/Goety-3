@@ -1,8 +1,9 @@
-﻿{
-    "type":  "goety:pulverize",
-    "ingredient":  {
-                       "item":  "minecraft:mossy_stone_bricks"
-                   },
-    "block_result":  "minecraft:mossy_cobblestone"
+{
+  "type": "goety:pulverize",
+  "ingredient": [
+    {
+      "item": "minecraft:mossy_stone_bricks"
+    }
+  ],
+  "block_result": "minecraft:mossy_cobblestone"
 }
-

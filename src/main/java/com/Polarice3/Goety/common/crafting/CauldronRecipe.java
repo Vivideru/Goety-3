@@ -1,6 +1,5 @@
 package com.Polarice3.Goety.common.crafting;
 
-import com.Polarice3.Goety.Goety;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -24,7 +23,6 @@ import java.util.List;
 
 public class CauldronRecipe implements Recipe<CraftingInput> {
     public static Serializer SERIALIZER = new Serializer();
-    private static final ResourceLocation FALLBACK_ID = Goety.location("cauldron");
     private final ResourceLocation id;
     private final ItemStack result;
     private final NonNullList<Ingredient> ingredients;
@@ -156,7 +154,7 @@ public class CauldronRecipe implements Recipe<CraftingInput> {
 
     public static class Serializer implements RecipeSerializer<CauldronRecipe> {
         private static final MapCodec<CauldronRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                ResourceLocation.CODEC.optionalFieldOf("id", FALLBACK_ID).forGetter(recipe -> recipe.id),
+                ResourceLocation.CODEC.fieldOf("id").forGetter(recipe -> recipe.id),
                 ItemStack.STRICT_CODEC.fieldOf("result").forGetter(recipe -> recipe.result),
                 Ingredient.CODEC_NONEMPTY.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.ingredients),
                 Ingredient.CODEC.optionalFieldOf("take_with", Ingredient.EMPTY).forGetter(recipe -> recipe.takeWith),

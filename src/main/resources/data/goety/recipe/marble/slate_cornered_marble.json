@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#$#",
-                    "$ $",
-                    "#$#"
-                ],
-    "key":  {
-                "$":  {
-                          "item":  "goety:marble"
-                      },
-                "#":  {
-                          "item":  "goety:slate_marble_slab"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:slate_cornered_marble",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#$#",
+    "$ $",
+    "#$#"
+  ],
+  "key": {
+    "$": {
+      "item": "goety:marble"
+    },
+    "#": {
+      "item": "goety:slate_marble_slab"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:slate_cornered_marble"
+  }
 }
-

@@ -1,17 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "born_in_chaos_v1:ethereal_spirit"
-                        },
-                        {
-                            "item":  "born_in_chaos_v1:fire_dust"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:ectoplasm"
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "born_in_chaos_v1" } ]
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "born_in_chaos_v1:ethereal_spirit"
+    },
+    {
+      "item": "born_in_chaos_v1:fire_dust"
+    }
+  ],
+  "result": {
+    "id": "goety:ectoplasm"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "born_in_chaos_v1"
+    }
+  ]
 }
-
-

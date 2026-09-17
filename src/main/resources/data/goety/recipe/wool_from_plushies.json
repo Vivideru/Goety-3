@@ -1,12 +1,12 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients": [ {
-                        "tag":  "goety:plushie"
-                    } ],
-    "result":  {
-                   "id":  "minecraft:white_wool",
-                   "count":  3
-               }
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "goety:plushie"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "minecraft:white_wool"
+  }
 }
-
-

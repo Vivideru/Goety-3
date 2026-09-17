@@ -1,23 +1,22 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "category":  "misc",
-    "group":  "hanging_sign",
-    "key":  {
-                "#":  {
-                          "item":  "goety:stripped_haunted_log"
-                      },
-                "X":  {
-                          "item":  "minecraft:chain"
-                      }
-            },
-    "pattern":  [
-                    "X X",
-                    "###",
-                    "###"
-                ],
-    "result":  {
-                   "count":  6,
-                   "id":  "goety:haunted_hanging_sign"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "hanging_sign",
+  "key": {
+    "#": {
+      "item": "goety:stripped_haunted_log"
+    },
+    "X": {
+      "item": "minecraft:chain"
+    }
+  },
+  "pattern": [
+    "X X",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "goety:haunted_hanging_sign"
+  }
 }
-

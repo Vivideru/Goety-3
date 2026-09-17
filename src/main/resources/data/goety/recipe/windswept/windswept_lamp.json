@@ -1,24 +1,23 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " P ",
-                    "SGS",
-                    " P "
-                ],
-    "key":  {
-                "G":  {
-                          "item":  "minecraft:glowstone"
-                      },
-                "P":  {
-                          "item":  "goety:windswept_planks"
-                      },
-                "S":  {
-                          "item":  "minecraft:snowball"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:windswept_lamp",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "SGS",
+    " P "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "P": {
+      "item": "goety:windswept_planks"
+    },
+    "S": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:windswept_lamp"
+  }
 }
-

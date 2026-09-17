@@ -87,6 +87,23 @@ public class DarkWand extends Item implements IWand {
         return stack.has(DataComponents.CUSTOM_DATA);
     }
 
+    /**
+     * Ownership can be represented by a server-side entity reference or only
+     * by the persisted UUID (for example immediately after a chunk reload).
+     * Staff interactions must accept both forms, otherwise own servants cannot
+     * be selected/executed in that window.
+     */
+    private static boolean ownedByPlayer(IOwned owned, Player player) {
+        if (owned.getOwnerId() != null && owned.getOwnerId().equals(player.getUUID())) {
+            return true;
+        }
+        LivingEntity owner = owned.getTrueOwner();
+        if (owner != null && owner.getUUID().equals(player.getUUID())) {
+            return true;
+        }
+        return owner instanceof IOwned nested && ownedByPlayer(nested, player);
+    }
+
     private static void updateContainedFocusData(ItemStack wandStack, Consumer<CompoundTag> updater) {
         updateContainedFocus(wandStack, focus -> updateData(focus, updater));
     }
@@ -204,7 +221,7 @@ public class DarkWand extends Item implements IWand {
 
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         boolean flag = false;
-        if (entity instanceof LivingEntity target && target instanceof IOwned owned && (owned.getTrueOwner() == player || (owned.getTrueOwner() instanceof IOwned owned1 && owned1.getTrueOwner() == player))) {
+        if (entity instanceof LivingEntity target && target instanceof IOwned owned && ownedByPlayer(owned, player)) {
             if (!player.level().isClientSide) {
                 if (IWand.getFocus(stack).getItem() instanceof CallFocus && !CallFocus.hasSummon(IWand.getFocus(stack))) {
                     updateContainedFocusData(stack, compoundTag -> CallFocus.setSummon(compoundTag, target));
@@ -264,7 +281,7 @@ public class DarkWand extends Item implements IWand {
     public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand hand){
         if (IWand.getFocus(stack).getItem() instanceof CommandFocus) {
                 if (CommandFocus.getServant(IWand.getFocus(stack)) instanceof IServant summoned && summoned != target){
-                if (summoned.getTrueOwner() == player && target.distanceTo(player) <= 64){
+                if (summoned instanceof IOwned ownedSummoned && ownedByPlayer(ownedSummoned, player) && target.distanceTo(player) <= 64){
                     summoned.setCommandPosEntity(target);
                     player.playSound(ModSounds.COMMAND.get(), 1.0F, 0.45F);
                     if (!player.level().isClientSide) {
@@ -278,7 +295,7 @@ public class DarkWand extends Item implements IWand {
                 int i = 0;
                 for (LivingEntity livingEntity : OrderFocus.getServants(IWand.getFocus(stack))) {
                     if (livingEntity instanceof IServant summoned && summoned != target) {
-                        if (summoned.getTrueOwner() == player && target.distanceTo(player) <= 64) {
+                        if (summoned instanceof IOwned ownedSummoned && ownedByPlayer(ownedSummoned, player) && target.distanceTo(player) <= 64) {
                             summoned.setCommandPosEntityOrder(target);
                             ++i;
                         }
@@ -294,7 +311,7 @@ public class DarkWand extends Item implements IWand {
             }
         }
         if (target instanceof IOwned owned) {
-            if (owned.getTrueOwner() == player || (owned.getTrueOwner() instanceof IOwned owned1 && owned1.getTrueOwner() == player)) {
+            if (ownedByPlayer(owned, player)) {
                 if (owned instanceof IServant summonedEntity) {
                     if (player.isShiftKeyDown() || player.isCrouching()) {
                         if (SpellConfig.OwnerHitKill.get() == 1) {
@@ -368,7 +385,7 @@ public class DarkWand extends Item implements IWand {
                 if (CommandFocus.hasServant(IWand.getFocus(stack)) && CommandFocus.getServant(IWand.getFocus(stack)) instanceof IServant summoned){
                     LivingEntity livingEntity = CommandFocus.getServant(IWand.getFocus(stack));
                     if (livingEntity != null) {
-                        if (summoned.getTrueOwner() == player && livingEntity.distanceTo(player) <= 64) {
+                        if (summoned instanceof IOwned ownedSummoned && ownedByPlayer(ownedSummoned, player) && livingEntity.distanceTo(player) <= 64) {
                             BlockPos above = blockpos.above();
                             boolean flag = false;
                             if (summoned.canCommandToBlock(level, blockpos)) {
@@ -393,7 +410,7 @@ public class DarkWand extends Item implements IWand {
                     int i = 0;
                     for (LivingEntity livingEntity : OrderFocus.getServants(IWand.getFocus(stack))) {
                         if (livingEntity instanceof IServant summoned && summoned.canBeCommanded()) {
-                            if (summoned.getTrueOwner() == player && livingEntity.distanceTo(player) <= 64) {
+                            if (summoned instanceof IOwned ownedSummoned && ownedByPlayer(ownedSummoned, player) && livingEntity.distanceTo(player) <= 64) {
                                 BlockPos above = blockpos.above();
                                 if (summoned.canCommandToBlock(level, blockpos)) {
                                     summoned.setCommandPos(blockpos);

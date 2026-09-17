@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "iqr",
+    "qtq",
+    "rqi"
+  ],
+  "key":
+  {
+    "i":
+    {
+      "tag": "forge:raw_materials/iron"
+    },
+    "q":
+    {
+      "tag": "forge:gems/quartz"
+    },
+    "r":
+    {
+      "tag": "forge:dusts/redstone"
+    },
+    "t":
+    {
+      "tag": "goety:totems"
+    }
+  },
+  "result":
+  {
+    "id": "goety:empty_focus",
+    "count": 4
+  }
+}

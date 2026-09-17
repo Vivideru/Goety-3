@@ -1,0 +1,28 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:cursed_infuser"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "research": "haunting",
+  "ingredients": [
+    {
+      "tag": "goety:crypt_stone"
+    },
+    {
+      "tag": "goety:crypt_stone"
+    },
+    {
+      "tag": "goety:crypt_stone"
+    },
+    {
+      "tag": "goety:crypt_stone"
+    }
+  ],
+  "result": {
+    "id": "goety:grim_infuser"
+  }
+}

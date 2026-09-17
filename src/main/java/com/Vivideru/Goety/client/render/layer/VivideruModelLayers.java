@@ -11,4 +11,6 @@ public class VivideruModelLayers {
     public static final ModelLayerLocation WARG = new ModelLayerLocation(Goety.location("warg"), "main");
     public static final ModelLayerLocation WARG_ARMOR = new ModelLayerLocation(Goety.location("warg_armor"), "main");
     public static final ModelLayerLocation WARG_SADDLE = new ModelLayerLocation(Goety.location("warg_saddle"), "main");
+    public static final ModelLayerLocation CERBERUS = new ModelLayerLocation(Goety.location("cerberus"), "main");
+    public static final ModelLayerLocation CERBERUS_ARMOR = new ModelLayerLocation(Goety.location("cerberus_armor"), "main");
 }

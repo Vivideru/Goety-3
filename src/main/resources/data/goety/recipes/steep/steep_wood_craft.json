@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "sss",
+    "sts",
+    "sss"
+  ],
+  "key":
+  {
+    "s":
+    {
+      "tag": "goety:steepable_wood"
+    },
+    "t":
+    {
+      "tag": "goety:totems"
+    }
+  },
+  "result":
+  {
+    "id": "goety:steep_wood",
+    "count": 8
+  }
+}

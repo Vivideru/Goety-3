@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:charge_focus"
-                        },
-    "craftType":  "storm",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/jade"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "item":  "minecraft:tnt"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/redstone"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "tag":  "c:dusts/prismarine"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:discharge_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:charge_focus"
+  },
+  "craftType": "storm",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/jade"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "tag": "c:dusts/prismarine"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    }
+  ],
+  "result": {
+    "id": "goety:discharge_focus"
+  }
 }
-

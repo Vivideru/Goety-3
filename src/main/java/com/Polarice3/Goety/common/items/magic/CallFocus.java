@@ -102,7 +102,7 @@ public class CallFocus extends MagicFocus{
                             if (event.isCanceled()) {
                                 return;
                             }
-                            livingEntity.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                            MobUtil.teleportTracked(livingEntity, event.getTargetX(), event.getTargetY(), event.getTargetZ());
                             MobUtil.moveDownToGround(livingEntity);
                             ModNetwork.sendToALL(new SPlayWorldSoundPacket(player.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                             ModNetwork.sendToALL(new SPlayWorldSoundPacket(blockPos, SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
@@ -121,8 +121,13 @@ public class CallFocus extends MagicFocus{
                                 if (event.isCanceled()) {
                                     return;
                                 }
-                                livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, vec3));
-                                livingEntity.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                                // Dimension changes replace non-player entities in 1.21, so continue with the returned tracked instance.
+                                Entity transferred = livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, vec3));
+                                if (!(transferred instanceof LivingEntity transferredLiving)) {
+                                    return;
+                                }
+                                livingEntity = transferredLiving;
+                                MobUtil.teleportTracked(livingEntity, event.getTargetX(), event.getTargetY(), event.getTargetZ());
                                 MobUtil.moveDownToGround(livingEntity);
                                 ModNetwork.sendToALL(new SPlayWorldSoundPacket(player.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                                 if (original instanceof IServant servant){

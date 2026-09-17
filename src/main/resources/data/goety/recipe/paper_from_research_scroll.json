@@ -1,12 +1,12 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients": [ {
-                        "tag":  "goety:research_scrolls"
-                    } ],
-    "result":  {
-                   "id":  "minecraft:paper",
-                   "count":  3
-               }
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "goety:research_scrolls"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "id": "minecraft:paper"
+  }
 }
-
-

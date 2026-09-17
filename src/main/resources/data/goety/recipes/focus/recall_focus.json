@@ -1,0 +1,33 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "magic",
+  "soulCost": 5,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "minecraft:ender_chest"
+    },
+    {
+      "item": "goety:waystone"
+    },
+    {
+      "item": "goety:waystone"
+    },
+    {
+      "item": "goety:waystone"
+    },
+    {
+      "item": "goety:waystone"
+    },
+    {
+      "item": "minecraft:ender_chest"
+    }
+  ],
+  "result": {
+    "id": "goety:recall_focus"
+  }
+}

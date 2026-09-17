@@ -1,27 +1,26 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sas",
-                    "lcl",
-                    "sas"
-                ],
-    "key":  {
-                "c":  {
-                          "item":  "goety:animation_core"
-                      },
-                "l":  {
-                          "item":  "minecraft:lava_bucket"
-                      },
-                "a":  {
-                          "tag":  "c:storage_blocks/amethyst"
-                      },
-                "s":  {
-                          "tag":  "c:stone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:ministrous_focus",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sas",
+    "lcl",
+    "sas"
+  ],
+  "key": {
+    "c": {
+      "item": "goety:animation_core"
+    },
+    "l": {
+      "item": "minecraft:lava_bucket"
+    },
+    "a": {
+      "tag": "c:storage_blocks/amethyst"
+    },
+    "s": {
+      "tag": "c:stone"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:ministrous_focus"
+  }
 }
-

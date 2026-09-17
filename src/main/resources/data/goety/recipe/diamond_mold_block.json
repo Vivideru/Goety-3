@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " s ",
-                    "sds",
-                    " s "
-                ],
-    "key":  {
-                "s":  {
-                          "tag":  "c:stone"
-                      },
-                "d":  {
-                          "tag":  "c:storage_blocks/diamond"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:diamond_mold_block",
-                   "count":  4
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " s ",
+    "sds",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "tag": "c:stone"
+    },
+    "d": {
+      "tag": "c:storage_blocks/diamond"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:diamond_mold_block"
+  }
 }
-

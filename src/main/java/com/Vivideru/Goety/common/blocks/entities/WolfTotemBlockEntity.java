@@ -45,6 +45,7 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
     private static final TagKey<Block> CRYPT_BLOCKS = BlockTags.create(ResourceLocation.fromNamespaceAndPath("goety", "crypt_blocks"));
     public static final String SERVANT_LIST = "WolfTotemServants";
     private static final String CREATED_WARG = "CreatedWarg";
+    private static final String CREATED_CERBERUS = "CreatedCerberus";
     private static final String HEALTH_BONUS = "VivideruWolfTotemHealthBonus";
     private int rawMeat;
     private int bones;
@@ -52,6 +53,7 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
     private final List<UUID> uuids = new ArrayList<>();
     private CursedCageBlockEntity cursedCageTile;
     private UUID createdWarg;
+    private UUID createdCerberus;
 
     public WolfTotemBlockEntity(BlockPos pos, BlockState state) {
         super(VivideruBlockEntities.WOLF_TOTEM.get(), pos, state);
@@ -98,6 +100,11 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         if (this.level != null) {
             this.level.playSound(null, this.getBlockPos(), SoundEvents.WOLF_HOWL, SoundSource.BLOCKS, 0.20F, 0.75F);
         }
+    }
+
+    @Override
+    public boolean isFuel(ItemStack stack) {
+        return isRawMeat(stack) || stack.is(Items.BONE);
     }
 
     @Override
@@ -196,6 +203,27 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         }
     }
 
+    public boolean hasCreatedCerberus() {
+        return this.createdCerberus != null;
+    }
+
+    public void setCreatedCerberus(UUID createdCerberus) {
+        this.createdCerberus = createdCerberus;
+        this.markUpdated();
+    }
+
+    public void releaseCerberus(UUID cerberusId) {
+        boolean changed = this.uuids.remove(cerberusId);
+        changed |= this.servants.removeIf(servant -> servant.getUUID().equals(cerberusId));
+        if (cerberusId.equals(this.createdCerberus)) {
+            this.createdCerberus = null;
+            changed = true;
+        }
+        if (changed) {
+            this.markUpdated();
+        }
+    }
+
     public boolean canOfferRevive() {
         return this.checkCage() && !this.getServants().isEmpty();
     }
@@ -237,6 +265,9 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         if (this.createdWarg != null) {
             written.putUUID(CREATED_WARG, this.createdWarg);
         }
+        if (this.createdCerberus != null) {
+            written.putUUID(CREATED_CERBERUS, this.createdCerberus);
+        }
         return written;
     }
 
@@ -253,6 +284,7 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
             }
         }
         this.createdWarg = tag.hasUUID(CREATED_WARG) ? tag.getUUID(CREATED_WARG) : null;
+        this.createdCerberus = tag.hasUUID(CREATED_CERBERUS) ? tag.getUUID(CREATED_CERBERUS) : null;
     }
 
     private static boolean isRawMeat(ItemStack stack) {

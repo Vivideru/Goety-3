@@ -47,6 +47,9 @@ public class ModRecipeSerializer {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CauldronRecipe>> CAULDRON = RECIPE_SERIALIZERS.register("cauldron",
             () -> CauldronRecipe.SERIALIZER);
 
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CauldronSusStewRecipe>> CAULDRON_SUS = RECIPE_SERIALIZERS.register("cauldron_sus",
+            () -> CauldronSusStewRecipe.SERIALIZER);
+
     public static final DeferredHolder<RecipeType<?>, RecipeType<BrewingRecipe>> BREWING_TYPE = register("brewing");
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BrewingRecipe>> BREWING = RECIPE_SERIALIZERS.register("brewing",

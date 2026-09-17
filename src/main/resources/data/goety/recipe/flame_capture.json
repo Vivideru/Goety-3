@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " i ",
-                    "iei",
-                    " i "
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "i":  {
-                          "item":  "goety:cursed_ingot"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:flame_capture",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "iei",
+    " i "
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "i": {
+      "item": "goety:cursed_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:flame_capture"
+  }
 }
-

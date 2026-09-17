@@ -5,6 +5,8 @@ import com.Polarice3.Goety.common.items.handler.SoulUsingItemHandler;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.TotemFinder;
 import com.Polarice3.Goety.utils.WandUtil;
+import com.Vivideru.Goety.common.items.magic.FocusBagBinding;
+import com.Vivideru.Goety.common.network.server.SFocusBagSyncPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -35,7 +37,8 @@ public class CSwapFocusPacket {
     }
 
     public static void swapFocus(int swapSlot, Player player) {
-        ItemStack stack = TotemFinder.findBag(player);
+        FocusBagBinding.BagReference bagReference = TotemFinder.findBagReference(player);
+        ItemStack stack = bagReference.stack();
         if (stack.getCount() <= 0) {
             return;
         }
@@ -51,7 +54,9 @@ public class CSwapFocusPacket {
         bagHandler.setStackInSlot(swapSlot, wandFocus);
         wandHandler.extractItem();
         wandHandler.insertItem(bagFocus);
+        bagReference.save();
         if (player instanceof ServerPlayer serverPlayer){
+            SFocusBagSyncPacket.sendTo(serverPlayer, stack);
             serverPlayer.connection.send(new ClientboundSoundPacket(ModSounds.FOCUS_PICK, SoundSource.PLAYERS, serverPlayer.position().x, serverPlayer.position().y, serverPlayer.position().z, 1.0F, 1.0F, serverPlayer.level().getRandom().nextLong()));
         }
     }

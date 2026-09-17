@@ -1,32 +1,31 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "magic",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:gunpowder"
-                        },
-                        {
-                            "tag":  "c:gems/amethyst"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "tag":  "c:dusts/redstone"
-                        },
-                        {
-                            "tag":  "c:dusts/glowstone"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:mystic_core",
-                   "count":  2
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:gunpowder"
+    },
+    {
+      "tag": "c:gems/amethyst"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "goety:mystic_core"
+  }
 }
-

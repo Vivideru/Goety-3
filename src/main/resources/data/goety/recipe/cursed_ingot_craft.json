@@ -1,27 +1,26 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " i ",
-                    "dtd",
-                    " g "
-                ],
-    "key":  {
-                "i":  {
-                          "tag":  "c:ingots/iron"
-                      },
-                "g":  {
-                          "tag":  "c:ingots/gold"
-                      },
-                "d":  {
-                          "tag":  "goety:cursed_ingot_craft"
-                      },
-                "t":  {
-                          "tag":  "goety:totems"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:cursed_ingot",
-                   "count":  2
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i ",
+    "dtd",
+    " g "
+  ],
+  "key": {
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    },
+    "d": {
+      "tag": "goety:cursed_ingot_craft"
+    },
+    "t": {
+      "tag": "goety:totems"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:cursed_ingot"
+  }
 }
-

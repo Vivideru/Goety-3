@@ -1,10 +1,9 @@
-﻿{
+{
   "type": "goety:cauldron",
-  "id": "goety:cauldron/candle",
   "soulCost": 0,
   "color": 16439971,
   "take_with": {
-    "item": "minecraft:string"
+    "tag": "c:string"
   },
   "ingredients": [
     {
@@ -14,7 +13,9 @@
       "item": "minecraft:honeycomb"
     }
   ],
-  "result": { "id": "minecraft:candle", "count": 1
+  "result": {
+    "id": "minecraft:candle",
+    "count": 1
   },
   "neoforge:conditions": [
     {
@@ -24,6 +25,6 @@
         "modid": "goety_revelation"
       }
     }
-  ]
+  ],
+  "id": "goety:cauldron/candle"
 }
-

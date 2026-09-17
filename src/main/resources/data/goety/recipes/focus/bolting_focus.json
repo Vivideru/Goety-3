@@ -1,0 +1,33 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:launch_focus"
+  },
+  "craftType": "storm",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/copper"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    },
+    {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    {
+      "item": "minecraft:bow"
+    },
+    {
+      "tag": "forge:dusts/prismarine"
+    },
+    {
+      "tag": "forge:storage_blocks/jade"
+    }
+  ],
+  "result": {
+    "id": "goety:bolting_focus"
+  }
+}

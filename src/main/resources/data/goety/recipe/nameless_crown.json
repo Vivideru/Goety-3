@@ -1,35 +1,34 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:necro_crown"
-                        },
-    "craftType":  "necroturgy",
-    "research":  "forbidden",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ingots/iron"
-                        },
-                        {
-                            "tag":  "c:ingots/iron"
-                        },
-                        {
-                            "tag":  "c:ingots/iron"
-                        },
-                        {
-                            "item":  "goety:soul_emerald"
-                        },
-                        {
-                            "item":  "goety:forbidden_piece"
-                        },
-                        {
-                            "item":  "goety:forbidden_piece"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:nameless_crown"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:necro_crown"
+  },
+  "craftType": "necroturgy",
+  "research": "forbidden",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "item": "goety:soul_emerald"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    },
+    {
+      "item": "goety:forbidden_piece"
+    }
+  ],
+  "result": {
+    "id": "goety:nameless_crown"
+  }
 }
-

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "l",
+    "s",
+    "l"
+  ],
+  "key":
+  {
+    "l":
+    {
+      "tag": "goety:slab_stone_craft"
+    },
+    "s":
+    {
+      "tag": "goety:full_stone_craft"
+    }
+  },
+  "result":
+  {
+    "id": "goety:pedestal_stone",
+    "count": 1
+  }
+}

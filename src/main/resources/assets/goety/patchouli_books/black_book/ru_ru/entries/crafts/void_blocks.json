@@ -14,8 +14,12 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "goety:void_block",
-      "recipe2": "goety:void_bucket"
+      "recipe": "goety:void_block"
+    },
+	{
+      "type": "patchouli:spotlight",
+      "item": "goety:void_bucket",
+      "text": "Чтобы получить ведро жидкой пустоты, наполните котёл бутылочками пустоты и зачерпните из него ведром."
     },
     {
       "type": "patchouli:text",

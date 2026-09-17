@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:haunted_jug"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_haunted_jug.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_haunted_jug.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_dark_altar",
+  "criteria": {
+    "haunted_jug": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:haunted_jug"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "haunted_jug"
+    ]
+  ],
+  "rewards": {
+    "experience": 5
+  }
+}

@@ -47,6 +47,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 import org.jetbrains.annotations.Nullable;
@@ -149,6 +150,12 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
 
     public double getPassengersRidingOffset() {
         return 1.6D * 0.75D;
+    }
+
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity passenger) {
+        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
+        return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 
     public void positionRider(Entity rider, Entity.MoveFunction p_19958_) {

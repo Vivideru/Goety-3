@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "goety:pine_log",
+    "goety:pine_wood",
+    "goety:stripped_pine_log",
+    "goety:stripped_pine_wood"
+  ]
+}

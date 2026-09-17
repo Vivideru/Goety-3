@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.wild;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.PoisonQuill;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -53,6 +54,7 @@ public class PoisonDartSpell extends Spell {
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.DURATION);
         list.add(ModEnchantments.VELOCITY);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

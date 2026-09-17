@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
@@ -29,7 +29,8 @@
       "item": "minecraft:glass_bottle"
     }
   ],
-  "result": { "id": "goety:flying_ointment"
+  "result": {
+    "id": "goety:flying_ointment"
   },
   "neoforge:conditions": [
     {
@@ -38,4 +39,3 @@
     }
   ]
 }
-

@@ -104,11 +104,9 @@ public class PedestalBlock extends BaseEntityBlock implements IBlockExtension, S
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
-            if (tileentity instanceof PedestalBlockEntity) {
-                IItemHandler handler = pLevel.getCapability(Capabilities.ItemHandler.BLOCK, pPos, null);
-                if (handler != null) {
-                    dropInventoryItems(tileentity.getLevel(), tileentity.getBlockPos(), handler);
-                }
+            if (!pLevel.isClientSide && tileentity instanceof PedestalBlockEntity pedestal) {
+                // The replacement state may no longer expose a capability, so drop from the block entity that is still being removed.
+                dropInventoryItems(pLevel, pPos, pedestal.itemStackHandler);
             }
 
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -117,7 +115,10 @@ public class PedestalBlock extends BaseEntityBlock implements IBlockExtension, S
 
     public static void dropInventoryItems(Level worldIn, BlockPos pos, IItemHandler itemHandler) {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
-            Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(i));
+            ItemStack stack = itemHandler.extractItem(i, itemHandler.getSlotLimit(i), false);
+            if (!stack.isEmpty()) {
+                Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
+            }
         }
     }
 

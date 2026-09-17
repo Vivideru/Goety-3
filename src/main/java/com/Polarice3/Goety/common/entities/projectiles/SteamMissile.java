@@ -25,6 +25,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -94,6 +95,10 @@ public class SteamMissile extends SpellHurtingProjectile {
             float baseDamage = SpellConfig.get(SpellConfig.SteamingDamage).floatValue() * WandUtil.damageMultiply();
             Entity entity = p_37626_.getEntity();
             Entity entity1 = this.getOwner();
+            boolean preserveActiveIFrames = SpellConfig.get(SpellConfig.PartialMagicProjectileIFrames)
+                    && entity1 instanceof Player
+                    && entity instanceof LivingEntity livingEntity
+                    && livingEntity.invulnerableTime > 10;
             boolean flag;
             if (entity1 instanceof LivingEntity livingentity) {
                 if (livingentity instanceof Mob mob){
@@ -114,7 +119,8 @@ public class SteamMissile extends SpellHurtingProjectile {
                 flag = entity.hurt(this.damageSources().magic(), baseDamage);
             }
 
-            if (flag && entity instanceof LivingEntity livingEntity) {
+            if (flag && entity instanceof LivingEntity livingEntity && !preserveActiveIFrames) {
+                // Normal steam hits keep their shorter recovery, while reduced multi-hits must leave the existing timer untouched.
                 livingEntity.invulnerableTime = 15;
             }
         }

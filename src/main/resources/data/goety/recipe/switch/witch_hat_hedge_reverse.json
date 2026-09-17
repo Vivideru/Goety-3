@@ -1,11 +1,11 @@
-﻿{
-    "type":  "goety:cursed_infuser_recipes",
-    "ingredient":  {
-                       "item":  "goety:witch_hat_hedge"
-                   },
-    "result":  {
-                   "id":  "goety:witch_hat"
-               },
-    "cookingTime":  60
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "goety:witch_hat_hedge"
+  },
+  "result": {
+    "id": "goety:witch_hat",
+    "count": 1
+  },
+  "cookingTime": 60
 }
-

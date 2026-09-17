@@ -1,24 +1,23 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "ICI",
-                    " S ",
-                    " I "
-                ],
-    "key":  {
-                "C":  {
-                          "tag":  "minecraft:coals"
-                      },
-                "S":  {
-                          "tag":  "minecraft:logs"
-                      },
-                "I":  {
-                          "tag":  "c:ingots/iron"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:iron_dungeon_torch",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ICI",
+    " S ",
+    " I "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:coals"
+    },
+    "S": {
+      "tag": "minecraft:logs"
+    },
+    "I": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:iron_dungeon_torch"
+  }
 }
-

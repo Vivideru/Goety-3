@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sss",
-                    "sts",
-                    "sss"
-                ],
-    "key":  {
-                "s":  {
-                          "tag":  "c:stone"
-                      },
-                "t":  {
-                          "tag":  "goety:totems"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:shade_stone",
-                   "count":  8
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "sts",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "tag": "c:stone"
+    },
+    "t": {
+      "tag": "goety:totems"
+    }
+  },
+  "result": {
+    "count": 8,
+    "id": "goety:shade_stone"
+  }
 }
-

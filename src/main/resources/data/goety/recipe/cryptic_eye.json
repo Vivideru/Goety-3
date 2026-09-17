@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " d ",
-                    "ded",
-                    " d "
-                ],
-    "key":  {
-                "d":  {
-                          "item":  "goety:shadow_essence"
-                      },
-                "e":  {
-                          "item":  "minecraft:ender_eye"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:cryptic_eye",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " d ",
+    "ded",
+    " d "
+  ],
+  "key": {
+    "d": {
+      "item": "goety:shadow_essence"
+    },
+    "e": {
+      "item": "minecraft:ender_eye"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:cryptic_eye"
+  }
 }
-

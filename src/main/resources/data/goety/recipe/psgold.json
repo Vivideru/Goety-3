@@ -1,16 +1,15 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "tag":  "c:raw_materials/gold"
-                        },
-                        {
-                            "item":  "goety:philosophers_stone"
-                        }
-                    ],
-    "result":  {
-                   "id":  "minecraft:raw_gold",
-                   "count":  2
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:raw_materials/gold"
+    },
+    {
+      "item": "goety:philosophers_stone"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "minecraft:raw_gold"
+  }
 }
-

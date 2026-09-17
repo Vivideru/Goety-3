@@ -1,0 +1,36 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:ominous_orb"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:magic_fabric"
+    },
+    {
+      "item": "goety:magic_fabric"
+    },
+    {
+      "item": "goety:haunted_planks"
+    },
+    {
+      "item": "goety:haunted_planks"
+    },
+    {
+      "item": "goety:haunted_planks"
+    },
+    {
+      "item": "goety:haunted_planks"
+    },
+    {
+      "item": "goety:dark_wand"
+    }
+  ],
+  "result": {
+    "id": "goety:ominous_staff"
+  }
+}

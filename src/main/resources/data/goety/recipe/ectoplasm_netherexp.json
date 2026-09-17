@@ -1,22 +1,25 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "eee",
-                    "ebe",
-                    "eee"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:ectoplasm"
-                      },
-                "b":  {
-                          "item":  "minecraft:bucket"
-                      }
-            },
-    "result":  {
-                   "id":  "netherexp:ectoplasm_bucket"
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "netherexp" } ]
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "eee",
+    "ebe",
+    "eee"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:ectoplasm"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "id": "netherexp:ectoplasm_bucket"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "netherexp"
+    }
+  ]
 }
-
-

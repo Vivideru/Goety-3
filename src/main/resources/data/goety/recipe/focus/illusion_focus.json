@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:animation_core"
-                        },
-    "craftType":  "animation",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:glass"
-                        },
-                        {
-                            "item":  "minecraft:arrow"
-                        },
-                        {
-                            "tag":  "c:glass"
-                        },
-                        {
-                            "item":  "minecraft:arrow"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:dusts/glowstone"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:illusion_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "animation",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:glass"
+    },
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "tag": "c:glass"
+    },
+    {
+      "item": "minecraft:arrow"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "tag": "c:gems/lapis"
+    }
+  ],
+  "result": {
+    "id": "goety:illusion_focus"
+  }
 }
-

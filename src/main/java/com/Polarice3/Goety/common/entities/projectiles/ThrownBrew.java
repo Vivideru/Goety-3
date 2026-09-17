@@ -147,7 +147,8 @@ public class ThrownBrew extends ThrowableItemProjectile implements ItemSupplier 
             Holder<Potion> potion = ModPotionUtil.getPotion(itemstack);
             List<MobEffectInstance> list = ModPotionUtil.getMobEffects(itemstack);
             List<BrewEffectInstance> list1 = BrewUtils.getBrewEffects(itemstack);
-            boolean flag = potion == Potions.WATER && list.isEmpty();
+            // Custom-only brews still use water as their base potion, so they must not enter the plain-water branch.
+            boolean flag = potion == Potions.WATER && list.isEmpty() && list1.isEmpty();
             if (flag) {
                 this.applyWater();
             } else if (!list.isEmpty() || !list1.isEmpty()) {

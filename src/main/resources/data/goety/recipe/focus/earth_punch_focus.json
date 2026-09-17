@@ -1,29 +1,28 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sps",
-                    "fef",
-                    "sgs"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "f":  {
-                          "tag":  "c:stone"
-                      },
-                "p":  {
-                          "item":  "minecraft:piston"
-                      },
-                "g":  {
-                          "tag":  "c:gunpowder"
-                      },
-                "s":  {
-                          "item":  "goety:magic_emerald"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:earth_punch_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sps",
+    "fef",
+    "sgs"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "f": {
+      "tag": "c:stone"
+    },
+    "p": {
+      "item": "minecraft:piston"
+    },
+    "g": {
+      "tag": "c:gunpowder"
+    },
+    "s": {
+      "item": "goety:magic_emerald"
+    }
+  },
+  "result": {
+    "id": "goety:earth_punch_focus"
+  }
 }
-

@@ -10,6 +10,11 @@ import org.joml.Vector3f;
 public class ColorUtil {
     public static ColorUtil WHITE = new ColorUtil(0xffffff);
     public static ColorUtil BLACK = new ColorUtil(0x000000);
+    public static ColorUtil DARK_RED = new ColorUtil(ChatFormatting.DARK_RED);
+    public static ColorUtil GOLD = new ColorUtil(ChatFormatting.GOLD);
+    public static ColorUtil DARK_PURPLE = new ColorUtil(ChatFormatting.DARK_PURPLE);
+    public static ColorUtil LIGHT_PURPLE = new ColorUtil(ChatFormatting.LIGHT_PURPLE);
+    public static ColorUtil AQUA = new ColorUtil(ChatFormatting.AQUA);
     public float red;
     public float green;
     public float blue;

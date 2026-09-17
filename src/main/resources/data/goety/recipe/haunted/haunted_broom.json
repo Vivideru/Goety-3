@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "goety:ritual",
   "ritual_type": "goety:craft",
   "activation_item": {
@@ -24,7 +24,7 @@
       "item": "goety:telekinesis_focus"
     }
   ],
-  "result": { "id": "goety:haunted_broom"
+  "result": {
+    "id": "goety:haunted_broom"
   }
 }
-

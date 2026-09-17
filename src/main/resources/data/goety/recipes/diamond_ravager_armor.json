@@ -1,0 +1,28 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "forge:storage_blocks/diamond"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 30,
+  "research": "ravaging",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/iron"
+    },
+    {
+      "tag": "forge:storage_blocks/iron"
+    },
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "tag": "forge:gems/diamond"
+    }
+  ],
+  "result": {
+    "id": "goety:diamond_ravager_armor"
+  }
+}

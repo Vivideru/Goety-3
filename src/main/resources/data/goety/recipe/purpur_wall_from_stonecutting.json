@@ -1,19 +1,19 @@
 {
-    "type":  "minecraft:stonecutting",
-    "ingredient":  {
-                       "item":  "minecraft:purpur_block"
-                   },
-    "result":  {
-                   "id":  "goety:purpur_wall",
-                   "count":  1
-               },
-    "neoforge:conditions":  [
-                                {
-                                    "type":  "neoforge:not",
-                                    "value":  {
-                                                  "type":  "neoforge:mod_loaded",
-                                                  "modid":  "cataclysm"
-                                              }
-                                }
-                            ]
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:purpur_block"
+  },
+  "result": {
+    "id": "goety:purpur_wall",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "cataclysm"
+      }
+    }
+  ]
 }

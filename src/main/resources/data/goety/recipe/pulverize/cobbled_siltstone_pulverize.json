@@ -1,8 +1,9 @@
-﻿{
-    "type":  "goety:pulverize",
-    "ingredient":  {
-                       "item":  "goety:smooth_siltstone"
-                   },
-    "block_result":  "goety:cobbled_siltstone"
+{
+  "type": "goety:pulverize",
+  "ingredient": [
+    {
+      "item": "goety:smooth_siltstone"
+    }
+  ],
+  "block_result": "goety:cobbled_siltstone"
 }
-

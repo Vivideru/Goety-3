@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.wind;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.RazorWind;
 import com.Polarice3.Goety.common.entities.projectiles.SlashProjectile;
 import com.Polarice3.Goety.common.entities.projectiles.VoidSlash;
@@ -51,6 +52,7 @@ public class RazorWindSpell extends Spell {
         List<ResourceKey<Enchantment>> list = new ArrayList<>();
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.RADIUS);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

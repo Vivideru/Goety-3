@@ -1,10 +1,8 @@
 package com.Polarice3.Goety.common.entities.projectiles;
 
-import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
-import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
 import com.Polarice3.Goety.utils.WandUtil;
@@ -14,7 +12,6 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -71,25 +68,27 @@ public class IceSpear extends IceSpike {
     }
 
     protected void onHitEntity(EntityHitResult p_37626_) {
+        Entity entity = p_37626_.getEntity();
+        if (this.getPierceLevel() > 0) {
+            if (this.piercingIgnoreEntityIds == null) {
+                this.piercingIgnoreEntityIds = new IntOpenHashSet(5);
+            }
+
+            if (this.piercedAndKilledEntities == null) {
+                this.piercedAndKilledEntities = Lists.newArrayListWithCapacity(5);
+            }
+
+            if (this.piercingIgnoreEntityIds.size() >= this.getPierceLevel() + 1) {
+                this.discard();
+                return;
+            }
+
+            // NeoForge 1.21 resolves piercing collisions on both sides, so the client must also skip entities already crossed to avoid an endless collision loop.
+            this.piercingIgnoreEntityIds.add(entity.getId());
+        }
+
         if (!this.level().isClientSide) {
             float baseDamage = SpellConfig.get(SpellConfig.IceSpikeDamage).floatValue() * WandUtil.damageMultiply();
-            Entity entity = p_37626_.getEntity();
-            if (this.getPierceLevel() > 0) {
-                if (this.piercingIgnoreEntityIds == null) {
-                    this.piercingIgnoreEntityIds = new IntOpenHashSet(5);
-                }
-
-                if (this.piercedAndKilledEntities == null) {
-                    this.piercedAndKilledEntities = Lists.newArrayListWithCapacity(5);
-                }
-
-                if (this.piercingIgnoreEntityIds.size() >= this.getPierceLevel() + 1) {
-                    this.discard();
-                    return;
-                }
-
-                this.piercingIgnoreEntityIds.add(entity.getId());
-            }
             Entity entity1 = this.getOwner();
             boolean flag;
             baseDamage += this.getExtraDamage();
@@ -112,7 +111,7 @@ public class IceSpear extends IceSpike {
             }
 
             if (flag && entity instanceof LivingEntity livingEntity) {
-                livingEntity.addEffect(new MobEffectInstance(GoetyEffects.FREEZING, MathHelper.secondsToTicks(3 + livingEntity.getRandom().nextInt(2))));
+                this.applyFreezingEffect(livingEntity);
                 this.playSound(ModSounds.ICE_SPIKE_HIT.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
                 if (livingEntity.level() instanceof ServerLevel serverLevel){
                     ServerParticleUtil.addParticlesAroundSelf(serverLevel, new BlockParticleOption(ParticleTypes.BLOCK, Blocks.PACKED_ICE.defaultBlockState()), livingEntity);

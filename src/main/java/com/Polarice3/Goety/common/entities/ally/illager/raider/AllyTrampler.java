@@ -175,6 +175,12 @@ public class AllyTrampler extends RaiderServant implements ICharger, IAutoRideab
         return 1.6D * 0.75D;
     }
 
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity passenger) {
+        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
+        return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
+    }
+
     public void positionRider(Entity rider, Entity.MoveFunction p_19958_) {
         super.positionRider(rider, p_19958_);
         if (this.standAnimO > 0.0F) {

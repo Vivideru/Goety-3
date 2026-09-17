@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "geoturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/amethyst"
-                        },
-                        {
-                            "item":  "goety:magic_emerald"
-                        },
-                        {
-                            "tag":  "c:stone"
-                        },
-                        {
-                            "tag":  "c:stone"
-                        },
-                        {
-                            "tag":  "c:stone"
-                        },
-                        {
-                            "tag":  "c:stone"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/amethyst"
-                        },
-                        {
-                            "item":  "minecraft:tnt"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:barricade_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "geoturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/amethyst"
+    },
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:stone"
+    },
+    {
+      "tag": "c:storage_blocks/amethyst"
+    },
+    {
+      "item": "minecraft:tnt"
+    }
+  ],
+  "result": {
+    "id": "goety:barricade_focus"
+  }
 }
-

@@ -17,7 +17,6 @@
   "name.goety.apostle.15": "Seraphent",
   "name.goety.apostle.16": "Indearium",
   "name.goety.apostle.17": "Salahmon",
-
   "title.goety.0": "o Ressuscitado",
   "title.goety.1": "o Abominável",
   "title.goety.2": "o Profanador",
@@ -30,7 +29,6 @@
   "title.goety.9": "o Terrível",
   "title.goety.10": "o Glorioso",
   "title.goety.11": "o Atroz",
-
   "name.goety.crone.0": "Gertrude",
   "name.goety.crone.1": "Matilde",
   "name.goety.crone.2": "Grimhilde",
@@ -43,23 +41,19 @@
   "name.goety.crone.9": "Dente de Fogo",
   "name.goety.crone.10": "Cuspideira",
   "name.goety.crone.11": "Muckback",
-
   "name.goety.crone.12": "Zhovch",
   "name.goety.crone.13": "Didʹka",
   "name.goety.crone.14": "Nedza",
   "name.goety.crone.15": "Ohydnyy",
   "name.goety.crone.16": "Boli",
   "name.goety.crone.17": "Strach",
-
   "title.goety.crone.0": "Baba",
   "title.goety.crone.1": "Avó",
   "title.goety.crone.2": "Velha",
   "title.goety.crone.3": "Tia",
-
   "itemGroup.goety": "Goety",
   "itemGroup.goety.focus": "Focos Goety",
   "itemGroup.goety.servant": "Servos Goety",
-
   "entity.goety.apostle": "Apóstolo",
   "entity.goety.obsidian_monolith": "Monólito de Obsidiana",
   "entity.goety.warlock": "Bruxo",
@@ -86,9 +80,7 @@
   "entity.goety.zpiglin_brute_servant": "Servo Bruto Piglin Zombificado",
   "entity.goety.malghast": "Malghast",
   "entity.goety.inferno": "Inferno",
-
   "entity.goety.vampire_bat": "Morcego Vampiro",
-
   "entity.goety.hostile_black_wolf": "Lobo Negro Hostil",
   "entity.goety.reaper": "Ceifador",
   "entity.goety.wraith": "Espectro",
@@ -102,7 +94,6 @@
   "entity.goety.necromancer": "Necromante",
   "entity.goety.cairn_necromancer": "Necromante do Cairn",
   "entity.goety.haunted_armor": "Armadura Assombrada",
-
   "entity.goety.vex_servant": "Vex Aliado",
   "entity.goety.irk_servant": "Irk Aliado",
   "entity.goety.zombie_servant": "Servo Zumbi",
@@ -161,33 +152,23 @@
   "entity.goety.ice_golem": "Golem de Gelo",
   "entity.goety.totemic_wall": "Muralha Totémica",
   "entity.goety.totemic_bomb": "Bomba Totémica",
-
   "entity.goety.glacial_wall": "Muralha Glacial",
-
   "entity.goety.quick_growing_vine": "Vinha de Crescimento Rápido",
   "entity.goety.quick_growing_kelp": "Alga de Crescimento Rápido",
-
   "entity.goety.poison_quill_vine": "Vinha de Espinhos Venenosos",
   "entity.goety.poison_anemone": "Anémona Venenosa",
-
   "entity.goety.biomine": "Biomina",
   "entity.goety.spider_egg": "Ovo de Aranha",
-
   "entity.goety.beast_head": "Cabeça de Fera",
   "entity.goety.volcano": "Vulcão",
   "entity.goety.fire_pillar": "Pilar de Fogo",
-
   "entity.goety.void_rift": "Fenda do Vazio",
-
   "entity.goety.wight": "Wight",
   "entity.goety.carrion_maggot": "Larva de Carniça",
   "entity.goety.carrion_fly": "Mosca de Carniça",
-
   "entity.goety.skull_lord": "Senhor das Caveiras",
   "entity.goety.bone_lord": "Senhor dos Ossos",
-
   "entity.goety.wither_necromancer": "Necromante do Wither",
-
   "entity.goety.sorcerer": "Feiticeiro",
   "entity.goety.envioker": "Envioker",
   "entity.goety.tormentor": "Atormentador",
@@ -199,9 +180,7 @@
   "entity.goety.crusher": "Esmagador",
   "entity.goety.cryologer": "Criologista",
   "entity.goety.preacher": "Pregador",
-
   "entity.goety.minister": "Ministro",
-
   "entity.goety.vizier": "Vizir",
   "entity.goety.vizier_clone": "Visagem do Vizir",
   "entity.goety.irk": "Irk",
@@ -264,10 +243,8 @@
   "entity.goety.corrupted_beam": "Feixe de Corrupção",
   "entity.goety.boat": "Barco",
   "entity.goety.chest_boat": "Barco com Baú",
-
   "entity.goety.haunted_armor_stand": "Suporte de Armadura Assombrado",
   "entity.goety.haunted_painting": "Quadro Assombrado",
-
   "entity.goety.fire_blast_trap": "Armadilha de Explosão de Fogo",
   "entity.goety.lightning_trap": "Armadilha de Relâmpago",
   "entity.goety.fire_rain_trap": "Armadilha de Chuva de Fogo",
@@ -291,12 +268,9 @@
   "entity.goety.vine_hook": "Gancho de Vinha",
   "entity.goety.magic_ground": "Terreno Mágico",
   "entity.goety.tunneling_fang": "Presa Escavadora",
-
   "item.goety.focus_bag": "Bolsa de Focos",
   "item.goety.focus_pack": "Mochila de Focos",
-
   "item.goety.brew_bag": "Bolsa de Poções",
-
   "item.goety.apostle_spawn_egg": "Ovo de Apóstolo",
   "item.goety.warlock_spawn_egg": "Ovo de Bruxo",
   "item.goety.obsidian_monolith_spawn_egg": "Ovo de Monólito de Obsidiana",
@@ -403,7 +377,6 @@
   "item.goety.quick_growing_kelp_spawn_egg": "Ovo de Alga de Crescimento Rápido",
   "item.goety.poison_quill_vine_spawn_egg": "Ovo de Vinha de Espinhos Venenosos",
   "item.goety.poison_anemone_spawn_egg": "Ovo de Anémona Venenosa",
-
   "item.goety.dark_wand": "Varinha das Trevas",
   "item.goety.ominous_staff": "Cajado Sinistro",
   "item.goety.necro_staff": "Cajado Necromante",
@@ -423,42 +396,31 @@
   "item.goety.ominous_orb": "Orbe Sinistro",
   "item.goety.heart_of_the_night": "Coração da Noite",
   "item.goety.philosophers_stone": "Pedra Filosofal",
-
   "item.goety.taglock_kit": "Kit de Taglock",
   "item.goety.waystone": "Pedra da Orientação",
-
   "item.goety.arca_compass": "Bússola Arca",
-
   "item.goety.cauldron_ladle": "Concha do Caldeirão",
-
   "item.goety.dark_scythe": "Foice Sinistra",
   "item.goety.dark_metal_scythe": "Foice de Metal das Trevas",
   "item.goety.death_scythe": "Foice da Morte",
-
   "item.goety.great_hammer": "Martelo Grande",
   "item.goety.bonehead_hammer": "Martelo Caveira",
   "item.goety.stormlander": "Tempestário",
-
   "item.goety.fanged_dagger": "Adaga Dentada",
   "item.goety.hungry_dagger": "Adaga Faminta",
   "item.goety.fell_blade": "Lâmina Fúnebre",
   "item.goety.frozen_blade": "Lâmina Congelada",
-
   "item.goety.eerie_pickaxe": "Picareta Assustadora",
   "item.goety.rampaging_axe": "Machado Devastador",
   "item.goety.graverobber_shovel": "Pá de Saqueador de Tumbas",
-
   "item.goety.dark_sword": "Espada das Trevas",
   "item.goety.dark_shovel": "Pá das Trevas",
   "item.goety.dark_pickaxe": "Picareta das Trevas",
   "item.goety.dark_axe": "Machado das Trevas",
   "item.goety.dark_hoe": "Enxada das Trevas",
-
   "item.goety.hunters_bow": "Arco do Caçador",
-
   "item.goety.infernal_tome": "Tomé Infernal",
   "item.goety.philosophers_mace": "Maça do Filósofo",
-
   "item.goety.dark_scroll": "Pergaminho das Trevas",
   "item.goety.blazing_horn": "Chifre Flamejante",
   "item.goety.undeath_potion": "Poção da Transformação",
@@ -490,7 +452,6 @@
   "item.goety.gale_fabric": "Tecido da Rajada",
   "item.goety.chill_fabric": "Tecido do Frio",
   "item.goety.unholy_fabric": "Tecido Profano",
-
   "item.goety.ravaging_scroll": "Pergaminho Devastador",
   "item.goety.warred_scroll": "Pergaminho Bélico",
   "item.goety.buried_scroll": "Pergaminho Enterrado",
@@ -500,16 +461,12 @@
   "item.goety.floral_scroll": "Pergaminho Floral",
   "item.goety.bygone_scroll": "Pergaminho do Passado",
   "item.goety.terminus_scroll": "Pergaminho do Término",
-
   "item.goety.forbidden_piece": "Fragmento Proibida",
   "item.goety.forbidden_fragment": "Pedaço Proibido",
   "item.goety.forbidden_scroll": "Pergaminho Proibido",
-
   "item.goety.snap_warts": "Verrugas Estaladiças",
-
   "item.goety.feet_of_frog": "Pés de Sapo",
   "item.goety.cooked_feet_of_frog": "Pés de Sapo Cozidos",
-
   "item.goety.soul_transfer": "Gema de Transferência",
   "item.goety.flame_capture": "Gaiola de Invocação de Fogo",
   "item.goety.snap_fungus": "Fungo Estaladiço",
@@ -526,53 +483,40 @@
   "item.goety.howling_soul": "Alma Uivante",
   "item.goety.blazing_helm": "Elmo Flamejante",
   "item.goety.refuse_bottle": "Garrafa de Rejeitos",
-
   "item.goety.grimoire_of_grudges": "Grimório de Rancor",
   "item.goety.grimoire_of_goodwill": "Grimório de Boa Vontade",
   "item.goety.grimoire_of_grounding": "Grimório de Aterramento",
-
   "item.goety.brew": "Poção da Bruxa",
   "item.goety.splash_brew": "Poção da Bruxa Arremessável",
   "item.goety.lingering_brew": "Poção da Bruxa Persistente",
   "item.goety.gas_brew": "Poção da Bruxa Gasosa",
-
   "item.goety.treasure_pouch": "Bolsa de Tesouro",
-
   "item.goety.haunted_boat": "Barco Assombrado",
   "item.goety.haunted_chest_boat": "Barco com Baú Assombrado",
-
   "item.goety.rotten_boat": "Barco Podre",
   "item.goety.rotten_chest_boat": "Barco com Baú Podre",
-
   "item.goety.windswept_boat": "Barco Varrido pelo Vento",
   "item.goety.windswept_chest_boat": "Barco com Baú Varrido pelo Vento",
-
   "item.goety.pine_boat": "Barco de Pinheiro",
   "item.goety.pine_chest_boat": "Barco com Baú de Pinheiro",
-
-  "item.goety.haunted_armor_stand":"Suporte de Armadura Assombrado",
-  "item.goety.haunted_painting":"Quadro Assombrado",
-
+  "item.goety.haunted_armor_stand": "Suporte de Armadura Assombrado",
+  "item.goety.haunted_painting": "Quadro Assombrado",
   "item.goety.cursed_knight_helmet": "Capacete do Cavaleiro Amaldiçoado",
   "item.goety.cursed_knight_chestplate": "Peitoral do Cavaleiro Amaldiçoado",
   "item.goety.cursed_knight_leggings": "Calças do Cavaleiro Amaldiçoado",
   "item.goety.cursed_knight_boots": "Botas do Cavaleiro Amaldiçoado",
-
   "item.goety.cursed_paladin_helmet": "Capacete do Paladino Amaldiçoado",
   "item.goety.cursed_paladin_chestplate": "Peitoral do Paladino Amaldiçoado",
   "item.goety.cursed_paladin_leggings": "Calças do Paladino Amaldiçoado",
   "item.goety.cursed_paladin_boots": "Botas do Paladino Amaldiçoado",
-
   "item.goety.black_iron_helmet": "Capacete de Ferro Negro",
   "item.goety.black_iron_chestplate": "Peitoral de Ferro Negro",
   "item.goety.black_iron_leggings": "Calças de Ferro Negro",
   "item.goety.black_iron_boots": "Botas de Ferro Negro",
-
   "item.goety.dark_helmet": "Capacete das Trevas",
   "item.goety.dark_chestplate": "Peitoral das Trevas",
   "item.goety.dark_leggings": "Calças das Trevas",
   "item.goety.dark_boots": "Botas das Trevas",
-
   "item.goety.ring_of_want": "Anel do Desejo",
   "item.goety.ring_of_force": "Anel da Força",
   "item.goety.ring_of_the_forge": "Anel da Forja",
@@ -622,13 +566,11 @@
   "item.goety.pendant_of_hunger": "Pingente da Fome",
   "item.goety.warding_charm": "Amuleto Protetor",
   "item.goety.alarming_charm": "Amuleto de Alerta",
-
   "item.goety.empty_focus": "Foco Vazio",
   "item.goety.animation_core": "Núcleo de Animação",
   "item.goety.hunger_core": "Núcleo da Fome",
   "item.goety.wind_core": "Núcleo do Vento",
   "item.goety.mystic_core": "Núcleo Místico",
-
   "item.goety.focus.info": "Quando Lançado com Varinha ou Cajado:",
   "item.goety.vexing_focus": "Foco de Vex",
   "item.goety.vexing_focus.info": "Invoca Vex aliados. Usar agachado mata todos os Vex do conjurador.",
@@ -836,32 +778,24 @@
   "item.goety.crafting_focus.info": "Abre uma Bancada de Trabalho.",
   "item.goety.corruption_focus": "Foco da Corrupção",
   "item.goety.corruption_focus.info": "Dispara um feixe de corrupção que causa dano mágico constante e ignora invulnerabilidade.",
-
   "item.goety.cross_pottery_sherd": "Fragmento de Cerâmica Cruz",
   "item.goety.dead_pottery_sherd": "Fragmento de Cerâmica Morta",
   "item.goety.haunt_pottery_sherd": "Fragmento de Cerâmica Assombrada",
   "item.goety.night_pottery_sherd": "Fragmento de Cerâmica Noturna",
   "item.goety.soul_pottery_sherd": "Fragmento de Cerâmica da Alma",
-
   "item.goety.pedestal_dummy": "Pedestal",
-
   "item.goety.music_disc_rm": "Disco de Música",
   "item.goety.music_disc_rm.desc": "Johan Johnson - Monstruosidade de Redstone",
   "item.goety.music_disc_vizier": "Disco de Música",
   "item.goety.music_disc_apostle": "Disco de Música",
   "item.goety.music_disc_apostle.desc": "Peter Hont - Ghast",
-
   "item.minecraft.tipped_arrow.effect.climbing": "Flecha da Escalada",
-
   "item.minecraft.potion.effect.climbing": "Poção da Escalada",
   "item.minecraft.splash_potion.effect.climbing": "Poção Arremessável da Escalada",
   "item.minecraft.lingering_potion.effect.climbing": "Poção Residual da Escalada",
-
   "trim_pattern.goety.crypt": "Aparar Armadura Críptica",
-
   "block.goety.awakened_emerald_block": "Bloco de Esmeralda Desperta",
   "block.goety.cursed_metal_block": "Bloco de Metal Amaldiçoado",
-
   "block.goety.jade_ore": "Minério de Jade",
   "block.goety.jade_tiles": "Azulejos de Jade",
   "block.goety.jade_block": "Bloco de Jade",
@@ -874,7 +808,6 @@
   "block.goety.snowy_jade_tiles": "Azulejos de Jade Nevado",
   "block.goety.snowy_jade_slab": "Laje de Jade Nevado",
   "block.goety.snowy_jade_stairs": "Escadas de Jade Nevado",
-
   "block.goety.shade_stone": "Pedra das Sombras",
   "block.goety.shade_stone_slab": "Laje de Pedra das Sombras",
   "block.goety.shade_stone_stairs": "Escadas de Pedra das Sombras",
@@ -893,7 +826,6 @@
   "block.goety.shade_tiles": "Azulejos das Sombras",
   "block.goety.shade_tiles_slab": "Laje de Azulejos das Sombras",
   "block.goety.shade_tiles_stairs": "Escadas de Azulejos das Sombras",
-
   "block.goety.crypt_stone": "Pedra da Cripta",
   "block.goety.crypt_stone_slab": "Laje de Pedra da Cripta",
   "block.goety.crypt_stone_stairs": "Escadas de Pedra da Cripta",
@@ -913,7 +845,6 @@
   "block.goety.crypt_plinth": "Plinto da Cripta",
   "block.goety.crypt_pillar": "Pilar da Cripta",
   "block.goety.crypt_bookshelf": "Estante da Cripta",
-
   "block.goety.marble": "Mármore",
   "block.goety.marble_slab": "Laje de Mármore",
   "block.goety.marble_stairs": "Escadas de Mármore",
@@ -939,7 +870,6 @@
   "block.goety.silt_marble": "Mármore Siltoso",
   "block.goety.silt_marble_heavy": "Mármore Siltoso Pesado",
   "block.goety.silt_slate_marble": "Mármore Ardósia Siltoso",
-
   "block.goety.cragrocks": "Pedregulhos",
   "block.goety.cragrocks_slab": "Laje de Pedregulhos",
   "block.goety.cragrocks_stairs": "Escadas de Pedregulhos",
@@ -962,7 +892,6 @@
   "block.goety.cracked_crag_pavement": "Pavimento Rochoso Rachado",
   "block.goety.cracked_crag_pavement_slab": "Laje de Pavimento Rochoso Rachado",
   "block.goety.silt_studded_crag_tiles": "Azulejos Rochosos com Silte",
-
   "block.goety.highrock": "Rocha Alta",
   "block.goety.highrock_slab": "Laje de Rocha Alta",
   "block.goety.highrock_stairs": "Escadas de Rocha Alta",
@@ -981,7 +910,6 @@
   "block.goety.snowy_highrock_brick_wall": "Muro de Tijolo de Rocha Alta Nevado",
   "block.goety.gold_indented_highrock_bricks": "Tijolos de Rocha Alta com Relevo Dourado",
   "block.goety.gold_chiseled_highrock_bricks": "Tijolos de Rocha Alta Cinzelados em Ouro",
-
   "block.goety.siltstone": "Silte Pedra",
   "block.goety.siltstone_slab": "Laje de Silte Pedra",
   "block.goety.siltstone_stairs": "Escadas de Silte Pedra",
@@ -1002,7 +930,6 @@
   "block.goety.chiseled_siltstone_bricks": "Tijolos de Silte Pedra Cinzelados",
   "block.goety.siltstone_pillar": "Pilar de Silte Pedra",
   "block.goety.snowy_siltstone_pillar": "Pilar de Silte Pedra Nevado",
-
   "block.goety.indented_gold": "Bloco de Ouro Reentrante",
   "block.goety.indented_gold_slab": "Laje de Ouro Reentrante",
   "block.goety.indented_gold_stairs": "Escadas de Ouro Reentrante",
@@ -1010,12 +937,10 @@
   "block.goety.chiseled_indented_gold": "Bloco de Ouro Reentrante Cinzelado",
   "block.goety.carved_indented_gold": "Bloco de Ouro Reentrante Talhado",
   "block.goety.gold_trapdoor": "Alçapão de Ouro",
-
   "block.goety.snow_bricks": "Tijolos de Neve",
   "block.goety.snow_brick_slab": "Laje de Tijolo de Neve",
   "block.goety.snow_brick_stairs": "Escadas de Tijolo de Neve",
   "block.goety.snow_brick_wall": "Muro de Tijolo de Neve",
-
   "block.goety.shade_brazier": "Braseiro das Sombras",
   "block.goety.shade_soul_brazier": "Braseiro das Almas das Sombras",
   "block.goety.stone_brazier": "Braseiro de Pedra",
@@ -1028,10 +953,8 @@
   "block.goety.nether_brick_soul_brazier": "Braseiro das Almas de Tijolos do Nether",
   "block.goety.marble_brazier": "Braseiro de Mármore",
   "block.goety.marble_soul_brazier": "Braseiro das Almas de Mármore",
-
   "block.goety.skull_pile": "Pilha de Caveiras",
   "block.goety.rusty_iron_grate": "Grelha de Ferro Enferrujada",
-
   "block.goety.haunted_sapling": "Muda Assombrada",
   "block.goety.potted_haunted_sapling": "Muda Assombrada em Vaso",
   "block.goety.haunted_log": "Tronco Assombrado",
@@ -1057,7 +980,6 @@
   "block.goety.apparition_door": "Porta de Aparição",
   "block.goety.stripped_haunted_log": "Tronco Assombrado Descascado",
   "block.goety.stripped_haunted_wood": "Madeira Assombrada Descascada",
-
   "block.goety.rotten_sapling": "Muda Podre",
   "block.goety.potted_rotten_sapling": "Muda Podre em Vaso",
   "block.goety.rotten_log": "Tronco Podre",
@@ -1081,7 +1003,6 @@
   "block.goety.trapped_rotten_chest": "Baú Armadilhado Podre",
   "block.goety.stripped_rotten_log": "Tronco Podre Descascado",
   "block.goety.stripped_rotten_wood": "Madeira Podre Descascada",
-
   "block.goety.windswept_sapling": "Muda Varrida pelo Vento",
   "block.goety.potted_windswept_sapling": "Muda Varrida pelo Vento em Vaso",
   "block.goety.windswept_log": "Tronco Varrido pelo Vento",
@@ -1107,7 +1028,6 @@
   "block.goety.trapped_windswept_chest": "Baú Armadilhado Varrido pelo Vento",
   "block.goety.stripped_windswept_log": "Tronco Varrido pelo Vento Descascado",
   "block.goety.stripped_windswept_wood": "Madeira Varrida pelo Vento Descascada",
-
   "block.goety.pine_sapling": "Muda de Pinheiro",
   "block.goety.potted_pine_sapling": "Muda de Pinheiro em Vaso",
   "block.goety.pine_log": "Tronco de Pinheiro",
@@ -1134,7 +1054,6 @@
   "block.goety.trapped_pine_chest": "Baú Armadilhado de Pinheiro",
   "block.goety.stripped_pine_log": "Tronco de Pinheiro Descascado",
   "block.goety.stripped_pine_wood": "Madeira de Pinheiro Descascada",
-
   "block.goety.steep_planks": "Tábuas Íngremes",
   "block.goety.steep_lamp": "Lâmpada Íngreme",
   "block.goety.steep_fence": "Cerca Íngreme",
@@ -1152,23 +1071,17 @@
   "block.goety.rimmed_steep_wood": "Madeira de Encosta Íngreme com Borda",
   "block.goety.steep_button": "Botão de Encosta Íngreme",
   "block.goety.steep_pressure_plate": "Placa de Pressão de Encosta Íngreme",
-
   "block.goety.sky_wood_planks": "Tábuas de Madeira do Céu",
   "block.goety.sky_wood_slab": "Losa de Madeira do Céu",
   "block.goety.sky_wood_stairs": "Escadas de Madeira do Céu",
-
   "block.goety.haunted_glass": "Vidro Assombrado",
   "block.goety.haunted_glass_tinted": "Vidro Assombrado Tintado",
   "block.goety.haunted_glass_mob": "Vidro Assombrado Invertido",
   "block.goety.haunted_glass_mob_tinted": "Vidro Assombrado Tintado Invertido",
-
   "block.goety.freezing_lamp": "Lâmpada Glacial",
   "block.goety.shriek_obelisk": "Obelisco de Gritos",
-
   "block.goety.witch_pole": "Poste da Feiticeira",
-
   "block.goety.arca": "Arca",
-
   "block.goety.wind_blower": "Soprador de Vento",
   "block.goety.marble_wind_blower": "Soprador de Vento de Mármore",
   "block.goety.resonance_crystal": "Cristal de Ressonância",
@@ -1186,20 +1099,16 @@
   "block.goety.pedestal": "Pedestal",
   "block.goety.soul_absorber": "Absorvedor de Almas",
   "block.goety.soul_mender": "Curandeiro de Almas",
-
   "block.goety.sculk_devourer": "Devorador de Sculk",
   "block.goety.sculk_converter": "Conversor de Sculk",
   "block.goety.sculk_relay": "Relé de Sculk",
   "block.goety.sculk_grower": "Cultivador de Sculk",
-
   "block.goety.snap_warts": "Verrugas Saltitantes",
   "block.goety.spider_nest": "Ninho de Aranha",
   "block.goety.shade_gravestone": "Lápide das Sombras",
   "block.goety.blazing_cage": "Jaula Flamejante",
-
   "block.goety.soul_light": "Luz das Almas",
   "block.goety.glow_light": "Luz Brilhante",
-
   "block.goety.crystal_ball": "Bola de Cristal",
   "block.goety.haunted_mirror": "Espelho Assombrado",
   "block.goety.haunted_jug": "Jarro Assombrado",
@@ -1209,196 +1118,132 @@
   "block.goety.lofty_chest": "Baú Elevado",
   "block.goety.spider_mother_den": "Covil da Mãe Aranha",
   "block.goety.night_beacon": "Farol da Noite",
-
   "block.goety.magic_thorn": "Espinho Mágico",
   "block.goety.hardened_leaves": "Folhas Endurecidas",
-
   "block.goety.overgrown_roots": "Raíces Invadidas",
   "block.goety.corpse_blossom": "Flor Cadavérica",
-
   "block.goety.hole": "Buraco de Túnel",
   "block.goety.part_liquid": "Fluido Dividido",
-
   "block.goety.diamond_mold_block": "Bloco de Molde de Diamante",
   "block.goety.reinforced_redstone_block": "Bloco de Redstone Reforçado",
-
   "block.goety.tall_skull": "Crânio Alto",
   "block.goety.wall_tall_skull": "Crânio Alto de Parede",
-
   "block.goety.redstone_golem_skull": "Crânio de Golem de Redstone",
   "block.goety.wall_redstone_golem_skull": "Crânio de Golem de Redstone de Parede",
-
   "block.goety.grave_golem_skull": "Crânio de Golem de Túmulo",
   "block.goety.wall_grave_golem_skull": "Crânio de Golem de Túmulo de Parede",
-
   "block.goety.redstone_monstrosity_head": "Cabeça de Monstruosidade de Redstone",
   "block.goety.wall_redstone_monstrosity_head": "Cabeça de Monstruosidade de Redstone de Parede",
-
   "effect.goety.summon_down": "Redução de Invocações",
   "effect.goety.summon_down.description": "Os feitiços custam mais Energia de Alma para lançar, com níveis mais altos a aumentar o custo. Novos mobs invocados ganham os efeitos Enfraquecido e Fraqueza.",
-  
   "effect.goety.sapped": "Enfraquecido",
   "effect.goety.sapped.description": "Aumenta o dano recebido em 20% por nível.",
-  
   "effect.goety.gold_touched": "Toque de Ouro",
   "effect.goety.gold_touched.description": "Os mobs deixam cair pepitas de ouro ao morrer, com a quantidade a aumentar em níveis mais altos.",
-  
   "effect.goety.illague": "Praga Illager",
   "effect.goety.illague.description": "Concede efeitos negativos periodicamente.",
-  
   "effect.goety.burn_hex": "Maldição Ardente",
   "effect.goety.burn_hex.description": "Remove Resistência ao Fogo de entidades vivas. No modo Difícil, o dano de fogo duplica.",
-  
   "effect.goety.soul_hunger": "Fome de Alma",
   "effect.goety.soul_hunger.description": "Reduz a velocidade de movimento, mineração e ataque, e o dano corpo-a-corpo.",
-  
   "effect.goety.buff": "Aprimoramento",
   "effect.goety.buff.description": "Aumenta o dano de ataque corpo-a-corpo em 0.5 corações por nível.",
-  
   "effect.goety.rampage": "Fúria",
   "effect.goety.rampage.description": "Aumenta o dano de ataque corpo-a-corpo em 0.5 corações por nível, aumenta a velocidade de mineração e ataque. Causa uma explosão após atingir 5 níveis.",
-  
   "effect.goety.climbing": "Escalada",
   "effect.goety.climbing.description": "Permite escalar paredes horizontais e mover-se através de teias de aranha.",
-  
   "effect.goety.wane": "Declínio",
   "effect.goety.wane.description": "Reduz a velocidade de movimento e o dano corpo-a-corpo.",
-  
   "effect.goety.busted": "Arruinado",
   "effect.goety.busted.description": "Reduz os pontos de armadura em 50% por nível.",
-  
   "effect.goety.cursed": "Amaldiçoado",
   "effect.goety.cursed.description": "Impede a regeneração ou cura.",
-  
   "effect.goety.soul_armor": "Armadura de Alma",
   "effect.goety.soul_armor.description": "Aumenta os pontos de armadura em 2. Triplica os pontos de armadura se a entidade afetada não estiver a usar qualquer armadura.",
-  
   "effect.goety.iron_hide": "Pele de Ferro",
   "effect.goety.iron_hide.description": "Aumenta os pontos de armadura em 4 por nível.",
-  
   "effect.goety.chill_hide": "Pele Gélida",
   "effect.goety.chill_hide.description": "Aumenta os pontos de armadura em 3 por nível. As entidades que atacarem o afetado recebem o efeito Congelamento.",
-  
   "effect.goety.pressure": "Pressão",
   "effect.goety.pressure.description": "Causa dano periódico quando rodeado por múltiplas entidades.",
-  
   "effect.goety.charged": "Carregado",
   "effect.goety.charged.description": "Nível I concede 10% de aumento à velocidade e dano corpo-a-corpo, Nível II concede 25% de aumento à velocidade e redução no dano corpo-a-corpo. Obter outro nível causa dano.",
-  
   "effect.goety.ender_ground": "Terreno Ender",
   "effect.goety.ender_ground.description": "Impede o teletransporte, exceto se for através de comando de chat.",
-  
   "effect.goety.ender_flux": "Fluxo Ender",
   "effect.goety.ender_flux.description": "Teletransporta o afetado para um local aleatório quando danificado; níveis mais altos aumentam a distância.",
-  
   "effect.goety.freezing": "Congelamento",
   "effect.goety.freezing.description": "Simula estar em neve em pó. Não tem efeito se for imune ao congelamento.",
-  
   "effect.goety.nyctophobia": "Nictofobia",
   "effect.goety.nyctophobia.description": "Causa dano periódico quando em áreas escuras.",
-  
   "effect.goety.sun_allergy": "Alergia Solar",
   "effect.goety.sun_allergy.description": "Coloca fogo nas entidades afetadas e danifica o capacete durante o dia.",
-  
   "effect.goety.snow_skin": "Pele de Neve",
   "effect.goety.snow_skin.description": "Concede características de Golems de Neve às entidades afetadas.",
-  
   "effect.goety.evil_eye": "Olho Maligno",
   "effect.goety.evil_eye.description": "Faz com que monstros apareçam periodicamente à volta do afetado.",
-  
   "effect.goety.tripping": "Tropeço",
   "effect.goety.tripping.description": "Empurra as entidades afetadas em direções aleatórias periodicamente, com níveis mais altos a aumentar a frequência.",
-  
   "effect.goety.arrowmantic": "Atração de Flechas",
   "effect.goety.arrowmantic.description": "Atrai flechas para as entidades afetadas. Níveis mais altos aumentam o raio.",
-  
   "effect.goety.sense_loss": "Perda Sensorial",
   "effect.goety.sense_loss.description": "Cega os jogadores e reduz o alcance de visão dos mobs, com níveis mais altos a reduzir ainda mais.",
-  
   "effect.goety.flame_hands": "Mãos Flamejantes",
   "effect.goety.flame_hands.description": "Ataques físicos colocam fogo nas entidades por 4 segundos, com cada nível a aumentar a duração.",
-  
   "effect.goety.venomous_hands": "Mãos Venenosas",
   "effect.goety.venomous_hands.description": "Ataques físicos causam Veneno por 10 segundos, com cada nível a aumentar o nível do efeito.",
-  
   "effect.goety.repulsive": "Repulsivo",
   "effect.goety.repulsive.description": "Empurra as entidades atacantes para longe; níveis mais altos aumentam a distância.",
-  
   "effect.goety.explosive": "Explosivo",
   "effect.goety.explosive.description": "Tem uma chance de causar uma explosão quando ferido; níveis mais altos aumentam a chance e a força da explosão.",
-  
   "effect.goety.swift_swim": "Nado Veloz",
   "effect.goety.swift_swim.description": "Aumenta a velocidade ao nadar.",
-  
   "effect.goety.frog_leg": "Pernas de Sapo",
   "effect.goety.frog_leg.description": "Permite saltos duplos; níveis mais altos aumentam o número de saltos.",
-  
   "effect.goety.insight": "Perspicácia",
   "effect.goety.insight.description": "Duplica a quantidade de pontos de experiência obtidos; níveis mais altos aumentam o rendimento.",
-  
   "effect.goety.bottling": "Engarrafamento",
   "effect.goety.bottling.description": "Aumenta a quantidade de poções engarrafadas no Caldeirão da Bruxa.",
-  
   "effect.goety.fire_trail": "Rasto de Fogo",
   "effect.goety.fire_trail.description": "Andar coloca fogo no chão.",
-  
   "effect.goety.fiery_aura": "Aura Flamejante",
   "effect.goety.fiery_aura.description": "Coloca fogo nas entidades próximas; níveis mais altos aumentam o alcance e a duração.",
-  
   "effect.goety.frosty_aura": "Aura Gélida",
   "effect.goety.frosty_aura.description": "Causa Congelamento nas entidades próximas; níveis mais altos aumentam o alcance e o nível.",
-  
   "effect.goety.plunge": "Queda",
   "effect.goety.plunge.description": "Faz com que entidades voadoras ou nadadoras caiam em direção ao chão.",
-  
   "effect.goety.flimsy": "Frágil",
   "effect.goety.flimsy.description": "As entidades afetadas recebem mais repulsão de ataques; níveis mais altos aumentam o efeito.",
-  
   "effect.goety.photosynthesis": "Fotossíntese",
   "effect.goety.photosynthesis.description": "Regenera saúde quando exposto à luz solar; níveis mais altos aceleram a regeneração.",
-  
   "effect.goety.flammable": "Inflamável",
   "effect.goety.flammable.description": "As entidades afetadas recebem mais dano de fogo; não afeta entidades resistentes ao fogo.",
-  
   "effect.goety.storms_wrath": "Fúria da Tempestade",
   "effect.goety.storms_wrath.description": "Pode ser atingido por um raio quando exposto ao céu; níveis mais altos e chuva aumentam a probabilidade.",
-  
   "effect.goety.save_effects": "Salvar Efeitos",
   "effect.goety.save_effects.description": "Os efeitos persistem após a morte do jogador. Não tem efeito se o jogador estiver em hardcore.",
-  
   "effect.goety.wild_rage": "Fúria Selvagem",
   "effect.goety.wild_rage.description": "As entidades afetadas atacam qualquer entidade atacável próxima.",
-  
   "effect.goety.stunned": "Atordoado",
   "effect.goety.stunned.description": "Impede o afetado de se mover, atacar ou usar blocos ou itens.",
-  
   "effect.goety.tangled": "Enredado",
   "effect.goety.tangled.description": "Impede o afetado de se mover.",
-  
   "effect.goety.shadow_walk": "Caminhada das Sombras",
   "effect.goety.shadow_walk.description": "Concede invisibilidade verdadeira. Remove-se ao interagir com blocos, entidades ou itens. Multiplica o dano de ataque sob o efeito.",
-  
   "effect.goety.doom": "Condenação",
   "effect.goety.doom.description": "Quando o efeito termina, causa morte instantânea se o afetado estiver com pouca saúde. Não afeta chefes.",
-  
   "effect.goety.fortunate": "Afortunado",
   "effect.goety.fortunate.description": "Aumenta o nível de Fortuna para o afetado. Aumenta conforme o nível do efeito.",
-  
   "effect.goety.corpse_eater": "Devorador de Cadáveres",
   "effect.goety.corpse_eater.description": "Restaura fome e saciedade com cada morte.",
-  
   "effect.goety.acid_venom": "Veneno Ácido",
   "effect.goety.acid_venom.description": "Causa dano não letal ao longo do tempo; níveis mais altos causam mais dano por segundo. Afeta Mortos-Vivos.",
-  
   "effect.goety.spasms": "Espasmos",
   "effect.goety.spasms.description": "Causa dano não letal ao longo do tempo, empurrando o afetado em direções aleatórias; níveis mais altos causam mais dano por segundo.",
-  
   "effect.goety.electrified": "Eletrificado",
   "effect.goety.electrified.description": "Dispara um raio do afetado para duas entidades não aliadas próximas aleatórias; níveis mais altos causam mais dano.",
-  
   "effect.goety.tremor_sense": "Sentido Sísmico",
   "effect.goety.tremor_sense.description": "Faz com que as entidades brilhem para o afetado, mas apenas se ambas estiverem em contacto com o chão; níveis mais altos aumentam o raio.",
-  
   "effect.goety.love": "Amor",
   "effect.goety.fertility": "Fertilidade",
   "effect.goety.growth": "Crescimento",
@@ -1438,15 +1283,12 @@
   "effect.goety.raise_dead": "Ressuscitar Mortos",
   "effect.goety.purify_debuff": "Purificar Debuffs",
   "effect.goety.purify_buff": "Purificar Buffs",
-
   "container.goety.pithos": "Pithos",
   "container.goety.urn": "Urna",
-
   "trim_material.goety.cursed": "Material Amaldiçoado",
   "trim_material.goety.dark": "Material das Trevas",
   "trim_material.goety.ecto": "Material Ecto",
   "trim_material.goety.jade": "Material de Jade",
-
   "enchantment.goety.soul_eater": "Devorador de Almas",
   "enchantment.goety.wanting": "Desejo",
   "enchantment.goety.potency": "Potência",
@@ -1467,28 +1309,23 @@
   "enchantment.goety.magnet.desc": "Faz com que os blocos largados por feitiços entrem automaticamente no inventário.",
   "enchantment.goety.duration.desc": "Aumenta a duração dos Feitiços.",
   "enchantment.goety.velocity.desc": "Aumenta a velocidade e trajetória dos projéteis mágicos.",
-
   "key.goety.category": "Goety",
   "key.goety.wand": "Abrir Slot de Foco da Varinha",
   "key.goety.focusCircle": "Abrir Círculo de Focos",
   "key.goety.bag": "Abrir Bolsa de Focos",
   "key.goety.ceaseFire": "Cessar Fogo/Comandar Ataque",
-
   "key.goety.lich.category": "Goety Lich",
   "key.goety.lich.lichForm": "Forma de Lich",
   "key.goety.lich.nightVision": "Visão Noturna de Lich",
   "key.goety.lich.magnet": "Íman de Lich",
   "key.goety.lich.laugh": "Riso de Lich",
-  
   "key.goety.witch.category": "Goety Bruxa",
   "key.goety.witch.robe": "Abrir Túnica de Bruxa",
   "key.goety.witch.extractPotions": "Extrair Poções",
   "key.goety.witch.brewBag": "Abrir Bolsa de Preparação",
   "key.goety.witch.brewCircle": "Abrir Círculo de Preparação",
-  
   "key.goety.mount.category": "Goety Montarias",
   "key.goety.mount.freeRoam": "Montaria Autónoma",
-
   "info.goety.totem_of_souls.souls": "§aEnergia de Alma: %d/%d§a",
   "info.goety.wand.cost": "§3Custo de Alma:§3 %d",
   "info.goety.wand.focus": "§dFoco:§d %d",
@@ -1516,7 +1353,6 @@
   "info.goety.focus.PosDirection": "§8Direção do Bloco:§8 %d",
   "info.goety.focus.PosInvalid": "§cBloco de Recall Inválido§c",
   "info.goety.focus.noCreative": "§4Não pode selecionar no Modo Criativo§4",
-
   "info.goety.items.dark_scroll.desc": "Deve ser usado dentro de um Mansão Florestal.",
   "info.goety.items.dark_scroll.failure": "Não estás dentro de uma Mansão Florestal!",
   "info.goety.items.blaze_horn.desc": "Deve ser usado dentro de uma Fortaleza do Nether.",
@@ -1531,7 +1367,6 @@
   "info.goety.items.bygone": "Revelações reconstruídas do Nether.",
   "info.goety.items.terminus": "Os esquemas de uma monstruosidade terrível...",
   "info.goety.items.forbidden": "Os Segredos da Imortalidade...",
-
   "info.goety.research.warred": "Aprendeste o método de fazer Golems de Redstone!",
   "info.goety.research.buried": "Aprendeste os caminhos sem nome da Necromancia!",
   "info.goety.research.haunting": "Aprendeste o método de possuir Armaduras!",
@@ -1541,12 +1376,9 @@
   "info.goety.research.bygone": "Aprendeste as artes esquecidas do Nether!",
   "info.goety.research.terminus": "Aprendeste o método de construir Monstruosidades!",
   "info.goety.research.forbidden": "Aprendeste o segredo da Imortalidade!",
-
   "info.goety.hunger_pendent.amount": "§2Carne Podre:§2 %d",
   "info.goety.sea_amulet.amount": "§3Cargas do Conduto:§3 %d",
-
   "info.goety.item_info": "Segure %s para mais informações.",
-
   "info.goety.dark_hat": "Reduz o tempo de conjuração de todos os feitiços pela metade.",
   "info.goety.grand_turban": "Tem uma chance de invocar um Irk aliado ao sofrer dano.",
   "info.goety.frost_crown": "Servos de gelo persistem.",
@@ -1592,14 +1424,13 @@
   "info.goety.ring_of_want": "Quando encantado com Desejo, aumenta o nível de saque ao matar com servos ou feitiços.",
   "info.goety.ring_of_force": "O feitiço Telecinese sufocará lentamente a entidade afetada.",
   "info.goety.ring_of_the_forge": "Servos Zumbis e Esqueletos recém-invocados sempre usarão armadura, quando usado.",
-  "info.goety.ring_of_the_dragon": "Fortalece feitiços de sopro quando usado.",
+  "info.goety.ring_of_the_dragon": "Emite uma explosão na localização inicial ao se teletransportar.",
   "info.goety.grave_gloves": "+50% de velocidade de ataque para Foices.",
   "info.goety.thrash_gloves": "+50% de velocidade de ataque para Martelos.",
   "info.goety.wayfarers_belt": "Aumenta a velocidade de movimento e natação, altura de passo e salto.",
   "info.goety.spiteful_belt": "Fere atacantes com dano de espinhos ao sofrer dano.",
   "info.goety.star_amulet": "Protege contra flechas quando abaixo de metade da saúde máxima.",
   "info.goety.alarming_charm": "Avisa quando um ataque Illager aparecer.",
-
   "info.goety.ice_bouquet_trap_extra": "Requer um pulso de redstone para ativar.",
   "info.goety.wind_blower": "Empurra entidades para longe dependendo da sua orientação. A distância equivale à potência de redstone recebida.",
   "info.goety.sculk_devourer": "Transforma experiência largada por mobs recentemente mortos em energia de alma e dá-a ao colocador.",
@@ -1617,7 +1448,6 @@
   "info.goety.haunted_glass_mob_tinted": "Mobs podem passar mas jogadores não. Bloqueia luz.",
   "info.goety.freezing_lamp": "Congela lentamente água próxima em gelo e coloca neve na área circundante.",
   "info.goety.apparition_door": "Desaparece ao clicar com o botão direito ou ao ser energizada. Reaparecerá após pouco tempo.",
-
   "info.goety.ritual.fail": "Não sabes como iniciar corretamente este ritual!",
   "info.goety.ritual.structure.fail": "Requisitos de Blocos Ineficientes!",
   "info.goety.ritual.convert.fail": "Mob Requerido Não Está no Alcance!",
@@ -1679,13 +1509,10 @@
   "info.goety.summon.limit": "Atingiste o limite para esta invocação!",
   "info.goety.summon.hunt": "Algo está a caçar-te...",
   "info.goety.apostle.summon": "Uma presença sombria espalha-se sobre ti...",
-
   "info.goety.black_book.title": "O Livro Negro",
   "info.goety.black_book.landing": "O poder do arcano está sempre presente, só é preciso encontrá-lo primeiro.",
-
   "info.goety.witch_brew.title": "As Preparações da Bruxa",
   "info.goety.witch_brew.landing": "Um guia da bruxa para a preparação.",
-
   "spell.goety.none": "§eMagia§e",
   "spell.goety.necromancy": "§2Necromancia§2",
   "spell.goety.nether": "§4Nether§4",
@@ -1697,7 +1524,6 @@
   "spell.goety.abyss": "§1Abismo§1",
   "spell.goety.wild": "§aSelvagem§a",
   "spell.goety.void": "§5Vácuo§5",
-
   "tooltip.goety.arca": "Localização da Arca: ",
   "tooltip.goety.arcaCoords": "X:%s Y:%s Z:%s",
   "tooltip.goety.arcaDimension": "Dimensão: %s",
@@ -1728,7 +1554,6 @@
   "tooltip.goety.focusBag.extract": "Extrair",
   "tooltip.goety.focusBag.empty": "Esvaziar",
   "tooltip.goety.servant.spawn_egg": "Agachar faz com que a criatura gerada seja propriedade do usuário.",
-
   "painting.goety.apostle.author": "Desconhecido",
   "painting.goety.apostle.title": "Lorde das Trevas",
   "painting.goety.begging.author": "James Tissot",
@@ -1781,7 +1606,6 @@
   "painting.goety.wicker.title": "O Homem de Vime",
   "painting.goety.wraith.author": "Desconhecido",
   "painting.goety.wraith.title": "Espectro",
-
   "subtitle.goety.apostle_ambient": "Apóstolo murmura",
   "subtitle.goety.apostle_hurt": "Apóstolo ferido",
   "subtitle.goety.apostle_shoot": "Apóstolo dispara",
@@ -1791,13 +1615,11 @@
   "subtitle.goety.apostle_teleport": "Apóstolo desaparece",
   "subtitle.goety.apostle_predeath": "Apóstolo grita",
   "subtitle.goety.apostle_death": "Apóstolo perece",
-
   "subtitle.goety.inferno_ambient": "Inferno respira",
   "subtitle.goety.inferno_hurt": "Inferno ferido",
   "subtitle.goety.inferno_pre_attack": "Inferno prepara-se",
   "subtitle.goety.inferno_loop": "Inferno queima",
   "subtitle.goety.inferno_death": "Inferno morre",
-
   "subtitle.goety.wildfire_ambient": "Fogo Selvagem respira",
   "subtitle.goety.wildfire_hurt": "Fogo Selvagem ferido",
   "subtitle.goety.wildfire_pre_attack": "Fogo Selvagem prepara-se",
@@ -1807,7 +1629,6 @@
   "subtitle.goety.wildfire_shield_regen": "Escudo do Fogo Selvagem regenera-se",
   "subtitle.goety.wildfire_step": "Fogo Selvagem move-se",
   "subtitle.goety.wildfire_death": "Fogo Selvagem morre",
-
   "subtitle.goety.wight_ambient": "Wight respira",
   "subtitle.goety.wight_hurt": "Wight ferido",
   "subtitle.goety.wight_scream": "Wight grita",
@@ -1817,17 +1638,14 @@
   "subtitle.goety.wight_teleport_scream": "Wight grita",
   "subtitle.goety.wight_teleport": "Wight teleporta-se",
   "subtitle.goety.wight_death": "Wight morre",
-
   "subtitle.goety.maggot_ambient": "Larva rasteja",
   "subtitle.goety.maggot_hurt": "Larva ferida",
   "subtitle.goety.maggot_attack": "Larva morde",
   "subtitle.goety.maggot_step": "Larva rasteja",
   "subtitle.goety.maggot_death": "Larva morre",
-
   "subtitle.goety.fly_loop": "Mosca zumbido",
   "subtitle.goety.fly_hurt": "Mosca ferida",
   "subtitle.goety.fly_death": "Mosca morre",
-
   "subtitle.goety.skull_lord_ambient": "Senhor dos Crânios murmura",
   "subtitle.goety.skull_lord_hurt": "Senhor dos Crânios ferido",
   "subtitle.goety.skull_lord_charge": "Senhor dos Crânios grita",
@@ -1836,46 +1654,38 @@
   "subtitle.goety.skull_lord_laser_start": "Senhor dos Crânios dispara laser",
   "subtitle.goety.skull_lord_fly": "Senhor dos Crânios flutua",
   "subtitle.goety.skull_lord_death": "Senhor dos Crânios morre",
-
   "subtitle.goety.sorcerer_ambient": "Feiticeiro murmura",
   "subtitle.goety.sorcerer_hurt": "Feiticeiro ferido",
   "subtitle.goety.sorcerer_death": "Feiticeiro morre",
-
   "subtitle.goety.tormentor_ambient": "Atormentador atormenta",
   "subtitle.goety.tormentor_hurt": "Atormentador ferido",
   "subtitle.goety.tormentor_charge": "Atormentador ri",
   "subtitle.goety.tormentor_celebrate": "Atormentador celebra",
   "subtitle.goety.tormentor_death": "Atormentador morre",
-
   "subtitle.goety.inquillager_ambient": "Inquillager interroga",
   "subtitle.goety.inquillager_hurt": "Inquillager ferido",
   "subtitle.goety.inquillager_celebrate": "Inquillager celebra",
   "subtitle.goety.inquillager_death": "Inquillager morre",
-
   "subtitle.goety.conquillager_ambient": "Conquillager conquista",
   "subtitle.goety.conquillager_hurt": "Conquillager ferido",
   "subtitle.goety.conquillager_celebrate": "Conquillager celebra",
   "subtitle.goety.conquillager_death": "Conquillager morre",
-
   "subtitle.goety.storm_caster_ambient": "Conjurador de Tempestades conjura",
   "subtitle.goety.storm_caster_hurt": "Conjurador de Tempestades ferido",
   "subtitle.goety.storm_caster_monsoon": "Conjurador de Tempestades invoca",
   "subtitle.goety.storm_caster_discharge": "Conjurador de Tempestades descarrega",
   "subtitle.goety.storm_caster_celebrate": "Conjurador de Tempestades celebra",
   "subtitle.goety.storm_caster_death": "Conjurador de Tempestades morre",
-
   "subtitle.goety.cryologer_ambient": "Criologista chora",
   "subtitle.goety.cryologer_hurt": "Criologista ferido",
   "subtitle.goety.cryologer_hail": "Criologista invoca",
   "subtitle.goety.cryologer_wall": "Criologista invoca paredes",
   "subtitle.goety.cryologer_celebrate": "Criologista celebra",
   "subtitle.goety.cryologer_death": "Criologista morre",
-
   "subtitle.goety.preacher_ambient": "Pregador prega",
   "subtitle.goety.preacher_hurt": "Pregador ferido",
   "subtitle.goety.preacher_cast": "Pregador cura",
   "subtitle.goety.preacher_death": "Pregador morre",
-
   "subtitle.goety.minister_ambient": "Ministério ministra",
   "subtitle.goety.minister_hurt": "Ministério ferido",
   "subtitle.goety.minister_laugh": "Ministério ri sarcasticamente",
@@ -1884,30 +1694,24 @@
   "subtitle.goety.minister_speech": "Ministério prega",
   "subtitle.goety.minister_celebrate": "Ministério celebra",
   "subtitle.goety.minister_death": "Ministério morre",
-
   "subtitle.goety.warlock_ambient": "Bruxo canaliza",
   "subtitle.goety.warlock_hurt": "Bruxo ferido",
   "subtitle.goety.warlock_celebrate": "Bruxo celebra",
   "subtitle.goety.warlock_death": "Bruxo morre",
-
   "subtitle.goety.heretic_ambient": "Herege murmura",
   "subtitle.goety.heretic_hurt": "Herege ferido",
   "subtitle.goety.heretic_chant": "Herege canta",
   "subtitle.goety.heretic_celebrate": "Herege celebra",
   "subtitle.goety.heretic_death": "Herege morre",
-
   "subtitle.goety.maverick_ambient": "Dissidente murmura",
   "subtitle.goety.maverick_hurt": "Dissidente ferido",
   "subtitle.goety.maverick_celebrate": "Dissidente celebra",
   "subtitle.goety.maverick_death": "Dissidente morre",
-
   "subtitle.goety.crone_ambient": "Anciã gargalha",
   "subtitle.goety.crone_laugh": "Anciã ri",
   "subtitle.goety.crone_death": "Anciã morre",
-
   "subtitle.goety.cultist_prepare_spell": "Cultista suplica",
   "subtitle.goety.cultist_cast_spell": "Cultista lança feitiço",
-
   "subtitle.goety.skeleton_wolf_ambient": "Lobo Esquelético ofega",
   "subtitle.goety.skeleton_wolf_hurt": "Lobo Esquelético ferido",
   "subtitle.goety.skeleton_wolf_growl": "Lobo Esquelético rosna",
@@ -1915,13 +1719,11 @@
   "subtitle.goety.skeleton_wolf_shake": "Lobo Esquelético sacode",
   "subtitle.goety.skeleton_wolf_step": "Lobo Esquelético anda",
   "subtitle.goety.skeleton_wolf_death": "Lobo Esquelético morre",
-
   "subtitle.goety.reaper_ambient": "Ceifeiro assombra",
   "subtitle.goety.reaper_hurt": "Ceifeiro ferido",
   "subtitle.goety.reaper_fly": "Ceifeiro flutua",
   "subtitle.goety.reaper_swing": "Ceifeiro golpeia",
   "subtitle.goety.reaper_death": "Ceifeiro morre",
-
   "subtitle.goety.wraith_ambient": "Espectro assombra",
   "subtitle.goety.wraith_hurt": "Espectro ferido",
   "subtitle.goety.wraith_fly": "Espectro flutua",
@@ -1930,55 +1732,45 @@
   "subtitle.goety.wraith_acid": "Jorro Ácido",
   "subtitle.goety.wraith_teleport": "Espectro teleporta-se",
   "subtitle.goety.wraith_death": "Espectro morre",
-
   "subtitle.goety.frozen_zombie_ambient": "Zumbi Congelado geme",
   "subtitle.goety.frozen_zombie_hurt": "Zumbi Congelado ferido",
   "subtitle.goety.frozen_zombie_snowball": "Impacto de bola de neve",
   "subtitle.goety.frozen_zombie_death": "Zumbi Congelado morre",
-
   "subtitle.goety.jungle_zombie_ambient": "Zumbi da Selva geme",
   "subtitle.goety.jungle_zombie_hurt": "Zumbi da Selva ferido",
   "subtitle.goety.jungle_zombie_step": "Zumbi da Selva anda",
   "subtitle.goety.jungle_zombie_death": "Zumbi da Selva morre",
-
   "subtitle.goety.blackguard_pre_attack": "Guarda Negra rosna",
   "subtitle.goety.blackguard_smash": "Maça esmaga",
   "subtitle.goety.blackguard_step": "Guarda Negra pisa",
-
   "subtitle.goety.mossy_skeleton_ambient": "Esqueleto Musgoso chocalha",
   "subtitle.goety.mossy_skeleton_hurt": "Esqueleto Musgoso ferido",
   "subtitle.goety.mossy_skeleton_shoot": "Esqueleto Musgoso dispara",
   "subtitle.goety.mossy_skeleton_step": "Esqueleto Musgoso anda",
   "subtitle.goety.mossy_skeleton_death": "Esqueleto Musgoso morre",
-
   "subtitle.goety.sunken_skeleton_ambient": "Esqueleto Submerso chocalha",
   "subtitle.goety.sunken_skeleton_hurt": "Esqueleto Submerso ferido",
   "subtitle.goety.sunken_skeleton_shoot": "Esqueleto Submerso dispara",
   "subtitle.goety.sunken_skeleton_step": "Esqueleto Submerso anda",
   "subtitle.goety.sunken_skeleton_death": "Esqueleto Submerso morre",
-
   "subtitle.goety.necromancer_ambient": "Necromante chocalha",
   "subtitle.goety.necromancer_hurt": "Necromante ferido",
   "subtitle.goety.necromancer_laugh": "Necromante ri",
   "subtitle.goety.necromancer_step": "Necromante anda",
   "subtitle.goety.necromancer_death": "Necromante morre",
-
   "subtitle.goety.drowned_necromancer_ambient": "Necromante Afogado gorgoleja",
   "subtitle.goety.drowned_necromancer_hurt": "Necromante Afogado ferido",
   "subtitle.goety.drowned_necromancer_swim": "Necromante Afogado nada",
   "subtitle.goety.drowned_necromancer_death": "Necromante Afogado morre",
-
   "subtitle.goety.vanguard_ambient": "Vanguarda chocalha",
   "subtitle.goety.vanguard_hurt": "Vanguarda ferido",
   "subtitle.goety.vanguard_spear": "Vanguarda espetada",
   "subtitle.goety.vanguard_step": "Vanguarda anda",
   "subtitle.goety.vanguard_death": "Vanguarda morre",
-
   "subtitle.goety.haunted_armor_ambient": "Armadura Assombrada assombra",
   "subtitle.goety.haunted_armor_hurt": "Armadura Assombrada ferida",
   "subtitle.goety.haunted_armor_step": "Armadura Assombrada anda",
   "subtitle.goety.haunted_armor_death": "Armadura Assombrada morre",
-
   "subtitle.goety.zombie_ravager_ambient": "Assolador Zumbi grunhe",
   "subtitle.goety.zombie_ravager_hurt": "Assolador Zumbi ferido",
   "subtitle.goety.zombie_ravager_bite": "Assolador Zumbi morde",
@@ -1986,25 +1778,21 @@
   "subtitle.goety.zombie_ravager_roar": "Assolador Zumbi ruge",
   "subtitle.goety.zombie_ravager_step": "Assolador Zumbi anda",
   "subtitle.goety.zombie_ravager_death": "Assolador Zumbi morre",
-
-  "subtitle.goety.bone_spider_ambient":"Aranha Óssea chia",
+  "subtitle.goety.bone_spider_ambient": "Aranha Óssea chia",
   "subtitle.goety.bone_spider_step": "Aranha Óssea rasteja",
   "subtitle.goety.bone_spider_hurt": "Aranha Óssea ferida",
   "subtitle.goety.bone_spider_spit": "Aranha Óssea cospe",
   "subtitle.goety.bone_spider_death": "Aranha Óssea morre",
-
   "subtitle.goety.iceologer_ambient": "Gelologista grunhe",
   "subtitle.goety.iceologer_hurt": "Gelologista ferido",
   "subtitle.goety.iceologer_attack": "Gelologista lança feitiço",
   "subtitle.goety.iceologer_death": "Gelologista morre",
-
   "subtitle.goety.black_beast_ambient": "Besta Negra rosna",
   "subtitle.goety.black_beast_hurt": "Besta Negra ferida",
   "subtitle.goety.black_beast_roar": "Besta Negra ruge",
   "subtitle.goety.black_beast_claw": "Besta Negra arranha",
   "subtitle.goety.black_beast_step": "Besta Negra anda",
   "subtitle.goety.black_beast_death": "Besta Negra morre",
-
   "subtitle.goety.whisperer_ambient": "Sussurrador sussurra",
   "subtitle.goety.whisperer_hurt": "Sussurrador ferido",
   "subtitle.goety.whisperer_attack": "Sussurrador bate",
@@ -2014,7 +1802,6 @@
   "subtitle.goety.whisperer_summon_thorns": "Sussurrador enreda",
   "subtitle.goety.whisperer_step": "Sussurrador move-se",
   "subtitle.goety.whisperer_death": "Sussurrador morre",
-
   "subtitle.goety.wavewhisperer_ambient": "Sussurrador das Ondas sussurra",
   "subtitle.goety.wavewhisperer_hurt": "Sussurrador das Ondas ferido",
   "subtitle.goety.wavewhisperer_attack": "Sussurrador das Ondas bate",
@@ -2023,7 +1810,6 @@
   "subtitle.goety.wavewhisperer_summon_thorns": "Sussurrador das Ondas enreda",
   "subtitle.goety.wavewhisperer_step": "Sussurrador das Ondas move-se",
   "subtitle.goety.wavewhisperer_death": "Sussurrador das Ondas morre",
-
   "subtitle.goety.leapleaf_ambient": "Folhasalto grunhe",
   "subtitle.goety.leapleaf_hurt": "Folhasalto ferido",
   "subtitle.goety.leapleaf_smash": "Folhasalto esmaga",
@@ -2032,13 +1818,11 @@
   "subtitle.goety.leapleaf_rest": "Folhasalto descansa",
   "subtitle.goety.leapleaf_step": "Folhasalto anda",
   "subtitle.goety.leapleaf_death": "Folhasalto morre",
-
   "subtitle.goety.ice_golem_hurt": "Golem de Gelo ferido",
   "subtitle.goety.ice_golem_attack": "Golem de Gelo esmaga",
   "subtitle.goety.ice_golem_pre_smash": "Golem de Gelo esmaga",
   "subtitle.goety.ice_golem_step": "Golem de Gelo anda",
   "subtitle.goety.ice_golem_death": "Golem de Gelo morre",
-
   "subtitle.goety.squall_golem_hurt": "Golem de Vendaval ferido",
   "subtitle.goety.squall_golem_activate": "Golem de Vendaval inicia",
   "subtitle.goety.squall_golem_deactivate": "Golem de Vendaval desliga",
@@ -2046,7 +1830,6 @@
   "subtitle.goety.squall_golem_attack": "Golem de Vendaval esmaga",
   "subtitle.goety.squall_golem_step": "Golem de Vendaval anda",
   "subtitle.goety.squall_golem_death": "Golem de Vendaval morre",
-
   "subtitle.goety.redstone_golem_ambient": "Golem de Redstone rosna",
   "subtitle.goety.redstone_golem_hurt": "Golem de Redstone ferido",
   "subtitle.goety.redstone_golem_summon": "Golem de Redstone carrega",
@@ -2057,9 +1840,7 @@
   "subtitle.goety.redstone_golem_growl": "Golem de Redstone rosna",
   "subtitle.goety.redstone_golem_step": "Golem de Redstone anda",
   "subtitle.goety.redstone_golem_death": "Golem de Redstone morre",
-
   "subtitle.goety.redstone_golem_mine_spawn": "Mina de Dispersão aparece",
-
   "subtitle.goety.grave_golem_ambient": "Golem de Túmulo rosna",
   "subtitle.goety.grave_golem_hurt": "Golem de Túmulo ferido",
   "subtitle.goety.grave_golem_awaken": "Golem de Túmulo acorda",
@@ -2067,11 +1848,9 @@
   "subtitle.goety.grave_golem_growl": "Golem de Túmulo rosna",
   "subtitle.goety.grave_golem_step": "Golem de Túmulo anda",
   "subtitle.goety.grave_golem_death": "Golem de Túmulo morre",
-
   "subtitle.goety.haunt_ambient": "Assombração assombra",
   "subtitle.goety.haunt_hurt": "Assombração ferida",
   "subtitle.goety.haunt_fly": "Assombração voa",
-
   "subtitle.goety.redstone_monstrosity_ambient": "Monstruosidade de Redstone ri",
   "subtitle.goety.redstone_monstrosity_hurt": "Monstruosidade de Redstone ferida",
   "subtitle.goety.redstone_monstrosity_awaken": "Monstruosidade de Redstone acorda",
@@ -2079,45 +1858,37 @@
   "subtitle.goety.redstone_monstrosity_growl": "Monstruosidade de Redstone rosna",
   "subtitle.goety.redstone_monstrosity_step": "Monstruosidade de Redstone anda",
   "subtitle.goety.redstone_monstrosity_death": "Monstruosidade de Redstone morre",
-
   "subtitle.goety.redstone_cube_burst": "Cubo de Redstone explode",
   "subtitle.goety.redstone_cube_hurt": "Cubo de Redstone ferido",
   "subtitle.goety.redstone_cube_walk": "Cubo de Redstone rola",
   "subtitle.goety.redstone_cube_attack": "Cubo de Redstone ataca",
-
   "subtitle.goety.vizier_ambient": "Vizir vizira",
   "subtitle.goety.vizier_hurt": "Vizir ferido",
   "subtitle.goety.vizier_confuse": "Vizir confunde",
   "subtitle.goety.vizier_rage": "Vizir ataca",
   "subtitle.goety.vizier_celebrate": "Vizir ri",
   "subtitle.goety.vizier_death": "Vizir morre",
-
   "subtitle.goety.ice_chunk_idle": "Pedaço de Gelo flutua",
   "subtitle.goety.ice_chunk_summon": "Pedaço de Gelo invocado",
   "subtitle.goety.ice_chunk_drop": "Pedaço de Gelo cai",
   "subtitle.goety.ice_chunk_hit": "Pedaço de Gelo atinge",
-
   "subtitle.goety.wall_spawn": "Parede Totémica aparece",
   "subtitle.goety.wall_hit": "Parede Totémica atingida",
   "subtitle.goety.wall_erupt": "Parede Totémica entra em erupção",
   "subtitle.goety.wall_disappear": "Parede Totémica desaparece",
-
   "subtitle.goety.bomb_spawn": "Bomba Totémica aparece",
   "subtitle.goety.bomb_pulse": "Bomba Totémica pulsa",
   "subtitle.goety.bomb_fuse": "Bomba Totémica acende",
   "subtitle.goety.bomb_load": "Bomba Totémica carrega",
   "subtitle.goety.bomb_sparkle": "Bomba Totémica brilha",
-
   "subtitle.goety.quick_growing_vine_burst": "Trepadeiras emergem",
   "subtitle.goety.quick_growing_vine_burrow": "Trepadeiras enterram-se",
   "subtitle.goety.quick_growing_vine_hurt": "Trepadeiras feridas",
   "subtitle.goety.quick_growing_vine_death": "Trepadeiras morrem",
-
   "subtitle.goety.quick_growing_kelp_burst": "Algas emergem",
   "subtitle.goety.quick_growing_kelp_burrow": "Algas enterram-se",
   "subtitle.goety.quick_growing_kelp_hurt": "Algas feridas",
   "subtitle.goety.quick_growing_kelp_death": "Algas morrem",
-
   "subtitle.goety.poison_quill_vine_ambient": "Trepadeira de Espinhos Venenosos explode",
   "subtitle.goety.poison_quill_vine_hurt": "Trepadeira de Espinhos Venenosos ferida",
   "subtitle.goety.poison_quill_vine_open": "Trepadeira de Espinhos Venenosos abre",
@@ -2125,7 +1896,6 @@
   "subtitle.goety.poison_quill_vine_shoot": "Trepadeira de Espinhos Venenosos dispara",
   "subtitle.goety.poison_quill_vine_burst": "Trepadeira de Espinhos Venenosos emerge",
   "subtitle.goety.poison_quill_vine_death": "Trepadeira de Espinhos Venenosos morre",
-
   "subtitle.goety.poison_anemone_ambient": "Anémona Venenosa explode",
   "subtitle.goety.poison_anemone_hurt": "Anémona Venenosa ferida",
   "subtitle.goety.poison_anemone_open": "Anémona Venenosa abre",
@@ -2133,34 +1903,23 @@
   "subtitle.goety.poison_anemone_shoot": "Anémona Venenosa dispara",
   "subtitle.goety.poison_anemone_burst": "Anémona Venenosa emerge",
   "subtitle.goety.poison_anemone_death": "Anémona Venenosa morre",
-
   "subtitle.goety.poison_quill_impact": "Impacto de Espinho Venenoso",
-
   "subtitle.goety.bone_shard_impact": "Impacto de Fragmento Ósseo",
-
   "subtitle.goety.insect_swarm": "Insetos enxameiam",
   "subtitle.goety.insect_swarm_bite": "Insetos mordem",
-
   "subtitle.goety.vine_trap_burst": "Trepadeiras de Armadilha explodem",
   "subtitle.goety.vine_trap_hold": "Trepadeiras de Armadilha seguram",
-
   "subtitle.goety.spider_bite": "Aranha morde",
   "subtitle.goety.spider_call": "Chamamento de Aranha",
   "subtitle.goety.spider_spit": "Aranha cospe",
   "subtitle.goety.spider_web": "Teia cai",
-
   "subtitle.goety.void_rift_open": "Fenda do Vazio abre",
   "subtitle.goety.void_rift": "Fenda do Vazio assobia",
-
   "subtitle.goety.biomine_spawn": "Biomina aparece",
   "subtitle.goety.biomine_trigger": "Biomina ativa",
-
   "subtitle.goety.ghast_disappear": "Ghast desaparece",
-
   "subtitle.goety.damned_scream": "Condenado grita",
-
   "subtitle.goety.dirt_debris": "Detritos de terra",
-
   "subtitle.goety.evil_laugh": "Riso Maligno",
   "subtitle.goety.roar_spell": "Rugido Alto",
   "subtitle.goety.fire_breath": "Respirando Chamas",
@@ -2210,7 +1969,6 @@
   "subtitle.goety.spell_fail": "Falha Mágica",
   "subtitle.goety.doom": "Vítima condenada",
   "subtitle.goety.fire_tornado_ambient": "Tornado Flamejante",
-
   "subtitle.goety.scythe_swing": "Golpe de Foice",
   "subtitle.goety.hammer_swing": "Golpe de Martelo",
   "subtitle.goety.hammer_impact": "Martelo Atinge",
@@ -2224,25 +1982,18 @@
   "subtitle.goety.altar_start": "Ritual Inicia",
   "subtitle.goety.altar_loop": "Ritual Progride",
   "subtitle.goety.altar_finish": "Ritual Termina",
-
   "subtitle.goety.cauldron_bubbles": "Caldeirão borbulha",
   "subtitle.goety.cauldron_chimes": "Caldeirão tilinta",
-
   "subtitle.goety.resonance_crystal_on": "Cristal de Ressonância Inicia",
   "subtitle.goety.resonance_crystal_loop": "Cristal de Ressonância vibra",
   "subtitle.goety.resonance_crystal_off": "Cristal de Ressonância Para",
-
   "subtitle.goety.spider_nest_start": "Ninho de Aranha inicia treino",
   "subtitle.goety.spider_nest_train": "Ninho de Aranha treina",
   "subtitle.goety.spider_nest_spawn": "Ninho de Aranha gera",
-
   "subtitle.goety.gravestone_start": "Lápide inicia treino",
-
   "subtitle.goety.blazing_cage_start": "Jaula Flamejante inicia treino",
   "subtitle.goety.blazing_cage_train": "Jaula Flamejante treina",
-
   "subtitle.goety.urn_break": "Urna parte-se",
-
   "commands.lich.query.true": "%s é um Lich",
   "commands.lich.query.false": "%s não é um Lich",
   "commands.lich.turnlich.success": "%s foi concedido como Lich!",
@@ -2304,7 +2055,6 @@
   "commands.goety.misc.repair.inventory.failure": "Nenhum item no inventário alvo é reparável",
   "commands.goety.misc.heal.success.single": "Restaurou saúde e fome de %s",
   "commands.goety.misc.heal.success.multiple": "Restaurou saúde e fome de %s jogadores",
-
   "advancements.goety.root.title": "As Artes Negras",
   "advancements.goety.root.description": "Inicia a tua jornada",
   "advancements.goety.craft_totem_roots.title": "Kit Inicial",
@@ -2531,7 +2281,6 @@
   "advancements.goety.summon_apostle.title": "Dia do Julgamento",
   "advancements.goety.become_lich.title": "Estou Além da Força",
   "advancements.goety.become_lich.description": "Ascende a Lich e torna-te verdadeiramente imortal!",
-
   "gui.jei.category.cursed_infuser": "Infusor Amaldiçoado",
   "gui.jei.category.cursed_infuser.time": "%ss",
   "gui.jei.category.dark_altar": "Altar das Trevas",
@@ -2539,11 +2288,9 @@
   "gui.jei.category.dark_altar.soulcost": "%s Almas/s",
   "gui.jei.category.brazier": "Braseiro Necro",
   "gui.jei.category.pulverize": "Foco de Pulverização",
-
   "goety.jei.ritual": "Rituais das Trevas",
   "goety.jei.ritualType": "Ritual",
   "goety.jei.brazier": "Necro Brazier",
-
   "jei.goety.sacrifice": "Sacrifício: %s",
   "jei.goety.summon": "Invocar: %s",
   "jei.goety.convert": "Entidade Necessária: %s",
@@ -2574,7 +2321,6 @@
   "jei.goety.error.missing_id": "Não é possível identificar a receita.",
   "jei.goety.error.invalid_type": "Tipo de receita inválido.",
   "jei.goety.error.recipe_too_large": "Receita maior do que 3x3.",
-  
   "jade.goety.lifespan": "Tempo de vida: %s",
   "jade.goety.movement": "Posição: ",
   "jade.goety.movement.follow": "Seguindo",
@@ -2583,7 +2329,6 @@
   "jade.goety.movement.command": "Comandado",
   "jade.goety.soul_energy": "Energia da Alma: %s",
   "jade.goety.soul_energy_arca": "Energia da Alma: %s / %s",
- 
   "config.jade.plugin_goety.summon_lifespan": "Tempo de Vida da Invocação",
   "config.jade.plugin_goety.summon_lifespan_desc": "Apresenta o tempo de vida atual da invocação.",
   "config.jade.plugin_goety.servant_mode": "Postura de invocação",
@@ -2594,14 +2339,12 @@
   "config.jade.plugin_goety.block_owner_desc": "Mostra a que jogador pertence o bloco.",
   "config.jade.plugin_goety.villager_profession": "Profissão de Aldeão",
   "config.jade.plugin_goety.zombie_villager": "Conversão de aldeão zombie",
- 
   "item.goety.jei_dummy.sacrifice": "Requer Sacrifício!",
   "item.goety.jei_dummy.sacrifice.tooltip": "Este ritual requer um sacrifício para começar.",
   "item.goety.jei_dummy.item": "Requer Uso de Item!",
   "item.goety.jei_dummy.item.tooltip": "Este ritual requer o uso de um item específico para ser iniciado.",
   "item.goety.jei_dummy.none": "Resultado de Ritual Sem Item",
   "item.goety.jei_dummy.none.tooltip": "Este ritual não cria nenhum item",
- 
   "death.attack.goety.summon": "%1$s foi morto por %2$s de %3$s",
   "death.attack.goety.summon.item": "%1$s foi morto por %2$s de %3$s usando %4$s",
   "death.attack.goety.iceBouquet": "%1$s foi congelado por %2$s",
@@ -2690,9 +2433,7 @@
   "item.goety.geomancer_servant_spawn_egg": "Ovo de Servo Geomancer",
   "item.goety.iceologer_servant_spawn_egg": "Ovo de Servo Iceologer",
   "block.goety.creeper_totem": "Totem de Creeper",
-
   "info.goety.servant.stopRaid": "Ataque interrompido em X: %d, Y: %d, Z: %d",
-
   "subtitle.goety.geomancer_ambient": "Geomancer ri baixinho",
   "subtitle.goety.geomancer_hurt": "Geomancer se machuca",
   "subtitle.goety.geomancer_pre_attack": "Geomancer se prepara",
@@ -3170,7 +2911,6 @@
   "block.goety.end_dirt_slab": "Laje de Terra do End",
   "block.goety.soiled_end_dirt": "Terra do End Adubada",
   "block.goety.end_mud_fluid": "Lama Líquida do End",
-
   "block.goety.black_crystal": "Cristal Negro",
   "block.goety.chorus_sprout": "Broto de Chorus",
   "block.goety.chorus_stalk": "Caule de Chorus",
@@ -3188,7 +2928,6 @@
   "subtitle.goety.thunder_strike_fast": "Golpe de trovão",
   "advancements.goety.craft_black_crystal.title": "Precisa de Mais Essência!",
   "advancements.goety.craft_black_crystal.description": "Causa dano a entidades próximas, fornecendo Energia das Almas.",
-
   "subtitle.goety.endersent_ambient": "Endersent profere",
   "subtitle.goety.endersent_hurt": "Endersent machucado",
   "subtitle.goety.endersent_ambient_smash": "Endersent esmaga",
@@ -3198,19 +2937,14 @@
   "subtitle.goety.endersent_deadly_escape": "Endersent escapa",
   "subtitle.goety.endersent_step": "Endersent pisa",
   "subtitle.goety.endersent_death": "Endersent morre",
-
   "item.goety.watchling_spawn_egg": "Ovo de Observador",
   "item.goety.blastling_spawn_egg": "Ovo de Explosivo",
   "item.goety.snareling_spawn_egg": "Ovo de Rosnando",
   "item.goety.endersent_spawn_egg": "Ovo de Endersent",
   "item.goety.ender_keeper_spawn_egg": "Ovo de Guardião do End",
-
   "entity.goety.endersent": "Endersent",
-
   "info.goety.void_shard": "Dropado por Endersent invocado pela Moldura do Vácuo.",
-
   "entity.goety.earth_fist": "Punho Terrestre",
-
   "block.goety.dark_altar_stone": "Altar das Trevas de Pedra",
   "block.goety.dark_altar_deepslate": "Altar das Trevas de Ardósia",
   "block.goety.dark_altar_nether_brick": "Altar das Trevas de Tijolo do Nether",
@@ -3223,12 +2957,10 @@
   "block.goety.pedestal_end_stone": "Pedestal de Pedra do End",
   "block.goety.pedestal_highrock": "Pedestal de Rocha Alta",
   "block.goety.pedestal_marble": "Pedestal de Mármore",
-
   "block.goety.blackstone_brazier": "Braseiro de Pedra-negra",
   "block.goety.blackstone_soul_brazier": "Braseiro das Almas de Pedra-negra",
   "item.goety.reaping_focus": "Foco dos Ceifadores",
   "item.goety.reaping_focus.info": "Invoca Servos Ceifadores. Usar agachado invoca os servos do conjurador em sua direção.",
-
   "block.goety.forbidden_grass": "Bloco de Grama Proibida",
   "entity.goety.signaler_servant": "Servo Sinalizador",
   "entity.goety.maverick_servant": "Servo Maverick",
@@ -3261,7 +2993,6 @@
   "subtitle.goety.trampler_celebrate": "Pisoteador celebra",
   "subtitle.goety.trampler_step": "Pisoteador galopa",
   "subtitle.goety.trampler_death": "Pisoteador morre",
-
   "subtitle.goety.piker_ambient": "Lanceiro pica",
   "subtitle.goety.piker_hurt": "Lanceiro ferido",
   "subtitle.goety.piker_swing": "Lanceiro golpeia",
@@ -3269,18 +3000,15 @@
   "subtitle.goety.piker_celebrate": "Lanceiro celebra",
   "subtitle.goety.piker_step": "Lanceiro marcha",
   "subtitle.goety.piker_death": "Lanceiro morre",
-
   "subtitle.goety.ravaged_ambient": "Devastado rosna",
   "subtitle.goety.ravaged_hurt": "Devastado ferido",
   "subtitle.goety.ravaged_bite": "Devastado morde",
   "subtitle.goety.ravaged_eat": "Devastado mastiga",
   "subtitle.goety.ravaged_step": "Devastado anda",
   "subtitle.goety.ravaged_death": "Devastado morre",
-
   "item.goety.trampler_servant_spawn_egg": "Ovo de Servo Pisoteador",
   "item.goety.signaler_servant_spawn_egg": "Ovo de Servo Sinalizador",
   "item.goety.maverick_servant_spawn_egg": "Ovo de Servo Maverick",
-
   "block.goety.snowy_highrock_bricks_slight": "Tijolos de Rocha Alta Neve Leve",
   "block.goety.snowy_highrock_brick_slight_slab": "Laje de Tijolo de Rocha Alta Neve Leve",
   "block.goety.snowy_highrock_brick_slight_stairs": "Escadas de Tijolo de Rocha Alta Neve Leve",
@@ -3658,12 +3386,10 @@
   "death.attack.goety.rot.player": "%1$s apodreceu enquanto lutava contra %2$s",
   "death.attack.goety.rage": "%1$s foi consumido pela raiva",
   "death.attack.goety.rage.player": "%1$s foi consumido pela raiva enquanto lutava contra %2$s",
-
   "title.goety.heresiarch.0": "Diretor",
   "title.goety.heresiarch.1": "Vossa Excelência",
   "title.goety.heresiarch.2": "Juiz",
   "title.goety.heresiarch.3": "Reverendo",
-
   "entity.goety.reprobate_servant": "Servo Reprobado",
   "item.goety.reprobate_servant_spawn_egg": "Ovo de Servo Reprobado",
   "block.goety.dark_altar_prismarine": "Altar das Trevas de Prismarinho",
@@ -3681,8 +3407,6 @@
   "filled_map.goety.wind_shrine": "Mapa do Santuário do Vento",
   "filled_map.goety.ominous_blacksmith": "Mapa do Ferreiro Sinistro",
   "filled_map.goety.ancient_city": "Mapa da Cidade Antiga",
-
-
   "entity.goety.sprite": "Centelha Relampejante",
   "item.goety.sprite_spawn_egg": "Ovo de Centelha Relampejante",
   "item.goety.sprightly_focus": "Foco da Centelha Relampejante",
@@ -3739,5 +3463,127 @@
   "item.goety.smack_stone_focus.info": "Dispara uma pedra que, ao atingir, faz o alvo cair no chão. Causa mais dano a alvos que não estão no chão.",
   "block.goety.gold_chandelier": "Candelabro de Ouro",
   "block.goety.iron_dungeon_chain": "Corrente de Ferro de Masmorra",
-  "block.goety.gold_dungeon_chain": "Corrente de Ouro de Masmorra"
+  "block.goety.gold_dungeon_chain": "Corrente de Ouro de Masmorra",
+  "block.goety.shade_ossuary": "Ossuário das Sombras",
+  "subtitle.goety.void_blast": "Explosão do Vácuo",
+  "block.goety.blossoming_chorus_wood": "Madeira de Coro Florescida",
+  "block.goety.blooming_chorus_wood": "Madeira de Coro em Floração",
+  "block.goety.top_dirty_end_basalt": "Basalto do End Sujo Superior",
+  "block.goety.bottom_dirty_end_basalt": "Basalto do End Sujo Inferior",
+  "block.goety.chorus_grass_dirt": "Terra de Grama de Coro",
+  "block.goety.sculptured_statue": "Estátua Esculpida",
+  "block.goety.sculptured_statue_1": "Estátua de §aNedeak",
+  "block.goety.sculptured_statue_2": "Estátua de §aMrdrewlego",
+  "block.goety.sculptured_statue_3": "Estátua de §aCodatower",
+  "block.goety.sculptured_statue_4": "Estátua de §a坂上駒子",
+  "entity.goety.elder_guardian_servant": "Servo Guardião-Mestre",
+  "item.goety.elder_guardian_servant_spawn_egg": "Ovo de Servo Guardião-Mestre",
+  "item.goety.aging_cream": "Creme de Envelhecimento",
+  "block.goety.grave_soil": "Terra do Túmulo",
+  "effect.goety.smiting": "Julgamento",
+  "effect.goety.smiting.description": "Ataques físicos causam mais dano a mortos-vivos; níveis mais altos causam mais dano.",
+  "effect.goety.insect_bane": "Praga de Insetos",
+  "effect.goety.insect_bane.description": "Ataques físicos causam mais dano a artrópodes; níveis mais altos causam mais dano.",
+  "effect.goety.aging": "Envelhecimento",
+  "info.goety.ritual.structure.noBlocksMulti": "Quantidade insuficiente de %s ou %s!",
+  "entity.goety.haunted_broom": "Vassoura Assombrada",
+  "item.goety.wicked_boline": "Boline Maligna",
+  "item.goety.henbane_seeds": "Sementes de Meimendro",
+  "item.goety.henbane_flower": "Flor de Meimendro",
+  "item.goety.nightshade_seeds": "Sementes de Beladona",
+  "item.goety.nightshade_blossom": "Flor de Beladona",
+  "item.goety.resilience_lotion": "Loção de Resiliência",
+  "item.goety.flying_ointment": "Pomada Voadora",
+  "item.goety.haunted_broom": "Vassoura Assombrada",
+  "item.goety.eternal_cauldron": "Caldeirão Eterno",
+  "block.goety.henbane": "Meimendro",
+  "block.goety.deadly_nightshade": "Beladona Mortífera",
+  "effect.goety.exchange": "Trocar",
+  "info.goety.brew.candlesticks": "Nenhum Castiçal de Almas aceso por perto!",
+  "info.goety.broom.noSouls.ride": "Energia da Alma insuficiente para montar!",
+  "info.goety.cauldron.craft.fail": "Os ingredientes não correspondem a nenhuma receita!",
+  "tooltip.goety.crafting": "Fabricação: ",
+  "gui.jei.category.cauldron": "Caldeirão da Bruxa",
+  "goety.jei.brew": "Preparo no Caldeirão",
+  "goety.jei.cauldron": "Criação no Caldeirão",
+  "block.goety.braced_crag_tile_pillar": "Pilar de Azulejo Rochoso Reforçado",
+  "block.goety.jade_crystal_lamp": "Lâmpada de Cristal de Jade",
+  "block.goety.half_jade_crystal_lamp": "Meia Lâmpada de Cristal de Jade",
+  "block.goety.snowy_pine_pillar": "Pilar de Pinheiro Nevado",
+  "block.goety.pine_firewood": "Lenha de Pinheiro",
+  "block.goety.dense_steep_planks": "Tábuas Densas Íngremes",
+  "block.goety.dense_banded_steep_planks": "Tábuas Densas com Faixas Íngremes",
+  "block.goety.steep_firewood": "Lenha Íngreme",
+  "block.goety.potted_henbane": "Meimendro em Vaso",
+  "block.goety.potted_deadly_nightshade": "Beladona Mortífera em Vaso",
+  "enchantment.goety.fealty": "Lealdade",
+  "enchantment.goety.hardy": "Resistência",
+  "enchantment.goety.fealty.desc": "Retorna a vassoura ao inventário de quem a colocou quando quebrada. Impede que outros jogadores a montem também.",
+  "enchantment.goety.hardy.desc": "Faz com que as vassouras tenham um limite maior de dano que podem receber antes de quebrar.",
+  "block.goety.end_rock_stairs": "Escadas de Rocha do End",
+  "block.goety.end_rock_brick_stairs": "Escadas de Tijolos de Rocha do End",
+  "item.goety.soul_energy": "Energia de Alma",
+  "info.goety.item.souls": "§aEnergia de Alma: %d§a",
+  "gui.jei.category.soul_absorber": "Absorvedor de Almas",
+  "jei.goety.soulAmount": "%s",
+  "block.goety.shade_sarcophagus": "Sarcófago das Sombras",
+  "block.goety.stone_sarcophagus": "Sarcófago de Pedra",
+  "block.goety.deepslate_sarcophagus": "Sarcófago de Ardósia",
+  "block.goety.ominous_sarcophagus": "Sarcófago Sinistro",
+  "block.goety.crypt_sarcophagus": "Sarcófago da Cripta",
+  "info.goety.sarcophagus.occupied": "Este sarcófago está ocupado",
+  "info.goety.sarcophagus.not_day": "Você só pode dormir durante o dia",
+  "info.goety.sarcophagus.too_far": "Você não pode descansar agora; o sarcófago está muito longe",
+  "info.goety.sarcophagus.obstructed": "Este sarcófago está obstruído",
+  "item.goety.ring_of_wrecking": "Anel da Destruição",
+  "info.goety.ring_of_wrecking": "Mobs mortos pelo usuário ou servos não deixarão mais cair equipamentos danificáveis.",
+  "commands.goety.misc.grimoire.grudge": "Rancor",
+  "commands.goety.misc.grimoire.goodwill": "Boa Vontade",
+  "commands.goety.misc.grimoire.success.add.entity": "Adicionado(s) %s entidade(s) à lista de %s",
+  "commands.goety.misc.grimoire.success.add.entityType": "Adicionado %s à lista de %s para %s jogadores",
+  "commands.goety.misc.grimoire.success.remove.entity": "Removido(s) %s entidade(s) da lista de %s",
+  "commands.goety.misc.grimoire.success.remove.entityType": "Removido %s da lista de %s para %s jogadores",
+  "commands.goety.misc.grimoire.list": "=== Lista de %s de %s ===",
+  "commands.goety.misc.grimoire.list.empty": "Vazio",
+  "commands.goety.misc.grimoire.list.entities": "Entidades:",
+  "commands.goety.misc.grimoire.list.entityTypes": "Tipos de Entidade:",
+  "info.goety.sarcophagus.stop_sleeping": "Sair do Sarcófago",
+  "item.goety.shade_sarcophagus": "Shade Sarcophagus",
+  "item.goety.stone_sarcophagus": "Stone Sarcophagus",
+  "item.goety.deepslate_sarcophagus": "Deepslate Sarcophagus",
+  "item.goety.ominous_sarcophagus": "Ominous Sarcophagus",
+  "item.goety.crypt_sarcophagus": "Crypt Sarcophagus",
+  "item.goety.grave_soil": "Grave Soil",
+  "item.goety.shade_ossuary": "Shade Ossuary",
+  "entity.goety.royal_guard_servant": "Servo Guarda Real",
+  "entity.goety.hostile_zombie_vindicator": "Vingador Zumbi",
+  "entity.goety.blackguard_variant_servant": "Servo Guarda-Negra",
+  "item.goety.zombie_vindicator_spawn_egg": "Ovo de Vingador Zumbi",
+  "item.goety.skeleton_pillager_spawn_egg": "Ovo de Esqueleto Saqueador",
+  "item.goety.blackguard_variant_servant_spawn_egg": "Ovo de Servo Guarda-Negra",
+  "item.goety.royal_guard_servant_spawn_egg": "Ovo de Servo Guarda Real",
+  "item.goety.repair_putty": "Massa de Reparo",
+  "item.goety.patrol_plan": "Plano de Patrulha",
+  "item.goety.soul_healer": "Curandeiro de Almas",
+  "block.goety.plushie_11": "Pelúcia do §aKrakenKru §r",
+  "block.goety.plushie_12": "Pelúcia do §aNightHeron §r",
+  "block.goety.sculptured_statue_5": "Estátua de §aKrakenKru",
+  "block.goety.sculptured_statue_6": "Estátua de §aNightHeron",
+  "info.goety.movement.patrol": "Patrulhando",
+  "info.goety.soul_healer": "Cura o usuário a uma distância de uma quantia. Se equipado, pressione %s para usá-lo.",
+  "info.goety.soul_healer.give": "Pode ser dado a um servo Illager, onde eles podem ganhar energia da alma para usá-lo.",
+  "info.goety.repair_putty": "Cura golens e constructos enquanto segura um martelo na mão secundária.",
+  "info.goety.patrol": "Clique com o botão direito em um bloco para adicionar ao caminho de patrulha, clique com o botão direito novamente para remover. Shift + clique com o botão direito para limpar. A patrulha forma um ciclo",
+  "info.goety.patrol.clear": "Caminho de patrulha removido",
+  "info.goety.patrol.empty": "Não há caminho de patrulha!",
+  "info.goety.patrol.dimension": "A posição anterior estava em outra dimensão!",
+  "info.goety.patrol.distance": "A posição está muito distante!",
+  "info.goety.patrol.add": "Posição adicionada",
+  "info.goety.patrol.remove": "Posição removida",
+  "info.goety.patrol.number": "A patrulha tem %s posições",
+  "info.goety.patrol.assign": "Caminho de Patrulha adicionado a %s",
+  "subtitle.goety.royal_guard_pre_attack": "Guarda Real rosna",
+  "subtitle.goety.royal_guard_step": "Guarda Real anda",
+  "jade.goety.movement.patrol": "Patrulhando",
+  "block.goety.sandstone_sarcophagus": "Sarcófago de Arenito"
 }

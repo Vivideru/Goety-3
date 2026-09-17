@@ -8,6 +8,7 @@ import com.Polarice3.Goety.common.magic.spells.void_spells.RecallSpell;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayWorldSoundPacket;
 import com.Polarice3.Goety.init.ModTags;
+import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -20,6 +21,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -116,7 +118,7 @@ public class RecallFocus extends MagicFocus{
                             if (event.isCanceled()) {
                                 return false;
                             }
-                            livingEntity.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                            MobUtil.teleportTracked(livingEntity, event.getTargetX(), event.getTargetY(), event.getTargetZ());
                             ModNetwork.sendToALL(new SPlayWorldSoundPacket(BlockPos.containing(livingEntity.xo, livingEntity.yo, livingEntity.zo), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                             ModNetwork.sendToALL(new SPlayWorldSoundPacket(BlockPos.containing(optional.get()), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                             return true;
@@ -131,9 +133,12 @@ public class RecallFocus extends MagicFocus{
                                     if (event.isCanceled()) {
                                         return false;
                                     }
-                                    livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, optional.get()));
-                                    livingEntity.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
-                                    return true;
+                                    // Dimension changes replace non-player entities in 1.21, so synchronize the returned instance.
+                                    Entity transferred = livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, optional.get()));
+                                    if (transferred != null) {
+                                        MobUtil.teleportTracked(transferred, event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                                        return true;
+                                    }
                                 }
                             }
                         }

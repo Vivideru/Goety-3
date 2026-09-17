@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:guardian",
+    "goety:guardian_servant"
+  ]
+}

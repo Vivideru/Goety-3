@@ -1,11 +1,11 @@
 {
-  "name": "Illager Servants",
+  "name": "イリジャーの従者",
   "icon": "goety:magic_emerald",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After learning more on the Illagers, how they came about from an ancient struggle where their Villager ancestors took up arms to defend themselves, you've conceived and found a way to introduce violence within the hearts of the Villagers... along with servitude."
+      "text": "イリジャーについて、そして彼らの祖先である村人が自らを守るために、武器を取って彼らがどのようにして生まれたのかを学んだ後、あなたは村人の心に暴力と隷属をもたらす方法を思いつきました。"
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While you've managed to turn the pacifistic Villager towards violence, such hatred must be learned. The Illagers don't instantly know how to shoot their crossbows and chop with axes from the get go. To make a proper Illager, one must set up a $(l:goety:crafts/artifice/ominous_pyre)proper training ground$() for them to grow. If one has a $(l:goety:mutations/illager_servants#banner)registered banner$(), giving a Neollager any banner that's not already a replica and having a Loom near them will have them work to make a replicated banner. Baby Neollagers are quicker to train."
+      "text": "平和主義の村人を、暴力的へと転向させることに成功したとしても、そのような憎しみは習得する必要があります。イリジャーは、最初からクロスボウの射撃や斧での倒し方を習得できるわけではありません。真のイリジャーを作るには、成長のための$(l:goety:crafts/artifice/ominous_pyre)訓練場$()を用意する必要があります。$(l:goety:mutations/illager_servants#banner)登録済みの旗$()がある場合、複製ではない旗をネオラジャーに与え、近くに機織り機があれば、複製の旗を作る作業が始まります。ベビーネオラージャーは訓練が早いです。"
     },
     {
       "type": "patchouli:entity",
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "That being said, not all Illagers are made equal. Only those born with the talent for magic can hope to become a spellcaster, whom are conveniently marked by their purple robes."
+      "text": "とはいえ、すべてのイリジャーが平等というわけではない。魔法の才能を持って生まれた者だけが、魔法使いとなる希望を持つことができる。彼らは都合よく紫色のローブをまとっている。"
     },
     {
       "type": "patchouli:entity",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While armed with the sophisticated crossbow, these Illagers are quite simple in their approach to combat. Fortunately your servants knows how to back off when their target goes near them. They can accept custom arrows by right-clicking on them with up a stack of them, which they will use up when shooting."
+      "text": "洗練されたクロスボウを装備しているにもかかわらず、イリジャーの戦闘スタイルは実にシンプルです。幸いにも、あなたの従者は標的が近づいたら後退する方法を心得ています。"
     },
     {
       "type": "patchouli:entity",
@@ -41,7 +41,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These highly trained and disciplined Illagers are capable of stabbing targets further from their position."
+      "text": "高度な訓練を受け、規律正しいイリジャーは、自分の位置から遠く離れた標的を刺すことが可能です。"
     },
     {
       "type": "patchouli:entity",
@@ -49,7 +49,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Though shunned by others for their lack of magic or martial skills, these Illagers are highly useful for spotting incoming threats from afar, especially when perched high up, and sounding a horn that causes Guarding servants in a large radius around themselves, to attack it. These threats are either a hostile Player, a hostile mob with twice the amount of max health as the Signaler or a horde of enemies, the size of which depending on what comprises them and whether they have a higher max health than the Signaler."
+      "text": "魔法や武術のスキルに乏しいため、他者からは敬遠されているものの、特に高所で遠い場所から迫り来る脅威を察知し、角笛を鳴らすと、広範囲に「巡回」している従者たちが攻撃を仕掛けるという、非常に有用な存在です。これらの脅威は、敵対的なプレイヤー、シグナラーの最大体力の2倍の敵対的なモブ、あるいは敵の大群のいずれかであり、その規模は構成とシグナラーよりも高い最大体力を持つかどうかによって決まります。"
     },
     {
       "type": "patchouli:entity",
@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One of the most deadliest Illagers now under your command, these brutes can disable shields with their axes and deal a ton of damage as well. You probably shouldn't name them 'Johnny' if you wish to keep them obedient."
+      "text": "指揮下にある最も凶悪なイリジャーの一人。斧で盾を無効化し、大量のダメージを与える。従順にさせたいなら、「Johnny」という名前は避けた方が良いだろう。"
     },
     {
       "type": "patchouli:entity",
@@ -66,7 +66,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A specialized Vindicator that can collect ingredients, like uncooked meat, and will either cook them at a nearby Smoker or Furnace, or assemble them at a nearby Crafting Table into an actual meal. Shift-right click with an empty hand on them will give you their first food in their inventory."
+      "text": "生肉を集め、近くの燻製器やかまどでインベントリ内の食材を調理できる、特別なヴィンディケーターです。何も持たずにShiftキーを押しながら右クリックすると、インベントリ内の最初の食材が手に入ります。"
     },
     {
       "type": "patchouli:entity",
@@ -74,7 +74,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These mountain climbers are a bit more sturdier than their vindictive cousins, both in health and their resistance on being blown away by wind."
+      "text": "これらの登山家は、HPでも、風に吹き飛ばされにくい点でも、ヴィンディケーターより頑丈です。"
     },
     {
       "type": "patchouli:entity",
@@ -83,7 +83,16 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These Illagers are usually the ones that forge weapons for other Illagers, but they can also smash apart their foes with their mighty hammer. They can also take ore from a chest they're bound to and smelt them at a nearby Furnace or Blast Furnace, and will also craft weapons to other Illagers if they're somehow deprived of them, or make a better version if they have the resources and the Illager in question doesn't have an enchanted weapon."
+      "text": "これらのイリジャーは通常、他のイリジャーのために武器を鍛造しますが、強力なハンマーで敵を粉砕することもできます。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:royal_guard_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "text": "威圧的な態度とメイスによる強力な一撃で上官を護衛する、高位のイラジャーです。盾を失っている場合、攻撃中でない時に鉄インゴットを持って右クリックすると、盾を再び持たせることができます。"
     },
     {
       "type": "patchouli:entity",
@@ -91,7 +100,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A practitioner of the dark arts, though one that's limited to only two spells, spells they perform quite well though. Combat-wise they love to run around in order to avoid getting stabbed. If their master learned $(l:rumors/ravaging)the ways of ravaging$(), they are able to transform a Villager into a Ravaged which requires $(l:goety:focuses/command_focus)commanding$() a $(l:goety:mutations/illager_servants#banner)leading$() Evoker to one, or one nearby if Villagers as a whole are $(l:goety:crafts/grimoire_of_grudges)grudged against$(), while also having two Evokers nearby."
+      "text": "闇の魔術の使い手だが、使える呪文は2つに限られている。しかし、呪文の使い手としてはかなり優秀です。戦闘に関しては、刺されないように走り回るのが好きなようだ。主人が$(l:rumors/ravaging)荒らし方$()を学んだ場合、村人をラヴェジャーに変えることが可能です。そのためには、$(l:goety:focuses/command_focus)命令$()して $(l:goety:mutations/illager_servants#banner)エヴォーカーを1人に導く$() か、村人全体が$(l:goety:crafts/grimoire_of_grudges)恨みを抱いている$()場合は近くに1人、さらにエヴォーカーが2人いる必要があります。"
     },
     {
       "type": "patchouli:entity",
@@ -99,7 +108,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "With the ability to manipulate the very ground, these ragged spellcasters can raise stone pillars out of the ground to either hinder their enemy's path or to blow them up."
+      "text": "地面そのものを操作する能力を持つ、ぼろぼろの服を着た魔法使いは、地面から石の柱を立てて敵の進路を妨害したり、敵を爆破したりすることができます。"
     },
     {
       "type": "patchouli:entity",
@@ -107,7 +116,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These chilling conjurers of ice will smash their foes' head with their Ice Chunks."
+      "text": "これらの冷たい氷の魔術師は、氷の塊で敵の頭を粉砕します。"
     },
     {
       "type": "patchouli:entity",
@@ -115,7 +124,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Ever-crying, these priests of the cold can breath out frost, summon frozen walls to hinder their foes and summon clouds of hail above them."
+      "text": "常に泣き叫ぶこの冷気の司祭たちは、氷の息を吐き出し、敵を妨害する凍った壁を召喚し、頭上に雹の雲を召喚することができます。"
     },
     {
       "type": "patchouli:entity",
@@ -124,7 +133,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Masters of the skies, these big haired shamans can fling their foes to the sky or blast them away with the wind."
+      "text": "空の支配者であるこの大きな髪の魔術師は、敵を上空に投げ飛ばしたり、風で吹き飛ばしたりすることができます。"
     },
     {
       "type": "patchouli:entity",
@@ -133,80 +142,79 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Whether they're hunting treasures or keeping them safe, these illagers will mercilessly electrocute their enemies to cinders."
+      "text": "宝物を探しているときも、宝物を守っているときも、これらのイリジャーは容赦なく敵を感電させて灰にします。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:red_bed",
-      "title": "Food, Breed & Heal",
-      "text": "The Illagers can be given certain types of food directly or throwing it at them, which they would eat to regenerate health when hurt or to breed. If fully healed, not in combat, not in following mode and with a reachable bed nearby, the food can be used to help them breed with one another, much like Villagers, which would result in a baby Neollager."
+      "title": "食事・繁殖・回復",
+      "text": "イリジャーは、直接食べ物を与えたり投げたりすることで、体力を回復したり繁殖したりすることができます。完全に回復し、戦闘中ではなく、フォローモードではなく、近くにベッドがある場合は、食べ物を使って村人のように互いに繁殖し、ネオラジャーの赤ちゃんが生まれます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Having an excess amount of food in their inventory will cause them to share some food other Illagers with less food. The food they can take are either cooked meat, vegetables, fruits and Rotten Flesh, though they don't eat the latter, but use it to feed $(l:goety:mutations/ravaged)Ravaged or injured Ravagers$(). They can also be given armor to wear and associated weapons to equip."
+      "text": "インベントリに食料を過剰に保有していると、食料の少ない他のイリジャーに食料を投げつけます。持ち帰ることができる食料は、調理済みの肉、野菜、果物、腐った肉。腐った肉は食べませんが、$(l:goety:mutations/ravaged)ラヴェイジドや傷ついたラヴェジャー$()に与えます。また、装備用の鎧や武器を装備させることもできます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:black_banner",
-      "anchor": "banner",
-      "title": "Personal Banner",
-      "text": "While the Illagers have their own ominous banner, it would be both fun and useful to have your own banner that signifies your rule. To register your own personal banner, simply place down a banner and right click it with a Wand or Staff that doesn't have a Block based spell (ie, $(l:goety:focuses/geomancy/pulverize_focus)Pulverize$())."
+      "anchor": "旗",
+      "title": "個人的な旗",
+      "text": "イリジャーは独自の不吉な旗を持っていますが、自分の支配を示す独自の旗を持つのも楽しく、また便利でしょう。独自の旗を登録するには、旗を置き、ブロック系フォーカスの無い杖（できない例：$(l:goety:focuses/geomancy/pulverize_focus)粉砕のフォーカス$()）で右クリックするだけです。"
     },
     {
       "type": "patchouli:entity",
-      "name": "Illager Captain",
       "entity": "goety:pillager_servant{HandItems:[{Count:1,id:\"minecraft:crossbow\"},{}], ArmorItems:[{},{},{},{Count:1,id:\"minecraft:black_banner\"}]}",
       "scale": 0.5,
-      "text": "Illagers like Pillager Servants can be made a captain."
+      "text": "ピリジャーの従者のようなイリジャーはリーダーにすることができます。"
     },
     {
       "type": "patchouli:text",
-      "text": "If an Illager were given your $(l:goety:mutations/illager_servants#banner)personal banner$(), they will become a captain. Using a $(l:goety:focuses/command_focus)Command$() / $(l:goety:focuses/order_focus)Order$() Focus and commanding Illagers and certain other raiding servants, like tamed Ravagers, onto a leading Illager will cause them to follow them instead of you. Updating their movement stance will stop them from following the leading Illager. Right-clicking on the captain with an empty hand will cause them to drop their banner."
+      "text": "イリジャーにあなたの$(l:goety:mutations/illager_servants#banner)個人的な旗$()を与えると、リーダーになります。$(l:goety:focuses/command_focus)コマンド/命令$() / $(l:goety:focuses/order_focus)体制$()のフォーカスを使用して、イリジャーや、飼い慣らしたラヴェジャーなどの特定の襲撃の従者にリーダーのイリジャーに命令すると、彼らはあなたではなく彼らにフォローするようになります。行動の状態を更新すると、彼らはリーダーのイリジャーに従うのをやめます。何も持っていない手でリーダーのイリジャーを右クリックすると、彼らは旗を落とします。"
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on a captain with a Taglock Kit, that has a Tagged creature on it, will cause them, and nearby raiding servants that are following the Illager, or not have a captain, to hunt said creature down before returning to their master once they slay their query. If the hunting party contains raiders that weren't following any Illager, they will start to follow the captain they came with."
+      "text": "タグロックキットを装備し、タグ付きのクリーチャーを登録してリーダーのイリジャーを右クリックすると、そのイリジャーと、そのイリジャーをフォローしている、あるいはリーダーを持たない近くの襲撃者らが、そのクリーチャーを狩ってから主人の元へ戻ります。襲撃隊に、どのイリジャーにも従っていなかった襲撃者が含まれている場合、彼らは一緒に来たリーダーを追跡し始めます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:waystone",
-      "anchor": "raid",
-      "title": "Raiding",
-      "text": "Right-clicking on an Illager captain with a Waystone, that stored a position located in a chunk-loaded Village, with a Goat, or Raiding, Horn offhand, will cause them to perform a raid on the Village, attacking all non-baby Villagers. Much like with the taglock, the captain will cause nearby leaderless raiders to join them."
+      "anchor": "レイド",
+      "title": "襲撃",
+      "text": "リーダーのイリジャーをチャンクロードされた村の位置を保存したウェイストーンを持ち、オフハンドにヤギの角笛(または襲撃の角笛)を装備して右クリックすると、そのイリジャーは村を襲撃し、子供村人以外の村人を全員攻撃します。タグロックと同様に、リーダーは近くのリーダーのいない襲撃者を仲間に加えます。"
     },
     {
       "type": "patchouli:text",
-      "text": "If their raid is successful, they will return to their master and will drop off loot, as Illagers gain Emeralds and other loot when killing Villagers. They will not perform a raid if their master has stored Villagers as a whole as $(l:goety:crafts/grimoire_of_goodwill)allies$(). To stop your raid, either register Villagers as your $(l:goety:crafts/grimoire_of_goodwill)allies$() or press Ceasefire key $(l)while holding a banner on main or offhand$()."
+      "text": "襲撃が成功すると、イリジャーは主人の元へ戻り、戦利品を落とします。イリジャーは村人を倒すとエメラルドなどの戦利品を獲得します。主人が村人をまとめて$(l:goety:crafts/grimoire_of_goodwill)仲間$()に登録している場合は、襲撃を行いません。襲撃を中止するには、村人を$(l:goety:crafts/grimoire_of_goodwill)仲間$()に登録するか、メインハンドまたはオフハンドに旗を持った状態で停戦キー$(l)を押します。$()。"
     },
     {
       "type": "patchouli:text",
-      "text": "All Illagers will collect any loot from their kills and will throw them at their master when they're near them and away from combat, unless the loot is a valid food for them to eat."
+      "text": "すべてのイリジャーは、倒した敵から戦利品を集め、その戦利品が自分にとって有効な食料でない限り、主人が近くにいて戦闘から離れているときにそれを主人に投げつけます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:ominous_shackles",
-      "anchor": "capture",
-      "title": "Capturing",
-      "text": "Right-clicking on a Raider with an Ominous Shackles will cause them to enter Capturing Mode where, rather than killing Villagers, they will turn them into $(l:goety:mutations/prisoners)Prisoners$() that will follow their captor and can be commanded by you. Right-clicking on the Capturing raider with Shears will stop them from being in Capturing Mode."
+      "anchor": "村人を捕獲",
+      "title": "誘拐",
+      "text": "鎖を持って襲撃者を右クリックすると、襲撃者は「誘拐モード」に入ります。このモードでは、村人を殺すのではなく、誘拐者に従う$(l:goety:mutations/prisoners)村人囚人$()に変え、プレイヤーの指示に従います。誘拐モード中の襲撃者をハサミを持った状態で右クリックすると、誘拐モードが解除されます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Much like everything else, all raiders will enter Capturing Mode if their captain is in that mode. In Raids, if all surviving Villagers are Prisoners, the raid is considered a success. The Prisoner can be chained to you if you right-click on them, and can be chained to a captain by right-clicking on them with an empty hand. There's a chance that certain Villagers don't end up being captured and can potentially die like usual."
+      "text": "襲撃者のリーダーが誘拐モードに入っている場合、他の襲撃者も誘拐モードに入ります。襲撃では、生き残っている村人が全員囚人(捕まった村人)の場合、襲撃は成功とみなされます。囚人を解放するには、しゃがんだ状態で右クリックします。また、誘拐者や所有者から離れている間に十分なダメージを受けた場合も、囚人を解放できます。ただし、一部の村人は捕獲されず、通常通り死亡する可能性があります。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:chest",
-      "title": "Chest Interaction",
-      "text": "Right clicking on an Illager with a Waystone that leads to an unlocked Chest will cause them to register the chest as a valid container to take food from it, or store excess food and loot, when they are nearby. If the Illager is a leader, their followers will register the same chest as well."
+      "title": "チェストとの相互作用",
+      "text": "イリジャーをロックされていないチェストの位置を保存したウェイストーンで右クリックすると、そのチェストは食料の倉庫として登録され、近くにいる間は食料を取り出すことができます。そのイリジャーがリーダーだった場合、リーダーをフォローしている従者も同じチェストを登録します。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:raiding_chest",
-      "text": "An Illager can also register another chest aside from regular ones. When registered to this, Illagers will try to deposit any loot they have in this above their other chest and will not take items from it."
+      "text": "イリジャーは通常のチェストとは別に、別のチェストを登録することもできます。登録すると、イリジャーは他のチェストの上に戦利品を預けようとし、そのチェストからアイテムを持ち出そうとしなくなります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Illagers can be given armor (if config is set to true) and can be given a Totem of Undying so long as their offhand is empty. Right-clicking on them with a Stick will cause them to drop their Totem from their Offhand."
+      "text": "イリジャーには鎧を与えることができ(設定がtrueに設定されている場合)、オフハンドが空である限り不死のトーテムを与えることができます。"
     }
   ]
 }

@@ -1,24 +1,23 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " R ",
-                    "IGI",
-                    " R "
-                ],
-    "key":  {
-                "G":  {
-                          "item":  "minecraft:glowstone"
-                      },
-                "R":  {
-                          "item":  "goety:steep_wood_slab"
-                      },
-                "I":  {
-                          "tag":  "c:ingots/gold"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:steep_lamp",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "IGI",
+    " R "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "R": {
+      "item": "goety:steep_wood_slab"
+    },
+    "I": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:steep_lamp"
+  }
 }
-

@@ -1,31 +1,30 @@
-﻿{
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "magic",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:ender_chest"
-                        },
-                        {
-                            "item":  "minecraft:obsidian"
-                        },
-                        {
-                            "item":  "minecraft:obsidian"
-                        },
-                        {
-                            "item":  "minecraft:obsidian"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:ender_chest_focus"
-               }
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:ender_chest"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "item": "minecraft:obsidian"
+    },
+    {
+      "tag": "c:ender_pearls"
+    }
+  ],
+  "result": {
+    "id": "goety:ender_chest_focus"
+  }
 }
-

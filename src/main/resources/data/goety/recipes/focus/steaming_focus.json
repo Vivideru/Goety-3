@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " e ",
+    "wbl",
+    " s "
+  ],
+  "key":
+  {
+    "e":
+    {
+      "item": "goety:ectoplasm"
+    },
+    "b":
+    {
+      "item": "goety:water_jet_focus"
+    },
+    "w":
+    {
+      "item": "minecraft:water_bucket"
+    },
+    "l":
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    "s":
+    {
+      "item": "goety:soul_bolt_focus"
+    }
+  },
+  "result": {
+    "id": "goety:steaming_focus"
+  }
+}

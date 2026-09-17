@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "#",
@@ -13,7 +13,8 @@
       "item": "minecraft:orange_dye"
     }
   },
-  "result": { "id": "goety:braced_crag_tile_pillar",
-    "count": 1
+  "result": {
+    "count": 1,
+    "id": "goety:braced_crag_tile_pillar"
   }
 }

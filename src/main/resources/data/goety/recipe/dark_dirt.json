@@ -1,22 +1,21 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:dirt"
-                        },
-                        {
-                            "tag":  "minecraft:coals"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "tag":  "c:rods/wooden"
-                        }
-                    ],
-    "result":  {
-                   "count":  4,
-                   "id":  "goety:dark_dirt"
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "tag": "minecraft:coals"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "tag": "c:rods/wooden"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "goety:dark_dirt"
+  }
 }
-

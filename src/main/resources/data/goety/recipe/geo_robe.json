@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "  l",
-                    "fff",
-                    "lll"
-                ],
-    "key":  {
-                "f":  {
-                          "item":  "goety:dark_fabric"
-                      },
-                "l":  {
-                          "tag":  "c:leather"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:geo_robe",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  l",
+    "fff",
+    "lll"
+  ],
+  "key": {
+    "f": {
+      "item": "goety:dark_fabric"
+    },
+    "l": {
+      "tag": "c:leather"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:geo_robe"
+  }
 }
-

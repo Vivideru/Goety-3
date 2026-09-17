@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "F":  {
-                          "item":  "goety:jade"
-                      }
-            },
-    "pattern":  [
-                    "FF",
-                    "FF"
-                ],
-    "result":  {
-                   "count":  4,
-                   "id":  "goety:jade_tiles"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "goety:jade"
+    }
+  },
+  "pattern": [
+    "FF",
+    "FF"
+  ],
+  "result": {
+    "count": 4,
+    "id": "goety:jade_tiles"
+  }
 }
-

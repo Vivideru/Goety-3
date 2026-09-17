@@ -1,37 +1,36 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:great_hammer"
-                        },
-    "craftType":  "necroturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "goety:skulls"
-                        },
-                        {
-                            "item":  "minecraft:bone_block"
-                        },
-                        {
-                            "item":  "minecraft:bone_block"
-                        },
-                        {
-                            "item":  "goety:cursed_ingot"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:gems/diamond"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:bonehead_hammer"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:great_hammer"
+  },
+  "craftType": "necroturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "goety:skulls"
+    },
+    {
+      "item": "minecraft:bone_block"
+    },
+    {
+      "item": "minecraft:bone_block"
+    },
+    {
+      "item": "goety:cursed_ingot"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "tag": "c:ender_pearls"
+    }
+  ],
+  "result": {
+    "id": "goety:bonehead_hammer"
+  }
 }
-

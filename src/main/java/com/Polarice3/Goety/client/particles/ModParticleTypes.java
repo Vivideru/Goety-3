@@ -120,6 +120,9 @@ public class ModParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SMALL_FIRE_GROUND = PARTICLE_TYPES.register("small_fire_ground",
             () -> new SimpleParticleType(false));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SMALL_FIRE_REVERSED = PARTICLE_TYPES.register("small_fire_reversed",
+            () -> new SimpleParticleType(false));
+
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BIG_FIRE = PARTICLE_TYPES.register("big_fire",
             () -> new SimpleParticleType(false));
 

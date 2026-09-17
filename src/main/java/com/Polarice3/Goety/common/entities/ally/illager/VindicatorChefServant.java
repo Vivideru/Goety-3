@@ -95,9 +95,9 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
 
     @Override
     public void die(DamageSource pCause) {
-        if (!this.isFurnaceActuallyCooking()) {
-            this.setFurnaceLit(false);
-        }
+        // A servant can leave a furnace lit even when the vanilla furnace has
+        // no active recipe. Always clear the visual state when the worker dies.
+        this.setFurnaceLit(false);
         super.die(pCause);
     }
 
@@ -151,7 +151,7 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
     }
 
     public IllagerServantArmPose getArmPose() {
-        if (this.isAggressive() || this.isUsingFurnace()) {
+        if (this.isAggressive() || this.isUsingFurnace() || this.getFurnacePos().isPresent()) {
             return IllagerServantArmPose.ATTACKING;
         } else {
             return this.isCelebrating() ? IllagerServantArmPose.CELEBRATING : IllagerServantArmPose.CROSSED;

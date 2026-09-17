@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "asa",
+    "ses",
+    "asa"
+  ],
+  "key":
+  {
+    "e":
+    {
+      "item": "goety:frost_breath_focus"
+    },
+    "s":
+    {
+      "item": "minecraft:blue_ice"
+    },
+    "a":
+    {
+      "item": "minecraft:arrow"
+    }
+  },
+  "result":
+  {
+    "id": "goety:ice_spike_focus",
+    "count": 1
+  }
+}

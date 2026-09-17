@@ -34,7 +34,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.extensions.IBlockExtension;
 import net.neoforged.neoforge.items.IItemHandler;
 
@@ -93,11 +92,11 @@ public class DarkAltarBlock extends BaseEntityBlock implements IBlockExtension, 
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
-            if (tileentity instanceof DarkAltarBlockEntity) {
-                ((DarkAltarBlockEntity) tileentity).stopRitual(false);
-                IItemHandler handler = pLevel.getCapability(Capabilities.ItemHandler.BLOCK, pPos, null);
-                if (handler != null) {
-                    dropInventoryItems(tileentity.getLevel(), tileentity.getBlockPos(), handler);
+            if (tileentity instanceof DarkAltarBlockEntity darkAltar) {
+                darkAltar.stopRitual(false);
+                if (!pLevel.isClientSide) {
+                    // Read the altar inventory directly because its block capability is unavailable after state replacement.
+                    dropInventoryItems(pLevel, pPos, darkAltar.itemStackHandler);
                 }
             }
 
@@ -107,7 +106,10 @@ public class DarkAltarBlock extends BaseEntityBlock implements IBlockExtension, 
 
     public static void dropInventoryItems(Level worldIn, BlockPos pos, IItemHandler itemHandler) {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
-            Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(i));
+            ItemStack stack = itemHandler.extractItem(i, itemHandler.getSlotLimit(i), false);
+            if (!stack.isEmpty()) {
+                Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
+            }
         }
     }
 

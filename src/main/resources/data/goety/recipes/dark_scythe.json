@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:iron_hoe"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:savage_tooth"
+    },
+    {
+      "item": "goety:hunger_core"
+    },
+    {
+      "item": "goety:pale_steel_ingot"
+    },
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "tag": "goety:haunted_logs"
+    }
+  ],
+  "result": {
+    "id": "goety:dark_scythe"
+  }
+}

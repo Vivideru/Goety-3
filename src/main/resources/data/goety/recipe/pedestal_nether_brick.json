@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "l",
-                    "s",
-                    "l"
-                ],
-    "key":  {
-                "l":  {
-                          "item":  "minecraft:nether_brick_slab"
-                      },
-                "s":  {
-                          "item":  "minecraft:nether_bricks"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:pedestal_nether_brick",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "l",
+    "s",
+    "l"
+  ],
+  "key": {
+    "l": {
+      "item": "minecraft:nether_brick_slab"
+    },
+    "s": {
+      "item": "minecraft:nether_bricks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:pedestal_nether_brick"
+  }
 }
-

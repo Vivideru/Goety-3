@@ -1,0 +1,23 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:convert_tamed",
+  "activation_item": {
+    "item": "minecraft:sweet_berries"
+  },
+  "craftType": "overgrown",
+  "entity_to_convert": {
+    "tag": "goety:polar_bears",
+    "display_name": "entity.minecraft.polar_bear"
+  },
+  "entity_to_convert_into": "goety:polar_bear_servant",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "minecraft:fishes"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
+}

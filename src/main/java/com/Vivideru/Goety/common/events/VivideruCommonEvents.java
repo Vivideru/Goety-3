@@ -6,6 +6,7 @@ import com.Vivideru.Goety.common.items.CursedBlackBeastArmorItem;
 import com.Vivideru.Goety.common.items.CursedMetalWolfArmorItem;
 import com.Vivideru.Goety.common.items.VivideruItems;
 import com.Vivideru.Goety.common.items.CursedWargArmorItem;
+import com.Vivideru.Goety.common.entities.ally.Warg;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,6 +17,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingFallEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
@@ -66,6 +68,16 @@ public class VivideruCommonEvents {
                 && attacker != wearer) {
             // These custom body armors behave as if the wearer had one level of Thorns without storing an enchantment on the item.
             attacker.hurt(attacker.damageSources().thorns(wearer), 3.0F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onWargRiderFall(LivingFallEvent event) {
+        if (event.getEntity() instanceof net.minecraft.world.entity.player.Player player
+                && player.getVehicle() instanceof Warg) {
+            // The Warg absorbs the leap's landing; otherwise the rider's own
+            // fall distance is still applied by LivingEntity.
+            event.setCanceled(true);
         }
     }
 

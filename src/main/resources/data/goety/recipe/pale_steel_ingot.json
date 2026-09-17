@@ -1,22 +1,21 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "goety:cursed_ingot"
-                        },
-                        {
-                            "tag":  "c:ingots/iron"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "minecraft:coals"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:pale_steel_ingot",
-                   "count":  2
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:cursed_ingot"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "id": "goety:pale_steel_ingot"
+  }
 }
-

@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "lml",
-                    "m m",
-                    "lml"
-                ],
-    "key":  {
-                "m":  {
-                          "item":  "goety:cobbled_end_stone"
-                      },
-                "l":  {
-                          "item":  "goety:end_dirt"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:dirty_cobbled_end_stone_heavy",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lml",
+    "m m",
+    "lml"
+  ],
+  "key": {
+    "m": {
+      "item": "goety:cobbled_end_stone"
+    },
+    "l": {
+      "item": "goety:end_dirt"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:dirty_cobbled_end_stone_heavy"
+  }
 }
-

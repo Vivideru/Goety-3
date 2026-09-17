@@ -151,9 +151,7 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
 
     @Override
     public void die(DamageSource pCause) {
-        if (!this.isFurnaceActuallyCooking()) {
-            this.setFurnaceLit(false);
-        }
+        this.setFurnaceLit(false);
         super.die(pCause);
     }
 

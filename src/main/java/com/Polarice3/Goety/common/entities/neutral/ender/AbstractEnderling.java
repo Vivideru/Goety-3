@@ -91,7 +91,8 @@ public abstract class AbstractEnderling extends Summoned implements IHiding {
                     return false;
                 } else {
                     this.summonedEntity.teleportHits();
-                    this.summonedEntity.moveTo((double)x + 0.5D, (double)y, (double)z + 0.5D, this.summonedEntity.getYRot(), this.summonedEntity.getXRot());
+                    // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
+                    MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
                     this.summonedEntity.teleportCool = MathHelper.secondsToTicks(10);
                     this.navigation.stop();
                     return true;

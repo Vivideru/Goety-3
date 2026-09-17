@@ -1,34 +1,33 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:thunderbolt_focus"
-                        },
-    "craftType":  "deep",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:tools/tridents"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/lapis"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/lapis"
-                        },
-                        {
-                            "tag":  "c:tools/tridents"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:trident_storm_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:thunderbolt_focus"
+  },
+  "craftType": "deep",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:tools/tridents"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "tag": "c:tools/tridents"
+    }
+  ],
+  "result": {
+    "id": "goety:trident_storm_focus"
+  }
 }
-

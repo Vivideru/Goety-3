@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "###",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:shade_stone_bricks"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:shade_stone_bricks_wall",
-                   "count":  6
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:shade_stone_bricks"
+    }
+  },
+  "result": {
+    "count": 6,
+    "id": "goety:shade_stone_bricks_wall"
+  }
 }
-

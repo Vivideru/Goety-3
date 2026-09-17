@@ -1,32 +1,35 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "magic",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/lapis"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/lapis"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/lapis"
-                        },
-                        {
-                            "item":  "goety:cursed_ingot"
-                        },
-                        {
-                            "item":  "goety:cursed_ingot"
-                        },
-                        { "item": "minecraft:potion" }
-                    ],
-    "result":  {
-                   "id":  "goety:soul_heal_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/lapis"
+    },
+    {
+      "item": "goety:cursed_ingot"
+    },
+    {
+      "item": "goety:cursed_ingot"
+    },
+    {
+      "type": "neoforge:components",
+      "items": [
+        "minecraft:potion"
+      ],
+      "components": {
+        "minecraft:potion_contents": {
+          "potion": "minecraft:healing"
+        }
+      }
+    }
+  ],
+  "result": {
+    "id": "goety:soul_heal_focus"
+  }
 }
-

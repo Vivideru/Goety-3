@@ -11,14 +11,22 @@ import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class FocusBagContainer extends AbstractContainerMenu {
     private final ItemStack stack;
+    private final Runnable saveCallback;
 
     public static FocusBagContainer createContainerClientSide(int id, Inventory inventory, FriendlyByteBuf buffer) {
         return new FocusBagContainer(id, inventory, new FocusBagItemHandler(ItemStack.EMPTY, 11), ItemStack.EMPTY);
     }
 
     public FocusBagContainer(int id, Inventory playerInventory, FocusBagItemHandler handler, ItemStack stack) {
+        this(id, playerInventory, handler, stack, () -> {
+        });
+    }
+
+    public FocusBagContainer(int id, Inventory playerInventory, FocusBagItemHandler handler, ItemStack stack, Runnable saveCallback) {
         super(ModContainerType.FOCUS_BAG.get(), id);
         this.stack = stack;
+        this.saveCallback = saveCallback;
+        handler.setSaveCallback(saveCallback);
         for (int i = 0; i < 5; i++) {
             addSlot(new SlotItemHandler(handler, i + 1, 62 - 18 + i * 18, 25));
         }
@@ -64,5 +72,11 @@ public class FocusBagContainer extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return !stack.isEmpty();
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        this.saveCallback.run();
     }
 }

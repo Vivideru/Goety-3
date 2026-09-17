@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "goety:pine_log",
+    "goety:pine_wood",
+    "goety:pine_planks",
+    "goety:compacted_pine_planks",
+    "goety:compacted_pine_slab",
+    "goety:thatched_pine_planks",
+    "goety:pine_door",
+    "goety:pine_fence",
+    "goety:pine_fence_gate",
+    "goety:pine_slab",
+    "goety:pine_stairs",
+    "goety:pine_trapdoor",
+    "goety:pine_button",
+    "goety:pine_pressure_plate",
+    "goety:pine_bookshelf",
+    "goety:pine_sign",
+    "goety:pine_hanging_sign",
+    "goety:stripped_pine_log",
+    "goety:stripped_pine_wood",
+    "goety:pine_lantern",
+    "goety:pine_firewood",
+    "goety:snowy_pine_pillar",
+    "goety:jade_crystal_lamp",
+    "goety:half_jade_crystal_lamp"
+  ]
+}

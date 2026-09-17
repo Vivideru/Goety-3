@@ -7,6 +7,7 @@ import com.Polarice3.Goety.init.ModMobType;
 import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.entities.ai.ServantHurtByTargetGoal;
+import com.Polarice3.Goety.common.entities.ai.ServantPatrolGoal;
 import com.Polarice3.Goety.common.entities.ai.SummonTargetGoal;
 import com.Polarice3.Goety.common.entities.neutral.Owned;
 import com.Polarice3.Goety.common.items.ModItems;
@@ -14,6 +15,7 @@ import com.Polarice3.Goety.config.MobsConfig;
 import com.Polarice3.Goety.utils.*;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -56,7 +58,9 @@ import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class Summoned extends Owned implements IServant {
@@ -71,6 +75,8 @@ public class Summoned extends Owned implements IServant {
     public BlockPos revivePos;
     public String boundDim = Level.OVERWORLD.location().toString();
     public String reviveDim = Level.OVERWORLD.location().toString();
+    public List<GlobalPos> patrolList = new ArrayList<>();
+    public int patrolIndex = 0;
     public int priorityTime;
     public int commandTick;
     public int killChance;
@@ -84,8 +90,13 @@ public class Summoned extends Owned implements IServant {
     protected void registerGoals() {
         super.registerGoals();
         this.targetRetaliateGoal();
+        this.patrolGoal();
         this.followGoal();
         this.targetSelectGoal();
+    }
+
+    public void patrolGoal() {
+        this.goalSelector.addGoal(2, new ServantPatrolGoal<>(this, this.getCommandSpeed()));
     }
 
     public void followGoal(){
@@ -194,6 +205,22 @@ public class Summoned extends Owned implements IServant {
     }
 
     @Override
+    public List<GlobalPos> getPatrolRoute() {
+        return this.patrolList;
+    }
+
+    public void setPatrolRoute(List<GlobalPos> list) {
+        this.patrolList = list;
+    }
+
+    public int getPatrolIndex() {
+        return this.patrolIndex;
+    }
+
+    public void setPatrolIndex(int index) {
+        this.patrolIndex = index;
+    }
+
     public int getPriorityTime() {
         return this.priorityTime;
     }
@@ -707,7 +734,8 @@ public class Summoned extends Owned implements IServant {
             } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                this.summonedEntity.moveTo((double)x + 0.5D, (double)y, (double)z + 0.5D, this.summonedEntity.getYRot(), this.summonedEntity.getXRot());
+                // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
+                MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
                 this.navigation.stop();
                 return true;
             }
@@ -857,7 +885,8 @@ public class Summoned extends Owned implements IServant {
             } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                this.summonedEntity.moveTo((double)x + 0.5D, (double)y, (double)z + 0.5D, this.summonedEntity.getYRot(), this.summonedEntity.getXRot());
+                // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
+                MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
                 this.navigation.stop();
                 return true;
             }

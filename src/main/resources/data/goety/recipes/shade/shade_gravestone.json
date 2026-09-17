@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "goety:rotting_focus"
+  },
+  "craftType": "necroturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:cursed_cage"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "tag": "goety:shade_stone"
+    },
+    {
+      "tag": "goety:shade_stone"
+    },
+    {
+      "tag": "minecraft:soul_fire_base_blocks"
+    },
+    {
+      "tag": "forge:cobblestone/mossy"
+    },
+    {
+      "item": "goety:grave_dust"
+    },
+    {
+      "item": "minecraft:podzol"
+    }
+  ],
+  "result": {
+    "id": "goety:shade_gravestone"
+  }
+}

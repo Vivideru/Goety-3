@@ -1,32 +1,31 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "bcd",
-                    "rer",
-                    "dwb"
-                ],
-    "key":  {
-                "b":  {
-                          "item":  "minecraft:comparator"
-                      },
-                "e":  {
-                          "item":  "goety:electrocute_focus"
-                      },
-                "d":  {
-                          "item":  "minecraft:dispenser"
-                      },
-                "w":  {
-                          "item":  "goety:wind_core"
-                      },
-                "r":  {
-                          "tag":  "c:rods/blaze"
-                      },
-                "c":  {
-                          "item":  "minecraft:crossbow"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:surging_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bcd",
+    "rer",
+    "dwb"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:comparator"
+    },
+    "e": {
+      "item": "goety:electrocute_focus"
+    },
+    "d": {
+      "item": "minecraft:dispenser"
+    },
+    "w": {
+      "item": "goety:wind_core"
+    },
+    "r": {
+      "tag": "c:rods/blaze"
+    },
+    "c": {
+      "item": "minecraft:crossbow"
+    }
+  },
+  "result": {
+    "id": "goety:surging_focus"
+  }
 }
-

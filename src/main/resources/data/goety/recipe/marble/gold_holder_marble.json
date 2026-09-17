@@ -1,20 +1,18 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-        "gmg"
-    ],
-    "key":  {
-                "m":  {
-                          "item":  "goety:marble"
-                      },
-                "g":  {
-                          "tag":  "c:ingots/gold"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:gold_holder_marble",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gmg"
+  ],
+  "key": {
+    "m": {
+      "item": "goety:marble"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:gold_holder_marble"
+  }
 }
-
-

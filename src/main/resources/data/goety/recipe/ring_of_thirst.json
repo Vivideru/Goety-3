@@ -1,31 +1,30 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:cursed_ingot"
-                        },
-    "craftType":  "geoturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:sculk_catalyst"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "item":  "goety:soul_emerald"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:ring_of_thirst"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:cursed_ingot"
+  },
+  "craftType": "geoturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:sculk_catalyst"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "item": "goety:soul_emerald"
+    }
+  ],
+  "result": {
+    "id": "goety:ring_of_thirst"
+  }
 }
-

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "PFP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "goety:pale_steel_ingot"
+    },
+    "F": {
+      "item": "goety:soul_heal_focus"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:soul_healer"
+  }
+}

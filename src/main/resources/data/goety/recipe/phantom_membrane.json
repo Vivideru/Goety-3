@@ -1,19 +1,18 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "item":  "minecraft:bone_meal"
-                        },
-                        {
-                            "tag":  "c:leather"
-                        }
-                    ],
-    "result":  {
-                   "id":  "minecraft:phantom_membrane",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "tag": "c:leather"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:phantom_membrane"
+  }
 }
-

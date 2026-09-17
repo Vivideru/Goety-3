@@ -1,16 +1,15 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:glass_bottle"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:taglock_kit",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "tag": "c:bones"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "goety:taglock_kit"
+  }
 }
-

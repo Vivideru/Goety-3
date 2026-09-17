@@ -1,0 +1,30 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:nether_robe"
+  },
+  "craftType": "expert_nether",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:unholy_fabric"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    },
+    {
+      "item": "goety:unholy_fabric"
+    }
+  ],
+  "result": {
+    "id": "goety:unholy_robe"
+  }
+}

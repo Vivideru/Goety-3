@@ -130,7 +130,7 @@ public class TroopFocus extends MagicFocus{
                                 if (event.isCanceled()) {
                                     break;
                                 }
-                                livingEntity1.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                                MobUtil.teleportTracked(livingEntity1, event.getTargetX(), event.getTargetY(), event.getTargetZ());
                                 MobUtil.moveDownToGround(livingEntity1);
                                 ModNetwork.sendToALL(new SPlayWorldSoundPacket(player.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                                 ModNetwork.sendToALL(new SPlayWorldSoundPacket(blockPos, SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
@@ -149,8 +149,13 @@ public class TroopFocus extends MagicFocus{
                                     if (event.isCanceled()) {
                                         break;
                                     }
-                                    livingEntity1.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity1, vec3));
-                                    livingEntity1.teleportTo(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+                                    // Dimension changes replace non-player entities in 1.21, so continue with the returned tracked instance.
+                                    Entity transferred = livingEntity1.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity1, vec3));
+                                    if (!(transferred instanceof LivingEntity transferredLiving)) {
+                                        continue;
+                                    }
+                                    livingEntity1 = transferredLiving;
+                                    MobUtil.teleportTracked(livingEntity1, event.getTargetX(), event.getTargetY(), event.getTargetZ());
                                     MobUtil.moveDownToGround(livingEntity1);
                                     ModNetwork.sendToALL(new SPlayWorldSoundPacket(player.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, 1.0F, 1.0F));
                                     if (original instanceof IServant servant){

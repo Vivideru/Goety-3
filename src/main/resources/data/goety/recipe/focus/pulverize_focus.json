@@ -1,23 +1,22 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " ii",
-                    " ei",
-                    "s  "
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "i":  {
-                          "tag":  "c:storage_blocks/iron"
-                      },
-                "s":  {
-                          "tag":  "minecraft:logs"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:pulverize_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ii",
+    " ei",
+    "s  "
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "i": {
+      "tag": "c:storage_blocks/iron"
+    },
+    "s": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "id": "goety:pulverize_focus"
+  }
 }
-

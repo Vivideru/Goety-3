@@ -6,6 +6,7 @@
     "minecraft:hunger",
     "minecraft:saturation",
     "minecraft:poison",
+    "minecraft:regeneration",
     {
       "id": "vampirism:freeze",
       "required": false

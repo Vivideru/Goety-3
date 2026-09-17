@@ -1,27 +1,26 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "iqr",
-                    "qtq",
-                    "rqi"
-                ],
-    "key":  {
-                "i":  {
-                          "tag":  "c:raw_materials/iron"
-                      },
-                "q":  {
-                          "tag":  "c:gems/quartz"
-                      },
-                "r":  {
-                          "tag":  "c:dusts/redstone"
-                      },
-                "t":  {
-                          "tag":  "goety:totems"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:empty_focus",
-                   "count":  4
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iqr",
+    "qtq",
+    "rqi"
+  ],
+  "key": {
+    "i": {
+      "tag": "c:raw_materials/iron"
+    },
+    "q": {
+      "tag": "c:gems/quartz"
+    },
+    "r": {
+      "tag": "c:dusts/redstone"
+    },
+    "t": {
+      "tag": "goety:totems"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:empty_focus"
+  }
 }
-

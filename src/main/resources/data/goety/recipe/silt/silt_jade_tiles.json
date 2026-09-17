@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "lml",
-                    "m m",
-                    "lml"
-                ],
-    "key":  {
-                "m":  {
-                          "item":  "goety:jade_tiles"
-                      },
-                "l":  {
-                          "item":  "goety:siltstone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:silt_jade_tiles",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lml",
+    "m m",
+    "lml"
+  ],
+  "key": {
+    "m": {
+      "item": "goety:jade_tiles"
+    },
+    "l": {
+      "item": "goety:siltstone"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:silt_jade_tiles"
+  }
 }
-

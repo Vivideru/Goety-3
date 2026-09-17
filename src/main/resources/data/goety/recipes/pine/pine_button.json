@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "goety:pine_planks"
+    }
+  ],
+  "result": {
+    "id": "goety:pine_button"
+  }
+}

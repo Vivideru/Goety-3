@@ -152,6 +152,12 @@ public class Gnasher extends AnimalSummon implements PlayerRideable, IAutoRideab
         return (double)this.getBbHeight() * 0.5D;
     }
 
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity passenger) {
+        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
+        return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
+    }
+
     protected float getStandingEyeHeight(Pose p_28352_, EntityDimensions p_28353_) {
         return 0.3F;
     }

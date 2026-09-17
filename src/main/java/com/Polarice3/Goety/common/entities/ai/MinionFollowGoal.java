@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.entities.ai;
 
 import com.Polarice3.Goety.common.entities.neutral.Minion;
 import com.Polarice3.Goety.config.MobsConfig;
+import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
@@ -133,7 +134,8 @@ public class MinionFollowGoal extends Goal {
         } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
             return false;
         } else {
-            this.summonedEntity.moveTo((double)x + 0.5D, (double)y, (double)z + 0.5D, this.summonedEntity.getYRot(), this.summonedEntity.getXRot());
+            // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
+            MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
             this.navigation.stop();
             return true;
         }

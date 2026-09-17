@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.nether;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.HellBlast;
 import com.Polarice3.Goety.common.entities.projectiles.Lavaball;
 import com.Polarice3.Goety.common.magic.Spell;
@@ -59,6 +60,7 @@ public class LavaballSpell extends Spell {
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.BURNING);
         list.add(ModEnchantments.RADIUS);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

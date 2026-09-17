@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "end",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "goety:shadow_essence"
-                        },
-                        {
-                            "item":  "minecraft:ender_eye"
-                        },
-                        {
-                            "item":  "goety:shadow_essence"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "goety:shadow_essence"
-                        },
-                        {
-                            "item":  "minecraft:ender_eye"
-                        },
-                        {
-                            "item":  "goety:shadow_essence"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:end_walk_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "end",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "goety:shadow_essence"
+    }
+  ],
+  "result": {
+    "id": "goety:end_walk_focus"
+  }
 }
-

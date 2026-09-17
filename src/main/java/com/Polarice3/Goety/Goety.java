@@ -79,6 +79,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Ravager;
 import net.minecraft.world.entity.npc.Villager;
@@ -575,7 +576,7 @@ public class Goety {
         event.getBuilder().addRecipe(new ModPotionUtil(ModItems.SNAP_FUNGUS.get().getDefaultInstance(), Ingredient.of(Items.LILY_OF_THE_VALLEY), new ItemStack(ModItems.BERSERK_FUNGUS.get())));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setPotion(ModPotions.CLIMBING)));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setSplashPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setSplashPotion(ModPotions.CLIMBING)));
-        event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setSplashPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setLingeringPotion(ModPotions.CLIMBING)));
+        event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setLingeringPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setLingeringPotion(ModPotions.CLIMBING)));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setPotion(ModPotions.CLIMBING), Ingredient.of(Items.REDSTONE), ModPotionUtil.setPotion(ModPotions.LONG_CLIMBING)));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setSplashPotion(ModPotions.CLIMBING), Ingredient.of(Items.REDSTONE), ModPotionUtil.setSplashPotion(ModPotions.LONG_CLIMBING)));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setLingeringPotion(ModPotions.CLIMBING), Ingredient.of(Items.REDSTONE), ModPotionUtil.setLingeringPotion(ModPotions.LONG_CLIMBING)));
@@ -633,6 +634,7 @@ public class Goety {
         event.put(ModEntityType.JUNGLE_ZOMBIE_SERVANT.get(), JungleZombieServant.setCustomAttributes().build());
         event.put(ModEntityType.FRAYED_SERVANT.get(), FrayedServant.setCustomAttributes().build());
         event.put(ModEntityType.BLACKGUARD_SERVANT.get(), BlackguardServant.setCustomAttributes().build());
+        event.put(ModEntityType.BLACKGUARD_VARIANT_SERVANT.get(), ZombieRoyalGuardServant.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_SERVANT.get(), SkeletonServant.setCustomAttributes().build());
         event.put(ModEntityType.STRAY_SERVANT.get(), StrayServant.setCustomAttributes().build());
         event.put(ModEntityType.WITHER_SKELETON_SERVANT.get(), WitherSkeletonServant.setCustomAttributes().build());
@@ -677,12 +679,14 @@ public class Goety {
         event.put(ModEntityType.ICY_SPIDER_SERVANT.get(), IcySpiderServant.setCustomAttributes().build());
         event.put(ModEntityType.BONE_SPIDER_SERVANT.get(), BoneSpiderServant.setCustomAttributes().build());
         event.put(ModEntityType.BROOD_MOTHER_SERVANT.get(), AbstractBroodMother.setCustomAttributes().build());
-        event.put(ModEntityType.PRISONER.get(), Villager.createAttributes().build());
+        // Minecraft 1.21 compares attack damage when mobs collect tools, so prisoners need this attribute before picking up a pickaxe.
+        event.put(ModEntityType.PRISONER.get(), Villager.createAttributes().add(Attributes.ATTACK_DAMAGE, 1.0D).build());
         event.put(ModEntityType.NEOLLAGER.get(), Neollager.setCustomAttributes().build());
         event.put(ModEntityType.PILLAGER_SERVANT.get(), PillagerServant.setCustomAttributes().build());
         event.put(ModEntityType.PIKER_SERVANT.get(), PikerServant.setCustomAttributes().build());
         event.put(ModEntityType.SIGNALER_SERVANT.get(), SignalerServant.setCustomAttributes().build());
         event.put(ModEntityType.VINDICATOR_SERVANT.get(), VindicatorServant.setCustomAttributes().build());
+        event.put(ModEntityType.ROYAL_GUARD_SERVANT.get(), RoyalGuardServant.setCustomAttributes().build());
         event.put(ModEntityType.VINDICATOR_CHEF_SERVANT.get(), VindicatorChefServant.setCustomAttributes().build());
         event.put(ModEntityType.MOUNTAINEER_SERVANT.get(), MountaineerServant.setCustomAttributes().build());
         event.put(ModEntityType.CRUSHER_SERVANT.get(), CrusherServant.setCustomAttributes().build());
@@ -705,6 +709,7 @@ public class Goety {
         event.put(ModEntityType.REPROBATE_SERVANT.get(), ReprobateServant.setCustomAttributes().build());
         event.put(ModEntityType.BLACK_WOLF.get(), BlackWolf.setCustomAttributes().build());
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.CERBERUS.get(), com.Vivideru.Goety.common.entities.ally.Cerberus.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_WOLF.get(), SkeletonWolf.setCustomAttributes().build());
         event.put(ModEntityType.WINTER_WOLF.get(), WinterWolf.setCustomAttributes().build());
         event.put(ModEntityType.STORMHOUND.get(), Stormhound.setCustomAttributes().build());
@@ -713,6 +718,7 @@ public class Goety {
         event.put(ModEntityType.SNAPPER.get(), Snapper.setCustomAttributes().build());
         event.put(ModEntityType.GNASHER.get(), Gnasher.setCustomAttributes().build());
         event.put(ModEntityType.GUARDIAN_SERVANT.get(), GuardianServant.setCustomAttributes().build());
+        event.put(ModEntityType.ELDER_GUARDIAN_SERVANT.get(), ElderGuardianServant.setCustomAttributes().build());
         event.put(ModEntityType.BEAR_SERVANT.get(), BearServant.setCustomAttributes().build());
         event.put(ModEntityType.POLAR_BEAR_SERVANT.get(), BearServant.setCustomAttributes().build());
         event.put(ModEntityType.HOGLIN_SERVANT.get(), HoglinServant.setCustomAttributes().build());

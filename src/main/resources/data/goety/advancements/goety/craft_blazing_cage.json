@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:blazing_cage"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_blazing_cage.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_blazing_cage.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/read_bygone_scroll",
+  "criteria": {
+    "blazing_cage": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:blazing_cage"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "blazing_cage"
+    ]
+  ]
+}

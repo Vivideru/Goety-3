@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "bdg",
+    "cec",
+    "gdb"
+  ],
+  "key":
+  {
+    "b":
+    {
+      "tag": "forge:rods/blaze"
+    },
+    "e":
+    {
+      "item": "goety:ignite_focus"
+    },
+    "c":
+    {
+      "tag": "forge:storage_blocks/coal"
+    },
+    "g":
+    {
+      "tag": "forge:gunpowder"
+    },
+    "d":
+    {
+      "item": "minecraft:dispenser"
+    }
+  },
+  "result": {
+    "id": "goety:fireball_focus"
+  }
+}

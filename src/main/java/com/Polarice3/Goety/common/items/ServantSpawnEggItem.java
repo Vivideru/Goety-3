@@ -89,6 +89,7 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
                         }
                     }
                 }
+                configureSpawnedEntity(entity);
                 itemstack.shrink(1);
                 level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
             }
@@ -123,6 +124,7 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
                             }
                         }
                     }
+                    configureSpawnedEntity(entity);
                     if (!p_43226_.getAbilities().instabuild) {
                         itemstack.shrink(1);
                     }
@@ -135,6 +137,12 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
                 return InteractionResultHolder.fail(itemstack);
             }
         }
+    }
+
+    /**
+     * Allows specialized servant eggs to apply variant data after ownership has been assigned.
+     */
+    protected void configureSpawnedEntity(Entity entity) {
     }
 
     public @NotNull Optional<Mob> spawnOffspringFromSpawnEgg(@NotNull Player player, @NotNull Mob targetMob, @NotNull EntityType<? extends Mob> entityType, @NotNull ServerLevel serverLevel, @NotNull Vec3 vec3, ItemStack itemStack) {

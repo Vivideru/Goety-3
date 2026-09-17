@@ -329,14 +329,14 @@ public class AbstractWitherNecromancer extends AbstractNecromancer {
         }
 
         public void start() {
-            this.spellTime = MathHelper.secondsToTicks(3);
+            int warmUp = MathHelper.secondsToTicks(2);
+            this.spellTime = warmUp + 20;
             AbstractWitherNecromancer.this.setSpellCooldown(AbstractWitherNecromancer.this.getSpellCooldown() + 60);
             AbstractWitherNecromancer.this.playSound(ModSounds.RUMBLE.get(), 1.0F, 1.0F);
             AbstractWitherNecromancer.this.setSpellCasting(true);
             AbstractWitherNecromancer.this.setNecromancerSpellType(NecromancerSpellType.CLOUD);
             AbstractWitherNecromancer.this.setAnimationState(SPELL_ANIM);
             if (AbstractWitherNecromancer.this.level() instanceof ServerLevel serverLevel) {
-                int warmUp = 20;
                 int duration = 180;
                 Vec3 vector3d = AbstractWitherNecromancer.this.getViewVector(1.0F);
                 float f = (float) Mth.atan2(vector3d.z - AbstractWitherNecromancer.this.getZ(), vector3d.x - AbstractWitherNecromancer.this.getX());
@@ -426,7 +426,8 @@ public class AbstractWitherNecromancer extends AbstractNecromancer {
         }
 
         public void start() {
-            this.spellTime = MathHelper.secondsToTicks(3);
+            int warmUp = MathHelper.secondsToTicks(2);
+            this.spellTime = warmUp + 20;
             AbstractWitherNecromancer.this.setSpellCooldown(AbstractWitherNecromancer.this.getSpellCooldown() + 60);
             AbstractWitherNecromancer.this.playSound(ModSounds.RUMBLE.get(), 1.0F, 1.0F);
             AbstractWitherNecromancer.this.setSpellCasting(true);
@@ -435,10 +436,20 @@ public class AbstractWitherNecromancer extends AbstractNecromancer {
             LivingEntity target = AbstractWitherNecromancer.this.getTarget();
             if (AbstractWitherNecromancer.this.level() instanceof ServerLevel serverLevel
                     && target != null && target.isAlive()) {
-                int warmUp = 20;
                 int duration = 180;
-                List<Vec3> vec3s = BlockFinder.buildOuterBlockCircle(target.position(), 6.0D);
+                double radius = 3.0D;
+                List<Vec3> vec3s = BlockFinder.buildOuterBlockCircle(target.position(), radius);
                 for (Vec3 vec3 : vec3s) {
+                    FirePillar flames = new FirePillar(serverLevel, vec3.x, vec3.y, vec3.z);
+                    flames.setOwner(AbstractWitherNecromancer.this);
+                    flames.setDuration(duration);
+                    flames.setWarmUp(warmUp);
+                    MobUtil.moveDownToGround(flames);
+                    serverLevel.addFreshEntity(flames);
+                }
+                // Two rings keep the updated attack readable while preserving its original outer reach.
+                List<Vec3> outerPositions = BlockFinder.buildOuterBlockCircle(target.position(), radius * 2.0D);
+                for (Vec3 vec3 : outerPositions) {
                     FirePillar flames = new FirePillar(serverLevel, vec3.x, vec3.y, vec3.z);
                     flames.setOwner(AbstractWitherNecromancer.this);
                     flames.setDuration(duration);

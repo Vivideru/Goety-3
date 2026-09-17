@@ -1,12 +1,12 @@
 {
-  "name": "Necroturgy Ritual",
+  "name": "ネクロマンシーの儀式",
   "icon": "goety:rotting_focus",
   "category": "goety:rituals",
   "sortnum": 2,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)16 Non-Wooden Slabs $(li)16 Sculk Blocks $(li)8 Non-Empty Flower Pots $(li)Must be done at Night"
+      "text": "必要: $(li)16 非木製ハーフブロック $(li)16 スカルク or $(l:goety:crafts/grave_soil)グレイブソイル$() $(li)8 空でない植木鉢 $(li)夜間に行う必要があります"
     },
     {
       "type": "patchouli:image",
@@ -16,7 +16,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Sculk holds a lot of Necroturgic Energies. By constructing Graves with them, you found a way to gather up more Necroturgic Energies to use for Rituals."
+      "text": "スカルクやグレイブソイルを用いて墓を築くことで、儀式に利用できるネクロマンシーのエネルギーをより多く収集する手段を見出しました。ただし、スカルクが膨大なエネルギーを秘めているのに対し、グレイブソイルはより脆く、儀式が終了すると闇の土へと変化してしまう可能性が高いという特性があります。"
     }
   ]
 }

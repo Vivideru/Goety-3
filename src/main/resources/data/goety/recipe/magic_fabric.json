@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "tag":  "c:string"
-                        },
-                        {
-                            "tag":  "c:string"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:magic_fabric"
-               }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:string"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:ingots/gold"
+    }
+  ],
+  "result": {
+    "id": "goety:magic_fabric"
+  }
 }
-

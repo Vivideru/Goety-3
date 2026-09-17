@@ -1,0 +1,22 @@
+{
+  "parent": "minecraft:adventure/voluntary_exile",
+  "criteria": {
+    "totem_of_undying": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:totem_of_undying"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "totem_of_undying"
+    ]
+  ]
+}

@@ -1,6 +1,7 @@
 package com.Polarice3.Goety.common.magic.spells;
 
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.MagicBolt;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -45,6 +46,7 @@ public class MagicBoltSpell extends Spell {
         List<ResourceKey<Enchantment>> list = new ArrayList<>();
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.DURATION);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

@@ -1,24 +1,23 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "csc",
-                    "ses",
-                    "csc"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:soul_light_focus"
-                      },
-                "s":  {
-                          "tag":  "c:dusts/glowstone"
-                      },
-                "c":  {
-                          "tag":  "c:netherrack"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:glow_light_focus",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "csc",
+    "ses",
+    "csc"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:soul_light_focus"
+    },
+    "s": {
+      "tag": "c:dusts/glowstone"
+    },
+    "c": {
+      "tag": "c:netherrack"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:glow_light_focus"
+  }
 }
-

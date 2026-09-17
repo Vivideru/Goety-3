@@ -1,27 +1,30 @@
-﻿{
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:poison_dart_focus"
-                        },
-    "craftType":  "overgrown",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "goety:overgrown_roots"
-                        },
-                        {
-                            "item":  "minecraft:bone_meal"
-                        },
-                        {
-                            "item":  "bosses_of_mass_destruction:void_thorn"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:blossoming_focus"
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "bosses_of_mass_destruction" } ]
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:poison_dart_focus"
+  },
+  "craftType": "overgrown",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:overgrown_roots"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "item": "bosses_of_mass_destruction:void_thorn"
+    }
+  ],
+  "result": {
+    "id": "goety:blossoming_focus"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "bosses_of_mass_destruction"
+    }
+  ]
 }
-
-

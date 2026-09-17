@@ -1,34 +1,33 @@
-﻿{
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "minecraft:totem_of_undying"
-                        },
-    "craftType":  "forge",
-    "soulCost":  10,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "goety:ominous_stone_bricks"
-                        },
-                        {
-                            "item":  "goety:ominous_stone_bricks"
-                        },
-                        {
-                            "item":  "goety:ominous_stone_bricks"
-                        },
-                        {
-                            "item":  "goety:magic_emerald"
-                        },
-                        {
-                            "item":  "goety:ominous_stone_bricks"
-                        },
-                        {
-                            "item":  "goety:magic_emerald"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:ominous_idol"
-               }
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:totem_of_undying"
+  },
+  "craftType": "forge",
+  "soulCost": 10,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:ominous_stone_bricks"
+    },
+    {
+      "item": "goety:ominous_stone_bricks"
+    },
+    {
+      "item": "goety:ominous_stone_bricks"
+    },
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "item": "goety:ominous_stone_bricks"
+    },
+    {
+      "item": "goety:magic_emerald"
+    }
+  ],
+  "result": {
+    "id": "goety:ominous_idol"
+  }
 }
-

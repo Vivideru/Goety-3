@@ -1,37 +1,36 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:soul_emerald"
-                        },
-    "craftType":  "necroturgy",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "goety:occult_fabric"
-                        },
-                        {
-                            "item":  "goety:occult_fabric"
-                        },
-                        {
-                            "item":  "goety:spirit_fabric"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:necro_crown"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:soul_emerald"
+  },
+  "craftType": "necroturgy",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "goety:occult_fabric"
+    },
+    {
+      "item": "goety:spirit_fabric"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "item": "goety:ectoplasm"
+    }
+  ],
+  "result": {
+    "id": "goety:necro_crown"
+  }
 }
-

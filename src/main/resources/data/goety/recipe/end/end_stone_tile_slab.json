@@ -1,17 +1,15 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "#":  {
-                          "item":  "goety:end_stone_tiles"
-                      }
-            },
-    "pattern":  [
-        "###"
-    ],
-    "result":  {
-                   "count":  6,
-                   "id":  "goety:end_stone_tile_slab"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "goety:end_stone_tiles"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "goety:end_stone_tile_slab"
+  }
 }
-
-

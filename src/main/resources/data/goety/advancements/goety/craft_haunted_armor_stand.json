@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:haunted_armor_stand"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_haunted_armor_stand.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_haunted_armor_stand.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/read_haunting_scroll",
+  "criteria": {
+    "haunted_armor_stand": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:haunted_armor_stand"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "haunted_armor_stand"
+    ]
+  ],
+  "rewards": {
+    "experience": 5
+  }
+}

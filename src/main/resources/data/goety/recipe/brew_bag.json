@@ -1,24 +1,23 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "ele",
-                    "lbl",
-                    "ele"
-                ],
-    "key":  {
-                "l":  {
-                          "tag":  "c:leather"
-                      },
-                "e":  {
-                          "item":  "goety:occult_fabric"
-                      },
-                "b":  {
-                          "item":  "minecraft:glass_bottle"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:brew_bag",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ele",
+    "lbl",
+    "ele"
+  ],
+  "key": {
+    "l": {
+      "tag": "c:leather"
+    },
+    "e": {
+      "item": "goety:occult_fabric"
+    },
+    "b": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:brew_bag"
+  }
 }
-

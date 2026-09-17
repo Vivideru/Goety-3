@@ -54,6 +54,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.damagesource.DamageContainer;
 
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
@@ -435,14 +437,26 @@ public class Wildfire extends Summoned implements IMobTyped {
                 }
             }
 
-            amount = this.getDamageAfterArmorAbsorb(source, amount);
-            amount = this.getDamageAfterMagicAbsorb(source, amount);
-            this.setShieldHealth(this.getShieldHealth() - amount);
+            // The shield branch bypasses LivingEntity#hurt, so it must establish NeoForge's damage context itself.
+            DamageContainer container = new DamageContainer(source, amount);
+            this.damageContainers.push(container);
+            try {
+                if (CommonHooks.onEntityIncomingDamage(this, container)) {
+                    return false;
+                }
+                float beforeArmor = container.getNewDamage();
+                float afterArmor = this.getDamageAfterArmorAbsorb(source, beforeArmor);
+                container.setReduction(DamageContainer.Reduction.ARMOR, beforeArmor - afterArmor);
+                this.getDamageAfterMagicAbsorb(source, container.getNewDamage());
+                this.setShieldHealth(this.getShieldHealth() - container.getNewDamage());
 
-            if (this.getShieldHealth() <= 0) {
-                this.breakShield();
-            } else {
-                this.playHurtSound(source);
+                if (this.getShieldHealth() <= 0) {
+                    this.breakShield();
+                } else {
+                    this.playHurtSound(source);
+                }
+            } finally {
+                this.damageContainers.pop();
             }
             return false;
         } else {

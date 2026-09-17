@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " m ",
-                    "mlm",
-                    " m "
-                ],
-    "key":  {
-                "m":  {
-                          "item":  "goety:crag_tiles"
-                      },
-                "l":  {
-                          "item":  "goety:red_moss_growth"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:mossy_crag_tiles_slight",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " m ",
+    "mlm",
+    " m "
+  ],
+  "key": {
+    "m": {
+      "item": "goety:crag_tiles"
+    },
+    "l": {
+      "item": "goety:red_moss_growth"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:mossy_crag_tiles_slight"
+  }
 }
-

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:pale_steel_ingot"
+    },
+    {
+      "tag": "c:dusts/redstone"
+    },
+    {
+      "item": "minecraft:clay_ball"
+    },
+    {
+      "tag": "c:slimeballs"
+    }
+  ],
+  "result": {
+    "id": "goety:repair_putty"
+  }
+}

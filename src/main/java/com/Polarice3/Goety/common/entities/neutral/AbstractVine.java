@@ -121,7 +121,8 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
             }
             this.discard();
         } else {
-            super.kill();
+            // Dismissal damage preserves the normal summon cleanup path instead of bypassing death handling.
+            this.hurt(ModDamageSource.getDamageSource(this.level(), ModDamageSource.DISMISSED), Float.MAX_VALUE);
         }
     }
 

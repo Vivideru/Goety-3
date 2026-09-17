@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "##",
-                    "##"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:shade_stone_slab"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:shade_tiles",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:shade_stone_slab"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:shade_tiles"
+  }
 }
-

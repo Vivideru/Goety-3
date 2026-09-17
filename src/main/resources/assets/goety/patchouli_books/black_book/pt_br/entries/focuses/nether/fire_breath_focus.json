@@ -1,0 +1,19 @@
+{
+  "name": "Foco de Sopro de Fogo",
+  "icon": "goety:fire_breath_focus",
+  "category": "goety:focuses/nether",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Como os míticos Dragões Vermelhos de antigamente, você expele chamas à sua frente, queimando qualquer criatura em seu caminho."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:focus/fire_breath_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Conjurar com $(l:crafts/staff/nether_staff)Cajado do Nether$() não só aumenta o dano, mas também incendeia o terreno."
+    }
+  ]
+}

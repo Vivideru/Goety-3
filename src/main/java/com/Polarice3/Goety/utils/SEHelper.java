@@ -4,8 +4,11 @@ import com.Polarice3.Goety.init.ModMobType;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.ally.illager.ICharmUser;
 import com.Polarice3.Goety.api.items.armor.ISoulDiscount;
+import com.Polarice3.Goety.api.items.magic.ISoulContainer;
 import com.Polarice3.Goety.api.items.magic.ITotem;
+import com.Polarice3.Goety.api.magic.ISpell;
 import com.Polarice3.Goety.common.capabilities.soulenergy.*;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
@@ -224,12 +227,13 @@ public class SEHelper {
         float extra = soulEater;
         if (killer instanceof Player){
             player = (Player) killer;
-        } else if (killer instanceof OwnableEntity summonedEntity){
-            if (summonedEntity.getOwner() instanceof Player player1){
-                player = player1;
-            }
+        } else if (killer instanceof OwnableEntity summonedEntity && summonedEntity.getOwner() instanceof Player player1){
+            player = player1;
+        } else if (MobUtil.getOwner(killer) instanceof Player player1){
+            player = player1;
         }
-        if (player != null) {
+        boolean charmMob = killer instanceof ICharmUser charmUser && charmUser.getCharm().getItem() instanceof ISoulContainer;
+        if (player != null || charmMob) {
             if (ModDamageSource.physicalAttacks(source)) {
                 ItemStack itemStack = killer.getMainHandItem();
                 Item item = itemStack.getItem();
@@ -239,7 +243,16 @@ public class SEHelper {
                 }
             }
             int soulGain = Mth.floor(getSoulGiven(victim) * extra) * multi;
-            increaseSouls(player, soulGain);
+            if (charmMob) {
+                // A charm-carrying servant keeps half of the souls for its charm and hands only the rest to its owner.
+                if (player != null) {
+                    soulGain = (int) (soulGain * 0.5F);
+                }
+                ISoulContainer.increaseSouls(((ICharmUser) killer).getCharm(), soulGain);
+            }
+            if (player != null) {
+                increaseSouls(player, soulGain);
+            }
         }
     }
 
@@ -286,9 +299,11 @@ public class SEHelper {
     }
 
     public static int SoulMultiply(LivingEntity livingEntity, DamageSource source){
-        ItemStack weapon= livingEntity.getMainHandItem();
+        ItemStack weapon = livingEntity.getMainHandItem();
         int multiply = 1;
-        if (ModDamageSource.physicalAttacks(source)) {
+        // Soul Eater also belongs to projectiles fired by the entity holding the enchanted weapon.
+        if (ModDamageSource.physicalAttacks(source)
+                || source.getDirectEntity() instanceof Projectile projectile && projectile.getOwner() == livingEntity) {
             int i = MobUtil.getItemEnchantmentLevel(livingEntity, weapon, ModEnchantments.SOUL_EATER);
             if (i > 0) {
                 multiply = Mth.clamp(i + 1, 1, 10);
@@ -790,6 +805,14 @@ public class SEHelper {
 
     public static void addCooldown(Player player, Item item, int duration){
         getFocusCoolDown(player).addCooldown(player, player.level(), item, duration);
+    }
+
+    public static void addSpellCooldown(Player player, ISpell spell, int duration){
+        if (spell != null) {
+            for (Item item : SpellItemCache.itemsFor(spell)) {
+                addCooldown(player, item, duration);
+            }
+        }
     }
 
     public static void addSpecificCooldown(Player player, ItemStack itemStack, int duration){

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:haunted_log"
+    }
+  },
+  "result": {
+    "id": "goety:haunted_wood",
+    "count": 3
+  }
+}

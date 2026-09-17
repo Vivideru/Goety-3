@@ -73,7 +73,8 @@ public class ServantEvents {
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
-        if (livingEntity instanceof Mob mob){
+        // Stunned mobs must not retarget while their AI is intentionally suspended.
+        if (livingEntity instanceof Mob mob && !StunnedEvents.isStunned(mob)){
             if (mob instanceof OwnableEntity ownable && mob.getTarget() != null) {
                 if (SEHelper.isAlly(ownable.getOwner(), mob.getTarget())) {
                     mob.setTarget(null);
@@ -111,7 +112,8 @@ public class ServantEvents {
         LivingEntity attacker = event.getEntity();
         LivingEntity target = event.getOriginalAboutToBeSetTarget();
         LivingEntity newTarget = event.getNewAboutToBeSetTarget();
-        if (attacker instanceof Mob mobAttacker) {
+        // Ignore target changes from stale goals while the attacker is stunned.
+        if (attacker instanceof Mob mobAttacker && !StunnedEvents.isStunned(mobAttacker)) {
             if (target instanceof Player) {
                 if (mobAttacker.getLastHurtByMob() instanceof IOwned owned
                         && owned.getTrueOwner() == target
@@ -128,19 +130,12 @@ public class ServantEvents {
                     }
                 }
             }
-            if (attacker instanceof IOwned owned && owned.getMasterOwner() instanceof Player){
-                if (attacker.level().getServer() != null) {
-                    if (!attacker.level().getServer().isPvpAllowed()) {
-                        if (target instanceof Player
-                                || (target instanceof IOwned owned1
-                                && owned1.getMasterOwner() instanceof Player)) {
-                            if (event.getTargetType() == MOB_TARGET) {
-                                event.setNewAboutToBeSetTarget(null);
-                            } else {
-                                event.setCanceled(true);
-                            }
-                        }
-                    }
+            if (attacker instanceof IOwned owned && ServantUtil.nullifyTarget(owned, target)) {
+                // Centralized target validation keeps Wild Rage and owner alliances consistent across AI paths.
+                if (event.getTargetType() == MOB_TARGET) {
+                    event.setNewAboutToBeSetTarget(null);
+                } else {
+                    event.setCanceled(true);
                 }
             }
             if (!(mobAttacker instanceof Enemy)

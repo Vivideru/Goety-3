@@ -14,8 +14,12 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "goety:void_block",
-      "recipe2": "goety:void_bucket"
+      "recipe": "goety:void_block"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:void_bucket",
+      "text": "Para obter um Balde de Líquido do Vácuo, encha um Caldeirão com Garrafas do Vácuo e use um Balde nele."
     },
     {
       "type": "patchouli:text",
@@ -41,6 +45,7 @@
   ],
   "extra_recipe_mappings": {
     "goety:void_bottle": 1,
+    "goety:void_bucket": 3,
     "goety:end_soil": 11
   }
 }

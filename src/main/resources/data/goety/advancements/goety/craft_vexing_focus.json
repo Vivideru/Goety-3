@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:vexing_focus"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_vexing_focus.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_vexing_focus.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_animation_core",
+  "criteria": {
+    "vexing_focus": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:vexing_focus"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "vexing_focus"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

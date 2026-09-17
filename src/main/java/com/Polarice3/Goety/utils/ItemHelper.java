@@ -3,6 +3,7 @@ package com.Polarice3.Goety.utils;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.common.items.ModTiers;
+import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.common.items.armor.MaleficHelm;
 import com.Polarice3.Goety.common.items.equipment.PhilosophersMaceItem;
 import com.Polarice3.Goety.config.ItemConfig;
@@ -32,6 +33,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import java.util.EnumMap;
+import java.util.Map;
 import net.minecraft.world.item.enchantment.EnchantedItemInUse;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
@@ -57,6 +60,19 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class ItemHelper {
+    public static final Map<DyeColor, Item> ITEM_BY_DYE = new EnumMap<>(DyeColor.class);
+    public static final Map<Item, DyeColor> DYE_BY_WOOL = new java.util.HashMap<>();
+    static {
+        DyeColor[] colors = DyeColor.values();
+        Item[] wool = {Items.WHITE_WOOL, Items.ORANGE_WOOL, Items.MAGENTA_WOOL, Items.LIGHT_BLUE_WOOL, Items.YELLOW_WOOL, Items.LIME_WOOL, Items.PINK_WOOL, Items.GRAY_WOOL, Items.LIGHT_GRAY_WOOL, Items.CYAN_WOOL, Items.PURPLE_WOOL, Items.BLUE_WOOL, Items.BROWN_WOOL, Items.GREEN_WOOL, Items.RED_WOOL, Items.BLACK_WOOL};
+        Item[] dye = {Items.WHITE_DYE, Items.ORANGE_DYE, Items.MAGENTA_DYE, Items.LIGHT_BLUE_DYE, Items.YELLOW_DYE, Items.LIME_DYE, Items.PINK_DYE, Items.GRAY_DYE, Items.LIGHT_GRAY_DYE, Items.CYAN_DYE, Items.PURPLE_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.GREEN_DYE, Items.RED_DYE, Items.BLACK_DYE};
+        for (int i = 0; i < colors.length; i++) { ITEM_BY_DYE.put(colors[i], wool[i]); DYE_BY_WOOL.put(wool[i], colors[i]); }
+    }
+    // Centralize Ring of Wrecking filtering so damageable items and datapack tags share one rule.
+    public static boolean isWreckable(ItemStack itemStack) {
+        return (itemStack.isDamageableItem() || itemStack.is(ModTags.Items.WRECKABLE))
+                && !itemStack.is(ModTags.Items.UNWRECKABLE);
+    }
 
     public static <T extends LivingEntity> void hurtAndRemove(ItemStack stack, int pAmount, T pEntity) {
         if (pEntity.level() instanceof ServerLevel serverLevel && (!(pEntity instanceof Player) || !((Player)pEntity).getAbilities().instabuild)) {

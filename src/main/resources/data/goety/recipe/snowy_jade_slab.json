@@ -1,17 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "#":  {
-                          "item":  "goety:snowy_jade_tiles"
-                      }
-            },
-    "pattern":  [
-        "###"
-    ],
-    "result":  {
-                   "count":  6,
-                   "id":  "goety:snowy_jade_slab"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": [
+      {
+        "item": "goety:snowy_jade_tiles"
+      }
+    ]
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "goety:snowy_jade_slab"
+  }
 }
-
-

@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#S",
-                    "S#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:jade_tiles"
-                      },
-                "S":  {
-                          "item":  "minecraft:snowball"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:snowy_jade_tiles",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S",
+    "S#"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:jade_tiles"
+    },
+    "S": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:snowy_jade_tiles"
+  }
 }
-

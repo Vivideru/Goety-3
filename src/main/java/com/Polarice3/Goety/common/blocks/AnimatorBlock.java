@@ -113,7 +113,8 @@ public class AnimatorBlock extends BaseEntityBlock implements IBlockExtension {
             if (tileentity instanceof AnimatorBlockEntity animatorBlock) {
                 ItemStack itemstack = animatorBlock.getItem();
                 if (!itemstack.isEmpty()) {
-                    pLevel.levelEvent(1010, pPos, 0);
+                    // Event 1010 controls jukebox playback in 1.21, so use the intended removal sound directly.
+                    pLevel.playSound(null, pPos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
                     animatorBlock.clearContent();
                     float f = 0.7F;
                     double d0 = (double)(pLevel.random.nextFloat() * f) + (double)0.15F;

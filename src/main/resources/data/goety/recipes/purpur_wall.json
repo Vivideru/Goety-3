@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:purpur_block"
+    }
+  },
+  "result": {
+    "id": "goety:purpur_wall",
+    "count": 6
+  },
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:mod_loaded",
+        "modid": "cataclysm"
+      }
+    }
+  ]
+}

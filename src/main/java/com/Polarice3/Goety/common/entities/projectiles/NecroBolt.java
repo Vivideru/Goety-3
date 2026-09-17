@@ -20,6 +20,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -86,13 +88,14 @@ public class NecroBolt extends SpellHurtingProjectile {
                         // 1.21 moved post-attack enchant hooks out of Entity, so call the helper with the same damage source.
                         EnchantmentHelper.doPostAttackEffects(serverLevel, entity, entity.damageSources().indirectMagic(this, livingentity));
                     } else {
-                        ServantUtil.convertZombies(entity, livingentity, true);
-                        boolean wither = false;
-                        if (livingentity instanceof Player player){
-                            wither = SEHelper.hasResearch(player, ResearchList.BYGONE);
-                        }
-                        ServantUtil.convertSkeletons(entity, livingentity, wither, true);
-                        if (entity instanceof Mob mob) {
+                        // Preserve dedicated undead servant variants before falling back to infection.
+                        if (entity instanceof Zombie) {
+                            ServantUtil.convertZombies(entity, livingentity, true);
+                        } else if (entity instanceof AbstractSkeleton) {
+                            boolean wither = livingentity instanceof Player player && SEHelper.hasResearch(player, ResearchList.BYGONE);
+                            ServantUtil.convertSkeletons(entity, livingentity, wither, true);
+                        } else if (entity instanceof Mob mob
+                                && !ServantUtil.convertUndead(mob, livingentity, true, true)) {
                             ServantUtil.infect(mob, livingentity, true, true);
                         }
                     }

@@ -1,25 +1,24 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "bcb",
-                    "sms"
-                ],
-    "key":  {
-                "b":  {
-                          "tag":  "c:ingots/gold"
-                      },
-                "c":  {
-                          "tag":  "minecraft:coals"
-                      },
-                "s":  {
-                          "tag":  "goety:marble_slabs"
-                      },
-                "m":  {
-                          "item":  "minecraft:magma_block"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:marble_brazier"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bcb",
+    "sms"
+  ],
+  "key": {
+    "b": {
+      "tag": "c:ingots/gold"
+    },
+    "c": {
+      "tag": "minecraft:coals"
+    },
+    "s": {
+      "tag": "goety:marble_slabs"
+    },
+    "m": {
+      "item": "minecraft:magma_block"
+    }
+  },
+  "result": {
+    "id": "goety:marble_brazier"
+  }
 }
-

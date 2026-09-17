@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:dark_robe"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_dark_robe.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_dark_robe.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_dark_wand",
+  "criteria": {
+    "dark_robe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:dark_robe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "dark_robe"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

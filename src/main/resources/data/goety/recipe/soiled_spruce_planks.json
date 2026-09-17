@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "lm",
-                    "ml"
-                ],
-    "key":  {
-                "m":  {
-                          "item":  "minecraft:spruce_planks"
-                      },
-                "l":  {
-                          "item":  "goety:detritus_dust"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:soiled_spruce_planks",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lm",
+    "ml"
+  ],
+  "key": {
+    "m": {
+      "item": "minecraft:spruce_planks"
+    },
+    "l": {
+      "item": "goety:detritus_dust"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:soiled_spruce_planks"
+  }
 }
-

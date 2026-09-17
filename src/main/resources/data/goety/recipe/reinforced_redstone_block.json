@@ -1,41 +1,40 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "tag":  "c:storage_blocks/redstone"
-                        },
-    "craftType":  "forge",
-    "soulCost":  1,
-    "duration":  10,
-    "research":  "terminus",
-    "ingredients":  [
-                        {
-                            "tag":  "c:obsidian"
-                        },
-                        {
-                            "item":  "goety:cursed_metal_block"
-                        },
-                        {
-                            "tag":  "c:obsidian"
-                        },
-                        {
-                            "item":  "goety:cursed_metal_block"
-                        },
-                        {
-                            "tag":  "c:obsidian"
-                        },
-                        {
-                            "item":  "goety:cursed_metal_block"
-                        },
-                        {
-                            "tag":  "c:obsidian"
-                        },
-                        {
-                            "item":  "goety:cursed_metal_block"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:reinforced_redstone_block"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "c:storage_blocks/redstone"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "research": "terminus",
+  "ingredients": [
+    {
+      "tag": "c:obsidian"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    },
+    {
+      "tag": "c:obsidian"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    },
+    {
+      "tag": "c:obsidian"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    },
+    {
+      "tag": "c:obsidian"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    }
+  ],
+  "result": {
+    "id": "goety:reinforced_redstone_block"
+  }
 }
-

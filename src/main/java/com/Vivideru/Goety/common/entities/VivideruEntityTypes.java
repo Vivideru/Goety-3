@@ -1,6 +1,7 @@
 package com.Vivideru.Goety.common.entities;
 
 import com.Polarice3.Goety.Goety;
+import com.Vivideru.Goety.common.entities.ally.Cerberus;
 import com.Vivideru.Goety.common.entities.ally.Warg;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -17,6 +18,14 @@ public class VivideruEntityTypes {
                     .passengerAttachments(1.42F)
                     .clientTrackingRange(10)
                     .build(Goety.location("warg").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Cerberus>> CERBERUS = ENTITY_TYPES.register("cerberus",
+            () -> EntityType.Builder.of(Cerberus::new, MobCategory.MONSTER)
+                    .sized(2.0F, 2.6F)
+                    .passengerAttachments(2.3F)
+                    .fireImmune()
+                    .clientTrackingRange(10)
+                    .build(Goety.location("cerberus").toString()));
 
     @SuppressWarnings("removal")
     public static void init() {

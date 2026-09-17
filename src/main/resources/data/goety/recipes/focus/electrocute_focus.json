@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " l ",
+    "lsl",
+    " l "
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "goety:shocking_focus"
+    },
+    "l":
+    {
+      "item": "minecraft:lightning_rod"
+    }
+  },
+  "result":
+  {
+    "id": "goety:electrocute_focus",
+    "count": 1
+  }
+}

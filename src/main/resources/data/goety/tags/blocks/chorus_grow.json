@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#goety:end_rock",
+    "#goety:end_basalt_blocks",
+    "#goety:end_dirt_blocks",
+    "#goety:end_growth_blocks",
+    "#goety:end_soil_blocks",
+    "#goety:end_stone",
+    "#goety:chorus_grass_blocks"
+  ]
+}

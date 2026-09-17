@@ -1,0 +1,21 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:teleport",
+  "activation_item": {
+    "item": "goety:waystone"
+  },
+  "craftType": "magic",
+  "soulCost": 10,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
+}

@@ -66,7 +66,7 @@ public class WallNecroticCandlestick extends WallCandlestickBlock implements Ent
             }
 
             p_220698_.addParticle(ModParticleTypes.SMALL_NECRO_FIRE.get(), p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
-            p_220698_.addParticle(ModParticleTypes.SMALL_NECRO_FIRE_DROP.get(), p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+            // Reversible necro fire already handles the secondary motion internally.
         }
     }
 

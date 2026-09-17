@@ -2,8 +2,13 @@ package com.Vivideru.Goety.common.entities.ally;
 
 import com.Polarice3.Goety.common.entities.ally.BlackWolf;
 import com.Polarice3.Goety.common.entities.neutral.Owned;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.init.ModMobType;
+import com.Polarice3.Goety.utils.CuriosFinder;
+import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemBlockEntity;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
 import com.Vivideru.Goety.common.items.VivideruItems;
@@ -14,6 +19,12 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.core.Holder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
@@ -35,6 +46,7 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.level.Level;
@@ -192,6 +204,12 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
             }
             return;
         }
+        if (this.getAttackType() == ATTACK_BITE) {
+            // Bites never lock a heading (lockedAttackYaw is only computed for sword swings), so let the
+            // Warg keep tracking its target with the normal look control instead of freezing on a stale angle.
+            this.entityData.set(ATTACK_TICKS, ticks - 1);
+            return;
+        }
         // Keep the body, head and lunge on one heading until the complete attack animation has finished.
         this.applyLockedAttackFacing();
         this.getNavigation().stop();
@@ -235,9 +253,24 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private void applyLockedAttackFacing() {
+        // The body and lunge stay locked to the heading picked at the start of the swing, but the head keeps
+        // aiming at the target's current position so the Warg still looks at the enemy if it moves mid-attack.
         this.setYRot(this.lockedAttackYaw);
         this.yBodyRot = this.lockedAttackYaw;
-        this.yHeadRot = this.lockedAttackYaw;
+        this.yHeadRot = this.lockedAttackYaw + this.headYawOffsetToTarget();
+    }
+
+    private float headYawOffsetToTarget() {
+        if (this.queuedTarget == null) {
+            return 0.0F;
+        }
+        double x = this.queuedTarget.getX() - this.getX();
+        double z = this.queuedTarget.getZ() - this.getZ();
+        if (x * x + z * z <= 1.0E-4D) {
+            return 0.0F;
+        }
+        float targetYaw = (float) (Mth.atan2(-x, z) * (180.0D / Math.PI));
+        return Mth.clamp(Mth.wrapDegrees(targetYaw - this.lockedAttackYaw), -(float) this.getMaxHeadYRot(), (float) this.getMaxHeadYRot());
     }
 
     private void performSpinAttack() {
@@ -264,11 +297,18 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private void hurtWithSword(LivingEntity target) {
-        if (target.hurt(this.getServantAttack(), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE))) {
+        DamageSource source = this.getServantAttack();
+        ItemStack sword = this.getMainHandItem();
+        float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        if (this.level() instanceof ServerLevel serverLevel) {
+            // Custom animation hits bypass Mob#doHurtTarget, so apply the held sword's damage enchantments explicitly.
+            damage = EnchantmentHelper.modifyDamage(serverLevel, sword, target, source, damage);
+        }
+        if (target.hurt(source, damage)) {
             this.curseTarget(target);
             if (this.level() instanceof ServerLevel serverLevel) {
-                // Delayed model attacks still run the weapon's normal post-attack enchantment effects when the hit frame arrives.
-                EnchantmentHelper.doPostAttackEffects(serverLevel, target, this.getServantAttack());
+                // Keep item-sourced post-hit effects such as Fire Aspect attached to the sword used by the Warg.
+                EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, source, sword);
             }
         }
     }
@@ -304,6 +344,43 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     @Override
     public int getHeadRotSpeed() {
         return 5;
+    }
+
+    @Override
+    public void curseTarget(Entity entity) {
+        if (this.getVariant() == Variant.COLD && entity instanceof LivingEntity livingEntity) {
+            int amplifier = 0;
+            Holder<MobEffect> effect = MobEffects.MOVEMENT_SLOWDOWN;
+            if (CuriosFinder.hasFrostRobes(this.getMasterOwner())) {
+                if (!entity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
+                    effect = GoetyEffects.FREEZING;
+                } else {
+                    amplifier = 1;
+                }
+            }
+            livingEntity.addEffect(new MobEffectInstance(effect, MathHelper.secondsToTicks(5), amplifier), this);
+        } else if (this.getVariant() == Variant.MODERATE && entity instanceof LivingEntity livingEntity) {
+            int amplifier = CuriosFinder.hasStormRobes(this.getMasterOwner()) ? 1 : 0;
+            livingEntity.addEffect(new MobEffectInstance(GoetyEffects.SPASMS, MathHelper.secondsToTicks(5), amplifier), this);
+        } else if (this.getVariant() != Variant.WARM) {
+            super.curseTarget(entity);
+        }
+    }
+
+    @Override
+    protected float getDamageAfterMagicAbsorb(DamageSource source, float amount) {
+        amount = super.getDamageAfterMagicAbsorb(source, amount);
+        if (this.getVariant() == Variant.MODERATE
+                && (ModDamageSource.shockAttacks(source) || source.is(DamageTypeTags.IS_LIGHTNING))) {
+            amount *= 0.5F;
+        }
+        return amount;
+    }
+
+    @Override
+    public boolean canBeAffected(MobEffectInstance effect) {
+        return super.canBeAffected(effect)
+                && (this.getVariant() != Variant.MODERATE || !effect.getEffect().is(GoetyEffects.SPASMS));
     }
 
     @Override
@@ -411,7 +488,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
                 this.setBodyArmorItem(ItemStack.EMPTY);
                 return InteractionResult.sidedSuccess(this.level().isClientSide);
             }
-            if (held.is(ItemTags.SWORDS) && this.getMainHandItem().isEmpty()) {
+            if (isUsableSword(held) && this.getMainHandItem().isEmpty()) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, held.copyWithCount(1));
                 this.setDropChance(EquipmentSlot.MAINHAND, 2.0F);
                 consumeOne(player, held);
@@ -504,7 +581,13 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     public boolean hasSword() {
-        return this.getMainHandItem().is(ItemTags.SWORDS);
+        return isUsableSword(this.getMainHandItem());
+    }
+
+    private static boolean isUsableSword(ItemStack stack) {
+        // Tool actions cover modded swords that expose sword behavior without joining the vanilla item tag.
+        return stack.is(ItemTags.SWORDS) || stack.getItem() instanceof SwordItem
+                || stack.canPerformAction(ItemAbilities.SWORD_DIG);
     }
 
     public boolean hasWargArmor() {
@@ -521,6 +604,11 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
 
     public Variant getVariant() {
         return Variant.byId(this.entityData.get(VARIANT));
+    }
+
+    @Override
+    public ModMobType getGoetyMobType() {
+        return this.getVariant() == Variant.SKELETAL ? ModMobType.UNDEAD : super.getGoetyMobType();
     }
 
     public void setVariant(Variant variant) {
@@ -610,7 +698,9 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         BLACK,
         COLD,
         MODERATE,
-        WARM;
+        WARM,
+        SKELETAL,
+        GRAY;
 
         public static Variant byId(int id) {
             return values()[Mth.clamp(id, 0, values().length - 1)];

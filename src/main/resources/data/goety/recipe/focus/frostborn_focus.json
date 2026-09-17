@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:animation_core"
-                        },
-    "craftType":  "frost",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:packed_ice"
-                        },
-                        {
-                            "tag":  "c:gems/diamond"
-                        },
-                        {
-                            "item":  "minecraft:tnt"
-                        },
-                        {
-                            "item":  "minecraft:packed_ice"
-                        },
-                        {
-                            "tag":  "c:gems/diamond"
-                        },
-                        {
-                            "item":  "minecraft:blue_ice"
-                        },
-                        {
-                            "item":  "minecraft:powder_snow_bucket"
-                        },
-                        {
-                            "item":  "minecraft:packed_ice"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:frostborn_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "frost",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:packed_ice"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:packed_ice"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "item": "minecraft:blue_ice"
+    },
+    {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    {
+      "item": "minecraft:packed_ice"
+    }
+  ],
+  "result": {
+    "id": "goety:frostborn_focus"
+  }
 }
-

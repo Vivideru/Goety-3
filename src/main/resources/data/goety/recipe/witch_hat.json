@@ -1,24 +1,23 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " f ",
-                    "ses",
-                    "fff"
-                ],
-    "key":  {
-                "f":  {
-                          "item":  "goety:dark_fabric"
-                      },
-                "s":  {
-                          "item":  "minecraft:string"
-                      },
-                "e":  {
-                          "item":  "goety:soul_emerald"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:witch_hat",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " f ",
+    "ses",
+    "fff"
+  ],
+  "key": {
+    "f": {
+      "item": "goety:dark_fabric"
+    },
+    "s": {
+      "item": "minecraft:string"
+    },
+    "e": {
+      "item": "goety:soul_emerald"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:witch_hat"
+  }
 }
-

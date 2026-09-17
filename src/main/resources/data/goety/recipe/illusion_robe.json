@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "f f",
-                    "yyy",
-                    "fff"
-                ],
-    "key":  {
-                "f":  {
-                          "item":  "goety:occult_fabric"
-                      },
-                "y":  {
-                          "tag":  "c:leather"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:illusion_robe",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "f f",
+    "yyy",
+    "fff"
+  ],
+  "key": {
+    "f": {
+      "item": "goety:occult_fabric"
+    },
+    "y": {
+      "tag": "c:leather"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:illusion_robe"
+  }
 }
-

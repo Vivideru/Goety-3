@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:animation_core"
-                        },
-    "craftType":  "end",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "goety:spider_nest"
-                        },
-                        {
-                            "item":  "minecraft:slime_block"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "minecraft:slime_block"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "goety:spider_nest"
-                        },
-                        {
-                            "item":  "minecraft:chorus_fruit"
-                        },
-                        {
-                            "item":  "minecraft:slime_block"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:snaring_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "end",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:spider_nest"
+    },
+    {
+      "item": "minecraft:slime_block"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "minecraft:slime_block"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "goety:spider_nest"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    },
+    {
+      "item": "minecraft:slime_block"
+    }
+  ],
+  "result": {
+    "id": "goety:snaring_focus"
+  }
 }
-

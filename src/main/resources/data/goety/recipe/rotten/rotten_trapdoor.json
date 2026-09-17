@@ -1,18 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "group":  "wooden_trapdoor",
-    "pattern":  [
-                    "###",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:rotten_planks"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:rotten_trapdoor",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:rotten_planks"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:rotten_trapdoor"
+  }
 }
-

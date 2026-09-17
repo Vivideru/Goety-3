@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "F":  {
-                          "item":  "goety:end_rock_bricks"
-                      }
-            },
-    "pattern":  [
-                    "FF",
-                    "FF"
-                ],
-    "result":  {
-                   "count":  4,
-                   "id":  "goety:end_rock_chiseled"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": {
+      "item": "goety:end_rock_bricks"
+    }
+  },
+  "pattern": [
+    "FF",
+    "FF"
+  ],
+  "result": {
+    "count": 4,
+    "id": "goety:end_rock_chiseled"
+  }
 }
-

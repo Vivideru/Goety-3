@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.frost;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.IceStorm;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -55,6 +56,7 @@ public class IceStormSpell extends Spell {
         list.add(ModEnchantments.DURATION);
         list.add(ModEnchantments.RANGE);
         list.add(ModEnchantments.VELOCITY);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

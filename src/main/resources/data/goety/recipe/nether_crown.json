@@ -1,35 +1,34 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:soul_emerald"
-                        },
-    "craftType":  "expert_nether",
-    "soulCost":  5,
-    "duration":  10,
-    "research":  "bygone",
-    "ingredients":  [
-                        {
-                            "tag":  "c:ingots/netherite"
-                        },
-                        {
-                            "tag":  "c:rods/blaze"
-                        },
-                        {
-                            "tag":  "c:rods/blaze"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        },
-                        {
-                            "tag":  "c:ingots/netherite"
-                        },
-                        {
-                            "item":  "goety:ectoplasm"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:nether_crown"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:soul_emerald"
+  },
+  "craftType": "expert_nether",
+  "soulCost": 5,
+  "duration": 10,
+  "research": "bygone",
+  "ingredients": [
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "tag": "c:rods/blaze"
+    },
+    {
+      "tag": "c:rods/blaze"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "tag": "c:ingots/netherite"
+    },
+    {
+      "item": "goety:ectoplasm"
+    }
+  ],
+  "result": {
+    "id": "goety:nether_crown"
+  }
 }
-

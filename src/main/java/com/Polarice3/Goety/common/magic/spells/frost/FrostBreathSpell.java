@@ -4,7 +4,6 @@ import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
-import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.common.magic.BreathingSpell;
 import com.Polarice3.Goety.common.magic.SpellStat;
 import com.Polarice3.Goety.config.SpellConfig;
@@ -117,7 +116,8 @@ public class FrostBreathSpell extends BreathingSpell {
         }
         float damage = this.baseDamage() + potency;
         if (!worldIn.isClientSide) {
-            if (CuriosFinder.hasCurio(caster, ModItems.RING_OF_THE_DRAGON.get())) {
+            // Breath empowerment now belongs to the matching staff rather than a passive curio.
+            if (this.rightStaff(staff)) {
                 damage *= 2.0F;
                 if (SpellConfig.DragonFrostGriefing.get()) {
                     float flameRange = range * ((float) Math.PI / 180.0F);
@@ -160,10 +160,10 @@ public class FrostBreathSpell extends BreathingSpell {
         if (WandUtil.enchantedFocus(entityLiving)){
             range = WandUtil.getRangeLevel(entityLiving);
         }
-        if (!CuriosFinder.hasCurio(entityLiving, ModItems.RING_OF_THE_DRAGON.get())) {
-            this.breathAttack(ParticleTypes.POOF, entityLiving, 0.3F + ((double) range / 10), 5);
-        } else {
+        if (this.rightStaff(staff)) {
             this.dragonBreathAttack(ModParticleTypes.FROST.get(), entityLiving, 0.3F + ((double) range / 10));
+        } else {
+            this.breathAttack(ParticleTypes.POOF, entityLiving, 0.3F + ((double) range / 10), 5);
         }
     }
 }

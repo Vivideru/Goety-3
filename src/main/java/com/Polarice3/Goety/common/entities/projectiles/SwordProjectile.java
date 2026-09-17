@@ -3,6 +3,7 @@ package com.Polarice3.Goety.common.entities.projectiles;
 import com.Polarice3.Goety.utils.MobTypeHelper;
 
 import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.ISpellEntity;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.utils.ItemHelper;
 import com.Polarice3.Goety.utils.MobUtil;
@@ -38,7 +39,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class SwordProjectile extends AbstractArrow implements ItemSupplier {
+public class SwordProjectile extends AbstractArrow implements ItemSupplier, ISpellEntity {
     private static final EntityDataAccessor<ItemStack> DATA_ITEM_STACK = SynchedEntityData.defineId(SwordProjectile.class, EntityDataSerializers.ITEM_STACK);
 
     public SwordProjectile(EntityType<? extends AbstractArrow> p_i48546_1_, Level p_i48546_2_) {

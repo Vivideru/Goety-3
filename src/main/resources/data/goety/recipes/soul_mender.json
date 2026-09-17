@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:cursed_infuser"
+  },
+  "craftType": "forge",
+  "soulCost": 5,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "minecraft:anvil"
+    },
+    {
+      "item": "minecraft:soul_campfire"
+    },
+    {
+      "item": "goety:shade_stone_chiseled"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "goety:shade_stone_chiseled"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "goety:shadow_essence"
+    },
+    {
+      "item": "goety:shadow_essence"
+    }
+  ],
+  "result": {
+    "id": "goety:soul_mender"
+  }
+}

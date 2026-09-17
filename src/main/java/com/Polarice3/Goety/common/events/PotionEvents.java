@@ -57,6 +57,7 @@ import net.minecraft.world.item.BottleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import com.Polarice3.Goety.utils.ModPotionUtil;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.level.GameRules;
@@ -86,6 +87,12 @@ import static net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class PotionEvents {
+    // These immutable modifiers are shared instead of rebuilt for every living entity tick.
+    private static final AttributeModifier SOUL_ARMOR_BUFF = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("3e4b414b-466c-4b90-8a92-a878e2542bb8"), "Increase Armor", 2.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final AttributeModifier CHARGED_SPEED = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("d4818bbc-54ed-4ecf-95a3-a15fbf71b31d"), "Charged Speed I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final AttributeModifier CHARGED_ATTACK = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("4bf0a8e3-a8f8-4bf6-95d2-f0ddbadd793e"), "Charged Attack I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final AttributeModifier CHARGED_SPEED_II = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("e8ea9f21-c671-4a61-a297-db8fa50f3d13"), "Charged Speed II", 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+    private static final AttributeModifier CHARGED_ATTACK_II = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("a55e53d6-dd6a-41e8-8c1f-8f548887ed30"), "Charged Attack II", -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
@@ -106,7 +113,7 @@ public class PotionEvents {
                 }
             }
             AttributeInstance armor = livingEntity.getAttribute(Attributes.ARMOR);
-            AttributeModifier soulArmorBuff = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("3e4b414b-466c-4b90-8a92-a878e2542bb8"), "Increase Armor", 2.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            AttributeModifier soulArmorBuff = SOUL_ARMOR_BUFF;
             if (armor != null){
                 if (livingEntity.hasEffect(GoetyEffects.SOUL_ARMOR)){
                     if (ItemHelper.noArmor(livingEntity)){
@@ -248,6 +255,20 @@ public class PotionEvents {
 
         if (attacker instanceof LivingEntity living) {
             if (ModDamageSource.physicalAttacks(event.getSource())) {
+                MobEffectInstance smiting = living.getEffect(GoetyEffects.SMITING);
+                if (smiting != null && MobTypeHelper.getMobType(victim) == com.Polarice3.Goety.init.ModMobType.UNDEAD) {
+                    int effectLevel = smiting.getAmplifier() + 1;
+                    int enchantmentLevel = MobUtil.getEnchantmentLevel(living, Enchantments.SMITE);
+                    // The brew behaves like Smite and only supplies levels not already present on the attacker's equipment.
+                    event.setAmount(event.getAmount() + 2.5F * Math.max(0, effectLevel - enchantmentLevel));
+                }
+                MobEffectInstance insectBane = living.getEffect(GoetyEffects.INSECT_BANE);
+                if (insectBane != null && MobTypeHelper.getMobType(victim) == com.Polarice3.Goety.init.ModMobType.ARTHROPOD) {
+                    int effectLevel = insectBane.getAmplifier() + 1;
+                    int enchantmentLevel = MobUtil.getEnchantmentLevel(living, Enchantments.BANE_OF_ARTHROPODS);
+                    // As with the original effect, an existing stronger enchantment takes precedence over the brew.
+                    event.setAmount(event.getAmount() + 2.5F * Math.max(0, effectLevel - enchantmentLevel));
+                }
                 if (living.hasEffect(GoetyEffects.FLAME_HANDS)) {
                     MobEffectInstance mobEffectInstance = living.getEffect(GoetyEffects.FLAME_HANDS);
                     if (mobEffectInstance != null) {
@@ -343,7 +364,8 @@ public class PotionEvents {
                 MobEffectInstance effectInstance = target.getEffect(GoetyEffects.SAPPED);
                 if (effectInstance != null) {
                     int i = effectInstance.getAmplifier() + 1;
-                    finalDamage += event.getNewDamage() * (0.2F * i);
+                    // Sapped scales the damage accumulated so far, preserving the upstream effect order.
+                    finalDamage += finalDamage * (0.2F * i);
                 }
             }
 
@@ -366,7 +388,7 @@ public class PotionEvents {
                     }
                     if (effectInstance != null) {
                         int i = effectInstance.getAmplifier() + 1;
-                        finalDamage -= event.getNewDamage() * (0.05F * i);
+                        finalDamage -= finalDamage * (0.05F * i);
                     }
                 }
             }
@@ -590,11 +612,11 @@ public class PotionEvents {
             AttributeInstance speed = livingEntity.getAttribute(Attributes.MOVEMENT_SPEED);
             AttributeInstance attack = livingEntity.getAttribute(Attributes.ATTACK_DAMAGE);
 
-            AttributeModifier addSpeed = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("d4818bbc-54ed-4ecf-95a3-a15fbf71b31d"), "Charged Speed I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            AttributeModifier addAttack = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("4bf0a8e3-a8f8-4bf6-95d2-f0ddbadd793e"), "Charged Attack I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            AttributeModifier addSpeed = CHARGED_SPEED;
+            AttributeModifier addAttack = CHARGED_ATTACK;
 
-            AttributeModifier addMoreSpeed = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("e8ea9f21-c671-4a61-a297-db8fa50f3d13"), "Charged Speed II", 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
-            AttributeModifier reduceAttack = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("a55e53d6-dd6a-41e8-8c1f-8f548887ed30"), "Charged Attack II", -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
+            AttributeModifier addMoreSpeed = CHARGED_SPEED_II;
+            AttributeModifier reduceAttack = CHARGED_ATTACK_II;
 
             MobEffectInstance chargeInstance = livingEntity.getEffect(GoetyEffects.CHARGED);
             boolean notNull = chargeInstance != null;
@@ -944,6 +966,13 @@ public class PotionEvents {
         }
         if (event.getEffectInstance().getEffect().is(GoetyEffects.ILLAGUE)){
             if (MobUtil.isRaider(event.getEntity()) || event.getEntity() instanceof PatrollingMonster){
+                event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+            }
+        }
+        if (event.getEffectInstance().getEffect().is(GoetyEffects.DOOM)) {
+            // The old no-arg check is gone, so the current level is used to test whether dimension changes are supported at all.
+            if (!event.getEntity().canChangeDimensions(event.getEntity().level(), event.getEntity().level())
+                    || event.getEntity().getType().is(Tags.EntityTypes.BOSSES)) {
                 event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
             }
         }

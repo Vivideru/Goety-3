@@ -1,0 +1,16 @@
+{
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "count": 4,
+    "id": "goety:ominous_stone_pavement"
+  },
+  "key": {
+    "#": {
+      "item": "goety:ominous_stone_tiles"
+    }
+  }
+}

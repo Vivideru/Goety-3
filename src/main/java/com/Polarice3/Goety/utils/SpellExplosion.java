@@ -11,6 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
@@ -34,7 +35,16 @@ public class SpellExplosion {
             f2 *= 2.0F;
         }
         Vec3 vec3 = new Vec3(x, y, z);
-        for (Entity entity : explosionRangeEntities(level, source, x, y, z, radius)) {
+        // Minecraft 1.21 requires the explosion context when checking whether an entity ignores explosion damage.
+        Explosion explosion = damageSource.is(DamageTypeTags.IS_EXPLOSION)
+                ? new Explosion(level, source, x, y, z, f2, false, Explosion.BlockInteraction.KEEP)
+                : null;
+        // Bound recursive damage chains before another mod or projectile can re-enter explosion processing indefinitely.
+        if (!ExplosionUtil.enterExplosion()) {
+            return;
+        }
+        try {
+            for (Entity entity : explosionRangeEntities(level, source, x, y, z, radius)) {
             double d12 = Math.sqrt(entity.distanceToSqr(vec3)) / (double) f2;
             if (d12 <= 1.0D) {
                 double d5 = entity.getX() - x;
@@ -52,7 +62,7 @@ public class SpellExplosion {
                     boolean hurt = true;
                     if (entity instanceof ItemEntity) {
                         hurt = false;
-                    } else if (damageSource.is(DamageTypeTags.IS_EXPLOSION)){
+                    } else if (explosion != null && entity.ignoreExplosion(explosion)){
                         hurt = false;
                     } else if (damageSource.getEntity() != null){
                         trueSource = damageSource.getEntity();
@@ -69,6 +79,9 @@ public class SpellExplosion {
                     }
                 }
             }
+            }
+        } finally {
+            ExplosionUtil.exitExplosion();
         }
     }
 

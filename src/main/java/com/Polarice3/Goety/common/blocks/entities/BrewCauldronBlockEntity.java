@@ -1,5 +1,7 @@
 package com.Polarice3.Goety.common.blocks.entities;
 
+import com.Polarice3.Goety.common.crafting.CauldronSusStewRecipe;
+
 import com.Polarice3.Goety.api.blocks.entities.ISoulCandle;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
@@ -819,6 +821,9 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
         CauldronRecipe cauldronRecipe = this.getRecipe();
         if (cauldronRecipe != null && cauldronRecipe.matches(this.getCraftContainer(), this.level)) {
             // The custom cauldron recipe is not a grid recipe in 1.21.1, so use its stored result directly after a container match.
+            if (cauldronRecipe instanceof CauldronSusStewRecipe suspiciousStewRecipe) {
+                return suspiciousStewRecipe.assemble(this.getCraftContainer(), this.level.registryAccess());
+            }
             return cauldronRecipe.getResultItem(this.level.registryAccess()).copy();
         }
         return ItemStack.EMPTY;

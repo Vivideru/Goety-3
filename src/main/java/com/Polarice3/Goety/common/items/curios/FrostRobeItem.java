@@ -8,6 +8,7 @@ import com.Polarice3.Goety.utils.CuriosFinder;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -43,7 +44,7 @@ public class FrostRobeItem extends SingleStackItem{
 
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext,
-                                                                        UUID uuid, ItemStack stack) {
+                                                                        ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> map = HashMultimap.create();
         if (IronLoaded.IRON_SPELLBOOKS.isLoaded()){
             if (MainConfig.RobesIronResist.get()) {

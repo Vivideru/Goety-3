@@ -1,25 +1,24 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "minecraft:nautilus_shell"
-                        },
-    "craftType":  "deep",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:gems/prismarine"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:sea_amulet"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "minecraft:nautilus_shell"
+  },
+  "craftType": "deep",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:gems/prismarine"
+    }
+  ],
+  "result": {
+    "id": "goety:sea_amulet"
+  }
 }
-

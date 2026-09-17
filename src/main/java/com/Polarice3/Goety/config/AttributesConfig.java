@@ -132,6 +132,11 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantToughness;
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantDamage;
+    public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantHealth;
+    public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantArmor;
+    public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantToughness;
+    public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> RoyalGuardServantShield;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonServantDamage;
@@ -236,6 +241,9 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> WargHealth;
     public static final ModConfigSpec.ConfigValue<Double> WargArmor;
     public static final ModConfigSpec.ConfigValue<Double> WargDamage;
+    public static final ModConfigSpec.ConfigValue<Double> CerberusHealth;
+    public static final ModConfigSpec.ConfigValue<Double> CerberusArmor;
+    public static final ModConfigSpec.ConfigValue<Double> CerberusDamage;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfHealth;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfArmor;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfDamage;
@@ -248,6 +256,12 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> GnasherHealth;
     public static final ModConfigSpec.ConfigValue<Double> GnasherArmor;
     public static final ModConfigSpec.ConfigValue<Double> GnasherDamage;
+    public static final ModConfigSpec.ConfigValue<Double> GuardianHealth;
+    public static final ModConfigSpec.ConfigValue<Double> GuardianArmor;
+    public static final ModConfigSpec.ConfigValue<Double> GuardianDamage;
+    public static final ModConfigSpec.ConfigValue<Double> ElderGuardianHealth;
+    public static final ModConfigSpec.ConfigValue<Double> ElderGuardianArmor;
+    public static final ModConfigSpec.ConfigValue<Double> ElderGuardianDamage;
     public static final ModConfigSpec.ConfigValue<Double> BearServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> BearServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> BearServantDamage;
@@ -673,6 +687,18 @@ public class AttributesConfig {
                 BlackguardServantDamage = BUILDER.comment("How much damage Blackguard Servants deals, Default: 9.0")
                         .defineInRange("blackguardServantDamage", 9.0, 1.0, Double.MAX_VALUE);
                 BUILDER.pop();
+                BUILDER.push("Royal Guard Servant");
+                RoyalGuardServantHealth = BUILDER.comment("How much Max Health Royal Guard Servants have, Default: 48.0")
+                        .defineInRange("royalGuardServantHealth", 48.0, 1.0, Double.MAX_VALUE);
+                RoyalGuardServantArmor = BUILDER.comment("How much natural armor points Royal Guard Servants have, Default: 10.0")
+                        .defineInRange("royalGuardServantArmor", 10.0, 0.0, Double.MAX_VALUE);
+                RoyalGuardServantToughness = BUILDER.comment("How much natural armor toughness points Royal Guard Servants have, Default: 4.0")
+                        .defineInRange("royalGuardServantToughness", 4.0, 0.0, Double.MAX_VALUE);
+                RoyalGuardServantDamage = BUILDER.comment("How much damage Royal Guard Servants deals, Default: 9.0")
+                        .defineInRange("royalGuardServantDamage", 9.0, 1.0, Double.MAX_VALUE);
+                RoyalGuardServantShield = BUILDER.comment("Initially, how many hits until Shield is broken, Default: 1")
+                        .defineInRange("royalGuardServantShield", 1, 0, Integer.MAX_VALUE);
+                BUILDER.pop();
                 BUILDER.push("Skeleton Servant");
                 SkeletonServantHealth = BUILDER.comment("How much Max Health Skeleton Servants have, Default: 20.0")
                         .defineInRange("skeletonServantHealth", 20.0, 1.0, Double.MAX_VALUE);
@@ -973,6 +999,14 @@ public class AttributesConfig {
                 WargDamage = BUILDER.comment("How much damage Wargs melee attacks deal before weapon modifiers, Default: 8.0")
                         .defineInRange("wargDamage", 8.0, 1.0, Double.MAX_VALUE);
                 BUILDER.pop();
+                BUILDER.push("Cerberus");
+                CerberusHealth = BUILDER.comment("How much Max Health Cerberuses have, Default: 100.0")
+                        .defineInRange("cerberusHealth", 100.0, 1.0, Double.MAX_VALUE);
+                CerberusArmor = BUILDER.comment("How much natural Armor Cerberuses have, Default: 0.0")
+                        .defineInRange("cerberusArmor", 0.0, 0.0, Double.MAX_VALUE);
+                CerberusDamage = BUILDER.comment("How much damage Cerberus melee attacks deal, Default: 8.0")
+                        .defineInRange("cerberusDamage", 8.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
                 BUILDER.push("Skeleton Wolf");
                 SkeletonWolfHealth = BUILDER.comment("How much Max Health Skeleton Wolves have, Default: 10.0")
                         .defineInRange("skeletonWolfHealth", 10.0, 1.0, Double.MAX_VALUE);
@@ -1004,6 +1038,22 @@ public class AttributesConfig {
                         .defineInRange("gnasherArmor", 0.0, 0.0, Double.MAX_VALUE);
                 GnasherDamage = BUILDER.comment("How much damage Gnashers melee attack deals, Default: 6.0")
                         .defineInRange("gnasherDamage", 6.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Guardian Servant");
+                GuardianHealth = BUILDER.comment("How much Max Health Guardian Servants have, Default: 30.0")
+                        .defineInRange("guardianHealth", 30.0, 1.0, Double.MAX_VALUE);
+                GuardianArmor = BUILDER.comment("How much natural Armor Guardian Servants have, Default: 0.0")
+                        .defineInRange("guardianArmor", 0.0, 0.0, Double.MAX_VALUE);
+                GuardianDamage = BUILDER.comment("How much damage Guardian Servants attack deals, Default: 6.0")
+                        .defineInRange("guardianDamage", 6.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Elder Guardian Servant");
+                ElderGuardianHealth = BUILDER.comment("How much Max Health Elder Guardian Servants have, Default: 80.0")
+                        .defineInRange("elderGuardianHealth", 80.0, 1.0, Double.MAX_VALUE);
+                ElderGuardianArmor = BUILDER.comment("How much natural Armor Elder Guardian Servants have, Default: 0.0")
+                        .defineInRange("elderGuardianArmor", 0.0, 0.0, Double.MAX_VALUE);
+                ElderGuardianDamage = BUILDER.comment("How much damage Elder Guardian Servants attack deals, Default: 8.0")
+                        .defineInRange("elderGuardianDamage", 8.0, 1.0, Double.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Bear Servant");
                 BearServantHealth = BUILDER.comment("How much Max Health Bear Servants have, Default: 30.0")

@@ -1,0 +1,144 @@
+{
+  "parent": "goety:goety/craft_animation_core",
+  "display": {
+    "icon": {
+      "item": "minecraft:rotten_flesh"
+    },
+    "title": {
+      "translate": "advancements.goety.summon_zombie.title"
+    },
+    "description": {
+      "translate": "advancements.goety.summon_zombie.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "zombie": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:zombie_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "husk": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:husk_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "drowned": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:drowned_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "frozen_zombie": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:frozen_zombie_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "jungle_zombie": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:jungle_zombie_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "frayed": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:frayed_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "zpiglin": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:zpiglin_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    },
+    "zpiglin_brute": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:zpiglin_brute_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "requirements": [
+    [
+      "zombie",
+      "husk",
+      "drowned",
+      "frozen_zombie",
+      "jungle_zombie",
+      "frayed",
+      "zpiglin",
+      "zpiglin_brute"
+    ]
+  ]
+}

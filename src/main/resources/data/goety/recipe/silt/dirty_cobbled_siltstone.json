@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#S",
-                    "S#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "minecraft:dirt"
-                      },
-                "S":  {
-                          "item":  "goety:cobbled_siltstone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:dirty_cobbled_siltstone",
-                   "count":  4
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S",
+    "S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dirt"
+    },
+    "S": {
+      "item": "goety:cobbled_siltstone"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:dirty_cobbled_siltstone"
+  }
 }
-

@@ -1,20 +1,19 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sss",
-                    "ggg"
-                ],
-    "key":  {
-                "s":  {
-                          "item":  "goety:steep_wood"
-                      },
-                "g":  {
-                          "tag":  "c:ingots/gold"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:rimmed_steep_wood",
-                   "count":  3
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "ggg"
+  ],
+  "key": {
+    "s": {
+      "item": "goety:steep_wood"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    }
+  },
+  "result": {
+    "count": 3,
+    "id": "goety:rimmed_steep_wood"
+  }
 }
-

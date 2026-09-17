@@ -205,27 +205,35 @@ public abstract class Ritual {
                                                List<PedestalBlockEntity> pedestals,
                                                Ingredient ingredient, List<ItemStack> consumedIngredients) {
         for (PedestalBlockEntity pedestal : pedestals) {
-            ItemStack stack = pedestal.itemStackHandler.extractItem(0, 1, true);
-            if (ingredient.test(stack)) {
-                ItemStack extracted = pedestal.itemStackHandler.extractItem(0, 1, false);
-
-                consumedIngredients.add(extracted);
-
-                if (extracted.getItem() instanceof BucketItem bucketItem && !bucketItem.content.defaultFluidState().isEmpty()){
-                    ItemHelper.addItemEntity(world, pedestal.getBlockPos().above(), new ItemStack(Items.BUCKET));
-                    world.playSound(null, pedestal.getBlockPos(), SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS,
-                            0.7F, 0.7F);
-                } else if (extracted.hasCraftingRemainingItem()){
-                    ItemHelper.addItemEntity(world, pedestal.getBlockPos().above(), extracted.getCraftingRemainingItem());
-                }
-
-                pedestal.itemStackHandler.setStackInSlot(0, ItemStack.EMPTY);
-
-                world.playSound(null, pedestal.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
-                        0.7F, 0.7F);
+            if (this.consumeAdditionalIngredientFromPedestal(world, pedestal, ingredient, consumedIngredients)) {
                 return true;
             }
+        }
+        return false;
+    }
 
+    // Keep pedestal consumption in one overridable step for rituals with specialized ingredient handling.
+    protected boolean consumeAdditionalIngredientFromPedestal(Level world, PedestalBlockEntity pedestal,
+                                                               Ingredient ingredient, List<ItemStack> consumedIngredients) {
+        ItemStack stack = pedestal.itemStackHandler.extractItem(0, 1, true);
+        if (ingredient.test(stack)) {
+            ItemStack extracted = pedestal.itemStackHandler.extractItem(0, 1, false);
+
+            consumedIngredients.add(extracted);
+
+            if (extracted.getItem() instanceof BucketItem bucketItem && !bucketItem.content.defaultFluidState().isEmpty()){
+                ItemHelper.addItemEntity(world, pedestal.getBlockPos().above(), new ItemStack(Items.BUCKET));
+                world.playSound(null, pedestal.getBlockPos(), SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS,
+                        0.7F, 0.7F);
+            } else if (extracted.hasCraftingRemainingItem()){
+                ItemHelper.addItemEntity(world, pedestal.getBlockPos().above(), extracted.getCraftingRemainingItem());
+            }
+
+            pedestal.itemStackHandler.setStackInSlot(0, ItemStack.EMPTY);
+
+            world.playSound(null, pedestal.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS,
+                    0.7F, 0.7F);
+            return true;
         }
         return false;
     }

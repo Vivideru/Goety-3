@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:magic_emerald"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_magic_emerald.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_magic_emerald.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_totem_roots",
+  "criteria": {
+    "magic_emerald": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:magic_emerald"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "magic_emerald"
+    ]
+  ],
+  "rewards": {
+    "experience": 1
+  }
+}

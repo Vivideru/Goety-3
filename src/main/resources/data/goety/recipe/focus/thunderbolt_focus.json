@@ -1,24 +1,23 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sfs",
-                    "fef",
-                    "sfs"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:shocking_focus"
-                      },
-                "f":  {
-                          "tag":  "c:storage_blocks/redstone"
-                      },
-                "s":  {
-                          "tag":  "c:gems/diamond"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:thunderbolt_focus",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sfs",
+    "fef",
+    "sfs"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:shocking_focus"
+    },
+    "f": {
+      "tag": "c:storage_blocks/redstone"
+    },
+    "s": {
+      "tag": "c:gems/diamond"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:thunderbolt_focus"
+  }
 }
-

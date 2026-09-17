@@ -1,27 +1,26 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sbs",
-                    "beb",
-                    "fff"
-                ],
-    "key":  {
-                "b":  {
-                          "item":  "minecraft:bone_block"
-                      },
-                "e":  {
-                          "item":  "goety:mystic_core"
-                      },
-                "f":  {
-                          "item":  "goety:magic_emerald"
-                      },
-                "s":  {
-                          "item":  "goety:savage_tooth"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:teeth_focus",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sbs",
+    "beb",
+    "fff"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:bone_block"
+    },
+    "e": {
+      "item": "goety:mystic_core"
+    },
+    "f": {
+      "item": "goety:magic_emerald"
+    },
+    "s": {
+      "item": "goety:savage_tooth"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:teeth_focus"
+  }
 }
-

@@ -1,17 +1,16 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "##",
-                    "##"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:ice_cube"
-                      }
-            },
-    "result":  {
-                   "id":  "minecraft:ice",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:ice_cube"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:ice"
+  }
 }
-

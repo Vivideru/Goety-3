@@ -407,9 +407,8 @@ public class AbstractBroodMother extends Summoned implements IAutoRideable, Play
     @Override
     public boolean canBeAffected(MobEffectInstance instance) {
         if (instance.getEffect().value() == GoetyEffects.ACID_VENOM.get() || instance.getEffect().is(MobEffects.POISON)) {
-            net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable event = new net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable(this, instance, null);
-            net.neoforged.neoforge.common.NeoForge.EVENT_BUS.post(event);
-            return event.getResult() == net.neoforged.neoforge.event.entity.living.MobEffectEvent.Applicable.Result.APPLY;
+            // NeoForge posts the applicability event before calling this method, so reposting it here causes recursive event handling.
+            return false;
         }
         return super.canBeAffected(instance);
     }
@@ -848,7 +847,14 @@ public class AbstractBroodMother extends Summoned implements IAutoRideable, Play
     }
 
     public double getPassengersRidingOffset() {
-        return 1.9D;
+        // The model's saddle sits two pixels below the previous generic passenger anchor.
+        return 1.9D - 2.0D / 16.0D;
+    }
+
+    @Override
+    public Vec3 getPassengerRidingPosition(Entity passenger) {
+        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
+        return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 
     @Override

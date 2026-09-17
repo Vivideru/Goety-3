@@ -259,6 +259,7 @@ public class ClientInitEvents {
     @SubscribeEvent
     public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModBlockLayer.ARCA, ArcaRenderer::createBodyLayer);
+        event.registerLayerDefinition(ModBlockLayer.SARCOPHAGUS, SarcophagusModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.TALL_SKULL, TallSkullModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.REDSTONE_GOLEM_SKULL, RedstoneGolemSkullModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.GRAVE_GOLEM_SKULL, GraveGolemSkullModel::createBodyLayer);
@@ -268,6 +269,8 @@ public class ClientInitEvents {
         event.registerLayerDefinition(ModBlockLayer.OMINOUS_STATUE, OminousStatueRenderer::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.BRAZIER_STATUE, OminousBrazierStatueRenderer::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.PLUSHIE, PlushieModel::createBodyLayer);
+        event.registerLayerDefinition(ModBlockLayer.SCULPTURED_STATUE, SculpturedStatueRenderer::createBodyLayer);
+        event.registerLayerDefinition(ModBlockLayer.SCULPTURED_STATUE_SLIM, SculpturedStatueRenderer::createSlimLayer);
         event.registerLayerDefinition(ModModelLayer.SPIKE, SpikeModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.HARPOON, HarpoonModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.POISON_QUILL, PoisonQuillModel::createBodyLayer);
@@ -373,6 +376,7 @@ public class ClientInitEvents {
         event.registerLayerDefinition(ModModelLayer.WITHER_NECROMANCER, WitherNecromancerModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.VANGUARD, VanguardModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.BLACKGUARD, BlackguardModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayer.ROYAL_GUARD, RoyalGuardModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.WIGHT, WightModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.MAGGOT, CarrionMaggotModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.FLY, CarrionFlyModel::createBodyLayer);
@@ -422,6 +426,7 @@ public class ClientInitEvents {
         event.registerLayerDefinition(ModModelLayer.MONOCLE, MiscCuriosModel::createMonocleLayer);
         event.registerLayerDefinition(ModModelLayer.VILLAGER_ARMOR_INNER, VillagerArmorModel::createInnerArmorLayer);
         event.registerLayerDefinition(ModModelLayer.VILLAGER_ARMOR_OUTER, VillagerArmorModel::createOuterArmorLayer);
+        event.registerLayerDefinition(ModModelLayer.ENVIOKER, EnviokerModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.CURSED_KNIGHT_ARMOR_INNER, CursedKnightArmorModel::createInnerLayer);
         event.registerLayerDefinition(ModModelLayer.CURSED_KNIGHT_ARMOR_OUTER, CursedKnightArmorModel::createOuterLayer);
         event.registerLayerDefinition(ModModelLayer.CURSED_PALADIN_ARMOR_INNER, CursedPaladinArmorModel::createInnerLayer);
@@ -476,6 +481,9 @@ public class ClientInitEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.HAUNTED_JUG.get(), ModBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SPIDER_NEST.get(), TrainingBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHADE_GRAVESTONE.get(), TrainingBlockRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.SHADE_OSSUARY.get(), TrainingBlockRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.SCULPTURED_STATUE.get(), SculpturedStatueRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.SARCOPHAGUS.get(), SarcophagusRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.BLAZING_CAGE.get(), TrainingBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.OMINOUS_PYRE.get(), BarracksBlockRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.OMINOUS_IDOL.get(), ModBlockEntityRenderer::new);
@@ -649,6 +657,7 @@ public class ClientInitEvents {
         event.registerEntityRenderer(ModEntityType.JUNGLE_ZOMBIE_SERVANT.get(), JungleZombieRenderer::new);
         event.registerEntityRenderer(ModEntityType.FRAYED_SERVANT.get(), FrayedServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.BLACKGUARD_SERVANT.get(), BlackguardRenderer::new);
+        event.registerEntityRenderer(ModEntityType.BLACKGUARD_VARIANT_SERVANT.get(), ZombieRoyalGuardRenderer::new);
         event.registerEntityRenderer(ModEntityType.SKELETON_SERVANT.get(), SkeletonServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.STRAY_SERVANT.get(), SkeletonServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.WITHER_SKELETON_SERVANT.get(), WitherSkeletonServantRenderer::new);
@@ -699,6 +708,7 @@ public class ClientInitEvents {
         event.registerEntityRenderer(ModEntityType.PIKER_SERVANT.get(), PikerServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.SIGNALER_SERVANT.get(), SignalerServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.VINDICATOR_SERVANT.get(), VindicatorServantRenderer::new);
+        event.registerEntityRenderer(ModEntityType.ROYAL_GUARD_SERVANT.get(), RoyalGuardRenderer::new);
         event.registerEntityRenderer(ModEntityType.VINDICATOR_CHEF_SERVANT.get(), VindicatorChefServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.MOUNTAINEER_SERVANT.get(), MountaineerServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.CRUSHER_SERVANT.get(), CrusherServantRenderer::new);
@@ -728,6 +738,7 @@ public class ClientInitEvents {
         event.registerEntityRenderer(ModEntityType.SNAPPER.get(), SnapperRenderer::new);
         event.registerEntityRenderer(ModEntityType.GNASHER.get(), GnasherRenderer::new);
         event.registerEntityRenderer(ModEntityType.GUARDIAN_SERVANT.get(), GuardianServantRenderer::new);
+        event.registerEntityRenderer(ModEntityType.ELDER_GUARDIAN_SERVANT.get(), ElderGuardianServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.BEAR_SERVANT.get(), BearServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.POLAR_BEAR_SERVANT.get(), BearServantRenderer::new);
         event.registerEntityRenderer(ModEntityType.HOGLIN_SERVANT.get(), HoglinServantRenderer::new);
@@ -861,6 +872,8 @@ public class ClientInitEvents {
         event.registerRecipeCategoryFinder(ModRecipeSerializer.SOUL_ABSORBER.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.RITUAL_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.BRAZIER_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
+        // Custom cauldron recipes are not part of a vanilla recipe-book tab.
+        event.registerRecipeCategoryFinder(ModRecipeSerializer.CAULDRON_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.BREWING_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.PULVERIZE_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
     }

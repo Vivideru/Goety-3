@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "###",
-                    "#C#",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:pine_planks"
-                      },
-                "C":  {
-                          "tag":  "c:chests/wooden"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:pine_chest",
-                   "count":  2
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:pine_planks"
+    },
+    "C": {
+      "tag": "c:chests/wooden"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:pine_chest"
+  }
 }
-

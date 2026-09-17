@@ -7,7 +7,7 @@ import net.minecraft.util.Mth;
 
 import java.util.Random;
 
-public class WraithParticle extends TextureSheetParticle {
+public class WraithParticle extends ReversibleParticle {
     private static final Random RANDOM = new Random();
     private final SpriteSet sprites;
 
@@ -79,6 +79,20 @@ public class WraithParticle extends TextureSheetParticle {
 
         public Particle createParticle(SimpleParticleType pType, ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed) {
             return new WraithParticle(pLevel, pX, pY, pZ, pXSpeed, pYSpeed, pZSpeed, this.sprite);
+        }
+    }
+
+    public static class ReversibleProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprite;
+
+        public ReversibleProvider(SpriteSet sprite) {
+            this.sprite = sprite;
+        }
+
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            WraithParticle particle = new WraithParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.sprite);
+            particle.reversed = level.getRandom().nextBoolean();
+            return particle;
         }
     }
 }

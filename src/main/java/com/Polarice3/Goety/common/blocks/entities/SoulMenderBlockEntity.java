@@ -105,6 +105,12 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
     }
 
     @Override
+    public int getMaxStackSize() {
+        // Each work slot processes exactly one item per operation.
+        return 1;
+    }
+
+    @Override
     public int getContainerSize() {
         return 1;
     }
@@ -126,8 +132,9 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
 
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
-        if (pStack.isDamaged() && pStack.isRepairable()){
-            this.placeItem(pStack);
+        if ((pStack.isDamaged() && pStack.isRepairable()) || pStack.getItem() instanceof ITotem){
+            // Totems accepted by the hopper must also be accepted by the actual insertion.
+            this.placeItem(pStack.copy());
         }
     }
 
@@ -247,13 +254,17 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
 
     @Override
     public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
+        // Hopper acceptance checks must never consume or insert items, including simulated transfers.
+        if (pIndex != 0 || this.level == null || this.level.isClientSide || !this.isEmpty() || pItemStack.isEmpty()) {
+            return false;
+        }
         if (!((pItemStack.isDamaged() && pItemStack.isRepairable()) || pItemStack.getItem() instanceof ITotem)) {
             return false;
         }
         if (this.cursedCageTile == null) {
             return false;
         }
-        return this.level != null && !this.level.isClientSide && this.placeItem(pItemStack);
+        return true;
     }
 
     @Override

@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "lm",
-                    "ml"
-                ],
-    "key":  {
-                "m":  {
-                          "item":  "goety:soiled_end_stone_bricks_slight"
-                      },
-                "l":  {
-                          "item":  "goety:end_soil_debris"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:soiled_end_stone_bricks",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "lm",
+    "ml"
+  ],
+  "key": {
+    "m": {
+      "item": "goety:soiled_end_stone_bricks_slight"
+    },
+    "l": {
+      "item": "goety:end_soil_debris"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:soiled_end_stone_bricks"
+  }
 }
-

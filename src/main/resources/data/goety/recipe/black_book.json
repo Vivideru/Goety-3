@@ -1,21 +1,24 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:book"
-                        },
-                        {
-                            "tag":  "goety:black_book_craft"
-                        }
-                    ],
-    "result":  {
-                   "id":  "patchouli:guide_book",
-                   "components":  {
-                                      "patchouli:book":  "goety:black_book"
-                                  },
-                   "count":  1
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "patchouli" } ]
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "tag": "goety:black_book_craft"
+    }
+  ],
+  "result": {
+    "components": {
+      "patchouli:book": "goety:black_book"
+    },
+    "count": 1,
+    "id": "patchouli:guide_book"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "patchouli"
+    }
+  ]
 }
-
-

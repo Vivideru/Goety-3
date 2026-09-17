@@ -1,10 +1,10 @@
 {
-    "type":  "minecraft:stonecutting",
-    "ingredient":  {
-                       "item":  "goety:crag_bricks"
-                   },
-    "result":  {
-                   "id":  "goety:crag_brick_slab",
-                   "count":  2
-               }
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:crag_bricks"
+  },
+  "result": {
+    "id": "goety:crag_brick_slab",
+    "count": 2
+  }
 }

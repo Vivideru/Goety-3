@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "lm",
+    "ml"
+  ],
+  "key":
+  {
+    "m":
+    {
+      "item": "goety:end_rock"
+    },
+    "l":
+    {
+      "item": "goety:end_soil_debris"
+    }
+  },
+  "result":
+  {
+    "id": "goety:soiled_end_rock",
+    "count": 2
+  }
+}

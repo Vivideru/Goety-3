@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "S#S",
-                    "#S#",
-                    "S#S"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:ominous_stone"
-                      },
-                "S":  {
-                          "item":  "goety:pale_steel_ingot"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:mandala",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S#S",
+    "#S#",
+    "S#S"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:ominous_stone"
+    },
+    "S": {
+      "item": "goety:pale_steel_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:mandala"
+  }
 }
-

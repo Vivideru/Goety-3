@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:animation_core"
-                        },
-    "craftType":  "overgrown",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:sweet_berries"
-                        },
-                        {
-                            "tag":  "c:seeds"
-                        },
-                        {
-                            "item":  "minecraft:bone_meal"
-                        },
-                        {
-                            "tag":  "c:seeds"
-                        },
-                        {
-                            "item":  "goety:venomous_fang"
-                        },
-                        {
-                            "tag":  "c:seeds"
-                        },
-                        {
-                            "item":  "goety:overgrown_roots"
-                        },
-                        {
-                            "tag":  "c:seeds"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:entangling_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "overgrown",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "tag": "c:seeds"
+    },
+    {
+      "item": "minecraft:bone_meal"
+    },
+    {
+      "tag": "c:seeds"
+    },
+    {
+      "item": "goety:venomous_fang"
+    },
+    {
+      "tag": "c:seeds"
+    },
+    {
+      "item": "goety:overgrown_roots"
+    },
+    {
+      "tag": "c:seeds"
+    }
+  ],
+  "result": {
+    "id": "goety:entangling_focus"
+  }
 }
-

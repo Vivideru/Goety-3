@@ -1,11 +1,11 @@
 {
-    "type":  "goety:cursed_infuser_recipes",
-    "ingredient":  {
-                       "tag":  "c:storage_blocks/iron"
-                   },
-    "result":  {
-                   "id":  "goety:cursed_metal_block"
-               },
-    "cookingTime":  540
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "tag": "c:storage_blocks/iron"
+  },
+  "result": {
+    "id": "goety:cursed_metal_block",
+    "count": 1
+  },
+  "cookingTime": 540
 }
-

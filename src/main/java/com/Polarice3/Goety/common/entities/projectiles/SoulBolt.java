@@ -28,6 +28,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -126,12 +128,15 @@ public class SoulBolt extends SpellHurtingProjectile {
                         // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                         EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                     } else if (this.isNecro()) {
-                        ServantUtil.convertZombies(entity, livingentity, false);
-                        boolean wither = false;
-                        if (livingentity instanceof Player player){
-                            wither = SEHelper.hasResearch(player, ResearchList.BYGONE);
+                        // Conversion is selected by the defeated mob type so non-vanilla undead can use their own servant form.
+                        if (entity instanceof Zombie) {
+                            ServantUtil.convertZombies(entity, livingentity, false);
+                        } else if (entity instanceof AbstractSkeleton) {
+                            boolean wither = livingentity instanceof Player player && SEHelper.hasResearch(player, ResearchList.BYGONE);
+                            ServantUtil.convertSkeletons(entity, livingentity, wither, false);
+                        } else if (entity instanceof Mob mob) {
+                            ServantUtil.convertUndead(mob, livingentity, false, true);
                         }
-                        ServantUtil.convertSkeletons(entity, livingentity, wither, false);
                     }
                 }
             } else {

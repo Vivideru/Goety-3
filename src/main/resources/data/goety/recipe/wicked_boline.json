@@ -1,30 +1,25 @@
-﻿{
+{
   "type": "minecraft:crafting_shaped",
-  "pattern":
-  [
+  "pattern": [
     " cp",
     "bp ",
     "g  "
   ],
-  "key":
-  {
-    "p":
-    {
+  "key": {
+    "p": {
       "item": "goety:pale_steel_ingot"
     },
-    "c":
-    {
+    "c": {
       "item": "goety:cursed_ingot"
     },
-    "g":
-    {
+    "g": {
       "tag": "c:ingots/gold"
     },
-    "b":
-    {
+    "b": {
       "tag": "c:bones"
     }
   },
-  "result": { "id": "goety:wicked_boline"
+  "result": {
+    "id": "goety:wicked_boline"
   }
 }

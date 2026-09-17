@@ -1,12 +1,13 @@
-﻿{
-    "type":  "goety:pulverize",
-    "ingredient":  {
-                       "item":  "minecraft:prismarine_bricks"
-                   },
-    "block_result":  "minecraft:prismarine",
-    "item_result":  {
-                        "id":  "minecraft:prismarine_shard",
-                        "count":  5
-                    }
+{
+  "type": "goety:pulverize",
+  "ingredient": [
+    {
+      "item": "minecraft:prismarine_bricks"
+    }
+  ],
+  "block_result": "minecraft:prismarine",
+  "item_result": {
+    "id": "minecraft:prismarine_shard",
+    "count": 5
+  }
 }
-

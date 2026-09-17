@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:fire_breath_focus"
-                        },
-    "craftType":  "adept_nether",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/coal"
-                        },
-                        {
-                            "tag":  "c:rods/blaze"
-                        },
-                        {
-                            "item":  "minecraft:tnt"
-                        },
-                        {
-                            "item":  "minecraft:lava_bucket"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/coal"
-                        },
-                        {
-                            "tag":  "c:rods/blaze"
-                        },
-                        {
-                            "item":  "minecraft:lava_bucket"
-                        },
-                        {
-                            "item":  "minecraft:ghast_tear"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:fire_blast_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:fire_breath_focus"
+  },
+  "craftType": "adept_nether",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/coal"
+    },
+    {
+      "tag": "c:rods/blaze"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "tag": "c:storage_blocks/coal"
+    },
+    {
+      "tag": "c:rods/blaze"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "result": {
+    "id": "goety:fire_blast_focus"
+  }
 }
-

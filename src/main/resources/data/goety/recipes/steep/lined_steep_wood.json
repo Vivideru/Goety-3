@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "sss",
+    "ggg",
+    "sss"
+  ],
+  "key":
+  {
+    "s":
+    {
+      "item": "goety:steep_wood_slab"
+    },
+    "g":
+    {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result":
+  {
+    "id": "goety:lined_steep_wood",
+    "count": 3
+  }
+}

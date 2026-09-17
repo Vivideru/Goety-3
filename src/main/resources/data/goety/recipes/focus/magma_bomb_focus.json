@@ -1,0 +1,24 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:slimy_focus"
+  },
+  "craftType": "adept_nether",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "tag": "minecraft:coals"
+    },
+    {
+      "item": "minecraft:piston"
+    }
+  ],
+  "result": {
+    "id": "goety:magma_bomb_focus"
+  }
+}

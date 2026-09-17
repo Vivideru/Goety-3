@@ -129,7 +129,12 @@ public class LootingExplosion extends Explosion {
 
         boolean flag = this.lootMode == Mode.LOOT;
 
-        for (Entity entity : list) {
+        // Bound recursive damage chains before another mod or projectile can re-enter explosion processing indefinitely.
+        if (!ExplosionUtil.enterExplosion()) {
+            return;
+        }
+        try {
+            for (Entity entity : list) {
             if (!entity.ignoreExplosion(this)) {
                 if (!(flag && entity instanceof ItemEntity)) {
                     double d12 = Mth.sqrt((float) entity.distanceToSqr(vector3d)) / f2;
@@ -173,6 +178,9 @@ public class LootingExplosion extends Explosion {
                     }
                 }
             }
+            }
+        } finally {
+            ExplosionUtil.exitExplosion();
         }
     }
 

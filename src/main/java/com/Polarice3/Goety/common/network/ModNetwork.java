@@ -13,6 +13,8 @@ import com.Polarice3.Goety.common.network.client.focus.CAddFocusToInventoryPacke
 import com.Polarice3.Goety.common.network.client.focus.CSwapFocusPacket;
 import com.Polarice3.Goety.common.network.client.focus.CSwapFocusTwoPacket;
 import com.Polarice3.Goety.common.network.server.*;
+import com.Vivideru.Goety.common.network.client.CRequestFocusBagSyncPacket;
+import com.Vivideru.Goety.common.network.server.SFocusBagSyncPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -88,6 +90,8 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextID(), CSwapFocusTwoPacket.class, CSwapFocusTwoPacket::encode, CSwapFocusTwoPacket::decode, CSwapFocusTwoPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CAddFocusToBagPacket.class, CAddFocusToBagPacket::encode, CAddFocusToBagPacket::decode, CAddFocusToBagPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CAddFocusToInventoryPacket.class, CAddFocusToInventoryPacket::encode, CAddFocusToInventoryPacket::decode, CAddFocusToInventoryPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        INSTANCE.registerMessage(nextID(), CRequestFocusBagSyncPacket.class, CRequestFocusBagSyncPacket::encode, CRequestFocusBagSyncPacket::decode, CRequestFocusBagSyncPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        INSTANCE.registerMessage(nextID(), SFocusBagSyncPacket.class, SFocusBagSyncPacket::encode, SFocusBagSyncPacket::decode, SFocusBagSyncPacket::consume, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         INSTANCE.registerMessage(nextID(), CBrewBagKeyPacket.class, CBrewBagKeyPacket::encode, CBrewBagKeyPacket::decode, CBrewBagKeyPacket::consume);
         INSTANCE.registerMessage(nextID(), CThrowBrewKeyPacket.class, CThrowBrewKeyPacket::encode, CThrowBrewKeyPacket::decode, CThrowBrewKeyPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CMultiJumpPacket.class, CMultiJumpPacket::encode, CMultiJumpPacket::decode, CMultiJumpPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));

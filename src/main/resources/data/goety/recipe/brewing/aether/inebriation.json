@@ -1,13 +1,16 @@
-﻿{
-    "type":  "goety:brewing",
-    "ingredient":  {
-                       "item":  "aether:skyroot_poison_bucket"
-                   },
-    "effect":  "aether:inebriation",
-    "soulCost":  25,
-    "capacityExtra":  4,
-    "duration":  1800,
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "aether" } ]
+{
+  "type": "goety:brewing",
+  "ingredient": {
+    "item": "aether:skyroot_poison_bucket"
+  },
+  "effect": "aether:inebriation",
+  "soulCost": 25,
+  "capacityExtra": 4,
+  "duration": 1800,
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "aether"
+    }
+  ]
 }
-
-

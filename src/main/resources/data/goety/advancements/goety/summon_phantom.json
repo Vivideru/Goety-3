@@ -1,0 +1,39 @@
+{
+  "parent": "goety:goety/craft_animation_core",
+  "display": {
+    "icon": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "title": {
+      "translate": "advancements.goety.summon_phantom.title"
+    },
+    "description": {
+      "translate": "advancements.goety.summon_phantom.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "phantom": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "goety:phantom_servant"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "requirements": [
+    [
+      "phantom"
+    ]
+  ]
+}

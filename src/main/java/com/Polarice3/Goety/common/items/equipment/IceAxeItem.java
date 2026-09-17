@@ -24,6 +24,8 @@ import java.util.List;
 public class IceAxeItem extends DiggerItem {
     // The server interaction constant is no longer exposed in 1.21; keep the previous practical reach used by this short-range block check.
     private static final double MAX_ICE_AXE_DISTANCE = 5.0D;
+    private static final int ANCHOR_DURATION_TICKS = 40;
+    private static final int ANCHOR_REFRESH_TICKS = 10;
     private final int maxDamage;
 
     public IceAxeItem(Tier tier, Properties properties) {
@@ -85,7 +87,12 @@ public class IceAxeItem extends DiggerItem {
                     BlockPos blockPos = blockhitresult.getBlockPos();
                     BlockState blockState = p_273467_.getBlockState(blockPos);
                     if (blockhitresult.getDirection() == Direction.UP && (blockState.isSolidRender(p_273467_, blockPos) || blockState.is(BlockTags.ICE))) {
-                        player.addEffect(new MobEffectInstance(GoetyEffects.TANGLED, 2, 0, false, false));
+                        MobEffectInstance anchor = player.getEffect(GoetyEffects.TANGLED);
+                        if (anchor == null || anchor.getDuration() <= ANCHOR_REFRESH_TICKS) {
+                            // Re-adding the effect every tick makes the game strip and re-apply its movement
+                            // modifiers each time, which is what made the player stutter instead of staying put.
+                            player.addEffect(new MobEffectInstance(GoetyEffects.TANGLED, ANCHOR_DURATION_TICKS, 0, false, false));
+                        }
                     } else {
                         p_273619_.releaseUsingItem();
                     }
@@ -98,6 +105,13 @@ public class IceAxeItem extends DiggerItem {
         } else {
             p_273619_.releaseUsingItem();
         }
+    }
+
+    @Override
+    public void releaseUsing(ItemStack stack, Level level, LivingEntity living, int timeLeft) {
+        // The anchor now outlasts a single tick, so it has to be dropped the moment the axe is released.
+        living.removeEffect(GoetyEffects.TANGLED);
+        super.releaseUsing(stack, level, living, timeLeft);
     }
 
     private HitResult calculateHitResult(LivingEntity p_281264_) {

@@ -55,12 +55,13 @@ public class ClientSideInit extends SidedInit {
         event.registerSpriteSet(ModParticleTypes.STATION_CULT_SPELL.get(), FireParticle.ColorProvider::new);
         event.registerSpriteSet(ModParticleTypes.MUD_GAS.get(), MudGasParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.CONFUSED.get(), HeartParticle.Provider::new);
-        event.registerSpriteSet(ModParticleTypes.WRAITH.get(), WraithParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.WRAITH.get(), WraithParticle.ReversibleProvider::new);
         event.registerSpriteSet(ModParticleTypes.WRAITH_BURST.get(), WraithParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.WRAITH_FIRE.get(), BreathParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.SMALL_FIRE.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.SMALL_FIRE_DROP.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.SMALL_FIRE_GROUND.get(), FireParticle.SmallProvider::new);
+        event.registerSpriteSet(ModParticleTypes.SMALL_FIRE_REVERSED.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.BIG_FIRE.get(), FireParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.BIG_FIRE_DROP.get(), FireParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.BIG_FIRE_GROUND.get(), FireParticle.Provider::new);
@@ -72,9 +73,9 @@ public class ClientSideInit extends SidedInit {
         event.registerSpriteSet(ModParticleTypes.SMALL_NECRO_FIRE.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.SMALL_NECRO_FIRE_DROP.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.NECRO_FLAME.get(), FlameParticle.Provider::new);
-        event.registerSpriteSet(ModParticleTypes.DRAGON_FLAME.get(), DragonFlameParticle.Provider::new);
+        event.registerSpriteSet(ModParticleTypes.DRAGON_FLAME.get(), DragonFlameParticle.ReversibleProvider::new);
         event.registerSpriteSet(ModParticleTypes.DRAGON_FLAME_DROP.get(), FireParticle.EmberProvider::new);
-        event.registerSpriteSet(ModParticleTypes.SMALL_DRAGON_FLAME.get(), DragonFlameParticle.SmallProvider::new);
+        event.registerSpriteSet(ModParticleTypes.SMALL_DRAGON_FLAME.get(), DragonFlameParticle.SmallReversibleProvider::new);
         event.registerSpriteSet(ModParticleTypes.SMALL_DRAGON_FLAME_GROUND.get(), FireParticle.SmallProvider::new);
         event.registerSpriteSet(ModParticleTypes.END_FIRE.get(), FireParticle.Provider::new);
         event.registerSpriteSet(ModParticleTypes.END_FIRE_DROP.get(), FireParticle.Provider::new);

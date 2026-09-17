@@ -13,6 +13,8 @@ public class RingItem extends SingleStackItem {
         if (stack.getItem() == ModItems.RING_OF_WANT.get()) {
             // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
             return enchantment.is(ModEnchantments.WANTING);
+        } else if (stack.getItem() == ModItems.RING_OF_THE_DRAGON.get()) {
+            return enchantment.is(ModEnchantments.RADIUS);
         }
         return false;
     }

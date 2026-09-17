@@ -1,11 +1,11 @@
-﻿{
-    "type":  "goety:cursed_infuser_recipes",
-    "ingredient":  {
-                       "item":  "minecraft:emerald_block"
-                   },
-    "result":  {
-                   "id":  "goety:awakened_emerald_block"
-               },
-    "cookingTime":  540
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "minecraft:emerald_block"
+  },
+  "result": {
+    "id": "goety:awakened_emerald_block",
+    "count": 1
+  },
+  "cookingTime": 540
 }
-

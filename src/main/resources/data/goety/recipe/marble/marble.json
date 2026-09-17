@@ -1,11 +1,11 @@
-﻿{
-    "type":  "goety:cursed_infuser_recipes",
-    "ingredient":  {
-                       "item":  "minecraft:calcite"
-                   },
-    "result":  {
-                   "id":  "goety:marble"
-               },
-    "cookingTime":  20
+{
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "item": "minecraft:calcite"
+  },
+  "result": {
+    "id": "goety:marble",
+    "count": 1
+  },
+  "cookingTime": 20
 }
-

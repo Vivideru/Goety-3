@@ -11,6 +11,7 @@ import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
+import com.Polarice3.Goety.common.blocks.SarcophagusBlock;
 import com.Polarice3.Goety.common.blocks.ModChestBlock;
 import com.Polarice3.Goety.common.capabilities.lichdom.ILichdom;
 import com.Polarice3.Goety.common.capabilities.misc.IMisc;
@@ -79,7 +80,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -145,10 +145,13 @@ import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.EntityStruckByLightningEvent;
+import net.neoforged.neoforge.event.entity.EntityTeleportEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.CanPlayerSleepEvent;
+import net.neoforged.neoforge.event.entity.player.CanContinueSleepingEvent;
+import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
 import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.level.ExplosionEvent;
@@ -408,7 +411,9 @@ public class ModEvents {
                 serverWorld.getChunkSource().addRegionTicket(
                         ModTicketTypes.BLOCK, chunkPos, radius, pos);
                 BlockEntity be = serverWorld.getBlockEntity(pos);
-                if (!(be instanceof IChunkLoader)) {
+                // Saved loaders may have been disabled since the previous session.
+                if (!(be instanceof IChunkLoader loader) || !loader.shouldChunkLoad()) {
+                    serverWorld.getChunkSource().removeRegionTicket(ModTicketTypes.BLOCK, chunkPos, radius, pos);
                     toRemove.add(pos);
                 }
             });
@@ -1143,7 +1148,8 @@ public class ModEvents {
         }
         if (ModDamageSource.isMagicFire(event.getSource())){
             float amount = event.getAmount();
-            if (victim.fireImmune()) {
+            if (victim.fireImmune() && !victim.hasEffect(GoetyEffects.BURN_HEX)) {
+                // Burn Hex suppresses the normal fire-immunity reduction for magical flames.
                 amount /= 2.0F;
             }
             int k = MobUtil.getDamageProtection(victim, victim.damageSources().inFire());
@@ -1159,7 +1165,7 @@ public class ModEvents {
             }
             float amount = event.getAmount();
             if (MobsConfig.HellfireFireImmune.get()) {
-                if (victim.fireImmune()) {
+                if (victim.fireImmune() && !victim.hasEffect(GoetyEffects.BURN_HEX)) {
                     amount /= 2.0F;
                 }
             }
@@ -1303,22 +1309,7 @@ public class ModEvents {
             }
         }
         if (world instanceof ServerLevel serverLevel) {
-            if (killed instanceof Villager villager) {
-                if (villager.hasEffect(GoetyEffects.ILLAGUE)) {
-                    ZombieVillager zombievillager = villager.convertTo(EntityType.ZOMBIE_VILLAGER, false);
-                    if (zombievillager != null) {
-                        zombievillager.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(zombievillager.blockPosition()), MobSpawnType.CONVERSION, new Zombie.ZombieGroupData(false, true));
-                        zombievillager.setVillagerData(villager.getVillagerData());
-                        zombievillager.setGossips(villager.getGossips().store(NbtOps.INSTANCE));
-                        zombievillager.setTradeOffers(villager.getOffers().copy());
-                        zombievillager.setVillagerXp(villager.getVillagerXp());
-                        EventHooks.onLivingConvert(villager, zombievillager);
-                        if (!zombievillager.isSilent()) {
-                            serverLevel.levelEvent((Player) null, 1026, zombievillager.blockPosition(), 0);
-                        }
-                    }
-                }
-            }
+            // Illague conversion is handled while the effect is active; repeating it on death can duplicate conversion state.
             if (killed instanceof AbstractIllager illager){
                 if (!illager.getType().getDescriptionId().contains("magispeller")
                         && !illager.getType().getDescriptionId().contains("faker")
@@ -1674,6 +1665,15 @@ public class ModEvents {
     @SubscribeEvent
     public static void SleepEvents(CanPlayerSleepEvent event){
         if (event.getEntity() != null) {
+            Level level = event.getEntity().level();
+            if (level.getBlockState(event.getPos()).getBlock() instanceof SarcophagusBlock) {
+                if (level.isDay()) {
+                    event.setProblem(null);
+                } else {
+                    event.setProblem(Player.BedSleepingProblem.NOT_POSSIBLE_NOW);
+                }
+                return;
+            }
             if (!event.getEntity().isCreative()) {
                 double d0 = 8.0D;
                 double d1 = 5.0D;
@@ -1686,6 +1686,14 @@ public class ModEvents {
                     event.setProblem(Player.BedSleepingProblem.NOT_SAFE);
                 }
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void sarcophagusCanContinueSleeping(CanContinueSleepingEvent event) {
+        if (event.getEntity() instanceof Player player && player.getSleepingPos().map(pos ->
+                player.level().getBlockState(pos).getBlock() instanceof SarcophagusBlock).orElse(false)) {
+            event.setContinueSleeping(true);
         }
     }
 
@@ -1710,6 +1718,51 @@ public class ModEvents {
             if (itemStack.is(ModBlocks.WINDSWEPT_DEAD_BUSH.get().asItem())){
                 event.setBurnTime(100);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void sarcophagusSleepFinished(SleepFinishedTimeEvent event) {
+        if (event.getLevel() instanceof ServerLevel level && level.players().stream().anyMatch(player -> player.isSleeping()
+                && player.getSleepingPos().map(pos -> level.getBlockState(pos).getBlock() instanceof SarcophagusBlock).orElse(false))) {
+            long dayTime = level.getDayTime();
+            long timeOfDay = dayTime % 24000L;
+            long wakeUpTime = dayTime - timeOfDay + 13000L;
+            if (wakeUpTime < dayTime) {
+                wakeUpTime += 24000L;
+            }
+            event.setTimeAddition(wakeUpTime);
+        }
+    }
+
+
+    @SubscribeEvent
+    public static void wreckDrops(LivingDropsEvent event) {
+        LivingEntity victim = event.getEntity();
+        if (victim.level().isClientSide || !(victim instanceof Mob)
+                || event.getSource().is(ModDamageSource.DISMISSED)
+                || victim.getType().is(ModTags.EntityTypes.UNWRECKABLE)) {
+            return;
+        }
+        Player player = event.getSource().getEntity() instanceof Player directPlayer ? directPlayer : null;
+        if (player == null && victim.getLastHurtByMob() instanceof Player lastHurtPlayer) {
+            player = lastHurtPlayer;
+        }
+        if (player != null && CuriosFinder.hasCurio(player, ModItems.RING_OF_WRECKING.get())) {
+            boolean wrecked = event.getDrops().removeIf(drop -> ItemHelper.isWreckable(drop.getItem()));
+            if (wrecked && !victim.isSilent()) {
+                victim.playSound(SoundEvents.ITEM_BREAK, 1.0F, 0.8F + victim.getRandom().nextFloat() * 0.4F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onTeleport(EntityTeleportEvent event) {
+        if (!(event instanceof EntityTeleportEvent.TeleportCommand)
+                && !(event instanceof EntityTeleportEvent.SpreadPlayersCommand)
+                && event.getEntity() instanceof Player player) {
+            // Command teleports are administrative actions and must not trigger the Dragon Ring blast.
+            CuriosFinder.dragonBlast(player, event.getPrev());
         }
     }
 }

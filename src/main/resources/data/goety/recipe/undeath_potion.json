@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "goety:ritual",
   "ritual_type": "goety:craft",
   "activation_item": {
@@ -50,6 +50,7 @@
       "item": "minecraft:glowstone"
     }
   ],
-  "result": { "id": "goety:undeath_potion"
+  "result": {
+    "id": "goety:undeath_potion"
   }
 }

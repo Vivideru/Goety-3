@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " o ",
+    "ere",
+    " n "
+  ],
+  "key":
+  {
+    "r":
+    {
+      "item": "minecraft:recovery_compass"
+    },
+    "o":
+    {
+      "tag": "forge:obsidian"
+    },
+    "e":
+    {
+      "tag": "forge:ender_pearls"
+    },
+    "n":
+    {
+      "tag": "forge:ingots/netherite"
+    }
+  },
+  "result":
+  {
+    "id": "goety:arca_compass",
+    "count": 1
+  }
+}

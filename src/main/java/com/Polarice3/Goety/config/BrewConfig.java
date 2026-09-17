@@ -85,6 +85,8 @@ public class BrewConfig {
     public static final ModConfigSpec.ConfigValue<Integer> DeflectiveCost;
     public static final ModConfigSpec.ConfigValue<Integer> ShieldingCost;
     public static final ModConfigSpec.ConfigValue<Integer> SaveEffectsCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SmitingCost;
+    public static final ModConfigSpec.ConfigValue<Integer> InsectBaneCost;
 
     public static final ModConfigSpec.ConfigValue<Integer> BottlingCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> CorpseEaterCapacity;
@@ -103,6 +105,8 @@ public class BrewConfig {
     public static final ModConfigSpec.ConfigValue<Integer> RallyingCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> SaveEffectsCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> ShieldingCapacity;
+    public static final ModConfigSpec.ConfigValue<Integer> SmitingCapacity;
+    public static final ModConfigSpec.ConfigValue<Integer> InsectBaneCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> SnowSkinCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> StormsWrathCapacity;
     public static final ModConfigSpec.ConfigValue<Integer> SunAllergyCapacity;
@@ -111,6 +115,7 @@ public class BrewConfig {
     public static final ModConfigSpec.ConfigValue<Integer> WildRageCapacity;
 
     public static final ModConfigSpec.ConfigValue<Integer> BatBurstCost;
+    public static final ModConfigSpec.ConfigValue<Integer> AgingCost;
     public static final ModConfigSpec.ConfigValue<Integer> BeesCost;
     public static final ModConfigSpec.ConfigValue<Integer> BlindJumpCost;
     public static final ModConfigSpec.ConfigValue<Integer> ChopTreeCost;
@@ -342,8 +347,14 @@ public class BrewConfig {
                 .defineInRange("shieldingCost", 50, 1, Integer.MAX_VALUE);
         SaveEffectsCost = BUILDER.comment("Save Effects Soul Cost, Default: 50")
                 .defineInRange("saveEffectsCost", 50, 1, Integer.MAX_VALUE);
+        SmitingCost = BUILDER.comment("Smiting Soul Cost, Default: 25")
+                .defineInRange("smitingCost", 25, 1, Integer.MAX_VALUE);
+        InsectBaneCost = BUILDER.comment("Insect Bane Soul Cost, Default: 25")
+                .defineInRange("insectBaneCost", 25, 1, Integer.MAX_VALUE);
         BUILDER.pop();
         BUILDER.push("Block/Other Effects");
+        AgingCost = BUILDER.comment("Aging Soul Cost, Default: 100")
+                .defineInRange("agingCost", 100, 1, Integer.MAX_VALUE);
         BatBurstCost = BUILDER.comment("Bat Burst Soul Cost, Default: 100")
                 .defineInRange("batBurstCost", 100, 1, Integer.MAX_VALUE);
         BeesCost = BUILDER.comment("BEEEEES Soul Cost, Default: 50")
@@ -468,6 +479,10 @@ public class BrewConfig {
                 .defineInRange("saveEffectsCapacity", 8, 0, Integer.MAX_VALUE);
         ShieldingCapacity = BUILDER.comment("Shielding Extra Capacity, Default: 2")
                 .defineInRange("shieldingCapacity", 2, 0, Integer.MAX_VALUE);
+        SmitingCapacity = BUILDER.comment("Smiting Extra Capacity, Default: 2")
+                .defineInRange("smitingCapacity", 2, 0, Integer.MAX_VALUE);
+        InsectBaneCapacity = BUILDER.comment("Insect Bane Extra Capacity, Default: 2")
+                .defineInRange("insectBaneCapacity", 2, 0, Integer.MAX_VALUE);
         SnowSkinCapacity = BUILDER.comment("Snow Skin Extra Capacity, Default: 4")
                 .defineInRange("snowSkinCapacity", 4, 0, Integer.MAX_VALUE);
         StormsWrathCapacity = BUILDER.comment("Storm's Wrath Extra Capacity, Default: 4")

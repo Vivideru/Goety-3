@@ -1,23 +1,22 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:summon",
-    "activation_item":  {
-                            "item":  "minecraft:netherrack"
-                        },
-    "craftType":  "sky",
-    "entity_to_summon":  "goety:storm_util",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:clock"
-                        },
-                        {
-                            "tag":  "c:mushrooms"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:jei_dummy/none"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:summon",
+  "activation_item": {
+    "item": "minecraft:netherrack"
+  },
+  "craftType": "sky",
+  "entity_to_summon": "goety:storm_util",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:clock"
+    },
+    {
+      "tag": "c:mushrooms"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
 }
-

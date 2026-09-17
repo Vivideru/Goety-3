@@ -45,12 +45,15 @@ public class CThrowBrewKeyPacket {
         }
 
         BrewBagItemHandler bagHandler = BrewBagItemHandler.get(stack);
+        if (swapSlot <= 0 || swapSlot >= bagHandler.getSlots()) {
+            return;
+        }
 
         ItemStack bagFocus = bagHandler.getStackInSlot(swapSlot);
         if (bagFocus.getItem() instanceof ThrowableBrewItem) {
             if (!player.level().isClientSide) {
                 ThrownBrew thrownBrew = new ThrownBrew(player.level(), player);
-                thrownBrew.setItem(bagFocus);
+                thrownBrew.setItem(bagFocus.copyWithCount(1));
                 float velocity = 0.5F + BrewUtils.getVelocity(bagFocus);
                 thrownBrew.shootFromRotation(player, player.getXRot(), player.getYRot(), -20.0F, velocity, 1.0F);
                 player.level().addFreshEntity(thrownBrew);
@@ -58,7 +61,8 @@ public class CThrowBrewKeyPacket {
 
             player.awardStat(Stats.ITEM_USED.get(bagFocus.getItem()));
             if (!player.getAbilities().instabuild) {
-                bagFocus.shrink(1);
+                // Direct stack mutation does not update the bag's container component in 1.21, while handler extraction persists the new count.
+                bagHandler.extractItem(swapSlot, 1, false);
             }
             if (player instanceof ServerPlayer serverPlayer) {
                 serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.SPLASH_POTION_THROW), SoundSource.PLAYERS, serverPlayer.position().x, serverPlayer.position().y, serverPlayer.position().z, 1.0F, 1.0F, serverPlayer.level().getRandom().nextLong()));

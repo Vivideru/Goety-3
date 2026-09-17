@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:haunted_mirror"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_haunted_mirror.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_haunted_mirror.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/read_haunting_scroll",
+  "criteria": {
+    "haunted_mirror": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:haunted_mirror"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "haunted_mirror"
+    ]
+  ],
+  "rewards": {
+    "experience": 5
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "$#$",
+    "#B#",
+    "$#$"
+  ],
+  "key":
+  {
+    "#":
+    {
+      "item": "goety:quick_growing_seed"
+    },
+    "$":
+    {
+      "tag": "minecraft:saplings"
+    },
+    "B":
+    {
+      "item": "minecraft:bone_meal"
+    }
+  },
+  "result":
+  {
+    "id": "goety:overgrown_roots",
+    "count": 4
+  }
+}

@@ -1,40 +1,39 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:wind_robe"
-                        },
-    "craftType":  "storm",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/copper"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/redstone"
-                        },
-                        {
-                            "tag":  "c:gems/diamond"
-                        },
-                        {
-                            "tag":  "c:gems/diamond"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:storm_robe"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:wind_robe"
+  },
+  "craftType": "storm",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "tag": "c:gems/lapis"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "tag": "c:gems/diamond"
+    }
+  ],
+  "result": {
+    "id": "goety:storm_robe"
+  }
 }
-

@@ -78,6 +78,9 @@ import java.util.UUID;
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class ItemEvents {
+    // These immutable modifiers are shared instead of rebuilt for every living entity tick.
+    private static final AttributeModifier SET_ARMOR = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("17cb060f-0465-412e-abe7-a9c397b2e548"), "Increase Armor", 4.0D, AttributeModifier.Operation.ADD_VALUE);
+    private static final AttributeModifier SET_TOUGHNESS = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("c3c510ca-76eb-4eb5-9f69-6763b7e40be2"), "Increase Toughness", 4.0D, AttributeModifier.Operation.ADD_VALUE);
 
     @SubscribeEvent
     public static void PlayerTick(PlayerTickEvent.Post event){
@@ -218,9 +221,9 @@ public class ItemEvents {
             return;
         }
         if (livingEntity != null && livingEntity.isAlive()){
-            AttributeModifier attributemodifier = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("17cb060f-0465-412e-abe7-a9c397b2e548"), "Increase Armor", 4.0D, AttributeModifier.Operation.ADD_VALUE);
+            AttributeModifier attributemodifier = SET_ARMOR;
             AttributeInstance armor = livingEntity.getAttribute(Attributes.ARMOR);
-            AttributeModifier attributemodifier1 = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("c3c510ca-76eb-4eb5-9f69-6763b7e40be2"), "Increase Toughness", 4.0D, AttributeModifier.Operation.ADD_VALUE);
+            AttributeModifier attributemodifier1 = SET_TOUGHNESS;
             AttributeInstance toughness = livingEntity.getAttribute(Attributes.ARMOR_TOUGHNESS);
             if (armor != null){
                 if (ItemHelper.armorSet(livingEntity, ModArmorMaterials.CURSED_KNIGHT) || ItemHelper.armorSet(livingEntity, ModArmorMaterials.CURSED_PALADIN)){
@@ -379,7 +382,8 @@ public class ItemEvents {
         BlockPos blockPos = blockHitResult.getBlockPos();
         BlockState blockState = level.getBlockState(blockPos);
         ItemStack itemStack = event.getItemStack();
-        if (ModPotionUtil.getPotion(itemStack) == Potions.WATER){
+        // Empty stacks also use the no-effect potion fallback, so require an actual water potion bottle.
+        if (itemStack.is(Items.POTION) && ModPotionUtil.getPotion(itemStack) == Potions.WATER){
             if (event.getFace() != Direction.DOWN && blockState.is(ModBlocks.END_SOIL.get())) {
                 level.playSound(null, blockPos, SoundEvents.GENERIC_SPLASH, SoundSource.BLOCKS, 1.0F, 1.0F);
                 player.setItemInHand(event.getHand(), ItemUtils.createFilledResult(itemStack, player, new ItemStack(Items.GLASS_BOTTLE)));

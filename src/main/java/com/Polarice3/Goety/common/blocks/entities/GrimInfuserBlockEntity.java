@@ -118,6 +118,12 @@ public class GrimInfuserBlockEntity extends ModBlockEntity implements Clearable,
     }
 
     @Override
+    public int getMaxStackSize() {
+        // Each work slot processes exactly one item per operation.
+        return 1;
+    }
+
+    @Override
     public int getContainerSize() {
         return this.items.size();
     }
@@ -140,7 +146,8 @@ public class GrimInfuserBlockEntity extends ModBlockEntity implements Clearable,
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
         Optional<CursedInfuserRecipes> optional = this.getRecipes(pStack);
-        optional.ifPresent(furnaceRecipe -> this.placeItem(pStack, furnaceRecipe.getCookingTime()));
+        // Do not mutate the transfer stack supplied by the inventory adapter.
+        optional.ifPresent(furnaceRecipe -> this.placeItem(pStack.copy(), furnaceRecipe.getCookingTime()));
     }
 
     @Override
@@ -283,10 +290,14 @@ public class GrimInfuserBlockEntity extends ModBlockEntity implements Clearable,
 
     @Override
     public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
+        // Hopper acceptance checks must never consume or insert items, including simulated transfers.
+        if (pIndex != 0 || this.level == null || this.level.isClientSide || !this.isEmpty() || pItemStack.isEmpty()) {
+            return false;
+        }
         Optional<CursedInfuserRecipes> optional = this.getRecipes(pItemStack);
         if (optional.isEmpty()) return false;
         if (!this.checkSpawner()) return false;
-        return this.level != null && !this.level.isClientSide && this.placeItem(pItemStack, optional.get().getCookingTime());
+        return true;
     }
 
     @Override

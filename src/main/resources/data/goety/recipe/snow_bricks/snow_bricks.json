@@ -1,20 +1,19 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#$",
-                    "$#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "minecraft:snow_block"
-                      },
-                "$":  {
-                          "tag":  "c:stone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:snow_bricks",
-                   "count":  4
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#$",
+    "$#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    },
+    "$": {
+      "tag": "c:stone"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:snow_bricks"
+  }
 }
-

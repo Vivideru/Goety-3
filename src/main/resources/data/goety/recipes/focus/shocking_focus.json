@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "sfs",
+    "fef",
+    "sfs"
+  ],
+  "key":
+  {
+    "e":
+    {
+      "item": "goety:empty_focus"
+    },
+    "f":
+    {
+      "tag": "forge:gems/quartz"
+    },
+    "s":
+    {
+      "tag": "forge:ingots/copper"
+    }
+  },
+  "result":
+  {
+    "id": "goety:shocking_focus",
+    "count": 1
+  }
+}

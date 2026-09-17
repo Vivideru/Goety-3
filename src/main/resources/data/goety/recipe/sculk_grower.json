@@ -1,34 +1,33 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:sculk_converter"
-                        },
-    "craftType":  "forge",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "item":  "minecraft:sculk"
-                        },
-                        {
-                            "item":  "minecraft:composter"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "item":  "minecraft:sculk"
-                        },
-                        {
-                            "item":  "minecraft:composter"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:sculk_grower"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:sculk_converter"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:bones"
+    },
+    {
+      "item": "minecraft:sculk"
+    },
+    {
+      "item": "minecraft:composter"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "item": "minecraft:sculk"
+    },
+    {
+      "item": "minecraft:composter"
+    }
+  ],
+  "result": {
+    "id": "goety:sculk_grower"
+  }
 }
-

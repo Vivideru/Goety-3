@@ -32,7 +32,10 @@ public class SnapFungusItem extends Item {
         if (!player.isSilent()) {
             level.playSound((Player) null, player.getX(), player.getY(), player.getZ(), ModSounds.BLAST_FUNGUS_THROW.get(), player.getSoundSource(), 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
         }
-        itemstack.shrink(used);
+        // Creative players should still throw the full volley without consuming the held stack.
+        if (!player.getAbilities().instabuild) {
+            itemstack.shrink(used);
+        }
         player.getCooldowns().addCooldown(ModItems.SNAP_FUNGUS.get(), MathHelper.secondsToTicks(random/2));
         return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
     }

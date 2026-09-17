@@ -3,6 +3,8 @@ package com.Polarice3.Goety.common.events;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 import com.Polarice3.Goety.Goety;
+import com.Polarice3.Goety.api.entities.ally.illager.ICharmUser;
+import com.Polarice3.Goety.api.items.magic.ISoulContainer;
 import com.Polarice3.Goety.api.items.magic.ITotem;
 import com.Polarice3.Goety.client.particles.LichShockwaveParticleOption;
 import com.Polarice3.Goety.common.blocks.entities.ArcaBlockEntity;
@@ -291,22 +293,27 @@ public class SoulEnergyEvents {
                 }
             }
 
+            // A servant carrying a soul charm is credited as the killer itself, so its charm can take its share.
+            LivingEntity charmKiller = killer instanceof LivingEntity living && living instanceof ICharmUser charmUser
+                    && charmUser.getCharm().getItem() instanceof ISoulContainer ? living : null;
             LivingEntity owner = MobUtil.getOwner(killer);
+            Player player = null;
             if (owner != null){
-                Player player = null;
                 if (MobUtil.getOwner(owner) instanceof Player player1){
                     player = player1;
                 }
                 if (owner instanceof Player playerEntity) {
                     player = playerEntity;
                 }
-                if (player != null) {
-                    if (MobsConfig.ServantsAlwaysGiveSE.get() || CuriosFinder.hasDarkRobe(player) || CuriosFinder.hasUndeadSet(player) || ItemHelper.armorSet(owner, ModArmorMaterials.BLACK_IRON) || ItemHelper.armorSet(player, ModArmorMaterials.DARK) || killer instanceof RaiderServant) {
-                        if (!(player instanceof FakePlayer)) {
-                            SEHelper.handleKill(player, victim, event.getSource());
-                        }
+            }
+            if (player != null) {
+                if (MobsConfig.ServantsAlwaysGiveSE.get() || CuriosFinder.hasDarkRobe(player) || CuriosFinder.hasUndeadSet(player) || ItemHelper.armorSet(owner, ModArmorMaterials.BLACK_IRON) || ItemHelper.armorSet(player, ModArmorMaterials.DARK) || killer instanceof RaiderServant || charmKiller != null) {
+                    if (!(player instanceof FakePlayer)) {
+                        SEHelper.handleKill(charmKiller != null ? charmKiller : player, victim, event.getSource());
                     }
                 }
+            } else if (charmKiller != null) {
+                SEHelper.handleKill(charmKiller, victim, event.getSource());
             }
 
             if (victim != killer && killer instanceof LivingEntity) {

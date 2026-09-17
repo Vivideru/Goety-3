@@ -202,6 +202,8 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> BLACKGUARD_PRE_ATTACK = create("blackguard_pre_attack");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLACKGUARD_SMASH = create("blackguard_smash");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLACKGUARD_STEP = create("blackguard_step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ROYAL_GUARD_PRE_ATTACK = create("royal_guard_pre_attack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ROYAL_GUARD_STEP = create("royal_guard_step");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MOSSY_SKELETON_AMBIENT = create("mossy_skeleton_ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> MOSSY_SKELETON_HURT = create("mossy_skeleton_hurt");
@@ -702,6 +704,8 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> BLAST_FUNGUS_EXPLODE = create("blast_fungus_explode");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> FUNGUS_EXPLOSION = create("fungus_explosion");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> VOID_BLAST = create("void_blast");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> FOCUS_PICK = create("focus_pick");
 

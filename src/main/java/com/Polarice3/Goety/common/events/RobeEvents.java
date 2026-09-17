@@ -120,10 +120,12 @@ public class RobeEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void HurtEvent(LivingIncomingDamageEvent event){
         LivingEntity victim = event.getEntity();
+        // Accumulate every robe modifier once so later checks do not overwrite earlier resistances.
+        float finalDamage = event.getAmount();
         if (CuriosFinder.hasFrostRobes(victim)){
             if (ModDamageSource.freezeAttacks(event.getSource()) || event.getSource().is(DamageTypeTags.IS_FREEZING)){
                 float resistance = 1.0F - (ItemConfig.FrostRobeResistance.get() / 100.0F);
-                event.setAmount(event.getAmount() * resistance);
+                finalDamage *= resistance;
             }
         }
         if (CuriosFinder.hasAbyssRobes(victim)){
@@ -131,7 +133,7 @@ public class RobeEvents {
                 if (victim.getAirSupply() <= 0){
                     victim.setAirSupply(20);
                 }
-                event.setAmount(event.getAmount() * 0.5F);
+                finalDamage *= 0.5F;
             }
         }
         if (CuriosFinder.hasNetherRobe(victim)){
@@ -139,12 +141,11 @@ public class RobeEvents {
             if (resistance <= 0.0F){
                 event.setCanceled(true);
             } else {
-                if (event.getSource().is(DamageTypeTags.IS_FIRE) || ModDamageSource.isMagicFire(event.getSource())){
-                    event.setAmount(event.getAmount() * resistance);
-                }
                 if (ModDamageSource.hellfireAttacks(event.getSource())){
                     resistance = Math.max(0.75F, resistance);
-                    event.setAmount(event.getAmount() * resistance);
+                    finalDamage *= resistance;
+                } else if (event.getSource().is(DamageTypeTags.IS_FIRE) || ModDamageSource.isMagicFire(event.getSource())){
+                    finalDamage *= resistance;
                 }
             }
         }
@@ -166,31 +167,13 @@ public class RobeEvents {
         }
         if (CuriosFinder.hasCurio(victim, ModItems.GRAND_ROBE.get())){
             if (MobUtil.isSpellCasting(victim)){
-                event.setAmount(event.getAmount() / 2.0F);
+                finalDamage /= 2.0F;
             }
-        }
-        float damage = event.getAmount();
-        if (CuriosFinder.hasUnholyHat(victim)){
-            if (victim.level().dimension() == Level.NETHER){
-                damage *= 1.0F - (ItemConfig.UnholyHatNetherResistance.get() / 100.0F);
-            }
-            if (!event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)){
-                damage = Math.min(damage, AttributesConfig.ApostleDamageCap.get().floatValue());
-            }
-            event.setAmount(damage);
-        }
-        if (CuriosFinder.hasUnholyRobe(victim)){
-            float resistance = 1.0F - (ItemConfig.NetherRobeResistance.get() / 100.0F);
-            if (ModDamageSource.hellfireAttacks(event.getSource())){
-                resistance = Math.max(0.75F, resistance);
-                damage *= resistance;
-            }
-            event.setAmount(damage);
         }
         if(CuriosFinder.hasCurio(victim, ModItems.STORM_ROBE.get())){
             if (ModDamageSource.shockAttacks(event.getSource()) || event.getSource().is(DamageTypes.LIGHTNING_BOLT)){
                 float resistance = 1.0F - (ItemConfig.StormRobeResistance.get() / 100.0F);
-                event.setAmount(event.getAmount() * resistance);
+                finalDamage *= resistance;
             }
             if (event.getSource().is(DamageTypes.LIGHTNING_BOLT)){
                 victim.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 300));
@@ -203,9 +186,20 @@ public class RobeEvents {
                     if (CuriosFinder.hasWarlockRobe(victim)){
                         resistance = 1.0F - (ItemConfig.WarlockRobeResistance.get() / 100.0F);
                     }
-                    event.setAmount(event.getAmount() * resistance);
+                    finalDamage *= resistance;
                 }
             }
+        }
+        if (CuriosFinder.hasUnholyHat(victim)){
+            if (victim.level().dimension() == Level.NETHER){
+                finalDamage *= 1.0F - (ItemConfig.UnholyHatNetherResistance.get() / 100.0F);
+            }
+            if (!event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY)){
+                finalDamage = Math.min(finalDamage, AttributesConfig.ApostleDamageCap.get().floatValue());
+            }
+        }
+        if (finalDamage != event.getAmount()) {
+            event.setAmount(finalDamage);
         }
     }
 

@@ -1,0 +1,16 @@
+{
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "count": 1,
+    "id": "goety:chiseled_polished_ominous_stone"
+  },
+  "key": {
+    "#": {
+      "item": "goety:polished_ominous_stone_slab"
+    }
+  }
+}

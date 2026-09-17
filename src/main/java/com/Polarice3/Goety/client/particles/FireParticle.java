@@ -5,6 +5,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 
+// Use Minecraft's standard particle renderer so fire sprites remain visible with all renderers.
 public class FireParticle extends TextureSheetParticle {
    private final SpriteSet sprites;
    private boolean ember = false;

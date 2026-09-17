@@ -1,26 +1,25 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "mqi",
-                    "qeq",
-                    "iqm"
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:empty_focus"
-                      },
-                "m":  {
-                          "tag":  "c:gems/emerald"
-                      },
-                "q":  {
-                          "tag":  "c:gems/quartz"
-                      },
-                "i":  {
-                          "tag":  "c:ingots/iron"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:burrowing_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "mqi",
+    "qeq",
+    "iqm"
+  ],
+  "key": {
+    "e": {
+      "item": "goety:empty_focus"
+    },
+    "m": {
+      "tag": "c:gems/emerald"
+    },
+    "q": {
+      "tag": "c:gems/quartz"
+    },
+    "i": {
+      "tag": "c:ingots/iron"
+    }
+  },
+  "result": {
+    "id": "goety:burrowing_focus"
+  }
 }
-

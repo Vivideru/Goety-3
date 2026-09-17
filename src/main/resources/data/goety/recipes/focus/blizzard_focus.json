@@ -1,0 +1,24 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:arrow_rain_focus"
+  },
+  "craftType": "frost",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:ice_spike_focus"
+    },
+    {
+      "tag": "forge:gems/diamond"
+    },
+    {
+      "item": "minecraft:powder_snow_bucket"
+    }
+  ],
+  "result": {
+    "id": "goety:blizzard_focus"
+  }
+}

@@ -120,6 +120,12 @@ public class SoulAbsorberBlockEntity extends ModBlockEntity implements Clearable
     }
 
     @Override
+    public int getMaxStackSize() {
+        // Each work slot processes exactly one item per operation.
+        return 1;
+    }
+
+    @Override
     public int getContainerSize() {
         return 1;
     }
@@ -142,7 +148,8 @@ public class SoulAbsorberBlockEntity extends ModBlockEntity implements Clearable
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
         Optional<SoulAbsorberRecipes> optional = this.getRecipes(pStack);
-        optional.ifPresent(soulAbsorberRecipes -> this.placeItem(pStack, soulAbsorberRecipes.getCookingTime()));
+        // Do not mutate the transfer stack supplied by the inventory adapter.
+        optional.ifPresent(soulAbsorberRecipes -> this.placeItem(pStack.copy(), soulAbsorberRecipes.getCookingTime()));
     }
 
     @Override
@@ -266,13 +273,17 @@ public class SoulAbsorberBlockEntity extends ModBlockEntity implements Clearable
 
     @Override
     public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
+        // Hopper acceptance checks must never consume or insert items, including simulated transfers.
+        if (pIndex != 0 || this.level == null || this.level.isClientSide || !this.isEmpty() || pItemStack.isEmpty()) {
+            return false;
+        }
         if (this.level == null){
             return false;
         }
         Optional<SoulAbsorberRecipes> optional = this.getRecipes(pItemStack);
         if (!optional.isPresent()) return false;
         if (this.getArcaOwner() == null) return false;
-        return !this.level.isClientSide && this.placeItem(pItemStack, optional.get().getCookingTime());
+        return true;
     }
 
     @Override

@@ -1,20 +1,18 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-        "gc"
-    ],
-    "key":  {
-                "g":  {
-                          "tag":  "c:nuggets/gold"
-                      },
-                "c":  {
-                          "item":  "goety:royal_carpet"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:royal_carpet_edge",
-                   "count":  1
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gc"
+  ],
+  "key": {
+    "g": {
+      "tag": "c:nuggets/gold"
+    },
+    "c": {
+      "item": "goety:royal_carpet"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:royal_carpet_edge"
+  }
 }
-
-

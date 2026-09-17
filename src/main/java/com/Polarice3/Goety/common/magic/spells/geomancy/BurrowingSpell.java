@@ -216,7 +216,8 @@ public class BurrowingSpell extends EverChargeSpell {
                         ItemEntity itemEntity = new ItemEntity(serverLevel, blockPos.getX(), blockPos.getY(), blockPos.getZ(), drop);
                         itemEntity.setNoPickUpDelay();
                         itemEntity.playerTouch(player);
-                        if (!itemEntity.getItem().isEmpty()) {
+                        // A complete pickup restores the original count for pickup events after discarding the entity; only spawn a real remainder.
+                        if (!itemEntity.isRemoved() && !itemEntity.getItem().isEmpty()) {
                             Block.popResource(serverLevel, blockPos, itemEntity.getItem());
                         }
                     } else {

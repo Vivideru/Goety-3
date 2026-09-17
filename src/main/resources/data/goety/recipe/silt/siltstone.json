@@ -1,11 +1,11 @@
 {
-    "type":  "goety:cursed_infuser_recipes",
-    "ingredient":  {
-                       "tag":  "c:sandstone"
-                   },
-    "result":  {
-                   "id":  "goety:siltstone"
-               },
-    "cookingTime":  20
+  "type": "goety:cursed_infuser_recipes",
+  "ingredient": {
+    "tag": "c:sandstone"
+  },
+  "result": {
+    "id": "goety:siltstone",
+    "count": 1
+  },
+  "cookingTime": 20
 }
-

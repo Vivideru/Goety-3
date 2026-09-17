@@ -259,6 +259,10 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
 
     @Nullable
     public LivingEntity getTrueOwner() {
+        // Wild Rage intentionally suspends owner allegiance so the servant can attack without owner protections.
+        if (this.hasEffect(GoetyEffects.WILD_RAGE)) {
+            return null;
+        }
         if (!this.level().isClientSide){
             UUID uuid = this.getOwnerId();
             return uuid == null ? null : EntityFinder.getLivingEntityByUuiD(this.level(), uuid);

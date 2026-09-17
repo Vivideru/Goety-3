@@ -1,12 +1,13 @@
-﻿{
-    "type":  "goety:pulverize",
-    "ingredient":  {
-                       "item":  "minecraft:diorite"
-                   },
-    "block_result":  "minecraft:cobblestone",
-    "item_result":  {
-                        "id":  "minecraft:quartz",
-                        "count":  1
-                    }
+{
+  "type": "goety:pulverize",
+  "ingredient": [
+    {
+      "item": "minecraft:diorite"
+    }
+  ],
+  "block_result": "minecraft:cobblestone",
+  "item_result": {
+    "count": 1,
+    "id": "minecraft:quartz"
+  }
 }
-

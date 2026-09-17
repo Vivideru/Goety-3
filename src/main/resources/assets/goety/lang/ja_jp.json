@@ -17,7 +17,6 @@
   "name.goety.apostle.15": "セラフェント・",
   "name.goety.apostle.16": "インデアリウム・",
   "name.goety.apostle.17": "サラモン・",
-
   "title.goety.0": "復活した者",
   "title.goety.1": " 忌まわしき者",
   "title.goety.2": " 汚す者",
@@ -30,7 +29,6 @@
   "title.goety.9": " 恐ろしき者",
   "title.goety.10": " 素晴らしき者",
   "title.goety.11": " 極悪非道なる者",
-
   "name.goety.crone.0": "ゲルトルート",
   "name.goety.crone.1": "マティルダ",
   "name.goety.crone.2": "グリムヒルデ",
@@ -43,21 +41,17 @@
   "name.goety.crone.9": "フレイムトゥース",
   "name.goety.crone.10": "グレイブスピッター",
   "name.goety.crone.11": "マックバック",
-
   "name.goety.crone.12": "ゾフチ",
   "name.goety.crone.13": "ディッカ",
   "name.goety.crone.14": "ネザ",
   "name.goety.crone.15": "オイドヌイ",
   "name.goety.crone.16": "ボリ",
   "name.goety.crone.17": "ストラハ",
-
   "title.goety.crone.0": "ババ",
   "title.goety.crone.1": "クローン",
   "title.goety.crone.2": "老婆",
   "title.goety.crone.3": "魔女",
-
   "itemGroup.goety": "Goety",
-
   "entity.goety.apostle": "アパスル",
   "entity.goety.obsidian_monolith": "黒曜石のモノリス",
   "entity.goety.warlock": "ウォーロック",
@@ -76,15 +70,12 @@
   "entity.goety.zpiglin_servant": "ゾンビピグリンの従者",
   "entity.goety.zpiglin_brute_servant": "ゾンビピグリンブルートの従者",
   "entity.goety.malghast": "マルガスト",
-
   "entity.goety.vampire_bat": "吸血コウモリ",
-
   "entity.goety.wraith": "レイス",
   "entity.goety.border_wraith": "ボーダーレイス",
   "entity.goety.crypt_slime": "クリプトスライム",
   "entity.goety.cairn_necromancer": "ケルンネクロマンサー",
   "entity.goety.haunted_armor": "ホーンテッドアーマー",
-
   "entity.goety.vex_servant": "ヴェックス",
   "entity.goety.irk_servant": "アーク",
   "entity.goety.zombie_servant": "ゾンビの従者",
@@ -108,27 +99,20 @@
   "entity.goety.mini_ghast": "ミニガスト",
   "entity.goety.slime_servant": "スライムの従者",
   "entity.goety.magma_cube_servant": "マグマキューブの従者",
-
   "entity.goety.totemic_wall": "トーテミックウォール",
   "entity.goety.totemic_bomb": "トーテミックボム",
-
   "entity.goety.volcano": "火山",
-
   "entity.goety.skull_lord": "スカルロード",
   "entity.goety.bone_lord": "ボーンロード",
-
   "entity.goety.envioker": "エンヴィオーカー",
   "entity.goety.tormentor": "トーメンター",
   "entity.goety.inquillager": "インクイリジャー",
   "entity.goety.conquillager": "コンクイリジャー",
   "entity.goety.piker": "パイカー",
   "entity.goety.preacher": "プリーチャー",
-
   "entity.goety.minister": "ミニスター",
-
   "entity.goety.vizier": "ワズィール",
   "entity.goety.irk": "アーク",
-
   "entity.goety.nether_meteor": "ネザーメテオ",
   "entity.goety.fireball": "小さな火の玉",
   "entity.goety.lavaball": "ファイアボール",
@@ -154,7 +138,7 @@
   "entity.goety.ice_bouquet": "アイスブーケ",
   "entity.goety.ice_chunk": "アイスチャンク",
   "entity.goety.scatter_mine": "スキャッターマイン",
-  "entity.goety.scatter_bomb":"スキャッターボム",
+  "entity.goety.scatter_bomb": "スキャッターボム",
   "entity.goety.snap_fungus": "スナップキノコ",
   "entity.goety.blast_fungus": "ブラストキノコ",
   "entity.goety.berserk_fungus": "ベルセルクキノコ",
@@ -162,11 +146,8 @@
   "entity.goety.fire_tornado": "炎の竜巻",
   "entity.goety.falling_block": "落ちてくるブロック",
   "entity.goety.corrupted_beam": "腐敗のビーム",
-
   "entity.goety.boat": "ボート",
-
   "entity.goety.haunted_armor_stand": "幽霊の防具立て",
-
   "entity.goety.fire_blast_trap": "ファイアブラストラップ",
   "entity.goety.lightning_trap": "ライトニングトラップ",
   "entity.goety.fire_rain_trap": "ファイアレイントラップ",
@@ -182,10 +163,8 @@
   "entity.goety.laser": "レーザー",
   "entity.goety.magic_ground": "マジックグラウンド",
   "entity.goety.tunneling_fang": "トンネルの牙",
-
   "item.goety.focus_bag": "フォーカスバッグ",
   "item.goety.brew_bag": "ブリューバッグ",
-
   "item.goety.apostle_spawn_egg": "アパスル(使徒)のスポーンエッグ",
   "item.goety.warlock_spawn_egg": "ウォーロックのスポーンエッグ",
   "item.goety.crone_spawn_egg": "クローンのスポーンエッグ",
@@ -223,7 +202,6 @@
   "item.goety.zpiglin_servant_spawn_egg": "ゾンビピグリンの従者のスポーンエッグ",
   "item.goety.zpiglin_brute_servant_spawn_egg": "ゾンビピグリンブルートの従者のスポーンエッグ",
   "item.goety.malghast_spawn_egg": "マルガストのスポーンエッグ",
-
   "item.goety.dark_wand": "闇の杖",
   "item.goety.ominous_staff": "邪悪な杖",
   "item.goety.necro_staff": "ネクロの杖",
@@ -238,31 +216,22 @@
   "item.goety.ominous_orb": "邪悪なオーブ",
   "item.goety.heart_of_the_night": "夜の心",
   "item.goety.philosophers_stone": "賢者の石",
-
   "item.goety.taglock_kit": "タグロックキット",
-
   "item.goety.cauldron_ladle": "大釜のひしゃく",
-
   "item.goety.dark_scythe": "不気味な大鎌",
   "item.goety.death_scythe": "死の大鎌",
-
   "item.goety.fanged_dagger": "ファングドダガー",
   "item.goety.fell_blade": "フェルブレード",
   "item.goety.frozen_blade": "フローズンブレード",
-
   "item.goety.eerie_pickaxe": "不気味なツルハシ",
   "item.goety.graverobber_shovel": "墓荒らしのシャベル",
-
   "item.goety.dark_sword": "闇の剣",
   "item.goety.dark_shovel": "闇のシャベル",
   "item.goety.dark_pickaxe": "闇のツルハシ",
   "item.goety.dark_axe": "闇の斧",
   "item.goety.dark_hoe": "闇のクワ",
-
   "item.goety.hunters_bow": "狩人の弓",
-
   "item.goety.philosophers_mace": "賢者のメイス",
-
   "item.goety.dark_scroll": "闇のスクロール",
   "item.goety.undeath_potion": "変身のポーション",
   "item.goety.soul_ruby": "魂のルビー",
@@ -287,23 +256,18 @@
   "item.goety.spirit_fabric": "魂の生地",
   "item.goety.gale_fabric": "疾風の生地",
   "item.goety.chill_fabric": "冷気の生地",
-
   "item.goety.ravaging_scroll": "荒廃のスクロール",
   "item.goety.warred_scroll": "抗争のスクロール",
   "item.goety.buried_scroll": "埋葬のスクロール",
   "item.goety.haunting_scroll": "幽霊のスクロール",
   "item.goety.front_scroll": "前線のスクロール",
   "item.goety.mistral_scroll": "ミストラルのスクロール",
-
   "item.goety.forbidden_piece": "禁断のピース",
   "item.goety.forbidden_fragment": "禁断の断片",
   "item.goety.forbidden_scroll": "禁断のスクロール",
-
   "item.goety.snap_warts": "スナップウォート",
-
   "item.goety.feet_of_frog": "カエルの足",
   "item.goety.cooked_feet_of_frog": "調理されたカエルの足",
-
   "item.goety.soul_transfer": "ソウルトランスファー",
   "item.goety.flame_capture": "フレイムキャプチャー",
   "item.goety.snap_fungus": "スナップ菌",
@@ -313,43 +277,32 @@
   "item.goety.ill_bomb": "イルボム",
   "item.goety.soul_jar": "ソウルの瓶",
   "item.goety.refuse_bottle": "廃棄物の瓶",
-
   "item.goety.grimoire_of_grudges": "遺恨のグリモワール",
   "item.goety.grimoire_of_goodwill": "善意のグリモワール",
-
   "item.goety.brew": "魔女のブリュー",
   "item.goety.splash_brew": "魔女のスプラッシュブリュー",
   "item.goety.lingering_brew": "魔女の残留ブリュー",
   "item.goety.gas_brew": "魔女のガスブリュー",
-
   "item.goety.haunted_boat": "幽霊のボート",
-
   "item.goety.rotten_boat": "腐ったボート",
-
   "item.goety.windswept_boat": "ウィンドスウェプトのボート",
-
   "item.goety.haunted_armor_stand": "幽霊の防具立て",
-
   "item.goety.cursed_knight_helmet": "呪われた騎士のヘルメット",
   "item.goety.cursed_knight_chestplate": "呪われた騎士のチェストプレート",
   "item.goety.cursed_knight_leggings": "呪われた騎士のレギンス",
   "item.goety.cursed_knight_boots": "呪われた騎士のブーツ",
-
   "item.goety.cursed_paladin_helmet": "呪われたパラディンのヘルメット",
   "item.goety.cursed_paladin_chestplate": "呪われたパラディンのチェストプレート",
   "item.goety.cursed_paladin_leggings": "呪われたパラディンのレギンス",
   "item.goety.cursed_paladin_boots": "呪われたパラディンのブーツ",
-
   "item.goety.black_iron_helmet": "黒き鉄のヘルメット",
   "item.goety.black_iron_chestplate": "黒き鉄のチェストプレート",
   "item.goety.black_iron_leggings": "黒き鉄のレギンス",
   "item.goety.black_iron_boots": "黒き鉄のブーツ",
-
   "item.goety.dark_helmet": "闇のヘルメット",
   "item.goety.dark_chestplate": "闇のチェストプレート",
   "item.goety.dark_leggings": "闇のレギンス",
   "item.goety.dark_boots": "闇のブーツ",
-
   "item.goety.ring_of_want": "欲望のリング",
   "item.goety.ring_of_the_dragon": "ドラゴンの指輪",
   "item.goety.dark_hat": "闇の帽子",
@@ -385,13 +338,11 @@
   "item.goety.pendant_of_hunger": "飢餓のペンダント",
   "item.goety.warding_charm": "撃退のチャーム",
   "item.goety.alarming_charm": "警告のチャーム",
-
   "item.goety.empty_focus": "空のフォーカス",
   "item.goety.animation_core": "アニメーションコア",
   "item.goety.hunger_core": "ハンガーコア",
   "item.goety.wind_core": "ウィンドコア",
   "item.goety.mystic_core": "ミスティックコア",
-
   "item.goety.focus.info": "杖でキャストした場合:",
   "item.goety.vexing_focus": "ヴェックスのフォーカス",
   "item.goety.biting_focus": "牙のフォーカス",
@@ -487,34 +438,27 @@
   "item.goety.ender_chest_focus.info": "術者のエンダーチェストを開きます。",
   "item.goety.corruption_focus": "腐敗のフォーカス",
   "item.goety.corruption_focus.info": "一定の魔法ダメージを与え、無敵フレームを無視する腐敗のビームを発射します。",
-
   "item.goety.cross_pottery_sherd": "混沌の壺の欠片",
   "item.goety.dead_pottery_sherd": "死せる壺の欠片",
   "item.goety.haunt_pottery_sherd": "幽霊の壺の欠片",
   "item.goety.night_pottery_sherd": "夜の壺の欠片",
   "item.goety.soul_pottery_sherd": "魂の壺の欠片",
-
   "item.goety.music_disc_vizier": "レコード",
   "item.goety.music_disc_vizier.desc": "Peter Hont - Evoker",
   "item.goety.music_disc_apostle": "レコード",
   "item.goety.music_disc_apostle.desc": "Peter Hont - Ghast",
-
   "item.minecraft.tipped_arrow.effect.climbing": "クモ登りの矢",
-
   "item.minecraft.potion.effect.climbing": "クモ登りのポーション",
   "item.minecraft.splash_potion.effect.climbing": "クモ登りのスプラッシュポーション",
   "item.minecraft.lingering_potion.effect.climbing": "クモ登りの残留ポーション",
-
   "block.goety.cursed_metal_block": "呪われた鉄ブロック",
   "block.goety.dark_metal_block": "ダークメタルブロック",
-
   "block.goety.jade_ore": "翡翠の鉱石",
   "block.goety.jade_tiles": "翡翠タイル",
   "block.goety.jade_block": "翡翠のブロック",
   "block.goety.jade_pillar": "翡翠の柱",
   "block.goety.jade_slab": "翡翠のハーフブロック",
   "block.goety.jade_stairs": "翡翠の階段",
-
   "block.goety.shade_stone": "シェードストーン",
   "block.goety.shade_stone_slab": "シェードストーンのハーフブロック",
   "block.goety.shade_stone_stairs": "シェードストーンの階段",
@@ -533,7 +477,6 @@
   "block.goety.shade_tiles": "シェードタイル",
   "block.goety.shade_tiles_slab": "シェードタイルのハーフブロック",
   "block.goety.shade_tiles_stairs": "シェードタイルの階段",
-
   "block.goety.crypt_stone": "クリプトストーン",
   "block.goety.crypt_stone_slab": "クリプトストーンのハーフブロック",
   "block.goety.crypt_stone_stairs": "クリプトストーンの階段",
@@ -553,7 +496,6 @@
   "block.goety.crypt_plinth": "クリプトの台座",
   "block.goety.crypt_pillar": "クリプトの柱",
   "block.goety.crypt_bookshelf": "クリプトの本棚",
-
   "block.goety.marble": "大理石",
   "block.goety.marble_slab": "大理石のハーフブロック",
   "block.goety.marble_stairs": "大理石の階段",
@@ -573,7 +515,6 @@
   "block.goety.slate_patterned_marble": "スレート模様の大理石",
   "block.goety.slate_cornered_marble": "スレートコーナー大理石",
   "block.goety.slate_glazed_marble": "スレート艶出し大理石",
-
   "block.goety.highrock": "ハイロック",
   "block.goety.highrock_slab": "ハイロックのハーフブロック",
   "block.goety.highrock_stairs": "ハイロックの階段",
@@ -585,12 +526,10 @@
   "block.goety.highrock_brick_stairs": "ハイロックのレンガの階段",
   "block.goety.highrock_brick_wall": "ハイロックのレンガの塀",
   "block.goety.gold_indented_highrock_bricks": "金がインデントされたハイロックレンガ",
-
   "block.goety.indented_gold": "インデントされた金ブロック",
   "block.goety.indented_gold_slab": "インデントされた金ブロックのハーフブロック",
   "block.goety.indented_gold_stairs": "インデントされた金ブロックの階段",
   "block.goety.indented_gold_wall": "インデントされた金ブロックの塀",
-
   "block.goety.shade_brazier": "シェードの火鉢",
   "block.goety.stone_brazier": "石の火鉢",
   "block.goety.brick_brazier": "レンガの火鉢",
@@ -598,9 +537,7 @@
   "block.goety.nether_brick_brazier": "ネザーレンガの火鉢",
   "block.goety.blackstone_brazier": "ブラックストーンの火鉢",
   "block.goety.marble_brazier": "大理石の火鉢",
-
   "block.goety.skull_pile": "スカルパイル",
-
   "block.goety.haunted_sapling": "幽霊の苗木",
   "block.goety.potted_haunted_sapling": "鉢植えされた幽霊の苗木",
   "block.goety.haunted_log": "幽霊の原木",
@@ -624,7 +561,6 @@
   "block.goety.dark_pressure_plate": "闇の感圧板",
   "block.goety.stripped_haunted_log": "剥ぎ取られた幽霊の原木",
   "block.goety.stripped_haunted_wood": "剥ぎ取られた幽霊の木",
-
   "block.goety.rotten_sapling": "腐った苗木",
   "block.goety.potted_rotten_sapling": "鉢植えされた腐った苗木",
   "block.goety.rotten_log": "腐った原木",
@@ -648,7 +584,6 @@
   "block.goety.trapped_rotten_chest": "腐ったトラップチェスト",
   "block.goety.stripped_rotten_log": "剥ぎ取られた腐った原木",
   "block.goety.stripped_rotten_wood": "剥ぎ取られた腐った木",
-
   "block.goety.steep_planks": "スティープの板材",
   "block.goety.steep_lamp": "スティープのランプ",
   "block.goety.steep_fence": "スティープのフェンス",
@@ -661,11 +596,8 @@
   "block.goety.studded_steep_wood": "ちりばめられたスティープの木",
   "block.goety.lined_steep_wood": "裏地付きのスティープの木",
   "block.goety.rimmed_steep_wood": "縁のあるスティープの木",
-
   "block.goety.cursed_bars": "呪われた鉄格子",
-
   "block.goety.witch_pole": "魔女のポール",
-
   "block.goety.arca": "アルカ",
   "block.goety.cursed_cage": "呪われた檻",
   "block.goety.cursed_infuser": "呪われた注入器",
@@ -673,7 +605,6 @@
   "block.goety.pedestal": "台座",
   "block.goety.soul_absorber": "ソウルアブソーバー",
   "block.goety.soul_mender": "ソウルメンダラー",
-
   "block.goety.ice_bouquet_trap": "氷炎の罠",
   "block.goety.wind_blower": "ウィンドブロワー",
   "block.goety.marble_wind_blower": "大理石のウィンドブロワー",
@@ -685,29 +616,22 @@
   "block.goety.damaged_dark_anvil": "壊れかけの闇の金床",
   "block.goety.soul_candlestick": "ソウルキャンドルスティック",
   "block.goety.witch_cauldron": "魔女の大釜",
-
   "block.goety.sculk_devourer": "スカルクデバウアラー",
   "block.goety.sculk_converter": "スカルクコンバーター",
   "block.goety.sculk_relay": "スカルクリレー",
   "block.goety.sculk_grower": "スカルクグロワー",
-
   "block.goety.snap_warts": "スナップウォート",
-
   "block.goety.soul_light": "ソウルライト",
   "block.goety.glow_light": "グローライト",
-
   "block.goety.forbidden_grass": "禁断の草ブロック",
   "block.goety.crystal_ball": "水晶玉",
   "block.goety.pithos": "ピトス",
   "block.goety.crypt_urn": "クリプトの壷",
   "block.goety.night_beacon": "夜のビーコン",
-
   "block.goety.magic_thorn": "マジックソーン",
   "block.goety.hardened_leaves": "硬化した葉",
-
   "block.goety.tall_skull": "背の高い頭蓋骨",
   "block.goety.wall_tall_skull": "背の高い頭蓋骨",
-
   "effect.goety.summon_down": "召喚酔い",
   "effect.goety.sapped.description": "レベルごとに受けるダメージが20%増加します。",
   "effect.goety.gold_touched": "ゴールドタッチ",
@@ -822,15 +746,12 @@
   "effect.goety.brew_dye": "醸造染料",
   "effect.goety.purify_debuff": "デバフを浄化",
   "effect.goety.purify_buff": "バフを浄化",
-
   "container.goety.pithos": "ピトス",
   "container.goety.urn": "壺",
-
   "trim_material.goety.cursed": "呪われた素材",
   "trim_material.goety.dark": "闇の素材",
   "trim_material.goety.ecto": "残響の素材",
   "trim_material.goety.jade": "翡翠の素材",
-
   "enchantment.goety.soul_eater": "ソウルイーター",
   "enchantment.goety.wanting": "欲望",
   "enchantment.goety.potency": "効力",
@@ -847,27 +768,22 @@
   "enchantment.goety.burning.desc": "呪文でモブを燃やすか、火の継続時間を延長します。",
   "enchantment.goety.absorb.desc": "呪文がモブにダメージを与えたときにプレイヤーを回復させます。",
   "enchantment.goety.duration.desc": "呪文の持続時間を延長します。",
-
   "key.goety.category": "Goety",
   "key.goety.wand": "杖のフォーカススロットを開く",
   "key.goety.focusCircle": "フォーカスサークルを開く",
   "key.goety.bag": "フォーカスバッグを開く",
   "key.goety.ceaseFire": "停戦",
-
   "key.goety.lich.category": "ゴエティリッチ",
   "key.goety.lich.lichForm": "リッチモード",
   "key.goety.lich.magnet": "リッチマグネット",
-
   "key.goety.witch.category": "goetyウィッチ",
   "key.goety.witch.robe": "魔女スイッチのローブを開く",
   "key.goety.witch.extractPotions": "ポーションを抽出",
   "key.goety.witch.brewBag": "ブリューバッグを開く",
   "key.goety.witch.brewCircle": "ブリューサークルを開く",
-
   "key.goety.mount.category": "goetyラヴェジャー",
   "key.goety.mount.roar": "ラヴェジャーの咆哮",
   "key.goety.mount.freeRoam": "ラヴェジャーの自律",
-
   "info.goety.totem_of_souls.souls": "§aソウルエネルギー: %d/%d§a",
   "info.goety.wand.cost": "§3ソウルコスト:§3 %d",
   "info.goety.wand.focus": "§dフォーカス:§d %d",
@@ -886,7 +802,6 @@
   "info.goety.focus.PosDim": "§aディメンション:§a %d",
   "info.goety.focus.PosInvalid": "§cリコールブロックが無効です§c",
   "info.goety.focus.noCreative": "§4クリエイティブモードでは選択できません§4",
-
   "info.goety.items.dark_scroll.desc": "森の洋館内で使用する必要があります。",
   "info.goety.items.dark_scroll.failure": "あなたは森の洋館内にいません！",
   "info.goety.items.scroll": "右クリックしてスクロールを読んでください。",
@@ -897,7 +812,6 @@
   "info.goety.items.front": "名も無き者の呪文を再利用...",
   "info.goety.items.mistral": "風力発電機の設計図...",
   "info.goety.items.forbidden": "不死の秘密...",
-
   "info.goety.research.ravaging": "ラヴェジャーの作成方法を学びました!",
   "info.goety.research.warred": "レッドストーンゴーレムの作り方を学びました!",
   "info.goety.research.buried": "あなたはネクロマンシーの名もなき道を学びました!",
@@ -905,9 +819,7 @@
   "info.goety.research.front": "ヴァンガードを召喚する方法を学びました!",
   "info.goety.research.mistral": "スコールゴーレムの作り方を学びました！",
   "info.goety.research.forbidden": "あなたは不死の秘密を学びました!",
-
   "info.goety.hunger_pendent.amount": "§2腐った肉:§2 %d",
-
   "info.goety.dark_hat": "すべての呪文の詠唱時間が半分になります。",
   "info.goety.grand_turban": "ダメージを受けると味方のアークを生成する可能性があります。",
   "info.goety.witch_hat": "魔女のローブでの醸造スタンドを高速化します。",
@@ -926,13 +838,12 @@
   "info.goety.witch_robe_brew": "%sを押してローブの醸造スタンドを開きます。",
   "info.goety.warlock_garment": "負の効果を受けると自動的にいぼだらけの卵を使用します。",
   "info.goety.warlock_robe": "魔法ダメージに対する耐性 +%s%%。",
-  "info.goety.ring_of_the_dragon": "着用するとブレス呪文が強化されます。",
+  "info.goety.ring_of_the_dragon": "テレポート時、開始地点で爆発を発生させます。",
   "info.goety.grave_gloves": "大鎌の攻撃速度 +50%。",
   "info.goety.wayfarers_belt": "移動速度と水泳速度、ステップとジャンプの高さが増加します。",
   "info.goety.spiteful_belt": "ダメージを受けると棘ダメージで攻撃者を傷つけます。",
   "info.goety.star_amulet": "最大体力が半分未満の場合、矢から保護します。",
   "info.goety.alarming_charm": "イリジャーアサルトが発生した場合に警告します。",
-
   "info.goety.ritual.fail": "この儀式を適切に開始する方法がわかりません！",
   "info.goety.ritual.structure.fail": "儀式に必要なブロックが無い！",
   "info.goety.ritual.convert.fail": "必要なモブが範囲外です！",
@@ -974,9 +885,7 @@
   "info.goety.block.fail": "非効率的なブロック要件！",
   "info.goety.summon.limit": "この召喚の上限に達しました！",
   "info.goety.apostle.summon": "闇の存在があなたを襲う...",
-
   "filled_map.goety.blighted_shack": "荒廃した小屋の地図",
-
   "spell.goety.none": "§e無属性§e",
   "spell.goety.necromancy": "§2ネクロマンシー§2",
   "spell.goety.nether": "§4ネザー§4",
@@ -986,7 +895,6 @@
   "spell.goety.wind": "§b風§b",
   "spell.goety.storm": "§6嵐§6",
   "spell.goety.void": "§5ヴォイド§5",
-
   "tooltip.goety.arca": "アルカの場所: ",
   "tooltip.goety.arcaPlayer": "所有者: ",
   "tooltip.goety.arca_not_bound": "まだアルカにバインドされていません。",
@@ -1002,7 +910,6 @@
   "tooltip.goety.focusBag.swap": "スワップ",
   "tooltip.goety.focusBag.extract": "抽出",
   "tooltip.goety.focusBag.empty": "空",
-
   "painting.goety.apostle.author": "不明",
   "painting.goety.apostle.title": "暗黒卿",
   "painting.goety.bobby.author": "ジュリア レプチ",
@@ -1033,7 +940,6 @@
   "painting.goety.thepants.title": "パンズボンツ",
   "painting.goety.wraith.author": "不明",
   "painting.goety.wraith.title": "レイス",
-
   "subtitle.goety.apostle_ambient": "使徒がつぶやく",
   "subtitle.goety.apostle_hurt": "使徒がダメージを受ける",
   "subtitle.goety.apostle_prepare_spell": "使徒は冒涜的に唱える",
@@ -1042,7 +948,6 @@
   "subtitle.goety.apostle_teleport": "使徒消滅",
   "subtitle.goety.apostle_predeath": "使徒の叫び",
   "subtitle.goety.apostle_death": "使徒は滅びる",
-
   "subtitle.goety.skull_lord_ambient": "スカルロードがつぶやく",
   "subtitle.goety.skull_lord_hurt": "スカルロードがダメージを受ける",
   "subtitle.goety.skull_lord_charge": "スカルロードの叫び声",
@@ -1051,30 +956,25 @@
   "subtitle.goety.skull_lord_laser_start": "スカルロードがレーザーを発射",
   "subtitle.goety.skull_lord_fly": "スカルロードが浮かぶ",
   "subtitle.goety.skull_lord_death": "スカルロードが死ぬ",
-
   "subtitle.goety.tormentor_ambient": "トーメンターの拷問",
   "subtitle.goety.tormentor_hurt": "トーメンターはダメージを受ける",
   "subtitle.goety.tormentor_charge": "トーメンターは笑う",
   "subtitle.goety.tormentor_celebrate": "トーメンターの歓声",
   "subtitle.goety.tormentor_death": "トーメンターが死ぬ",
-
   "subtitle.goety.conquillager_ambient": "コンクイリジャーが征服する",
   "subtitle.goety.conquillager_hurt": "コンクイリジャーはダメージを受ける",
   "subtitle.goety.conquillager_celebrate": "コンクイリジャー歓声",
   "subtitle.goety.conquillager_death": "コンクイリジャー死ぬ",
-
   "subtitle.goety.piker_ambient": "パイカ―パイク",
   "subtitle.goety.piker_hurt": "パイカ―がダメージを受ける",
   "subtitle.goety.piker_swing": "パイカ―が振る",
   "subtitle.goety.piker_pike": "パイカ―が刺す",
   "subtitle.goety.piker_celebrate": "パイカ―が歓声を上げる",
   "subtitle.goety.piker_death": "パイカ―が死ぬ",
-
   "subtitle.goety.preacher_ambient": "プリーチャーがつぶやく",
   "subtitle.goety.preacher_hurt": "プリーチャーがダメージを受ける",
   "subtitle.goety.preacher_cast": "プリーチャーが回復する",
   "subtitle.goety.preacher_death": "プリーチャーが死ぬ",
-
   "subtitle.goety.minister_ambient": "ミニスターミニスター",
   "subtitle.goety.minister_hurt": "ミニスターは傷ついています",
   "subtitle.goety.minister_laugh": "ミニスターがからかうように笑う",
@@ -1083,19 +983,15 @@
   "subtitle.goety.minister_speech": "ミニスターが説教する",
   "subtitle.goety.minister_celebrate": "ミニスター乾杯",
   "subtitle.goety.minister_death": "ミニスターが死ぬ",
-
   "subtitle.goety.warlock_ambient": "ウォーロック チャンネル",
   "subtitle.goety.warlock_hurt": "ウォーロックはダメージを受ける",
   "subtitle.goety.warlock_celebrate": "ウォーロックの乾杯",
   "subtitle.goety.warlock_death": "ウォーロックは死ぬ",
-
   "subtitle.goety.crone_ambient": "クローンが高笑いする",
   "subtitle.goety.crone_laugh": "クローンは笑う",
   "subtitle.goety.crone_death": "クローンが死ぬ",
-
   "subtitle.goety.cultist_prepare_spell": "狂信者は懇願する",
   "subtitle.goety.cultist_cast_spell": "狂信者が呪文を唱える",
-
   "subtitle.goety.wraith_ambient": "レイスが出没する",
   "subtitle.goety.wraith_hurt": "レイスがダメージを受ける",
   "subtitle.goety.wraith_fly": "レイスが浮かぶ",
@@ -1104,45 +1000,37 @@
   "subtitle.goety.wraith_fire": "アイスブーケが燃える",
   "subtitle.goety.wraith_teleport": "レイスはテレポートします",
   "subtitle.goety.wraith_death": "レイスは死ぬ",
-
   "subtitle.goety.frozen_zombie_ambient": "凍ったゾンビのうめき声",
   "subtitle.goety.frozen_zombie_hurt": "冷凍ゾンビはダメージを受ける",
   "subtitle.goety.frozen_zombie_death": "冷凍ゾンビが死亡",
-
   "subtitle.goety.jungle_zombie_ambient": "ジャングルゾンビのうめき声",
   "subtitle.goety.jungle_zombie_hurt": "ジャングルゾンビはダメージを受ける",
   "subtitle.goety.jungle_zombie_step": "ジャングルゾンビのステップ",
   "subtitle.goety.jungle_zombie_death": "ジャングルゾンビ死亡",
-
   "subtitle.goety.mossy_skeleton_ambient": "苔むしたスケルトンがガタガタ音を立てる",
   "subtitle.goety.mossy_skeleton_hurt": "苔むしたスケルトンがダメージを受ける",
   "subtitle.goety.mossy_skeleton_shoot": "苔むしたスケルトンのシュート",
   "subtitle.goety.mossy_skeleton_step": "苔むしたスケルトンのステップ",
   "subtitle.goety.mossy_skeleton_death": "苔むしたスケルトンが死亡",
-
   "subtitle.goety.sunken_skeleton_ambient": "沈没したスケルトンがガタガタ音を立てる",
   "subtitle.goety.sunken_skeleton_hurt": "沈没したスケルトンはダメージを受ける",
   "subtitle.goety.sunken_skeleton_shoot": "沈没したスケルトンのシュート",
   "subtitle.goety.sunken_skeleton_step": "沈没したスケルトンのステップ",
   "subtitle.goety.sunken_skeleton_death": "沈没したスケルトンが死ぬ",
-
   "subtitle.goety.necromancer_ambient": "ネクロマンサーのガラガラ音",
   "subtitle.goety.necromancer_hurt": "ネクロマンサーはダメージを受ける",
   "subtitle.goety.necromancer_laugh": "ネクロマンサーは笑う",
   "subtitle.goety.necromancer_step": "ネクロマンサーのステップ",
   "subtitle.goety.necromancer_death": "ネクロマンサー死ぬ",
-
   "subtitle.goety.vanguard_ambient": "ヴァンガードのガラガラ音",
   "subtitle.goety.vanguard_hurt": "ヴァンガードはダメージを受ける",
   "subtitle.goety.vanguard_spear": "ヴァンガードの槍",
   "subtitle.goety.vanguard_step": "ヴァンガードのステップ",
   "subtitle.goety.vanguard_death": "ヴァンガードが死ぬ",
-
   "subtitle.goety.haunted_armor_ambient": "幽霊の鎧の幽霊",
   "subtitle.goety.haunted_armor_hurt": "幽霊の鎧がダメージを受ける",
   "subtitle.goety.haunted_armor_step": "幽霊の鎧のステップ",
   "subtitle.goety.haunted_armor_death": "幽霊の鎧が死ぬ",
-
   "subtitle.goety.zombie_ravager_ambient": "ゾンビラヴェジャーのうめき声",
   "subtitle.goety.zombie_ravager_hurt": "ゾンビラヴェジャーがダメージを受ける",
   "subtitle.goety.zombie_ravager_bite": "ゾンビラヴェジャーが噛む",
@@ -1150,7 +1038,6 @@
   "subtitle.goety.zombie_ravager_roar": "ゾンビラヴェジャーが咆哮する",
   "subtitle.goety.zombie_ravager_step": "ゾンビラヴェジャーのステップ",
   "subtitle.goety.zombie_ravager_death": "ゾンビラヴェジャーは死ぬ",
-
   "subtitle.goety.squall_golem_hurt": "スコールゴーレムがダメージを受ける",
   "subtitle.goety.squall_golem_activate": "スコールゴーレム起動",
   "subtitle.goety.squall_golem_deactivate": "スコール ゴーレムがシャットダウンします",
@@ -1158,7 +1045,6 @@
   "subtitle.goety.squall_golem_attack": "スコールゴーレムスマッシュ",
   "subtitle.goety.squall_golem_step": "スコールゴーレムのステップ",
   "subtitle.goety.squall_golem_death": "スコールゴーレムが死ぬ",
-
   "subtitle.goety.redstone_golem_ambient": "レッドストーンのゴーレムのうなり声",
   "subtitle.goety.redstone_golem_hurt": "レッドストーンのゴーレムがダメージを受ける",
   "subtitle.goety.redstone_golem_summon": "レッドストーンのゴーレムのチャージ",
@@ -1169,7 +1055,6 @@
   "subtitle.goety.redstone_golem_growl": "レッドストーンのゴーレムのうなり声",
   "subtitle.goety.redstone_golem_step": "レッドストーンのゴーレムの手順",
   "subtitle.goety.redstone_golem_death": "レッドストーンのゴーレムが死ぬ",
-
   "subtitle.goety.grave_golem_ambient": "グレイブゴーレムのうなり声",
   "subtitle.goety.grave_golem_hurt": "グレイブゴーレムがダメージを受ける",
   "subtitle.goety.grave_golem_awaken": "グレイブゴーレムが目覚める",
@@ -1177,34 +1062,26 @@
   "subtitle.goety.grave_golem_growl": "グレイブゴーレムのうなり声",
   "subtitle.goety.grave_golem_step": "グレイブゴーレムのステップ",
   "subtitle.goety.grave_golem_death": "グレイブゴーレムが死ぬ",
-
   "subtitle.goety.haunt_ambient": "幽霊の幽霊",
-
   "subtitle.goety.vizier_ambient": "宰相のヴィジエ",
   "subtitle.goety.vizier_confuse": "宰相は混乱する",
   "subtitle.goety.vizier_rage": "宰相の攻撃",
   "subtitle.goety.vizier_celebrate": "宰相は笑う",
   "subtitle.goety.vizier_death": "宰相が死ぬ",
-
   "subtitle.goety.ice_chunk_idle": "氷の塊が浮いている",
   "subtitle.goety.ice_chunk_summon": "氷の塊が召喚された",
   "subtitle.goety.ice_chunk_hit": "氷の塊がヒット",
-
   "subtitle.goety.wall_spawn": "トーテミックウォールが出現",
   "subtitle.goety.wall_hit": "トーテミック ウォールがヒットします",
   "subtitle.goety.wall_erupt": "トーテムの壁が爆発する",
   "subtitle.goety.wall_disappear": "トーテムの壁が消える",
-
   "subtitle.goety.bomb_spawn": "トーテミックボムが出現",
   "subtitle.goety.bomb_pulse": "トーテミックボムパルス",
   "subtitle.goety.bomb_fuse": "トーテミックボムが点灯",
   "subtitle.goety.bomb_load": "トーテミックボムがパワーアップする",
   "subtitle.goety.bomb_sparkle": "トーテミックボムの輝き",
-
   "subtitle.goety.spider_bite": "蜘蛛に噛まれた",
-
   "subtitle.goety.ghast_disappear": "ガストが消える",
-
   "subtitle.goety.evil_laugh": "邪悪な笑い",
   "subtitle.goety.roar_spell": "大音響",
   "subtitle.goety.fire_breath": "炎を吐く",
@@ -1234,7 +1111,6 @@
   "subtitle.goety.ice_spike_hit": "アイススパイクが当たる",
   "subtitle.goety.spell_fail": "魔法失敗",
   "subtitle.goety.fire_tornado_ambient": "炎の竜巻",
-
   "subtitle.goety.scythe_swing": "大鎌スイング",
   "subtitle.goety.harpoon_impact": "Harpoon Hits",
   "subtitle.goety.blast_fungus_throw": "菌を投げる",
@@ -1243,11 +1119,9 @@
   "subtitle.goety.altar_start": "儀式の開始",
   "subtitle.goety.altar_loop": "儀式の進行状況",
   "subtitle.goety.altar_finish": "儀式の終了",
-
   "subtitle.goety.resonance_crystal_on": "共鳴結晶が始まる",
   "subtitle.goety.resonance_crystal_loop": "共鳴クリスタルのハム音",
   "subtitle.goety.resonance_crystal_off": "共鳴クリスタルが停止する",
-
   "commands.lich.query.true": "%s はリッチです",
   "commands.lich.query.false": "%s はリッチではありません",
   "commands.lich.turnlich.success": "%s にリッチダムが付与されました!",
@@ -1280,7 +1154,6 @@
   "commands.goety.research.remove.failure": "%s にはすでにリサーチがありません!",
   "commands.goety.research.addAll": "すべてのリサーチを %s に追加します",
   "commands.goety.research.removeAll": "%s からすべてのリサーチを削除します",
-
   "advancements.goety.root.title": "闇の魔術",
   "advancements.goety.root.description": "旅を始めましょう",
   "advancements.goety.craft_totem_roots.title": "スターター・キット",
@@ -1398,23 +1271,19 @@
   "advancements.goety.summon_grave_golem.description": "アニメーション アを使用してグレイブ ゴーレムを召喚する",
   "advancements.goety.become_lich.title": "強さを超える",
   "advancements.goety.become_lich.description": "リッチダムに昇天し、真に不滅になりましょう!",
-
   "gui.jei.category.cursed_infuser": "呪われた注入者",
   "gui.jei.category.cursed_infuser.time": "%ss",
   "gui.jei.category.dark_altar": "闇の祭壇",
   "gui.jei.category.dark_altar.time": "%ss",
   "gui.jei.category.dark_altar.soulcost": "%s ソウル/秒",
   "gui.jei.category.brazier": "ネクロ火鉢",
-
   "goety.jei.ritual": "闇の儀式",
   "goety.jei.ritualType": "儀式",
   "goety.jei.brazier": "ネクロ火鉢",
-
   "jei.goety.summon": "召喚:%s",
   "jei.goety.convert": "必要なエンティティ:%s",
   "jei.goety.convertInto": "変換先:%s",
   "jei.goety.item_to_use": "使用するアイテム:",
-
   "jei.goety.craftType": "種類: ",
   "jei.goety.craftType.null": "空",
   "jei.goety.craftType.animation": "アニメーション",
@@ -1438,14 +1307,12 @@
   "jei.goety.error.missing_id": "レシピを特定できません。",
   "jei.goety.error.invalid_type": "無効なレシピタイプです。",
   "jei.goety.error.recipe_too_large": "3x3 より大きいレシピです。",
-
   "item.goety.jei_dummy.sacrifice": "犠牲が必要です!",
   "item.goety.jei_dummy.sacrifice.tooltip": "この儀式を開始するには犠牲が必要です。",
   "item.goety.jei_dummy.item": "アイテムの使用が必要です!",
   "item.goety.jei_dummy.item.tooltip": "この儀式を開始するには、特定のアイテムを使用する必要があります。",
   "item.goety.jei_dummy.none": "アイテム以外の儀式結果",
   "item.goety.jei_dummy.none.tooltip": "この儀式ではアイテムは作成されません。",
-
   "entity.goety.crusher": "クラッシャー",
   "entity.goety.storm_caster": "ストームキャスター",
   "item.goety.crusher_spawn_egg": "クラッシャーのスポーンエッグ",
@@ -1841,7 +1708,7 @@
   "info.goety.items.blaze_horn.failure": "あなたはネザー要塞の中にいません！",
   "info.goety.items.bygone": "ネザーの再現された啓示。",
   "info.goety.research.bygone": "ネザーの忘れられた芸術を学びました！",
-  "subtitle.goety.iceologer_ambient":" 氷学者がうなり声を上げる",
+  "subtitle.goety.iceologer_ambient": " 氷学者がうなり声を上げる",
   "subtitle.goety.iceologer_hurt": "氷学者が傷つく",
   "subtitle.goety.iceologer_attack": "氷学者が呪文を唱える",
   "subtitle.goety.iceologer_death": "氷学者が死ぬ",
@@ -1853,7 +1720,7 @@
   "advancements.goety.craft_magma_bomb_focus.title": "マグナカルタのあと",
   "advancements.goety.craft_magma_bomb_focus.description": "マグマボムのフォーカスを作成する",
   "advancements.goety.craft_banish_focus.title": "今すぐ立ち去れ",
-  "advancements.goety.craft_banish_focus.description":" 追放のフォーカスを作成する",
+  "advancements.goety.craft_banish_focus.description": " 追放のフォーカスを作成する",
   "advancements.goety.craft_nameless_set.title": "偉大なるネクロマンサー",
   "advancements.goety.craft_nameless_set.description": "名もなき王冠とケープはネクロセットと同じ効果があります。名もなき杖はネクロマンシーと特定の呪文を強化します。",
   "advancements.goety.summon_blaze.title": "バーン・イット・ダウン",
@@ -2509,13 +2376,10 @@
   "item.goety.windswept_chest_boat": "チェスト付きのウィンドスウェプトのボート",
   "item.goety.redstone_golem_spawn_egg": "レッドストーンゴーレムの従者のスポーンエッグ",
   "item.goety.redstone_monstrosity_spawn_egg": "レッドストーンの怪物の従者のスポーンエッグ",
-
   "block.goety.spider_nest": "スパイダーネスト(クモの巣)",
   "block.goety.redstone_golem_skull": "レッドストーンゴーレムの頭蓋骨",
   "block.goety.wall_redstone_golem_skull": "レッドストーンゴーレムの頭蓋骨",
-
   "filled_map.goety.crypt": "クリプトの地図",
-
   "entity.goety.chest_boat": "チェスト付きのボート",
   "entity.goety.haunted_painting": "幽霊の絵画",
   "item.goety.zombie_villager_servant_spawn_egg": "村人ゾンビの従者のスポーンエッグ",
@@ -3117,10 +2981,10 @@
   "item.goety.signaler_servant_spawn_egg": "シグナラーの従者のスポーンエッグ",
   "item.goety.maverick_servant_spawn_egg": "マーヴェリックの従者のスポーンエッグ",
   "block.goety.stash_urn": "隠し壺",
-  "entity.goety.bound_geomancer":"縛られたジオマンサー",
-  "entity.goety.bound_cryologer":"縛られたクライオロジャー",
-  "entity.goety.bound_wind_caller":"縛られたウィンドコーラー",
-  "entity.goety.bound_storm_caster":"縛られたストームキャスター",
+  "entity.goety.bound_geomancer": "縛られたジオマンサー",
+  "entity.goety.bound_cryologer": "縛られたクライオロジャー",
+  "entity.goety.bound_wind_caller": "縛られたウィンドコーラー",
+  "entity.goety.bound_storm_caster": "縛られたストームキャスター",
   "item.goety.bound_geomancer_spawn_egg": "縛られたジオマンサーのスポーンエッグ",
   "item.goety.bound_cryologer_spawn_egg": "縛られたクライオロジャーのスポーンエッグ",
   "item.goety.bound_wind_caller_spawn_egg": "縛られたウィンドコーラーのスポーンエッグ",
@@ -3533,22 +3397,22 @@
   "death.attack.goety.rot.player": "%1$sは%2$sと戦っている間に腐り果てた",
   "death.attack.goety.rage": "%1$sは憤死した",
   "death.attack.goety.rage.player": "%1$sは%2$sと戦っている間に憤死した",
-  "name.goety.heresiarch.0" : " ジディム",
-  "name.goety.heresiarch.1" : " アンウィル",
-  "name.goety.heresiarch.2" : " ビルシャ",
-  "name.goety.heresiarch.3" : " ニョカ",
-  "name.goety.heresiarch.4" : " チファレッリ",
-  "name.goety.heresiarch.5" : " オズル",
-  "name.goety.heresiarch.6" : " デュガル",
-  "name.goety.heresiarch.7" : " ファクナン",
-  "name.goety.heresiarch.8" : " ゴルゴダ",
-  "name.goety.heresiarch.9" : " ヘルスター",
-  "name.goety.heresiarch.10" : " ヤーコバ",
-  "name.goety.heresiarch.11" : " マジキム",
-  "title.goety.heresiarch.0" : "ディレクター",
-  "title.goety.heresiarch.1" : "マジスター",
-  "title.goety.heresiarch.2" : "ジャッジ",
-  "title.goety.heresiarch.3" : "レンブラント",
+  "name.goety.heresiarch.0": " ジディム",
+  "name.goety.heresiarch.1": " アンウィル",
+  "name.goety.heresiarch.2": " ビルシャ",
+  "name.goety.heresiarch.3": " ニョカ",
+  "name.goety.heresiarch.4": " チファレッリ",
+  "name.goety.heresiarch.5": " オズル",
+  "name.goety.heresiarch.6": " デュガル",
+  "name.goety.heresiarch.7": " ファクナン",
+  "name.goety.heresiarch.8": " ゴルゴダ",
+  "name.goety.heresiarch.9": " ヘルスター",
+  "name.goety.heresiarch.10": " ヤーコバ",
+  "name.goety.heresiarch.11": " マジキム",
+  "title.goety.heresiarch.0": "ディレクター",
+  "title.goety.heresiarch.1": "マジスター",
+  "title.goety.heresiarch.2": "ジャッジ",
+  "title.goety.heresiarch.3": "レンブラント",
   "entity.goety.reprobate_servant": "リプロベイトの従者",
   "item.goety.reprobate_servant_spawn_egg": "リプロベイトの従者のスポーンエッグ",
   "filled_map.goety.ruined_monastery": "廃墟となった修道院の地図",
@@ -3594,11 +3458,132 @@
   "title.goety.heresiarch.9": "ネザーシーア",
   "title.goety.heresiarch.10": "父親",
   "title.goety.heresiarch.11": "母親",
-
   "entity.goety.smack_stone": "スマックストーン",
   "item.goety.smack_stone_focus": "スマックストーンのフォーカス",
   "item.goety.smack_stone_focus.info": "石を発射し、命中した標的を地面に落下させます。地面についていない標的には、より大きなダメージを与えます。",
   "block.goety.gold_chandelier": "金のシャンデリア",
   "block.goety.iron_dungeon_chain": "鉄のダンジョン鎖",
-  "block.goety.gold_dungeon_chain": "金のダンジョン鎖"
+  "block.goety.gold_dungeon_chain": "金のダンジョン鎖",
+  "block.goety.shade_ossuary": "シェードの納骨堂",
+  "subtitle.goety.void_blast": "Void blast",
+  "block.goety.blossoming_chorus_wood": "コーラスの花の木",
+  "block.goety.blooming_chorus_wood": "花咲くコーラスの木",
+  "block.goety.top_dirty_end_basalt": "上部が汚いエンドバサルト",
+  "block.goety.bottom_dirty_end_basalt": "底が汚いエンドバサルト",
+  "block.goety.chorus_grass_dirt": "コーラス草の土",
+  "block.goety.sculptured_statue": "彫像",
+  "block.goety.sculptured_statue_1": "§aNedeak§fの石像",
+  "block.goety.sculptured_statue_2": "§aMrdrewlego§fの石像",
+  "block.goety.sculptured_statue_3": "§aCodatower§fの石像",
+  "block.goety.sculptured_statue_4": "§a坂上駒子§fの石像",
+  "entity.goety.elder_guardian_servant": "エルダーガーディアンの従者",
+  "item.goety.elder_guardian_servant_spawn_egg": "エルダーガーディアンの従者のスポーンエッグ",
+  "item.goety.aging_cream": "エイジングクリーム",
+  "block.goety.grave_soil": "グレイブソイル",
+  "effect.goety.smiting": "アンデッド特効",
+  "effect.goety.smiting.description": "物理攻撃はアンデッドに対してより大きなダメージを与え、レベルが高いほどダメージも増加します。",
+  "effect.goety.insect_bane": "虫特効",
+  "effect.goety.insect_bane.description": "物理攻撃は節足動物に対してより大きなダメージを与え、レベルが高いほどダメージ量も増加します。",
+  "effect.goety.aging": "加齢",
+  "info.goety.ritual.structure.noBlocksMulti": "%sまたは%sの量が不足しています！",
+  "entity.goety.haunted_broom": "幽霊のほうき",
+  "item.goety.wicked_boline": "ウィケッドボリーン",
+  "item.goety.henbane_seeds": "ヒヨスの種",
+  "item.goety.henbane_flower": "ヒヨスの花",
+  "item.goety.nightshade_seeds": "ベラドンナの種",
+  "item.goety.nightshade_blossom": "ベラドンナの花",
+  "item.goety.resilience_lotion": "耐性の塗り薬",
+  "item.goety.flying_ointment": "空飛ぶ軟膏",
+  "item.goety.haunted_broom": "幽霊のほうき",
+  "item.goety.eternal_cauldron": "永遠の大釜",
+  "block.goety.henbane": "ヒヨス",
+  "block.goety.deadly_nightshade": "ベラドンナ",
+  "effect.goety.exchange": "為替",
+  "info.goety.brew.candlesticks": "近くに火のついたソウルキャンドルスティックがありません！",
+  "info.goety.broom.noSouls.ride": "乗るためのソウルエネルギーが足りません！",
+  "info.goety.cauldron.craft.fail": "どのレシピにも当てはまる材料がありません！",
+  "tooltip.goety.crafting": "作成: ",
+  "gui.jei.category.cauldron": "魔女の大釜",
+  "goety.jei.brew": "魔女の大釜での醸造",
+  "goety.jei.cauldron": "魔女の大釜でのクラフト",
+  "block.goety.jade_crystal_lamp": "翡翠のクリスタルランプ",
+  "block.goety.half_jade_crystal_lamp": "翡翠のクリスタルハーフランプ",
+  "block.goety.snowy_pine_pillar": "雪のパインの柱",
+  "block.goety.pine_firewood": "パインの薪",
+  "block.goety.dense_steep_planks": "高密度のスティープの板材",
+  "block.goety.dense_banded_steep_planks": "高密度の帯状のスティープの板材",
+  "block.goety.steep_firewood": "スティープの薪",
+  "block.goety.potted_henbane": "鉢植えされたヒヨス",
+  "block.goety.potted_deadly_nightshade": "鉢植えされたベラドンナ",
+  "block.goety.braced_crag_tile_pillar": "補強された岩タイルの柱",
+  "enchantment.goety.fealty": "献身",
+  "enchantment.goety.hardy": "頑丈",
+  "enchantment.goety.fealty.desc": "壊れると、設置者のインベントリにほうきが戻ります。また、他のプレイヤーが乗ることも防ぎます。",
+  "enchantment.goety.hardy.desc": "ほうきが壊れるまでに耐えられるダメージ量の閾値を引き上げます。",
+  "block.goety.end_rock_stairs": "エンドロックの階段",
+  "block.goety.end_rock_brick_stairs": "エンドロックレンガの階段",
+  "item.goety.soul_energy": "ソウルエネルギー",
+  "info.goety.item.souls": "§aソウルエネルギー: %d§a",
+  "gui.jei.category.soul_absorber": "ソウルアブソーバー",
+  "jei.goety.soulAmount": "%s",
+  "block.goety.shade_sarcophagus": "シェードの棺",
+  "block.goety.stone_sarcophagus": "石の棺",
+  "block.goety.deepslate_sarcophagus": "深層岩の棺",
+  "block.goety.ominous_sarcophagus": "不吉な石の棺",
+  "block.goety.crypt_sarcophagus": "クリプトストーンの棺",
+  "info.goety.sarcophagus.occupied": "この石棺は使用中です！",
+  "info.goety.sarcophagus.not_day": "昼の間しか眠ることはできません！",
+  "info.goety.sarcophagus.too_far": "棺から離れすぎています！",
+  "info.goety.sarcophagus.obstructed": "この棺は塞がれています。",
+  "item.goety.ring_of_wrecking": "破壊のリング",
+  "info.goety.ring_of_wrecking": "装備者または従者によって倒されたモブは、耐久値が減少するタイプの装備品をドロップしなくなります。",
+  "commands.goety.misc.grimoire.grudge": "遺恨",
+  "commands.goety.misc.grimoire.goodwill": "善意",
+  "commands.goety.misc.grimoire.success.add.entity": "%sリストに%s体のエンティティを追加しました",
+  "commands.goety.misc.grimoire.success.add.entityType": "%s向けの%sリストに%sを追加しました。",
+  "commands.goety.misc.grimoire.success.remove.entity": "%sリストから%s体のエンティティを削除しました",
+  "commands.goety.misc.grimoire.success.remove.entityType": "%s向けの%sリストから%sを削除しました",
+  "commands.goety.misc.grimoire.list": "=== %sの%sリスト===",
+  "commands.goety.misc.grimoire.list.empty": "空",
+  "commands.goety.misc.grimoire.list.entities": "エンティティ:",
+  "commands.goety.misc.grimoire.list.entityTypes": "エンティティの種類:",
+  "info.goety.sarcophagus.stop_sleeping": "石棺を去る",
+  "item.goety.shade_sarcophagus": "Shade Sarcophagus",
+  "item.goety.stone_sarcophagus": "Stone Sarcophagus",
+  "item.goety.deepslate_sarcophagus": "Deepslate Sarcophagus",
+  "item.goety.ominous_sarcophagus": "Ominous Sarcophagus",
+  "item.goety.crypt_sarcophagus": "Crypt Sarcophagus",
+  "item.goety.grave_soil": "Grave Soil",
+  "item.goety.shade_ossuary": "Shade Ossuary",
+  "entity.goety.royal_guard_servant": "ロイヤルガードの従者",
+  "entity.goety.hostile_zombie_vindicator": "ゾンビヴィンディケーター",
+  "entity.goety.blackguard_variant_servant": "ブラックガードの従者",
+  "item.goety.zombie_vindicator_spawn_egg": "ゾンビヴィンディケーター",
+  "item.goety.skeleton_pillager_spawn_egg": "スケルトンピリジャー",
+  "item.goety.blackguard_variant_servant_spawn_egg": "ブラックガード(亜種)の従者のスポーンエッグ",
+  "item.goety.royal_guard_servant_spawn_egg": "ロイヤルガードの従者のスポーンエッグ",
+  "item.goety.repair_putty": "修理用パテ",
+  "item.goety.patrol_plan": "パトロール計画書",
+  "item.goety.soul_healer": "ソウルヒーラー",
+  "block.goety.plushie_11": "§aKrakenKru §rPlushie",
+  "block.goety.plushie_12": "§aNightHeron §rPlushie",
+  "block.goety.sculptured_statue_5": "§aKrakenKru§fの石像",
+  "block.goety.sculptured_statue_6": "§aNightHeron§fの石像",
+  "info.goety.movement.patrol": "パトロール中",
+  "info.goety.soul_healer": "使用者の体力を一定の範囲内で回復します。装備している場合、%sを押すと使用できます。",
+  "info.goety.soul_healer.give": "イリジャーの従者に渡すことができ、彼らはそれでソウルエネルギーを獲得します。",
+  "info.goety.repair_putty": "オフハンドにハンマーを装備している間、ゴーレムなどを回復させることができます。",
+  "info.goety.patrol": "ブロックを右クリックするとパトロール経路に追加され、もう一度右クリックすると削除されます。Shiftキーを押しながら右クリックすると、経路がクリアされます。パトロール経路はループします。",
+  "info.goety.patrol.clear": "パトロール経路を削除しました",
+  "info.goety.patrol.empty": "パトロール経路がありません！",
+  "info.goety.patrol.dimension": "以前のポジションは別のディメンションにありました！",
+  "info.goety.patrol.distance": "位置が離れすぎています！",
+  "info.goety.patrol.add": "ポジションを追加しました",
+  "info.goety.patrol.remove": "ポジションを削除しました",
+  "info.goety.patrol.number": "パトロール経路には%sのポジションがあります",
+  "info.goety.patrol.assign": "%sにパトロール経路を追加しました",
+  "subtitle.goety.royal_guard_pre_attack": "Royal Guard growls",
+  "subtitle.goety.royal_guard_step": "Royal Guard steps",
+  "jade.goety.movement.patrol": "パトロール中",
+  "block.goety.sandstone_sarcophagus": "砂岩の石棺"
 }

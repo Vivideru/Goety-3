@@ -18,6 +18,7 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -147,7 +148,7 @@ public class IceSpike extends AbstractArrow {
             }
 
             if (flag && entity instanceof LivingEntity livingEntity) {
-                livingEntity.addEffect(new MobEffectInstance(GoetyEffects.FREEZING, MathHelper.secondsToTicks(3 + livingEntity.getRandom().nextInt(2))));
+                this.applyFreezingEffect(livingEntity);
                 this.playSound(ModSounds.ICE_SPIKE_HIT.get(), 1.0F, 1.2F / (this.random.nextFloat() * 0.2F + 0.9F));
                 if (livingEntity.level() instanceof ServerLevel serverLevel){
                     ServerParticleUtil.addParticlesAroundSelf(serverLevel, new BlockParticleOption(ParticleTypes.BLOCK, Blocks.PACKED_ICE.defaultBlockState()), livingEntity);
@@ -155,6 +156,13 @@ public class IceSpike extends AbstractArrow {
                 this.discard();
             }
 
+        }
+    }
+
+    protected void applyFreezingEffect(LivingEntity livingEntity) {
+        // Check immunity before posting effect events because some external cold mobs recurse through their applicability hooks.
+        if (!livingEntity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
+            livingEntity.addEffect(new MobEffectInstance(GoetyEffects.FREEZING, MathHelper.secondsToTicks(3 + livingEntity.getRandom().nextInt(2))));
         }
     }
 

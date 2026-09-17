@@ -10,7 +10,7 @@
     },
     {
       "type": "goety:ritual",
-      "recipe": "goety:transformar_esqueleto_do_wither_em_necromante_do_wither"
+      "recipe": "goety:convert_wither_skeleton_to_wither_necromancer"
     },
     {
       "type": "patchouli:text",

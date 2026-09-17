@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goety:haunted_planks"
+    },
+    {
+      "item": "minecraft:painting"
+    }
+  ],
+  "result": {
+    "id": "goety:haunted_painting"
+  }
+}

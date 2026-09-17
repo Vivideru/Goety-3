@@ -8,6 +8,7 @@ import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
+import com.Polarice3.Goety.common.entities.ai.ServantPatrolGoal;
 import com.Polarice3.Goety.common.entities.ai.SummonTargetGoal;
 import com.Polarice3.Goety.common.entities.ally.Summoned;
 import com.Polarice3.Goety.common.entities.neutral.Owned;
@@ -18,6 +19,7 @@ import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -58,6 +60,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.scores.PlayerTeam;
 
 import org.jetbrains.annotations.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -78,6 +82,8 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
     public BlockPos priorityPos;
     public BlockPos boundPos;
     public String boundDim = Level.OVERWORLD.location().toString();
+    public List<GlobalPos> patrolList = new ArrayList<>();
+    public int patrolIndex = 0;
     public int priorityTime;
     public int commandTick;
     public int killChance;
@@ -95,8 +101,13 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
         this.targetSelector.addGoal(1, new Owned.OwnerHurtByTargetGoal<>(this));
         this.targetSelector.addGoal(2, new Owned.OwnerHurtTargetGoal<>(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.patrolGoal();
         this.followGoal();
         this.targetSelectGoal();
+    }
+
+    public void patrolGoal() {
+        this.goalSelector.addGoal(2, new ServantPatrolGoal<>(this, this.getCommandSpeed()));
     }
 
     public void followGoal(){
@@ -432,6 +443,22 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
     }
 
     @Override
+    public List<GlobalPos> getPatrolRoute() {
+        return this.patrolList;
+    }
+
+    public void setPatrolRoute(List<GlobalPos> list) {
+        this.patrolList = list;
+    }
+
+    public int getPatrolIndex() {
+        return this.patrolIndex;
+    }
+
+    public void setPatrolIndex(int index) {
+        this.patrolIndex = index;
+    }
+
     public int getPriorityTime() {
         return this.priorityTime;
     }
@@ -569,6 +596,10 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
 
     @Nullable
     public LivingEntity getTrueOwner() {
+        // Wild Rage intentionally suspends owner allegiance so the servant can attack without owner protections.
+        if (this.hasEffect(GoetyEffects.WILD_RAGE)) {
+            return null;
+        }
         if (!this.level().isClientSide){
             UUID uuid = this.getOwnerId();
             return uuid == null ? null : EntityFinder.getLivingEntityByUuiD(uuid);

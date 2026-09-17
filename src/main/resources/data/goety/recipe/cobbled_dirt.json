@@ -1,27 +1,28 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "CD",
-                    "DC"
-                ],
-    "key":  {
-                "C":  {
-                          "item":  "minecraft:dirt"
-                      },
-                "D":  {
-                          "item":  "minecraft:cobblestone"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:cobbled_dirt",
-                   "count":  1
-               },
-    "neoforge:conditions": [ {
-                                "type":  "neoforge:not",
-                                "value":  {
-                                              "type":  "neoforge:mod_loaded",
-                                              "modid":  "caverns_and_chasms"
-                                          }
-                            } ]
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CD",
+    "DC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:dirt"
+    },
+    "D": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "count": 4,
+    "id": "goety:cobbled_dirt"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:mod_loaded",
+        "modid": "caverns_and_chasms"
+      }
+    }
+  ]
 }
-

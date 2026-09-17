@@ -1,30 +1,31 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " c ",
-                    "c c",
-                    "psp"
-                ],
-    "key":  {
-                "p":  {
-                          "tag":  "c:ingots/silver"
-                      },
-                "s":  {
-                          "tag":  "c:slimeballs"
-                      },
-                "c":  {
-                          "item":  "minecraft:chain"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:ominous_shackles"
-               },
-    "neoforge:conditions": [ {
-                                "type":  "neoforge:not",
-                                "value":  {
-                                              "tag":  "c:ingots/silver",
-                                              "type": "neoforge:tag_empty"
-                                          }
-                            } ]
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " c ",
+    "c c",
+    "psp"
+  ],
+  "key": {
+    "p": {
+      "tag": "c:ingots/silver"
+    },
+    "s": {
+      "tag": "c:slimeballs"
+    },
+    "c": {
+      "item": "minecraft:chain"
+    }
+  },
+  "result": {
+    "id": "goety:ominous_shackles"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "tag": "c:ingots/silver",
+        "type": "neoforge:tag_empty"
+      }
+    }
+  ]
 }
-

@@ -1,18 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "category":  "building",
-    "key":  {
-                "#":  {
-                          "item":  "minecraft:end_stone_bricks"
-                      }
-            },
-    "pattern":  [
-                    "#",
-                    "#"
-                ],
-    "result":  {
-                   "count":  2,
-                   "id":  "goety:end_stone_pillar"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:end_stone_bricks"
+    }
+  },
+  "pattern": [
+    "#",
+    "#"
+  ],
+  "result": {
+    "count": 2,
+    "id": "goety:end_stone_pillar"
+  }
 }
-

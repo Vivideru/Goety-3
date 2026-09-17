@@ -14,6 +14,8 @@ import org.jetbrains.annotations.NotNull;
 public class FocusBagItemHandler extends ItemStackHandler {
     private final ItemStack itemStack;
     private final int size;
+    private Runnable saveCallback = () -> {
+    };
 
     public FocusBagItemHandler(ItemStack itemStack, int size) {
         super(size);
@@ -39,6 +41,12 @@ public class FocusBagItemHandler extends ItemStackHandler {
     @Override
     protected void onContentsChanged(int slot) {
         itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(this.stacks));
+        this.saveCallback.run();
+    }
+
+    public void setSaveCallback(Runnable saveCallback) {
+        this.saveCallback = saveCallback == null ? () -> {
+        } : saveCallback;
     }
 
     public static FocusBagItemHandler get(ItemStack stack) {

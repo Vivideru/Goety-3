@@ -5,12 +5,14 @@ import com.Polarice3.Goety.common.magic.construct.*;
 import com.google.common.collect.Maps;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.fml.common.asm.enumextension.ExtensionInfo;
+import net.neoforged.fml.common.asm.enumextension.IExtensibleEnum;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
-// This enum is not registered in enumextensions.json, so it must stay a regular enum on NeoForge.
-public enum GolemType {
+// Goety addons extend this enum through NeoForge's enum extension service.
+public enum GolemType implements IExtensibleEnum {
     NONE(null, null),
     WHISPERER(Blocks.MOSS_BLOCK::defaultBlockState, new WhispererMold()),
     LEAPLEAF(ModBlocks.OVERGROWN_ROOTS.get()::defaultBlockState, new LeapleafMold()),
@@ -26,6 +28,10 @@ public enum GolemType {
     GolemType(Supplier<BlockState> blockState, IMold mold){
         this.blockState = blockState;
         this.mold = mold;
+    }
+
+    public static ExtensionInfo getExtensionInfo() {
+        return ExtensionInfo.nonExtended(GolemType.class);
     }
 
     public BlockState getBlockState() {

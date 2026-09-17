@@ -653,6 +653,22 @@ public class MobUtil {
         return target;
     }
 
+    public static void teleportTracked(Entity entity, double x, double y, double z) {
+        if (entity.level() instanceof ServerLevel serverLevel) {
+            // Load the destination before moving so the entity never enters an inaccessible section between tracking updates.
+            serverLevel.getChunk(BlockPos.containing(x, y, z));
+            entity.teleportTo(x, y, z);
+            serverLevel.getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
+        }
+    }
+
+    public static void syncTrackedTeleport(Entity entity) {
+        if (entity.level() instanceof ServerLevel serverLevel) {
+            // randomTeleport performs its own placement checks, but its final position still needs an immediate tracking update.
+            serverLevel.getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
+        }
+    }
+
     /**
      * Code based of @BobMowzies Sunstrike positioning.
      */
@@ -1003,7 +1019,7 @@ public class MobUtil {
             float f = livingEntity.getLightLevelDependentMagicValue();
             BlockPos blockpos = BlockPos.containing(livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ());
             boolean flag = livingEntity.isInWaterRainOrBubble() || livingEntity.isInPowderSnow || livingEntity.wasInPowderSnow;
-            return f > 0.5F && livingEntity.getRandom().nextFloat() * 30.0F < (f - 0.4F) * 2.0F && !flag && livingEntity.level().canSeeSky(blockpos);
+            return f > 0.5F && livingEntity.getRandom().nextFloat() * 30.0F < (f - 0.4F) * 2.0F && !flag && !livingEntity.level().getBiome(blockpos).is(ModTags.Biomes.NO_SUNLIGHT) && livingEntity.level().canSeeSky(blockpos);
         }
 
         return false;
@@ -1014,7 +1030,7 @@ public class MobUtil {
             float f = livingEntity.getLightLevelDependentMagicValue();
             BlockPos blockpos = BlockPos.containing(livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ());
             boolean flag = livingEntity.isInWaterRainOrBubble() || livingEntity.isInPowderSnow || livingEntity.wasInPowderSnow;
-            return f > 0.5F && !flag && livingEntity.level().canSeeSky(blockpos);
+            return f > 0.5F && !flag && !livingEntity.level().getBiome(blockpos).is(ModTags.Biomes.NO_SUNLIGHT) && livingEntity.level().canSeeSky(blockpos);
         }
 
         return false;
@@ -1889,5 +1905,14 @@ public class MobUtil {
         } else if (getTarget(attacker) == getOwner(defender)) {
             return false;
         } else return !areAllies(defender, getTarget(attacker));
+    }
+
+    public static boolean stormSpawn(LevelAccessor accessor, BlockPos blockPos) {
+        if (accessor.getDifficulty() != Difficulty.PEACEFUL && accessor instanceof WorldGenLevel worldGenLevel) {
+            return blockPos.getY() >= accessor.getSeaLevel()
+                    && worldGenLevel.canSeeSky(blockPos)
+                    && worldGenLevel.getLevel().isThundering();
+        }
+        return false;
     }
 }

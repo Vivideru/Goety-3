@@ -94,15 +94,20 @@ public interface IChunkLoader {
                     if (this.getTicketTime() <= 0L) {
                         world.getChunkSource().addRegionTicket(ModTicketTypes.BLOCK, chunkPos, this.selfLoadRadius(), blockEntity.getBlockPos());
                         this.setTicketTime(ModTicketTypes.BLOCK.timeout() - 1L);
-                        if (this.saveDataCheck()) {
-                            ChunkLoadData data = ChunkLoadData.get(world);
-                            if (!data.hasPosition(blockEntity.getBlockPos())) {
-                                data.addPosition(blockEntity.getBlockPos(), this.selfLoadRadius());
-                                this.saveDataChecked();
-                            }
+                        // Re-register loaders that were disabled and later enabled again.
+                        ChunkLoadData data = ChunkLoadData.get(world);
+                        if (!data.hasPosition(blockEntity.getBlockPos())) {
+                            data.addPosition(blockEntity.getBlockPos(), this.selfLoadRadius());
+                            this.saveDataChecked();
                         }
                     }
                 }
+            } else if (blockEntity.getLevel() instanceof ServerLevel world && this.getTicketTime() > 0) {
+                // Stop renewing disabled block loaders and remove their persistent restart entry.
+                world.getChunkSource().removeRegionTicket(ModTicketTypes.BLOCK,
+                        new ChunkPos(blockEntity.getBlockPos()), this.selfLoadRadius(), blockEntity.getBlockPos());
+                ChunkLoadData.get(world).removePosition(blockEntity.getBlockPos());
+                this.setTicketTime(0);
             }
         }
     }

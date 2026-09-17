@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:totem_of_souls"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_totem.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_totem.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_magic_emerald",
+  "criteria": {
+    "totem_of_souls": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:totem_of_souls"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "totem_of_souls"
+    ]
+  ],
+  "rewards": {
+    "experience": 25
+  }
+}

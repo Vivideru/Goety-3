@@ -1,21 +1,20 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "sss",
-                    "sps",
-                    "sss"
-                ],
-    "key":  {
-                "s":  {
-                          "tag":  "c:stone"
-                      },
-                "p":  {
-                          "tag":  "c:gems/lapis"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:ominous_stone",
-                   "count":  8
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "sps",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "tag": "c:stone"
+    },
+    "p": {
+      "tag": "c:gems/lapis"
+    }
+  },
+  "result": {
+    "count": 8,
+    "id": "goety:ominous_stone"
+  }
 }
-

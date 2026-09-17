@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " s ",
+    "sts",
+    " s "
+  ],
+  "key":
+  {
+    "s":
+    {
+      "tag": "minecraft:saplings"
+    },
+    "t":
+    {
+      "tag": "goety:totems"
+    }
+  },
+  "result":
+  {
+    "id": "goety:haunted_sapling",
+    "count": 1
+  }
+}

@@ -47,8 +47,10 @@ public class EnchantItemRitual extends Ritual{
 
     public int getLevelCost(ItemStack activationItem){
         Holder<Enchantment> enchantment = this.recipe.getEnchantmentHolder();
-        if (activationItem.isEnchanted()){
-            ItemEnchantments enchantments = activationItem.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        if (EnchantmentHelper.hasAnyEnchantments(activationItem)){
+            // Enchanted books store their levels in STORED_ENCHANTMENTS.  The
+            // helper selects the correct component for both books and normal items.
+            ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(activationItem);
             if (enchantment != null && enchantments.getLevel(enchantment) > 0){
                 return this.recipe.getXPLevelCost() * (enchantments.getLevel(enchantment) + 1);
             }
@@ -58,8 +60,8 @@ public class EnchantItemRitual extends Ritual{
 
     public boolean compatibleEnchant(ItemStack activationItem){
         Holder<Enchantment> enchantment = this.recipe.getEnchantmentHolder();
-        if (activationItem.isEnchanted()){
-            ItemEnchantments enchantments = activationItem.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        if (EnchantmentHelper.hasAnyEnchantments(activationItem)){
+            ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(activationItem);
             return enchantment != null && EnchantmentHelper.isEnchantmentCompatible(enchantments.keySet(), enchantment)
                     || activationItem.getItem() instanceof BookItem
                     || activationItem.getItem() instanceof EnchantedBookItem
@@ -85,7 +87,7 @@ public class EnchantItemRitual extends Ritual{
         if (enchantment == null) {
             return;
         }
-        ItemEnchantments enchantments = activationItem.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
+        ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(activationItem);
         ItemStack result = activationItem;
         EnchantmentInstance enchantmentInstance = new EnchantmentInstance(enchantment, 1);
         if (result.getItem() instanceof BookItem){

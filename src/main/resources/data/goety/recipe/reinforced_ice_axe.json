@@ -1,26 +1,25 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    " ic",
-                    " gc",
-                    "s  "
-                ],
-    "key":  {
-                "i":  {
-                          "tag":  "c:ingots/iron"
-                      },
-                "g":  {
-                          "tag":  "c:ingots/gold"
-                      },
-                "c":  {
-                          "item":  "goety:pale_steel_ingot"
-                      },
-                "s":  {
-                          "tag":  "c:rods/wooden"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:reinforced_ice_axe"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ic",
+    " gc",
+    "s  "
+  ],
+  "key": {
+    "i": {
+      "tag": "c:ingots/iron"
+    },
+    "g": {
+      "tag": "c:ingots/gold"
+    },
+    "c": {
+      "item": "goety:pale_steel_ingot"
+    },
+    "s": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "result": {
+    "id": "goety:reinforced_ice_axe"
+  }
 }
-

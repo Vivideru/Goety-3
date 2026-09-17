@@ -1,16 +1,15 @@
-﻿{
-    "type":  "minecraft:crafting_shapeless",
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:soul_lantern"
-                        },
-                        {
-                            "item":  "goety:spent_totem"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:totem_of_souls",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:soul_lantern"
+    },
+    {
+      "item": "goety:spent_totem"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "goety:totem_of_souls"
+  }
 }
-

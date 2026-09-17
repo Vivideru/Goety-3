@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " i ",
+    "dtd",
+    " g "
+  ],
+  "key":
+  {
+    "i":
+    {
+      "tag": "forge:ingots/iron"
+    },
+    "g":
+    {
+      "tag": "forge:ingots/gold"
+    },
+    "d":
+    {
+      "tag": "goety:cursed_ingot_craft"
+    },
+    "t":
+    {
+      "tag": "goety:totems"
+    }
+  },
+  "result":
+  {
+    "id": "goety:cursed_ingot",
+    "count": 2
+  }
+}

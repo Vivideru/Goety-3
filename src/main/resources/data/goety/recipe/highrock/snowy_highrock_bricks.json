@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "#S",
-                    "S#"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:snowy_highrock_bricks_slight"
-                      },
-                "S":  {
-                          "item":  "minecraft:snowball"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:snowy_highrock_bricks",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S",
+    "S#"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:snowy_highrock_bricks_slight"
+    },
+    "S": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:snowy_highrock_bricks"
+  }
 }
-

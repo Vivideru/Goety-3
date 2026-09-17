@@ -112,11 +112,9 @@ public class VoidShrineBlock extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
-            if (tileentity instanceof VoidShrineBlockEntity) {
-                IItemHandler handler = pLevel.getCapability(Capabilities.ItemHandler.BLOCK, pPos, null);
-                if (handler != null) {
-                    dropInventoryItems(tileentity.getLevel(), tileentity.getBlockPos(), handler);
-                }
+            if (!pLevel.isClientSide && tileentity instanceof VoidShrineBlockEntity voidShrine) {
+                // Use the remaining block entity directly because the replaced shrine no longer exposes capabilities.
+                dropInventoryItems(pLevel, pPos, voidShrine.itemStackHandler);
             }
 
             super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
@@ -125,7 +123,10 @@ public class VoidShrineBlock extends BaseEntityBlock {
 
     public static void dropInventoryItems(Level worldIn, BlockPos pos, IItemHandler itemHandler) {
         for (int i = 0; i < itemHandler.getSlots(); i++) {
-            Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(i));
+            ItemStack stack = itemHandler.extractItem(i, itemHandler.getSlotLimit(i), false);
+            if (!stack.isEmpty()) {
+                Containers.dropItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
+            }
         }
     }
 

@@ -1,17 +1,15 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-        "###"
-    ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:indented_gold"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:indented_gold_slab",
-                   "count":  6
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:indented_gold"
+    }
+  },
+  "result": {
+    "count": 6,
+    "id": "goety:indented_gold_slab"
+  }
 }
-
-

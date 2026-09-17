@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "SCS",
@@ -9,19 +9,17 @@
     "C": {
       "item": "minecraft:fire_charge"
     },
-    "S":
-    {
+    "S": {
       "tag": "c:rods/wooden"
     },
-    "F":
-    {
+    "F": {
       "tag": "minecraft:logs"
     },
-    "P":
-    {
+    "P": {
       "item": "goety:steep_planks"
     }
   },
-  "result": { "id": "goety:steep_firewood"
+  "result": {
+    "id": "goety:steep_firewood"
   }
 }

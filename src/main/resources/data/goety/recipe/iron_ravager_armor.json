@@ -1,29 +1,28 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-    "craftType":  "forge",
-    "soulCost":  1,
-    "duration":  30,
-    "research":  "ravaging",
-    "ingredients":  [
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:storage_blocks/iron"
-                        },
-                        {
-                            "tag":  "c:ingots/iron"
-                        },
-                        {
-                            "tag":  "c:ingots/iron"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:iron_ravager_armor"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "c:storage_blocks/iron"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 30,
+  "research": "ravaging",
+  "ingredients": [
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:storage_blocks/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "tag": "c:ingots/iron"
+    }
+  ],
+  "result": {
+    "id": "goety:iron_ravager_armor"
+  }
 }
-

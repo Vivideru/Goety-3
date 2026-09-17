@@ -1,0 +1,70 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_1",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_2",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_3",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_4",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_5",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_6",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_7",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_8",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_9",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "goety:plushie_10",
+          "weight": 2
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

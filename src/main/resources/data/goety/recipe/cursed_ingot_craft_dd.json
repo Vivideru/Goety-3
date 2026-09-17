@@ -1,20 +1,23 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "rrr",
-                    "rrr",
-                    "rrr"
-                ],
-    "key":  {
-                "r":  {
-                          "item":  "dungeonsdelight:stained_scrap"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:cursed_ingot",
-                   "count":  1
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "dungeonsdelight" } ]
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rrr",
+    "rrr",
+    "rrr"
+  ],
+  "key": {
+    "r": {
+      "item": "dungeonsdelight:stained_scrap"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:cursed_ingot"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "dungeonsdelight"
+    }
+  ]
 }
-
-

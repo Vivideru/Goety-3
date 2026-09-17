@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
@@ -20,7 +20,8 @@
       "item": "minecraft:glass_bottle"
     }
   ],
-  "result": { "id": "goety:resilience_lotion"
+  "result": {
+    "id": "goety:resilience_lotion"
   },
   "neoforge:conditions": [
     {

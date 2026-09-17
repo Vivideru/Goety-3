@@ -5,6 +5,8 @@
     "goety:cairn_necromancer",
     "goety:wither_necromancer",
     "goety:bone_lord",
-    "goety:skull_lord"
+    "goety:skull_lord",
+    "goety:stray_servant",
+    "goety:wither_skeleton_servant"
   ]
 }

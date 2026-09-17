@@ -267,6 +267,9 @@ public class EsotericTesseract extends Item implements IPersist {
     }
 
     public static int ejectSingleServant(ItemStack stack, Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return 0;
+        }
         int servantCount = 0;
         if (stack.has(DataComponents.CUSTOM_DATA)) {
             CompoundTag tag = data(stack);
@@ -315,17 +318,21 @@ public class EsotericTesseract extends Item implements IPersist {
                                 servant.setCustomName(Component.Serializer.fromJson(servantTag.getString("CustomName"), level.registryAccess()));
                             }
                             BlockPos blockPos = BlockFinder.SummonRadius(pos, servant, level, 4);
+                            // Prepare the destination section before registration so the restored servant starts tracking immediately.
+                            serverLevel.getChunk(blockPos);
                             servant.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
-                            if (level instanceof ServerLevel serverLevel) {
-                                level.addFreshEntity(servant);
+                            // Consume stored data only after the server has accepted and started tracking the entity.
+                            if (serverLevel.addFreshEntity(servant)) {
                                 if (servant instanceof IServant servant1) {
                                     servant1.setFollowing();
                                 }
                                 ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, ParticleTypes.PORTAL, servant);
-                            }
-                            if (!stack.isEmpty()) {
-                                tag.remove(tagInfo);
-                                setData(stack, tag);
+                                if (!stack.isEmpty()) {
+                                    tag.remove(tagInfo);
+                                    setData(stack, tag);
+                                }
+                            } else {
+                                servantCount = 0;
                             }
                         }
                     }
@@ -336,12 +343,14 @@ public class EsotericTesseract extends Item implements IPersist {
     }
 
     public static int ejectAllServants(ItemStack stack, Level level, BlockPos pos) {
+        if (!(level instanceof ServerLevel serverLevel)) {
+            return 0;
+        }
         int servantCount = 0;
         if (stack.has(DataComponents.CUSTOM_DATA)) {
             CompoundTag tag = data(stack);
-            for (String tagInfo : tag.getAllKeys()) {
+            for (String tagInfo : new ArrayList<>(tag.getAllKeys())) {
                 if (tagInfo.contains("Servant")) {
-                    servantCount++;
                     CompoundTag servantTag = tag.getCompound(tagInfo);
                     EntityType<?> entityType = BuiltInRegistries.ENTITY_TYPE.get(ResourceLocation.parse(servantTag.getString("ServantType")));
                     if (entityType != null) {
@@ -377,20 +386,28 @@ public class EsotericTesseract extends Item implements IPersist {
                             if (servantCount > 1) {
                                 blockPos = BlockFinder.SummonRadius(pos, servant, level, 3);
                             }
+                            // Prepare the destination section before registration so the restored servant starts tracking immediately.
+                            serverLevel.getChunk(blockPos);
                             servant.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
-                            if (!level.isClientSide()) {
-                                level.addFreshEntity(servant);
+                            // Failed entity insertion must leave the stored servant available for a later retry.
+                            if (serverLevel.addFreshEntity(servant)) {
+                                servantCount++;
                                 if (servant instanceof IServant servant1) {
                                     servant1.setFollowing();
                                 }
+                                tag.remove(tagInfo);
                             }
                         }
                     }
                 }
             }
-        }
-        if (!stack.isEmpty()) {
-            stack.remove(DataComponents.CUSTOM_DATA);
+            if (!stack.isEmpty()) {
+                if (tag.isEmpty()) {
+                    stack.remove(DataComponents.CUSTOM_DATA);
+                } else {
+                    setData(stack, tag);
+                }
+            }
         }
         return servantCount;
     }

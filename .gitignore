@@ -16,6 +16,7 @@ out
 # gradle
 build
 .gradle
+.gradle-local
 
 # other
 eclipse
@@ -26,6 +27,12 @@ backups
 *.log
 *.tmp
 *.bak
+compile-errors.txt
+
+# local working directories
+.tmp-*
+.tmp_*
+.import-backup-*
 
 # local porting notes
 docs/upstream_1.20.1_*

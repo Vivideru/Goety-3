@@ -1,6 +1,5 @@
-﻿{
+{
   "type": "goety:cauldron",
-  "id": "goety:cauldron/flying_ointment",
   "soulCost": 2000,
   "color": 15002780,
   "levelLeft": 1,
@@ -30,7 +29,9 @@
       "item": "minecraft:ender_eye"
     }
   ],
-  "result": { "id": "goety:flying_ointment", "count": 1
+  "result": {
+    "id": "goety:flying_ointment",
+    "count": 1
   },
   "neoforge:conditions": [
     {
@@ -40,6 +41,6 @@
         "modid": "goety_revelation"
       }
     }
-  ]
+  ],
+  "id": "goety:cauldron/flying_ointment"
 }
-

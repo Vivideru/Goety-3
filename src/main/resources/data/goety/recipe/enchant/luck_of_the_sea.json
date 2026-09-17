@@ -1,33 +1,32 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:enchant",
-    "activation_item":  {
-                            "item":  "minecraft:book"
-                        },
-    "craftType":  "magic",
-    "soulCost":  10,
-    "duration":  10,
-    "enchantment":  "minecraft:luck_of_the_sea",
-    "xpLevelCost":  5,
-    "ingredients":  [
-                        {
-                            "tag":  "minecraft:fishes"
-                        },
-                        {
-                            "tag":  "minecraft:fishes"
-                        },
-                        {
-                            "tag":  "c:gems/emerald"
-                        },
-                        {
-                            "tag":  "c:gems/emerald"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        }
-                    ],
-    "result":  {
-                   "id":  "minecraft:enchanted_book"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:enchant",
+  "activation_item": {
+    "item": "minecraft:book"
+  },
+  "craftType": "magic",
+  "soulCost": 10,
+  "duration": 10,
+  "enchantment": "minecraft:luck_of_the_sea",
+  "xpLevelCost": 5,
+  "ingredients": [
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "minecraft:fishes"
+    },
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "tag": "c:gems/emerald"
+    },
+    {
+      "tag": "c:gems/lapis"
+    }
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book"
+  }
 }
-

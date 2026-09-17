@@ -1,31 +1,30 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:black_iron_helmet"
-                        },
-    "craftType":  "forge",
-    "soulCost":  5,
-    "duration":  30,
-    "ingredients":  [
-                        {
-                            "item":  "goety:magic_emerald"
-                        },
-                        {
-                            "item":  "goety:spirit_fabric"
-                        },
-                        {
-                            "item":  "goety:dark_ingot"
-                        },
-                        {
-                            "item":  "goety:dark_ingot"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:dark_helmet"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:black_iron_helmet"
+  },
+  "craftType": "forge",
+  "soulCost": 5,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "item": "goety:spirit_fabric"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "item": "goety:dark_ingot"
+    },
+    {
+      "tag": "c:bones"
+    }
+  ],
+  "result": {
+    "id": "goety:dark_helmet"
+  }
 }
-

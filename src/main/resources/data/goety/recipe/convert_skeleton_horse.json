@@ -1,33 +1,32 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:convert_complete_tamed",
-    "activation_item":  {
-                            "tag":  "c:bones"
-                        },
-    "craftType":  "necroturgy",
-    "entity_to_convert":  {
-                              "tag":  "c:horses",
-                              "display_name":  "entity.minecraft.horse"
-                          },
-    "entity_to_convert_into":  "minecraft:skeleton_horse",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        },
-                        {
-                            "tag":  "c:bones"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:jei_dummy/none"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:convert_complete_tamed",
+  "activation_item": {
+    "tag": "c:bones"
+  },
+  "craftType": "necroturgy",
+  "entity_to_convert": {
+    "tag": "c:horses",
+    "display_name": "entity.minecraft.horse"
+  },
+  "entity_to_convert_into": "minecraft:skeleton_horse",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:bones"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "tag": "c:bones"
+    },
+    {
+      "tag": "c:bones"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
 }
-

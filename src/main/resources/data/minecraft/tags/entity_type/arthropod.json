@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "goety:wartling",
+    "goety:brood_mother",
+    "goety:brood_mother_servant",
+    "goety:carrion_fly",
+    "goety:web_spider",
+    "goety:icy_spider",
+    "goety:bone_spider",
+    "goety:spider_servant",
+    "goety:cave_spider_servant",
+    "goety:icy_spider_servant",
+    "goety:bone_spider_servant",
+    "goety:carrion_maggot"
+  ]
+}

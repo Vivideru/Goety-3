@@ -1,18 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "###",
-                    "###",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "goety:forbidden_piece"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:forbidden_fragment",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:forbidden_piece"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:forbidden_fragment"
+  }
 }
-

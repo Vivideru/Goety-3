@@ -2,6 +2,7 @@ package com.Polarice3.Goety.compat.jei;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.crafting.BrazierRecipe;
+import com.Polarice3.Goety.common.crafting.CauldronRecipe;
 import com.Polarice3.Goety.common.crafting.CursedInfuserRecipes;
 import com.Polarice3.Goety.common.crafting.PulverizeRecipe;
 import com.Polarice3.Goety.common.crafting.RitualRecipe;
@@ -16,6 +17,9 @@ public class JeiRecipeTypes {
 
     public static final RecipeType<BrazierRecipe> BRAZIER =
             RecipeType.create(Goety.MOD_ID, "brazier", BrazierRecipe.class);
+
+    public static final RecipeType<CauldronRecipe> CAULDRON =
+            RecipeType.create(Goety.MOD_ID, "cauldron", CauldronRecipe.class);
 
     public static final RecipeType<PulverizeRecipe> PULVERIZE =
             RecipeType.create(Goety.MOD_ID, "pulverize", PulverizeRecipe.class);

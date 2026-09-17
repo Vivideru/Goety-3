@@ -103,6 +103,8 @@ public class ModTags {
         public static final TagKey<Item> RESPAWN_BOSS = tag("respawn_boss");
         public static final TagKey<Item> WITCH_CURRENCY = tag("witch_currency");
         public static final TagKey<Item> WITCH_BETTER_CURRENCY = tag("witch_better_currency");
+        public static final TagKey<Item> WRECKABLE = tag("wreakable");
+        public static final TagKey<Item> UNWRECKABLE = tag("unwreakable");
 
         private static TagKey<Item> tag(String name)
         {
@@ -184,6 +186,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> TELEKINESIS_IMMUNE = tag("telekinesis_immune");
         public static final TagKey<EntityType<?>> SKELETON_WOLF_BUFF = tag("skeleton_wolf_buff");
         public static final TagKey<EntityType<?>> SERVANT_RIDEABLE = tag("servant_rideable");
+        public static final TagKey<EntityType<?>> REPAIRABLE = tag("repairable");
         public static final TagKey<EntityType<?>> FRAYED_CONVERT = tag("convert/frayed");
         public static final TagKey<EntityType<?>> RATTLED_CONVERT = tag("convert/rattled");
         public static final TagKey<EntityType<?>> REGULAR_CONVERT = tag("necromancer/regular_convert");
@@ -217,6 +220,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> VOID_HEAL = tag("void_heal");
         public static final TagKey<EntityType<?>> NECRO_HEAL = tag("necro_heal");
         public static final TagKey<EntityType<?>> NECRO_NO_DEBUFF = tag("necro_no_debuff");
+        public static final TagKey<EntityType<?>> UNWRECKABLE = tag("unwreakable");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return create(Goety.location(name));
@@ -245,6 +249,7 @@ public class ModTags {
         public static final TagKey<Biome> FRAYED_EXCLUDE_SPAWN = tag("mob_spawn/frayed_exclude");
         public static final TagKey<Biome> RATTLED_SPAWN = tag("mob_spawn/rattled");
         public static final TagKey<Biome> RATTLED_EXCLUDE_SPAWN = tag("mob_spawn/rattled_exclude");
+        public static final TagKey<Biome> NO_SUNLIGHT = tag("no_sunlight");
         public static final TagKey<Biome> NECROMANCER_SPAWN = tag("mob_spawn/necromancer");
         public static final TagKey<Biome> NECROMANCER_EXCLUDE_SPAWN = tag("mob_spawn/necromancer_exclude");
         public static final TagKey<Biome> WARLOCK_SPAWN = tag("mob_spawn/warlock");

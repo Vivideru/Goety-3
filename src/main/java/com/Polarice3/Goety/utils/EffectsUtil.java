@@ -165,7 +165,8 @@ public class EffectsUtil {
 
     public static boolean canAffectLich(MobEffectInstance effectInstance, Level world) {
         return !is(effectInstance.getEffect(), ModTags.Effects.LICH_IMMUNE)
-                && new Skeleton(EntityType.SKELETON, world).canBeAffected(effectInstance);
+                // Lich immunity must not depend on a temporary skeleton's entity tags or other mods' effect hooks.
+                && !effectInstance.is(MobEffects.REGENERATION) && !effectInstance.is(MobEffects.POISON);
     }
 
     public static int getFortuneEffectLevel(LootContext lootContext) {

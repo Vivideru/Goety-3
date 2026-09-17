@@ -1,25 +1,24 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:craft",
-    "activation_item":  {
-                            "item":  "goety:empty_focus"
-                        },
-    "craftType":  "magic",
-    "soulCost":  1,
-    "duration":  10,
-    "ingredients":  [
-                        {
-                            "item":  "minecraft:ender_eye"
-                        },
-                        {
-                            "tag":  "c:ender_pearls"
-                        },
-                        {
-                            "item":  "goety:flame_capture"
-                        }
-                    ],
-    "result":  {
-                   "id":  "goety:call_focus"
-               }
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:empty_focus"
+  },
+  "craftType": "magic",
+  "soulCost": 1,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "tag": "c:ender_pearls"
+    },
+    {
+      "item": "goety:flame_capture"
+    }
+  ],
+  "result": {
+    "id": "goety:call_focus"
+  }
 }
-

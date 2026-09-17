@@ -1,4 +1,4 @@
-﻿{
+{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "JGJ",
@@ -18,7 +18,8 @@
       "item": "goety:jade"
     }
   },
-  "result": { "id": "goety:jade_crystal_lamp",
-    "count": 1
+  "result": {
+    "count": 1,
+    "id": "goety:jade_crystal_lamp"
   }
 }

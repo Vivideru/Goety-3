@@ -23,6 +23,14 @@
     },
     {
       "type": "goety:cauldron",
+      "recipe": "goety:cauldron/aging_cream"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "魔女の集まりにいる他の「おばあちゃん」たち、見た目ほど年寄りじゃない気がするわ！きっと、わざと肌にシワを作るためにこのクリームを使ってるのよ！"
+    },
+    {
+      "type": "goety:cauldron",
       "anchor": "flying_ointment",
       "recipe": "goety:cauldron/flying_ointment"
     },
@@ -46,10 +54,5 @@
       "type": "patchouli:text",
       "text": "大釜でキャンドルを作る際、もっと凝った仕掛けを必要とする魔女もいますが、ここではただ紐を一本使うだけで、なぜか完璧な形のワックス・シリンダーが出来上がってしまうんですよ！"
     }
-  ],
-  "extra_recipe_mappings": {
-    "goety:nightshade_blossom": 1,
-    "goety:resilience_lotion": 2,
-    "goety:flying_ointment": 4
-  }
+  ]
 }

@@ -1,21 +1,20 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "###",
-                    "#$#",
-                    "###"
-                ],
-    "key":  {
-                "#":  {
-                          "item":  "minecraft:vine"
-                      },
-                "$":  {
-                          "item":  "goety:red_moss_growth"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:sienna_vine",
-                   "count":  8
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#$#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:vine"
+    },
+    "$": {
+      "item": "goety:red_moss_growth"
+    }
+  },
+  "result": {
+    "count": 8,
+    "id": "goety:sienna_vine"
+  }
 }
-

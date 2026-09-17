@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "minecraft:map"
+    },
+    {
+      "tag": "forge:bones"
+    }
+  ],
+  "result":
+  {
+    "id": "goety:waystone",
+    "count": 2
+  }
+}

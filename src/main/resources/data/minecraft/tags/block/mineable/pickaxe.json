@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "goety:wolf_totem",
     "#goety:shade_blocks",
     "#goety:jade_blocks",
     "#goety:jade_ores",
@@ -55,6 +56,9 @@
     "goety:purpur_end_rod_block",
     "goety:end_rod_block",
     "goety:diamond_mold_block",
-    "goety:reinforced_redstone_block"
+    "goety:reinforced_redstone_block",
+    "goety:stone_sarcophagus",
+    "goety:deepslate_sarcophagus",
+    "goety:sandstone_sarcophagus"
   ]
 }

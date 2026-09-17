@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "__comment": "mobs that when killed, have all their summons killed as well.",
+  "values": [
+    "goety:sorcerer"
+  ]
+}

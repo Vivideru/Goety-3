@@ -1,18 +1,17 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "key":  {
-                "#":  {
-                          "item":  "goety:cobbled_end_stone"
-                      }
-            },
-    "pattern":  [
-                    "#  ",
-                    "## ",
-                    "###"
-                ],
-    "result":  {
-                   "count":  4,
-                   "id":  "goety:cobbled_end_stone_stairs"
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "goety:cobbled_end_stone"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "goety:cobbled_end_stone_stairs"
+  }
 }
-

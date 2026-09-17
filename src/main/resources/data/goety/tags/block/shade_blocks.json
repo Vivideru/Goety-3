@@ -24,6 +24,8 @@
     "goety:ice_bouquet_trap",
     "goety:wind_blower",
     "goety:sculk_devourer",
-    "goety:shade_gravestone"
+    "goety:shade_gravestone",
+    "goety:shade_ossuary",
+    "goety:shade_sarcophagus"
   ]
 }

@@ -18,6 +18,8 @@ import com.Polarice3.Goety.common.blocks.entities.ArcaBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.BrewCauldronBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.CursedCageBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.OminousIdolBlockEntity;
+import com.Polarice3.Goety.common.blocks.entities.SculpturedStatueBlockEntity;
+import com.Polarice3.Goety.common.crafting.CauldronSusStewRecipe;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.ally.GuardianServant;
 import com.Polarice3.Goety.common.entities.ally.Leapleaf;
@@ -45,6 +47,7 @@ import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.common.items.WaystoneItem;
 import com.Polarice3.Goety.common.items.curios.GloveItem;
 import com.Polarice3.Goety.common.items.curios.TargetingMonocleItem;
+import com.Polarice3.Goety.common.items.magic.PatrolPlan;
 import com.Polarice3.Goety.common.magic.spells.abyss.PrismaBeamSpell;
 import com.Polarice3.Goety.common.magic.spells.abyss.WaterJetSpell;
 import com.Polarice3.Goety.common.magic.spells.geomancy.BurrowingSpell;
@@ -482,8 +485,14 @@ public class ClientEvents {
         Minecraft minecraft = Minecraft.getInstance();
         final Player player = minecraft.player;
 
-        if (LichdomHelper.isLich(player)){
-            if (event.getName() == VanillaGuiLayers.FOOD_LEVEL){
+        if (player != null && LichdomHelper.isLich(player)){
+            ResourceLocation layer = event.getName();
+            boolean appleSkinFoodLayer = layer.getNamespace().equals("appleskin")
+                    && (layer.getPath().equals("hunger_restored")
+                    || layer.getPath().equals("saturation_level")
+                    || layer.getPath().equals("exhaustion_level"));
+            // Liches do not use hunger, so compatible food overlays must disappear with the vanilla food layer.
+            if (layer.equals(VanillaGuiLayers.FOOD_LEVEL) || appleSkinFoodLayer){
                 event.setCanceled(true);
             }
         }
@@ -736,11 +745,23 @@ public class ClientEvents {
                                 poseStack.popPose();
                             }
                         }
+                    } else if (blockEntity instanceof SculpturedStatueBlockEntity statueBlock) {
+                        poseStack.pushPose();
+                        poseStack.translate((float)(width / 2), (float)(height - 68), 0.0F);
+                        RenderSystem.enableBlend();
+                        RenderSystem.defaultBlendFunc();
+                        String name = statueBlock.getBlockState().getBlock().getName().getString();
+                        int nameWidth = fontRenderer.width(name);
+                        event.getGuiGraphics().drawString(fontRenderer, name, -nameWidth / 2, -4, 0xFFFFFF);
+                        RenderSystem.disableBlend();
+                        poseStack.popPose();
                     }
                 }
             }
         }
     }
+
+    private static final ColorUtil RITUAL_LOCATION_COLOR = ColorUtil.GOLD;
 
     @SubscribeEvent
     public static void RenderWorldLast(RenderLevelStageEvent event) {
@@ -754,14 +775,19 @@ public class ClientEvents {
             List<AbstractClientPlayer> players = minecraft.level.players();
             if (player != null) {
                 Level world = player.level();
-                ItemStack stack = player.getMainHandItem();
                 Map<BlockPos, ColorUtil> renderCubes = new HashMap<>();
-                if (stack.getItem() instanceof WaystoneItem) {
-                    if (stack.has(DataComponents.CUSTOM_DATA)) {
+                for (InteractionHand hand : InteractionHand.values()) {
+                    ItemStack stack = player.getItemInHand(hand);
+                    if (stack.getItem() instanceof WaystoneItem && stack.has(DataComponents.CUSTOM_DATA)) {
                         GlobalPos loc = WaystoneItem.getPosition(stack);
-                        if (loc != null) {
-                            if (loc.dimension() == world.dimension()) {
-                                renderCubes.put(loc.pos(), new ColorUtil(ChatFormatting.GOLD));
+                        if (loc != null && loc.dimension() == world.dimension()) {
+                            renderCubes.put(loc.pos(), RITUAL_LOCATION_COLOR);
+                        }
+                    }
+                    if (stack.getItem() instanceof PatrolPlan) {
+                        for (GlobalPos pos : PatrolPlan.getList(stack)) {
+                            if (pos.dimension() == world.dimension()) {
+                                renderCubes.put(pos.pos(), RITUAL_LOCATION_COLOR);
                             }
                         }
                     }
@@ -1403,5 +1429,6 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onRecipesUpdated(RecipesUpdatedEvent event) {
         CrusherServant.invalidateRecipeCache();
+        CauldronSusStewRecipe.invalidateFlowerCache();
     }
 }

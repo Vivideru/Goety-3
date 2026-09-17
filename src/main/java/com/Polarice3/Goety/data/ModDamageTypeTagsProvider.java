@@ -107,6 +107,9 @@ public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
                         ModDamageSource.VOIDED,
                         ModDamageSource.DISMISSED,
                         ModDamageSource.DEATH);
+        // Minecraft 1.21 reads the vanilla tag when deciding whether damage should apply knockback, while the Goety tag remains available for existing checks.
+        this.tag(DamageTypeTags.NO_KNOCKBACK)
+                .addTag(ModTags.DamageTypes.NO_KNOCKBACK);
         this.tag(ModTags.DamageTypes.PHYSICAL)
                 .add(DamageTypes.PLAYER_ATTACK,
                         DamageTypes.MOB_ATTACK,

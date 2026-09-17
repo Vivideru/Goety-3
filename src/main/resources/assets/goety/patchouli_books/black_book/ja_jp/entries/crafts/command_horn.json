@@ -1,11 +1,11 @@
 {
-  "name": "Commanding Horn",
+  "name": "命令の角笛",
   "icon": "goety:command_horn",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Commanding Horn allows you to change movement stances of your servants, that are within 4 blocks from you, and comes with multiple modes that can be changed by shift-right clicking while holding it."
+      "text": "命令の角笛を使用すると、自分から4ブロック以内にいる従者の動きのモードを変更できます。また、角笛を持った状態でShiftキーを押しながら右クリックすることで、複数のモードを変更できます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,11 +13,16 @@
     },
     {
       "type": "patchouli:text",
-      "text": "On None mode, the horn makes the servants go between Standing By and Following. On others it will cause all servant nearby to enter the mode the horn is set to."
+      "text": "モード「なし」の場合、角笛を鳴らすと従者を「スタンバイ・フォロー」と状態を切り替えます。それ以外の場合、角笛を鳴らすと近くにいるすべての従者が、角笛に設定されたモードに移行します。"
     },
     {
       "type": "patchouli:text",
-      "text": "You can also right click on a block to have them move towards it, unless the servants are guarding and the horn is not in Guard mode. However, servants that are already commanded or part of a $(l:crafts/grimoire_of_grounding)Grimoire of Grounding$() are unaffected by the horn."
+      "text": "ブロックを右クリックすると、従者をブロックに向かって移動させることもできます。ただし、従者が巡回中で、角笛がモード「巡回」になっていない場合に限ります。また、既に命令を受けている従者や、$(l:crafts/grimoire_of_grounding)接地のグリモア$()の一部である従者は、角笛の影響を受けません。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:patrol_plan",
+      "text": "$(l:crafts/patrol_plan)パトロール計画が設定済みの紙$()をオフハンドに持って、「なし」モードに設定した命令の角笛を使用すると、選択されたすべての従者がその位置でパトロールを開始します。Shiftキーを押しながら右クリックで使用すると、選択された従者のパトロールを停止します。"
     }
   ]
 }

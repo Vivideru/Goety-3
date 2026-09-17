@@ -1,24 +1,23 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "cec",
-                    "chc",
-                    " c "
-                ],
-    "key":  {
-                "e":  {
-                          "item":  "goety:command_focus"
-                      },
-                "c":  {
-                          "item":  "goety:cursed_ingot"
-                      },
-                "h":  {
-                          "item":  "minecraft:goat_horn"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:command_horn",
-                   "count":  1
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cec",
+    "chc",
+    " c "
+  ],
+  "key": {
+    "e": {
+      "item": "goety:command_focus"
+    },
+    "c": {
+      "item": "goety:cursed_ingot"
+    },
+    "h": {
+      "item": "minecraft:goat_horn"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:command_horn"
+  }
 }
-

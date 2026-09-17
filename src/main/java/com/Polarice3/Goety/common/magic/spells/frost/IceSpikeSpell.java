@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.frost;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.IceSpear;
 import com.Polarice3.Goety.common.entities.projectiles.IceSpike;
 import com.Polarice3.Goety.common.magic.Spell;
@@ -53,6 +54,7 @@ public class IceSpikeSpell extends Spell {
         List<ResourceKey<Enchantment>> list = new ArrayList<>();
         list.add(ModEnchantments.POTENCY);
         list.add(ModEnchantments.VELOCITY);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

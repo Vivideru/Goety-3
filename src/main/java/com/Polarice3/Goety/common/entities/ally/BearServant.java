@@ -231,7 +231,8 @@ public class BearServant extends AnimalSummon implements PlayerRideable, IAutoRi
             float angle = (float) ((Math.PI / 180.0F) * this.yBodyRot);
             double x = radius * Mth.sin(Mth.PI + angle);
             double z = radius * Mth.cos(angle);
-            rider.setPos(this.getX() + x, this.getY() + this.getPassengersRidingOffset(), this.getZ() + z);
+            // Minecraft 1.21 includes the rider attachment in passenger placement, so remove it from this animated offset.
+            rider.setPos(this.getX() + x, this.getY() + this.getPassengersRidingOffset() - rider.getVehicleAttachmentPoint(this).y(), this.getZ() + z);
         }
     }
 

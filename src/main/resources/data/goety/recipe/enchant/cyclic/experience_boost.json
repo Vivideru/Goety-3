@@ -1,29 +1,32 @@
 {
-    "type":  "goety:ritual",
-    "ritual_type":  "goety:enchant",
-    "activation_item":  {
-                            "item":  "minecraft:book"
-                        },
-    "craftType":  "magic",
-    "soulCost":  10,
-    "duration":  10,
-    "enchantment":  "cyclic:experience_boost",
-    "xpLevelCost":  5,
-    "ingredients":  [
-                        {
-                            "tag":  "c:ingots/gold"
-                        },
-                        {
-                            "item":  "minecraft:bookshelf"
-                        },
-                        {
-                            "tag":  "c:gems/lapis"
-                        }
-                    ],
-    "result":  {
-                   "id":  "minecraft:enchanted_book"
-               },
-    "neoforge:conditions": [ { "type": "neoforge:mod_loaded", "modid": "cyclic" } ]
+  "type": "goety:ritual",
+  "ritual_type": "goety:enchant",
+  "activation_item": {
+    "item": "minecraft:book"
+  },
+  "craftType": "magic",
+  "soulCost": 10,
+  "duration": 10,
+  "enchantment": "cyclic:experience_boost",
+  "xpLevelCost": 5,
+  "ingredients": [
+    {
+      "tag": "c:ingots/gold"
+    },
+    {
+      "item": "minecraft:bookshelf"
+    },
+    {
+      "tag": "c:gems/lapis"
+    }
+  ],
+  "result": {
+    "id": "minecraft:enchanted_book"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cyclic"
+    }
+  ]
 }
-
-

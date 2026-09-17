@@ -1,29 +1,28 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "bdg",
-                    "cec",
-                    "gdb"
-                ],
-    "key":  {
-                "b":  {
-                          "tag":  "c:rods/blaze"
-                      },
-                "e":  {
-                          "item":  "goety:ignite_focus"
-                      },
-                "c":  {
-                          "tag":  "c:storage_blocks/coal"
-                      },
-                "g":  {
-                          "tag":  "c:gunpowder"
-                      },
-                "d":  {
-                          "item":  "minecraft:dispenser"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:fireball_focus"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bdg",
+    "cec",
+    "gdb"
+  ],
+  "key": {
+    "b": {
+      "tag": "c:rods/blaze"
+    },
+    "e": {
+      "item": "goety:ignite_focus"
+    },
+    "c": {
+      "tag": "c:storage_blocks/coal"
+    },
+    "g": {
+      "tag": "c:gunpowder"
+    },
+    "d": {
+      "item": "minecraft:dispenser"
+    }
+  },
+  "result": {
+    "id": "goety:fireball_focus"
+  }
 }
-

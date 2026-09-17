@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirePillar extends CastSpellTrap{
+    // Keep repeated pillar damage on the original half-second cadence without allowing per-tick hits.
+    private static final int DAMAGE_INTERVAL_TICKS = 10;
     public int warmUp;
     public boolean playEvent;
 
@@ -123,7 +125,7 @@ public class FirePillar extends CastSpellTrap{
                             }
                             // Fire pillars tick repeatedly; respect i-frames even when the source is hellfire to avoid per-tick boss damage.
                             if (livingEntity.invulnerableTime <= 0 && livingEntity.hurt(damageSource, damage)) {
-                                livingEntity.invulnerableTime = 15;
+                                livingEntity.invulnerableTime = DAMAGE_INTERVAL_TICKS;
                                 livingEntity.igniteForSeconds(5.0F);
                             }
                         }

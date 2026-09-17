@@ -66,7 +66,7 @@ public class ModCreativeTab {
                 ModSpawnEggs.ITEMS.getEntries().forEach(i -> {
                     output.accept(i.get());
                 });
-                output.accept(VivideruItems.WARG_SPAWN_EGG.get());
+                output.accept(VivideruItems.HOSTILE_WARG_SPAWN_EGG.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCK_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_block", () -> CreativeModeTab.builder()
@@ -101,6 +101,13 @@ public class ModCreativeTab {
                 ServantSpawnEggs.ITEMS.getEntries().forEach(i -> {
                     output.accept(i.get());
                 });
+                // Vivideru servant eggs use a separate registry and must be added to the servant tab explicitly.
+                output.accept(VivideruItems.WARG_SPAWN_EGG.get());
+                output.accept(VivideruItems.WARG_WINTER_SPAWN_EGG.get());
+                output.accept(VivideruItems.WARG_STORM_SPAWN_EGG.get());
+                output.accept(VivideruItems.WARG_SKELETAL_SPAWN_EGG.get());
+                output.accept(VivideruItems.WARG_GRAY_SPAWN_EGG.get());
+                output.accept(VivideruItems.CERBERUS_SPAWN_EGG.get());
             }).build());
 
     private static final Comparator<Holder<PaintingVariant>> PAINTING_COMPARATOR = Comparator.comparing(Holder::value, Comparator.<PaintingVariant>comparingInt((p_270004_) -> {

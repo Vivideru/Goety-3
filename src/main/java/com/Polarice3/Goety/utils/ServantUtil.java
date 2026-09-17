@@ -2,13 +2,16 @@ package com.Polarice3.Goety.utils;
 
 import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.common.entities.ally.Summoned;
 import com.Polarice3.Goety.common.entities.ally.illager.PillagerServant;
 import com.Polarice3.Goety.common.entities.ally.illager.VindicatorServant;
+import com.Polarice3.Goety.common.entities.ally.illager.raider.ModRavager;
 import com.Polarice3.Goety.common.entities.ally.illager.raider.Prisoner;
 import com.Polarice3.Goety.common.entities.ally.illager.raider.RaiderServant;
 import com.Polarice3.Goety.common.entities.ally.undead.skeleton.AbstractSkeletonServant;
+import com.Polarice3.Goety.common.entities.ally.undead.zombie.ZombieRavager;
 import com.Polarice3.Goety.common.entities.ally.undead.zombie.ZombieServant;
 import com.Polarice3.Goety.common.entities.ally.undead.zombie.ZombieVillagerServant;
 import com.Polarice3.Goety.common.entities.hostile.*;
@@ -125,6 +128,42 @@ public class ServantUtil {
         }
     }
 
+    public static boolean convertUndead(Mob target, LivingEntity owner, boolean permanent, boolean keepLoot){
+        Summoned summoned = null;
+        if (target instanceof MuckWraith) {
+            summoned = target.convertTo(ModEntityType.MUCK_WRAITH_SERVANT.get(), keepLoot);
+        } else if (target instanceof BorderWraith) {
+            summoned = target.convertTo(ModEntityType.BORDER_WRAITH_SERVANT.get(), keepLoot);
+        } else if (target instanceof Wraith) {
+            summoned = target.convertTo(ModEntityType.WRAITH_SERVANT.get(), keepLoot);
+        } else if (target instanceof Reaper) {
+            summoned = target.convertTo(ModEntityType.REAPER_SERVANT.get(), keepLoot);
+        } else if (target instanceof Phantom) {
+            summoned = target.convertTo(ModEntityType.PHANTOM_SERVANT.get(), keepLoot);
+        }
+
+        if (summoned != null) {
+            EntityType<? extends LivingEntity> entityType = (EntityType<? extends LivingEntity>) summoned.getType();
+            if (net.neoforged.neoforge.event.EventHooks.canLivingConvert(target, entityType, timer -> {})) {
+                if (owner != null) {
+                    summoned.setTrueOwner(owner);
+                }
+                if (target.level() instanceof ServerLevel serverLevel) {
+                    summoned.finalizeSpawn(serverLevel, target.level().getCurrentDifficultyAt(summoned.blockPosition()), MobSpawnType.CONVERSION, null);
+                }
+                if (!permanent) {
+                    summoned.setLimitedLife(10 * (15 + target.level().random.nextInt(45)));
+                }
+                net.neoforged.neoforge.event.EventHooks.onLivingConvert(target, summoned);
+                if (!summoned.isSilent()) {
+                    summoned.level().levelEvent(null, 1026, summoned.blockPosition(), 0);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void infect(LivingEntity target, LivingEntity owner, boolean permanent, boolean keepLoot) {
         if (target instanceof Mob mob) {
             infect(mob, owner, permanent, keepLoot);
@@ -133,13 +172,7 @@ public class ServantUtil {
 
     public static void infect(Mob target, LivingEntity owner, boolean permanent, boolean keepLoot){
         Summoned summoned = null;
-        if (target instanceof Wraith){
-            summoned = target.convertTo(ModEntityType.WRAITH_SERVANT.get(), keepLoot);
-        } else if (target instanceof BorderWraith){
-            summoned = target.convertTo(ModEntityType.BORDER_WRAITH_SERVANT.get(), keepLoot);
-        } else if (target instanceof MuckWraith){
-            summoned = target.convertTo(ModEntityType.MUCK_WRAITH_SERVANT.get(), keepLoot);
-        } else if (target instanceof PiglinBrute){
+        if (target instanceof PiglinBrute){
             summoned = target.convertTo(ModEntityType.ZPIGLIN_BRUTE_SERVANT.get(), keepLoot);
         } else if (target instanceof AbstractPiglin){
             summoned = target.convertTo(ModEntityType.ZPIGLIN_SERVANT.get(), keepLoot);
@@ -149,6 +182,8 @@ public class ServantUtil {
             summoned = target.convertTo(ModEntityType.ZOMBIE_VINDICATOR_SERVANT.get(), keepLoot);
         } else if (target instanceof Pillager || target instanceof PillagerServant){
             summoned = target.convertTo(ModEntityType.SKELETON_PILLAGER_SERVANT.get(), keepLoot);
+        } else if (target instanceof Ravager || target instanceof ModRavager){
+            summoned = target.convertTo(ModEntityType.ZOMBIE_RAVAGER.get(), keepLoot);
         }
 
         if (summoned != null) {
@@ -179,6 +214,8 @@ public class ServantUtil {
                         }
                         servant.setVillagerXp(prisoner.getVillagerXp());
                     }
+                } else if (summoned instanceof ZombieRavager servant) {
+                    servant.convertNewEquipment(target);
                 }
                 net.neoforged.neoforge.event.EventHooks.onLivingConvert(target, summoned);
                 if (!summoned.isSilent()) {
@@ -335,10 +372,10 @@ public class ServantUtil {
                                         Entity entity = livingOwned.changeDimension(ArcaTeleporter.transition(newLevel, livingOwned, vec32));
                                         if (entity != null) {
                                             if (newLevel.getWorldBorder().isWithinBounds(vec32.x, vec32.y, vec32.z)) {
-                                                entity.teleportTo(vec32.x, vec32.y, vec32.z);
+                                                MobUtil.teleportTracked(entity, vec32.x, vec32.y, vec32.z);
                                             } else {
                                                 BlockPos blockPos2 = newLevel.getSharedSpawnPos();
-                                                entity.teleportTo(blockPos2.getX(), blockPos2.getY(), blockPos2.getZ());
+                                                MobUtil.teleportTracked(entity, blockPos2.getX(), blockPos2.getY(), blockPos2.getZ());
                                             }
                                             return entity;
                                         }
@@ -347,10 +384,10 @@ public class ServantUtil {
                             }
                         } else {
                             if (serverLevel.getWorldBorder().isWithinBounds(vec3.x, vec3.y, vec3.z)) {
-                                livingOwned.teleportTo(vec3.x, vec3.y, vec3.z);
+                                MobUtil.teleportTracked(livingOwned, vec3.x, vec3.y, vec3.z);
                             } else {
                                 BlockPos blockPos2 = serverLevel.getSharedSpawnPos();
-                                livingOwned.teleportTo(blockPos2.getX(), blockPos2.getY(), blockPos2.getZ());
+                                MobUtil.teleportTracked(livingOwned, blockPos2.getX(), blockPos2.getY(), blockPos2.getZ());
                             }
                             return livingOwned;
                         }
@@ -431,6 +468,44 @@ public class ServantUtil {
         }
 
         return equipmentslot;
+    }
+
+    public static boolean nullifyTarget(IOwned owned, LivingEntity target) {
+        boolean shouldClearTarget = false;
+        if (owned instanceof Mob mobThis) {
+            if (owned.getMasterOwner() instanceof Player && mobThis.level().getServer() != null
+                    && !mobThis.level().getServer().isPvpAllowed()
+                    && (target instanceof Player || target instanceof IOwned ownedTarget
+                    && ownedTarget.getMasterOwner() instanceof Player)) {
+                shouldClearTarget = true;
+            }
+            // Wild Rage deliberately suspends the normal owner and servant alliance checks.
+            if (!mobThis.hasEffect(GoetyEffects.WILD_RAGE)) {
+                if (target instanceof IOwned ownedTarget) {
+                    shouldClearTarget = owned.getTrueOwner() != null && ownedTarget.getTrueOwner() == owned.getTrueOwner();
+                    if (ownedTarget.getTrueOwner() == owned || MobUtil.ownerStack(owned, ownedTarget)) {
+                        shouldClearTarget = true;
+                    }
+                    if (!shouldClearTarget && owned.isAllyWith(target)) {
+                        shouldClearTarget = true;
+                    }
+                    if (!shouldClearTarget && owned.getTrueOwner() == null && ownedTarget.getTrueOwner() == null
+                            && owned.getOwnerId() != null && owned.getOwnerId().equals(ownedTarget.getOwnerId())) {
+                        shouldClearTarget = true;
+                    }
+                    if (!shouldClearTarget && owned.getOwnerId() != null && ownedTarget.getOwnerId() != null
+                            && mobThis.level() instanceof ServerLevel serverLevel
+                            && SEHelper.isSavedAlly(serverLevel, owned.getOwnerId(), target)) {
+                        shouldClearTarget = true;
+                    }
+                } else if (target != null && (owned.isAllyWith(target)
+                        || owned.getMasterOwner() != null && target == owned.getMasterOwner()
+                        || target.isRemoved() || target.isDeadOrDying())) {
+                    shouldClearTarget = true;
+                }
+            }
+        }
+        return shouldClearTarget;
     }
 
     // This enum is internal-only; keeping it out of NeoForge enum extension processing avoids lazy-load crashes.

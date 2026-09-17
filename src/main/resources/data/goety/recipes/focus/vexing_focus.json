@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "animation",
+  "soulCost": 5,
+  "duration": 30,
+  "ingredients": [
+    {
+      "item": "minecraft:amethyst_block"
+    },
+    {
+      "tag": "forge:ender_pearls"
+    },
+    {
+      "item": "minecraft:anvil"
+    },
+    {
+      "item": "minecraft:note_block"
+    },
+    {
+      "item": "minecraft:sculk_sensor"
+    },
+    {
+      "tag": "forge:rods/blaze"
+    },
+    {
+      "tag": "forge:feathers"
+    },
+    {
+      "tag": "forge:dusts/glowstone"
+    }
+  ],
+  "result": {
+    "id": "goety:vexing_focus"
+  }
+}

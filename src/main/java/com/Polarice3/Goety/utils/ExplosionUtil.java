@@ -12,6 +12,9 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 public class ExplosionUtil {
+    private static final int MAX_EXPLOSION_DEPTH = 8;
+    // Explosions run on both logical sides, so depth must be isolated per game thread.
+    private static final ThreadLocal<Integer> EXPLOSION_DEPTH = ThreadLocal.withInitial(() -> 0);
 
     public static LootingExplosion lootExplode(Level world, @Nullable Entity pExploder, double pX, double pY, double pZ, float pSize, boolean pCausesFire, Explosion.BlockInteraction pMode, LootingExplosion.Mode pLootMode) {
         LootingExplosion explosion = new LootingExplosion(world, pExploder, pX, pY, pZ, pSize, pCausesFire, pMode, pLootMode);
@@ -45,5 +48,23 @@ public class ExplosionUtil {
             explosion.finalizeExplosion(true);
         }
         return explosion;
+    }
+
+    public static boolean enterExplosion() {
+        int depth = EXPLOSION_DEPTH.get();
+        if (depth >= MAX_EXPLOSION_DEPTH) {
+            return false;
+        }
+        EXPLOSION_DEPTH.set(depth + 1);
+        return true;
+    }
+
+    public static void exitExplosion() {
+        int depth = EXPLOSION_DEPTH.get();
+        if (depth <= 1) {
+            EXPLOSION_DEPTH.remove();
+        } else {
+            EXPLOSION_DEPTH.set(depth - 1);
+        }
     }
 }

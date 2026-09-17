@@ -45,6 +45,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModEntityType {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPE = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Goety.MOD_ID);
+    // The 1.21 attachment is shared by mounts of different heights, so keep servants seated without sinking into smaller mounts.
+    private static final float ILLAGER_RIDING_OFFSET = -0.2F;
+    private static final float HOSTILE_ILLAGER_RIDING_OFFSET = -0.6F;
 
     public static final DeferredHolder<EntityType<?>, EntityType<NetherMeteor>> NETHER_METEOR = register("nether_meteor",
             EntityType.Builder.<NetherMeteor>of(NetherMeteor::new, MobCategory.MISC)
@@ -282,7 +285,9 @@ public class ModEntityType {
             EntityType.Builder.<SurgingOrb>of(SurgingOrb::new, MobCategory.MISC)
                     .sized(0.3125F, 0.3125F)
                     .clientTrackingRange(10)
-                    .updateInterval(20));
+                    // The orb steers every tick.  Sending position updates only
+                    // once per second makes the client render visible jumps.
+                    .updateInterval(1));
 
     public static final DeferredHolder<EntityType<?>, EntityType<BouncyBubble>> BOUNCY_BUBBLE = register("bouncy_bubble",
             EntityType.Builder.<BouncyBubble>of(BouncyBubble::new, MobCategory.MISC)
@@ -838,6 +843,11 @@ public class ModEntityType {
                     .sized(0.6F, 1.95F)
                     .clientTrackingRange(8));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<ZombieRoyalGuardServant>> BLACKGUARD_VARIANT_SERVANT = register("blackguard_variant_servant",
+            EntityType.Builder.of(ZombieRoyalGuardServant::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .clientTrackingRange(8));
+
     public static final DeferredHolder<EntityType<?>, EntityType<SkeletonServant>> SKELETON_SERVANT = register("skeleton_servant",
             EntityType.Builder.of(SkeletonServant::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
@@ -1080,84 +1090,105 @@ public class ModEntityType {
             EntityType.Builder.of(Neollager::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<PillagerServant>> PILLAGER_SERVANT = register("pillager_servant",
             EntityType.Builder.of(PillagerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<PikerServant>> PIKER_SERVANT = register("piker_servant",
             EntityType.Builder.of(PikerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<SignalerServant>> SIGNALER_SERVANT = register("signaler_servant",
             EntityType.Builder.of(SignalerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<VindicatorServant>> VINDICATOR_SERVANT = register("vindicator_servant",
             EntityType.Builder.of(VindicatorServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
+                    .clientTrackingRange(10));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<RoyalGuardServant>> ROYAL_GUARD_SERVANT = register("royal_guard_servant",
+            EntityType.Builder.of(RoyalGuardServant::new, MobCategory.MONSTER)
+                    .canSpawnFarFromPlayer()
+                    .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<VindicatorChefServant>> VINDICATOR_CHEF_SERVANT = register("vindicator_chef_servant",
             EntityType.Builder.of(VindicatorChefServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<MountaineerServant>> MOUNTAINEER_SERVANT = register("mountaineer_servant",
             EntityType.Builder.of(MountaineerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<CrusherServant>> CRUSHER_SERVANT = register("crusher_servant",
             EntityType.Builder.of(CrusherServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EvokerServant>> EVOKER_SERVANT = register("evoker_servant",
             EntityType.Builder.of(EvokerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<GeomancerServant>> GEOMANCER_SERVANT = register("geomancer_servant",
             EntityType.Builder.of(GeomancerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<IceologerServant>> ICEOLOGER_SERVANT = register("iceologer_servant",
             EntityType.Builder.of(IceologerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<CryologerServant>> CRYOLOGER_SERVANT = register("cryologer_servant",
             EntityType.Builder.of(CryologerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<WindCallerServant>> WIND_CALLER_SERVANT = register("wind_caller_servant",
             EntityType.Builder.of(WindCallerServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<StormCasterServant>> STORM_CASTER_SERVANT = register("storm_caster_servant",
             EntityType.Builder.of(StormCasterServant::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<RipperServant>> RIPPER_SERVANT = register("ripper_servant",
@@ -1262,6 +1293,11 @@ public class ModEntityType {
             EntityType.Builder.of(GuardianServant::new, MobCategory.MONSTER)
                     .sized(0.85F, 0.85F)
                     .clientTrackingRange(8));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<ElderGuardianServant>> ELDER_GUARDIAN_SERVANT = register("elder_guardian_servant",
+            EntityType.Builder.of(ElderGuardianServant::new, MobCategory.MONSTER)
+                    .sized(1.9975F, 1.9975F)
+                    .clientTrackingRange(10));
 
     public static final DeferredHolder<EntityType<?>, EntityType<BearServant>> BEAR_SERVANT = register("bear_servant",
             EntityType.Builder.of(BearServant::new, MobCategory.MONSTER)
@@ -1368,12 +1404,14 @@ public class ModEntityType {
             EntityType.Builder.of(Sorcerer::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Envioker>> ENVIOKER = register("envioker",
             EntityType.Builder.of(Envioker::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Tormentor>> TORMENTOR = register("tormentor",
@@ -1387,18 +1425,21 @@ public class ModEntityType {
             EntityType.Builder.of(Inquillager::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Conquillager>> CONQUILLAGER = register("conquillager",
             EntityType.Builder.of(Conquillager::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Piker>> PIKER = register("piker",
             EntityType.Builder.of(Piker::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Ripper>> RIPPER = register("ripper",
@@ -1417,30 +1458,35 @@ public class ModEntityType {
             EntityType.Builder.of(Crusher::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<StormCaster>> STORM_CASTER = register("storm_caster",
             EntityType.Builder.of(StormCaster::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Cryologer>> CRYOLOGER = register("cryologer",
             EntityType.Builder.of(Cryologer::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Preacher>> PREACHER = register("preacher",
             EntityType.Builder.of(Preacher::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<Minister>> MINISTER = register("minister",
             EntityType.Builder.of(Minister::new, MobCategory.MONSTER)
                     .canSpawnFarFromPlayer()
                     .sized(0.6F, 1.95F)
+                    .ridingOffset(HOSTILE_ILLAGER_RIDING_OFFSET)
                     .clientTrackingRange(8));
 
     public static final DeferredHolder<EntityType<?>, EntityType<HostileRedstoneGolem>> HOSTILE_REDSTONE_GOLEM = register("hostile_redstone_golem",

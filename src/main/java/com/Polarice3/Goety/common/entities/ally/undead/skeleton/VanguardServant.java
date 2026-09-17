@@ -78,6 +78,12 @@ public class VanguardServant extends AbstractSkeletonServant {
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.VanguardServantArmor));
     }
 
+    @Override
+    public Vec3 getVehicleAttachmentPoint(Entity vehicle) {
+        // Humanoid passengers use their feet as the mount anchor; the vehicle supplies the saddle height.
+        return Vec3.ZERO;
+    }
+
     public void setConfigurableAttributes(){
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.MAX_HEALTH), AttributesConfig.get(AttributesConfig.VanguardServantHealth));
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.ATTACK_DAMAGE), AttributesConfig.get(AttributesConfig.VanguardServantDamage));

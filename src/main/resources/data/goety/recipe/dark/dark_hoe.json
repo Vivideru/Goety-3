@@ -1,20 +1,19 @@
 {
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "dd ",
-                    " s ",
-                    " s "
-                ],
-    "key":  {
-                "d":  {
-                          "item":  "goety:dark_ingot"
-                      },
-                "s":  {
-                          "tag":  "c:rods/wooden"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:dark_hoe"
-               }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "dd ",
+    " s ",
+    " s "
+  ],
+  "key": {
+    "d": {
+      "item": "goety:dark_ingot"
+    },
+    "s": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "result": {
+    "id": "goety:dark_hoe"
+  }
 }
-

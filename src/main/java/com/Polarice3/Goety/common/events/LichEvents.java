@@ -39,6 +39,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingBreatheEvent;
 
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -51,6 +52,16 @@ import static net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class LichEvents {
+
+    @SubscribeEvent
+    public static void onLichBreathe(LivingBreatheEvent event) {
+        if (LichdomHelper.isLich(event.getEntity())) {
+            // NeoForge checks breathing separately from damage immunity and the player's rendered Lich form.
+            event.setCanBreathe(true);
+            event.setConsumeAirAmount(0);
+            event.setRefillAirAmount(event.getEntity().getMaxAirSupply());
+        }
+    }
 
     @SubscribeEvent
     public static void onPlayerLichdom(PlayerTickEvent.Post event){
@@ -84,7 +95,14 @@ public class LichEvents {
                 }
             }
 
-            player.getActiveEffects().removeIf(effectInstance -> !EffectsUtil.canAffectLich(effectInstance, world));
+            if (!world.isClientSide) {
+                // Use the removal API so effect attributes and client state are cleared together.
+                for (MobEffectInstance effect : java.util.List.copyOf(player.getActiveEffects())) {
+                    if (!EffectsUtil.canAffectLich(effect, world)) {
+                        player.removeEffect(effect.getEffect());
+                    }
+                }
+            }
             if (player.hasEffect(GoetyEffects.SOUL_HUNGER)){
                 if (SEHelper.getSoulsAmount(player, MainConfig.MaxSouls.get())){
                     player.removeEffect(GoetyEffects.SOUL_HUNGER);

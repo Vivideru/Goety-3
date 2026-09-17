@@ -843,6 +843,8 @@ public class Heresiarch extends Cultist {
                             cultist.addEffect(new MobEffectInstance(GoetyEffects.HYSTERIA, MathHelper.secondsToTicks(45), 0, false, false));
                             cultist.playSound(SoundEvents.FIRECHARGE_USE, 1.0F, 1.0F);
                             ServerParticleUtil.addParticlesAroundSelf(serverLevel, ParticleTypes.ANGRY_VILLAGER, cultist);
+                            // Record the attacker as well as the direct target so vanilla retaliation goals remain active.
+                            cultist.setLastHurtByMob(this.getTarget());
                             cultist.setTarget(this.getTarget());
                         }
                     }

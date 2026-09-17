@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.material.MapColor;
@@ -24,10 +25,14 @@ import net.minecraft.world.level.material.MapColor;
 public class ChorusGrassBlock extends Block implements BonemealableBlock {
 
     public ChorusGrassBlock() {
-        super(ModBlocks.EndStoneProperties()
+        this(ModBlocks.EndStoneProperties()
                 .mapColor(MapColor.COLOR_ORANGE)
                 .randomTicks()
                 .sound(ModSoundTypes.CHORUS_GRASS));
+    }
+
+    public ChorusGrassBlock(BlockBehaviour.Properties properties) {
+        super(properties);
     }
 
     private static boolean canBeGrass(BlockState p_56824_, LevelReader p_56825_, BlockPos p_56826_) {

@@ -1,0 +1,40 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:cursed_ingot"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_cursed_ingot.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_cursed_ingot.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/craft_totem_roots",
+  "criteria": {
+    "cursed_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:cursed_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "cursed_ingot"
+    ]
+  ],
+  "rewards": {
+    "experience": 5
+  }
+}

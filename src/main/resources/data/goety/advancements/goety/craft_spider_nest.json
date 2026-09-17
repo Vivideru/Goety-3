@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "goety:spider_nest"
+    },
+    "title": {
+      "translate": "advancements.goety.craft_spider_nest.title"
+    },
+    "description": {
+      "translate": "advancements.goety.craft_spider_nest.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "goety:goety/root",
+  "criteria": {
+    "spider_nest": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "goety:spider_nest"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "spider_nest"
+    ]
+  ]
+}

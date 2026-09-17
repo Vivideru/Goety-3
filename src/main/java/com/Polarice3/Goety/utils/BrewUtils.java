@@ -405,7 +405,8 @@ public class BrewUtils {
             Holder<Potion> potion = ModPotionUtil.getPotion(itemStack);
             List<MobEffectInstance> list = ModPotionUtil.getMobEffects(itemStack);
             List<BrewEffectInstance> list1 = BrewUtils.getBrewEffects(itemStack);
-            boolean flag = potion.is(Potions.WATER) && list.isEmpty();
+            // Custom-only brews still use water as their base potion, so they must not enter the plain-water branch.
+            boolean flag = potion.is(Potions.WATER) && list.isEmpty() && list1.isEmpty();
             if (flag) {
                 applyWater(livingEntity, itemStack, target, blockPos);
             } else if (!list.isEmpty() || !list1.isEmpty()) {

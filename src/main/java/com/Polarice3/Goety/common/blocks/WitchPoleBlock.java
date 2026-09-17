@@ -33,25 +33,25 @@ public class WitchPoleBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     protected static final VoxelShape POLE = Block.box(6.0D, 0.0D, 6.0D,
-            10.0D, 22.0D, 10.0D);
-    protected static final VoxelShape TOP_POLE = Block.box(6.0D, 6.0D, 6.0D,
-            10.0D, 28.0D, 10.0D);
+            10.0D, 16.0D, 10.0D);
+    protected static final VoxelShape TOP_POLE = Block.box(6.0D, 0.0D, 6.0D,
+            10.0D, 16.0D, 10.0D);
     protected static final VoxelShape WEST_AABB = Shapes.or(
             TOP_POLE,
-            Block.box(10.0D, 9.0D, 4.0D,
-                    14.0D, 15.0D, 10.0D));
+            Block.box(10.0D, 0.0D, 4.0D,
+                    14.0D, 6.0D, 10.0D));
     protected static final VoxelShape EAST_AABB = Shapes.or(
             TOP_POLE,
-            Block.box(2.0D, 9.0D, 6.0D,
-                    6.0D, 15.0D, 12.0D));
+            Block.box(2.0D, 0.0D, 6.0D,
+                    6.0D, 6.0D, 12.0D));
     protected static final VoxelShape NORTH_AABB = Shapes.or(
             TOP_POLE,
-            Block.box(6.0D, 9.0D, 10.0D,
-                    12.0D, 15.0D, 14.0D));
+            Block.box(6.0D, 0.0D, 10.0D,
+                    12.0D, 6.0D, 14.0D));
     protected static final VoxelShape SOUTH_AABB = Shapes.or(
             TOP_POLE,
-            Block.box(4.0D, 9.0D, 2.0D,
-                    10.0D, 15.0D, 6.0D));
+            Block.box(4.0D, 0.0D, 2.0D,
+                    10.0D, 6.0D, 6.0D));
 
     public WitchPoleBlock() {
         super(Properties.of()
@@ -170,11 +170,20 @@ public class WitchPoleBlock extends Block implements SimpleWaterloggedBlock {
 
     public BlockState updateShape(BlockState p_51771_, Direction p_51772_, BlockState p_51773_, LevelAccessor p_51774_, BlockPos p_51775_, BlockPos p_51776_) {
         DoubleBlockHalf doubleblockhalf = p_51771_.getValue(HALF);
-        if (p_51772_.getAxis() == Direction.Axis.Y && doubleblockhalf == DoubleBlockHalf.LOWER == (p_51772_ == Direction.UP)) {
-            return p_51773_.is(this) && p_51773_.getValue(HALF) != doubleblockhalf ? p_51771_.setValue(FACING, p_51773_.getValue(FACING)) : Blocks.AIR.defaultBlockState();
-        } else {
-            return doubleblockhalf == DoubleBlockHalf.LOWER && p_51772_ == Direction.DOWN && p_51772_ == p_51771_.getValue(FACING) && !p_51771_.canSurvive(p_51774_, p_51775_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51771_, p_51772_, p_51773_, p_51774_, p_51775_, p_51776_);
+        if (p_51771_.getValue(WATERLOGGED)) {
+            p_51774_.scheduleTick(p_51775_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51774_));
         }
+
+        // Keep both halves synchronized while still allowing ordinary blocks above the pole.
+        if (p_51772_.getAxis() != Direction.Axis.Y
+                || doubleblockhalf == DoubleBlockHalf.LOWER != (p_51772_ == Direction.UP)
+                || p_51773_.is(this) && p_51773_.getValue(HALF) != doubleblockhalf) {
+            return doubleblockhalf == DoubleBlockHalf.LOWER && p_51772_ == Direction.DOWN && !p_51771_.canSurvive(p_51774_, p_51775_)
+                    ? Blocks.AIR.defaultBlockState()
+                    : super.updateShape(p_51771_, p_51772_, p_51773_, p_51774_, p_51775_, p_51776_);
+        }
+
+        return Blocks.AIR.defaultBlockState();
     }
 
     public long getSeed(BlockState p_52793_, BlockPos p_52794_) {

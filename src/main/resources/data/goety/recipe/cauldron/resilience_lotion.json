@@ -1,6 +1,5 @@
-﻿{
+{
   "type": "goety:cauldron",
-  "id": "goety:cauldron/resilience_lotion",
   "soulCost": 1000,
   "color": 3815994,
   "levelLeft": 1,
@@ -21,7 +20,9 @@
       "tag": "c:gems/diamond"
     }
   ],
-  "result": { "id": "goety:resilience_lotion", "count": 1
+  "result": {
+    "id": "goety:resilience_lotion",
+    "count": 1
   },
   "neoforge:conditions": [
     {
@@ -31,6 +32,7 @@
         "modid": "goety_revelation"
       }
     }
-  ]
+  ],
+  "id": "goety:cauldron/resilience_lotion"
 }
 

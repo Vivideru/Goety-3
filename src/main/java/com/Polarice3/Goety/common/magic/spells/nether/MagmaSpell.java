@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.magic.spells.nether;
 
 import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.MagmaBomb;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
@@ -59,6 +60,7 @@ public class MagmaSpell extends Spell {
         list.add(ModEnchantments.DURATION);
         list.add(ModEnchantments.RADIUS);
         list.add(ModEnchantments.VELOCITY);
+        list.add(VivideruEnchantments.HOMING);
         return list;
     }
 

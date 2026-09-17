@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.SimpleParticleType;
 
-public class DragonFlameParticle extends TextureSheetParticle {
+public class DragonFlameParticle extends ReversibleParticle {
     private final SpriteSet spriteSet;
     public boolean isBig = false;
 
@@ -69,6 +69,21 @@ public class DragonFlameParticle extends TextureSheetParticle {
         }
     }
 
+    public static class ReversibleProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
+
+        public ReversibleProvider(SpriteSet spriteSet) {
+            this.spriteSet = spriteSet;
+        }
+
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            DragonFlameParticle particle = new DragonFlameParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+            particle.isBig = true;
+            particle.reversed = level.getRandom().nextBoolean();
+            return particle;
+        }
+    }
+
     public static class SmallProvider implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet spriteSet;
 
@@ -80,6 +95,21 @@ public class DragonFlameParticle extends TextureSheetParticle {
             DragonFlameParticle flameparticle = new DragonFlameParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
             flameparticle.scale(0.5F);
             return flameparticle;
+        }
+    }
+
+    public static class SmallReversibleProvider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet spriteSet;
+
+        public SmallReversibleProvider(SpriteSet spriteSet) {
+            this.spriteSet = spriteSet;
+        }
+
+        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+            DragonFlameParticle particle = new DragonFlameParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet);
+            particle.scale(0.5F);
+            particle.reversed = level.getRandom().nextBoolean();
+            return particle;
         }
     }
 }

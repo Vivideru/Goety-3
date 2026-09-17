@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.utils;
 
+import com.Polarice3.Goety.client.particles.WindParticleOption;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.ParticleStatus;
@@ -8,6 +9,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -70,5 +72,9 @@ public class ParticleUtil {
             float f9 = Mth.sin(f6) * f7;
             level.addParticle(particleOptions, x + (double) f8, y, z + (double) f9, xSpeed, ySpeed, zSpeed);
         }
+    }
+
+    public static void windParticle(Level level, ColorUtil color, float width, float height, int id, Vec3 position) {
+        level.addParticle(new WindParticleOption(color, width, height, 0, id), position.x(), position.y(), position.z(), 0.0D, 0.0D, 0.0D);
     }
 }

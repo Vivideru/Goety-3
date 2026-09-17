@@ -1,20 +1,19 @@
-﻿{
-    "type":  "minecraft:crafting_shaped",
-    "pattern":  [
-                    "CD",
-                    "DC"
-                ],
-    "key":  {
-                "C":  {
-                          "item":  "goety:dark_dirt"
-                      },
-                "D":  {
-                          "item":  "minecraft:snowball"
-                      }
-            },
-    "result":  {
-                   "id":  "goety:snowy_dark_dirt",
-                   "count":  2
-               }
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CD",
+    "DC"
+  ],
+  "key": {
+    "C": {
+      "item": "goety:dark_dirt"
+    },
+    "D": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "count": 2,
+    "id": "goety:snowy_dark_dirt"
+  }
 }
-

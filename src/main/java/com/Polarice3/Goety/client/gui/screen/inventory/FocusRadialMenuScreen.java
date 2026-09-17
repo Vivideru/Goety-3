@@ -13,6 +13,7 @@ import com.Polarice3.Goety.common.network.client.focus.CSwapFocusTwoPacket;
 import com.Polarice3.Goety.init.ModKeybindings;
 import com.Polarice3.Goety.utils.TotemFinder;
 import com.Polarice3.Goety.utils.WandUtil;
+import com.Vivideru.Goety.common.network.client.CRequestFocusBagSyncPacket;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -36,6 +37,7 @@ import java.util.List;
 @EventBusSubscriber(Dist.CLIENT)
 public class FocusRadialMenuScreen extends Screen {
     private ItemStack stackEquipped;
+    private ItemStack stackSnapshot;
     private IItemHandler focusBagHandler;
 
     private boolean needsRecheckStacks = true;
@@ -48,6 +50,7 @@ public class FocusRadialMenuScreen extends Screen {
         super(Component.literal("FOCUS RADIAL MENU"));
 
         this.stackEquipped = TotemFinder.findBag(Minecraft.getInstance().player);
+        this.stackSnapshot = this.stackEquipped.copy();
         this.focusBagHandler = this.stackEquipped.getCount() > 0 ? FocusBagItemHandler.get(this.stackEquipped) : null;
         this.menu = new GenericRadialMenu(Minecraft.getInstance(), Goety.location("textures/gui/focus_wheel.png"), new IRadialMenuHost() {
             @Override
@@ -83,6 +86,8 @@ public class FocusRadialMenuScreen extends Screen {
                 return FocusRadialMenuScreen.this.tryExtractFocus();
             }
         };
+        // Nested storage mods do not necessarily mirror their item handlers through vanilla inventory synchronization.
+        ModNetwork.sendToServer(new CRequestFocusBagSyncPacket());
     }
 
     @SubscribeEvent
@@ -125,13 +130,15 @@ public class FocusRadialMenuScreen extends Screen {
             ItemStack stack = TotemFinder.findBag(player);
             if (stack.getCount() <= 0) {
                 this.focusBagHandler = null;
+                this.stackSnapshot = ItemStack.EMPTY;
                 if (hasFocusInInv) {
                     this.stackEquipped = WandUtil.findFocusInInv(player);
                 } else {
                     this.stackEquipped = null;
                 }
-            } else if (this.stackEquipped != stack) {
+            } else if (this.stackEquipped != stack || !ItemStack.isSameItemSameComponents(this.stackSnapshot, stack)) {
                 this.stackEquipped = stack;
+                this.stackSnapshot = stack.copy();
                 this.focusBagHandler = FocusBagItemHandler.get(stack);
                 this.needsRecheckStacks = true;
             }
