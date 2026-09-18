@@ -53,7 +53,7 @@ public class VanguardServant extends AbstractSkeletonServant {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(VanguardServant.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> HAS_SHIELD = SynchedEntityData.defineId(VanguardServant.class, EntityDataSerializers.BOOLEAN);
     public int attackTick;
-    public int shieldHealth = 1;
+    public int shieldHealth = AttributesConfig.get(AttributesConfig.VanguardServantShield);
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState walkAnimationState = new AnimationState();
     public AnimationState attackAnimationState = new AnimationState();
@@ -158,6 +158,10 @@ public class VanguardServant extends AbstractSkeletonServant {
         this.shieldHealth = shieldHealth;
     }
 
+    public int getMaxShieldHealth() {
+        return AttributesConfig.get(AttributesConfig.VanguardServantShield);
+    }
+
     public void destroyShield(){
         if (this.hasShield()) {
             if (this.getShieldHealth() > 1){
@@ -166,7 +170,7 @@ public class VanguardServant extends AbstractSkeletonServant {
             } else {
                 this.setShieldHealth(0);
                 this.setShield(false);
-                this.playSound(SoundEvents.SHIELD_BREAK);
+                this.playSound(ModSounds.SHIELD_BREAK.get(), 1.5F, 1.0F);
                 if (this.level() instanceof ServerLevel serverLevel){
                     ServerParticleUtil.addParticlesAroundSelf(serverLevel, new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.SPRUCE_PLANKS)), this);
                 }
@@ -320,7 +324,7 @@ public class VanguardServant extends AbstractSkeletonServant {
             this.attackTick = 0;
         } else if (p_21375_ == 6){
             this.setShield(true);
-            this.setShieldHealth(1);
+            this.setShieldHealth(this.getMaxShieldHealth());
         } else {
             super.handleEntityEvent(p_21375_);
         }
@@ -398,7 +402,7 @@ public class VanguardServant extends AbstractSkeletonServant {
                         itemstack.shrink(1);
                     }
                     this.setShield(true);
-                    this.setShieldHealth(1);
+                    this.setShieldHealth(this.getMaxShieldHealth());
                     this.level().broadcastEntityEvent(this, (byte) 6);
                     this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value(), 1.0F, 1.0F);
                     return InteractionResult.SUCCESS;

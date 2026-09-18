@@ -34,6 +34,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,6 +50,10 @@ public class WolfTotemHooks {
     public static final TagKey<EntityType<?>> WOLF_TOTEM_SERVANTS = TagKey.create(Registries.ENTITY_TYPE, Goety.location("wolf_totem_servants"));
 
     public static InteractionResult tryLinkToTotem(ItemStackAccess stackAccess, Player player, LivingEntity entity, InteractionHand hand) {
+        // Ordinary tamed wolves are not servants, so they can only be promoted, never bound to a Totem.
+        if (isTamedVanillaWolf(entity, player)) {
+            return tryPromoteVanillaWolf(stackAccess, player, entity, hand);
+        }
         if (!(entity instanceof IOwned owned) || owned.getTrueOwner() != player || !canUseTotem(entity)) {
             return InteractionResult.PASS;
         }
@@ -99,6 +104,43 @@ public class WolfTotemHooks {
                 || entity instanceof BlackWolf wolf && !(wolf instanceof Hellhound) && !(wolf instanceof Warg);
     }
 
+    private static boolean isTamedVanillaWolf(LivingEntity entity, Player player) {
+        return entity instanceof Wolf wolf && wolf.isTame() && wolf.getOwner() == player;
+    }
+
+    /**
+     * An ordinary tamed wolf can be raised at a Howling Totem like the dark breeds, but it yields the plain
+     * Gray Warg. It never becomes a Totem servant on its own, so the usual binding path does not apply.
+     */
+    private static InteractionResult tryPromoteVanillaWolf(ItemStackAccess stackAccess, Player player,
+                                                          LivingEntity wolf, InteractionHand hand) {
+        if (!stackAccess.isWaystoneBound() || !WaystoneItem.isSameDimension(wolf, stackAccess.stack())) {
+            return InteractionResult.PASS;
+        }
+        BlockEntity blockEntity = WaystoneItem.getBlockEntity(stackAccess.stack(), wolf.level());
+        if (!(blockEntity instanceof WolfTotemBlockEntity totem) || totem.getTrueOwner() != player || !totem.hasSpace()) {
+            return InteractionResult.PASS;
+        }
+        if (wolf.level().isClientSide) {
+            return InteractionResult.SUCCESS;
+        }
+        if (totem.hasCreatedWarg()
+                || !WargTotemData.get((ServerLevel) wolf.level()).canCreate(player.getUUID(), wolf.level().dimension(), totem.getBlockPos())) {
+            return InteractionResult.FAIL;
+        }
+        return tryTransformWarg(player, wolf, totem, hand) ? InteractionResult.SUCCESS : InteractionResult.PASS;
+    }
+
+    private static boolean countsTowardsPack(LivingEntity living, Player player) {
+        if (living instanceof Warg) {
+            return false;
+        }
+        if (living instanceof BlackWolf || living instanceof SkeletonWolf) {
+            return living instanceof IOwned owned && owned.getTrueOwner() == player;
+        }
+        return isTamedVanillaWolf(living, player);
+    }
+
     private static boolean tryTransformWarg(Player player, LivingEntity wolf,
                                             WolfTotemBlockEntity totem, InteractionHand hand) {
         if (!(wolf.level() instanceof ServerLevel serverLevel) || totem.hasCreatedWarg()) {
@@ -107,14 +149,15 @@ public class WolfTotemHooks {
         UUID ownerId = player.getUUID();
         long nearbyWolves = serverLevel.getEntitiesOfClass(LivingEntity.class,
                         new net.minecraft.world.phys.AABB(totem.getBlockPos()).inflate(8.0D),
-                        living -> (living instanceof BlackWolf || living instanceof SkeletonWolf)
-                                && !(living instanceof Warg)
-                                && living instanceof IOwned nearbyOwned && nearbyOwned.getTrueOwner() == player)
+                        living -> countsTowardsPack(living, player))
                 .size();
         if (nearbyWolves < 4 || !WargTotemData.get(serverLevel).canCreate(ownerId, serverLevel.dimension(), totem.getBlockPos())) {
             return false;
         }
-        Warg warg = VivideruEntityTypes.WARG.get().create(serverLevel);
+        // Skeleton Wolves become the separate undead Skeletal Warg type; every other breed stays a plain Warg.
+        Warg warg = wolf instanceof SkeletonWolf
+                ? VivideruEntityTypes.SKELETAL_WARG.get().create(serverLevel)
+                : VivideruEntityTypes.WARG.get().create(serverLevel);
         if (warg == null) {
             return false;
         }
@@ -127,7 +170,8 @@ public class WolfTotemHooks {
             oldTotem.markUpdated();
         }
         ItemStack armor = wolf instanceof BlackWolf blackWolf ? blackWolf.getBodyArmorItem()
-                : wolf instanceof SkeletonWolf skeletonWolf ? skeletonWolf.getBodyArmorItem() : ItemStack.EMPTY;
+                : wolf instanceof SkeletonWolf skeletonWolf ? skeletonWolf.getBodyArmorItem()
+                : wolf instanceof Wolf vanillaWolf ? vanillaWolf.getBodyArmorItem() : ItemStack.EMPTY;
         if (!armor.isEmpty()) {
             wolf.spawnAtLocation(armor.copy());
         }
@@ -135,7 +179,8 @@ public class WolfTotemHooks {
         warg.setTrueOwner(player);
         warg.setVariant(wolf instanceof SkeletonWolf ? Warg.Variant.SKELETAL
                 : wolf instanceof WinterWolf ? Warg.Variant.COLD
-                : wolf instanceof Stormhound ? Warg.Variant.MODERATE : Warg.Variant.BLACK);
+                : wolf instanceof Stormhound ? Warg.Variant.MODERATE
+                : wolf instanceof Wolf ? Warg.Variant.GRAY : Warg.Variant.BLACK);
         if (wolf instanceof Summoned summoned) {
             warg.setUpgraded(summoned.isUpgraded());
             warg.setHostile(summoned.isHostile());

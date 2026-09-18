@@ -181,7 +181,8 @@ public class CerberusModel extends HierarchicalModel<Cerberus> {
 	public void setupAnim(Cerberus entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		// Only the center head tracks the look target directly; the two side heads keep their idle/attack keyframes.
-		this.head1.yRot += netHeadYaw * ((float)Math.PI / 180F);
+		// Like the Warg, the heads hang from a mane pitched 90 degrees on X, so yaw belongs on the parent's -Z axis.
+		this.head1.zRot -= netHeadYaw * ((float)Math.PI / 180F);
 		this.head1.xRot += headPitch * ((float)Math.PI / 180F);
 		this.animate(entity.idleAnimationState, CerberusAnimations.idle, ageInTicks);
 		this.animate(entity.walkAnimationState, CerberusAnimations.walking, ageInTicks);

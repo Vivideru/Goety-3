@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "#minecraft:skeletons",
-    "#goety:skeleton_servants"
+    "#goety:skeleton_servants",
+    "goety:skeletal_warg"
   ]
 }

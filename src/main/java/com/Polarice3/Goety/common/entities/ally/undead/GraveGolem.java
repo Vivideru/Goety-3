@@ -55,6 +55,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -62,7 +63,8 @@ import java.util.*;
 
 public class GraveGolem extends AbstractGolemServant implements IMobTyped {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(GraveGolem.class, EntityDataSerializers.BYTE);
-    public static float SUMMON_SECONDS_TIME = 4.7F;
+    // Matches the 4.6 second SUMMON animation so the roar and the Haunts line up with it.
+    public static float SUMMON_SECONDS_TIME = 4.6F;
     private int activateTick;
     public int attackTick;
     public int summonTick;
@@ -533,18 +535,27 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
                         }
                     }
                 }
-                if (this.summonTick == MathHelper.secondsToTicks(SUMMON_SECONDS_TIME - 1)){
-                    this.playSound(ModSounds.GRAVE_GOLEM_BLAST.get());
+                if (this.summonTick == MathHelper.secondsToTicks(SUMMON_SECONDS_TIME) - 36){
+                    this.playSound(ModSounds.GRAVE_GOLEM_ROAR.get(), 2.0F, 1.0F);
+                    // GameEvent.ENTITY_ROAR was removed in 1.21; ENTITY_ACTION keeps the roar's vibration.
+                    this.gameEvent(GameEvent.ENTITY_ACTION, this);
                 }
                 if (this.summonTick <= (MathHelper.secondsToTicks(SUMMON_SECONDS_TIME - 2)) && this.summonCount != 0) {
-                    for (int i = 0; i < 6; ++i){
+                    // Up to six Haunts, only on spots where they actually fit, from a bounded number of tries.
+                    int j = 0;
+                    for (int i = 0; i < 32 && j < 6; ++i){
                         BlockPos blockPos = this.blockPosition();
                         blockPos = blockPos.offset(-8 + this.level().random.nextInt(16), 0, -8 + this.level().random.nextInt(16));
+                        Vec3 vec3 = Vec3.atBottomCenterOf(blockPos);
                         Summoned summoned = new Haunt(ModEntityType.HAUNT.get(), this.level());
                         summoned.setLimitedLife(MathHelper.secondsToTicks(20));
-                        SummonCircle summonCircle = new SummonCircle(this.level(), blockPos, summoned, true, true, this);
-                        summonCircle.noParticles = true;
-                        this.level().addFreshEntity(summonCircle);
+                        if (this.level().noCollision(summoned, summoned.getBoundingBox().move(vec3))) {
+                            SummonCircle summonCircle = new SummonCircle(this.level(), blockPos, summoned, true, true, this);
+                            summonCircle.noParticles = true;
+                            if (this.level().addFreshEntity(summonCircle)) {
+                                ++j;
+                            }
+                        }
                     }
                     this.summonCount = 0;
                 }

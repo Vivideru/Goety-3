@@ -709,6 +709,7 @@ public class Goety {
         event.put(ModEntityType.REPROBATE_SERVANT.get(), ReprobateServant.setCustomAttributes().build());
         event.put(ModEntityType.BLACK_WOLF.get(), BlackWolf.setCustomAttributes().build());
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.SKELETAL_WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.CERBERUS.get(), com.Vivideru.Goety.common.entities.ally.Cerberus.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_WOLF.get(), SkeletonWolf.setCustomAttributes().build());
         event.put(ModEntityType.WINTER_WOLF.get(), WinterWolf.setCustomAttributes().build());

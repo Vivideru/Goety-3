@@ -48,7 +48,7 @@ public class BlackguardServant extends ZombieServant{
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BlackguardServant.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> HAS_SHIELD = SynchedEntityData.defineId(BlackguardServant.class, EntityDataSerializers.BOOLEAN);
     public int attackTick;
-    public int shieldHealth = 1;
+    public int shieldHealth = AttributesConfig.get(AttributesConfig.BlackguardServantShield);
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState standAnimationState = new AnimationState();
     public AnimationState attackAnimationState = new AnimationState();
@@ -146,6 +146,10 @@ public class BlackguardServant extends ZombieServant{
         this.shieldHealth = shieldHealth;
     }
 
+    public int getMaxShieldHealth() {
+        return AttributesConfig.get(AttributesConfig.BlackguardServantShield);
+    }
+
     public void destroyShield(){
         if (this.hasShield()) {
             if (this.getShieldHealth() > 1){
@@ -154,7 +158,7 @@ public class BlackguardServant extends ZombieServant{
             } else {
                 this.setShieldHealth(0);
                 this.setShield(false);
-                this.playSound(SoundEvents.SHIELD_BREAK);
+                this.playSound(ModSounds.SHIELD_BREAK.get(), 1.5F, 1.0F);
                 if (this.level() instanceof ServerLevel serverLevel){
                     ServerParticleUtil.addParticlesAroundSelf(serverLevel, new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ANVIL)), this);
                 }
@@ -215,12 +219,22 @@ public class BlackguardServant extends ZombieServant{
 
     @Override
     public void die(DamageSource pCause) {
+        this.playSound(ModSounds.DOUBLE_AXE_IMPACT_SHING.get(), 1.5F * 0.5F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F));
+        this.playSound(ModSounds.DIRT_SHATTER_THREE.get(), 1.5F * 0.25F * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F));
+        this.playSound(ModSounds.HAMMER_SHIMMER_IMPACT_FOUR.get(), 1.5F * 0.4F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F));
         this.playSound(ModSounds.PLATE_DROP.get(), this.getSoundVolume(), this.getVoicePitch());
         super.die(pCause);
     }
 
     protected void playHurtSound(DamageSource p_21160_) {
-        super.playHurtSound(p_21160_);
+        SoundEvent soundevent = this.getHurtSound(p_21160_);
+        if (soundevent != null) {
+            this.playSound(soundevent, 0.8F, this.getRandom().nextBoolean() ? 0.9F : 0.8F);
+        }
+        this.ambientSoundTime = -this.getAmbientSoundInterval();
+        this.playSound(ModSounds.DOUBLE_AXE_IMPACT_SHING.get(), 0.8F * 0.5F, this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F);
+        this.playSound(ModSounds.DIRT_SHATTER_THREE.get(), 0.8F * 0.25F * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F), this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F);
+        this.playSound(ModSounds.HAMMER_SHIMMER_IMPACT_FOUR.get(), 0.8F * 0.4F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F);
         this.playSound(ModSounds.PLATE.get(), this.getSoundVolume(), this.getVoicePitch());
     }
 
@@ -292,7 +306,7 @@ public class BlackguardServant extends ZombieServant{
             this.attackTick = 0;
         } else if (p_21375_ == 6){
             this.setShield(true);
-            this.setShieldHealth(1);
+            this.setShieldHealth(this.getMaxShieldHealth());
         } else {
             super.handleEntityEvent(p_21375_);
         }
@@ -336,7 +350,7 @@ public class BlackguardServant extends ZombieServant{
                         itemstack.shrink(1);
                     }
                     this.setShield(true);
-                    this.setShieldHealth(1);
+                    this.setShieldHealth(this.getMaxShieldHealth());
                     this.level().broadcastEntityEvent(this, (byte) 6);
                     this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value(), 1.0F, 1.0F);
                     return InteractionResult.SUCCESS;

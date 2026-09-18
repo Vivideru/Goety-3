@@ -32,7 +32,7 @@ public class VivideruItems {
     public static final DeferredHolder<Item, Item> WARG_STORM_SPAWN_EGG = ITEMS.register("storm_warg_spawn_egg",
             () -> new WargSpawnEggItem(VivideruEntityTypes.WARG, 0x6E422F, 0xB36A43, new Item.Properties(), Warg.Variant.MODERATE, false));
     public static final DeferredHolder<Item, Item> WARG_SKELETAL_SPAWN_EGG = ITEMS.register("skeletal_warg_spawn_egg",
-            () -> new WargSpawnEggItem(VivideruEntityTypes.WARG, 0xE8E8E8, 0xFFFFFF, new Item.Properties(), Warg.Variant.SKELETAL, false));
+            () -> new WargSpawnEggItem(VivideruEntityTypes.SKELETAL_WARG, 0xE8E8E8, 0xFFFFFF, new Item.Properties(), Warg.Variant.SKELETAL, false));
     public static final DeferredHolder<Item, Item> WARG_GRAY_SPAWN_EGG = ITEMS.register("gray_warg_spawn_egg",
             () -> new WargSpawnEggItem(VivideruEntityTypes.WARG, 0x7E8084, 0xC8C8C8, new Item.Properties(), Warg.Variant.GRAY, false));
     public static final DeferredHolder<Item, Item> HOSTILE_WARG_SPAWN_EGG = ITEMS.register("hostile_warg_spawn_egg",

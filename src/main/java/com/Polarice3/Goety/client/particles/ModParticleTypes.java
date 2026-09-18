@@ -96,6 +96,9 @@ public class ModParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LICH = PARTICLE_TYPES.register("lich",
             () -> new SimpleParticleType(true));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LICH_COLORED = PARTICLE_TYPES.register("lich_colored",
+            () -> new SimpleParticleType(true));
+
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> CONFUSED = PARTICLE_TYPES.register("confused",
             () -> new SimpleParticleType(true));
 

@@ -30,6 +30,7 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
     public int lastInventorySize = -1;
     public float speedModifier;
     public boolean cachedCanCraft = false;
+    protected boolean posedByMob = false;
 
     public MobCraftingGoal(T mob, int craftTime, float speedModifier) {
         this.mob = mob;
@@ -89,7 +90,11 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
                     if (this.getNearbyCraftTableUsers(serverLevel, new AABB(this.craftTable).inflate(4.0D), this.craftTable).isEmpty()) {
                         if (this.tryTicks <= 1200) {
                             BlockState blockState = this.mob.level().getBlockState(this.craftTable);
-                            return this.mob.isCraftTable(blockState) && super.canContinueToUse();
+                            // Goal#canContinueToUse delegates back to canUse().
+                            // canUse deliberately rejects an already-working mob, so
+                            // calling super here stopped and restarted the job every tick,
+                            // which reset workTick before anything could be crafted.
+                            return this.mob.isCraftTable(blockState);
                         }
                     }
                 }
@@ -101,6 +106,9 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
     public void start() {
         this.moveMobToBlock();
         this.tryTicks = 0;
+        // Keep the work pose stable while the mob walks to its craft table.
+        this.mob.setCrafting(true);
+        this.posedByMob = true;
     }
 
     protected void moveMobToBlock() {
@@ -117,7 +125,12 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
         this.mob.setCraftTablePos(null);
         this.tryTicks = 0;
         this.workTick = 0;
-        this.mob.setCrafting(false);
+        // Crushers share one synced flag between crafting and smelting, so only
+        // clear the pose when this goal is the one that set it.
+        if (this.posedByMob) {
+            this.mob.setCrafting(false);
+            this.posedByMob = false;
+        }
     }
 
     @Override
@@ -137,9 +150,8 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
                 if (this.shouldRecalculatePath()) {
                     this.mob.getNavigation().moveTo((double)((float)this.craftTable.getX()) + 0.5D, (double)this.craftTable.getY(), (double)((float)this.craftTable.getZ()) + 0.5D, this.speedModifier);
                 }
-                if (this.mob.isCrafting()) {
-                    this.mob.setCrafting(false);
-                }
+                // Do not clear the work state while navigating: pathing around
+                // the craft table used to make the arm pose flash every tick.
             } else {
                 this.mob.getNavigation().stop();
                 this.mob.lookAt(EntityAnchorArgument.Anchor.EYES, Vec3.atCenterOf(this.craftTable));

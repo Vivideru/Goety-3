@@ -1,10 +1,15 @@
 package com.Vivideru.Goety.common.entities.ally;
 
 import com.Polarice3.Goety.common.entities.ally.BlackWolf;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.AbstractSkeletonServant;
+import com.Polarice3.Goety.common.entities.ally.undead.skeleton.SkeletonWolf;
+import com.Polarice3.Goety.common.entities.neutral.DrownedNecromancer;
 import com.Polarice3.Goety.common.entities.neutral.Owned;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.config.AttributesConfig;
 import com.Polarice3.Goety.init.ModMobType;
+import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.CuriosFinder;
 import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
@@ -43,6 +48,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -77,6 +83,10 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     public final AnimationState biteAnimationState = new AnimationState();
     public final AnimationState spinAnimationState = new AnimationState();
     public final AnimationState slashAnimationState = new AnimationState();
+    private static final int AIRBORNE_ANIMATION_TICKS = 4;
+    private int airborneTicks;
+    private int airborneCountedTick = -1;
+    private int howlCooldown;
     @Nullable
     private LivingEntity queuedTarget;
     private float lockedAttackYaw;
@@ -102,6 +112,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         });
         // Sword attacks need their own range check so the slash can start before the inherited bite goal closes the gap.
         this.goalSelector.addGoal(3, new WargSwordAttackGoal());
+        this.goalSelector.addGoal(2, new SkeletalHowlGoal());
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -135,6 +146,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         super.addAdditionalSaveData(tag);
         tag.putBoolean("Saddled", this.isSaddled());
         tag.putInt("WargVariant", this.getVariant().ordinal());
+        tag.putInt("HowlCooldown", this.howlCooldown);
     }
 
     @Override
@@ -142,6 +154,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         super.readAdditionalSaveData(tag);
         this.setSaddled(tag.getBoolean("Saddled"));
         this.setVariant(Variant.byId(tag.getInt("WargVariant")));
+        this.howlCooldown = tag.getInt("HowlCooldown");
     }
 
     @Override
@@ -152,6 +165,9 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         if (!this.level().isClientSide) {
             this.registerPersistentAssignment();
             this.tickSwordAttack();
+            if (this.howlCooldown > 0) {
+                --this.howlCooldown;
+            }
         } else {
             this.updateAnimationStates();
         }
@@ -165,15 +181,33 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         }
     }
 
+    /**
+     * The client's onGround flag flickers on slabs, stairs and bumpy terrain; treating every flicker as a jump
+     * snapped the model between the leap and idle poses. Only a few consecutive airborne ticks count as a leap.
+     */
+    protected boolean tickAirborneAnimation() {
+        // Cerberus runs its own animation update after the Warg one, so count each game tick only once.
+        if (this.airborneCountedTick != this.tickCount) {
+            this.airborneCountedTick = this.tickCount;
+            if (this.onGround()) {
+                this.airborneTicks = 0;
+            } else if (this.airborneTicks < AIRBORNE_ANIMATION_TICKS) {
+                ++this.airborneTicks;
+            }
+        }
+        return this.airborneTicks >= AIRBORNE_ANIMATION_TICKS;
+    }
+
     private void updateAnimationStates() {
+        boolean airborne = this.tickAirborneAnimation();
         boolean attacking = this.getAttackTicks() > 0;
         setAnimation(this.biteAnimationState, attacking && this.getAttackType() == ATTACK_BITE);
         setAnimation(this.spinAnimationState, attacking && this.getAttackType() == ATTACK_SPIN);
         setAnimation(this.slashAnimationState, attacking && this.getAttackType() == ATTACK_SLASH);
-        setAnimation(this.jumpAnimationState, !attacking && !this.onGround());
-        setAnimation(this.groundedAnimationState, !attacking && this.onGround() && this.isSitting());
-        setAnimation(this.walkAnimationState, !attacking && this.onGround() && !this.isSitting() && this.walkAnimation.speed() > 0.05F);
-        setAnimation(this.idleAnimationState, !attacking && this.onGround() && !this.isSitting() && this.walkAnimation.speed() <= 0.05F);
+        setAnimation(this.jumpAnimationState, !attacking && airborne);
+        setAnimation(this.groundedAnimationState, !attacking && !airborne && this.isSitting());
+        setAnimation(this.walkAnimationState, !attacking && !airborne && !this.isSitting() && this.walkAnimation.speed() > 0.05F);
+        setAnimation(this.idleAnimationState, !attacking && !airborne && !this.isSitting() && this.walkAnimation.speed() <= 0.05F);
     }
 
     private void setAnimation(AnimationState state, boolean running) {
@@ -626,6 +660,52 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     private void setAttack(int type, int ticks) {
         this.entityData.set(ATTACK_TYPE, type);
         this.entityData.set(ATTACK_TICKS, ticks);
+    }
+
+    /**
+     * The Skeletal Warg rallies skeleton-type allies like the Skeleton Wolf's howl: nearby allied skeleton servants
+     * gain Strength for five seconds. Wargs have no howl animation, so the roar is instant and never stops the Warg
+     * in its tracks; the cooldown matches the Skeleton Wolf's full howl cycle instead.
+     */
+    private class SkeletalHowlGoal extends Goal {
+        private static final int HOWL_COOLDOWN = MathHelper.secondsToTicks(8.25F);
+        private static final double HOWL_RANGE = 8.0D;
+
+        @Override
+        public boolean canUse() {
+            LivingEntity target = Warg.this.getTarget();
+            return Warg.this.getVariant() == Variant.SKELETAL
+                    && target != null && target.isAlive()
+                    && Warg.this.howlCooldown <= 0
+                    && Warg.this.getRandom().nextBoolean();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return false;
+        }
+
+        @Override
+        public void start() {
+            Warg.this.playSound(ModSounds.SKELETON_WOLF_HOWL.get(), 1.5F, 0.8F);
+            Warg.this.howlCooldown = HOWL_COOLDOWN;
+            for (LivingEntity livingEntity : Warg.this.level().getEntitiesOfClass(LivingEntity.class, Warg.this.getBoundingBox().inflate(HOWL_RANGE))) {
+                if (livingEntity != Warg.this && this.isRallied(livingEntity)) {
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, MathHelper.secondsToTicks(5)));
+                }
+            }
+        }
+
+        private boolean isRallied(LivingEntity livingEntity) {
+            if (Warg.this.isHostile() && livingEntity instanceof AbstractSkeleton) {
+                return true;
+            }
+            boolean skeletonType = livingEntity instanceof AbstractSkeletonServant
+                    || livingEntity instanceof SkeletonWolf
+                    || livingEntity instanceof Warg warg && warg.getVariant() == Variant.SKELETAL
+                    || livingEntity.getType().is(ModTags.EntityTypes.SKELETON_WOLF_BUFF);
+            return skeletonType && !(livingEntity instanceof DrownedNecromancer) && MobUtil.areAllies(Warg.this, livingEntity);
+        }
     }
 
     private class WargSwordAttackGoal extends Goal {

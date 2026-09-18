@@ -107,7 +107,9 @@ public class SlimeServant extends Summoned implements IMobTyped{
 
     @Override
     protected boolean shouldDropLoot() {
-        return !this.limitedLifespan && this.limitedLifeTicks <= 0;
+        // Like other servants, only slimes spawned in the wild drop loot; summoned ones never do. This also gates the
+        // extra Crypt and Tropical Slime tables, since vanilla calls dropCustomDeathLoot only when this is true.
+        return this.isNatural() && !this.limitedLifespan && this.limitedLifeTicks <= 0;
     }
 
     public void setSize(int p_33594_, boolean p_33595_) {

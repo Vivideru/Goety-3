@@ -6,6 +6,7 @@ import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayerRotationPacket;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.BlockFinder;
+import com.Polarice3.Goety.utils.LichdomHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,8 +17,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -37,6 +42,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -97,6 +103,24 @@ public class HauntedMirrorBlock extends BaseEntityBlock implements SimpleWaterlo
         } else {
             return doubleblockhalf == DoubleBlockHalf.LOWER && pFacing == Direction.DOWN && !pState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
         }
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        // Item-based block interaction replaced the old use hook in 1.21; a Lich dyes their mode here.
+        if (LichdomHelper.isLich(pPlayer)) {
+            if (itemStack.getItem() instanceof DyeItem dyeItem) {
+                LichdomHelper.setLichModeColor(pPlayer, dyeItem.getDyeColor().getTextColor());
+                pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CAST_SPELL.get(), pPlayer.getSoundSource(), 1.0F, 0.5F);
+                return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
+            } else if (itemStack.is(Items.WATER_BUCKET) && LichdomHelper.lichModeColor(pPlayer) > -1) {
+                LichdomHelper.setLichModeColor(pPlayer, -1);
+                pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BUCKET_EMPTY, pPlayer.getSoundSource(), 1.0F, 1.0F);
+                pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CAST_SPELL.get(), pPlayer.getSoundSource(), 1.0F, 0.5F);
+                return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
+        }
+        return super.useItemOn(itemStack, pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
     @Nullable

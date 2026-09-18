@@ -132,6 +132,7 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantToughness;
     public static final ModConfigSpec.ConfigValue<Double> BlackguardServantDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> BlackguardServantShield;
     public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> RoyalGuardServantToughness;
@@ -164,6 +165,7 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> VanguardServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> VanguardServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> VanguardServantDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> VanguardServantShield;
     public static final ModConfigSpec.ConfigValue<Double> PhantomServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> PhantomServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> PhantomServantInitialDamage;
@@ -678,14 +680,16 @@ public class AttributesConfig {
                         .defineInRange("zombifiedPiglinBruteServantDamage", 7.0, 1.0, Double.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Blackguard Servant");
-                BlackguardServantHealth = BUILDER.comment("How much Max Health Blackguard Servants have, Default: 20.0")
-                        .defineInRange("blackguardServantHealth", 20.0, 1.0, Double.MAX_VALUE);
-                BlackguardServantArmor = BUILDER.comment("How much natural armor points Blackguard Servants have, Default: 20.0")
-                        .defineInRange("blackguardServantArmor", 20.0, 0.0, Double.MAX_VALUE);
-                BlackguardServantToughness = BUILDER.comment("How much natural armor toughness points Blackguard Servants have, Default: 8.0")
-                        .defineInRange("blackguardServantToughness", 8.0, 0.0, Double.MAX_VALUE);
-                BlackguardServantDamage = BUILDER.comment("How much damage Blackguard Servants deals, Default: 9.0")
-                        .defineInRange("blackguardServantDamage", 9.0, 1.0, Double.MAX_VALUE);
+                BlackguardServantHealth = BUILDER.comment("How much Max Health Blackguard Servants have, Default: 40.0")
+                        .defineInRange("blackguardServantHealth", 40.0, 1.0, Double.MAX_VALUE);
+                BlackguardServantArmor = BUILDER.comment("How much natural armor points Blackguard Servants have, Default: 12.0")
+                        .defineInRange("blackguardServantArmor", 12.0, 0.0, Double.MAX_VALUE);
+                BlackguardServantToughness = BUILDER.comment("How much natural armor toughness points Blackguard Servants have, Default: 4.0")
+                        .defineInRange("blackguardServantToughness", 4.0, 0.0, Double.MAX_VALUE);
+                BlackguardServantDamage = BUILDER.comment("How much damage Blackguard Servants deals, Default: 7.0")
+                        .defineInRange("blackguardServantDamage", 7.0, 1.0, Double.MAX_VALUE);
+                BlackguardServantShield = BUILDER.comment("Initially, how many hits until Shield is broken, Default: 1")
+                        .defineInRange("blackguardServantShield", 1, 0, Integer.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Royal Guard Servant");
                 RoyalGuardServantHealth = BUILDER.comment("How much Max Health Royal Guard Servants have, Default: 48.0")
@@ -760,12 +764,14 @@ public class AttributesConfig {
                         .defineInRange("rattledServantRangeDamage", 0.0, 0.0, Double.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Vanguard Servant");
-                VanguardServantHealth = BUILDER.comment("How much Max Health Vanguard Servants have, Default: 20.0")
-                        .defineInRange("vanguardServantHealth", 20.0, 1.0, Double.MAX_VALUE);
-                VanguardServantArmor = BUILDER.comment("How much Armor Vanguard Servants have, Default: 9.0")
-                        .defineInRange("vanguardServantArmor", 9.0, 0.0, Double.MAX_VALUE);
+                VanguardServantHealth = BUILDER.comment("How much Max Health Vanguard Servants have, Default: 24.0")
+                        .defineInRange("vanguardServantHealth", 24.0, 1.0, Double.MAX_VALUE);
+                VanguardServantArmor = BUILDER.comment("How much Armor Vanguard Servants have, Default: 6.0")
+                        .defineInRange("vanguardServantArmor", 6.0, 0.0, Double.MAX_VALUE);
                 VanguardServantDamage = BUILDER.comment("How much damage Vanguard Servants deals, Default: 7.0")
                         .defineInRange("vanguardServantDamage", 7.0, 1.0, Double.MAX_VALUE);
+                VanguardServantShield = BUILDER.comment("Initially, how many hits until Shield is broken, Default: 1")
+                        .defineInRange("vanguardServantShield", 1, 0, Integer.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Phantom Servant");
                 PhantomServantHealth = BUILDER.comment("How much Max Health Phantom Servants have, Default: 20.0")

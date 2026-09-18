@@ -6,6 +6,7 @@ import com.Polarice3.Goety.common.entities.neutral.AbstractWitherNecromancer;
 import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.*;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirePillar extends CastSpellTrap{
-    // Keep repeated pillar damage on the original half-second cadence without allowing per-tick hits.
+    // Vanilla lets a new hit through once 10 of the 20 post-hit invulnerability ticks are spent.
     private static final int DAMAGE_INTERVAL_TICKS = 10;
     public int warmUp;
     public boolean playEvent;
@@ -123,11 +124,13 @@ public class FirePillar extends CastSpellTrap{
                             if (this.getOwner() instanceof AbstractWitherNecromancer || CuriosFinder.hasUnholySet(this.getOwner())){
                                 damageSource = ModDamageSource.hellfire(this, this.getOwner());
                             }
-                            // Fire pillars tick repeatedly; respect i-frames even when the source is hellfire to avoid per-tick boss damage.
-                            if (livingEntity.invulnerableTime <= 0 && livingEntity.hurt(damageSource, damage)) {
-                                livingEntity.invulnerableTime = DAMAGE_INTERVAL_TICKS;
-                                livingEntity.igniteForSeconds(5.0F);
+                            // Pillars call hurt every tick and let vanilla i-frames set the half-second cadence, as upstream
+                            // does: that also lets a pillar hit override the target's own burning inside the window.
+                            // Hellfire bypasses that cooldown, so only it is held back until the window is half spent.
+                            if (!damageSource.is(DamageTypeTags.BYPASSES_COOLDOWN) || livingEntity.invulnerableTime <= DAMAGE_INTERVAL_TICKS) {
+                                livingEntity.hurt(damageSource, damage);
                             }
+                            livingEntity.igniteForSeconds(5.0F);
                         }
                     }
                 }

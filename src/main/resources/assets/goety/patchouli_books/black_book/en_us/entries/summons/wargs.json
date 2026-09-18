@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To create one, keep at least four owned wolves within eight blocks of a $(l:goety:crafts/artifice/howling_totem)Howling Totem$(). Bind a Waystone to the Totem and use it on an eligible Black Wolf. The wolf becomes a Warg of the corresponding breed. Skeleton Wolves and Hellhounds cannot be promoted."
+      "text": "To create one, keep at least four owned wolves within eight blocks of a $(l:goety:crafts/artifice/howling_totem)Howling Totem$(). Bind a Waystone to the Totem and use it on an eligible wolf. It becomes a Warg of the corresponding breed: Black Wolves and their kin keep their nature, an ordinary tamed wolf yields the gray breed, and Hellhounds cannot be raised this way."
     },
     {
       "type": "patchouli:text",

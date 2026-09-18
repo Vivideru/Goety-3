@@ -188,7 +188,9 @@ tasks.named('jar', Jar).configure {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     exclude 'assets/goety/goety/**'
     exclude 'data/goety/goety/**'
-    exclude 'data/goety/structure/**'
+    // 1.21 reads structure templates only from data/<ns>/structure/; the 1.20
+    // plural folder is an identical leftover that the game ignores.
+    exclude 'data/goety/structures/**'
 
 }
 

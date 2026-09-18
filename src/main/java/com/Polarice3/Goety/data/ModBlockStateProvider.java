@@ -44,12 +44,16 @@ public class ModBlockStateProvider extends BlockStateProvider {
         plushie(ModBlocks.PLUSHIE_8.get());
         plushie(ModBlocks.PLUSHIE_9.get());
         plushie(ModBlocks.PLUSHIE_10.get());
+        plushie(ModBlocks.PLUSHIE_11.get());
+        plushie(ModBlocks.PLUSHIE_12.get());
 
         sculpturedStatue(ModBlocks.SCULPTURED_STATUE.get());
         sculpturedStatue(ModBlocks.STATUE_1.get());
         sculpturedStatue(ModBlocks.STATUE_2.get());
         sculpturedStatue(ModBlocks.STATUE_3.get());
         sculpturedStatue(ModBlocks.STATUE_4.get());
+        sculpturedStatue(ModBlocks.STATUE_5.get());
+        sculpturedStatue(ModBlocks.STATUE_6.get());
 
         simpleBlockWithItem(ModBlocks.DIAMOND_MOLD_BLOCK.get());
 

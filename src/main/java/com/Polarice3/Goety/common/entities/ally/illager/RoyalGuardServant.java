@@ -168,7 +168,7 @@ public class RoyalGuardServant extends AbstractIllagerServant {
             } else {
                 this.setShieldHealth(0);
                 this.setShield(false);
-                this.playSound(SoundEvents.SHIELD_BREAK);
+                this.playSound(ModSounds.SHIELD_BREAK.get(), 1.5F, 1.0F);
                 if (this.level() instanceof ServerLevel serverLevel){
                     ServerParticleUtil.addParticlesAroundSelf(serverLevel, new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ANVIL)), this);
                 }
@@ -225,7 +225,9 @@ public class RoyalGuardServant extends AbstractIllagerServant {
 
     @Override
     public void die(DamageSource pCause) {
-        this.playSound(ModSounds.BLACKGUARD_SMASH.get(), 0.75F, this.getVoicePitch());
+        this.playSound(ModSounds.DOUBLE_AXE_IMPACT_SHING.get(), 1.5F * 0.5F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F));
+        this.playSound(ModSounds.DIRT_SHATTER_THREE.get(), 1.5F * 0.25F * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F));
+        this.playSound(ModSounds.HAMMER_SHIMMER_IMPACT_FOUR.get(), 1.5F * 0.4F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), (this.getRandom().nextBoolean() ? 0.65F : 0.6F) * (this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F));
         this.playSound(ModSounds.PLATE_DROP.get(), this.getSoundVolume(), this.getVoicePitch());
         if (!this.level().isClientSide) {
             if (this.getIdol() == null && this.getTrueOwner() != null && CuriosFinder.hasNamelessSet(this.getTrueOwner())) {
@@ -248,7 +250,9 @@ public class RoyalGuardServant extends AbstractIllagerServant {
             this.playSound(soundevent, 0.8F, this.getRandom().nextBoolean() ? 0.9F : 0.8F);
         }
         this.ambientSoundTime = -this.getAmbientSoundInterval();
-        this.playSound(ModSounds.BLACKGUARD_SMASH.get(), 0.75F, this.getVoicePitch());
+        this.playSound(ModSounds.DOUBLE_AXE_IMPACT_SHING.get(), 0.8F * 0.5F, this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F);
+        this.playSound(ModSounds.DIRT_SHATTER_THREE.get(), 0.8F * 0.25F * (this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F), this.getRandom().nextIntBetweenInclusive(7, 10) * 0.1F);
+        this.playSound(ModSounds.HAMMER_SHIMMER_IMPACT_FOUR.get(), 0.8F * 0.4F * (this.getRandom().nextIntBetweenInclusive(5, 10) * 0.1F), this.getRandom().nextIntBetweenInclusive(5, 7) * 0.1F);
         this.playSound(ModSounds.PLATE.get(), this.getSoundVolume(), this.getVoicePitch());
     }
 

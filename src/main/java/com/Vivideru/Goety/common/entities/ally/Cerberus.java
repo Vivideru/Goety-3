@@ -244,10 +244,11 @@ public class Cerberus extends Warg implements IBreathing {
     private void updateCerberusAnimationStates() {
         boolean breathing = this.isBreathing();
         boolean biting = !breathing && this.getAttackTicks() > 0 && this.getAttackType() == ATTACK_BITE;
-        boolean grounded = !breathing && !biting && this.onGround();
+        boolean airborne = this.tickAirborneAnimation();
+        boolean grounded = !breathing && !biting && !airborne;
         setAnimation(this.fireBreathAnimationState, breathing);
         setAnimation(this.biteAnimationState, biting);
-        setAnimation(this.jumpAnimationState, !breathing && !biting && !this.onGround());
+        setAnimation(this.jumpAnimationState, !breathing && !biting && airborne);
         setAnimation(this.groundedAnimationState, grounded && this.isSitting());
         setAnimation(this.walkAnimationState, grounded && !this.isSitting() && this.walkAnimation.speed() > 0.05F);
         setAnimation(this.idleAnimationState, grounded && !this.isSitting() && this.walkAnimation.speed() <= 0.05F);

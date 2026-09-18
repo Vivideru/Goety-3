@@ -412,6 +412,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_ARM = create("grave_golem_arm");
     public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_BLAST = create("grave_golem_blast");
     public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_GROWL = create("grave_golem_growl");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_ROAR = create("grave_golem_roar");
     public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_STEP = create("grave_golem_step");
     public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_GOLEM_DEATH = create("grave_golem_death");
 
@@ -792,6 +793,13 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_POST = create("boss_post");
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_POST_2 = create("boss_post_second");
     public static final DeferredHolder<SoundEvent, SoundEvent> ARENA_END = create("arena_end");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> DIRT_SHATTER = create("dirt_shatter");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DIRT_SHATTER_THREE = create("dirt_shatter_three");
+    public static final DeferredHolder<SoundEvent, SoundEvent> POTION_DRINK = create("potion_drink");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HAMMER_SHIMMER_IMPACT_FOUR = create("hammer_shimmer_impact_four");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DOUBLE_AXE_IMPACT_SHING = create("double_axe_impact_shing");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SHIELD_BREAK = create("shield_break");
 
     static DeferredHolder<SoundEvent, SoundEvent> create(String name) {
         SoundEvent event = SoundEvent.createVariableRangeEvent(Goety.location(name));

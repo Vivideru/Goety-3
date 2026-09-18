@@ -196,6 +196,8 @@ public class ModEvents {
 
         lichdom.setNightVision(capability2.nightVision());
 
+        lichdom.setLichModeColor(capability2.lichModeColor());
+
         ISoulEnergy capability3 = SEHelper.getCapability(original);
         ISoulEnergy soulEnergy = SEHelper.getCapability(player);
 

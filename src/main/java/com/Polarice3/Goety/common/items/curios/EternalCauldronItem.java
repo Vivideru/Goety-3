@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.items.curios;
 
+import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.api.items.curios.IActivatable;
 import com.Polarice3.Goety.client.inventory.container.EternalCauldronContainer;
 import com.Polarice3.Goety.common.effects.brew.BrewEffect;
@@ -77,7 +78,7 @@ public class EternalCauldronItem extends SingleStackItem implements IActivatable
         for (BrewEffectInstance brewEffectInstance : BrewUtils.getBrewEffects(bottle)){
             brewEffectInstance.getEffect().drinkBlockEffect(player, player, player, brewEffectInstance.getAmplifier(), BrewUtils.getAreaOfEffect(bottle));
         }
-        ModNetwork.sendTo(player, new SPlayPlayerSoundPacket(SoundEvents.GENERIC_DRINK, 1.0F, 1.0F));
+        ModNetwork.sendTo(player, new SPlayPlayerSoundPacket(ModSounds.POTION_DRINK.get(), 1.0F, 1.0F));
         SEHelper.addCooldown(player, this, duration * add);
     }
 

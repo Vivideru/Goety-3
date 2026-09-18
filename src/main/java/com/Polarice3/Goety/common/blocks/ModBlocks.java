@@ -50,12 +50,6 @@ public class ModBlocks {
     }
 
     public static final DeferredHolder<Block, Block> ARCA_BLOCK = register("arca", ArcaBlock::new);
-    public static final DeferredHolder<Block, Block> SHADE_SARCOPHAGUS = isterRegister("shade_sarcophagus", () -> new SarcophagusBlock(ShadeStoneProperties(), "shade"));
-    public static final DeferredHolder<Block, Block> STONE_SARCOPHAGUS = isterRegister("stone_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS), "stone"));
-    public static final DeferredHolder<Block, Block> DEEPSLATE_SARCOPHAGUS = isterRegister("deepslate_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICKS), "deepslate"));
-    public static final DeferredHolder<Block, Block> SANDSTONE_SARCOPHAGUS = isterRegister("sandstone_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE), "sandstone"));
-    public static final DeferredHolder<Block, Block> OMINOUS_SARCOPHAGUS = isterRegister("ominous_sarcophagus", () -> new SarcophagusBlock(OminousStoneProperties(), "ominous"));
-    public static final DeferredHolder<Block, Block> CRYPT_SARCOPHAGUS = isterRegister("crypt_sarcophagus", () -> new SarcophagusBlock(CryptStoneProperties(), "crypt"));
     public static final DeferredHolder<Block, Block> CURSED_INFUSER = register("cursed_infuser", CursedInfuserBlock::new);
     public static final DeferredHolder<Block, Block> GRIM_INFUSER = register("grim_infuser", GrimInfuserBlock::new);
     public static final DeferredHolder<Block, Block> CURSED_CAGE_BLOCK = register("cursed_cage", CursedCageBlock::new);
@@ -281,8 +275,15 @@ public class ModBlocks {
                     .sound(SoundType.METAL)
                     .isRedstoneConductor(ModBlocks::never)));
 
+    public static final DeferredHolder<Block, Block> SHADE_SARCOPHAGUS = isterRegister("shade_sarcophagus", () -> new SarcophagusBlock(ShadeStoneProperties(), "shade"));
+    public static final DeferredHolder<Block, Block> STONE_SARCOPHAGUS = isterRegister("stone_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE_BRICKS), "stone"));
+    public static final DeferredHolder<Block, Block> DEEPSLATE_SARCOPHAGUS = isterRegister("deepslate_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_BRICKS), "deepslate"));
+    public static final DeferredHolder<Block, Block> SANDSTONE_SARCOPHAGUS = isterRegister("sandstone_sarcophagus", () -> new SarcophagusBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SANDSTONE), "sandstone"));
+    public static final DeferredHolder<Block, Block> OMINOUS_SARCOPHAGUS = isterRegister("ominous_sarcophagus", () -> new SarcophagusBlock(OminousStoneProperties(), "ominous"));
+    public static final DeferredHolder<Block, Block> CRYPT_SARCOPHAGUS = isterRegister("crypt_sarcophagus", () -> new SarcophagusBlock(CryptStoneProperties(), "crypt"));
+
     public static final DeferredHolder<Block, Block> ROYAL_CARPET = register("royal_carpet", () ->
-            new WoolCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
+            new StairCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final DeferredHolder<Block, Block> ROYAL_CARPET_CORNER = register("royal_carpet_corner", () ->
             new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final DeferredHolder<Block, Block> ROYAL_CARPET_EDGE = register("royal_carpet_edge", () ->
@@ -291,7 +292,7 @@ public class ModBlocks {
             new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
 
     public static final DeferredHolder<Block, Block> FROSTY_CARPET = register("frosty_carpet", () ->
-            new WoolCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
+            new StairCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
     public static final DeferredHolder<Block, Block> FROSTY_CARPET_CORNER = register("frosty_carpet_corner", () ->
             new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
     public static final DeferredHolder<Block, Block> FROSTY_CARPET_EDGE = register("frosty_carpet_edge", () ->
@@ -1287,12 +1288,16 @@ public class ModBlocks {
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_8 = curioIsterRegister("plushie_8", () -> new PlushieBlock(8));
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_9 = curioIsterRegister("plushie_9", () -> new PlushieBlock(9));
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_10 = curioIsterRegister("plushie_10", () -> new PlushieBlock(10));
+    public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_11 = curioIsterRegister("plushie_11", () -> new PlushieBlock(11));
+    public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_12 = curioIsterRegister("plushie_12", () -> new PlushieBlock(12));
 
     public static final DeferredHolder<Block, SculpturedStatueBlock> SCULPTURED_STATUE = isterRegister("sculptured_statue", SculpturedStatueBlock::new);
     public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_1 = isterRegister("sculptured_statue_1", () -> new SculpturedStatueBlock(1));
     public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_2 = isterRegister("sculptured_statue_2", () -> new SculpturedStatueBlock(2));
     public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_3 = isterRegister("sculptured_statue_3", () -> new SculpturedStatueBlock(3, true));
     public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_4 = isterRegister("sculptured_statue_4", () -> new SculpturedStatueBlock(4));
+    public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_5 = isterRegister("sculptured_statue_5", () -> new SculpturedStatueBlock(5));
+    public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_6 = isterRegister("sculptured_statue_6", () -> new SculpturedStatueBlock(6, true));
 
     //Custom Items
     public static final DeferredHolder<Item, Item> SNAP_WARTS_ITEM = ModItems.ITEMS.register("snap_warts",

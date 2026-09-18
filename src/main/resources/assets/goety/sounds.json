@@ -9091,6 +9091,49 @@
         "name": "goety:item/broom_impact6"
       }
     ]
+  },
+  "grave_golem_roar": {
+    "sounds": [
+      { "name": "goety:grave_golem/roar1" },
+      { "name": "goety:grave_golem/roar2" },
+      { "name": "goety:grave_golem/roar3" }
+    ],
+    "subtitle": "subtitle.goety.grave_golem_growl"
+  },
+  "dirt_shatter": {
+    "sounds": [
+      { "name": "goety:random/dirt_shatter1" },
+      { "name": "goety:random/dirt_shatter2" },
+      { "name": "goety:random/dirt_shatter3" }
+    ]
+  },
+  "dirt_shatter_three": {
+    "sounds": [
+      { "name": "goety:random/dirt_shatter3" }
+    ]
+  },
+  "potion_drink": {
+    "sounds": [
+      { "name": "goety:random/potion_drink1" },
+      { "name": "goety:random/potion_drink2" }
+    ]
+  },
+  "hammer_shimmer_impact_four": {
+    "sounds": [
+      { "name": "goety:item/hammer_shimmer_impact4" }
+    ]
+  },
+  "double_axe_impact_shing": {
+    "sounds": [
+      { "name": "goety:haunted_armor/step" }
+    ]
+  },
+  "shield_break": {
+    "sounds": [
+      { "name": "goety:item/shield_break1" },
+      { "name": "goety:item/shield_break2" },
+      { "name": "goety:item/shield_break3" }
+    ],
+    "subtitle": "subtitles.entity.item.break"
   }
 }
-

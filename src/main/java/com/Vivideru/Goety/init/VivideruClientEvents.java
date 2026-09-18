@@ -51,6 +51,7 @@ public class VivideruClientEvents {
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(VivideruEntityTypes.WARG.get(), WargRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.SKELETAL_WARG.get(), WargRenderer::new);
         event.registerEntityRenderer(VivideruEntityTypes.CERBERUS.get(), CerberusRenderer::new);
     }
 

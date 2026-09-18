@@ -3505,6 +3505,7 @@
   "enchantment.goety.hardy.desc": "Causes brooms to have a higher threshold of the amount of damage it can receive before breaking.",
   "block.goety.wolf_totem": "Howling Totem",
   "entity.goety.warg": "Warg",
+  "entity.goety.skeletal_warg": "Skeletal Warg",
   "item.goety.warg_spawn_egg": "Warg Servant Spawn Egg",
   "item.goety.winter_warg_spawn_egg": "Winter Warg Servant Spawn Egg",
   "item.goety.storm_warg_spawn_egg": "Storm Warg Servant Spawn Egg",
