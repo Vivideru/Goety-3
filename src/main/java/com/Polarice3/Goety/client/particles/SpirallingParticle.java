@@ -64,7 +64,6 @@ public class SpirallingParticle extends TextureSheetParticle {
         RenderSystem.enableBlend();
         RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
         RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_PARTICLES);
-        // The particles atlas is shared with vanilla and other mods, so custom particles must not leave it in blurred filtering mode.
         return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
     }
 

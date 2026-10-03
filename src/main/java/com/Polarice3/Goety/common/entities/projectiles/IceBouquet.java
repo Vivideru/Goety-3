@@ -332,12 +332,10 @@ public class IceBouquet extends GroundProjectile {
                             SEHelper.increaseSouls((Player) owner, 1);
                         }
                         if (this.isTrap()) {
-                            // 1.21 keeps last-player damage bookkeeping encapsulated; the setter preserves XP/credit attribution.
                             target.setLastHurtByPlayer(player);
                         }
                     }
                     if (this.isTrap()) {
-                        // 1.21 keeps last-mob damage bookkeeping encapsulated; the setter preserves retaliation attribution.
                         target.setLastHurtByMob(owner);
                     }
                 }

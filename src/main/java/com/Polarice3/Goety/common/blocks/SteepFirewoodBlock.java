@@ -27,7 +27,6 @@ public class SteepFirewoodBlock extends FirewoodBlock{
 
     public void entityInside(BlockState p_51269_, Level p_51270_, BlockPos p_51271_, Entity p_49263_) {
         if (p_51269_.getValue(LIT)) {
-            // The 1.21 hook includes the block state parameter, so delegate with the fire state instead of the old three-argument call.
             Blocks.FIRE.defaultBlockState().entityInside(p_51270_, p_51271_, p_49263_);
         } else {
             super.entityInside(p_51269_, p_51270_, p_51271_, p_49263_);

@@ -38,10 +38,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingBreatheEvent;
 
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -56,7 +58,6 @@ public class LichEvents {
     @SubscribeEvent
     public static void onLichBreathe(LivingBreatheEvent event) {
         if (LichdomHelper.isLich(event.getEntity())) {
-            // NeoForge checks breathing separately from damage immunity and the player's rendered Lich form.
             event.setCanBreathe(true);
             event.setConsumeAirAmount(0);
             event.setRefillAirAmount(event.getEntity().getMaxAirSupply());
@@ -96,7 +97,6 @@ public class LichEvents {
             }
 
             if (!world.isClientSide) {
-                // Use the removal API so effect attributes and client state are cleared together.
                 for (MobEffectInstance effect : java.util.List.copyOf(player.getActiveEffects())) {
                     if (!EffectsUtil.canAffectLich(effect, world)) {
                         player.removeEffect(effect.getEffect());
@@ -307,18 +307,6 @@ public class LichEvents {
                         }
                     }
                 }
-                if (LichdomHelper.isInLichMode(player)){
-                    if (MainConfig.LichModeSounds.get()) {
-                        if (player.isAlive()) {
-                            if (event.getAmount() > 0.0F) {
-                                if (!player.level().isClientSide) {
-                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LICH_HURT.get(), player.getSoundSource(), 1.0F, player.getVoicePitch());
-                                    MiscCapHelper.setAmbientSoundTime(player, -MathHelper.secondsToTicks(4));
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
         if (event.getSource().getDirectEntity() instanceof Player player){
@@ -336,6 +324,24 @@ public class LichEvents {
     }
 
     @SubscribeEvent
+    public static void HurtSoundEvent(LivingDamageEvent.Pre event){
+        if (event.getEntity() instanceof Player player) {
+            if (LichdomHelper.isLich(player) && LichdomHelper.isInLichMode(player)){
+                if (MainConfig.LichModeSounds.get()) {
+                    if (player.isAlive()) {
+                        if (event.getNewDamage() > 0.0F) {
+                            if (!player.level().isClientSide) {
+                                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), ModSounds.LICH_HURT.get(), player.getSoundSource(), 1.0F, player.getVoicePitch());
+                                MiscCapHelper.setAmbientSoundTime(player, -MathHelper.secondsToTicks(4));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onLivingDeathEvent(LivingDeathEvent event) {
         LivingEntity livingEntity = event.getEntity();
         if (LichdomHelper.isLich(livingEntity)){

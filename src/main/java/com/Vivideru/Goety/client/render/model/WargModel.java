@@ -127,8 +127,6 @@ public class WargModel extends HierarchicalModel<Warg> {
 	@Override
 	public void setupAnim(Warg entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		// The head hangs from the mane, which is pitched 90 degrees on X, so the head's local Y axis points
-		// forward: yaw applied to yRot rolled the head sideways. The parent's -Z axis is the world's up axis.
 		this.head.zRot -= netHeadYaw * ((float)Math.PI / 180F);
 		this.head.xRot += headPitch * ((float)Math.PI / 180F);
 		this.animate(entity.idleAnimationState, WargAnimations.idle, ageInTicks);
@@ -136,7 +134,6 @@ public class WargModel extends HierarchicalModel<Warg> {
 		this.animate(entity.groundedAnimationState, WargAnimations.grounded, ageInTicks);
 		this.animate(entity.jumpAnimationState, WargAnimations.jumping, ageInTicks);
 		this.animate(entity.biteAnimationState, WargAnimations.biting, ageInTicks);
-		// Sword attacks play faster to match their shortened server-side hit windows.
 		this.animate(entity.spinAnimationState, WargAnimations.sword_spin_attack, ageInTicks, 1.5F);
 		this.animate(entity.slashAnimationState, WargAnimations.sword_attack, ageInTicks, 1.5F);
 		this.tail.xRot += entity.getTailAngle() - 0.6981F;

@@ -13,7 +13,6 @@ public final class ModBlockEnchantmentHelper {
     }
 
     public static boolean hasFrostWalker(LivingEntity entity) {
-        // 1.21 removed EnchantmentHelper.hasFrostWalker, so keep the old behavior by checking the Frost Walker enchantment on boots directly.
         Holder<Enchantment> frostWalker = entity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FROST_WALKER);
         return EnchantmentHelper.getItemEnchantmentLevel(frostWalker, entity.getItemBySlot(EquipmentSlot.FEET)) > 0;
     }

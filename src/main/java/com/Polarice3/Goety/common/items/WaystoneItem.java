@@ -177,7 +177,6 @@ public class WaystoneItem extends ItemBase {
     public @NotNull InteractionResult interactLivingEntity(@NotNull ItemStack stack, Player player, @NotNull LivingEntity entity, @NotNull InteractionHand hand) {
         if (!player.level().isClientSide) {
             if (stack.getItem() instanceof WaystoneItem) {
-                // Wolf Totems use the Waystone's existing block binding path, but link canine servants to revival instead of guard mode.
                 InteractionResult wolfTotemResult = WolfTotemHooks.tryLinkToTotem(new WolfTotemHooks.ItemStackAccess(stack), player, entity, hand);
                 if (wolfTotemResult.consumesAction()) {
                     return wolfTotemResult;
@@ -221,7 +220,6 @@ public class WaystoneItem extends ItemBase {
                 nbt.putInt(TAG_FACING, player.getDirection().ordinal());
                 player.playSound(SoundEvents.ARROW_HIT_PLAYER, 1.0F, 0.45F);
                 player.level().playLocalSound(blockpos.getX(), blockpos.getY(), blockpos.getZ(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 1.0F, 0.45F, false);
-                // ItemStack root NBT was removed in 1.21; keep waystone binding data in CUSTOM_DATA.
                 setTag(held, nbt);
                 return InteractionResult.sidedSuccess(player.level().isClientSide);
             }

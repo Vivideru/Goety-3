@@ -44,7 +44,6 @@ public class LichUpdatePacket {
                 if (level != null) {
                     Player player = level.getPlayerByUUID(packet.PlayerUUID);
                     if (player != null) {
-                        // The first server sync may arrive before the client has created its attachment.
                         if (packet.tag != null) {
                             LichdomHelper.load(packet.tag, LichdomHelper.getCapability(player));
                         }

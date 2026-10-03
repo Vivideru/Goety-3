@@ -12,7 +12,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 
 public class CursedBlackBeastArmorModel<T extends BlackBeast> extends BlackBeastModel<T> {
     public CursedBlackBeastArmorModel(ModelPart root) {
-        // Armor geometry replaces the base fur and must remain visible while the armor is equipped.
         super(root, false);
     }
 

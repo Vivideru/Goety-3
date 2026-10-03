@@ -193,14 +193,12 @@ public class CursedCageBlockEntity extends BlockEntity implements Clearable {
     }
 
     public CompoundTag writeNetwork(CompoundTag tag, HolderLookup.Provider provider) {
-        // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an absent/empty child tag still round-trips through parseOptional.
         tag.put("item", item.isEmpty() ? new CompoundTag() : item.save(provider, new CompoundTag()));
         return tag;
     }
 
     public CompoundTag writeNetwork(CompoundTag tag) {
         if (this.level != null) {
-            // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an absent/empty child tag still round-trips through parseOptional.
             tag.put("item", item.isEmpty() ? new CompoundTag() : item.save(this.level.registryAccess(), new CompoundTag()));
         }
         return tag;

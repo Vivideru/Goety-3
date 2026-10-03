@@ -22,10 +22,9 @@ import net.minecraft.world.phys.HitResult;
 import java.util.List;
 
 public class IceAxeItem extends DiggerItem {
-    // The server interaction constant is no longer exposed in 1.21; keep the previous practical reach used by this short-range block check.
     private static final double MAX_ICE_AXE_DISTANCE = 5.0D;
-    private static final int ANCHOR_DURATION_TICKS = 40;
-    private static final int ANCHOR_REFRESH_TICKS = 10;
+    private static final int ANCHOR_DURATION_TICKS = 10;
+    private static final int ANCHOR_REFRESH_TICKS = 4;
     private final int maxDamage;
 
     public IceAxeItem(Tier tier, Properties properties) {
@@ -39,13 +38,11 @@ public class IceAxeItem extends DiggerItem {
     }
 
     public IceAxeItem(Tier tier) {
-        // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
         this(tier, new Properties(), tier.getUses());
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Custom durability must be reported at stack query time in 1.21 or tier defaults can override special variants.
         return this.maxDamage;
     }
 
@@ -75,7 +72,8 @@ public class IceAxeItem extends DiggerItem {
         return UseAnim.BOW;
     }
 
-    public int getUseDuration(ItemStack p_272765_) {
+    @Override
+    public int getUseDuration(ItemStack p_272765_, net.minecraft.world.entity.LivingEntity entity) {
         return 72000;
     }
 
@@ -89,8 +87,6 @@ public class IceAxeItem extends DiggerItem {
                     if (blockhitresult.getDirection() == Direction.UP && (blockState.isSolidRender(p_273467_, blockPos) || blockState.is(BlockTags.ICE))) {
                         MobEffectInstance anchor = player.getEffect(GoetyEffects.TANGLED);
                         if (anchor == null || anchor.getDuration() <= ANCHOR_REFRESH_TICKS) {
-                            // Re-adding the effect every tick makes the game strip and re-apply its movement
-                            // modifiers each time, which is what made the player stutter instead of staying put.
                             player.addEffect(new MobEffectInstance(GoetyEffects.TANGLED, ANCHOR_DURATION_TICKS, 0, false, false));
                         }
                     } else {
@@ -109,9 +105,14 @@ public class IceAxeItem extends DiggerItem {
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, LivingEntity living, int timeLeft) {
-        // The anchor now outlasts a single tick, so it has to be dropped the moment the axe is released.
         living.removeEffect(GoetyEffects.TANGLED);
         super.releaseUsing(stack, level, living, timeLeft);
+    }
+
+    @Override
+    public void onStopUsing(ItemStack stack, LivingEntity living, int count) {
+        living.removeEffect(GoetyEffects.TANGLED);
+        super.onStopUsing(stack, living, count);
     }
 
     private HitResult calculateHitResult(LivingEntity p_281264_) {

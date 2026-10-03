@@ -380,7 +380,6 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
         Item item = itemstack.getItem();
         if (this.isOwnedByPlayer(pPlayer)) {
             if (VivideruItems.isVivideruWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
-                // Skeleton Wolves use the same 1.21 body slot as canine armor, but they are not vanilla Wolf entities.
                 this.setBodyArmorItem(itemstack.copyWithCount(1));
                 if (!pPlayer.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -436,7 +435,6 @@ public class SkeletonWolf extends AnimalSummon implements IMobTyped {
 
     private boolean isOwnedByPlayer(Player player) {
         UUID ownerId = this.getOwnerId();
-        // Owner lookups can return a different entity instance during sync edges, so body armor interactions compare the stable UUID.
         return ownerId != null && ownerId.equals(player.getUUID());
     }
 

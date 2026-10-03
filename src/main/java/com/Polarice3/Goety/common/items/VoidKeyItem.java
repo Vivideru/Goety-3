@@ -55,14 +55,12 @@ public class VoidKeyItem extends ItemBase{
                     }
                 }
                 endersent.setEyeType(eyeType);
-                //If Void Frame Block Entity is available and has saved custom EyeEffects, use those.
                 if (blockEntity1 != null && !blockEntity1.getEyeEffects().isEmpty()) {
                     endersent.setEyeEffects(blockEntity1.getEyeEffects());
                 }
                 endersent.setDropShard(true);
                 endersent.setPos(vec3);
                 endersent.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(blockPos), MobSpawnType.MOB_SUMMONED, null);
-                // finalizeSpawn can adjust synced data through vanilla spawn setup, so keep the Void Frame eye variant authoritative.
                 endersent.setEyeType(eyeType);
                 endersent.setVoidFramePos(blockPos);
                 endersent.setPersistenceRequired();

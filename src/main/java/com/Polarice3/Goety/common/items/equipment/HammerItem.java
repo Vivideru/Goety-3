@@ -53,7 +53,6 @@ public class HammerItem extends TieredItem {
     protected final float speed;
 
     public HammerItem(Tier itemTier) {
-        // Item properties and attributes are built during registration before configs load, so use the declared defaults here.
         super(itemTier, new Properties().rarity(Rarity.UNCOMMON).durability(DEFAULT_DURABILITY).attributes(createHammerAttributes(itemTier)));
         this.speed = itemTier.getSpeed() - 2.0F;
     }
@@ -77,7 +76,6 @@ public class HammerItem extends TieredItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.HammerDurability, DEFAULT_DURABILITY);
     }
 
@@ -96,7 +94,6 @@ public class HammerItem extends TieredItem {
 
     @Override
     public float getAttackDamageBonus(Entity target, float damage, DamageSource damageSource) {
-        // Hammers keep their Goety AOE, but 1.21.1 treats them as lighter maces with slightly lower fall-damage scaling.
         return GoetyMaceUtil.getAttackDamageBonus(target, damageSource, MACE_DAMAGE_SCALE);
     }
 
@@ -195,14 +192,12 @@ public class HammerItem extends TieredItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState blockState) {
-        // Minecraft 1.21 asks the stack-aware hook for tool checks, so mirror the hammer's legacy pickaxe behavior.
         return this.isCorrectToolForDrops(blockState);
     }
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         ResourceLocation enchantmentId = enchantment.unwrapKey().map(ResourceKey::location).orElse(null);
-        // Minecraft 1.21 exposes ranged weapon enchantments as main-hand enchantments, so use item tags plus explicit Goety allowances.
         return (super.supportsEnchantment(stack, enchantment)
                 || enchantment.is(ModEnchantments.RADIUS)
                 || Objects.equals(enchantmentId, ResourceLocation.fromNamespaceAndPath("vanillatweaks", "siphon")))

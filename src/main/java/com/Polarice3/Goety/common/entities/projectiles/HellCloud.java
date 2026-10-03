@@ -48,7 +48,6 @@ public class HellCloud extends AbstractSpellCloud{
         if (livingEntity != null) {
             float baseDamage = 1.0F;
             baseDamage += this.getExtraDamage();
-            // Hell Cloud ticks repeatedly, so respect hurt cooldown even though hellfire itself can bypass other damage checks.
             if (livingEntity.invulnerableTime > 0) {
                 return;
             }

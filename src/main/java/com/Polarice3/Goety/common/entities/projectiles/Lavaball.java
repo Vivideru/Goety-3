@@ -46,7 +46,6 @@ public class Lavaball extends LargeFireball implements ISpellEntity {
         this.reapplyPosition();
         double d0 = Math.sqrt(pAccelX * pAccelX + pAccelY * pAccelY + pAccelZ * pAccelZ);
         if (d0 != 0.0D) {
-            // 1.21 hides AbstractHurtingProjectile acceleration fields; preserve the spawn trajectory by applying equivalent initial motion.
             this.setDeltaMovement(pAccelX / d0 * 0.1D, pAccelY / d0 * 0.1D, pAccelZ / d0 * 0.1D);
         }
     }

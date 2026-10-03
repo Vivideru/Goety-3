@@ -34,7 +34,6 @@ public class ModPotionUtil extends BrewingRecipe {
     }
 
     public static Holder<Potion> getPotion(ItemStack stack) {
-        // 1.21 removed Potions.EMPTY; water is the vanilla no-effect potion fallback.
         return stack.getOrDefault(DataComponents.POTION_CONTENTS, PotionContents.EMPTY).potion().orElse(Potions.WATER);
     }
 
@@ -82,7 +81,6 @@ public class ModPotionUtil extends BrewingRecipe {
     private static void appendLegacyCustomEffects(ItemStack stack, List<MobEffectInstance> effects) {
         CompoundTag customData = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
         if (customData.contains("CustomPotionEffects", 9)) {
-            // Older conversion code stored brew potion effects in custom data; read them so existing brewed stacks are not empty.
             ListTag listTag = customData.getList("CustomPotionEffects", 10);
             for (int i = 0; i < listTag.size(); ++i) {
                 MobEffectInstance instance = MobEffectInstance.load(listTag.getCompound(i));

@@ -197,7 +197,6 @@ public class CorruptedBeamRenderer<T extends CorruptedBeam> extends EntityRender
     }
 
     private static void vertex(VertexConsumer builder, Vector4f position, float alpha, float u, float v, Vector3f normal) {
-        // 1.21's beam buffer is more reliable with packed ARGB here; the old float color path tinted the white beam textures red.
         int color = FastColor.ARGB32.color(Mth.clamp(Math.round(alpha * 255.0F), 0, 255), 255, 255, 255);
         builder.addVertex(position.x(), position.y(), position.z())
                 .setColor(color)

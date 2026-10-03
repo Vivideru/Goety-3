@@ -7,18 +7,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.bus.api.ICancellableEvent;
 
-/**
- * CastingMagicEvent is fired when started to use {@link com.Polarice3.Goety.common.items.magic.DarkWand} with a spell. <br>
- * <br>
- * This event is fired via the {@link GoetyEventFactory#onStartSpell(LivingEntity, ItemStack, ISpell)}.<br>
- * <br>
- * This event is {@link Cancelable}.<br>
- * If this event is canceled, the spell is not cast.<br>
- * <br>
- * This event does not have a result. {@link HasResult}<br>
- * <br>
- * This event is fired on the {@link NeoForge#EVENT_BUS}.
- **/
 public class StartMagicEvent extends LivingEvent implements ICancellableEvent {
     private ISpell spell;
     private final ItemStack useItem;

@@ -71,7 +71,6 @@ public class LampBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; lamps keep toggling from any right-click.
         if (canLight(pState)){
             pLevel.playSound((Player)null, pPos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.5F, 0.6F);
             pLevel.setBlockAndUpdate(pPos, pState.setValue(BlockStateProperties.LIT, Boolean.TRUE));

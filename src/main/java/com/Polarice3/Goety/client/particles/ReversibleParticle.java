@@ -35,10 +35,10 @@ public abstract class ReversibleParticle extends TextureSheetParticle {
         }
 
         Vector3f[] corners = new Vector3f[]{
-                new Vector3f(-1.0F, -1.0F, 0.0F),
-                new Vector3f(-1.0F, 1.0F, 0.0F),
+                new Vector3f(1.0F, -1.0F, 0.0F),
                 new Vector3f(1.0F, 1.0F, 0.0F),
-                new Vector3f(1.0F, -1.0F, 0.0F)
+                new Vector3f(-1.0F, 1.0F, 0.0F),
+                new Vector3f(-1.0F, -1.0F, 0.0F)
         };
         float size = this.getQuadSize(partialTicks);
         for (int i = 0; i < 4; ++i) {

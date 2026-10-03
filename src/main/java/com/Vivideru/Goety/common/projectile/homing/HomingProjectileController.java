@@ -22,7 +22,6 @@ public final class HomingProjectileController {
             return;
         }
 
-        // Returning scythe slashes use their own movement path and would repeatedly cross the same target if steered.
         if (projectile instanceof ScytheSlash || projectile.isRemoved()) {
             HomingProjectileEvents.clearHoming(projectile);
             return;

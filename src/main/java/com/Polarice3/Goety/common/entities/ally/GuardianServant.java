@@ -104,7 +104,6 @@ public class GuardianServant extends Summoned implements IMobTyped{
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
-        // Attribute suppliers can be requested before NeoForge finishes loading common configs.
         return Monster.createMonsterAttributes()
                 .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.GuardianDamage))
                 .add(Attributes.MOVEMENT_SPEED, 0.5D)

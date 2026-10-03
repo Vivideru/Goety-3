@@ -535,7 +535,6 @@ public class Summoned extends Owned implements IServant {
 
     @Override
     public boolean canRevive(DamageSource damageSource) {
-        // Non-raider canine servants can be assigned to Wolf Totems, so they need the same death-event revival hook.
         if (WolfTotemHooks.canRevive(this, damageSource)) {
             return true;
         }
@@ -734,7 +733,6 @@ public class Summoned extends Owned implements IServant {
             } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
                 MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
                 this.navigation.stop();
                 return true;
@@ -885,7 +883,6 @@ public class Summoned extends Owned implements IServant {
             } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
                 return false;
             } else {
-                // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
                 MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
                 this.navigation.stop();
                 return true;

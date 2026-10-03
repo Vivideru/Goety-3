@@ -226,7 +226,6 @@ public class SkeletonVillagerServant extends Owned implements CrossbowAttackMob,
     }
 
     public void shootCrossbowProjectile(LivingEntity p_230284_1_, ItemStack p_230284_2_, Projectile p_230284_3_, float p_230284_4_) {
-        // CrossbowAttackMob no longer exposes the old owner/target helper; vanilla CrossbowItem handles aiming and spawning in 1.21.
         this.performCrossbowAttack(this, 1.6F);
     }
 

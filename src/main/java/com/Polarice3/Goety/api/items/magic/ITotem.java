@@ -13,7 +13,6 @@ public interface ITotem {
     String MAX_SOUL_AMOUNT = "Max Souls";
 
     static int maxSouls() {
-        // Config values are unavailable while NeoForge is constructing registries, so callers read the limit lazily.
         return MainConfig.MaxSouls.get();
     }
 

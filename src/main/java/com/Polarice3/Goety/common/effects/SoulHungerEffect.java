@@ -19,6 +19,5 @@ public class SoulHungerEffect extends GoetyBaseEffect {
 
     @Override
     public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
-        // Soul hunger was intentionally incurable; leave the 1.21 cure set empty to preserve that behavior.
     }
 }

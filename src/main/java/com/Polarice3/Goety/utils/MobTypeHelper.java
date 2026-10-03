@@ -8,7 +8,6 @@ import net.minecraft.world.entity.LivingEntity;
 public class MobTypeHelper {
 
     public static ModMobType getMobType(LivingEntity livingEntity) {
-        // Minecraft 1.21 removed LivingEntity#getMobType, so lich players are mapped here to preserve the old mixin behavior.
         if (LichdomHelper.isLich(livingEntity)) {
             return ModMobType.UNDEAD;
         }

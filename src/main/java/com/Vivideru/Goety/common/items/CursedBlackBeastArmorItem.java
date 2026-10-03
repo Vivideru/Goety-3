@@ -40,7 +40,6 @@ public class CursedBlackBeastArmorItem extends AnimalArmorItem {
 
     @Override
     public boolean canEquip(ItemStack stack, EquipmentSlot armorType, LivingEntity entity) {
-        // Black Beast armor is stored in the 1.21 body slot but should never be picked up by unrelated mobs.
         return armorType == EquipmentSlot.BODY && entity instanceof BlackBeast;
     }
 }

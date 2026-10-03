@@ -5,7 +5,18 @@
   "minVersion": "0.8",
   "refmap": "goety.refmap.json",
   "mixins": [
-    "WolfCursedMetalArmorMixin"
+    "WolfCursedMetalArmorMixin",
+    "ChunkGeneratorWindShrineMixin",
+    "ChunkStatusTasksWindShrineMixin",
+    "BiomeWindShrineMixin",
+    "ResourceOrTagKeyArgumentWindShrineMixin",
+    "ResourceKeyArgumentWindShrineMixin",
+    "JigsawPlacerWindShrineMixin",
+    "JigsawRotationWindShrineMixin",
+    "StructurePiecesBuilderAccessor",
+    "DecoratedPotPatternsMixin",
+    "VaultBlockEntityMixin",
+    "MoveControlStrafeMixin"
   ],
   "client": [
     "WolfArmorLayerMixin"

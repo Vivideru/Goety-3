@@ -16,7 +16,6 @@ public class BrewArrowItem extends ArrowItem {
    }
 
    public ItemStack getDefaultInstance() {
-      // 1.21 removed Potions.EMPTY; water is the vanilla no-effect potion fallback.
       return ModPotionUtil.setPotion(super.getDefaultInstance(), Potions.WATER);
    }
 

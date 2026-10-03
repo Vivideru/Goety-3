@@ -39,7 +39,6 @@ public class StructureTemplateMixin {
 
         if(structurePlaceSettings.getProcessors().stream().anyMatch(processor ->
                 ((StructureProcessorAccessor)processor).callGetType() == ModProcessors.WATERLOGGING_STOP_PROCESSOR.get())) {
-            // 1.21 replaced keep-liquids with LiquidSettings; ignore waterlogging to preserve this processor's behavior.
             structurePlaceSettings.setLiquidSettings(LiquidSettings.IGNORE_WATERLOGGING);
         }
     }
@@ -55,7 +54,6 @@ public class StructureTemplateMixin {
             return;
         }
 
-        // Jigsaw placement skips shape updates, so repair only cursed bars stored beside Goety walls.
         for (StructureTemplate.Palette palette : this.palettes) {
             for (StructureTemplate.StructureBlockInfo info : palette.blocks(ModBlocks.CURSED_BARS_BLOCK.get())) {
                 this.goety$repairCursedBars(level, origin, settings, info.pos(), flags);

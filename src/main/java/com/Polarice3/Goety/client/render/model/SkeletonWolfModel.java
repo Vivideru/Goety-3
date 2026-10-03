@@ -121,7 +121,6 @@ public class SkeletonWolfModel<T extends SkeletonWolf> extends HierarchicalModel
     }
 
     public void renderToBuffer(PoseStack p_102424_, VertexConsumer p_102425_, int p_102426_, int p_102427_, int color) {
-        // 1.21 packs render color into one ARGB int; preserve the model tint by multiplying the packed channels.
         int tintedColor = FastColor.ARGB32.color(
                 FastColor.ARGB32.alpha(color),
                 Math.round(this.r * FastColor.ARGB32.red(color)),

@@ -37,7 +37,6 @@ public class SpecterRenderer<T extends Specter> extends MobRenderer<T, SpecterMo
         @Override
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T wraith, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (!wraith.isHostile()) {
-                // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
                 coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, matrixStackIn, bufferIn, packedLightIn, wraith, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
             }
         }

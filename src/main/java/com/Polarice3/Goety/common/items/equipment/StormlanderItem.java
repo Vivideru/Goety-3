@@ -92,7 +92,6 @@ public class StormlanderItem extends HammerItem{
     public void chain(LivingEntity pTarget, LivingEntity pAttacker) {
         double range = 6;
         Level level = pAttacker.level();
-        // This chained damage is not pulled from the held stack's attributes, so it must follow the live hammer config explicitly.
         float oDamage = ItemConfig.HammerBaseDamage.get().floatValue() + 2.0F;
 
         List<Entity> harmed = new ArrayList<>();

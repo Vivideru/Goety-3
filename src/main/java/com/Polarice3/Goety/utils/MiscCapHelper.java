@@ -39,7 +39,6 @@ public class MiscCapHelper {
 
     public static void setFreezing(LivingEntity livingEntity, int freeze){
         IMisc misc = getCapability(livingEntity);
-        // Avoid synchronizing unchanged attachment data on every living tick.
         if (misc.freezeLevel() != freeze) {
             misc.setFreezeLevel(freeze);
             if (!livingEntity.level().isClientSide){

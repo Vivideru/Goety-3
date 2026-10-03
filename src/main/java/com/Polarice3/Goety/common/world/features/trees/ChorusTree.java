@@ -118,7 +118,6 @@ public class ChorusTree {
     }
 
     private static boolean isTwoByTwoSapling(BlockState state, BlockGetter level, BlockPos pos, int xOffset, int zOffset) {
-        // Minecraft 1.21 removed AbstractMegaTreeGrower, so the old protected 2x2 sapling check is kept locally.
         Block block = state.getBlock();
         return level.getBlockState(pos.offset(xOffset, 0, zOffset)).is(block)
                 && level.getBlockState(pos.offset(xOffset + 1, 0, zOffset)).is(block)

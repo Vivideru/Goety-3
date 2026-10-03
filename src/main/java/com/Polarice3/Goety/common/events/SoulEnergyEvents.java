@@ -293,7 +293,6 @@ public class SoulEnergyEvents {
                 }
             }
 
-            // A servant carrying a soul charm is credited as the killer itself, so its charm can take its share.
             LivingEntity charmKiller = killer instanceof LivingEntity living && living instanceof ICharmUser charmUser
                     && charmUser.getCharm().getItem() instanceof ISoulContainer ? living : null;
             LivingEntity owner = MobUtil.getOwner(killer);
@@ -482,7 +481,6 @@ public class SoulEnergyEvents {
         if (!itemStack.isEmpty()){
             boolean flag = !player1.getAbilities().instabuild && itemStack.getCount() == 1;
             if (flag) {
-                // ItemStack custom NBT is stored through data components in 1.21.
                 ArcaCompassItem.updateTag(itemStack, tag -> ArcaCompassItem.addPlayer(player, tag));
             } else {
                 ItemStack itemstack1 = new ItemStack(ModItems.ARCA_COMPASS.get(), 1);

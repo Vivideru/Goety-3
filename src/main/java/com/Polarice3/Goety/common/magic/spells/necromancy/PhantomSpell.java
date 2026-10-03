@@ -122,7 +122,6 @@ public class PhantomSpell extends SummonSpell {
                     if (potency > 0){
                         phantom.setPhantomSize(potency);
                     }
-                    // Potency keeps the phantom size bonus and should also apply the standard summon Buff effect.
                     this.buffSummon(caster, phantom, potency);
                     this.SummonSap(caster, phantom);
                     this.setTarget(caster, phantom);

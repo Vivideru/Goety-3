@@ -102,7 +102,6 @@ public class BoltingSpell extends Spell {
         public void startTask() {
             if (this.level.getEntity(this.owner) instanceof LivingEntity living) {
                 MiscCapHelper.setCustomSpinTexture(living, ConstantPaths.boltingDash());
-                // The vanilla auto-spin flag setter is protected in 1.21; the custom spin texture keeps the dash readable without reflective access.
                 for (int i = 0; i < 4; ++i){
                     ServerParticleUtil.windParticle(this.level, new ColorUtil(ChatFormatting.YELLOW), 2.0F, (float) ((2.0D * Math.random() - 1.0D) * 0.5D), living.getId(), living.position());
                 }

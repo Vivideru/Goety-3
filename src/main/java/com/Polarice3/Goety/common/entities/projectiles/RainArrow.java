@@ -24,13 +24,11 @@ public class RainArrow extends Arrow implements ISpellEntity {
 
     public RainArrow(Level p_36861_, double p_36862_, double p_36863_, double p_36864_) {
         this(ModEntityType.RAIN_ARROW.get(), p_36861_);
-        // Vanilla Arrow's 1.21 position constructor always creates EntityType.ARROW, so keep the custom entity type and set position manually.
         this.setPos(p_36862_, p_36863_, p_36864_);
     }
 
     public RainArrow(Level p_36866_, LivingEntity p_36867_) {
         this(ModEntityType.RAIN_ARROW.get(), p_36866_);
-        // Vanilla Arrow's 1.21 owner constructor always creates EntityType.ARROW, so keep the custom entity type and set shooter state manually.
         this.setOwner(p_36867_);
         this.setPos(p_36867_.getX(), p_36867_.getEyeY() - 0.1F, p_36867_.getZ());
     }

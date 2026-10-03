@@ -78,7 +78,6 @@ public class WebSpider extends Spider implements RangedAttackMob, ICustomAttribu
     }
 
     public void setConfigurableAttributes() {
-        // Runtime config refresh must preserve the same health/damage mapping used during entity attribute registration.
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.MAX_HEALTH), AttributesConfig.get(AttributesConfig.WebSpiderServantHealth));
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.ATTACK_DAMAGE), AttributesConfig.get(AttributesConfig.WebSpiderServantDamage));
     }
@@ -168,7 +167,6 @@ public class WebSpider extends Spider implements RangedAttackMob, ICustomAttribu
                 }
             } else {
                 if (modifiableattributeinstance != null) {
-                    // AttributeInstance#hasModifier now checks by modifier id rather than by modifier instance.
                     if (modifiableattributeinstance.hasModifier(SHOOT_SPEED_MODIFIER.id())) {
                         modifiableattributeinstance.removeModifier(SHOOT_SPEED_MODIFIER.id());
                     }

@@ -133,7 +133,6 @@ public class FlameCaptureItem extends Item {
             return;
         }
 
-        // ItemStack root NBT was removed in 1.21; keep the captured entity id in CUSTOM_DATA.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, entityTag -> entityTag.putString("mob", name.toString()));
     }
 

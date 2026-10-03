@@ -34,7 +34,6 @@ public class WitchBrewMaker {
         for (ItemStack itemStack : ingredientManager.getAllItemStacks()){
             List<MobEffectInstance> effects = new ArrayList<>();
             List<BrewEffectInstance> blockEffects = new ArrayList<>();
-            // RecipeManager returns RecipeHolder in 1.21; unwrap the value before reading custom recipe fields.
             BrewingRecipe brewingRecipe = recipeManager.getAllRecipesFor(ModRecipeSerializer.BREWING_TYPE.get()).stream().map(RecipeHolder::value).filter(recipe -> recipe.input.test(itemStack)).findFirst().orElse(null);
             ItemStack brew = new ItemStack(ModItems.BREW.get());
             int capacity = 0;
@@ -57,7 +56,6 @@ public class WitchBrewMaker {
             }
             if (!effects.isEmpty() || !blockEffects.isEmpty()) {
                 BrewUtils.setCustomEffects(brew, effects, blockEffects);
-                // ItemStack custom NBT moved into data components in 1.21.
                 CustomData.update(DataComponents.CUSTOM_DATA, brew, tag -> tag.putInt("CustomPotionColor", BrewUtils.getColor(effects, blockEffects)));
                 WitchBrewJeiRecipe recipe = new WitchBrewJeiRecipe(itemStack, brew, capacity, soulCost);
                 if (!recipes.contains(recipe)) {

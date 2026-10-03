@@ -36,7 +36,6 @@ public class MagicFocus extends Item implements IFocus {
 
     @Override
     public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
-        // Spell foci use a per-spell whitelist; 1.21's enchanting table also checks primary item tags, which would otherwise reject vanilla enchants like Fortune on valid foci.
         return this.supportsEnchantment(stack, enchantment);
     }
 
@@ -45,7 +44,6 @@ public class MagicFocus extends Item implements IFocus {
         if (stack.getItem() instanceof MagicFocus magicFocus){
             if (magicFocus.getSpell() != null){
                 if (!magicFocus.getSpell().acceptedEnchantments().isEmpty()){
-                    // Minecraft 1.21 passes enchantments as holders; compare them against the spell's resource-key whitelist.
                     return magicFocus.getSpell().acceptedEnchantments().stream().anyMatch(enchantment::is);
                 }
             }
@@ -58,7 +56,6 @@ public class MagicFocus extends Item implements IFocus {
     }
 
     public int getSoulCost() {
-        // Focus items are constructed during item registration, before NeoForge has loaded common configs.
         return this.spell.defaultSoulCost();
     }
 

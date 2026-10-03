@@ -248,7 +248,6 @@ public class WitchRobeInventory extends SimpleContainer implements MenuProvider 
     }
 
     private PotionBrewing getPotionBrewing() {
-        // Minecraft 1.21 stores brewing recipes on the Level, preserving vanilla and NeoForge custom brewing recipes.
         return this.getLivingEntity() != null ? this.getLivingEntity().level().potionBrewing() : PotionBrewing.EMPTY;
     }
 

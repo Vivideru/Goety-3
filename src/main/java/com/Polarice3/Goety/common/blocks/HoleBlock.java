@@ -50,7 +50,6 @@ public class HoleBlock extends BaseEntityBlock {
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (context instanceof EntityCollisionContext context1) {
             Entity entity = context1.getEntity();
-            // NeoForge asks for block shapes while baking blockstate caches before configs load; only entity collision checks need the blacklist config.
             if (entity != null && SpellConfig.TunnelHaveBlacklist.get() && entity.getType().is(ModTags.EntityTypes.HOLE_IMMUNE)) {
                 return Shapes.block();
             }

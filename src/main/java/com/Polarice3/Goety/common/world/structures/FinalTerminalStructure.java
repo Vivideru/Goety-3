@@ -60,7 +60,6 @@ public class FinalTerminalStructure extends BiggerJigsawStructure{
         int k = chunkpos.getBlockX(7);
         int l = chunkpos.getBlockZ(7);
         BlockPos blockpos = new BlockPos(k, getLowestY(p_227528_, k, l, i, j), l);
-        // JigsawPlacement in 1.21 requires explicit alias, padding, and liquid settings; vanilla defaults preserve old behavior.
         return blockpos.getY() < 10 ? Optional.empty() : JigsawPlacement.addPieces(p_227528_, this.startPool, this.startJigsawName, this.maxDepth, blockpos.below(3), false, this.projectStartToHeightmap, this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, JigsawStructure.DEFAULT_DIMENSION_PADDING, JigsawStructure.DEFAULT_LIQUID_SETTINGS);
     }
 

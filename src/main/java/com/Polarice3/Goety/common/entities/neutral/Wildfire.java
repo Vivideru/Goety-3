@@ -437,7 +437,6 @@ public class Wildfire extends Summoned implements IMobTyped {
                 }
             }
 
-            // The shield branch bypasses LivingEntity#hurt, so it must establish NeoForge's damage context itself.
             DamageContainer container = new DamageContainer(source, amount);
             this.damageContainers.push(container);
             try {

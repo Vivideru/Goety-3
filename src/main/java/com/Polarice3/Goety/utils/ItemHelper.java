@@ -63,12 +63,25 @@ public class ItemHelper {
     public static final Map<DyeColor, Item> ITEM_BY_DYE = new EnumMap<>(DyeColor.class);
     public static final Map<Item, DyeColor> DYE_BY_WOOL = new java.util.HashMap<>();
     static {
-        DyeColor[] colors = DyeColor.values();
-        Item[] wool = {Items.WHITE_WOOL, Items.ORANGE_WOOL, Items.MAGENTA_WOOL, Items.LIGHT_BLUE_WOOL, Items.YELLOW_WOOL, Items.LIME_WOOL, Items.PINK_WOOL, Items.GRAY_WOOL, Items.LIGHT_GRAY_WOOL, Items.CYAN_WOOL, Items.PURPLE_WOOL, Items.BLUE_WOOL, Items.BROWN_WOOL, Items.GREEN_WOOL, Items.RED_WOOL, Items.BLACK_WOOL};
-        Item[] dye = {Items.WHITE_DYE, Items.ORANGE_DYE, Items.MAGENTA_DYE, Items.LIGHT_BLUE_DYE, Items.YELLOW_DYE, Items.LIME_DYE, Items.PINK_DYE, Items.GRAY_DYE, Items.LIGHT_GRAY_DYE, Items.CYAN_DYE, Items.PURPLE_DYE, Items.BLUE_DYE, Items.BROWN_DYE, Items.GREEN_DYE, Items.RED_DYE, Items.BLACK_DYE};
-        for (int i = 0; i < colors.length; i++) { ITEM_BY_DYE.put(colors[i], wool[i]); DYE_BY_WOOL.put(wool[i], colors[i]); }
+        for (DyeColor color : DyeColor.values()) {
+            String path = color.getName() + "_wool";
+            for (Item item : net.minecraft.core.registries.BuiltInRegistries.ITEM) {
+                ResourceLocation id = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item);
+                if (id.getPath().equals(path) && (id.getNamespace().equals("minecraft") || !ITEM_BY_DYE.containsKey(color))) {
+                    ITEM_BY_DYE.put(color, item);
+                    DYE_BY_WOOL.put(item, color);
+                }
+            }
+        }
     }
-    // Centralize Ring of Wrecking filtering so damageable items and datapack tags share one rule.
+
+    public static Item woolFor(DyeColor color) {
+        return ITEM_BY_DYE.getOrDefault(color, Items.WHITE_WOOL);
+    }
+
+    public static DyeColor colorOfWool(Item item) {
+        return DYE_BY_WOOL.getOrDefault(item, DyeColor.WHITE);
+    }
     public static boolean isWreckable(ItemStack itemStack) {
         return (itemStack.isDamageableItem() || itemStack.is(ModTags.Items.WRECKABLE))
                 && !itemStack.is(ModTags.Items.UNWRECKABLE);
@@ -89,7 +102,6 @@ public class ItemHelper {
     public static void hurtNoEntity(ItemStack itemStack, int pAmount, Level level){
         if (level instanceof ServerLevel serverLevel) {
             if (itemStack.isDamageableItem()) {
-                // 1.21 routes durability changes through ServerLevel-aware helpers so enchantment durability effects still run.
                 itemStack.hurtAndBreak(pAmount, serverLevel, (LivingEntity)null, item -> itemStack.setDamageValue(0));
             }
         }
@@ -328,7 +340,6 @@ public class ItemHelper {
         if (banner1.getItem() instanceof BannerItem && banner2.getItem() instanceof BannerItem) {
             BannerPatternLayers patterns1 = banner1.getOrDefault(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY);
             BannerPatternLayers patterns2 = banner2.getOrDefault(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY);
-            // Banner patterns moved from block-entity NBT to data components in 1.21.
             return !patterns1.layers().isEmpty() && patterns1.equals(patterns2);
         }
         return false;
@@ -349,7 +360,6 @@ public class ItemHelper {
     }
 
     public static ListTag bannerLayersToLegacyTag(BannerPatternLayers layers) {
-        // Goety's player banner capability still stores the compact legacy list, so convert at the component boundary.
         ListTag listTag = new ListTag();
         for (BannerPatternLayers.Layer layer : layers.layers()) {
             layer.pattern().unwrapKey().ifPresent(key -> {

@@ -23,7 +23,6 @@ public class AuraParticle extends TextureSheetParticle {
         this.setSpriteFromAge(spriteSet);
         this.rotSpeed = ((float)Math.random() - 0.5F) * 0.1F;
         this.roll = (float)Math.random() * ((float)Math.PI * 2F);
-        // AuraParticleOption carries spell colors; apply them on the client instead of falling back to the texture's default tint.
         this.setColor(red, green, blue);
     }
 

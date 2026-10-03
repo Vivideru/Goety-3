@@ -1,0 +1,23 @@
+{
+  "name": "Pale Crystal Ball",
+  "icon": "goety:pale_crystal_ball",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/get_crystal_ball",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A crystal ball set in pale steel instead of gold. It has no bond with the Crone and will never call her, but it scries just as well: a filled $(l:crafts/waystone)Waystone$() shows the place from above and a filled $(l:crafts/taglock_kit)Taglock Kit$() lets you look through the victim's eyes."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:pale_crystal_ball"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Both target and location must be in the same dimension, loaded, and within about a thousand blocks of the ball; the victim must also be either a player or near one."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:pale_crystal_ball": 1
+  }
+}

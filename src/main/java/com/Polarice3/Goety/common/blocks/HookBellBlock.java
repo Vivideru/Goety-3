@@ -91,7 +91,6 @@ public class HookBellBlock extends BaseEntityBlock {
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState p_49722_, Level p_49723_, BlockPos p_49724_, Player p_49725_, InteractionHand p_49726_, BlockHitResult p_49727_) {
-        // Item-based block interaction replaced the old use hook in 1.21; bells still ring from any right-click.
         return this.onHit(p_49723_, p_49722_, p_49727_, p_49725_, true) ? ItemInteractionResult.sidedSuccess(p_49723_.isClientSide) : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 

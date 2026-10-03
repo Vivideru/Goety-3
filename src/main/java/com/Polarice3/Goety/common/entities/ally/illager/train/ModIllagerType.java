@@ -5,6 +5,7 @@ import com.Polarice3.Goety.api.entities.ally.illager.ITrainIllager;
 import com.Polarice3.Goety.common.blocks.*;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.common.entities.ally.illager.Neollager;
+import com.Polarice3.Goety.common.research.Research;
 import com.Polarice3.Goety.common.research.ResearchList;
 import com.Polarice3.Goety.common.ritual.RitualChecker;
 import com.Polarice3.Goety.init.ModTags;
@@ -30,7 +31,9 @@ public class ModIllagerType implements ITrainIllager {
     public boolean mobCanTrainTo(Mob mob, Level level, BlockPos blockPos, int range) {
         EntityType<?> entityType = this.getIllager(level, blockPos, range);
         if (entityType == ModEntityType.STORM_CASTER_SERVANT.get()) {
-            return mob.getType() == ModEntityType.GEOMANCER_SERVANT.get() || mob.getType() == ModEntityType.WIND_CALLER_SERVANT.get();
+            return (mob.getType() == ModEntityType.GEOMANCER_SERVANT.get() || mob.getType() == ModEntityType.WIND_CALLER_SERVANT.get()) && hasResearch(mob, ResearchList.MISTRAL);
+        } else if (entityType == ModEntityType.WIND_CALLER_SERVANT.get()) {
+            return mob instanceof Neollager neollager && neollager.isMagic() && hasResearch(mob, ResearchList.MISTRAL);
         } else if (entityType == ModEntityType.CRYOLOGER_SERVANT.get()) {
             return mob.getType() == ModEntityType.ICEOLOGER_SERVANT.get();
         } else if (entityType == ModEntityType.VINDICATOR_CHEF_SERVANT.get() || entityType == ModEntityType.MOUNTAINEER_SERVANT.get() || entityType == ModEntityType.CRUSHER_SERVANT.get()) {
@@ -42,6 +45,10 @@ public class ModIllagerType implements ITrainIllager {
         } else {
             return mob instanceof Neollager;
         }
+    }
+
+    private static boolean hasResearch(Mob mob, Research research) {
+        return mob instanceof IOwned owned && owned.getTrueOwner() instanceof Player player && SEHelper.hasResearch(player, research);
     }
 
     @Override
@@ -105,7 +112,6 @@ public class ModIllagerType implements ITrainIllager {
         } else if (checker.hasBlocks(blockState -> blockState.is(Blocks.AMETHYST_BLOCK), 16)
                 && checker.hasBlocks(blockState -> blockState.getBlock().getDescriptionId().contains("deepslate"), 64)
                 && checker.hasBlocks(blockState -> blockState.is(ModBlocks.CREEPER_TOTEM.get()), 16)) {
-            // NeoForge no longer exposes a dedicated amethyst storage-block tag in 1.21; use the vanilla block until a local compatibility tag is added.
             return ModEntityType.GEOMANCER_SERVANT.get();
         } else if (checker.hasBlocks(blockState -> blockState.is(Blocks.BLUE_ICE), 16)
                 && checker.hasBlocks(blockState -> blockState.is(BlockTags.SNOW), 64)

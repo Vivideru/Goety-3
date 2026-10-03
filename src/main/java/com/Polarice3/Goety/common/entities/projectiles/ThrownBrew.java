@@ -69,8 +69,6 @@ public class ThrownBrew extends ThrowableItemProjectile implements ItemSupplier 
         return ModItems.SPLASH_BREW.get();
     }
 
-    // 1.21 makes Entity#getGravity final; use the vanilla throwable gravity until this projectile is moved to the new gravity hook.
-
     @Override
     public boolean isInWater() {
         if (BrewUtils.getAquatic(this.getItem())){
@@ -147,7 +145,6 @@ public class ThrownBrew extends ThrowableItemProjectile implements ItemSupplier 
             Holder<Potion> potion = ModPotionUtil.getPotion(itemstack);
             List<MobEffectInstance> list = ModPotionUtil.getMobEffects(itemstack);
             List<BrewEffectInstance> list1 = BrewUtils.getBrewEffects(itemstack);
-            // Custom-only brews still use water as their base potion, so they must not enter the plain-water branch.
             boolean flag = potion == Potions.WATER && list.isEmpty() && list1.isEmpty();
             if (flag) {
                 this.applyWater();
@@ -200,7 +197,6 @@ public class ThrownBrew extends ThrowableItemProjectile implements ItemSupplier 
                 if (livingentity.isAffectedByPotions()) {
                     double d0 = this.distanceToSqr(livingentity);
                     if (d0 < areaSqr) {
-                        // Splash falloff is distance/radius in vanilla; using radius squared makes distant instant brews apply at near full strength.
                         double d1 = 1.0D - Math.sqrt(d0) / area;
                         if (livingentity == hitEntity) {
                             d1 = 1.0D;

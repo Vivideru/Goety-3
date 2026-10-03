@@ -162,7 +162,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
 
     @Override
     public float maxUpStep() {
-        // NeoForge's old step-height addition was replaced by the vanilla step-height attribute in 1.21.
         return Math.max(super.maxUpStep(), 1.0F);
     }
 
@@ -235,7 +234,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
             this.setEyeType(compound.getInt("EyeType"));
         }
         if (compound.contains("EyeEffects", 9)) {
-            // Eye effects may be custom registry entries in 1.21, so serialize them with the entity registry context.
             this.eyeEffects.clear();
             ListTag listtag = compound.getList("EyeEffects", 10);
             DynamicOps<Tag> ops = this.effectOps();
@@ -431,7 +429,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
         this.eyeEffects = new ArrayList<>();
         for (MobEffectInstance instance : instances) {
             if (instance != null) {
-                // The Endersent refreshes eye effects every tick, so keep a detached copy instead of sharing the Void Frame list.
                 this.eyeEffects.add(new MobEffectInstance(instance));
             }
         }
@@ -442,7 +439,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
         if (parsed.isPresent()) {
             return parsed;
         }
-        // Older saved structures and command-edited NBT may still use the pre-1.21 effect field names.
         Holder<MobEffect> effect = null;
         if (tag.contains("Id", 99)) {
             MobEffect legacyEffect = BuiltInRegistries.MOB_EFFECT.byId(tag.getInt("Id"));
@@ -612,7 +608,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
                 health.setBaseValue(AttributesConfig.get(AttributesConfig.EndersentHealth) * 1.15D);
                 this.setHealth(this.getMaxHealth());
             }
-            // Void Frame variants must enter the world with their eye effects already active so overlays and combat logic see them immediately.
             this.eyeTypeEffects();
         }
         return data;
@@ -622,7 +617,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
     public void onAddedToLevel() {
         super.onAddedToLevel();
         if (!this.level().isClientSide && this.hasEyeBonuses()) {
-            // Summon circles add the prepared Endersent later, so refresh the eye effects at the actual world insertion point too.
             this.eyeTypeEffects();
         }
     }
@@ -869,7 +863,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
     }
 
     public void addEyeEffects(MobEffect effect) {
-        // Relics serializes new effects as soon as they are added, so raw MobEffect values must be resolved back to registered holders.
         this.addEyeEffects(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect), 0);
     }
 
@@ -878,7 +871,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
     }
 
     public void addEyeEffects(Holder<MobEffect> effect, int level, int duration) {
-        // Eye bonuses are permanent while the eye is active; refresh with a visible icon so 1.21 clients and mod overlays report them correctly.
         this.addEffect(new MobEffectInstance(effect, duration, level, false, false, true));
     }
 
@@ -948,7 +940,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
                 if (i < 3 || serverLevel.getRandom().nextBoolean()) {
                     WatchlingServant servant = new WatchlingServant(ModEntityType.WATCHLING_SERVANT.get(), serverLevel);
                     BlockPos blockPos = BlockFinder.SummonRadius(this.blockPosition(), servant, serverLevel);
-                    // Summons spawned by an owned Endersent should belong to the same effective owner.
                     servant.setTrueOwner(MobUtil.getSummonOwner(this));
                     servant.moveTo(blockPos, 0.0F, 0.0F);
                     servant.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.MOB_SUMMONED, null);
@@ -1254,7 +1245,6 @@ public class Endersent extends AbstractEnderling implements Enemy {
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
             double distToEnemySqr = Endersent.this.distanceToSqr(enemy.getX(), enemy.getY(), enemy.getZ());
-            // MeleeAttackGoal no longer exposes getAttackReachSqr, so keep Endersent's custom reach calculation here.
             double d0 = Endersent.this.getMeleeAttackRangeSqr(enemy);
             boolean smash = Endersent.this.random.nextBoolean();
 

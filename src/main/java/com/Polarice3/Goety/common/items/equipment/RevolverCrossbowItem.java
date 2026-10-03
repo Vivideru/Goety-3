@@ -84,7 +84,6 @@ public class RevolverCrossbowItem extends CrossbowItem {
     }
 
     public static void setChargedShots(ItemStack p_40885_, int p_40886_) {
-        // ItemStack root NBT was removed in 1.21; keep the revolver shot counter in CUSTOM_DATA.
         CustomData.update(DataComponents.CUSTOM_DATA, p_40885_, compoundTag -> {
             if (p_40886_ > 0) {
                 compoundTag.putInt(TAG_CHARGED_SHOTS, p_40886_);
@@ -136,7 +135,6 @@ public class RevolverCrossbowItem extends CrossbowItem {
                 Vector3f vector3f = vec3.toVector3f().rotate(quaternionf);
                 projectile.shoot((double)vector3f.x(), (double)vector3f.y(), (double)vector3f.z(), p_40902_, p_40903_);
             } else {
-                // The old CrossbowAttackMob projectile hook was removed; preserve revolver spread and let vanilla AI target handling occur through normal shooting flow.
                 Vec3 vec31 = p_40896_.getUpVector(1.0F);
                 Quaternionf quaternionf = (new Quaternionf()).setAngleAxis((double)(p_40904_ * ((float)Math.PI / 180F)), vec31.x, vec31.y, vec31.z);
                 Vec3 vec3 = p_40896_.getViewVector(1.0F);
@@ -209,7 +207,6 @@ public class RevolverCrossbowItem extends CrossbowItem {
     }
 
     private static boolean tryLoadProjectiles(LivingEntity shooter, ItemStack crossbow) {
-        // Vanilla 1.21 moved projectile-count enchantment logic into EnchantmentHelper; start from the revolver's old three-shot base.
         int j = shooter.level() instanceof ServerLevel serverLevel ? EnchantmentHelper.processProjectileCount(serverLevel, crossbow, shooter, 3) : 3;
         boolean flag = shooter instanceof Player player && player.getAbilities().instabuild;
         ItemStack itemstack = shooter.getProjectile(crossbow);

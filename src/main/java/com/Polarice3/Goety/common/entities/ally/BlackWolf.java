@@ -143,7 +143,6 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
         if (compound.contains("RitualSummonedByPlayer")) {
             this.ritualSummonedByPlayer = compound.getBoolean("RitualSummonedByPlayer");
             if (this.ritualSummonedByPlayer) {
-                // finalizeSpawn is not called for chunk-loaded entities, so restore the persistent ritual bonus without healing them.
                 this.applyRitualHealthBonus(false);
             }
         }
@@ -194,6 +193,10 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
 
     protected float getSoundVolume() {
         return 0.4F;
+    }
+
+    protected SoundEvent getShakeSound() {
+        return SoundEvents.WOLF_SHAKE;
     }
 
     @Override
@@ -261,7 +264,7 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
                 }
             } else if ((this.isWet() || this.isShaking) && this.isShaking) {
                 if (this.shakeAnim == 0.0F) {
-                    this.playSound(SoundEvents.WOLF_SHAKE, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+                    this.playSound(this.getShakeSound(), this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
                     this.gameEvent(GameEvent.ENTITY_ACTION);
                 }
 
@@ -303,13 +306,17 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
         }
     }
 
+    protected boolean canTurnInvisible() {
+        return true;
+    }
+
     @Override
     public void mobSense() {
         if (MobsConfig.MobSense.get()) {
             if (this.isAlive()) {
                 if (this.getTarget() != null) {
                     if (!this.isInvisible()) {
-                        if (this.invisibleCool > 0) {
+                        if (this.invisibleCool > 0 || !this.canTurnInvisible()) {
                             super.mobSense();
                         } else {
                             this.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, MathHelper.secondsToTicks(30), 0, false, false));
@@ -441,7 +448,6 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (this.isOwnedByPlayer(pPlayer)) {
             if (VivideruItems.isVivideruWolfArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
-                // Black Wolves are not vanilla Wolf entities, so their canine armor has to use Mob's 1.21 body slot directly.
                 this.setBodyArmorItem(itemstack.copyWithCount(1));
                 if (!pPlayer.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -486,7 +492,6 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
 
     private boolean isOwnedByPlayer(Player player) {
         UUID ownerId = this.getOwnerId();
-        // Owner lookups can return a different entity instance during sync edges, so body armor interactions compare the stable UUID.
         return ownerId != null && ownerId.equals(player.getUUID());
     }
 
@@ -512,7 +517,6 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
     private void applyRitualHealthBonus(boolean healToFull) {
         AttributeInstance health = this.getAttribute(Attributes.MAX_HEALTH);
         if (health != null) {
-            // Use the configured base value to keep repeated loads from multiplying the ritual bonus again.
             health.setBaseValue(AttributesConfig.get(AttributesConfig.BlackWolfHealth) * 2.0D);
             if (healToFull) {
                 this.setHealth(this.getMaxHealth());

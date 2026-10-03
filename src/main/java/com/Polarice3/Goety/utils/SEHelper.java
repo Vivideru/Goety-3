@@ -30,6 +30,7 @@ import com.Polarice3.Goety.common.world.data.GrimoireData;
 import com.Polarice3.Goety.compat.minecolonies.MinecoloniesLoaded;
 import com.Polarice3.Goety.config.BrewConfig;
 import com.Polarice3.Goety.config.MainConfig;
+import net.minecraft.tags.TagKey;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
@@ -244,7 +245,6 @@ public class SEHelper {
             }
             int soulGain = Mth.floor(getSoulGiven(victim) * extra) * multi;
             if (charmMob) {
-                // A charm-carrying servant keeps half of the souls for its charm and hands only the rest to its owner.
                 if (player != null) {
                     soulGain = (int) (soulGain * 0.5F);
                 }
@@ -301,7 +301,6 @@ public class SEHelper {
     public static int SoulMultiply(LivingEntity livingEntity, DamageSource source){
         ItemStack weapon = livingEntity.getMainHandItem();
         int multiply = 1;
-        // Soul Eater also belongs to projectiles fired by the entity holding the enchanted weapon.
         if (ModDamageSource.physicalAttacks(source)
                 || source.getDirectEntity() instanceof Projectile projectile && projectile.getOwner() == livingEntity) {
             int i = MobUtil.getItemEnchantmentLevel(livingEntity, weapon, ModEnchantments.SOUL_EATER);
@@ -437,6 +436,23 @@ public class SEHelper {
                 String string = allyTypeList.getCompound(i).getString("id");
                 if (EntityType.byString(string).isPresent() &&
                         EntityType.byString(string).get() == livingEntity.getType()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isSavedGrudgeTag(ServerLevel level, UUID uuid, TagKey<EntityType<?>> tag) {
+        CompoundTag listsData = loadGrimoireFromWorld(level, uuid);
+
+        if (listsData.contains("grudgeTypeList", Tag.TAG_LIST)) {
+            ListTag grudgeTypeList = listsData.getList("grudgeTypeList", Tag.TAG_COMPOUND);
+            for (int i = 0; i < grudgeTypeList.size(); i++) {
+                String string = grudgeTypeList.getCompound(i).getString("id");
+                if (EntityType.byString(string).isPresent() &&
+                        EntityType.byString(string).get().is(tag)) {
                     return true;
                 }
             }

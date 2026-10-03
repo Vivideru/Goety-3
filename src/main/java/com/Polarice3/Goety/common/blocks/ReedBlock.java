@@ -55,7 +55,6 @@ public class ReedBlock extends Block implements BonemealableBlock {
                 if (!world.isClientSide) {
                     world.playSound(null, pos, SoundEvents.PUMPKIN_CARVE, SoundSource.BLOCKS, 1.0F, 1.0F);
                     world.setBlock(pos, ModBlocks.CHORUS_BLOSSOM_VINES_PRUNED.get().defaultBlockState().setValue(ReedBlock.AGE, 0), 11);
-                    // ItemStack damage now reports the broken slot directly instead of accepting a break-event callback.
                     itemStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
                     world.gameEvent(player, GameEvent.SHEAR, pos);
                     player.awardStat(Stats.ITEM_USED.get(Items.SHEARS));
@@ -94,7 +93,6 @@ public class ReedBlock extends Block implements BonemealableBlock {
     }
 
     public void randomTick(BlockState p_221350_, ServerLevel p_221351_, BlockPos p_221352_, RandomSource p_221353_) {
-        // ForgeHooks crop events moved to CommonHooks in NeoForge 1.21.
         if (p_221350_.getValue(AGE) < 25 && CommonHooks.canCropGrow(p_221351_, p_221352_.relative(Direction.UP), p_221351_.getBlockState(p_221352_.relative(Direction.UP)),p_221353_.nextDouble() < 0.1D)) {
             BlockPos blockpos = p_221352_.relative(Direction.UP);
             if (this.canGrowInto(p_221351_.getBlockState(blockpos))) {

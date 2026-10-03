@@ -109,7 +109,6 @@ public class DarkAnvilScreen extends ItemCombinerScreen<DarkAnvilMenu> {
 
    protected void renderBg(GuiGraphics p_283345_, float p_283412_, int p_282871_, int p_281306_) {
       super.renderBg(p_283345_, p_283412_, p_282871_, p_281306_);
-      // Vanilla 1.21 moved the anvil text field to GUI sprites; sampling the old texture strip renders the wrong red region.
       p_283345_.blitSprite(this.menu.getSlot(0).hasItem() ? TEXT_FIELD_SPRITE : TEXT_FIELD_DISABLED_SPRITE, this.leftPos + 59, this.topPos + 20, 110, 16);
    }
 
@@ -119,7 +118,6 @@ public class DarkAnvilScreen extends ItemCombinerScreen<DarkAnvilMenu> {
 
    protected void renderErrorIcon(GuiGraphics p_282905_, int p_283237_, int p_282237_) {
       if ((this.menu.getSlot(0).hasItem() || this.menu.getSlot(1).hasItem()) && !this.menu.getSlot(this.menu.getResultSlot()).hasItem()) {
-         // Vanilla 1.21 also moved the error marker to a sprite, matching the new anvil texture layout.
          p_282905_.blitSprite(ERROR_SPRITE, p_283237_ + 99, p_282237_ + 45, 28, 21);
       }
 

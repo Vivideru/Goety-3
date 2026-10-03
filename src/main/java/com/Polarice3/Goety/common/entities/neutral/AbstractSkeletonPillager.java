@@ -127,7 +127,6 @@ public class AbstractSkeletonPillager extends AbstractSkeletonServant implements
         if (p_219056_.nextInt(300) == 0) {
             ItemStack itemstack = this.getMainHandItem();
             if (itemstack.is(Items.CROSSBOW)) {
-                // 1.21 stores enchantments as registry-backed item components, so reuse the vanilla pillager provider instead of editing the old enchantment map.
                 EnchantmentHelper.enchantItemFromProvider(itemstack, pLevel.registryAccess(), VanillaEnchantmentProviders.PILLAGER_SPAWN_CROSSBOW, pDifficulty, p_219056_);
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
             }
@@ -143,7 +142,6 @@ public class AbstractSkeletonPillager extends AbstractSkeletonServant implements
         if (p_33277_ instanceof AbstractArrow arrow){
             arrow.setBaseDamage(arrow.getBaseDamage() + MobUtil.getSpecialAttackDamage(this, (float)(this.getArrowPower() + this.getBaseRangeDamage())));
         }
-        // CrossbowAttackMob no longer exposes the old owner/target helper; vanilla CrossbowItem handles aiming and spawning in 1.21.
         this.performCrossbowAttack(this, 1.6F);
     }
 

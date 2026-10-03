@@ -5,10 +5,6 @@ import com.Vivideru.Goety.common.entities.ally.Cerberus;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 
-/**
- * Follows a Cerberus and is only audible while it is actually breathing. A one-shot sound replayed on a timer
- * keeps roaring after the breath ends, so the loop is muted the instant the breath stops instead.
- */
 public class CerberusBreathSound extends AbstractTickableSoundInstance {
     private static final float BREATH_VOLUME = 1.5F;
 

@@ -171,7 +171,6 @@ public class BouncyBubble extends SpellHurtingProjectile{
     }
 
     public void explode() {
-        // Collision callbacks can be re-entered by nearby projectiles, so only resolve this explosion once.
         if (this.exploding || this.isRemoved()) {
             return;
         }

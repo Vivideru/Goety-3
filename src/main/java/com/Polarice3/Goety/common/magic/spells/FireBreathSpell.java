@@ -37,7 +37,6 @@ public class FireBreathSpell extends BreathingSpell {
     }
 
     private float baseDamage() {
-        // Focus registration constructs spell instances before NeoForge loads common configs.
         return SpellConfig.FireBreathDamage.get().floatValue() * WandUtil.damageMultiply();
     }
 
@@ -116,7 +115,6 @@ public class FireBreathSpell extends BreathingSpell {
         }
         float damage = this.baseDamage() + potency;
         if (!worldIn.isClientSide) {
-            // The Nether Staff is now the active source of Fire Breath empowerment.
             if (this.rightStaff(staff)) {
                 damage *= 2.0F;
                 if (SpellConfig.DragonFireGriefing.get()) {
@@ -155,13 +153,13 @@ public class FireBreathSpell extends BreathingSpell {
     public void showWandBreath(LivingEntity entityLiving, ItemStack staff, SpellStat spellStat) {
         int range = spellStat.getRange();
         if (WandUtil.enchantedFocus(entityLiving)){
-            range = WandUtil.getRangeLevel(entityLiving);
+            range += WandUtil.getRangeLevel(entityLiving);
         }
 
         if (this.rightStaff(staff)) {
-            this.dragonBreathAttack(ModParticleTypes.DRAGON_FLAME.get(), entityLiving, ((double) range / 10) * 0.5D);
+            this.dragonBreathAttack(ModParticleTypes.DRAGON_FLAME.get(), entityLiving, ((double) range / 10) * 0.35D);
         } else {
-            this.dragonBreathAttack(ModParticleTypes.SMALL_DRAGON_FLAME.get(), entityLiving, 10, ((double) range / 10) * 0.5D, 1.0D);
+            this.dragonBreathAttack(ModParticleTypes.SMALL_DRAGON_FLAME.get(), entityLiving, 10, ((double) range / 10) * 0.55D, 0.05F);
         }
     }
 }

@@ -38,7 +38,6 @@ public class HauntedPaintingRenderer extends EntityRenderer<HauntedPainting> {
       EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
       PaintingVariant variant = entity.getVariant().value();
       Direction direction = entity.getDirection();
-      // PaintingVariant dimensions are block counts in 1.21, while this legacy framed renderer is laid out in 16-pixel tiles.
       int width = variant.width() * 16;
       int height = variant.height() * 16;
       HauntedPaintingModel model;
@@ -117,7 +116,6 @@ public class HauntedPaintingRenderer extends EntityRenderer<HauntedPainting> {
 
    @Override
    public ResourceLocation getTextureLocation(HauntedPainting entity) {
-      // Painting variant holders carry their registry key in 1.21; using it avoids the removed BuiltInRegistries field.
       String path = entity.getVariant().unwrapKey().map(key -> key.location().getPath()).orElse("kebab");
       return Goety.location("textures/painting/" + path + ".png");
    }

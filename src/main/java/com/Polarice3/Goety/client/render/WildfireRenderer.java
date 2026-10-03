@@ -47,7 +47,6 @@ public class WildfireRenderer extends MobRenderer<Wildfire, WildfireModel<Wildfi
       @Override
       public void render(PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight, Wildfire pLivingEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTicks, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
          if (MobsConfig.WildfireTexture.get() && !pLivingEntity.isHostile()) {
-            // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
             coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, pMatrixStack, pBuffer, pPackedLight, pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch, pPartialTicks, -1);
          }
       }

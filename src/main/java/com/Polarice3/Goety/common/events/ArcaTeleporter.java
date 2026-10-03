@@ -10,7 +10,6 @@ public class ArcaTeleporter {
     }
 
     public static DimensionTransition transition(ServerLevel destWorld, Entity entity, Vec3 targetPos) {
-        // Minecraft 1.21 replaces ITeleporter with DimensionTransition, so this preserves the old target-position behavior at each call site.
         return new DimensionTransition(destWorld, targetPos, entity.getDeltaMovement(), entity.getYRot(), entity.getXRot(), DimensionTransition.DO_NOTHING);
     }
 }

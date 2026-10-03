@@ -107,7 +107,6 @@ public class HauntedMirrorBlock extends BaseEntityBlock implements SimpleWaterlo
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; a Lich dyes their mode here.
         if (LichdomHelper.isLich(pPlayer)) {
             if (itemStack.getItem() instanceof DyeItem dyeItem) {
                 LichdomHelper.setLichModeColor(pPlayer, dyeItem.getDyeColor().getTextColor());

@@ -107,8 +107,6 @@ public class SlimeServant extends Summoned implements IMobTyped{
 
     @Override
     protected boolean shouldDropLoot() {
-        // Like other servants, only slimes spawned in the wild drop loot; summoned ones never do. This also gates the
-        // extra Crypt and Tropical Slime tables, since vanilla calls dropCustomDeathLoot only when this is true.
         return this.isNatural() && !this.limitedLifespan && this.limitedLifeTicks <= 0;
     }
 
@@ -431,7 +429,6 @@ public class SlimeServant extends Summoned implements IMobTyped{
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_33597_) {
-        // LivingEntity#getDimensions is final in 1.21, so the slime size scale has to be applied through the default dimensions hook.
         return super.getDefaultDimensions(p_33597_).scale(0.255F * (float)this.getSize());
     }
 

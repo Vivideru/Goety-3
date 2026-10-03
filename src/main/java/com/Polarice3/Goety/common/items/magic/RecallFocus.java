@@ -63,7 +63,6 @@ public class RecallFocus extends MagicFocus{
         Player player = pContext.getPlayer();
         if (player != null) {
             if (!stack.isEmpty() && !hasRecall(stack)) {
-                // ItemStack root NBT was removed in 1.21; keep recall target data in CUSTOM_DATA.
                 CompoundTag compoundTag = tag(stack);
                 if (stack.getItem() instanceof RecallFocus) {
                     BlockPos blockpos = pContext.getClickedPos();
@@ -133,7 +132,6 @@ public class RecallFocus extends MagicFocus{
                                     if (event.isCanceled()) {
                                         return false;
                                     }
-                                    // Dimension changes replace non-player entities in 1.21, so synchronize the returned instance.
                                     Entity transferred = livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, optional.get()));
                                     if (transferred != null) {
                                         MobUtil.teleportTracked(transferred, event.getTargetX(), event.getTargetY(), event.getTargetZ());

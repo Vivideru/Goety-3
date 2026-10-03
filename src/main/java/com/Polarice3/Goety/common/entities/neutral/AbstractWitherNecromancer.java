@@ -447,7 +447,6 @@ public class AbstractWitherNecromancer extends AbstractNecromancer {
                     MobUtil.moveDownToGround(flames);
                     serverLevel.addFreshEntity(flames);
                 }
-                // Two rings keep the updated attack readable while preserving its original outer reach.
                 List<Vec3> outerPositions = BlockFinder.buildOuterBlockCircle(target.position(), radius * 2.0D);
                 for (Vec3 vec3 : outerPositions) {
                     FirePillar flames = new FirePillar(serverLevel, vec3.x, vec3.y, vec3.z);

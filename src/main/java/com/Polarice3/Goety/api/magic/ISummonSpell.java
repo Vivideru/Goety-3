@@ -45,7 +45,6 @@ public interface ISummonSpell extends ISpell{
                         itemStack.setDamageValue(itemStack.getMaxDamage() - summonedEntity.getRandom().nextInt(1 + summonedEntity.getRandom().nextInt(Math.max(itemStack.getMaxDamage() - 3, 1))));
                     }
                 }
-                // Summon Down already weakens new summons through effects; keep their health full so cooldown recasts do not spawn half-dead servants.
             }
         }
     }

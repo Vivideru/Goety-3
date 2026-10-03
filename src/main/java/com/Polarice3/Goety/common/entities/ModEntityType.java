@@ -45,7 +45,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModEntityType {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPE = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, Goety.MOD_ID);
-    // The 1.21 attachment is shared by mounts of different heights, so keep servants seated without sinking into smaller mounts.
     private static final float ILLAGER_RIDING_OFFSET = -0.2F;
     private static final float HOSTILE_ILLAGER_RIDING_OFFSET = -0.6F;
 
@@ -285,8 +284,6 @@ public class ModEntityType {
             EntityType.Builder.<SurgingOrb>of(SurgingOrb::new, MobCategory.MISC)
                     .sized(0.3125F, 0.3125F)
                     .clientTrackingRange(10)
-                    // The orb steers every tick.  Sending position updates only
-                    // once per second makes the client render visible jumps.
                     .updateInterval(1));
 
     public static final DeferredHolder<EntityType<?>, EntityType<BouncyBubble>> BOUNCY_BUBBLE = register("bouncy_bubble",
@@ -716,7 +713,6 @@ public class ModEntityType {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8));
 
-    // Slime dimensions are multiplied by the synced Size value in 1.21, so the base type size must match vanilla's smallest slime.
     public static final DeferredHolder<EntityType<?>, EntityType<CryptSlime>> CRYPT_SLIME = register("crypt_slime",
             EntityType.Builder.<CryptSlime>of(CryptSlime::new, MobCategory.MONSTER)
                     .sized(0.52F, 0.52F)

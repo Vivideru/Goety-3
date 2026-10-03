@@ -40,7 +40,6 @@ public class SickleItem extends TieredItem {
     }
 
     private static ItemAttributeModifiers createSickleAttributes(Tier itemTier) {
-        // Item attributes are created during registry setup before configs load, so the runtime config is read from getMaxDamage only.
         initialDamage = DEFAULT_BASE_DAMAGE + itemTier.getAttackDamageBonus();
         double attackSpeed = 4.0D - DEFAULT_ATTACK_SPEED;
         return ItemAttributeModifiers.builder()
@@ -55,7 +54,6 @@ public class SickleItem extends TieredItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return com.Polarice3.Goety.utils.ConfiguredItemUtil.durability(ItemConfig.SpecialToolsDurability, ModTiers.SPECIAL.getUses());
     }
 
@@ -110,14 +108,12 @@ public class SickleItem extends TieredItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState blockState) {
-        // Minecraft 1.21 asks the stack-aware hook for tool checks, so mirror the sickle's legacy hoe/cobweb behavior.
         return this.isCorrectToolForDrops(blockState);
     }
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         ResourceLocation enchantmentId = enchantment.unwrapKey().map(ResourceKey::location).orElse(null);
-        // Minecraft 1.21 exposes enchantment categories through tags, so keep the old weapon/digger allowances via vanilla checks and explicit extras.
         return super.supportsEnchantment(stack, enchantment)
                 || enchantment.is(Enchantments.LOOTING)
                 || enchantment.is(Enchantments.FORTUNE)

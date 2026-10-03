@@ -61,7 +61,6 @@ public class EsotericTesseract extends Item implements IPersist {
         super(new Properties()
                 .stacksTo(1)
                 .fireResistant()
-                // Item properties are created during registry construction before configs load; keep the configured default as the safe bootstrap value.
                 .durability(DEFAULT_TESSERACT_DURABILITY + 1)
                 .rarity(Rarity.RARE));
     }
@@ -91,7 +90,6 @@ public class EsotericTesseract extends Item implements IPersist {
         if (stack.getDamageValue() + amount >= stack.getMaxDamage()) {
             if (stack.getDamageValue() != stack.getMaxDamage() - 1) {
                 stack.setDamageValue(stack.getMaxDamage() - 1);
-                // NeoForge 1.21 changed the break callback to receive the broken item, not the holder entity.
                 onBroken.accept(stack.getItem());
             }
             return 0;
@@ -185,7 +183,6 @@ public class EsotericTesseract extends Item implements IPersist {
     }
 
     public static void putServantIntoTesseract(ItemStack tesseract, Mob mob, int count) {
-        // ItemStack root NBT was removed in 1.21; keep stored servant payloads in CUSTOM_DATA.
         CompoundTag tag = data(tesseract);
         CompoundTag servantTag = new CompoundTag();
         ResourceLocation typesKey = BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType());
@@ -201,7 +198,6 @@ public class EsotericTesseract extends Item implements IPersist {
             if (mob.isNoGravity()) {
                 servantTag.putBoolean("NoGravity", mob.isNoGravity());
             }
-            // NeoForge's old per-entity canUpdate toggle is not exposed in 1.21, so no equivalent state is persisted here.
 
             if (!mob.getTags().isEmpty()) {
                 ListTag listtag = new ListTag();
@@ -318,10 +314,8 @@ public class EsotericTesseract extends Item implements IPersist {
                                 servant.setCustomName(Component.Serializer.fromJson(servantTag.getString("CustomName"), level.registryAccess()));
                             }
                             BlockPos blockPos = BlockFinder.SummonRadius(pos, servant, level, 4);
-                            // Prepare the destination section before registration so the restored servant starts tracking immediately.
                             serverLevel.getChunk(blockPos);
                             servant.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
-                            // Consume stored data only after the server has accepted and started tracking the entity.
                             if (serverLevel.addFreshEntity(servant)) {
                                 if (servant instanceof IServant servant1) {
                                     servant1.setFollowing();
@@ -386,10 +380,8 @@ public class EsotericTesseract extends Item implements IPersist {
                             if (servantCount > 1) {
                                 blockPos = BlockFinder.SummonRadius(pos, servant, level, 3);
                             }
-                            // Prepare the destination section before registration so the restored servant starts tracking immediately.
                             serverLevel.getChunk(blockPos);
                             servant.moveTo(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D, 0.0F, 0.0F);
-                            // Failed entity insertion must leave the stored servant available for a later retry.
                             if (serverLevel.addFreshEntity(servant)) {
                                 servantCount++;
                                 if (servant instanceof IServant servant1) {

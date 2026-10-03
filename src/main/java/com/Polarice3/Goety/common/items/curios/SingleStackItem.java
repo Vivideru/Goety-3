@@ -54,7 +54,6 @@ public class SingleStackItem extends Item implements ICurioItem {
 
     @Override
     public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
-        // Curio-only enchantments are whitelisted here; vanilla primary item tags do not include these slots.
         return this.supportsEnchantment(stack, enchantment);
     }
 
@@ -62,7 +61,6 @@ public class SingleStackItem extends Item implements ICurioItem {
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment)
     {
         if (stack.getItem() == ModItems.SPITEFUL_BELT.get()) {
-            // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
             return enchantment.is(Enchantments.THORNS);
         }
         return false;

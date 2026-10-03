@@ -42,6 +42,10 @@
     },
     {
       "type": "goety:ritual",
+      "recipe": "goety:locate/trial_chambers"
+    },
+    {
+      "type": "goety:ritual",
       "recipe": "goety:locate/woodland_mansion"
     },
     {

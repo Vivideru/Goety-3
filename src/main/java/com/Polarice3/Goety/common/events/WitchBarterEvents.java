@@ -29,7 +29,6 @@ public class WitchBarterEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard witch barter ticking.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }

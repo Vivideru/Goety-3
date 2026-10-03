@@ -46,7 +46,6 @@ public interface IServant extends IOwned, IChunkLoader {
     Codec<List<GlobalPos>> LIST_CODEC = GlobalPos.CODEC.listOf();
 
     default int guardingRange() {
-        // Interface constants are initialized during class loading, so read the configured guard range lazily.
         return MobsConfig.ServantGuardingRange.get();
     }
 
@@ -149,9 +148,6 @@ public interface IServant extends IOwned, IChunkLoader {
         return route.get(Mth.clamp(this.getPatrolIndex(), 0, route.size() - 1));
     }
 
-    /**
-     * Patrolling reuses area guarding: each waypoint in turn becomes the bound position being guarded.
-     */
     default void advancePatrol() {
         List<GlobalPos> route = this.getPatrolRoute();
         if (route.isEmpty()) {
@@ -201,8 +197,6 @@ public interface IServant extends IOwned, IChunkLoader {
     default void overrideSetTarget(@Nullable LivingEntity target) {
     }
 
-    // Upstream leaves the patrol route in place here, so a patrolling servant ignored Command Horn stance changes
-    // and kept walking its route; any explicit stance now cancels the patrol, as updateMoveMode already does.
     default void setWandering() {
         this.clearPatrol();
         this.setWandering(true);

@@ -1,0 +1,15 @@
+{
+  "required": false,
+  "package": "com.Vivideru.Goety.mixin.compat",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "goety.refmap.json",
+  "plugin": "com.Vivideru.Goety.mixin.compat.VivideruCompatMixinPlugin",
+  "mixins": [],
+  "client": [
+    "GrassSectionBuilderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

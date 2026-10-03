@@ -34,7 +34,6 @@ public class ModBrazierCategory implements IRecipeCategory<BrazierRecipe> {
     public ModBrazierCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createBlankDrawable(134, 80);
         this.localizedName = Component.translatable(Goety.MOD_ID + ".jei.brazier");
-        // ItemStack custom NBT moved into data components in 1.21.
         CustomData.update(DataComponents.CUSTOM_DATA, this.brazier, tag -> tag.putBoolean("RenderFull", true));
         this.flame = guiHelper.createDrawable(
                 ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "textures/gui/jei/brazier.png"), 0, 0, 31, 31);

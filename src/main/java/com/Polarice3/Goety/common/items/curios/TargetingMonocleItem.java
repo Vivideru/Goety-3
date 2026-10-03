@@ -29,7 +29,6 @@ public class TargetingMonocleItem extends SingleStackItem implements IActivatabl
     }
 
     public static void setIsActive(ItemStack stack, boolean activate){
-        // ItemStack root NBT was removed in 1.21; mutate a CUSTOM_DATA copy and write it back.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, compound -> compound.putBoolean(IS_ACTIVE, activate));
     }
 

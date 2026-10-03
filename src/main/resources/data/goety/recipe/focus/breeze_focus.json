@@ -1,0 +1,39 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "sky",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    {
+      "tag": "c:rods/breeze"
+    },
+    {
+      "tag": "c:rods/breeze"
+    },
+    {
+      "tag": "c:rods/breeze"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:sugar_cane"
+    },
+    {
+      "item": "minecraft:note_block"
+    }
+  ],
+  "result": {
+    "id": "goety:breeze_focus"
+  }
+}

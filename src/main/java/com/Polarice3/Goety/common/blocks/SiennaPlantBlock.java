@@ -33,7 +33,6 @@ public class SiennaPlantBlock extends BushBlock implements IShearable {
     }
 
     public TriState canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, BlockState plant) {
-        // NeoForge 1.21 switched soil support decisions to TriState so custom support can defer when the soil does not match.
         return state.is(ModTags.Blocks.RED_MOSS_PLANTABLES) || state.isSolidRender(world, pos) ? TriState.TRUE : super.canSustainPlant(state, world, pos, facing, plant);
     }
 }

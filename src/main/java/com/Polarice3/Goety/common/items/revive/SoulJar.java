@@ -196,7 +196,6 @@ public class SoulJar extends ReviveServantItem {
             }
             necromancer.save(entityTag);
             CompoundTag itemNBT = tag(stack);
-            // ItemStack root NBT was removed in 1.21; keep stored necromancer data in CUSTOM_DATA.
             itemNBT.put("entity", entityTag);
             setTag(stack, itemNBT);
         }

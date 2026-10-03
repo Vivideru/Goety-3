@@ -35,7 +35,6 @@ public class SwarmSpell extends BreathingSpell {
     }
 
     private float baseDamage() {
-        // Focus registration constructs spell instances before NeoForge loads common configs.
         return SpellConfig.SwarmDamage.get().floatValue() * WandUtil.damageMultiply();
     }
 

@@ -168,7 +168,6 @@ public class RitualRequirements extends RitualTypes {
                 }
             }
             case NECROTURGY -> {
-                // Grave Soil is the portable alternative to sculk introduced for Necroturgy structures.
                 Predicate<BlockState> first = blockState -> blockState.getBlock() instanceof SculkBlock || blockState.is(ModBlocks.GRAVE_SOIL.get());
                 Predicate<BlockState> second = blockState -> blockState.getBlock() instanceof SlabBlock;
                 Predicate<BlockState> third = blockState -> blockState.getBlock() instanceof FlowerPotBlock flowerPotBlock && flowerPotBlock.getPotted() != Blocks.AIR;
@@ -273,7 +272,6 @@ public class RitualRequirements extends RitualTypes {
             }
             case SABBATH -> {
                 Predicate<BlockState> first = blockState -> blockState.is(Blocks.CRYING_OBSIDIAN);
-                // Tags and the base block class keep compatible obsidian and soul-fire variants valid.
                 Predicate<BlockState> second = blockState -> blockState.is(Tags.Blocks.OBSIDIANS);
                 Predicate<BlockState> third = blockState -> blockState.getBlock() instanceof SoulFireBlock;
                 if (!finder.hasBlocks(first, 8)) {

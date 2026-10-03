@@ -132,7 +132,6 @@ public class SpiderNestBlockEntity extends TrainingBlockEntity {
 
     @Override
     public boolean isFuel(ItemStack itemStack) {
-        // Meat is represented by an item tag in 1.21 instead of FoodProperties#isMeat.
         return itemStack.is(ItemTags.MEAT) && this.getPlayer() != null && itemStack.getFoodProperties(this.getPlayer()) != null;
     }
 }

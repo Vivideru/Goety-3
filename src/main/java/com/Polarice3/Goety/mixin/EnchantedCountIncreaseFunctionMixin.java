@@ -16,7 +16,6 @@ public class EnchantedCountIncreaseFunctionMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getEnchantmentLevel(Lnet/minecraft/core/Holder;Lnet/minecraft/world/entity/LivingEntity;)I")
     )
     private int goety$modifyLootingLevel(int original, ItemStack stack, LootContext context) {
-        // Keeping the vanilla method body intact lets Curios inject into the same loot function after Goety adjusts the looting value.
         return LootingLevelHelper.modifyLootingLevel(context, original);
     }
 }

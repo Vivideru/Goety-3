@@ -798,7 +798,6 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
     }
 
     protected int remainingOwnedSummonSlots(int limit) {
-        // Summoning is delayed by animations, so re-count the live servants immediately before adding new ones.
         return Math.max(0, limit - this.countOwnedSummons());
     }
 
@@ -926,7 +925,6 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
                             }
                         }
                         BlockPos blockPos = BlockFinder.SummonRadius(AbstractNecromancer.this.blockPosition(), summonedentity, serverLevel);
-                        // Necromancers can themselves be servants, so their summons must inherit the effective master owner.
                         LivingEntity owner = MobUtil.getSummonOwner(AbstractNecromancer.this);
                         summonedentity.setTrueOwner(owner);
                         summonedentity.moveTo(blockPos, AbstractNecromancer.this.getYRot(), AbstractNecromancer.this.getXRot());

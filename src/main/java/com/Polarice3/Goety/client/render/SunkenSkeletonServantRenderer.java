@@ -67,7 +67,6 @@ public class SunkenSkeletonServantRenderer extends HumanoidMobRenderer<SunkenSke
       public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
          if (!entitylivingbaseIn.isHostile()) {
             if (MobsConfig.SunkenSkeletonServantTexture.get()) {
-               // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
                coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
             }
          }

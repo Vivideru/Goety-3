@@ -174,7 +174,6 @@ public class WitchPoleBlock extends Block implements SimpleWaterloggedBlock {
             p_51774_.scheduleTick(p_51775_, Fluids.WATER, Fluids.WATER.getTickDelay(p_51774_));
         }
 
-        // Keep both halves synchronized while still allowing ordinary blocks above the pole.
         if (p_51772_.getAxis() != Direction.Axis.Y
                 || doubleblockhalf == DoubleBlockHalf.LOWER != (p_51772_ == Direction.UP)
                 || p_51773_.is(this) && p_51773_.getValue(HALF) != doubleblockhalf) {

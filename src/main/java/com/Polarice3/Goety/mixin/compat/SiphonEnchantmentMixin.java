@@ -21,7 +21,6 @@ public abstract class SiphonEnchantmentMixin {
     protected void canEnchant(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
         Enchantment enchantment = (Enchantment) (Object) this;
         boolean allow = cir.getReturnValue();
-        // 1.21 removed canApplyAtEnchantingTable; canEnchant is the closest holder-free compatibility check for this optional mixin.
         if (!allow && enchantment.canEnchant(stack)) {
             cir.setReturnValue(true);
         }

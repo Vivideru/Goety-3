@@ -78,7 +78,6 @@ import java.util.UUID;
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class ItemEvents {
-    // These immutable modifiers are shared instead of rebuilt for every living entity tick.
     private static final AttributeModifier SET_ARMOR = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("17cb060f-0465-412e-abe7-a9c397b2e548"), "Increase Armor", 4.0D, AttributeModifier.Operation.ADD_VALUE);
     private static final AttributeModifier SET_TOUGHNESS = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("c3c510ca-76eb-4eb5-9f69-6763b7e40be2"), "Increase Toughness", 4.0D, AttributeModifier.Operation.ADD_VALUE);
 
@@ -216,7 +215,6 @@ public class ItemEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard the armor modifier logic.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
@@ -320,7 +318,6 @@ public class ItemEvents {
     public static void OnLivingDamage(LivingDamageEvent.Pre event) {
         LivingEntity victim = event.getEntity();
         Entity directEntity = event.getSource().getDirectEntity();
-        // NeoForge 1.21 splits LivingDamageEvent into phases; Pre is the closest match for this pre-application effect hook.
         if (event.getNewDamage() > 0.0F) {
             if (directEntity instanceof LivingEntity livingAttacker) {
                 if (ModDamageSource.physicalAttacks(event.getSource())) {
@@ -382,7 +379,6 @@ public class ItemEvents {
         BlockPos blockPos = blockHitResult.getBlockPos();
         BlockState blockState = level.getBlockState(blockPos);
         ItemStack itemStack = event.getItemStack();
-        // Empty stacks also use the no-effect potion fallback, so require an actual water potion bottle.
         if (itemStack.is(Items.POTION) && ModPotionUtil.getPotion(itemStack) == Potions.WATER){
             if (event.getFace() != Direction.DOWN && blockState.is(ModBlocks.END_SOIL.get())) {
                 level.playSound(null, blockPos, SoundEvents.GENERIC_SPLASH, SoundSource.BLOCKS, 1.0F, 1.0F);

@@ -74,7 +74,6 @@ public class RaidAdditions {
     }
 
     private static CustomRaiderType addWaves(String name, EntityType<? extends Raider> type, List<? extends Integer> list) {
-        // The vanilla raid type array is fixed at bootstrap; custom entries are stored for the raid spawn hook.
         CustomRaiderType member = new CustomRaiderType(name, type, toWaveArray(list));
         NEW_RAID_MEMBERS.add(member);
         return member;

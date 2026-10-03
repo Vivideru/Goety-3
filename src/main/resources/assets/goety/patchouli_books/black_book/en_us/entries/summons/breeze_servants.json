@@ -1,0 +1,24 @@
+{
+  "name": "Breeze Servants",
+  "icon": "goety:breeze_servant_spawn_egg",
+  "category": "goety:summons",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Breezes of the trial chambers are living gusts bound to a purpose. With enough of their rods and a trace of ectoplasm to anchor the spirit, that purpose can be rewritten: a Breeze Servant leaps and slides around its master's enemies, pelting them with wind charges."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:breeze_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Breeze Servants take no fall damage, deflect most projectiles back at the shooter and are unharmed by their own wind charges. Their bursts fling foes about, set off buttons and levers and open doors, but never hurt their master or allies. Right-clicking a loyal Breeze Servant with a Breeze Rod or a Wind Charge will heal it."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_breeze_servant_thrall"
+    }
+  ]
+}

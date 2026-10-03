@@ -33,7 +33,6 @@ public class OminousPyreBlockEntity extends BarracksBlockEntity {
     }
 
     private boolean sameOwnerOrUnowned(LivingEntity owner) {
-        // Training can run after player/entity instances are recreated, so compare owner UUIDs instead of object identity.
         return owner == null || this.getTrueOwner() != null && owner.getUUID().equals(this.getTrueOwner().getUUID());
     }
 

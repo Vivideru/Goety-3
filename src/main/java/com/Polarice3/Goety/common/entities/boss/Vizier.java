@@ -217,7 +217,6 @@ public class Vizier extends SpellcasterIllager implements PowerableMob, ICustomA
             if (!EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(this.getTarget())) {
                 this.setTarget(null);
             } else {
-                // 1.21 keeps jump cooldown private; use the public grounded state to keep air-bound tracking conservative.
                 if (!this.getTarget().onGround()){
                     ++this.airBound;
                 } else {
@@ -550,7 +549,6 @@ public class Vizier extends SpellcasterIllager implements PowerableMob, ICustomA
             return false;
         }
         if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            // Clamp before NeoForge damage hooks can expose a value above the configured boss cap.
             pAmount = Math.min(pAmount, AttributesConfig.get(AttributesConfig.VizierDamageCap).floatValue());
         }
         if (livingEntity != null){
@@ -563,7 +561,6 @@ public class Vizier extends SpellcasterIllager implements PowerableMob, ICustomA
                         Irk irk = new Irk(ModEntityType.IRK.get(), this.level());
                         irk.setPos(this.getX(), this.getY(), this.getZ());
                         irk.setLimitedLife(MobUtil.getSummonLifespan(this.level()));
-                        // Summons spawned by an owned Vizier should belong to the same effective owner.
                         irk.setTrueOwner(MobUtil.getSummonOwner(this));
                         this.level().addFreshEntity(irk);
                     }

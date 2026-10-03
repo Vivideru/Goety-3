@@ -23,7 +23,6 @@ public interface ModCauldronInteraction {
     CauldronInteraction.InteractionMap MUD = newInteractionMap("goety_mud");
 
     static CauldronInteraction.InteractionMap newInteractionMap(String name) {
-        // Cauldron interactions are named InteractionMap records in 1.21 instead of passing the raw item map to cauldron blocks.
         Object2ObjectOpenHashMap<Item, CauldronInteraction> map = Util.make(new Object2ObjectOpenHashMap<>(), (interaction) -> {
             interaction.defaultReturnValue((blockState, level, blockPos, player, hand, itemStack) -> ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
         });

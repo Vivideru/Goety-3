@@ -18,7 +18,6 @@ import net.neoforged.neoforge.common.world.ModifiableStructureInfo;
 public class ModLevelRegistry {
 
     public static void addBiomeSpawns(Holder<Biome> biome, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
-        // Holder tag checks moved to Holder#is, and mod namespace checks must read the biome resource key.
         if (!biome.is(ModTags.Biomes.COMMON_BLACKLIST) && !biome.unwrapKey().map(biomeResourceKey -> biomeResourceKey.location().getNamespace().contains("alexscaves")).orElse(false)){
             if (biome.is(ModTags.Biomes.REAPER_SPAWN) && !biome.is(ModTags.Biomes.REAPER_EXCLUDE_SPAWN) && MobsConfig.ReaperSpawnWeight.get() > 0){
                 addSpawn(builder, ModEntityType.REAPER.get(), MobsConfig.ReaperSpawnWeight.get(), MobsConfig.ReaperSpawnMinCount.get(), MobsConfig.ReaperSpawnMaxCount.get());
@@ -70,7 +69,6 @@ public class ModLevelRegistry {
     }
 
     private static void addSpawn(ModifiableBiomeInfo.BiomeInfo.Builder builder, EntityType<?> type, int weight, int minCount, int maxCount) {
-        // NeoForge 1.21 exposes addSpawn as the supported mutation path for biome spawn lists.
         builder.getMobSpawnSettings().addSpawn(type.getCategory(), new MobSpawnSettings.SpawnerData(type, weight, minCount, maxCount));
     }
 

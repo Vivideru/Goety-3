@@ -122,7 +122,6 @@ public class ShockingSpell extends EverChargeSpell {
             LivingEntity livingEntity = MobUtil.getLivingTarget(target);
             if (livingEntity != null) {
                 Vec3 vec31 = new Vec3(livingEntity.getX(), livingEntity.getY() + livingEntity.getBbHeight() / 2, livingEntity.getZ());
-                // NeoForge 1.21 removed ForgeHooks.onLivingAttack; hurt now owns the cancellable damage event, so visuals are emitted only after accepted damage.
                 if (livingEntity.hurt(ModDamageSource.directShock(caster), damage)){
                     ModNetwork.sendToALL(new SLightningPacket(vec3, vec31, colorUtil, 5));
                     float chance = rightStaff(staff) ? 0.25F : 0.05F;

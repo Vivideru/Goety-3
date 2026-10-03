@@ -50,7 +50,6 @@ public class WitchStaff extends Item {
         super.finishUsingItem(stack, worldIn, entityLiving);
         BrewItem drinkBrew = getDrinkBrew(stack);
         if (drinkBrew != null){
-            // Mutating the slot stack directly does not notify the 1.21 container component, so extract and reinsert through the handler.
             WitchStaffItemHandler handler = WitchStaffItemHandler.get(stack);
             ItemStack brew = handler.extractItem();
             ItemStack result = drinkBrew.finishUsingItem(brew, worldIn, entityLiving);
@@ -69,7 +68,6 @@ public class WitchStaff extends Item {
 
     public int getUseDuration(@NotNull ItemStack stack, LivingEntity entity) {
         if (getDrinkBrew(stack) != null) {
-            // Minecraft 1.21 passes the using entity when querying duration; delegate to the contained brew with that context.
             return getDrinkBrew(stack).getUseDuration(getBrew(stack), entity);
         } else {
             return 0;

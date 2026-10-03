@@ -47,7 +47,6 @@ public class ModWitherSkull extends WitherSkull {
       this.reapplyPosition();
       double d0 = Math.sqrt(p_i50167_8_ * p_i50167_8_ + p_i50167_10_ * p_i50167_10_ + p_i50167_12_ * p_i50167_12_);
       if (d0 != 0.0D) {
-         // 1.21 stores hurting-projectile acceleration internally, so apply the same normalized initial motion directly.
          this.setDeltaMovement(new Vec3(p_i50167_8_, p_i50167_10_, p_i50167_12_).normalize().scale(0.1D));
          this.hasImpulse = true;
       }

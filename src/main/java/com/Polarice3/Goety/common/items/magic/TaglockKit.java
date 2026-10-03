@@ -110,7 +110,6 @@ public class TaglockKit extends Item {
                             player1.displayClientMessage(Component.translatable("info.goety.taglock.discover").withStyle(ChatFormatting.GOLD), true);
                             player.level().playSound(player, player, SoundEvents.NOTE_BLOCK_SNARE.value(), SoundSource.PLAYERS, 1.0F, 1.0F);
                         } else {
-                            // ItemStack root NBT was removed in 1.21; keep taglock target data in CUSTOM_DATA.
                             CompoundTag compoundTag = tag(stack);
                             setEntity(compoundTag, target);
                             setTag(stack, compoundTag);

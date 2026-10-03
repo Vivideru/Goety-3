@@ -131,7 +131,6 @@ public class ChandelierBlock extends Block implements SimpleWaterloggedBlock, Fa
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState p_152822_, Level p_152823_, BlockPos p_152824_, Player p_152825_, InteractionHand p_152826_, BlockHitResult p_152827_) {
-        // Minecraft 1.21 routes held-item block interactions through useItemOn; this logic depends on the clicked item.
         if (p_152822_.getValue(HALF) == DoubleBlockHalf.UPPER) {
             if ((itemStack.getItem() instanceof FlintAndSteelItem || itemStack.getItem() instanceof FireChargeItem) && !p_152822_.getValue(LIT)) {
                 if (itemStack.getItem() instanceof FlintAndSteelItem) {
@@ -151,7 +150,6 @@ public class ChandelierBlock extends Block implements SimpleWaterloggedBlock, Fa
 
     @Override
     protected InteractionResult useWithoutItem(BlockState p_152822_, Level p_152823_, BlockPos p_152824_, Player p_152825_, BlockHitResult p_152827_) {
-        // Empty-hand extinguishing is dispatched separately from held-item ignition in Minecraft 1.21.
         if (p_152822_.getValue(HALF) == DoubleBlockHalf.UPPER && p_152825_.getAbilities().mayBuild && p_152822_.getValue(LIT)) {
             extinguish(p_152825_, p_152822_, p_152823_, p_152824_);
             return InteractionResult.sidedSuccess(p_152823_.isClientSide);
@@ -425,7 +423,6 @@ public class ChandelierBlock extends Block implements SimpleWaterloggedBlock, Fa
         }
 
         p_220688_.addParticle(ModParticleTypes.SMALL_FIRE.get(), p_220689_.x, p_220689_.y, p_220689_.z, 0.0D, 0.0D, 0.0D);
-        // The reversed sprite keeps the two flame wisps distinct without using the obsolete drop particle.
         p_220688_.addParticle(ModParticleTypes.SMALL_FIRE_REVERSED.get(), p_220689_.x, p_220689_.y, p_220689_.z, 0.0D, 0.0D, 0.0D);
     }
 }

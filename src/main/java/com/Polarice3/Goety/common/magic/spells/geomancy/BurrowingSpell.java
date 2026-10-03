@@ -195,7 +195,6 @@ public class BurrowingSpell extends EverChargeSpell {
         ItemStack tempTool = createMiningTool(blockState, miningLevel);
         applyMiningEnchantments(player, tempTool, silk, fortune);
         if (tempTool.isCorrectToolForDrops(blockState) || !blockState.requiresCorrectToolForDrops()){
-            // Loot tables in 1.21 often check the tool component; choose a matching fake tool per block instead of reusing a pickaxe for every material.
             List<ItemStack> drops = Block.getDrops(blockState, serverLevel, blockPos, null, player, tempTool);
 
             int exp = blockState.getExpDrop(serverLevel, blockPos, serverLevel.getBlockEntity(blockPos), player, tempTool);
@@ -212,11 +211,9 @@ public class BurrowingSpell extends EverChargeSpell {
                         }
                     }
                     if (magnetMode) {
-                        // NeoForge 1.21 moved pickup hooks into ItemEntity.playerTouch, so use a transient entity to preserve pickup events.
                         ItemEntity itemEntity = new ItemEntity(serverLevel, blockPos.getX(), blockPos.getY(), blockPos.getZ(), drop);
                         itemEntity.setNoPickUpDelay();
                         itemEntity.playerTouch(player);
-                        // A complete pickup restores the original count for pickup events after discarding the entity; only spawn a real remainder.
                         if (!itemEntity.isRemoved() && !itemEntity.getItem().isEmpty()) {
                             Block.popResource(serverLevel, blockPos, itemEntity.getItem());
                         }
@@ -355,7 +352,6 @@ public class BurrowingSpell extends EverChargeSpell {
 
     private static BlockEvent.BreakEvent fixForgeEventBreakBlock(BlockState state, Player player, Level world, BlockPos pos, int silk, int fortune) {
         BlockEvent.BreakEvent event = new BlockEvent.BreakEvent(world, pos, state, player);
-        // NeoForge 1.21 BreakEvent no longer carries exp; breakBlocks computes and drops XP explicitly.
 
         return event;
     }

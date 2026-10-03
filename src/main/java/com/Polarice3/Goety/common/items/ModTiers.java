@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.Block;
 import java.util.function.Supplier;
 
 public enum ModTiers implements Tier {
-    // Tier data is constructed during enum class loading before configs load, so use the declared config defaults here.
     SPECIAL(3,
             1280,
             8.0F,
@@ -56,7 +55,6 @@ public enum ModTiers implements Tier {
         this.damage = pDamage;
         this.enchantmentValue = pEnchantmentValue;
         this.repairIngredient = Suppliers.memoize(pRepairIngredient::get);
-        // 1.21 tiers gate mining with incorrect-block tags instead of the old numeric mining level.
         this.incorrectBlocksForDrops = switch (pLevel) {
             case 0 -> BlockTags.INCORRECT_FOR_WOODEN_TOOL;
             case 1 -> BlockTags.INCORRECT_FOR_STONE_TOOL;

@@ -87,7 +87,6 @@ public class ModLootTables {
             player = lastHurtByPlayer;
         }
 
-        // Manual reward chests run outside vanilla drop handling, so preserve player-kill loot predicates explicitly.
         if (checkPlayerKill && player != null) {
             lootcontext$builder = lootcontext$builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, player).withLuck(player.getLuck());
         }
@@ -138,7 +137,6 @@ public class ModLootTables {
         if (target.level().getServer() != null) {
             target.level().setBlockAndUpdate(blockPos, blockState);
             LootParams lootParams = ModLootTables.createLootParams(target, true, cause).create(LootContextParamSets.ENTITY);
-            // Boss reward chests are populated manually, so use the explicit table key instead of relying on normal death-drop state.
             LootTable table = target.level().getServer().reloadableRegistries().getLootTable(lootTableKey);
             ObjectArrayList<ItemStack> lootItems = table.getRandomItems(lootParams);
             List<Integer> availableSlots = getAvailableSlots(target.getRandom());

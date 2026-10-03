@@ -120,7 +120,6 @@ public class WitherBolt extends SpellHurtingProjectile {
                 flag = entity.hurt(damageSource, baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                         EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                     } else {
                         livingentity.heal(2.0F);

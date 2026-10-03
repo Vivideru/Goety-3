@@ -20,7 +20,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModArmorMaterials {
-    // {feet, legs, chest, head}
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), typeDurability -> {
         typeDurability.put(ArmorItem.Type.BOOTS, 13);
         typeDurability.put(ArmorItem.Type.LEGGINGS, 15);
@@ -30,7 +29,6 @@ public class ModArmorMaterials {
     });
     private static final Map<Holder<ArmorMaterial>, Integer> DURABILITY_MULTIPLIERS = new java.util.IdentityHashMap<>();
 
-    // Armor materials are created during static item setup before configs load, so these use the declared config defaults.
     public static final Holder<ArmorMaterial> CURSED_KNIGHT = register("cursed_knight", 15,
             Util.make(new EnumMap<>(ArmorItem.Type.class), protection -> {
                 protection.put(ArmorItem.Type.BOOTS, 2);
@@ -97,12 +95,10 @@ public class ModArmorMaterials {
             () -> Ingredient.of(Tags.Items.BONES));
 
     public static Item.Properties durability(Holder<ArmorMaterial> material, ArmorItem.Type type, Item.Properties properties) {
-        // Minecraft 1.21 moved armor durability from ArmorMaterial to Item.Properties, so the old multipliers are preserved here.
         return properties.durability(HEALTH_FUNCTION_FOR_TYPE.get(type) * DURABILITY_MULTIPLIERS.get(material));
     }
 
     public static int configuredDurability(ArmorItem.Type type, ModConfigSpec.ConfigValue<Integer> configValue, int fallbackMultiplier) {
-        // Default components are built before common configs are loaded in 1.21, so armor durability has to be read at stack query time.
         return HEALTH_FUNCTION_FOR_TYPE.get(type) * ConfiguredItemUtil.durability(configValue, fallbackMultiplier);
     }
 

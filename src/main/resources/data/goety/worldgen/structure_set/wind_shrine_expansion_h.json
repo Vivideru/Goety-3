@@ -1,0 +1,15 @@
+{
+  "structures": [
+    {
+      "structure": "goety:wind_shrine_expansion_h",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "goety:wind_shrine_expansion",
+    "spacing": 60,
+    "separation": 20,
+    "salt": 1321010123,
+    "search_chunks": 12
+  }
+}

@@ -14,12 +14,6 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Skeletal Wargs used to be the plain Warg type with the SKELETAL variant. Saves from those versions are rebuilt as
- * the dedicated skeletal_warg type when they load, keeping their UUID so Totem links and the Warg limit still match.
- * The old entity is refused before it enters the level and the replacement is added on the next server tick, so the
- * two never exist at the same time with the same UUID.
- */
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public final class SkeletalWargMigration {
     private static final List<PendingWarg> PENDING = new ArrayList<>();

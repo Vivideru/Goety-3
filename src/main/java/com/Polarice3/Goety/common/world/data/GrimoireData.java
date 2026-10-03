@@ -24,7 +24,6 @@ public class GrimoireData extends SavedData {
             return null;
         }
         DimensionDataStorage storage = overworld.getDataStorage();
-        // DimensionDataStorage now takes a Factory bundling the constructor and registry-aware loader.
         return storage.computeIfAbsent(new SavedData.Factory<>(GrimoireData::new, GrimoireData::load), DATA_NAME);
     }
 

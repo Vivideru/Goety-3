@@ -43,7 +43,6 @@ public class RattledRenderer extends SkeletonRenderer {
         }
 
         public void render(PoseStack p_117553_, MultiBufferSource p_117554_, int p_117555_, T p_117556_, float p_117557_, float p_117558_, float p_117559_, float p_117560_, float p_117561_, float p_117562_) {
-            // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
             coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, RATTLED_ORIGINAL, p_117553_, p_117554_, p_117555_, p_117556_, p_117557_, p_117558_, p_117560_, p_117561_, p_117562_, p_117559_, -1);
         }
     }

@@ -8,7 +8,6 @@ public final class ModBlockCodecs {
     }
 
     public static <T extends Block> MapCodec<T> singleton(T block) {
-        // Many Goety blocks are registry singletons with fixed constructors; a unit codec preserves that shape for 1.21's required block codec hook.
         return MapCodec.unit(block);
     }
 }

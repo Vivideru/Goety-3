@@ -13,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class ExplosionUtil {
     private static final int MAX_EXPLOSION_DEPTH = 8;
-    // Explosions run on both logical sides, so depth must be isolated per game thread.
     private static final ThreadLocal<Integer> EXPLOSION_DEPTH = ThreadLocal.withInitial(() -> 0);
 
     public static LootingExplosion lootExplode(Level world, @Nullable Entity pExploder, double pX, double pY, double pZ, float pSize, boolean pCausesFire, Explosion.BlockInteraction pMode, LootingExplosion.Mode pLootMode) {

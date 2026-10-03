@@ -172,14 +172,12 @@ public class FireBlastTrap extends Entity implements ISpellEntity {
                 }
                 if (!targets.isEmpty()){
                     for (Entity entity : targets) {
-                        // Fire blast areas can overlap repeated ticks; skip LivingEntities still inside i-frames to avoid hurt-sound spam.
                         boolean hellfire = this.owner != null && CuriosFinder.hasUnholySet(this.owner);
                         if (!hellfire && entity instanceof LivingEntity livingEntity && livingEntity.invulnerableTime > 0) {
                             continue;
                         }
                         if (hellfire) {
                             if (entity instanceof LivingEntity livingEntity) {
-                                // Hellfire is meant to pierce normal i-frames; reset only for this damage source, not for regular fire blasts.
                                 livingEntity.invulnerableTime = 0;
                                 livingEntity.addEffect(new MobEffectInstance(GoetyEffects.BURN_HEX, 1200));
                             }

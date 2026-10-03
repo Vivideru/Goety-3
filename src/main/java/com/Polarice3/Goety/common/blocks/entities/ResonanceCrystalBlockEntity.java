@@ -92,7 +92,6 @@ public class ResonanceCrystalBlockEntity extends ModBlockEntity implements IWind
                 UUID uuid = this.uuids.get(i);
                 Entity entity = EntityFinder.getEntityByUuiD(uuid);
                 if (entity == null) {
-                    // Bound golems can be temporarily unloaded; keep the UUID so the crystal reconnects once the entity is tracked again.
                     continue;
                 }
                 if (!(entity instanceof SquallGolem squallGolem) || !squallGolem.isAlive()) {
@@ -207,7 +206,6 @@ public class ResonanceCrystalBlockEntity extends ModBlockEntity implements IWind
                         this.uuids.add(uuid);
                     }
                 } catch (IllegalArgumentException ignored) {
-                    // Older saves or edited items can contain invalid UUID strings; skip them instead of breaking chunk loading.
                 }
             }
         }
@@ -219,7 +217,6 @@ public class ResonanceCrystalBlockEntity extends ModBlockEntity implements IWind
     @Override
     public CompoundTag writeNetwork(CompoundTag tag) {
         tag.putInt("active", this.active);
-        // Write fresh lists so removed golems or linked crystals do not survive in stale block entity data.
         if (!this.blockPosList.isEmpty()){
             ListTag blockList = new ListTag();
             for (BlockPos blockPos : this.blockPosList){

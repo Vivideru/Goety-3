@@ -42,7 +42,6 @@ public class PatchouliIntegration implements ICompatable {
             if (!("Multiblock " + id + " already registered").equals(exception.getMessage())) {
                 throw exception;
             }
-            // Patchouli 1.21 can preload multiblocks referenced by book JSON before common setup runs.
         }
     }
 
@@ -242,8 +241,8 @@ public class PatchouliIntegration implements ICompatable {
                 state -> state.getBlock().getDescriptionId().contains("bricks") && !(state.getBlock() instanceof SlabBlock) && !(state.getBlock() instanceof StairBlock) && !(state.getBlock() instanceof WallBlock));
         IStateMatcher darkMetalMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DARK_ALLOY_BLOCK.get(),
                 state -> state.is(ModBlocks.DARK_ALLOY_BLOCK.get()));
-        IStateMatcher coarseDirt = PatchouliAPI.get().predicateMatcher(Blocks.COARSE_DIRT,
-                state -> state.is(Blocks.COARSE_DIRT));
+        IStateMatcher coarseDirt = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
+                state -> state.is(ModBlocks.GRAVE_SOIL.get()));
         IStateMatcher skullPiles = PatchouliAPI.get().predicateMatcher(ModBlocks.SKULL_PILE.get(),
                 state -> state.is(ModBlocks.SKULL_PILE.get()));
         IStateMatcher shadeBody = PatchouliAPI.get().predicateMatcher(ModBlocks.SHADE_STONE_BLOCK.get(),
@@ -291,6 +290,8 @@ public class PatchouliIntegration implements ICompatable {
     public static final Supplier<IMultiblock> GRAVE_GOLEM_REVIVE = Suppliers.memoize(() -> {
         IStateMatcher shadeStone = PatchouliAPI.get().predicateMatcher(ModBlocks.SHADE_STONE_BLOCK.get(),
                 state -> state.is(ModBlocks.SHADE_STONE_BLOCK.get()));
+        IStateMatcher graveSoil = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
+                state -> state.is(ModBlocks.GRAVE_SOIL.get()));
         IStateMatcher skullPile = PatchouliAPI.get().predicateMatcher(ModBlocks.SKULL_PILE.get(),
                 state -> state.is(ModBlocks.SKULL_PILE.get()));
         IStateMatcher boneBlock = PatchouliAPI.get().predicateMatcher(Blocks.BONE_BLOCK,
@@ -301,17 +302,18 @@ public class PatchouliIntegration implements ICompatable {
                                 "__H__"
                         },
                         {
-                                "#####"
+                                "#GGG#"
                         },
                         {
-                                "BDDDB"
+                                "#DDD#"
                         },
                         {
-                                "__0__"
+                                "B_0_B"
                         }
                 },
                 'H', ModBlocks.GRAVE_GOLEM_SKULL_BLOCK.get(),
                 '#', shadeStone,
+                'G', graveSoil,
                 'B', boneBlock,
                 'D', skullPile,
                 '0', skullPile

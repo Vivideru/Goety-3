@@ -36,7 +36,6 @@ public class WardingCharmItem extends SingleStackItem{
     }
 
     private static void setSoulUse(ItemStack stack, int soulUse) {
-        // ItemStack root NBT was removed in 1.21; mutate a CUSTOM_DATA copy and write it back.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, compound -> compound.putInt(SOULUSE, soulUse));
     }
 
@@ -110,7 +109,6 @@ public class WardingCharmItem extends SingleStackItem{
     }
 
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
         return enchantment.is(ModEnchantments.POTENCY)
                 || enchantment.is(ModEnchantments.DURATION);
     }

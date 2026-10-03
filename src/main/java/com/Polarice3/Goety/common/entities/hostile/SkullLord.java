@@ -479,7 +479,6 @@ public class SkullLord extends Monster implements ICustomAttributes, IChunkLoade
                         }
                     }
                     if (summoned != null) {
-                        // Summons spawned by an owned Skull Lord should belong to the same effective owner.
                         summoned.setTrueOwner(MobUtil.getSummonOwner(this));
                         summoned.setUpgraded(true);
                         summoned.moveTo(blockPos, this.getYRot(), this.getXRot());

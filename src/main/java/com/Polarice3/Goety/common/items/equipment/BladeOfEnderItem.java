@@ -55,7 +55,6 @@ public class BladeOfEnderItem extends SwordItem implements IPersist, ISoulRepair
     private static final float DEFAULT_ATTACK_SPEED = 1.2F;
 
     public BladeOfEnderItem() {
-        // Item properties and attributes are built during registration before configs load, so use the declared defaults here.
         super(ModTiers.VOID, new Item.Properties().durability(DEFAULT_DURABILITY).fireResistant().attributes(createBladeAttributes()));
     }
 
@@ -63,14 +62,12 @@ public class BladeOfEnderItem extends SwordItem implements IPersist, ISoulRepair
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_ID, DEFAULT_DAMAGE - 1 + ModTiers.VOID.getAttackDamageBonus(), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_ID, -(4.0F - DEFAULT_ATTACK_SPEED), AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                // NeoForge's old ENTITY_REACH attribute is vanilla ENTITY_INTERACTION_RANGE in 1.21.
                 .add(Attributes.ENTITY_INTERACTION_RANGE, com.Polarice3.Goety.utils.ModAttributeUtil.create(ModUUIDUtil.createUUID("item.goety.boe.reach"), "Tool Modifier", 1, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .build();
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.BladeOfEnderDurability, DEFAULT_DURABILITY);
     }
 
@@ -170,7 +167,6 @@ public class BladeOfEnderItem extends SwordItem implements IPersist, ISoulRepair
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
         return super.supportsEnchantment(stack, enchantment) || enchantment.is(ModEnchantments.VELOCITY) || enchantment.is(ModEnchantments.RADIUS);
     }
 

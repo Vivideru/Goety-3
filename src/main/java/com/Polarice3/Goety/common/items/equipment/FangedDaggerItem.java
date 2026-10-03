@@ -22,7 +22,6 @@ public class FangedDaggerItem extends TieredItem {
     private final float attackDamage;
 
     public FangedDaggerItem(Tier tier) {
-        // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
         super(tier, (new Properties()).rarity(Rarity.UNCOMMON).durability(tier.getUses()).attributes(createDaggerAttributes(tier)));
         this.attackDamage = tier.getAttackDamageBonus();
     }
@@ -44,7 +43,6 @@ public class FangedDaggerItem extends TieredItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         int fallback = this.getTier() == ModTiers.DARK ? ModTiers.DARK.getUses() : ModTiers.SPECIAL.getUses();
         return this.getTier() == ModTiers.DARK
                 ? ConfiguredItemUtil.durability(ItemConfig.DarkToolsDurability, fallback)
@@ -70,7 +68,6 @@ public class FangedDaggerItem extends TieredItem {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        // Minecraft 1.21 exposes ranged weapon enchantments as main-hand enchantments, so use item tags instead of matchingSlot.
         return (super.supportsEnchantment(stack, enchantment)
                 || enchantment.is(Enchantments.LOOTING))
                 && !enchantment.is(Enchantments.SWEEPING_EDGE);

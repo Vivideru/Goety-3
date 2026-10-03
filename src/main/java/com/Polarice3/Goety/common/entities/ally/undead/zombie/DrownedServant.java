@@ -48,7 +48,6 @@ public class DrownedServant extends ZombieServant implements RangedAttackMob {
 
     @Override
     public float maxUpStep() {
-        // 1.21 exposes step height through an override/attribute instead of the removed mutable setter.
         return Math.max(super.maxUpStep(), 1.0F);
     }
 
@@ -120,7 +119,6 @@ public class DrownedServant extends ZombieServant implements RangedAttackMob {
 
     @Override
     public boolean canDrownInFluidType(FluidType type) {
-        // Drowned servants are aquatic undead; keep drowned-style water immunity after inheriting from ZombieServant.
         return false;
     }
 

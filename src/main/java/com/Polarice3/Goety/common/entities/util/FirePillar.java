@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirePillar extends CastSpellTrap{
-    // Vanilla lets a new hit through once 10 of the 20 post-hit invulnerability ticks are spent.
     private static final int DAMAGE_INTERVAL_TICKS = 10;
     public int warmUp;
     public boolean playEvent;
@@ -124,9 +123,6 @@ public class FirePillar extends CastSpellTrap{
                             if (this.getOwner() instanceof AbstractWitherNecromancer || CuriosFinder.hasUnholySet(this.getOwner())){
                                 damageSource = ModDamageSource.hellfire(this, this.getOwner());
                             }
-                            // Pillars call hurt every tick and let vanilla i-frames set the half-second cadence, as upstream
-                            // does: that also lets a pillar hit override the target's own burning inside the window.
-                            // Hellfire bypasses that cooldown, so only it is held back until the window is half spent.
                             if (!damageSource.is(DamageTypeTags.BYPASSES_COOLDOWN) || livingEntity.invulnerableTime <= DAMAGE_INTERVAL_TICKS) {
                                 livingEntity.hurt(damageSource, damage);
                             }

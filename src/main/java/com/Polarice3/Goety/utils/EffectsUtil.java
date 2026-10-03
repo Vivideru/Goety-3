@@ -31,7 +31,6 @@ import java.util.List;
 public class EffectsUtil {
 
     private static Holder<MobEffect> holder(MobEffect effect) {
-        // Mob effect APIs are holder-based in 1.21, while many helpers still expose MobEffect for callers.
         return BuiltInRegistries.MOB_EFFECT.wrapAsHolder(effect);
     }
 
@@ -165,7 +164,6 @@ public class EffectsUtil {
 
     public static boolean canAffectLich(MobEffectInstance effectInstance, Level world) {
         return !is(effectInstance.getEffect(), ModTags.Effects.LICH_IMMUNE)
-                // Lich immunity must not depend on a temporary skeleton's entity tags or other mods' effect hooks.
                 && !effectInstance.is(MobEffects.REGENERATION) && !effectInstance.is(MobEffects.POISON);
     }
 

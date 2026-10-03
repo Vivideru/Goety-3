@@ -233,7 +233,6 @@ public class TwilightGoat extends AnimalSummon implements ICharger, IMobTyped {
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_149361_) {
-        // 1.21 makes getDimensions final and applies getScale there; return the unscaled long-jump base dimensions here.
         return p_149361_ == Pose.LONG_JUMPING ? LONG_JUMPING_DIMENSIONS : super.getDefaultDimensions(p_149361_);
     }
 

@@ -61,7 +61,6 @@ public class CreatureCrossbowAttackGoal<T extends Mob & RangedAttackMob & Crossb
       if (this.mob.isUsingItem()) {
          this.mob.stopUsingItem();
          this.mob.setChargingCrossbow(false);
-         // Crossbows are charged by the CHARGED_PROJECTILES component in 1.21; clearing it replaces the old boolean helper.
          this.mob.getUseItem().set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
       }
 
@@ -127,7 +126,6 @@ public class CreatureCrossbowAttackGoal<T extends Mob & RangedAttackMob & Crossb
          } else if (this.crossbowState == CrossbowState.READY_TO_ATTACK && flag) {
             this.mob.performRangedAttack(livingentity, 1.0F);
             ItemStack itemstack1 = this.mob.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof CrossbowItem));
-            // Crossbows are charged by the CHARGED_PROJECTILES component in 1.21; clearing it replaces the old boolean helper.
             itemstack1.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
             this.crossbowState = CrossbowState.UNCHARGED;
          }

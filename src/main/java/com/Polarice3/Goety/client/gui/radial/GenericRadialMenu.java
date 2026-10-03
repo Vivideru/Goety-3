@@ -293,7 +293,6 @@ public class GenericRadialMenu {
             RenderSystem.setShader(GameRenderer::getPositionColorShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-            // Minecraft 1.21's immediate renderer returns a fresh BufferBuilder from begin(); upload after the mesh is built.
             BufferBuilder buffer = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
             iterateVisible((item, s, e) -> {
                 int color = item.isHovered() ? backgroundColorHover : backgroundColor;

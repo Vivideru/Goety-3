@@ -14,7 +14,6 @@ import net.minecraft.world.level.material.PushReaction;
 public class VoidFluidBlock extends LiquidBlock {
 
     public VoidFluidBlock() {
-        // Deferred fluid holders must be dereferenced before passing the source fluid to LiquidBlock.
         super(ModFluids.VOID_FLUID_SOURCE.get(), Properties.of().mapColor(MapColor.COLOR_PURPLE)
                 .noCollission()
                 .strength(100.0F)

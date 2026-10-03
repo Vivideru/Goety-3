@@ -10,9 +10,6 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Maps each spell to every item bound to it, so a cooldown on one (e.g. the Soul Healer) lands on all of them.
- */
 public class SpellItemCache {
     private static Map<ISpell, List<Item>> spellToItems = null;
 

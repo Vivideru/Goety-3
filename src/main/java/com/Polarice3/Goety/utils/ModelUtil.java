@@ -87,7 +87,6 @@ public class ModelUtil {
             );
             stack.mulPose(new Quaternionf().rotationY((-yaw + 180.0F) * Mth.DEG_TO_RAD));
             stack.scale(-1, -1, 1);
-            // PlayerRenderer#scale is protected in 1.21; vanilla's player scale is a fixed 0.9375 factor.
             stack.scale(0.9375F, 0.9375F, 0.9375F);
             stack.translate(0, -1.5f, 0);
             model.translateToHand(arm, stack);
@@ -101,7 +100,6 @@ public class ModelUtil {
     }
 
     private static void setupPlayerModelProperties(AbstractClientPlayer player, PlayerModel<AbstractClientPlayer> model) {
-        // PlayerRenderer#setModelProperties became private in 1.21, so mirror vanilla's setup before computing hand transforms.
         if (player.isSpectator()) {
             model.setAllVisible(false);
             model.head.visible = true;

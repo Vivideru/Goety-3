@@ -23,7 +23,6 @@ import org.apache.commons.lang3.ArrayUtils;
  * Shield render codes based on @TeamTwilight's Shield Layer: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.19.x/src/main/java/twilightforest/client/renderer/entity/ShieldLayer.java">...</a>
  */
 public class MagicShieldLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
-    // NeoForge side-loaded models still resolve against the full model path, so keep this aligned with models/item/magic_shield.json.
     public static final ModelResourceLocation SHIELD = new ModelResourceLocation(Goety.location("item/magic_shield"), "standalone");
     private static final Direction[] DIRECTIONS = ArrayUtils.add(Direction.values(), null);
 

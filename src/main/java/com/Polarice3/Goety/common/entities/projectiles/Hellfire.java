@@ -160,7 +160,6 @@ public class Hellfire extends GroundProjectile {
         float damage = 2.0F;
         damage += this.getExtraDamage();
         if (target.isAlive() && !target.isInvulnerable()) {
-            // Hellfire bypasses vanilla hurt cooldown, so ground flames need their own per-entity throttle.
             if (this.hurtCooldowns.getOrDefault(target.getId(), 0) > 0) {
                 return;
             }

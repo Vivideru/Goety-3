@@ -484,7 +484,6 @@ public class AbstractReaper extends Summoned implements IMobTyped {
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // MeleeAttackGoal no longer passes distance in 1.21; keep Reaper's custom attack trigger on its own range check.
             if (this.reaper.isWithinMeleeAttackRange(enemy) && this.reaper.hasLineOfSight(enemy)) {
                 this.reaper.setMeleeAttacking(true);
             }

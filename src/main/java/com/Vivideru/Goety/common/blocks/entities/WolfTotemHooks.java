@@ -50,7 +50,6 @@ public class WolfTotemHooks {
     public static final TagKey<EntityType<?>> WOLF_TOTEM_SERVANTS = TagKey.create(Registries.ENTITY_TYPE, Goety.location("wolf_totem_servants"));
 
     public static InteractionResult tryLinkToTotem(ItemStackAccess stackAccess, Player player, LivingEntity entity, InteractionHand hand) {
-        // Ordinary tamed wolves are not servants, so they can only be promoted, never bound to a Totem.
         if (isTamedVanillaWolf(entity, player)) {
             return tryPromoteVanillaWolf(stackAccess, player, entity, hand);
         }
@@ -65,7 +64,6 @@ public class WolfTotemHooks {
             return InteractionResult.PASS;
         }
         if (entity instanceof Warg && owned.getRevivePos() != null) {
-            // Wargs keep their original Totem identity even if the physical block is later removed.
             return InteractionResult.FAIL;
         }
         if (!entity.level().isClientSide) {
@@ -108,10 +106,6 @@ public class WolfTotemHooks {
         return entity instanceof Wolf wolf && wolf.isTame() && wolf.getOwner() == player;
     }
 
-    /**
-     * An ordinary tamed wolf can be raised at a Howling Totem like the dark breeds, but it yields the plain
-     * Gray Warg. It never becomes a Totem servant on its own, so the usual binding path does not apply.
-     */
     private static InteractionResult tryPromoteVanillaWolf(ItemStackAccess stackAccess, Player player,
                                                           LivingEntity wolf, InteractionHand hand) {
         if (!stackAccess.isWaystoneBound() || !WaystoneItem.isSameDimension(wolf, stackAccess.stack())) {
@@ -154,14 +148,12 @@ public class WolfTotemHooks {
         if (nearbyWolves < 4 || !WargTotemData.get(serverLevel).canCreate(ownerId, serverLevel.dimension(), totem.getBlockPos())) {
             return false;
         }
-        // Skeleton Wolves become the separate undead Skeletal Warg type; every other breed stays a plain Warg.
         Warg warg = wolf instanceof SkeletonWolf
                 ? VivideruEntityTypes.SKELETAL_WARG.get().create(serverLevel)
                 : VivideruEntityTypes.WARG.get().create(serverLevel);
         if (warg == null) {
             return false;
         }
-        // Keep the source name before replacing the wolf so the promotion message identifies what changed.
         Component sourceName = wolf.getDisplayName().copy();
 
         WolfTotemBlockEntity oldTotem = getTotem((LivingEntity) wolf);
@@ -204,11 +196,6 @@ public class WolfTotemHooks {
         return true;
     }
 
-    /**
-     * Three Hellhounds gathered at a Howling Totem fuse into one Cerberus when their owner offers a Netherite
-     * Ingot to one of them: the offered Hellhound becomes the Cerberus and the other two are consumed outright,
-     * vanishing in a puff of smoke.
-     */
     public static boolean tryFuseCerberus(Player player, LivingEntity hellhound, InteractionHand hand) {
         if (!(hellhound.level() instanceof ServerLevel serverLevel)) {
             return false;
@@ -231,7 +218,6 @@ public class WolfTotemHooks {
         }
         Component sourceName = hellhound.getDisplayName().copy();
 
-        // Consume two further Hellhounds outright; only the interacted one visibly becomes the Cerberus.
         int consumed = 0;
         for (Hellhound extra : nearbyHellhounds) {
             if (consumed >= 2) {

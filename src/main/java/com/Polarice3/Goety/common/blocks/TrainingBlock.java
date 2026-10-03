@@ -52,7 +52,6 @@ public abstract class TrainingBlock extends BaseEntityBlock {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemstack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Minecraft 1.21 sends item-dependent block interactions through useItemOn.
         BlockEntity tileentity = pLevel.getBlockEntity(pPos);
         if (tileentity instanceof TrainingBlockEntity blockEntity) {
             if (blockEntity.placeItem(itemstack)){
@@ -80,7 +79,6 @@ public abstract class TrainingBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // Sneak empty-hand toggles are block-only interactions in 1.21.
         BlockEntity tileentity = pLevel.getBlockEntity(pPos);
         if (tileentity instanceof TrainingBlockEntity blockEntity && pPlayer.isCrouching()) {
             blockEntity.setShowArea(!blockEntity.isShowArea());

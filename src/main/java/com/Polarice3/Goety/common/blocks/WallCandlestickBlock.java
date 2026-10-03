@@ -76,7 +76,6 @@ public class WallCandlestickBlock extends Block implements SimpleWaterloggedBloc
 
    @Override
    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState p_152822_, Level p_152823_, BlockPos p_152824_, Player p_152825_, InteractionHand p_152826_, BlockHitResult p_152827_) {
-      // Minecraft 1.21 routes held-item block interactions through useItemOn; this logic depends on the clicked item.
       if (p_152822_.getValue(HALF) == DoubleBlockHalf.UPPER) {
          if ((itemStack.getItem() instanceof FlintAndSteelItem || itemStack.getItem() instanceof FireChargeItem) && !p_152822_.getValue(LIT)) {
             if (itemStack.getItem() instanceof FlintAndSteelItem) {
@@ -96,7 +95,6 @@ public class WallCandlestickBlock extends Block implements SimpleWaterloggedBloc
 
    @Override
    protected InteractionResult useWithoutItem(BlockState p_152822_, Level p_152823_, BlockPos p_152824_, Player p_152825_, BlockHitResult p_152827_) {
-      // Empty-hand block interactions use a separate 1.21 hook from held-item ignition.
       if (p_152822_.getValue(HALF) == DoubleBlockHalf.UPPER && p_152825_.getAbilities().mayBuild && p_152822_.getValue(LIT)) {
          extinguish(p_152825_, p_152822_, p_152823_, p_152824_);
          return InteractionResult.sidedSuccess(p_152823_.isClientSide);
@@ -203,7 +201,6 @@ public class WallCandlestickBlock extends Block implements SimpleWaterloggedBloc
             }
          }
 
-         // Alternating the reversible sprite avoids doubling the visible flame density.
          var particle = p_220700_.nextBoolean() ? ModParticleTypes.SMALL_FIRE_REVERSED.get() : ModParticleTypes.SMALL_FIRE.get();
          p_220698_.addParticle(particle, p_220699_.getX() + 0.5D, p_220699_.getY() + (9 / 16.0D), p_220699_.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
       }

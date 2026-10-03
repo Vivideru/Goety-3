@@ -134,7 +134,6 @@ public class MinionFollowGoal extends Goal {
         } else if (!this.isTeleportFriendlyBlock(new BlockPos(x, y, z))) {
             return false;
         } else {
-            // Keep the destination loaded and synchronize the servant immediately across tracking ranges.
             MobUtil.teleportTracked(this.summonedEntity, (double)x + 0.5D, (double)y, (double)z + 0.5D);
             this.navigation.stop();
             return true;

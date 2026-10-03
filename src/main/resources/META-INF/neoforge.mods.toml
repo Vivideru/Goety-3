@@ -5,6 +5,8 @@ license="MIT License"
 config="goety.mixins.json"
 [[mixins]]
 config="vivideru.mixins.json"
+[[mixins]]
+config="vivideru.compat.mixins.json"
 [[mods]]
 modId="goety"
 version="${file.jarVersion}"

@@ -13,4 +13,9 @@ public class VivideruModelLayers {
     public static final ModelLayerLocation WARG_SADDLE = new ModelLayerLocation(Goety.location("warg_saddle"), "main");
     public static final ModelLayerLocation CERBERUS = new ModelLayerLocation(Goety.location("cerberus"), "main");
     public static final ModelLayerLocation CERBERUS_ARMOR = new ModelLayerLocation(Goety.location("cerberus_armor"), "main");
+    public static final ModelLayerLocation BREEZE_SERVANT = new ModelLayerLocation(Goety.location("breeze_servant"), "main");
+    public static final ModelLayerLocation BREEZE_SERVANT_WIND = new ModelLayerLocation(Goety.location("breeze_servant_wind"), "main");
+    public static final ModelLayerLocation HURRICANE = new ModelLayerLocation(Goety.location("hurricane"), "main");
+    public static final ModelLayerLocation HURRICANE_TORNADO = new ModelLayerLocation(Goety.location("hurricane_tornado"), "main");
+    public static final ModelLayerLocation HURRICANE_PUNCH = new ModelLayerLocation(Goety.location("hurricane_punch"), "main");
 }

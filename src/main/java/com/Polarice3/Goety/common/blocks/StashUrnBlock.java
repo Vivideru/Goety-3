@@ -79,7 +79,6 @@ public class StashUrnBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
-        // UrnBlockEntity no longer exposes a custom-name setter in 1.21; keep placement behavior and skip the removed display-name transfer.
     }
 
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {

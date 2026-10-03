@@ -87,7 +87,6 @@ import static net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class PotionEvents {
-    // These immutable modifiers are shared instead of rebuilt for every living entity tick.
     private static final AttributeModifier SOUL_ARMOR_BUFF = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("3e4b414b-466c-4b90-8a92-a878e2542bb8"), "Increase Armor", 2.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     private static final AttributeModifier CHARGED_SPEED = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("d4818bbc-54ed-4ecf-95a3-a15fbf71b31d"), "Charged Speed I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
     private static final AttributeModifier CHARGED_ATTACK = com.Polarice3.Goety.utils.ModAttributeUtil.create(UUID.fromString("4bf0a8e3-a8f8-4bf6-95d2-f0ddbadd793e"), "Charged Attack I", 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
@@ -96,7 +95,6 @@ public class PotionEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard potion logic.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
@@ -259,14 +257,12 @@ public class PotionEvents {
                 if (smiting != null && MobTypeHelper.getMobType(victim) == com.Polarice3.Goety.init.ModMobType.UNDEAD) {
                     int effectLevel = smiting.getAmplifier() + 1;
                     int enchantmentLevel = MobUtil.getEnchantmentLevel(living, Enchantments.SMITE);
-                    // The brew behaves like Smite and only supplies levels not already present on the attacker's equipment.
                     event.setAmount(event.getAmount() + 2.5F * Math.max(0, effectLevel - enchantmentLevel));
                 }
                 MobEffectInstance insectBane = living.getEffect(GoetyEffects.INSECT_BANE);
                 if (insectBane != null && MobTypeHelper.getMobType(victim) == com.Polarice3.Goety.init.ModMobType.ARTHROPOD) {
                     int effectLevel = insectBane.getAmplifier() + 1;
                     int enchantmentLevel = MobUtil.getEnchantmentLevel(living, Enchantments.BANE_OF_ARTHROPODS);
-                    // As with the original effect, an existing stronger enchantment takes precedence over the brew.
                     event.setAmount(event.getAmount() + 2.5F * Math.max(0, effectLevel - enchantmentLevel));
                 }
                 if (living.hasEffect(GoetyEffects.FLAME_HANDS)) {
@@ -364,7 +360,6 @@ public class PotionEvents {
                 MobEffectInstance effectInstance = target.getEffect(GoetyEffects.SAPPED);
                 if (effectInstance != null) {
                     int i = effectInstance.getAmplifier() + 1;
-                    // Sapped scales the damage accumulated so far, preserving the upstream effect order.
                     finalDamage += finalDamage * (0.2F * i);
                 }
             }
@@ -568,7 +563,6 @@ public class PotionEvents {
         }
         if (event.getSource().is(ModDamageSource.DOOM)){
             if (effected.level() instanceof ServerLevel serverLevel){
-                // 1.21 removed getNameTagOffsetY; use the entity's visual midpoint for the same death particle placement.
                 serverLevel.sendParticles(ModParticleTypes.DOOM_DEATH.get(), effected.getX(), effected.getY() + effected.getBbHeight() / 2.0D, effected.getZ(), 0, 0.0D, 0.07D, 0.0D, 0.5D);
                 effected.playSound(ModSounds.DOOM.get(), 1.0F, 1.0F);
                 ModNetwork.sendToALL(new SPlayWorldSoundPacket(effected.blockPosition(), ModSounds.DOOM.get(), 1.0F, 1.0F));
@@ -597,14 +591,12 @@ public class PotionEvents {
             }
         }
         if (!event.getEntity().level().isClientSide) {
-            // Respawn replaces the client player instance, so resend Lichdom after the clone has copied the attachment state.
             LichdomHelper.sendLichUpdatePacket(event.getEntity());
         }
     }
 
     @SubscribeEvent
     public static void ChargeEffect(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard charged-effect attributes.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
@@ -970,7 +962,6 @@ public class PotionEvents {
             }
         }
         if (event.getEffectInstance().getEffect().is(GoetyEffects.DOOM)) {
-            // The old no-arg check is gone, so the current level is used to test whether dimension changes are supported at all.
             if (!event.getEntity().canChangeDimensions(event.getEntity().level(), event.getEntity().level())
                     || event.getEntity().getType().is(Tags.EntityTypes.BOSSES)) {
                 event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
@@ -1074,7 +1065,6 @@ public class PotionEvents {
             }
 
             if (mobEffectInstance.getEffect().is(GoetyEffects.DOOM)){
-                // The old no-arg dimension check was removed; using the current level for both sides keeps this as a generic "can teleport/change" gate.
                 if (effected.canChangeDimensions(effected.level(), effected.level()) && !effected.getType().is(Tags.EntityTypes.BOSSES)) {
                     int a = mobEffectInstance.getAmplifier() + 1;
                     float doom = 0.05F * a;

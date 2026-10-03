@@ -30,26 +30,22 @@ import java.util.Objects;
 
 public class EeriePickaxeItem extends PickaxeItem {
     public EeriePickaxeItem() {
-        // In 1.21 the custom properties must declare durability explicitly so the enchanting table treats the pickaxe as enchantable.
         super(ModTiers.SPECIAL, (new Properties()).rarity(Rarity.UNCOMMON).durability(ModTiers.SPECIAL.getUses()).attributes(createEerieAttributes()));
     }
 
     private static net.minecraft.world.item.component.ItemAttributeModifiers createEerieAttributes() {
         return DiggerItem.createAttributes(ModTiers.SPECIAL, 1, -2.8F)
-                // NeoForge's old BLOCK_REACH attribute is vanilla BLOCK_INTERACTION_RANGE in 1.21.
                 .withModifierAdded(Attributes.BLOCK_INTERACTION_RANGE, com.Polarice3.Goety.utils.ModAttributeUtil.create("tool_modifier_eerie_pickaxe_reach", 3, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.SpecialToolsDurability, ModTiers.SPECIAL.getUses());
     }
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState blockState) {
         float speed = super.getDestroySpeed(stack, blockState);
-        // NeoForge 1.21 uses the TOOL component for mining speed; preserve the tier speed if it falls back to hand speed.
         return speed <= 1.0F && blockState.is(BlockTags.MINEABLE_WITH_PICKAXE) ? ModTiers.SPECIAL.getSpeed() : speed;
     }
 
@@ -78,7 +74,6 @@ public class EeriePickaxeItem extends PickaxeItem {
                         soundEvent = SoundEvents.SCULK_SHRIEKER_SHRIEK;
                     } else if (worldIn.getRandom().nextFloat() <= 0.25F){
                         soundEvent = SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD.value();
-                        // Open skies occasionally replace the ambient tone with a phantom pass-by.
                         if (worldIn.getRandom().nextBoolean()
                                 && (!worldIn.dimensionType().hasSkyLight()
                                 || player.getY() >= worldIn.getSeaLevel() && worldIn.canSeeSky(blockpos))) {

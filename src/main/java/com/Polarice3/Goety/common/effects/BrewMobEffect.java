@@ -26,8 +26,6 @@ public class BrewMobEffect extends GoetyBaseEffect {
 
     @Override
     public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
-        // NeoForge 1.21 replaced curative item stacks with named effect cures; non-curable brew effects expose no default cures.
-        // Config values are not loaded during registry construction, so curability is evaluated lazily when cures are requested.
         if (this.curable.getAsBoolean()) {
             cures.addAll(EffectCures.DEFAULT_CURES);
         }

@@ -35,7 +35,6 @@ public class ModISTER extends BlockEntityWithoutLevelRenderer {
     private final Map<Block, SarcophagusBlockEntity> sarcophagusEntities = new HashMap<>();
 
     private ModChestBlockEntity chestEntity(Block block) {
-        // NeoForge validates item-render block entities against their exact registered block type.
         return this.chestEntities.computeIfAbsent(block, block1 -> block1 instanceof ModTrappedChestBlock
                 ? new ModTrappedChestBlockEntity(BlockPos.ZERO, block1.defaultBlockState())
                 : new ModChestBlockEntity(BlockPos.ZERO, block1.defaultBlockState()));

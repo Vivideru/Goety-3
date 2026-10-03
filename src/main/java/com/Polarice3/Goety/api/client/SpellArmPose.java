@@ -1,6 +1,5 @@
 package com.Polarice3.Goety.api.client;
 
-// This placeholder is not registered in enumextensions.json, so it must stay out of NeoForge enum extension processing.
 public enum SpellArmPose {
     /*DEFAULT(SpellPoseType.DEFAULT, HumanoidModel.ArmPose.create(SpellPoseType.DEFAULT.getName(), false, (model, entity, arm) -> {
         float f5 = entity.walkAnimation.position(Minecraft.getInstance().getPartialTick());

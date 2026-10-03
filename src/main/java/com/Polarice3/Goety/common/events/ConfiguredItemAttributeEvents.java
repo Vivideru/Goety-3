@@ -83,7 +83,6 @@ public class ConfiguredItemAttributeEvents {
     }
 
     private static void replaceAttack(ItemAttributeModifierEvent event, double amount) {
-        // Item components are created before common configs are loaded in 1.21, so configurable combat values are applied at stack query time.
         event.replaceModifier(Attributes.ATTACK_DAMAGE, ModAttributeUtil.create(Item.BASE_ATTACK_DAMAGE_ID, amount, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND);
     }
 

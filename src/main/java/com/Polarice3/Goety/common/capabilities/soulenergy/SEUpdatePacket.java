@@ -40,7 +40,6 @@ public class SEUpdatePacket {
         ctx.get().enqueueWork(() -> {
             if (ctx.get().getDirection() == NetworkDirection.PLAY_TO_CLIENT) {
                 Player player = Goety.PROXY.getPlayer();
-                // A sync sent before the server player has its attachment carries no data.
                 if (player != null && packet.tag != null) {
                     player.getExistingData(SEProvider.CAPABILITY).ifPresent((soulEnergy) -> {
                         SEHelper.load(packet.tag, soulEnergy);

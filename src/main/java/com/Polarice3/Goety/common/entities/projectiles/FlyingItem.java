@@ -229,7 +229,6 @@ public class FlyingItem extends SpellEntity implements ItemSupplier {
 
     public void addAdditionalSaveData(CompoundTag p_36975_) {
         super.addAdditionalSaveData(p_36975_);
-        // 1.21 removed ParticleOptions#writeToString; store the particle type id so simple particle choices survive save/load.
         p_36975_.putString("Particle", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getParticle().getType()).toString());
         ItemStack itemstack = this.getItemRaw();
         if (!itemstack.isEmpty()) {

@@ -7,9 +7,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
 
-/**
- * A servant that can carry an {@link IMobCharm} and trigger it by itself.
- */
 public interface ICharmUser {
     String CHARM_ITEM = "CharmItem";
 

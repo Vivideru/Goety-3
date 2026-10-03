@@ -165,7 +165,6 @@ public class Goety {
 
     private static <T> T constructClientClass(String className, Class<T> type) {
         try {
-            // Dedicated servers reject direct client-only references while scanning the main mod class.
             return type.cast(Class.forName(className).getDeclaredConstructor().newInstance());
         } catch (ReflectiveOperationException exception) {
             throw new RuntimeException("Failed to construct client-only Goety class " + className, exception);
@@ -188,6 +187,7 @@ public class Goety {
         ModLootModifier.GLOBAL_LOOT_MODIFIER.register(modEventBus);
         ModRituals.RITUALS.register(modEventBus);
         ModStructureTypes.STRUCTURE_TYPE.register(modEventBus);
+        com.Vivideru.Goety.common.world.structures.VivideruStructureTypes.init();
         ModPlacementType.STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
         ModProcessors.STRUCTURE_PROCESSOR.register(modEventBus);
         ModCreativeTab.CREATIVE_MODE_TABS.register(modEventBus);
@@ -201,7 +201,6 @@ public class Goety {
         modEventBus.addListener(EventPriority.LOWEST, this::finalLoad);
 
         getOrCreateDirectory(FMLPaths.CONFIGDIR.get().resolve("goety"), "goety");
-        // NeoForge 1.21 owns config loading and saving after registration; manual pre-loading can leave specs backed by stale defaults.
         modContainer.registerConfig(ModConfig.Type.COMMON, MainConfig.SPEC, "goety/goety.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, AttributesConfig.SPEC, "goety/goety-attributes.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, SpellConfig.SPEC, "goety/goety-spells.toml");
@@ -209,7 +208,6 @@ public class Goety {
         modContainer.registerConfig(ModConfig.Type.COMMON, MobsConfig.SPEC, "goety/goety-mobs.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, ItemConfig.SPEC, "goety/goety-items.toml");
         if (net.neoforged.fml.ModList.get().isLoaded("apotheosis")) {
-            // Apotheosis compat: keep all optional hooks behind the mod-loaded check.
             com.Vivideru.Goety.compat.apotheosis.ApotheosisCompat.init(modEventBus, modContainer);
         }
 
@@ -380,7 +378,6 @@ public class Goety {
                     BlockPos blockpos = p_123461_.pos().relative(direction);
                     Level level = p_123461_.level();
                     HauntedArmorStand armorstand = new HauntedArmorStand(level, (double)blockpos.getX() + 0.5D, (double)blockpos.getY(), (double)blockpos.getZ() + 0.5D);
-                    // Entity spawn data moved from the root item tag into the ENTITY_DATA component in 1.21.
                     EntityType.updateCustomEntityTag(level, (Player)null, armorstand, p_123462_.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY));
                     armorstand.setYRot(direction.toYRot());
                     level.addFreshEntity(armorstand);
@@ -490,7 +487,6 @@ public class Goety {
                             return stack;
                         }
                     }));
-            // Stripping pairs are provided through NeoForge's strippables data map in 1.21.
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SIENNA_GRASS.getId(), ModBlocks.POTTED_SIENNA_GRASS);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.SIENNA_FERN.getId(), ModBlocks.POTTED_SIENNA_FERN);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WINDSWEPT_DEAD_BUSH.getId(), ModBlocks.POTTED_WINDSWEPT_DEAD_BUSH);
@@ -538,6 +534,10 @@ public class Goety {
             ComposterBlock.COMPOSTABLES.put(ModBlocks.TALL_SIENNA_GRASS.get().asItem(), 0.5F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.LARGE_SIENNA_FERN.get().asItem(), 0.5F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.SIENNA_VINE.get().asItem(), 0.5F);
+            ComposterBlock.COMPOSTABLES.put(ModBlocks.HENBANE_SEEDS.get(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(ModBlocks.NIGHTSHADE_SEEDS.get(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(ModItems.HENBANE_FLOWER.get(), 0.65F);
+            ComposterBlock.COMPOSTABLES.put(ModItems.NIGHTSHADE_BLOSSOM.get(), 0.65F);
             ComposterBlock.COMPOSTABLES.put(ModItems.SNAP_FUNGUS.get(), 0.65F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.ROTTEN_SAPLING.get().asItem(), 0.65F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.CHORUS_SAPLING.get().asItem(), 0.65F);
@@ -572,7 +572,6 @@ public class Goety {
     }
 
     private void addBrewingRecipes(RegisterBrewingRecipesEvent event){
-        // NeoForge 1.21 rebuilds brewing through this event, so recipes must be added to the provided builder.
         event.getBuilder().addRecipe(new ModPotionUtil(ModItems.SNAP_FUNGUS.get().getDefaultInstance(), Ingredient.of(Items.LILY_OF_THE_VALLEY), new ItemStack(ModItems.BERSERK_FUNGUS.get())));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setPotion(ModPotions.CLIMBING)));
         event.getBuilder().addRecipe(new ModPotionUtil(ModPotionUtil.setSplashPotion(Potions.AWKWARD), Ingredient.of(ModItems.SPIDER_EGG.get()), ModPotionUtil.setSplashPotion(ModPotions.CLIMBING)));
@@ -679,7 +678,6 @@ public class Goety {
         event.put(ModEntityType.ICY_SPIDER_SERVANT.get(), IcySpiderServant.setCustomAttributes().build());
         event.put(ModEntityType.BONE_SPIDER_SERVANT.get(), BoneSpiderServant.setCustomAttributes().build());
         event.put(ModEntityType.BROOD_MOTHER_SERVANT.get(), AbstractBroodMother.setCustomAttributes().build());
-        // Minecraft 1.21 compares attack damage when mobs collect tools, so prisoners need this attribute before picking up a pickaxe.
         event.put(ModEntityType.PRISONER.get(), Villager.createAttributes().add(Attributes.ATTACK_DAMAGE, 1.0D).build());
         event.put(ModEntityType.NEOLLAGER.get(), Neollager.setCustomAttributes().build());
         event.put(ModEntityType.PILLAGER_SERVANT.get(), PillagerServant.setCustomAttributes().build());
@@ -711,6 +709,9 @@ public class Goety {
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.SKELETAL_WARG.get(), com.Vivideru.Goety.common.entities.ally.Warg.setCustomAttributes().build());
         event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.CERBERUS.get(), com.Vivideru.Goety.common.entities.ally.Cerberus.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.BREEZE_SERVANT.get(), com.Vivideru.Goety.common.entities.ally.BreezeServant.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.HURRICANE.get(), com.Vivideru.Goety.common.entities.neutral.AbstractHurricane.setCustomAttributes().build());
+        event.put(com.Vivideru.Goety.common.entities.VivideruEntityTypes.HURRICANE_SERVANT.get(), com.Vivideru.Goety.common.entities.neutral.AbstractHurricane.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_WOLF.get(), SkeletonWolf.setCustomAttributes().build());
         event.put(ModEntityType.WINTER_WOLF.get(), WinterWolf.setCustomAttributes().build());
         event.put(ModEntityType.STORMHOUND.get(), Stormhound.setCustomAttributes().build());
@@ -808,7 +809,6 @@ public class Goety {
     }
 
     private static boolean checkDimensionAwareMonsterSpawn(EntityType<? extends Monster> type, net.minecraft.world.level.ServerLevelAccessor level, MobSpawnType reason, BlockPos pos, net.minecraft.util.RandomSource random) {
-        // Nether biome modifiers already choose valid spawn biomes, so applying the overworld darkness gate blocks intended Nether spawns.
         if (level.getLevel().dimension() == Level.NETHER) {
             return level.getDifficulty() != net.minecraft.world.Difficulty.PEACEFUL && Mob.checkMobSpawnRules(type, level, reason, pos, random);
         }
@@ -839,7 +839,6 @@ public class Goety {
 
         @Override
         protected void playSound(BlockSource source) {
-            // Minecraft 1.21 removed AbstractProjectileDispenseBehavior; keep its projectile dispense sound.
             source.level().levelEvent(1002, source.pos(), 0);
         }
     }

@@ -1,0 +1,50 @@
+{
+	"parent": "minecraft:block/block",
+	"render_type": "cutout",
+	"textures": {
+		"particle": "goety:block/whirling_cage_bottom",
+		"4": "minecraft:block/heavy_core",
+		"5": "goety:block/whirling_cage_bottom",
+		"6": "goety:block/whirling_cage_side",
+		"7": "goety:block/whirling_cage_top"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#6", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#6", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#6", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#6", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#7", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#5", "cullface": "down"}
+			}
+		},
+		{
+			"from": [15.998, 0.002, 0.002],
+			"to": [0.002, 15.998, 15.998],
+			"faces": {
+				"north": {"uv": [16, 0, 0, 16], "texture": "#6", "cullface": "south"},
+				"east": {"uv": [16, 0, 0, 16], "texture": "#6", "cullface": "west"},
+				"south": {"uv": [16, 0, 0, 16], "texture": "#6", "cullface": "north"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#6", "cullface": "east"},
+				"up": {"uv": [16, 0, 0, 16], "texture": "#7", "cullface": "up"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#5", "cullface": "down"}
+			}
+		},
+		{
+			"name": "heavy_core",
+			"from": [4, 4, 4],
+			"to": [12, 12, 12],
+			"faces": {
+				"north": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"east": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"south": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"west": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"up": {"uv": [0, 0, 8, 8], "texture": "#4"},
+				"down": {"uv": [8, 0, 16, 8], "texture": "#4"}
+			}
+		}
+	]
+}

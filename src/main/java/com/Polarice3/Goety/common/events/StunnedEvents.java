@@ -33,7 +33,6 @@ public class StunnedEvents {
 
     public static void cancelEvent(LivingEntity entity, ICancellableEvent event){
         if (isStunned(entity)) {
-            // NeoForge 1.21 exposes cancellation through ICancellableEvent instead of the old Event base helpers.
             event.setCanceled(true);
         }
     }

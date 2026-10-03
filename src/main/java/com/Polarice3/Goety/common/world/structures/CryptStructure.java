@@ -68,7 +68,6 @@ public class CryptStructure extends BiggerJigsawStructure {
         ChunkPos chunkPos = context.chunkPos();
         int i = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
         BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), i, chunkPos.getMinBlockZ());
-        // JigsawPlacement in 1.21 requires explicit alias, padding, and liquid settings; vanilla defaults preserve old behavior.
         return JigsawPlacement.addPieces(context, this.startPool, this.startJigsawName, this.maxDepth, blockPos, false, this.projectStartToHeightmap, this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, JigsawStructure.DEFAULT_DIMENSION_PADDING, JigsawStructure.DEFAULT_LIQUID_SETTINGS);
     }
 

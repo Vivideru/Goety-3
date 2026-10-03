@@ -44,9 +44,7 @@ public class Cerberus extends Warg implements IBreathing {
     private static final int MAX_BREATH_TICKS = 100;
     private static final int BREATH_COOLDOWN_TICKS = 300;
     private static final int LOOP_SOUND_INTERVAL_TICKS = 20;
-    /** The side heads sit at a fixed 35 degrees in the model, so their flame leaves along the same angle. */
     private static final double HEAD_YAW_SPREAD = Math.toRadians(35.0D);
-    /** Muzzle offsets follow the rendered model, which is deliberately larger than the hitbox. */
     private static final double MUZZLE_HEIGHT = 2.2D;
     private static final double MUZZLE_FORWARD = 2.2D;
 
@@ -108,7 +106,6 @@ public class Cerberus extends Warg implements IBreathing {
 
     @Override
     public void curseTarget(Entity entity) {
-        // The three heads are literally made of Hellhound, so every bite carries the same ignite.
         if (!entity.fireImmune()) {
             entity.igniteForSeconds(6.0F);
         }
@@ -116,19 +113,16 @@ public class Cerberus extends Warg implements IBreathing {
 
     @Override
     public boolean canUseSlot(EquipmentSlot slot) {
-        // Cerberus fights with its three mouths and its fire, never a held weapon.
         return slot != EquipmentSlot.MAINHAND && super.canUseSlot(slot);
     }
 
     @Override
     public boolean isInvisible() {
-        // Whatever the source - potion, spell or hidden owner - the hound of the underworld is always seen.
         return false;
     }
 
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
-        // Refuse the Saddle before the inherited Warg handling can fit it and swallow the item.
         if (player.getItemInHand(hand).is(Items.SADDLE)) {
             return InteractionResult.PASS;
         }
@@ -137,19 +131,16 @@ public class Cerberus extends Warg implements IBreathing {
 
     @Override
     protected boolean canAddPassenger(Entity passenger) {
-        // No rider, even if a Saddle ever made it on through some other route.
         return false;
     }
 
     @Override
     public ModMobType getGoetyMobType() {
-        // Counting as a Nether mob is what lets Nether Robes mend it, like every other Nether servant.
         return ModMobType.NETHER;
     }
 
     @Override
     protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean recentlyHit) {
-        // Runs the inherited saddle-drop and generic Totem servant-list cleanup before releasing the Cerberus-specific slot.
         super.dropCustomDeathLoot(level, source, recentlyHit);
         this.releaseCerberusTotemSlot(level);
     }
@@ -181,15 +172,8 @@ public class Cerberus extends Warg implements IBreathing {
         }
     }
 
-    /**
-     * Breath particles belong on the client, like every other Goety breathing caster: always-visible particles
-     * survive the client's particle limiter. Each of the three heads spits along its own axis, matching the
-     * fixed yaw the model gives them, and starts clear of the hitbox rather than inside the geometry.
-     */
     private void spawnBreathParticles() {
         Vec3 look = this.getLookAngle();
-        // The muzzles are anchored at head height with a flat forward offset: folding the downward look angle
-        // into the spawn point put the flames at ground level, where DragonFlameParticle deletes itself on contact.
         Vec3 flatLook = new Vec3(look.x, 0.0D, look.z);
         Vec3 forwardAxis = flatLook.lengthSqr() < 1.0E-4D ? Vec3.directionFromRotation(0.0F, this.getYRot()) : flatLook.normalize();
         double muzzleY = this.getY() + MUZZLE_HEIGHT;
@@ -233,7 +217,6 @@ public class Cerberus extends Warg implements IBreathing {
 
     @Override
     public void doBreathing(Entity target) {
-        // Same result the Fire Breath spell applies per target, cast at potency 5.
         SpellStat stats = this.breathStats();
         float damage = SpellConfig.FireBreathDamage.get().floatValue() * WandUtil.damageMultiply() + stats.getPotency();
         if (target.hurt(ModDamageSource.fireBreath(this, this), damage)) {
@@ -262,10 +245,6 @@ public class Cerberus extends Warg implements IBreathing {
         }
     }
 
-    /**
-     * Goety's own breathing attack goal supplies the aiming, body/pitch rotation and per-tick target sweep; this
-     * subclass only adds the Fire Breath spell's casting sounds and the cooldown between breaths.
-     */
     private class CerberusBreathGoal extends BreathingAttackGoal<Cerberus> {
         private int cooldownTicks;
 
@@ -284,7 +263,6 @@ public class Cerberus extends Warg implements IBreathing {
 
         @Override
         public boolean canContinueToUse() {
-            // A dead target ends the breath immediately and starts the cooldown, rather than spewing at a corpse.
             LivingEntity target = Cerberus.this.getTarget();
             return target != null && target.isAlive() && this.attackTarget == target && super.canContinueToUse();
         }

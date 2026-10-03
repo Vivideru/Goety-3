@@ -106,7 +106,6 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
 
     @Override
     public int getMaxStackSize() {
-        // Each work slot processes exactly one item per operation.
         return 1;
     }
 
@@ -133,7 +132,6 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
     @Override
     public void setItem(int pIndex, ItemStack pStack) {
         if ((pStack.isDamaged() && pStack.isRepairable()) || pStack.getItem() instanceof ITotem){
-            // Totems accepted by the hopper must also be accepted by the actual insertion.
             this.placeItem(pStack.copy());
         }
     }
@@ -230,14 +228,12 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
 
     private CompoundTag saveMetadataAndItems(CompoundTag pCompound) {
         if (this.level != null) {
-            // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an empty child tag still round-trips through parseOptional.
             pCompound.put("Item", this.itemStack.isEmpty() ? new CompoundTag() : this.itemStack.save(this.level.registryAccess(), new CompoundTag()));
         }
         return pCompound;
     }
 
     private CompoundTag saveMetadataAndItems(CompoundTag pCompound, HolderLookup.Provider provider) {
-        // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an empty child tag still round-trips through parseOptional.
         pCompound.put("Item", this.itemStack.isEmpty() ? new CompoundTag() : this.itemStack.save(provider, new CompoundTag()));
         return pCompound;
     }
@@ -254,7 +250,6 @@ public class SoulMenderBlockEntity extends ModBlockEntity implements Clearable, 
 
     @Override
     public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
-        // Hopper acceptance checks must never consume or insert items, including simulated transfers.
         if (pIndex != 0 || this.level == null || this.level.isClientSide || !this.isEmpty() || pItemStack.isEmpty()) {
             return false;
         }

@@ -52,7 +52,6 @@ public class ConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_SOIL_BONEMEAL = key("end_soil_bonemeal");
 
     private static ResourceKey<ConfiguredFeature<?, ?>> key(String name) {
-        // FeatureUtils.createKey assumes Minecraft's namespace in 1.21, so build Goety keys explicitly.
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, Goety.location(name));
     }
 

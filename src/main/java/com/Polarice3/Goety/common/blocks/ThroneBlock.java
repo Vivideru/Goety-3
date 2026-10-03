@@ -167,7 +167,6 @@ public class ThroneBlock extends HorizontalDirectionalBlock implements SimpleWat
         if (p_60503_.getValue(HALF) == DoubleBlockHalf.UPPER) {
             p_60505_ = p_60505_.below();
         }
-        // The old use hook seated players even with held items, so keep that behavior in the item interaction hook.
         return switch (this.sitDown(p_60503_, p_60504_, p_60505_, p_60506_, p_60507_, p_60508_)) {
             case SUCCESS -> ItemInteractionResult.SUCCESS;
             case CONSUME -> ItemInteractionResult.CONSUME;

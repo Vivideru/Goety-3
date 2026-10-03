@@ -41,7 +41,6 @@ public class CraftItemRitual extends Ritual{
             if (activationItem.isEnchanted()) {
                 ItemEnchantments enchants = activationItem.getOrDefault(DataComponents.ENCHANTMENTS, ItemEnchantments.EMPTY);
                 for (Object2IntMap.Entry<Holder<Enchantment>> enchantment : enchants.entrySet()) {
-                    // NeoForge item hooks carry custom enchantment rules that 1.21's raw Enchantment.canEnchant tag check cannot see.
                     if (result.supportsEnchantment(enchantment.getKey())) {
                         EnchantmentHelper.updateEnchantments(result, mutable -> mutable.set(enchantment.getKey(), enchantment.getIntValue()));
                     }

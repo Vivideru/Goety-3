@@ -11,7 +11,6 @@ import net.neoforged.fml.common.asm.enumextension.IExtensibleEnum;
 import java.util.Map;
 import java.util.function.Supplier;
 
-// Goety addons extend this enum through NeoForge's enum extension service.
 public enum GolemType implements IExtensibleEnum {
     NONE(null, null),
     WHISPERER(Blocks.MOSS_BLOCK::defaultBlockState, new WhispererMold()),

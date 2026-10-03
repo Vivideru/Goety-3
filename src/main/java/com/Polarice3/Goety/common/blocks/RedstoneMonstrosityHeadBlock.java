@@ -120,7 +120,6 @@ public class RedstoneMonstrosityHeadBlock extends BaseEntityBlock {
     }
 
     public RenderShape getRenderShape(BlockState pState) {
-        // Custom skull geometry is drawn by the block entity renderer; hiding the baked block model prevents duplicate placeholder skull rendering.
         return RenderShape.INVISIBLE;
     }
 

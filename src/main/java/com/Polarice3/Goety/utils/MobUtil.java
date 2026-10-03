@@ -125,7 +125,6 @@ public class MobUtil {
     }
 
     public static boolean isRaider(Entity entity) {
-        // Goety raiders inherit Raider, but 1.21 tag data may be absent before generated tags are packed.
         return entity instanceof Raider || entity.getType().is(EntityTypeTags.RAIDERS);
     }
 
@@ -154,7 +153,6 @@ public class MobUtil {
     }
 
     public static LivingEntity getSummonOwner(LivingEntity caster) {
-        // Servant-created summons should inherit the player/master owner so owner-gated effects do not treat them as unowned.
         if (caster instanceof IServant servant && servant.getMasterOwner() != null) {
             return servant.getMasterOwner();
         }
@@ -655,7 +653,6 @@ public class MobUtil {
 
     public static void teleportTracked(Entity entity, double x, double y, double z) {
         if (entity.level() instanceof ServerLevel serverLevel) {
-            // Load the destination before moving so the entity never enters an inaccessible section between tracking updates.
             serverLevel.getChunk(BlockPos.containing(x, y, z));
             entity.teleportTo(x, y, z);
             serverLevel.getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
@@ -664,7 +661,6 @@ public class MobUtil {
 
     public static void syncTrackedTeleport(Entity entity) {
         if (entity.level() instanceof ServerLevel serverLevel) {
-            // randomTeleport performs its own placement checks, but its final position still needs an immediate tracking update.
             serverLevel.getChunkSource().broadcastAndSend(entity, new ClientboundTeleportEntityPacket(entity));
         }
     }
@@ -804,7 +800,6 @@ public class MobUtil {
     }
 
     public static boolean hasBonusWave(Raid raid) {
-        // Bonus waves require raid-omen state that is not exposed through the public 1.21 Raid API.
         return false;
     }
 
@@ -834,7 +829,6 @@ public class MobUtil {
      * Copy of Vanilla's getEquipmentDropChance. Had to accesstransformer handDropChances and armorDropChances
      */
     public static float getEquipmentDropChance(Mob mob, EquipmentSlot p_21520_) {
-        // Equipment drop chance arrays are not exposed by the public 1.21 API; callers only need a conservative chance gate here.
         return 0.0F;
     }
 
@@ -1110,7 +1104,6 @@ public class MobUtil {
         }
         FireworkExplosion explosion = new FireworkExplosion(FireworkExplosion.Shape.BURST, colorList, colorList, false, false);
         star.set(DataComponents.FIREWORK_EXPLOSION, explosion);
-        // Firework NBT moved to data components in 1.21, so build the rocket payload from the same explosion component stored on the star.
         firework.set(DataComponents.FIREWORKS, new Fireworks(1, java.util.Collections.nCopies(explosions, explosion)));
         return firework;
     }
@@ -1125,7 +1118,6 @@ public class MobUtil {
                 int i = 1 + Mth.floor(p_36383_);
                 InteractionHand interactionhand = living.getUsedItemHand();
                 EquipmentSlot equipmentSlot = interactionhand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
-                // ItemStack break callbacks now use EquipmentSlot in 1.21; the vanilla helper handles the break broadcast for that slot.
                 living.getUseItem().hurtAndBreak(i, living, equipmentSlot);
                 if (living.getUseItem().isEmpty()) {
                     if (interactionhand == InteractionHand.MAIN_HAND) {
@@ -1541,7 +1533,6 @@ public class MobUtil {
     }
 
     public static float hurtCalculation(LivingEntity livingEntity, DamageSource damageSource, float amount) {
-        // NeoForge 1.21 routes hurt/damage events through the vanilla damage container pipeline; keep this helper as a local calculation without firing legacy ForgeHooks.
         amount = getDamageAfterArmorAbsorb(livingEntity, damageSource, amount);
         amount = getDamageAfterMagicAbsorb(livingEntity, damageSource, amount);
         float f1 = Math.max(amount - livingEntity.getAbsorptionAmount(), 0.0F);
@@ -1596,7 +1587,6 @@ public class MobUtil {
     }
 
     public static float getSpecialAttackDamage(LivingEntity attacker, float baseDamage) {
-        // Special/projectile attacks do not run through vanilla melee damage, so add the current temporary attack bonus explicitly.
         float bonus = 0.0F;
         AttributeInstance attribute = attacker.getAttribute(Attributes.ATTACK_DAMAGE);
         if (attribute != null) {
@@ -1608,7 +1598,6 @@ public class MobUtil {
     }
 
     public static float getEnchantedDamage(Entity levelSource, ItemStack weapon, Entity target, DamageSource damageSource, float damage) {
-        // Minecraft 1.21 applies weapon damage enchantments through modifyDamage instead of mob-type bonus lookups.
         if (levelSource.level() instanceof ServerLevel serverLevel) {
             return EnchantmentHelper.modifyDamage(serverLevel, weapon, target, damageSource, damage);
         }
@@ -1651,7 +1640,6 @@ public class MobUtil {
     }
 
     public static float getSweepingDamageRatio(int level) {
-        // Minecraft 1.21 removed SweepingEdgeEnchantment#getSweepingDamageRatio; this preserves the vanilla 1.20 formula.
         return level > 0 ? 1.0F - 1.0F / (float)(level + 1) : 0.0F;
     }
 
@@ -1788,7 +1776,6 @@ public class MobUtil {
                 double d2 = shooter.getY(0.5D) - victim.getY(0.5D);
                 double d3 = shooter.getZ() - victim.getZ();
                 Vec3 vec3 = new Vec3(d1, d2, d3);
-                // 1.21 removed public x/y/z projectile power fields; redirect by replacing motion and let AbstractHurtingProjectile apply its internal acceleration.
                 projectile1.setDeltaMovement(vec3);
             } else {
                 float speed = Mth.sqrt((float) (deltaMovement.x * deltaMovement.x + deltaMovement.y * deltaMovement.y + deltaMovement.z * deltaMovement.z));

@@ -40,7 +40,6 @@ public class FungusExplosion extends Explosion {
 
     public FungusExplosion(Level pLevel, @Nullable Entity pSource, double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius, boolean pFire) {
         super(pLevel, pSource, pToBlowX, pToBlowY, pToBlowZ, pRadius, pFire, BlockInteraction.KEEP);
-        // Explosion internals are private in 1.21; keep local copies for the custom explosion algorithm below.
         this.localLevel = pLevel;
         this.localSource = pSource;
         this.localX = pToBlowX;
@@ -127,7 +126,6 @@ public class FungusExplosion extends Explosion {
                             } else {
                                 entity.hurt(this.localDamageSource, (float) ((int) ((d10 * d10 + d10) / 2.0D * 7.0D * (double) f2 + 1.0D)));
                             }
-                            // Minecraft 1.21 moved blast-protection knockback dampening to the explosion knockback resistance attribute.
                             double d11 = d10 * (1.0D - ((LivingEntity) entity).getAttributeValue(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE));
 
                             entity.setDeltaMovement(entity.getDeltaMovement().add(d5 * d11, d7 * d11, d9 * d11));

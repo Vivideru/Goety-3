@@ -28,7 +28,6 @@ public class EndMudFluidBlock extends LiquidBlock {
     public void entityInside(BlockState blockState, Level level, BlockPos pos, Entity entity) {
         entity.fallDistance = 0.0F;
         if (entity instanceof LivingEntity && entity.tickCount % 20 == 0) {
-            // Entity.nextStep is private in 1.21, so rate-limit the ambient swim sound by ticks instead of mutating movement internals.
             Vec3 vec3 = entity.getDeltaMovement();
             float f1 = Math.min(1.0F, (float) vec3.length());
             entity.playSound(SoundEvents.GENERIC_SWIM, f1, 1.0F + (level.random.nextFloat() - level.random.nextFloat()) * 0.4F);

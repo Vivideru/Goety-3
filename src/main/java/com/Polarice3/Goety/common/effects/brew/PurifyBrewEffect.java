@@ -41,7 +41,6 @@ public class PurifyBrewEffect extends BrewEffect{
                     flag = mobEffect.isBeneficial();
                 }
                 if (flag){
-                    // Curative item lists were removed from MobEffect in 1.21; preserve the brew's buff/debuff filter and remove matching active effects by holder.
                     pTarget.removeEffect(mobEffectHolder);
                 }
             }

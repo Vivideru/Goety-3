@@ -199,7 +199,6 @@ public class BrewArrow extends Arrow {
             ItemStack itemstack = new ItemStack(Items.TIPPED_ARROW);
             ModPotionUtil.setCustomEffects(itemstack, this.effects);
             if (this.fixedColor) {
-                // ItemStack NBT is stored through custom data components in 1.21.
                 CustomData.update(DataComponents.CUSTOM_DATA, itemstack, tag -> tag.putInt("CustomPotionColor", this.getColor()));
             }
 

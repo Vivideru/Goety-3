@@ -97,7 +97,6 @@ public class CommandFocus extends MagicFocus{
     }
 
     public static void setServant(ItemStack stack, LivingEntity livingEntity) {
-        // ItemStack root NBT was removed in 1.21; keep the commanded servant ids in CUSTOM_DATA.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, compoundTag -> setServant(compoundTag, livingEntity));
     }
 

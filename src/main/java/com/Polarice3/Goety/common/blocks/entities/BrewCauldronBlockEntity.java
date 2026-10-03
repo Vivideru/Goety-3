@@ -226,7 +226,6 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
         if (!this.candlestickBlockEntityList.isEmpty()) {
             for (BlockEntity blockEntity : this.candlestickBlockEntityList) {
                 if (blockEntity instanceof ISoulCandle soulCandle && soulCandle.getSouls() > 0) {
-                    // 1.21.1 keeps the cauldron recipe and brew recipe paths together, so both share the candle drain helper.
                     soulCandle.drainSouls(1, this.getBlockPos());
                     this.soulTime++;
                 }
@@ -753,7 +752,6 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
                     if (brewEffect instanceof PotionBrewEffect potionBrewEffect){
                         effects.add(new MobEffectInstance(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(potionBrewEffect.mobEffect), potionBrewEffect.duration));
                     } else {
-                        // Instant custom brew effects need a non-zero stored duration so 1.21 components and tooltips do not treat them like empty water.
                         blockEffects.add(new BrewEffectInstance(brewEffect, brewEffect.isInstantenous() ? Math.max(1, brewEffect.duration) : brewEffect.duration));
                     }
                 } else if (brewModifier != null) {
@@ -820,7 +818,6 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
         }
         CauldronRecipe cauldronRecipe = this.getRecipe();
         if (cauldronRecipe != null && cauldronRecipe.matches(this.getCraftContainer(), this.level)) {
-            // The custom cauldron recipe is not a grid recipe in 1.21.1, so use its stored result directly after a container match.
             if (cauldronRecipe instanceof CauldronSusStewRecipe suspiciousStewRecipe) {
                 return suspiciousStewRecipe.assemble(this.getCraftContainer(), this.level.registryAccess());
             }

@@ -15,7 +15,6 @@ public class MaverickRenderer extends CultistRenderer<Maverick>{
     public MaverickRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new MaverickModel<>(renderManagerIn.bakeLayer(ModModelLayer.MAVERICK)), 0.5F);
         this.addLayer(new HumanoidArmorLayer<>(this, new VillagerArmorModel<>(renderManagerIn.bakeLayer(ModModelLayer.VILLAGER_ARMOR_INNER)), new VillagerArmorModel<>(renderManagerIn.bakeLayer(ModModelLayer.VILLAGER_ARMOR_OUTER)), renderManagerIn.getModelManager()));
-        // The standard hand layer already follows the drinking arm pose and must remain the sole item renderer.
         this.addLayer(new ItemInHandLayer<>(this, renderManagerIn.getItemInHandRenderer()));
     }
 

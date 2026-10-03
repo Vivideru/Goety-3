@@ -26,7 +26,6 @@ public class MagicAshSmokeParticle extends BaseAshSmokeParticle {
         this.bCol = colorUtil.blue();
         this.colorFrom = colorFrom;
         this.colorTo = colorTo;
-        // Minecraft 1.21 moved the client timer under DeltaTracker and now stores milliseconds per tick.
         this.timer = new Timer(1000.0F / (this.lifetime + 1), 0L, partialTick -> 1000.0F / (this.lifetime + 1));
     }
 

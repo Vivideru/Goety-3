@@ -32,7 +32,6 @@ public class MagicSmokeParticle extends TextureSheetParticle {
         this.colorTo = colorTo;
         this.quadSize = size;
         this.lifetime = duration;
-        // Minecraft 1.21 moved the client timer under DeltaTracker and now stores milliseconds per tick.
         this.timer = new Timer(1000.0F / (duration + 1), 0L, partialTick -> 1000.0F / (duration + 1));
         this.hasPhysics = true;
     }

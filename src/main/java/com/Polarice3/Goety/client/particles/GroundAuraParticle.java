@@ -26,7 +26,6 @@ public class GroundAuraParticle extends GroundCircleParticle {
         this.setSpriteFromAge(spriteSet);
         this.rotSpeed = ((float)Math.random() - 0.5F) * 0.1F;
         this.roll = (float)Math.random() * ((float)Math.PI * 2F);
-        // Ground aura options include effect colors; preserve that tint after the 1.21 particle option conversion.
         this.setColor(red, green, blue);
     }
 

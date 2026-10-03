@@ -45,7 +45,6 @@ public class SPurifyEffectPacket {
                             flag = mobEffect.isBeneficial();
                         }
                         if (flag){
-                            // Vanilla 1.21 removed MobEffect curative-item metadata; preserve the beneficial/debuff filtering.
                             livingEntity.removeEffect(BuiltInRegistries.MOB_EFFECT.wrapAsHolder(mobEffect));
                         }
                     }

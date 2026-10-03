@@ -61,7 +61,6 @@ public class GoetyJeiPlugin implements IModPlugin {
         RecipeManager recipeManager = world.getRecipeManager();
         IIngredientManager ingredientManager = registration.getIngredientManager();
         IVanillaRecipeFactory vanillaRecipeFactory = registration.getVanillaRecipeFactory();
-        // RecipeManager returns RecipeHolder in 1.21; JEI categories still consume the recipe values.
         List<CursedInfuserRecipes> cursedRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.CURSED_INFUSER.get()).stream().map(RecipeHolder::value).toList();
         registration.addRecipes(JeiRecipeTypes.CURSED_INFUSER, cursedRecipes);
         List<RitualRecipe> ritualRecipes = recipeManager.getAllRecipesFor(ModRecipeSerializer.RITUAL_TYPE.get()).stream().map(RecipeHolder::value).toList();

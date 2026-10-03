@@ -7,5 +7,7 @@
     "minecraft:jagged_peaks",
     "minecraft:frozen_peaks",
     "minecraft:stony_peaks"
+  ,
+    "goety:windswept_peaks"
   ]
 }

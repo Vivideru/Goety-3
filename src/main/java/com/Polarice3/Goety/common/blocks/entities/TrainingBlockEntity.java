@@ -272,7 +272,6 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
     public boolean placeItem(ItemStack pStack) {
         if (this.level != null) {
             if (this.isFuel(pStack) && this.trainAmount < this.maxTrainAmount()) {
-                // Keep the offering's variant after the player's or hopper's stack is consumed.
                 this.itemStack = pStack.copyWithCount(1);
                 this.startTraining(1, pStack);
                 if (pStack.hasCraftingRemainingItem()){
@@ -416,7 +415,6 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
         tag1.putInt("TrainTimeTotal", this.trainTimeTotal);
         tag1.putInt("TrainAmount", this.trainAmount);
         if (this.level != null) {
-            // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an empty child tag still round-trips through parseOptional.
             tag1.put("Item", this.itemStack.isEmpty() ? new CompoundTag() : this.itemStack.save(this.level.registryAccess(), new CompoundTag()));
         }
         tag1.put("EntityToSpawn", this.entityToSpawn);
@@ -433,7 +431,6 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
         tag1.putInt("TrainTime", this.trainTime);
         tag1.putInt("TrainTimeTotal", this.trainTimeTotal);
         tag1.putInt("TrainAmount", this.trainAmount);
-        // Minecraft 1.21 rejects encoding ItemStack.EMPTY; an empty child tag still round-trips through parseOptional.
         tag1.put("Item", this.itemStack.isEmpty() ? new CompoundTag() : this.itemStack.save(provider, new CompoundTag()));
         tag1.put("EntityToSpawn", this.entityToSpawn);
         tag1.putBoolean("showArea", this.showArea);
@@ -494,7 +491,6 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
 
     @Override
     public boolean canPlaceItemThroughFace(int p_19235_, ItemStack pItemStack, @Nullable Direction p_19237_) {
-        // This is an acceptance query; training starts only when setItem commits the transfer.
         return p_19235_ == 0 && this.level != null && !this.level.isClientSide
                 && !pItemStack.isEmpty() && this.isFuel(pItemStack) && this.trainAmount < this.maxTrainAmount();
     }
@@ -536,7 +532,6 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
 
     @Override
     public void setItem(int p_18944_, ItemStack p_18945_) {
-        // Offerings are consumed immediately, but the caller retains ownership of its stack.
         if (this.canPlaceItemThroughFace(p_18944_, p_18945_, null)) {
             this.placeItem(p_18945_.copy());
         }

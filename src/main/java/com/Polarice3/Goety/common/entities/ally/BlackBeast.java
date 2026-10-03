@@ -413,7 +413,6 @@ public class BlackBeast extends Summoned implements IMobTyped{
         ++this.deathTime;
         if (this.deathTime == 40) {
             if (this.getTrueOwner() != null && MobsConfig.BlackBeastHowlingSoul.get() && (!WolfTotemHooks.isAssignedToWolfTotem(this) || this.hasEffect(GoetyEffects.WOUNDED))){
-                // Wounded Black Beasts are on their final death, so the owner should still get the Howling Soul back.
                 ItemStack itemStack = new ItemStack(ModItems.HOWLING_SOUL.get());
                 HowlingSoul.setOwnerName(this.getTrueOwner(), itemStack);
                 HowlingSoul.setSummon(this, itemStack);
@@ -523,7 +522,6 @@ public class BlackBeast extends Summoned implements IMobTyped{
                 if (entityIn instanceof LivingEntity target) {
                     int debuffDuration = MathHelper.secondsToTicks(15);
                     MobEffectInstance doom = new MobEffectInstance(GoetyEffects.DOOM, debuffDuration, 0, false, false);
-                    // Regeneration is granted only when Doom can actually be applied to the target.
                     if (!target.hasEffect(GoetyEffects.DOOM) && target.canBeAffected(doom) && !MobUtil.isInSunlightNoRain(this)) {
                         int regenAmp = 2;
                         if (MobsConfig.BlackBeastDayStrength.get()) {
@@ -579,6 +577,9 @@ public class BlackBeast extends Summoned implements IMobTyped{
         }
         if (!this.level().isClientSide()) {
             if (!this.isDeadOrDying()) {
+                if (this.invisibleCool > 0) {
+                    --this.invisibleCool;
+                }
                 if (!this.isMeleeAttacking() && !this.isSummoning()) {
                     if (this.isStaying()) {
                         this.isStandingUp = MathHelper.secondsToTicks(1);
@@ -841,7 +842,6 @@ public class BlackBeast extends Summoned implements IMobTyped{
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (this.isOwnedByPlayer(pPlayer)) {
             if (VivideruItems.isVivideruBlackBeastArmor(itemstack) && this.getBodyArmorItem().isEmpty()) {
-                // Black Beast armor uses BODY so it can save with the mob, but equip is handled here because the mob is not a vanilla armor target.
                 this.setBodyArmorItem(itemstack.copyWithCount(1));
                 if (!pPlayer.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -918,7 +918,6 @@ public class BlackBeast extends Summoned implements IMobTyped{
 
     private boolean isOwnedByPlayer(Player player) {
         UUID ownerId = this.getOwnerId();
-        // Owner lookups can return a different entity instance during sync edges, so armor interactions compare the stable UUID.
         return ownerId != null && ownerId.equals(player.getUUID());
     }
 

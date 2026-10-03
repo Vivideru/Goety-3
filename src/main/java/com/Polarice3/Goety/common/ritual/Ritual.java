@@ -40,7 +40,6 @@ import java.util.Optional;
 public abstract class Ritual {
 
     public static int range() {
-        // Config values are unavailable during class loading, so ritual distances are read when a ritual checks its structure.
         return MainConfig.RitualRange.get();
     }
 
@@ -212,7 +211,6 @@ public abstract class Ritual {
         return false;
     }
 
-    // Keep pedestal consumption in one overridable step for rituals with specialized ingredient handling.
     protected boolean consumeAdditionalIngredientFromPedestal(Level world, PedestalBlockEntity pedestal,
                                                                Ingredient ingredient, List<ItemStack> consumedIngredients) {
         ItemStack stack = pedestal.itemStackHandler.extractItem(0, 1, true);

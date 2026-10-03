@@ -21,7 +21,6 @@ public class LichdomHelper {
         ILichdom lichdom = getCapability(player);
         lichdom.setLichdom(lich);
         if (!lich) {
-            // Lich form and night vision are client-rendered flags; clear them together so a lost Arca death cannot leave the client in a stale visual mode.
             lichdom.setLichMode(false);
             lichdom.setNightVision(false);
         }

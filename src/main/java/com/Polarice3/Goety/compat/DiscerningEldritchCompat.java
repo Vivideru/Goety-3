@@ -21,7 +21,6 @@ public final class DiscerningEldritchCompat {
         if (stack.isEmpty() || !SOUL_FIRE_SCYTHE_CLASS.equals(stack.getItem().getClass().getName())) {
             return;
         }
-        // Discerning the Eldritch 1.4.3 can dereference its soul-fire stack component before it is initialized.
         for (ResourceLocation componentId : SOUL_FIRE_STACK_COMPONENTS) {
             setMissingIntegerComponent(stack, componentId, 0);
         }

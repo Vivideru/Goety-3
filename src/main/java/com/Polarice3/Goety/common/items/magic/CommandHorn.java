@@ -43,7 +43,6 @@ public class CommandHorn extends Item {
     public static String NONE = "None";
 
     public static float range() {
-        // Config values are unavailable during item registration, so the command radius is read when the horn is used.
         return ItemConfig.CommandHornDiameter.get().floatValue();
     }
 
@@ -121,7 +120,6 @@ public class CommandHorn extends Item {
 
     public static void setMode(ItemStack itemStack, String mode) {
         if (itemStack.getItem() instanceof CommandHorn) {
-            // ItemStack root NBT was removed in 1.21; keep the horn command mode in CUSTOM_DATA.
             CustomData.update(DataComponents.CUSTOM_DATA, itemStack, tag -> tag.putString(MODE, mode));
         }
     }
@@ -165,7 +163,6 @@ public class CommandHorn extends Item {
                                     if (player.getOffhandItem().getItem() instanceof PatrolPlan && servant.canPatrol()) {
                                         IServant patroller = servant;
                                         boolean isLeader = false;
-                                        // Raiders patrol behind their captain, so the route goes to the leader instead.
                                         if (servant instanceof RaiderServant raiderServant
                                                 && raiderServant.getLeader() != null
                                                 && raiderServant.getLeader().canPatrol()) {
@@ -181,7 +178,6 @@ public class CommandHorn extends Item {
                                         } else {
                                             List<GlobalPos> route = PatrolPlan.getList(player.getOffhandItem());
                                             if (!route.isEmpty() && route.get(0).dimension().equals(livingEntity.level().dimension())) {
-                                                // Several raiders share one leader; only re-issue the route if it actually changed.
                                                 if (!isLeader || !patroller.getPatrolRoute().equals(route)) {
                                                     PatrolPlan.assignRoute(patroller, route);
                                                     livingEntity.playSound(SoundEvents.ZOMBIE_VILLAGER_CONVERTED, 1.0F, 1.0F);

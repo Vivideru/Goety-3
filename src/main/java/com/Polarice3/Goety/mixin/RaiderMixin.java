@@ -25,7 +25,6 @@ public abstract class RaiderMixin extends PatrollingMonster {
     @Inject(method = "die", at = @At("TAIL"))
     private void captureBadOmenForCharm(DamageSource source, CallbackInfo info) {
         Entity entity = source.getEntity();
-        // 1.21 no longer grants Bad Omen directly from Raider#die, so preserve the charm capture without cancelling raid cleanup.
         if (this.isPatrolLeader() && entity instanceof Player player) {
             ItemStack itemStack = CuriosFinder.findCurioInAll(player, ModItems.OMINOUS_CHARM.get());
             if (itemStack.is(ModItems.OMINOUS_CHARM.get())) {

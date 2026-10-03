@@ -193,7 +193,6 @@ public class PioneerRock extends SpellEntity {
     protected void positionRider(Entity p_289552_, Entity.MoveFunction p_289571_) {
         if (this.hasPassenger(p_289552_)) {
             float f = this.getSinglePassengerXOffset();
-            // 1.21 removed the old riding-offset helpers; keep the rock-mounted passenger close to the vehicle origin.
             float f1 = this.isRemoved() ? 0.01F : 0.0F;
             if (this.getPassengers().size() > 1) {
                 int i = this.getPassengers().indexOf(p_289552_);

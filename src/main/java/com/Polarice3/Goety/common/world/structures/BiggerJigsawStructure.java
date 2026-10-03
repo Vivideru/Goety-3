@@ -79,7 +79,6 @@ public class BiggerJigsawStructure extends Structure {
         ChunkPos chunkpos = p_227636_.chunkPos();
         int i = this.startHeight.sample(p_227636_.random(), new WorldGenerationContext(p_227636_.chunkGenerator(), p_227636_.heightAccessor()));
         BlockPos blockpos = new BlockPos(chunkpos.getMinBlockX(), i, chunkpos.getMinBlockZ());
-        // JigsawPlacement in 1.21 requires explicit alias, padding, and liquid settings; vanilla defaults preserve old behavior.
         return JigsawPlacement.addPieces(p_227636_, this.startPool, this.startJigsawName, this.maxDepth, blockpos, false, this.projectStartToHeightmap, this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, JigsawStructure.DEFAULT_DIMENSION_PADDING, JigsawStructure.DEFAULT_LIQUID_SETTINGS);
     }
 

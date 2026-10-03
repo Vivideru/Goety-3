@@ -64,7 +64,6 @@ public class HauntedBroomItem extends Item {
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotIndex, boolean selected) {
         super.inventoryTick(stack, level, entity, slotIndex, selected);
         if (getOwnerID(stack) != null && MobUtil.getItemEnchantmentLevel(entity, stack, ModEnchantments.FEALTY) <= 0) {
-            // ItemStack root NBT was removed in 1.21; Fealty ownership markers are kept in CUSTOM_DATA.
             CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
                 tag.remove(OWNER);
                 tag.remove(OWNER_NAME);
@@ -149,7 +148,6 @@ public class HauntedBroomItem extends Item {
 
     public static void setOwner(@Nullable LivingEntity entity, ItemStack stack) {
         if (entity != null) {
-            // ItemStack root NBT was removed in 1.21; keep broom ownership in CUSTOM_DATA.
             CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
                 tag.putUUID(OWNER, entity.getUUID());
                 tag.putString(OWNER_NAME, entity.getDisplayName().getString());

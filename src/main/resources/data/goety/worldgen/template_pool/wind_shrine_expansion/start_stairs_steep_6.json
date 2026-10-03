@@ -1,0 +1,7 @@
+{
+  "name": "goety:wind_shrine_expansion/start_stairs_steep_6",
+  "fallback": "goety:wind_shrine/end",
+  "elements": [
+    { "weight": 1, "element": { "location": "goety:wind_shrine/expansion_stairs_steep_6", "processors": "goety:wind_shrine_foundation", "projection": "rigid", "element_type": "minecraft:single_pool_element" } }
+  ]
+}

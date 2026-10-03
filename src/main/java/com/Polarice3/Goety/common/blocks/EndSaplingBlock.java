@@ -32,7 +32,6 @@ public class EndSaplingBlock extends SaplingBlock {
         } else if (state.getValue(STAGE) == 0) {
             level.setBlock(pos, state.cycle(STAGE), 4);
         } else {
-            // TreeGrower is final in Minecraft 1.21, so Chorus keeps its custom grow logic through this sapling override.
             this.chorusTree.growTree(level, level.getChunkSource().getGenerator(), pos, state, random);
         }
     }
@@ -42,7 +41,6 @@ public class EndSaplingBlock extends SaplingBlock {
     }
 
     public TriState canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, BlockState plant) {
-        // NeoForge 1.21 switched soil support decisions to TriState so custom support can explicitly allow Chorus soils.
         return state.is(ModTags.Blocks.CHORUS_SAPLING_GROW) ? TriState.TRUE : super.canSustainPlant(state, world, pos, facing, plant);
     }
 }

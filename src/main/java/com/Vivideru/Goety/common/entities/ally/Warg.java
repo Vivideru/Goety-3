@@ -16,6 +16,7 @@ import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemBlockEntity;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
+import com.Vivideru.Goety.common.entities.ai.MovementHold;
 import com.Vivideru.Goety.common.items.VivideruItems;
 import com.Vivideru.Goety.common.world.WargTotemData;
 import net.minecraft.nbt.CompoundTag;
@@ -87,6 +88,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     private int airborneTicks;
     private int airborneCountedTick = -1;
     private int howlCooldown;
+    private boolean howling;
     @Nullable
     private LivingEntity queuedTarget;
     private float lockedAttackYaw;
@@ -102,7 +104,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        // The larger head makes the Black Wolf's idle look goal too restless, so Wargs choose a new idle direction less often.
         this.goalSelector.removeAllGoals(goal -> goal instanceof RandomLookAroundGoal);
         this.goalSelector.addGoal(10, new RandomLookAroundGoal(this) {
             @Override
@@ -110,7 +111,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
                 return super.canUse() && Warg.this.getRandom().nextInt(4) == 0;
             }
         });
-        // Sword attacks need their own range check so the slash can start before the inherited bite goal closes the gap.
         this.goalSelector.addGoal(3, new WargSwordAttackGoal());
         this.goalSelector.addGoal(2, new SkeletalHowlGoal());
     }
@@ -160,7 +160,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     @Override
     public void tick() {
         super.tick();
-        // Smoothly lift the rider with the airborne Warg model instead of leaving the player inside the animated saddle.
         this.riderJumpOffset = Mth.approach(this.riderJumpOffset, this.onGround() ? 0.0F : 0.25F, 0.05F);
         if (!this.level().isClientSide) {
             this.registerPersistentAssignment();
@@ -175,18 +174,12 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
 
     private void registerPersistentAssignment() {
         if (!this.registryChecked && this.level() instanceof ServerLevel serverLevel && this.getOwnerId() != null && this.getRevivePos() != null) {
-            // The saved assignment survives the block being broken, preventing a replacement Totem from bypassing either Warg limit.
             WargTotemData.get(serverLevel).register(this.getUUID(), this.getOwnerId(), this.getReviveLevel(), this.getRevivePos());
             this.registryChecked = true;
         }
     }
 
-    /**
-     * The client's onGround flag flickers on slabs, stairs and bumpy terrain; treating every flicker as a jump
-     * snapped the model between the leap and idle poses. Only a few consecutive airborne ticks count as a leap.
-     */
     protected boolean tickAirborneAnimation() {
-        // Cerberus runs its own animation update after the Warg one, so count each game tick only once.
         if (this.airborneCountedTick != this.tickCount) {
             this.airborneCountedTick = this.tickCount;
             if (this.onGround()) {
@@ -239,12 +232,9 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
             return;
         }
         if (this.getAttackType() == ATTACK_BITE) {
-            // Bites never lock a heading (lockedAttackYaw is only computed for sword swings), so let the
-            // Warg keep tracking its target with the normal look control instead of freezing on a stale angle.
             this.entityData.set(ATTACK_TICKS, ticks - 1);
             return;
         }
-        // Keep the body, head and lunge on one heading until the complete attack animation has finished.
         this.applyLockedAttackFacing();
         this.getNavigation().stop();
         if (this.getAttackType() == ATTACK_SPIN && ticks == 10) {
@@ -264,7 +254,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         this.queuedTarget = target;
         this.lockAttackFacing(target);
         int attack = this.horizontalDistanceToSqr(target) > 4.0D ? ATTACK_SLASH : ATTACK_SPIN;
-        // The server windows match the accelerated client animations, allowing the next decision almost immediately.
         this.setAttack(attack, attack == ATTACK_SPIN ? 19 : 13);
         this.getNavigation().stop();
     }
@@ -287,8 +276,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private void applyLockedAttackFacing() {
-        // The body and lunge stay locked to the heading picked at the start of the swing, but the head keeps
-        // aiming at the target's current position so the Warg still looks at the enemy if it moves mid-attack.
         this.setYRot(this.lockedAttackYaw);
         this.yBodyRot = this.lockedAttackYaw;
         this.yHeadRot = this.lockedAttackYaw + this.headYawOffsetToTarget();
@@ -315,7 +302,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private void performSlashAttack() {
-        // Use the locked heading for both movement and damage so the model always faces the actual slash direction.
         Vec3 forward = Vec3.directionFromRotation(0.0F, this.lockedAttackYaw).normalize();
         AABB swept = this.getBoundingBox().expandTowards(forward.scale(2.75D)).inflate(0.75D, 0.35D, 0.75D);
         this.move(MoverType.SELF, forward.scale(2.75D));
@@ -335,13 +321,11 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         ItemStack sword = this.getMainHandItem();
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
         if (this.level() instanceof ServerLevel serverLevel) {
-            // Custom animation hits bypass Mob#doHurtTarget, so apply the held sword's damage enchantments explicitly.
             damage = EnchantmentHelper.modifyDamage(serverLevel, sword, target, source, damage);
         }
         if (target.hurt(source, damage)) {
             this.curseTarget(target);
             if (this.level() instanceof ServerLevel serverLevel) {
-                // Keep item-sourced post-hit effects such as Fire Aspect attached to the sword used by the Warg.
                 EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, source, sword);
             }
         }
@@ -354,14 +338,13 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
 
     @Override
     public float getTailAngle() {
-        // The Warg carries its heavier tail at a shallower angle than the Black Wolf.
-        return super.getTailAngle() - 0.30F;
+        float missing = this.getMaxHealth() > 0.0F ? Mth.clamp(1.0F - this.getHealth() / this.getMaxHealth(), 0.0F, 1.0F) : 0.0F;
+        return Mth.lerp(missing, 0.55F * (float) Math.PI - 0.30F, -0.9F);
     }
 
     @Override
     protected AABB getAttackBoundingBox() {
         AABB attackBox = super.getAttackBoundingBox();
-        // Sword attacks begin outside bite range because both custom swings cover a wider area.
         return this.hasSword() ? attackBox.inflate(1.75D, 0.5D, 1.75D) : attackBox;
     }
 
@@ -419,7 +402,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
 
     @Override
     protected int calculateFallDamage(float distance, float multiplier) {
-        // Extend the safe fall by four blocks while keeping damage progression continuous above the new threshold.
         return distance <= 8.0F ? 0 : super.calculateFallDamage(distance - 5.0F, multiplier);
     }
 
@@ -448,7 +430,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
         if (this.onGround() && this.playerJumpPendingScale > 0.0F) {
             Vec3 movement = this.getDeltaMovement();
-            // Mounted Wargs use a stronger leap than their autonomous pathfinding jump and preserve charge-based control.
             double verticalPower = 0.65D + 0.20D * this.playerJumpPendingScale;
             this.setDeltaMovement(movement.x, verticalPower, movement.z);
             if (travelVector.z > 0.0D) {
@@ -469,7 +450,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     @Override
     public void positionRider(Entity passenger, Entity.MoveFunction moveFunction) {
         if (this.hasPassenger(passenger)) {
-            // The saddle is behind the entity origin and below the old generic riding offset in the supplied model.
             Vec3 facing = Vec3.directionFromRotation(0.0F, this.getYRot());
             Vec3 saddleOffset = facing.scale(-0.68D);
             double bounce = 0.04D * Mth.cos(this.walkAnimation.position() * 0.7F) * this.walkAnimation.speed();
@@ -536,7 +516,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
             }
             if (held.isEmpty() && this.hasSword()) {
                 if (!this.level().isClientSide) {
-                    // Return the mouth-held sword directly to the empty hand instead of dropping it at the Warg's feet.
                     ItemStack sword = this.getMainHandItem().copy();
                     this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
                     player.setItemInHand(hand, sword);
@@ -608,7 +587,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     private void releaseTotemSlot(ServerLevel level) {
         WolfTotemBlockEntity totem = WolfTotemHooks.getTotem((LivingEntity) this);
         if (totem != null) {
-            // This runs only after a definitive removal; a Totem rescue cancels death before loot cleanup.
             totem.releaseWarg(this.getUUID());
         }
         WargTotemData.get(level).unregister(this.getUUID());
@@ -619,7 +597,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private static boolean isUsableSword(ItemStack stack) {
-        // Tool actions cover modded swords that expose sword behavior without joining the vanilla item tag.
         return stack.is(ItemTags.SWORDS) || stack.getItem() instanceof SwordItem
                 || stack.canPerformAction(ItemAbilities.SWORD_DIG);
     }
@@ -657,19 +634,25 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         return this.entityData.get(ATTACK_TICKS);
     }
 
+    public boolean isHowling() {
+        return this.howling;
+    }
+
     private void setAttack(int type, int ticks) {
         this.entityData.set(ATTACK_TYPE, type);
         this.entityData.set(ATTACK_TICKS, ticks);
     }
 
-    /**
-     * The Skeletal Warg rallies skeleton-type allies like the Skeleton Wolf's howl: nearby allied skeleton servants
-     * gain Strength for five seconds. Wargs have no howl animation, so the roar is instant and never stops the Warg
-     * in its tracks; the cooldown matches the Skeleton Wolf's full howl cycle instead.
-     */
     private class SkeletalHowlGoal extends Goal {
-        private static final int HOWL_COOLDOWN = MathHelper.secondsToTicks(8.25F);
+        private static final int HOWL_TIME = MathHelper.secondsToTicks(3.25F);
+        private static final int RALLY_TIME = MathHelper.secondsToTicks(3);
+        private static final int HOWL_COOLDOWN = 100;
         private static final double HOWL_RANGE = 8.0D;
+        private int howlTime;
+
+        private SkeletalHowlGoal() {
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK, Flag.JUMP));
+        }
 
         @Override
         public boolean canUse() {
@@ -677,23 +660,51 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
             return Warg.this.getVariant() == Variant.SKELETAL
                     && target != null && target.isAlive()
                     && Warg.this.howlCooldown <= 0
+                    && Warg.this.getAttackTicks() <= 0
+                    && Warg.this.onGround()
                     && Warg.this.getRandom().nextBoolean();
         }
 
         @Override
         public boolean canContinueToUse() {
-            return false;
+            return this.howlTime > 0;
+        }
+
+        @Override
+        public boolean requiresUpdateEveryTick() {
+            return true;
         }
 
         @Override
         public void start() {
+            this.howlTime = HOWL_TIME;
+            Warg.this.howling = true;
+            this.holdStill();
             Warg.this.playSound(ModSounds.SKELETON_WOLF_HOWL.get(), 1.5F, 0.8F);
+        }
+
+        @Override
+        public void stop() {
+            Warg.this.howling = false;
             Warg.this.howlCooldown = HOWL_COOLDOWN;
-            for (LivingEntity livingEntity : Warg.this.level().getEntitiesOfClass(LivingEntity.class, Warg.this.getBoundingBox().inflate(HOWL_RANGE))) {
-                if (livingEntity != Warg.this && this.isRallied(livingEntity)) {
-                    livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, MathHelper.secondsToTicks(5)));
+        }
+
+        @Override
+        public void tick() {
+            --this.howlTime;
+            this.holdStill();
+            if (this.howlTime == RALLY_TIME) {
+                for (LivingEntity livingEntity : Warg.this.level().getEntitiesOfClass(LivingEntity.class, Warg.this.getBoundingBox().inflate(HOWL_RANGE))) {
+                    if (livingEntity != Warg.this && this.isRallied(livingEntity)) {
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, MathHelper.secondsToTicks(5)));
+                    }
                 }
             }
+        }
+
+        private void holdStill() {
+            MovementHold.holdStill(Warg.this);
+            Warg.this.setDeltaMovement(Warg.this.getDeltaMovement().multiply(0.0D, 1.0D, 0.0D));
         }
 
         private boolean isRallied(LivingEntity livingEntity) {
@@ -762,7 +773,6 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
                     Warg.this.startSwordAttack(target);
                 }
             } else if (--this.pathRefresh <= 0) {
-                // Frequent path refreshes keep the Warg responsive to targets moving around the four-block attack boundary.
                 Warg.this.getNavigation().moveTo(target, 1.35D);
                 this.pathRefresh = 3;
             }

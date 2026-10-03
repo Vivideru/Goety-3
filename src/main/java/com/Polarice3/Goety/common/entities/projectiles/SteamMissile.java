@@ -111,7 +111,6 @@ public class SteamMissile extends SpellHurtingProjectile {
                 flag = entity.hurt(damageSource, baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                         EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                     }
                 }
@@ -120,7 +119,6 @@ public class SteamMissile extends SpellHurtingProjectile {
             }
 
             if (flag && entity instanceof LivingEntity livingEntity && !preserveActiveIFrames) {
-                // Normal steam hits keep their shorter recovery, while reduced multi-hits must leave the existing timer untouched.
                 livingEntity.invulnerableTime = 15;
             }
         }

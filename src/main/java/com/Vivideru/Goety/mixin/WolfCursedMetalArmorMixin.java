@@ -18,7 +18,6 @@ public class WolfCursedMetalArmorMixin {
         Wolf wolf = (Wolf) (Object) this;
         ItemStack stack = player.getItemInHand(hand);
         if (VivideruItems.isVivideruWolfArmor(stack) && wolf.isTame() && wolf.isOwnedBy(player) && wolf.getBodyArmorItem().isEmpty() && !wolf.isBaby()) {
-            // Vanilla Wolf only checks Items.WOLF_ARMOR, so custom canine armor needs the same equip path before vanilla handling runs.
             wolf.setBodyArmorItem(stack.copyWithCount(1));
             stack.consume(1, player);
             cir.setReturnValue(InteractionResult.SUCCESS);
@@ -29,7 +28,6 @@ public class WolfCursedMetalArmorMixin {
     private void goety$hasCursedMetalWolfArmor(CallbackInfoReturnable<Boolean> cir) {
         Wolf wolf = (Wolf) (Object) this;
         if (VivideruItems.isVivideruWolfArmor(wolf.getBodyArmorItem())) {
-            // Wolf armor damage mitigation is gated behind hasArmor(), which is hardcoded to the vanilla item in 1.21.
             cir.setReturnValue(true);
         }
     }

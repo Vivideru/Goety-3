@@ -377,7 +377,6 @@ public class HostileRedstoneGolem extends HostileGolem implements ICustomAttribu
         }
 
         this.hurt(this.damageSources().generic(), 0.0F);
-        // 1.21 keeps LivingEntity's last-damage bookkeeping private; the synthetic hurt call above updates the public damage flow.
     }
 
     public void stopMostAnimations(AnimationState animationState0){
@@ -438,7 +437,6 @@ public class HostileRedstoneGolem extends HostileGolem implements ICustomAttribu
                         }
                         if (this.noveltyTick == 42) {
                             this.playSound(ModSounds.REDSTONE_GOLEM_GROWL.get());
-                            // 1.21 removed ENTITY_ROAR; ENTITY_ACTION keeps the novelty roar visible to vibration listeners.
                             this.gameEvent(GameEvent.ENTITY_ACTION, this);
                         }
                         if (this.noveltyTick >= 92 || this.getTarget() != null || this.hurtTime > 0) {
@@ -685,7 +683,6 @@ public class HostileRedstoneGolem extends HostileGolem implements ICustomAttribu
                 }
 
                 if (HostileRedstoneGolem.this.level() instanceof ServerLevel serverLevel) {
-                    // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                     EnchantmentHelper.doPostAttackEffects(serverLevel, target, damageSource);
                 }
                 HostileRedstoneGolem.this.setLastHurtMob(target);

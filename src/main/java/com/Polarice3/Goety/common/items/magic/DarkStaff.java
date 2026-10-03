@@ -28,7 +28,6 @@ public class DarkStaff extends DarkWand {
     }
 
     private static ItemAttributeModifiers createStaffAttributes(double damage, double attackSpeed) {
-        // Stack-aware attribute overrides were removed in 1.21; staff combat stats now live in the item attribute component.
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE, com.Polarice3.Goety.utils.ModAttributeUtil.create(BASE_ATTACK_DAMAGE_ID, damage - 1.0D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED, com.Polarice3.Goety.utils.ModAttributeUtil.create(BASE_ATTACK_SPEED_ID, attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)

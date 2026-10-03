@@ -12,7 +12,6 @@ import java.util.Collection;
 
 public class DummyTeam extends PlayerTeam {
     public DummyTeam() {
-        // Minecraft 1.21 narrows Entity#getTeam to PlayerTeam, so this synthetic team now extends PlayerTeam while keeping the old dummy behavior.
         super(new Scoreboard(), "goety:dummy");
     }
 

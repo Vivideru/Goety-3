@@ -186,7 +186,6 @@ public class Snapper extends AnimalSummon implements IMobTyped{
     }
 
     public boolean isFood(ItemStack p_30440_) {
-        // FoodProperties no longer exposes the old meat flag, so use the vanilla meat item tag while still requiring food data.
         return p_30440_.is(ItemTags.MEAT) && p_30440_.has(DataComponents.FOOD);
     }
 
@@ -260,7 +259,6 @@ public class Snapper extends AnimalSummon implements IMobTyped{
                     double d9 = this.getY();
                     float f4 = 0.96F;
                     float f5 = 0.02F;
-                    // Depth Strider's old helper was folded into movement effects; water summons do not wear enchanted boots, so keep the previous baseline.
                     float f6 = 0.0F;
                     if (f6 > 3.0F) {
                         f6 = 3.0F;

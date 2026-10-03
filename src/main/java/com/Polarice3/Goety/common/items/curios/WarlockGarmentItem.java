@@ -20,7 +20,6 @@ public class WarlockGarmentItem extends SingleStackItem{
                     if (player.tickCount % 60 == 0) {
                         if (!ItemHelper.findItem(player, ModItems.WARTFUL_EGG.get()).isEmpty()) {
                             ItemStack itemStack = ItemHelper.findItem(player, ModItems.WARTFUL_EGG.get());
-                            // 1.21 removed per-effect curative item lists; keep the old trigger focused on harmful effects.
                             player.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL).findFirst().ifPresent(effect -> {
                                 WartlingEggItem.warlockUse(worldIn, player, itemStack);
                             });

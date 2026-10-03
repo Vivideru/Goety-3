@@ -50,7 +50,6 @@ import java.util.function.Predicate;
 public class ServantUtil {
 
     private static Optional<MerchantOffers> readOffers(Entity entity, CompoundTag tag) {
-        // Merchant offers are codec-backed in 1.21, replacing the old MerchantOffers#createTag helper.
         return tag.contains("Offers")
                 ? MerchantOffers.CODEC.parse(entity.registryAccess().createSerializationContext(NbtOps.INSTANCE), tag.get("Offers")).result()
                 : Optional.empty();
@@ -81,7 +80,6 @@ public class ServantUtil {
                 if (zombieEntity instanceof ZombieVillager villager && zombieServant instanceof ZombieVillagerServant servant){
                     servant.setVillagerData(villager.getVillagerData());
                     CompoundTag villagerData = villager.saveWithoutId(new CompoundTag());
-                    // ZombieVillager keeps gossip/offers private in 1.21, so copy the same saved data vanilla uses for curing.
                     if (villagerData.contains("Gossips", Tag.TAG_LIST)) {
                         servant.setGossips(villagerData.get("Gossips"));
                     }
@@ -479,7 +477,6 @@ public class ServantUtil {
                     && ownedTarget.getMasterOwner() instanceof Player)) {
                 shouldClearTarget = true;
             }
-            // Wild Rage deliberately suspends the normal owner and servant alliance checks.
             if (!mobThis.hasEffect(GoetyEffects.WILD_RAGE)) {
                 if (target instanceof IOwned ownedTarget) {
                     shouldClearTarget = owned.getTrueOwner() != null && ownedTarget.getTrueOwner() == owned.getTrueOwner();
@@ -508,7 +505,6 @@ public class ServantUtil {
         return shouldClearTarget;
     }
 
-    // This enum is internal-only; keeping it out of NeoForge enum extension processing avoids lazy-load crashes.
     enum HealType {
         ABYSS(
                 ServantUtil::isAbyssHeal,

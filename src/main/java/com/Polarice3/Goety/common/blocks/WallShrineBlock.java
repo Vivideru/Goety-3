@@ -31,7 +31,6 @@ public class WallShrineBlock extends HorizontalDirectionalBlock implements Simpl
 
     @Override
     protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 

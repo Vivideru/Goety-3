@@ -29,7 +29,6 @@ public class BoneShard extends AbstractArrow {
     }
 
     public BoneShard(LivingEntity p_36718_, Level p_36719_) {
-        // AbstractArrow serializes its internal weapon stack in 1.21, so keep a harmless non-empty stack while pickup remains disabled.
         super(ModEntityType.BONE_SHARD.get(), p_36718_, p_36719_, new ItemStack(Items.ARROW), null);
     }
 

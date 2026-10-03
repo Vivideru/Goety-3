@@ -41,7 +41,6 @@ public class TotemOfSouls extends Item implements ITotem, ICurioItem {
     }
 
     public int getMaxSouls(){
-        // The configured maximum can only be read after configs have loaded.
         return this.maxSouls.getAsInt();
     }
 

@@ -306,10 +306,8 @@ public class Codger extends Cultist implements RangedAttackMob {
 
     private void summonWartlings(Wartling wartling){
         if (this.level() instanceof ServerLevel serverLevel) {
-            // Summons spawned by an owned Codger should belong to the same effective owner.
             wartling.setTrueOwner(MobUtil.getSummonOwner(this));
             wartling.setLimitedLife(MathHelper.secondsToTicks(9));
-            // 1.21 removed public per-effect curative item lists; transferring the first harmful effect preserves the Codger's wartling cleanse behavior.
             this.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL).findFirst().ifPresent(effect -> {
                 wartling.setStoredEffect(effect);
                 this.removeEffect(effect.getEffect());

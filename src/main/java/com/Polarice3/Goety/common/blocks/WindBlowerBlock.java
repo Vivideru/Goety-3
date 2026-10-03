@@ -29,7 +29,6 @@ public class WindBlowerBlock extends DirectionalBlock implements EntityBlock {
 
     @Override
     protected MapCodec<? extends DirectionalBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 

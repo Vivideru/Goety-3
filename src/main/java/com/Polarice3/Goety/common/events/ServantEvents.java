@@ -69,11 +69,9 @@ public class ServantEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard servant target logic.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
-        // Stunned mobs must not retarget while their AI is intentionally suspended.
         if (livingEntity instanceof Mob mob && !StunnedEvents.isStunned(mob)){
             if (mob instanceof OwnableEntity ownable && mob.getTarget() != null) {
                 if (SEHelper.isAlly(ownable.getOwner(), mob.getTarget())) {
@@ -112,7 +110,6 @@ public class ServantEvents {
         LivingEntity attacker = event.getEntity();
         LivingEntity target = event.getOriginalAboutToBeSetTarget();
         LivingEntity newTarget = event.getNewAboutToBeSetTarget();
-        // Ignore target changes from stale goals while the attacker is stunned.
         if (attacker instanceof Mob mobAttacker && !StunnedEvents.isStunned(mobAttacker)) {
             if (target instanceof Player) {
                 if (mobAttacker.getLastHurtByMob() instanceof IOwned owned
@@ -131,7 +128,6 @@ public class ServantEvents {
                 }
             }
             if (attacker instanceof IOwned owned && ServantUtil.nullifyTarget(owned, target)) {
-                // Centralized target validation keeps Wild Rage and owner alliances consistent across AI paths.
                 if (event.getTargetType() == MOB_TARGET) {
                     event.setNewAboutToBeSetTarget(null);
                 } else {
@@ -304,7 +300,6 @@ public class ServantEvents {
         if (event.getSource().getEntity() instanceof IOwned summonedEntity){
             if (summonedEntity.getTrueOwner() != null){
                 if (summonedEntity.getTrueOwner() == target){
-                    // NeoForge 1.21 only exposes cancellation before damage application, so keep this owner immunity on the incoming phase.
                     event.setCanceled(true);
                 }
             }

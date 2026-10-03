@@ -127,7 +127,6 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         if (this.rawMeat > 0 && this.bones > 0) {
             --this.rawMeat;
             --this.bones;
-            // A complete offering is one raw meat plus one bone, and it deliberately creates two wolves.
             this.startTraining(2, stack);
         }
         this.markUpdated();
@@ -194,7 +193,6 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         boolean changed = this.uuids.remove(wargId);
         changed |= this.servants.removeIf(servant -> servant.getUUID().equals(wargId));
         if (wargId.equals(this.createdWarg)) {
-            // A definitive Warg removal must free both the saved Totem slot and its servant assignment.
             this.createdWarg = null;
             changed = true;
         }
@@ -246,7 +244,6 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
         if (entity instanceof LivingEntity living) {
             applyWolfTotemBonus(living);
             if (living instanceof Summoned summoned) {
-                // Equipment setup can run before Curios resolves the copied owner, so apply the Ring armor after finalization as well.
                 VivideruWolfArmorUtil.equipRingGrantedArmor(summoned);
             }
         }
@@ -294,10 +291,8 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
     public static void applyWolfTotemBonus(LivingEntity entity) {
         if (entity instanceof Summoned) {
             if (entity instanceof BlackWolf blackWolf) {
-                // Black Wolf variants already persist ritual health through their own entity NBT flag.
                 blackWolf.setRitualSummonedByPlayer(true);
             }
-            // ForgeData survives chunk and world reloads, unlike a one-time attribute mutation performed at spawn.
             entity.getPersistentData().putBoolean(HEALTH_BONUS, true);
             restoreWolfTotemBonus(entity, true);
         }
@@ -314,7 +309,6 @@ public class WolfTotemBlockEntity extends TrainingBlockEntity {
                     : entity instanceof BlackWolf
                     ? AttributesConfig.get(AttributesConfig.BlackWolfHealth)
                     : health.getBaseValue();
-            // Reapply the configured value directly so repeated join events cannot multiply the bonus.
             health.setBaseValue(baseHealth * 2.0D);
             if (healToFull) {
                 entity.setHealth(entity.getMaxHealth());

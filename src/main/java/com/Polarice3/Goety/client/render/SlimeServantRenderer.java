@@ -60,7 +60,6 @@ public class SlimeServantRenderer extends MobRenderer<SlimeServant, SlimeModel<S
       @Override
       public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
          if (entitylivingbaseIn.isInterested()) {
-            // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
             coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
          }
       }

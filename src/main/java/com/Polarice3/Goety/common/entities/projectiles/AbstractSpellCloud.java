@@ -89,7 +89,6 @@ public abstract class AbstractSpellCloud extends SpellEntity {
     @Override
     public void addAdditionalSaveData(CompoundTag p_20139_) {
         super.addAdditionalSaveData(p_20139_);
-        // 1.21 removed ParticleOptions#writeToString; store the particle type id so simple cloud particles survive save/load.
         p_20139_.putString("Particle", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getRainParticle().getType()).toString());
         p_20139_.putBoolean("Activated", this.activated);
         p_20139_.putInt("ActivateTime", this.activateTime);

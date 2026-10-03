@@ -59,7 +59,6 @@ public class DroughtBlockEffect extends BrewEffect {
                     Block block = blockstate.getBlock();
                     if (block instanceof BucketPickup) {
                         BucketPickup bucketpickup = (BucketPickup)block;
-                        // BucketPickup now receives the acting player; this brew has no player interaction context, so pass null like vanilla non-player fluid removal.
                         if (!bucketpickup.pickupBlock(null, p_56808_, p_279054_, blockstate).isEmpty()) {
                             return true;
                         }

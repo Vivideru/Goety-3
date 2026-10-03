@@ -596,7 +596,6 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
 
     @Nullable
     public LivingEntity getTrueOwner() {
-        // Wild Rage intentionally suspends owner allegiance so the servant can attack without owner protections.
         if (this.hasEffect(GoetyEffects.WILD_RAGE)) {
             return null;
         }

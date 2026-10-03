@@ -24,6 +24,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import org.jetbrains.annotations.Nullable;
 
 public class DeathArrow extends Arrow {
 
@@ -32,8 +33,11 @@ public class DeathArrow extends Arrow {
     }
 
     public DeathArrow(Level p_36866_, LivingEntity p_36867_) {
-        // 1.21 arrows keep the projectile and weapon stacks; legacy call sites only supplied the shooter.
         super(p_36866_, p_36867_, new ItemStack(Items.ARROW), null);
+    }
+
+    public DeathArrow(Level pLevel, LivingEntity pOwner, ItemStack pPickupStack, @Nullable ItemStack pWeaponStack) {
+        super(pLevel, pOwner, pPickupStack, pWeaponStack);
     }
 
     @Override

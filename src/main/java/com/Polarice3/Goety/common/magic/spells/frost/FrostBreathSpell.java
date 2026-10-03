@@ -41,7 +41,6 @@ public class FrostBreathSpell extends BreathingSpell {
     }
 
     private float baseDamage() {
-        // Focus registration constructs spell instances before NeoForge loads common configs.
         return SpellConfig.FrostBreathDamage.get().floatValue() * WandUtil.damageMultiply();
     }
 
@@ -116,7 +115,6 @@ public class FrostBreathSpell extends BreathingSpell {
         }
         float damage = this.baseDamage() + potency;
         if (!worldIn.isClientSide) {
-            // Breath empowerment now belongs to the matching staff rather than a passive curio.
             if (this.rightStaff(staff)) {
                 damage *= 2.0F;
                 if (SpellConfig.DragonFrostGriefing.get()) {

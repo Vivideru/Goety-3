@@ -34,7 +34,6 @@ public class ModFallingBlockRenderer extends EntityRenderer<ModFallingBlock> {
         matrixStackIn.translate(-0.5f, -0.5f, -0.5f);
         BlockState blockState = entityIn.getBlock();
         if (blockState != null) {
-            // Boss attacks can spawn this entity before the client receives its synced block state; skip only the unsafe frame.
             dispatcher.renderSingleBlock(blockState, matrixStackIn, bufferIn, packedLightIn, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, null);
         }
         matrixStackIn.popPose();

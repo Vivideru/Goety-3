@@ -5,7 +5,6 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import org.lwjgl.glfw.GLFW;
 
 public class ModKeybindings {
-    // NeoForge registers key mappings through the mod event bus, so the instances must exist before input events can read them.
     public static final KeyMapping[] keyBindings = new KeyMapping[]{
             new KeyMapping("key.goety.wand", GLFW.GLFW_KEY_Z, "key.goety.category"),
             new KeyMapping("key.goety.focusCircle", GLFW.GLFW_KEY_X, "key.goety.category"),

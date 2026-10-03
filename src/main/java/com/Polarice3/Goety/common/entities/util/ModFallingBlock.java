@@ -171,7 +171,6 @@ public class ModFallingBlock extends Entity {
 
     public BlockState getBlock() {
         Optional<BlockState> blockState = this.entityData.get(BLOCK_STATE);
-        // Client-side spawn data may arrive before the optional block state is populated; render and particles need a safe fallback.
         return blockState.orElse(Blocks.DIRT.defaultBlockState());
     }
 

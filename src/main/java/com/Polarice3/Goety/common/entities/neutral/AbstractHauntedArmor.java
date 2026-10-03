@@ -331,7 +331,6 @@ public abstract class AbstractHauntedArmor extends Summoned implements CrossbowA
     @Override
     public boolean canBeAffected(MobEffectInstance pPotioneffect) {
         final boolean[] modifiesArmor = {false};
-        // MobEffect no longer exposes its modifier map directly; use the visitor hook to keep the old armor-filter behavior.
         pPotioneffect.getEffect().value().createModifiers(pPotioneffect.getAmplifier(), (attribute, modifier) -> {
             if (attribute.equals(Attributes.ARMOR)) {
                 modifiesArmor[0] = true;
@@ -403,7 +402,6 @@ public abstract class AbstractHauntedArmor extends Summoned implements CrossbowA
     public boolean hurt(DamageSource source, float amount) {
         boolean flag = false;
         if (amount > 0.0F && this.isDamageSourceBlocked(source)) {
-            // NeoForge 1.21 moved the shield-block event into the damage container pipeline, so this local block keeps the old guard behavior without the removed ForgeHooks call.
             this.hurtCurrentlyUsedShield(amount);
             amount = 0.0F;
             if (!source.is(DamageTypeTags.IS_PROJECTILE)) {
@@ -455,7 +453,6 @@ public abstract class AbstractHauntedArmor extends Summoned implements CrossbowA
     }
 
     public void disableShield(boolean p_36385_) {
-        // The old block-efficiency helper was removed; keep the vanilla base shield-disable chance until enchantment-specific logic is reintroduced.
         float f = 0.25F;
         if (p_36385_) {
             f += 0.75F;

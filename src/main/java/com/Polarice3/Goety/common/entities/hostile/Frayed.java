@@ -106,7 +106,6 @@ public class Frayed extends Zombie implements ICustomAttributes {
 
     public static boolean checkFrayedSpawnRules(EntityType<Frayed> p_219113_, LevelAccessor p_219114_, MobSpawnType p_219115_, BlockPos p_219116_, RandomSource p_219117_) {
         if (p_219114_ instanceof ServerLevelAccessor serverLevel && MobUtil.stormSpawn(p_219114_, p_219116_)) {
-            // NeoForge 1.21 requires the server-level view for the vanilla monster spawn check.
             return checkMonsterSpawnRules(p_219113_, serverLevel, p_219115_, p_219116_, p_219117_);
         }
 

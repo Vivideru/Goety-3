@@ -47,7 +47,6 @@ public class HauntedPainting extends Painting {
     public static Optional<HauntedPainting> createModded(Level p_218888_, BlockPos p_218889_, Direction p_218890_) {
         HauntedPainting painting = new HauntedPainting(p_218888_, p_218889_);
         List<Holder<PaintingVariant>> list = new ArrayList<>();
-        // Painting variants are data-driven in 1.21, so query the level registry instead of the removed built-in field.
         p_218888_.registryAccess().lookupOrThrow(Registries.PAINTING_VARIANT).get(ModTags.Paintings.MODDED_PAINTINGS).ifPresent(named -> named.forEach(list::add));
         if (list.isEmpty()) {
             return Optional.empty();

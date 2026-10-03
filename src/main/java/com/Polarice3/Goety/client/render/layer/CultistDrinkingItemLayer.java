@@ -48,7 +48,6 @@ public class CultistDrinkingItemLayer<T extends Cultist, M extends CultistModel<
         if (isDrinkItem(offhand)) {
             return offhand;
         }
-        // Some cultists use the main hand so the witch-style drinking pose stays visible on clients.
         ItemStack mainHand = cultist.getMainHandItem();
         if (isDrinkItem(mainHand)) {
             return mainHand;

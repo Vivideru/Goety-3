@@ -117,7 +117,6 @@ public class HauntedSkullProjectile extends ExplosiveProjectile{
                 if (flag) {
                     if (target.isAlive()) {
                         if (this.level() instanceof ServerLevel serverLevel) {
-                            // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                             EnchantmentHelper.doPostAttackEffects(serverLevel, target, this.damageSources().indirectMagic(this, livingentity));
                         }
                         if (flaming != 0) {

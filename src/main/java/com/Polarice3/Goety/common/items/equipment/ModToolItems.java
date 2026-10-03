@@ -19,7 +19,6 @@ import java.util.function.Consumer;
 
 public class ModToolItems {
     private static float getTaggedSpeedFallback(float speed, BlockState blockState, TagKey<Block> mineableTag) {
-        // NeoForge 1.21 routes mining speed through the TOOL component; keep legacy tier speed if that component falls back to hand speed.
         return speed <= 1.0F && blockState.is(mineableTag) ? ModTiers.DARK.getSpeed() : speed;
     }
 
@@ -30,13 +29,11 @@ public class ModToolItems {
     public static class DarkSwordItem extends SwordItem implements IPersist {
 
         public DarkSwordItem() {
-            // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
             super(ModTiers.DARK, ModItems.baseProperties().durability(ModTiers.DARK.getUses()).attributes(SwordItem.createAttributes(ModTiers.DARK, 3, -2.4F)));
         }
 
         @Override
         public int getMaxDamage(ItemStack stack) {
-            // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
             return getDarkToolsDurability();
         }
 
@@ -93,7 +90,6 @@ public class ModToolItems {
         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             super.appendHoverText(stack, context, tooltip, flagIn);
             if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-                // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
                 tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
             }
         }
@@ -102,13 +98,11 @@ public class ModToolItems {
     public static class DarkShovelItem extends ShovelItem implements IPersist {
 
         public DarkShovelItem() {
-            // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
             super(ModTiers.DARK, ModItems.baseProperties().durability(ModTiers.DARK.getUses()).attributes(DiggerItem.createAttributes(ModTiers.DARK, 1.5F, -3.0F)));
         }
 
         @Override
         public int getMaxDamage(ItemStack stack) {
-            // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
             return getDarkToolsDurability();
         }
 
@@ -165,7 +159,6 @@ public class ModToolItems {
         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             super.appendHoverText(stack, context, tooltip, flagIn);
             if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-                // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
                 tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
             }
         }
@@ -174,13 +167,11 @@ public class ModToolItems {
     public static class DarkPickaxeItem extends PickaxeItem implements IPersist {
 
         public DarkPickaxeItem() {
-            // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
             super(ModTiers.DARK, ModItems.baseProperties().durability(ModTiers.DARK.getUses()).attributes(DiggerItem.createAttributes(ModTiers.DARK, 1, -2.8F)));
         }
 
         @Override
         public int getMaxDamage(ItemStack stack) {
-            // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
             return getDarkToolsDurability();
         }
 
@@ -237,7 +228,6 @@ public class ModToolItems {
         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             super.appendHoverText(stack, context, tooltip, flagIn);
             if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-                // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
                 tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
             }
         }
@@ -246,13 +236,11 @@ public class ModToolItems {
     public static class DarkAxeItem extends AxeItem implements IPersist {
 
         public DarkAxeItem() {
-            // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
             super(ModTiers.DARK, ModItems.baseProperties().durability(ModTiers.DARK.getUses()).attributes(DiggerItem.createAttributes(ModTiers.DARK, 5.0F, -3.0F)));
         }
 
         @Override
         public int getMaxDamage(ItemStack stack) {
-            // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
             return getDarkToolsDurability();
         }
 
@@ -309,7 +297,6 @@ public class ModToolItems {
         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             super.appendHoverText(stack, context, tooltip, flagIn);
             if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-                // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
                 tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
             }
         }
@@ -318,13 +305,11 @@ public class ModToolItems {
     public static class DarkHoeItem extends HoeItem implements IPersist {
 
         public DarkHoeItem() {
-            // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
             super(ModTiers.DARK, ModItems.baseProperties().durability(ModTiers.DARK.getUses()).attributes(DiggerItem.createAttributes(ModTiers.DARK, -3, 0.0F)));
         }
 
         @Override
         public int getMaxDamage(ItemStack stack) {
-            // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
             return getDarkToolsDurability();
         }
 
@@ -381,7 +366,6 @@ public class ModToolItems {
         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
             super.appendHoverText(stack, context, tooltip, flagIn);
             if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-                // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
                 tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
             }
         }

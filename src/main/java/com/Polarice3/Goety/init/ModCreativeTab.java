@@ -56,6 +56,11 @@ public class ModCreativeTab {
                             output.accept(VivideruItems.WARG_CURSED_ARMOR.get());
                             output.accept(VivideruItems.WARG_DARK_ARMOR.get());
                         }
+                        if (i.get() == ModItems.BLAZING_HELM.get()) {
+                            output.accept(VivideruItems.HURRICANE_CORE.get());
+                            output.accept(VivideruItems.GALE_KEY.get());
+                            output.accept(VivideruItems.OMINOUS_GALE_KEY.get());
+                        }
                     }
                 });
                 parameters.holders().lookup(Registries.PAINTING_VARIANT).ifPresent((p_270026_) -> {
@@ -67,6 +72,7 @@ public class ModCreativeTab {
                     output.accept(i.get());
                 });
                 output.accept(VivideruItems.HOSTILE_WARG_SPAWN_EGG.get());
+                output.accept(VivideruItems.HURRICANE_SPAWN_EGG.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> BLOCK_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_block", () -> CreativeModeTab.builder()
@@ -80,6 +86,7 @@ public class ModCreativeTab {
                     }
                 });
                 output.accept(VivideruItems.WOLF_TOTEM.get());
+                output.accept(VivideruItems.WHIRLING_CAGE.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FOCUS_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_focus", () -> CreativeModeTab.builder()
@@ -101,13 +108,14 @@ public class ModCreativeTab {
                 ServantSpawnEggs.ITEMS.getEntries().forEach(i -> {
                     output.accept(i.get());
                 });
-                // Vivideru servant eggs use a separate registry and must be added to the servant tab explicitly.
                 output.accept(VivideruItems.WARG_SPAWN_EGG.get());
                 output.accept(VivideruItems.WARG_WINTER_SPAWN_EGG.get());
                 output.accept(VivideruItems.WARG_STORM_SPAWN_EGG.get());
                 output.accept(VivideruItems.WARG_SKELETAL_SPAWN_EGG.get());
                 output.accept(VivideruItems.WARG_GRAY_SPAWN_EGG.get());
                 output.accept(VivideruItems.CERBERUS_SPAWN_EGG.get());
+                output.accept(VivideruItems.BREEZE_SERVANT_SPAWN_EGG.get());
+                output.accept(VivideruItems.HURRICANE_SERVANT_SPAWN_EGG.get());
             }).build());
 
     private static final Comparator<Holder<PaintingVariant>> PAINTING_COMPARATOR = Comparator.comparing(Holder::value, Comparator.<PaintingVariant>comparingInt((p_270004_) -> {
@@ -118,7 +126,6 @@ public class ModCreativeTab {
         RegistryOps<Tag> registryops = holders.createSerializationContext(NbtOps.INSTANCE);
         p_270618_.listElements().filter(p_270878_).sorted(PAINTING_COMPARATOR).forEach((p_269979_) -> {
             ItemStack itemstack = new ItemStack(ModItems.HAUNTED_PAINTING.get());
-            // Painting entity presets moved from EntityTag NBT to ENTITY_DATA custom data in 1.21.
             CustomData customdata = CustomData.EMPTY
                     .update(registryops, Painting.VARIANT_MAP_CODEC, p_269979_)
                     .getOrThrow()

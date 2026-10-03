@@ -66,7 +66,6 @@ public class StormhoundRenderer extends MobRenderer<Stormhound, BlackWolfModel<S
         @Override
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T blackHound, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (!blackHound.isNatural()) {
-                // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
                 coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, matrixStackIn, bufferIn, packedLightIn, blackHound, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
             }
         }
@@ -85,7 +84,6 @@ public class StormhoundRenderer extends MobRenderer<Stormhound, BlackWolfModel<S
         @Override
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T blackHound, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (blackHound.isUpgraded()) {
-                // 1.21 treats the final helper argument as ARGB tint, not packed overlay.
                 coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, TEXTURES, matrixStackIn, bufferIn, packedLightIn, blackHound, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
             }
         }

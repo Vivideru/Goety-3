@@ -59,7 +59,6 @@ public class LootingExplosion extends Explosion {
     public LootingExplosion(Level pLevel, @Nullable Entity pSource, double pToBlowX, double pToBlowY, double pToBlowZ, float pRadius, boolean pFire, BlockInteraction pBlockInteraction, Mode pLootMode) {
         super(pLevel, pSource, pToBlowX, pToBlowY, pToBlowZ, pRadius, pFire, pBlockInteraction);
         this.lootMode = pLootMode;
-        // Explosion internals are private in 1.21; keep local copies for this custom loot-preserving explosion.
         this.localLevel = pLevel;
         this.localSource = pSource;
         this.localX = pToBlowX;
@@ -129,7 +128,6 @@ public class LootingExplosion extends Explosion {
 
         boolean flag = this.lootMode == Mode.LOOT;
 
-        // Bound recursive damage chains before another mod or projectile can re-enter explosion processing indefinitely.
         if (!ExplosionUtil.enterExplosion()) {
             return;
         }
@@ -163,7 +161,6 @@ public class LootingExplosion extends Explosion {
                                 }
                                 double d11 = d10;
                                 if (entity instanceof LivingEntity livingEntity) {
-                                    // Minecraft 1.21 moved blast-protection knockback dampening to the explosion knockback resistance attribute.
                                     d11 = d10 * (1.0D - livingEntity.getAttributeValue(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE));
                                 }
 

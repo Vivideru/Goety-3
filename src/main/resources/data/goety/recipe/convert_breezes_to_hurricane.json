@@ -1,0 +1,44 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:convert_tamed",
+  "activation_item": {
+    "item": "minecraft:heavy_core"
+  },
+  "craftType": "sky",
+  "entity_to_convert": {
+    "tag": "goety:breezes",
+    "display_name": "entity.goety.breeze_servant"
+  },
+  "entity_to_convert_into": "goety:hurricane_servant",
+  "soulCost": 5,
+  "duration": 10,
+  "ingredients": [
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "item": "goety:ectoplasm"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "tag": "c:gems/diamond"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    },
+    {
+      "item": "minecraft:wind_charge"
+    }
+  ],
+  "result": {
+    "id": "goety:jei_dummy/none"
+  }
+}

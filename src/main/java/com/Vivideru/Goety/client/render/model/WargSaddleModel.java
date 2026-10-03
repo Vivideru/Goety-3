@@ -28,7 +28,6 @@ public class WargSaddleModel extends HierarchicalModel<Warg> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		// Match the base Warg pivots so the saddle follows the same animated body transform.
 		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(-1.5F, 10.5F, 2.0F));
 
 		PartDefinition mane = bone.addOrReplaceChild("mane", CubeListBuilder.create(), PartPose.offsetAndRotation(0.5F, -1.5F, -5.0F, 1.5708F, 0.0F, 0.0F));

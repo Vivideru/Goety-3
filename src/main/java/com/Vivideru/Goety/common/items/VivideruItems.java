@@ -25,6 +25,8 @@ public class VivideruItems {
     public static final DeferredHolder<Item, Item> BLACK_BEAST_DARK_ARMOR = ITEMS.register("black_beast_dark_armor", DarkBlackBeastArmorItem::new);
     public static final DeferredHolder<Item, Item> WARG_CURSED_ARMOR = ITEMS.register("warg_cursed_armor", CursedWargArmorItem::new);
     public static final DeferredHolder<Item, Item> WARG_DARK_ARMOR = ITEMS.register("warg_dark_armor", DarkWargArmorItem::new);
+    public static final DeferredHolder<Item, Item> BREEZE_SERVANT_SPAWN_EGG = ITEMS.register("breeze_servant_spawn_egg",
+            () -> new ServantSpawnEggItem(VivideruEntityTypes.BREEZE_SERVANT, 0xAF94DF, 0x9F5CC0, new Item.Properties()));
     public static final DeferredHolder<Item, Item> WARG_SPAWN_EGG = ITEMS.register("warg_spawn_egg",
             () -> new WargSpawnEggItem(VivideruEntityTypes.WARG, 0x17141B, 0x6B6572, new Item.Properties(), Warg.Variant.BLACK, false));
     public static final DeferredHolder<Item, Item> WARG_WINTER_SPAWN_EGG = ITEMS.register("winter_warg_spawn_egg",
@@ -37,10 +39,22 @@ public class VivideruItems {
             () -> new WargSpawnEggItem(VivideruEntityTypes.WARG, 0x7E8084, 0xC8C8C8, new Item.Properties(), Warg.Variant.GRAY, false));
     public static final DeferredHolder<Item, Item> HOSTILE_WARG_SPAWN_EGG = ITEMS.register("hostile_warg_spawn_egg",
             () -> new ModSpawnEggItem(VivideruEntityTypes.WARG, 0x132025, 0x495065, hostileWargEggProperties()));
+    public static final DeferredHolder<Item, Item> HURRICANE_SPAWN_EGG = ITEMS.register("hurricane_spawn_egg",
+            () -> new ModSpawnEggItem(VivideruEntityTypes.HURRICANE, 0x5E6FA8, 0xE8ECFF, new Item.Properties()));
     public static final DeferredHolder<Item, Item> CERBERUS_SPAWN_EGG = ITEMS.register("cerberus_spawn_egg",
             () -> new ServantSpawnEggItem(VivideruEntityTypes.CERBERUS, 0x2B1210, 0xC1440E, new Item.Properties()));
     public static final DeferredHolder<Item, Item> WOLF_TOTEM = ITEMS.register("wolf_totem",
             () -> new BlockItemBase(VivideruBlocks.WOLF_TOTEM.get()));
+    public static final DeferredHolder<Item, Item> HURRICANE_CORE = ITEMS.register("hurricane_core",
+            HurricaneCoreItem::new);
+    public static final DeferredHolder<Item, Item> WHIRLING_CAGE = ITEMS.register("whirling_cage",
+            () -> new BlockItemBase(VivideruBlocks.WHIRLING_CAGE.get()));
+    public static final DeferredHolder<Item, Item> GALE_KEY = ITEMS.register("gale_key",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> OMINOUS_GALE_KEY = ITEMS.register("ominous_gale_key",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> HURRICANE_SERVANT_SPAWN_EGG = ITEMS.register("hurricane_servant_spawn_egg",
+            () -> new ServantSpawnEggItem(VivideruEntityTypes.HURRICANE_SERVANT, 0xB9C4E8, 0x5E6FA8, new Item.Properties()));
 
     @SuppressWarnings("removal")
     public static void init() {
@@ -67,10 +81,6 @@ public class VivideruItems {
         return stack.is(WARG_CURSED_ARMOR.get()) || stack.is(WARG_DARK_ARMOR.get());
     }
 
-    /**
-     * The hostile egg is a normal spawn egg, so entity configuration is stored in its
-     * default entity-data component instead of using the servant egg implementation.
-     */
     private static Item.Properties hostileWargEggProperties() {
         CompoundTag entityData = new CompoundTag();
         entityData.putBoolean("isHostile", true);

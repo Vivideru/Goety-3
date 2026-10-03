@@ -285,7 +285,6 @@ public class HostileRedstoneMonstrosity extends HostileGolem implements IRM, ICu
         }
 
         this.hurt(this.damageSources().generic(), 0.0F);
-        // 1.21 keeps LivingEntity's last-damage fields private; keep the public hurt path above for side effects without writing inaccessible state.
     }
 
     public int getCurrentAnimation(){
@@ -469,7 +468,6 @@ public class HostileRedstoneMonstrosity extends HostileGolem implements IRM, ICu
             return false;
         }
         if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            // Clamp before NeoForge damage hooks can expose a value above the configured boss cap.
             pAmount = Math.min(pAmount, AttributesConfig.get(AttributesConfig.RedstoneMonstrosityDamageCap).floatValue());
         }
         return super.hurt(pSource, pAmount);

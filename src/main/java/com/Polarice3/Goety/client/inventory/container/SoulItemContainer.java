@@ -124,9 +124,7 @@ public class SoulItemContainer extends AbstractContainerMenu {
 
                 slot.onQuickCraft(itemstack1, itemstack);
             } else if (FocusBagBinding.isFocusContainer(itemstack1) && this.moveItemStackTo(itemstack1, 1, 2, false)) {
-                // The bag binding slot has priority over ordinary inventory movement.
             } else if (itemstack1.getItem() instanceof IFocus && this.moveItemStackTo(itemstack1, 0, 1, false)) {
-                // Focuses retain the existing shortcut into the wand slot.
             } else if (index >= 2 && index < 29) {
                 if (!this.moveItemStackTo(itemstack1, 29, 38, false)) {
                     return ItemStack.EMPTY;

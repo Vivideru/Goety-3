@@ -19,7 +19,6 @@ public class BlackCrystalItem extends BlockItemBase {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
         return stack.getCount() == 1
                 && (enchantment.is(ModEnchantments.SOUL_EATER)
                 || enchantment.is(ModEnchantments.RADIUS));

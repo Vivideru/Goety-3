@@ -228,7 +228,6 @@ public class PhantomServant extends SummonedFlying implements IMobTyped {
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
-        // 1.21 makes getDimensions final; scale the default dimensions instead to preserve size-based phantom bounds.
         int i = this.getPhantomSize();
         EntityDimensions entitydimensions = super.getDefaultDimensions(p_33113_);
         float f = (entitydimensions.width() + 0.2F * (float)i) / entitydimensions.width();

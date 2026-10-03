@@ -81,7 +81,6 @@ public class ArcaCompassItem extends Item {
 
     public void inventoryTick(ItemStack p_40720_, Level p_40721_, Entity p_40722_, int p_40723_, boolean p_40724_) {
         if (!p_40721_.isClientSide) {
-            // ItemStack custom NBT is stored through data components in 1.21; copy, mutate, then write it back.
             CompoundTag compoundtag = tag(p_40720_);
             if (!p_40722_.isAlive()){
                 if (compoundtag.contains(TAG_PLAYER)){

@@ -48,7 +48,6 @@ public class ArrowRainTrap extends AbstractTrap {
                 ItemStack itemStack = new ItemStack(Items.ARROW);
                 ArrowItem arrowitem = (ArrowItem)(itemStack.getItem() instanceof ArrowItem ? itemStack.getItem() : Items.ARROW);
                 for(int i = 0; i < 3; ++i) {
-                    // 1.21 requires a weapon context; trap-spawned arrows are not fired from a real bow, so keep them unenchanted.
                     AbstractArrow abstractArrowEntity = arrowitem.createArrow(this.level(), itemStack, this.getOwner(), ItemStack.EMPTY);
                     abstractArrowEntity.addTag(ConstantPaths.rainArrow());
                     abstractArrowEntity.setPos(this.getX() + this.random.nextIntBetweenInclusive(-3, 3), blockpos$mutable.getY(), this.getZ() + this.random.nextIntBetweenInclusive(-3, 3));

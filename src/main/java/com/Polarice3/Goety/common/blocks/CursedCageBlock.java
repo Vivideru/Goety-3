@@ -58,7 +58,6 @@ public class CursedCageBlock extends BaseEntityBlock implements IBlockExtension 
 
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
-        // Block entity data is stored directly in a data component in 1.21 instead of inside the old BlockEntityTag wrapper.
         CompoundTag compoundnbt = pStack.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY).copyTag();
         if (compoundnbt.contains("item")) {
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.TRUE), 2);
@@ -67,7 +66,6 @@ public class CursedCageBlock extends BaseEntityBlock implements IBlockExtension 
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; the cage still only acts from main-hand empty clicks.
         if (pHand == InteractionHand.MAIN_HAND && pPlayer.getMainHandItem().isEmpty()) {
             if (!pState.getValue(POWERED)) {
                 if (!TotemFinder.FindTotem(pPlayer).isEmpty() && pState.getBlock() instanceof CursedCageBlock cageBlock) {
@@ -103,7 +101,6 @@ public class CursedCageBlock extends BaseEntityBlock implements IBlockExtension 
                 ItemStack itemstack = cageTileEntity.getItem();
                 if (!itemstack.isEmpty()) {
                     ItemStack itemstack1 = itemstack.copy();
-                    // 1010 is the vanilla jukebox event in 1.21; use an explicit item-removal sound instead.
                     pLevel.playSound(null, pPos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
                     cageTileEntity.clearContent();
                     boolean flag = false;

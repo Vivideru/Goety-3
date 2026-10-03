@@ -179,7 +179,6 @@ public class Maverick extends Cultist{
     }
 
     public boolean hasHarmfulEffect() {
-        // 1.21 removed per-effect curative item checks; milk still clears harmful effects for this decision.
         return this.getActiveEffects().stream().anyMatch(instance -> instance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL && instance.getDuration() > 100);
     }
 
@@ -234,7 +233,6 @@ public class Maverick extends Cultist{
                             }
                         }
                     } else if (itemstack.is(Items.MILK_BUCKET)) {
-                        // 1.21 removed curePotionEffects(ItemStack); milk keeps its role here by clearing active effects.
                         this.removeAllEffects();
                     }
 
@@ -473,7 +471,6 @@ public class Maverick extends Cultist{
         }
 
         private LootTable getLootTable(ResourceLocation location) {
-            // 1.21 stores loot tables in reloadable registries keyed by ResourceKey rather than direct ResourceLocation lookup.
             return this.maverick.level().getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, location));
         }
 

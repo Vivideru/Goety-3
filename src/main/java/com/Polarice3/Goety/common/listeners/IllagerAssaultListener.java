@@ -34,7 +34,6 @@ public class IllagerAssaultListener extends SimpleJsonResourceReloadListener {
         for (int i = 0; i < objectIn.size(); i++) {
             ResourceLocation location = (ResourceLocation) objectIn.keySet().toArray()[i];
             JsonObject object = objectIn.get(location).getAsJsonObject();
-            // NeoForge 1.21 moved custom JSON conditions to codecs; this keeps condition checks active for this reload listener.
             if (!ICondition.conditionsMatched(JsonOps.INSTANCE, object)){
                 Goety.LOGGER.debug("Skipping loading illager entry {} as it's conditions were not met", location);
             } else {

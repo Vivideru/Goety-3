@@ -76,7 +76,6 @@ public record WearRenderer(ResourceLocation texture,
     }
 
     public boolean hasCape(AbstractClientPlayer p_116618_){
-        // 1.21 exposes cape data through PlayerSkin instead of the old AbstractClientPlayer cape accessors.
         return !p_116618_.isInvisible() && p_116618_.isModelPartShown(PlayerModelPart.CAPE) && p_116618_.getSkin().capeTexture() != null;
     }
 

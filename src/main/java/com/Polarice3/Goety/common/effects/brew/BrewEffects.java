@@ -41,7 +41,6 @@ public class BrewEffects {
             return;
         }
         this.initialized = true;
-        // BrewEffects.INSTANCE is created during class loading, so populate recipes lazily to avoid reading config before NeoForge loads it.
         //Modifiers
         this.modifierRegister(new CapacityModifier(0), Items.NETHER_WART);
         this.modifierRegister(new CapacityModifier(1), Items.CRIMSON_FUNGUS);
@@ -193,7 +192,6 @@ public class BrewEffects {
                 if (blockItem.getBlock() instanceof InfestedBlock){
                     this.register(new InfestBlockEffect(BrewConfig.InfestCost.get()), blockItem);
                 } else if (blockItem.getBlock() instanceof SaplingBlock){
-                    // SaplingBlock's TreeGrower is no longer publicly accessible in 1.21; skip auto-registration until this effect has a stable accessor or bridge.
                 }
             } else if (item instanceof DyeItem dyeItem){
                 this.register(new BrewColorEffect(dyeItem), dyeItem);

@@ -30,7 +30,6 @@ public class SpellPoseEnumParams {
     );
 
     private static void applySpellPose(HumanoidModel<?> model, LivingEntity entity, HumanoidArm arm) {
-        // NeoForge 1.21 requires custom third-person arm poses to be supplied through enum extensions.
         float f5 = entity.walkAnimation.position(Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(false));
         if (arm == HumanoidArm.RIGHT) {
             model.rightArm.xRot -= MathHelper.modelDegrees(105);

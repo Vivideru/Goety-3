@@ -6,7 +6,7 @@
   "soulCost": 1,
   "duration": 10,
   "ingredients": [
-    { "tag": "forge:storage_blocks/iron" },
+    { "tag": "c:storage_blocks/iron" },
     { "item": "minecraft:cactus" },
     { "item": "minecraft:fire_charge" },
     { "item": "minecraft:lava_bucket" },

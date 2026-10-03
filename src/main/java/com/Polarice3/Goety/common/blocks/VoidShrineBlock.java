@@ -70,7 +70,6 @@ public class VoidShrineBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 
@@ -113,7 +112,6 @@ public class VoidShrineBlock extends BaseEntityBlock {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
             if (!pLevel.isClientSide && tileentity instanceof VoidShrineBlockEntity voidShrine) {
-                // Use the remaining block entity directly because the replaced shrine no longer exposes capabilities.
                 dropInventoryItems(pLevel, pPos, voidShrine.itemStackHandler);
             }
 

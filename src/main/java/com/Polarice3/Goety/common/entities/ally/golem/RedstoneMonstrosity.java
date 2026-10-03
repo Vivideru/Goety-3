@@ -203,7 +203,6 @@ public class RedstoneMonstrosity extends RaiderGolemServant implements PlayerRid
 
     @Override
     public Vec3 getPassengerRidingPosition(Entity passenger) {
-        // 1.21 returns an absolute passenger position instead of a Y offset; preserve the old top-of-model ride height.
         return this.position().add(0.0D, this.getDimensions(this.getPose()).height(), 0.0D);
     }
 
@@ -380,7 +379,6 @@ public class RedstoneMonstrosity extends RaiderGolemServant implements PlayerRid
         }
 
         this.hurt(this.damageSources().generic(), 0.0F);
-        // 1.21 keeps LivingEntity's last-damage fields private; keep the public hurt path above for side effects without writing inaccessible state.
     }
 
     public int getCurrentAnimation(){
@@ -566,7 +564,6 @@ public class RedstoneMonstrosity extends RaiderGolemServant implements PlayerRid
             return false;
         }
         if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            // Clamp before NeoForge damage hooks can expose a value above the configured boss cap.
             pAmount = Math.min(pAmount, AttributesConfig.get(AttributesConfig.RedstoneMonstrosityDamageCap).floatValue());
         }
         return super.hurt(pSource, pAmount);

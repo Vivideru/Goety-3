@@ -91,7 +91,6 @@ public class RedstoneGolemRenderer<T extends RedstoneGolem> extends MobRenderer<
                     RedstoneGolem.Crackiness irongolem$crackiness = p_117151_.getCrackiness();
                     if (irongolem$crackiness != RedstoneGolem.Crackiness.NONE) {
                         ResourceLocation resourcelocation = resourceLocations.get(irongolem$crackiness);
-                        // In 1.21 the helper expects an ARGB tint, not an overlay UV; white keeps the crack texture colors intact.
                         renderColoredCutoutModel(this.getParentModel(), resourcelocation, p_117148_, p_117149_, p_117150_, p_117151_, -1);
                     }
                 }
@@ -109,7 +108,6 @@ public class RedstoneGolemRenderer<T extends RedstoneGolem> extends MobRenderer<
         @Override
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (!entitylivingbaseIn.isHostile() && MobsConfig.RedstoneGolemTexture.get()) {
-                // In 1.21 the helper expects an ARGB tint, not an overlay UV; white keeps the band texture colors intact.
                 renderColoredCutoutModel(this.getParentModel(), TEXTURES, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, -1);
             }
         }

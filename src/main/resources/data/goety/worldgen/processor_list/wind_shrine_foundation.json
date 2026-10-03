@@ -1,0 +1,7 @@
+{
+  "processors": [
+    {
+      "processor_type": "goety:wind_shrine_foundation"
+    }
+  ]
+}

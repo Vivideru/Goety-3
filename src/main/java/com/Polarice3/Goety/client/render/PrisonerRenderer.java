@@ -159,7 +159,6 @@ public class PrisonerRenderer extends MobRenderer<Prisoner, PrisonerModel<Prison
 
       public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
          if (!entitylivingbaseIn.isInvisible()) {
-            // In 1.21 this helper's final int is the ARGB tint, so use opaque white to preserve the shackles texture.
             coloredCutoutModelCopyLayerRender(this.getParentModel(), this.layerModel, SHACKLES, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, partialTicks, -1);
          }
       }
@@ -180,7 +179,6 @@ public class PrisonerRenderer extends MobRenderer<Prisoner, PrisonerModel<Prison
          p_116699_.mulPose(Axis.YP.rotationDegrees(180.0F));
          p_116699_.translate(0.0F, 0.0F, -0.125F);
          ItemStack itemstack = p_116702_.getItemBySlot(EquipmentSlot.MAINHAND);
-         // Shackles render through ShacklesLayer; this layer is only for actual held tools such as prisoner pickaxes.
          this.itemInHandRenderer.renderItem(p_116702_, itemstack, ItemDisplayContext.THIRD_PERSON_RIGHT_HAND, false, p_116699_, p_116700_, p_116701_);
          p_116699_.popPose();
       }

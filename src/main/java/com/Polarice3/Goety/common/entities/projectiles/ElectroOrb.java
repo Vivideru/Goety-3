@@ -43,7 +43,6 @@ public class ElectroOrb extends SpellThrowableProjectile {
     }
 
     protected double getDefaultGravity() {
-        // Entity#getGravity is final in 1.21; default gravity preserves the old conditional homing behavior.
         if (this.getTarget() == null){
             return super.getDefaultGravity();
         } else {

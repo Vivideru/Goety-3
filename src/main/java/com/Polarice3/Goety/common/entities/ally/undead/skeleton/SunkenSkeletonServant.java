@@ -214,7 +214,21 @@ public class SunkenSkeletonServant extends AbstractSkeletonServant implements Cr
     }
 
     public void performRangedAttack(@NotNull LivingEntity p_33272_, float p_33273_) {
-        this.performCrossbowAttack(this, 1.6F);
+        if (this.isHolding(is -> is.getItem() instanceof CrossbowItem)) {
+            this.performCrossbowAttack(this, 1.6F);
+        } else {
+            super.performRangedAttack(p_33272_, p_33273_);
+        }
+    }
+
+    @Override
+    protected AbstractArrow getMobArrow(ItemStack arrowStack, float distanceFactor) {
+        return this.createHarpoon(arrowStack);
+    }
+
+    @Override
+    public SoundEvent getShootSound() {
+        return this.isInWater() ? ModSounds.SUNKEN_SKELETON_SHOOT.get() : SoundEvents.SKELETON_SHOOT;
     }
 
     public void performCrossbowAttack(@NotNull LivingEntity shooter, float velocity) {
@@ -244,18 +258,22 @@ public class SunkenSkeletonServant extends AbstractSkeletonServant implements Cr
     }
 
     public AbstractArrow getArrow(ItemStack pArrowStack, float pDistanceFactor) {
-        ItemStack weaponStack = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof CrossbowItem));
-        // 1.21 applies projectile enchantment and piercing data from the weapon stack during arrow construction.
-        Harpoon harpoon = new Harpoon(this.level(), this, pArrowStack, weaponStack);
-        harpoon.setSoundEvent(SoundEvents.CROSSBOW_HIT);
+        Harpoon harpoon = this.createHarpoon(pArrowStack);
         harpoon.setBaseDamage(harpoon.getBaseDamage() + MobUtil.getSpecialAttackDamage(this, (float)(this.getArrowPower() + this.getBaseRangeDamage())));
+
+        return harpoon;
+    }
+
+    private Harpoon createHarpoon(ItemStack pArrowStack) {
+        ItemStack weaponStack = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, item -> item instanceof ProjectileWeaponItem));
+        Harpoon harpoon = new Harpoon(this.level(), this, pArrowStack.isEmpty() ? new ItemStack(Items.ARROW) : pArrowStack, weaponStack.isEmpty() ? null : weaponStack);
+        harpoon.setSoundEvent(SoundEvents.CROSSBOW_HIT);
         harpoon.pickup = Harpoon.Pickup.DISALLOWED;
 
         return harpoon;
     }
 
     private Vector3f getProjectileShotVector(LivingEntity shooter, Vec3 direction, float angle) {
-        // CrossbowItem keeps this helper private in 1.21, so custom projectiles must mirror vanilla's shot-vector math.
         Vector3f vector3f = direction.toVector3f().normalize();
         Vector3f vector3f1 = new Vector3f(vector3f).cross(new Vector3f(0.0F, 1.0F, 0.0F));
         if ((double)vector3f1.lengthSquared() <= 1.0E-7) {

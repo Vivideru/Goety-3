@@ -84,7 +84,6 @@ public class RedstoneCube extends AbstractGolemServant{
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.RedstoneCubeDamage))
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.RedstoneCubeArmor))
-                // 1.21 uses the vanilla step-height attribute instead of NeoForge's removed additive attribute.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.75D)
                 .add(Attributes.FOLLOW_RANGE, AttributesConfig.get(AttributesConfig.RedstoneCubeFollowRange));
@@ -168,7 +167,6 @@ public class RedstoneCube extends AbstractGolemServant{
         }
 
         this.hurt(this.damageSources().generic(), 0.0F);
-        // 1.21 keeps last damage tracking private; keep the custom hurt animation without mutating internal damage fields.
     }
 
     public void setAnimationState(String input) {

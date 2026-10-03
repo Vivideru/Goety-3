@@ -249,7 +249,6 @@ public class ClientInitEvents {
 
     @SubscribeEvent
     public static void registerGUI(final RegisterGuiLayersEvent event){
-        // NeoForge 1.21 replaces GUI overlays with named GUI layers; layer order and render code stay equivalent.
         event.registerAbove(VanillaGuiLayers.TAB_LIST, Goety.location("static_overlay"), DreadOverlay.OVERLAY);
         event.registerAbove(VanillaGuiLayers.HOTBAR, Goety.location("soul_energy_hud"), SoulEnergyGui.OVERLAY);
         event.registerAbove(VanillaGuiLayers.HOTBAR, Goety.location("ravager_roar_hud"), RavagerRoarGui.OVERLAY);
@@ -469,7 +468,6 @@ public class ClientInitEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.WIND_BLOWER.get(), ModBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.RESONANCE_CRYSTAL.get(), ResonanceCrystalRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SCULK_DEVOURER.get(), ModBlockEntityRenderer::new);
-        // Forbidden Grass has no visual renderer; leaving it unregistered avoids compatibility render hooks treating it as a renderable block entity.
         event.registerBlockEntityRenderer(ModBlockEntities.MAGIC_LIGHT.get(), ModBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.HOOK_BELL.get(), HookBellRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.SHRIEKING_OBELISK.get(), ModBlockEntityRenderer::new);
@@ -872,7 +870,6 @@ public class ClientInitEvents {
         event.registerRecipeCategoryFinder(ModRecipeSerializer.SOUL_ABSORBER.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.RITUAL_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.BRAZIER_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
-        // Custom cauldron recipes are not part of a vanilla recipe-book tab.
         event.registerRecipeCategoryFinder(ModRecipeSerializer.CAULDRON_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.BREWING_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);
         event.registerRecipeCategoryFinder(ModRecipeSerializer.PULVERIZE_TYPE.get(), recipe -> RecipeBookCategories.UNKNOWN);

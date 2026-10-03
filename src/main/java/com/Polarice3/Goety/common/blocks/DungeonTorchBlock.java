@@ -32,7 +32,6 @@ public class DungeonTorchBlock extends Block {
     }
 
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // This torch toggle is a block-only interaction in 1.21 and no longer receives the old use hook.
         RandomSource randomsource = pLevel.getRandom();
         if (canLight(pState)){
             pLevel.playSound((Player)null, pPos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (randomsource.nextFloat() - randomsource.nextFloat()) * 0.2F + 1.0F);

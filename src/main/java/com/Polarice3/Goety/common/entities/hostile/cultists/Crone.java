@@ -205,7 +205,6 @@ public class Crone extends Cultist implements RangedAttackMob {
 
     @Override
     public CultistArmPose getArmPose() {
-        // Crones keep the original crossed-arm silhouette in all states; brew item rendering is handled by CroneItemLayer.
         return CultistArmPose.CROSSED;
     }
 
@@ -317,7 +316,6 @@ public class Crone extends Cultist implements RangedAttackMob {
                     ItemStack brew = BrewUtils.setCustomEffects(new ItemStack(ModItems.BREW.get()), mobEffectInstance, brewEffectInstance);
                     BrewUtils.setAreaOfEffect(brew, this.level().random.nextInt(amp + 1));
                     setCustomPotionColor(brew, BrewUtils.getColor(mobEffectInstance, brewEffectInstance));
-                    // Crones use the main hand while drinking so the witch-style item layer can render the brew consistently on clients.
                     this.setItemSlot(EquipmentSlot.MAINHAND, brew);
                     this.usingTime = this.overwhelmed > 0 ? this.getMainHandItem().getUseDuration(this) / 2 : this.getMainHandItem().getUseDuration(this);
                     this.setUsingItem(true);
@@ -329,7 +327,6 @@ public class Crone extends Cultist implements RangedAttackMob {
                     attributeinstance.removeModifier(SPEED_MODIFIER_DRINKING.id());
                     attributeinstance.addTransientModifier(SPEED_MODIFIER_DRINKING);
                 } else if (this.getMainHandItem().getItem() instanceof BrewItem){
-                    // Older saves or interrupted ticks may still leave a brew in hand; resume drinking instead of dropping the render state.
                     this.usingTime = this.overwhelmed > 0 ? this.getMainHandItem().getUseDuration(this) / 2 : this.getMainHandItem().getUseDuration(this);
                     this.setUsingItem(true);
                     AttributeInstance attributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
@@ -607,7 +604,6 @@ public class Crone extends Cultist implements RangedAttackMob {
         }
 
         public boolean canUse() {
-            // Drinking brews uses the Crone's main hand, so teleporting during that window can cancel the consume cycle.
             return this.crone.getTarget() != null && !this.crone.isDrinkingPotion();
         }
 
@@ -641,7 +637,6 @@ public class Crone extends Cultist implements RangedAttackMob {
 
         @Override
         public boolean canUse() {
-            // RangedAttackGoal also uses the main hand; keep it idle while the custom brew drink timer is active.
             return !this.crone.isDrinkingPotion() && super.canUse() && (this.crone.getHealth() >= (this.crone.getMaxHealth() / 4));
         }
 
@@ -661,7 +656,6 @@ public class Crone extends Cultist implements RangedAttackMob {
 
         @Override
         public boolean canUse() {
-            // RangedAttackGoal also uses the main hand; keep it idle while the custom brew drink timer is active.
             return !this.crone.isDrinkingPotion() && super.canUse() && this.crone.getHealth() < (this.crone.getMaxHealth() / 4);
         }
 

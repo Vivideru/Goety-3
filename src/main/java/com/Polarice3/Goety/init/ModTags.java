@@ -159,6 +159,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> CREEPERS = tag("creepers");
         public static final TagKey<EntityType<?>> ENDERMEN = tag("endermen");
         public static final TagKey<EntityType<?>> VILLAGERS = tag("villagers");
+        public static final TagKey<EntityType<?>> PILLAGERS = tag("pillagers");
         public static final TagKey<EntityType<?>> SERVANTS = tag("servants");
         public static final TagKey<EntityType<?>> VILLAGE_GUARDS = tag("village_guards");
         public static final TagKey<EntityType<?>> ZOMBIE_SERVANTS = tag("zombie_servants");

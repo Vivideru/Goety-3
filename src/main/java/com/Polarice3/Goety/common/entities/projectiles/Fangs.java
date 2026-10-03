@@ -212,7 +212,6 @@ public class Fangs extends Entity implements ISpellEntity {
                     if (this.isTotemSpawned()){
                         target.hurt(target.damageSources().indirectMagic(this, livingentity), baseDamage);
                         if (this.burning > 0){
-                            // 1.21 routes entity fire duration through igniteForSeconds.
                             target.igniteForSeconds(5.0F * this.burning);
                         }
                     } else {
@@ -220,7 +219,6 @@ public class Fangs extends Entity implements ISpellEntity {
                             int soulEater = Mth.clamp(this.getSoulEater(), 0, 10);
                             SEHelper.increaseSouls(player, SpellConfig.get(SpellConfig.FangGainSouls) * soulEater);
                             if (this.burning > 0){
-                                // 1.21 routes entity fire duration through igniteForSeconds.
                                 target.igniteForSeconds(5.0F * this.burning);
                             }
                         }

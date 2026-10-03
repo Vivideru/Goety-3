@@ -73,7 +73,6 @@ public class DarkMetalScythe extends DarkScytheItem implements IPersist {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, context, tooltip, flagIn);
         if (ItemConfig.DarkToolsPersist.get() && this.isBroken(stack)) {
-            // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
             tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
         }
     }

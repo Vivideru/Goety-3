@@ -58,7 +58,6 @@ public class ScatterBomb extends Projectile {
     public void tick() {
         super.tick();
         HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-        // Portal handling moved out of this old copied projectile tick path in 1.21; keep impact handling focused here.
         if (hitresult.getType() != HitResult.Type.MISS && !net.neoforged.neoforge.event.EventHooks.onProjectileImpact(this, hitresult)) {
             this.onHit(hitresult);
         }

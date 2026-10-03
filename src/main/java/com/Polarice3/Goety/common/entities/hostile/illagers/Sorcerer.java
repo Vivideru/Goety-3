@@ -319,8 +319,7 @@ public class Sorcerer extends HuntingIllagerEntity {
             if (Sorcerer.this.getTarget() != null) {
                 MobUtil.instaLook(Sorcerer.this, Sorcerer.this.getTarget());
             }
-            Sorcerer.this.getNavigation().stop();
-            Sorcerer.this.getMoveControl().strafe(0.0F, 0.0F);
+            com.Vivideru.Goety.common.entities.ai.MovementHold.holdStill(Sorcerer.this);
 
         }
 

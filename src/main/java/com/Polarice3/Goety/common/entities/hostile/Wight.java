@@ -1006,7 +1006,6 @@ public class Wight extends Summoned implements Enemy, NeutralMob, IHiding, IMobT
                     for (int j = 0; j < amount; ++j){
                         CarrionMaggot carrionMaggot = new CarrionMaggot(ModEntityType.CARRION_MAGGOT.get(), this.level());
                         BlockPos blockPos = BlockFinder.SummonRadius(this.blockPosition(), carrionMaggot, this.level());
-                        // Summons spawned by an owned Wight should belong to the same effective owner.
                         carrionMaggot.setTrueOwner(MobUtil.getSummonOwner(this));
                         carrionMaggot.setLimitedLife(MobUtil.getSummonLifespan(this.level()));
                         carrionMaggot.moveTo(blockPos, this.getYRot(), this.getXRot());
@@ -1027,7 +1026,6 @@ public class Wight extends Summoned implements Enemy, NeutralMob, IHiding, IMobT
                         for (int j = 0; j < amount; ++j){
                             Wight falseWight = new Wight(ModEntityType.WIGHT.get(), this.level());
                             Vec3 vec31 = BlockFinder.SummonRadius(this.blockPosition(), falseWight, this.level()).getCenter();
-                            // Summons spawned by an owned Wight should belong to the same effective owner.
                             falseWight.setTrueOwner(MobUtil.getSummonOwner(this));
                             falseWight.setLimitedLife(MathHelper.secondsToTicks(5 + this.level().random.nextInt(10)));
                             falseWight.setPos(vec31);

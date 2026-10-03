@@ -139,7 +139,6 @@ public class MagicThornBlock extends Block implements SpecialPlantable, SimpleWa
 
    @Override
    public void spawnPlantAtPosition(ItemStack itemStack, LevelAccessor level, BlockPos pos, @Nullable Direction direction) {
-      // SpecialPlantable now places via an explicit spawn method instead of returning a plant state.
       level.setBlock(pos, this.defaultBlockState(), 3);
    }
 

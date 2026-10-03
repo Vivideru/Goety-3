@@ -252,7 +252,6 @@ public class Prisoner extends RaiderServant implements VillagerDataHolder, ILoot
             this.setHasOminousShackles(compound.getBoolean("HasOminousShackles"));
         }
 
-        // Older NeoForge conversion builds stored shackles in the offhand; migrate that visual workaround into proper prisoner state.
         if (this.getOffhandItem().is(ModItems.OMINOUS_SHACKLES.get())) {
             this.setHasOminousShackles(true);
             this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
@@ -617,7 +616,6 @@ public class Prisoner extends RaiderServant implements VillagerDataHolder, ILoot
         if (this.isMining()) {
             ++this.toMineTick;
             if (this.toMineTick == 26) {
-                // Mining progress must be authoritative on the server; client packets can be missed or rejected.
                 this.playSound(ModSounds.VILLAGER_CHOP.get(), 1.0F, 1.0F);
                 ItemHelper.hurtAndBreak(this.getMainHandItem(), MobsConfig.PrisonerMiningDurability.get(), this);
                 ++this.mineTimes;
@@ -953,9 +951,7 @@ public class Prisoner extends RaiderServant implements VillagerDataHolder, ILoot
             if (villager == null) {
                 return;
             }
-            // The villager conversion does not transfer the prisoner's custom carrier inventory, so drop it before the old entity is discarded.
             this.dropStoredInventory();
-            // convertTo transfers hand equipment to the villager, but freeing a prisoner should return carried tools/items instead of hiding them on the converted mob.
             this.dropConvertedHandItems(villager);
             for (EquipmentSlot equipmentslot : EquipmentSlot.values()) {
                 ItemStack itemstack = this.getItemBySlot(equipmentslot);

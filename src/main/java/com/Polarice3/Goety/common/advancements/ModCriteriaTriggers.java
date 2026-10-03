@@ -14,7 +14,6 @@ public class ModCriteriaTriggers {
     public static final DeferredHolder<CriterionTrigger<?>, PlayerTrigger> SERVANT_RAID_VICTORY = TRIGGERS.register("servant_raid_victory", PlayerTrigger::new);
 
     public static void init() {
-        // 1.21 freezes vanilla registries before mod construction finishes, so criteria triggers must use the mod event bus.
         TRIGGERS.register(Goety.getModEventBus());
     }
 }

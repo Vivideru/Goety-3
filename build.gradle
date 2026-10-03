@@ -26,6 +26,7 @@ runs {
 
         argument '-mixin.config=goety.mixins.json'
         argument '-mixin.config=vivideru.mixins.json'
+        argument '-mixin.config=vivideru.compat.mixins.json'
 
         modSource project.sourceSets.main
     }
@@ -51,9 +52,6 @@ runs {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-// Generated data may intentionally replace a hand-authored resource with the
-// same path (for example damage type definitions). Keep the generated/source
-// resource pipeline deterministic when Gradle encounters such an overlap.
 tasks.named('processResources', ProcessResources).configure {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
@@ -97,7 +95,6 @@ repositories {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    // Refmap generation is disabled because the annotation processor cannot resolve NeoGradle's official mappings in this workspace.
     // annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     //JEI
@@ -121,7 +118,6 @@ dependencies {
     runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticated_backpacks_version}"
     runtimeOnly "maven.modrinth:sophisticated-core:${sophisticated_core_version}"
 
-    // Shader runtime dependencies are client-only and can be skipped for dedicated server validation.
     if (!project.hasProperty('skipShaderRuntime')) {
         runtimeOnly "maven.modrinth:YL57xq9U:${iris_version_id}"
         runtimeOnly "maven.modrinth:AANobbMI:${sodium_version_id}"
@@ -144,7 +140,6 @@ dependencies {
     compileOnly "curse.maven:serene-seasons-291874:5790653"
 
     //Testing Only
-    // Keep optional runtime test mods disabled unless a NeoForge 1.21.1-compatible artifact is selected.
     // runtimeOnly "curse.maven:yeetus-635427:4680832"
     // runtimeOnly "curse.maven:jeed-532286:4599236"
     // runtimeOnly "curse.maven:worldedit-225608:4586218"
@@ -182,14 +177,12 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs": "goety.mixins.json,vivideru.mixins.json"
+                "MixinConfigs": "goety.mixins.json,vivideru.mixins.json,vivideru.compat.mixins.json"
         ])
     }
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     exclude 'assets/goety/goety/**'
     exclude 'data/goety/goety/**'
-    // 1.21 reads structure templates only from data/<ns>/structure/; the 1.20
-    // plural folder is an identical leftover that the game ignores.
     exclude 'data/goety/structures/**'
 
 }

@@ -11,8 +11,17 @@ import com.Vivideru.Goety.client.render.layer.CursedBlackWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.CursedSkeletonWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.CursedWolfArmorLayer;
 import com.Vivideru.Goety.client.render.layer.VivideruModelLayers;
+import com.Vivideru.Goety.client.render.BreezeServantRenderer;
 import com.Vivideru.Goety.client.render.CerberusRenderer;
+import com.Vivideru.Goety.client.render.HurricaneCoreSummonRenderer;
+import com.Vivideru.Goety.client.render.HurricaneCycloneRenderer;
+import com.Vivideru.Goety.client.render.HurricanePunchRenderer;
+import com.Vivideru.Goety.client.render.HurricaneRenderer;
 import com.Vivideru.Goety.client.render.WargRenderer;
+import com.Vivideru.Goety.client.render.model.BreezeServantModel;
+import com.Vivideru.Goety.client.render.model.HurricaneModel;
+import com.Vivideru.Goety.client.render.model.HurricanePunchModel;
+import com.Vivideru.Goety.client.render.model.HurricaneTornadoModel;
 import com.Vivideru.Goety.client.render.model.CerberusArmorModel;
 import com.Vivideru.Goety.client.render.model.CerberusModel;
 import com.Vivideru.Goety.client.render.model.CursedBlackBeastArmorModel;
@@ -26,6 +35,7 @@ import com.Vivideru.Goety.common.entities.VivideruEntityTypes;
 import net.minecraft.client.model.WolfModel;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.WindChargeRenderer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Wolf;
 import net.neoforged.api.distmarker.Dist;
@@ -35,6 +45,14 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 @EventBusSubscriber(modid = Goety.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class VivideruClientEvents {
+    @SubscribeEvent
+    public static void wrapVaultModels(net.neoforged.neoforge.client.event.ModelEvent.ModifyBakingResult event) {
+        for (net.minecraft.world.level.block.state.BlockState state : net.minecraft.world.level.block.Blocks.VAULT.getStateDefinition().getPossibleStates()) {
+            event.getModels().computeIfPresent(net.minecraft.client.renderer.block.BlockModelShaper.stateToModelLocation(state),
+                    (location, model) -> model instanceof com.Vivideru.Goety.client.render.model.VaultVariantModel ? model : new com.Vivideru.Goety.client.render.model.VaultVariantModel(model));
+        }
+    }
+
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(VivideruModelLayers.CURSED_WOLF_ARMOR, CursedWolfArmorModel::createBodyLayer);
@@ -46,6 +64,11 @@ public class VivideruClientEvents {
         event.registerLayerDefinition(VivideruModelLayers.WARG_SADDLE, WargSaddleModel::createBodyLayer);
         event.registerLayerDefinition(VivideruModelLayers.CERBERUS, CerberusModel::createBodyLayer);
         event.registerLayerDefinition(VivideruModelLayers.CERBERUS_ARMOR, CerberusArmorModel::createBodyLayer);
+        event.registerLayerDefinition(VivideruModelLayers.BREEZE_SERVANT, () -> BreezeServantModel.createBodyLayer(32, 32));
+        event.registerLayerDefinition(VivideruModelLayers.BREEZE_SERVANT_WIND, () -> BreezeServantModel.createBodyLayer(128, 128));
+        event.registerLayerDefinition(VivideruModelLayers.HURRICANE, HurricaneModel::createBodyLayer);
+        event.registerLayerDefinition(VivideruModelLayers.HURRICANE_TORNADO, HurricaneTornadoModel::createBodyLayer);
+        event.registerLayerDefinition(VivideruModelLayers.HURRICANE_PUNCH, HurricanePunchModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -53,6 +76,13 @@ public class VivideruClientEvents {
         event.registerEntityRenderer(VivideruEntityTypes.WARG.get(), WargRenderer::new);
         event.registerEntityRenderer(VivideruEntityTypes.SKELETAL_WARG.get(), WargRenderer::new);
         event.registerEntityRenderer(VivideruEntityTypes.CERBERUS.get(), CerberusRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.BREEZE_SERVANT.get(), BreezeServantRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.SERVANT_WIND_CHARGE.get(), WindChargeRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.HURRICANE.get(), HurricaneRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.HURRICANE_SERVANT.get(), HurricaneRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.HURRICANE_PUNCH.get(), HurricanePunchRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.HURRICANE_CYCLONE.get(), HurricaneCycloneRenderer::new);
+        event.registerEntityRenderer(VivideruEntityTypes.HURRICANE_CORE_SUMMON.get(), HurricaneCoreSummonRenderer::new);
     }
 
     @SubscribeEvent

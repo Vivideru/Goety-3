@@ -58,14 +58,12 @@ public class RedstoneGolemSkullBlock extends BaseEntityBlock {
         return ModBlockCodecs.singleton(this);
     }
 
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
         ItemStack itemStack = new ItemStack(this);
-        if (player.isCrouching()) {
-            BlockEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof RedstoneGolemSkullBlockEntity) {
-                this.setOwner(itemStack, tileEntity);
-                this.setModCustomName(itemStack, tileEntity);
-            }
+        BlockEntity tileEntity = world.getBlockEntity(pos);
+        if (tileEntity instanceof RedstoneGolemSkullBlockEntity) {
+            this.setOwner(itemStack, tileEntity);
+            this.setModCustomName(itemStack, tileEntity);
         }
         return itemStack;
     }
@@ -129,7 +127,6 @@ public class RedstoneGolemSkullBlock extends BaseEntityBlock {
     }
 
     public RenderShape getRenderShape(BlockState pState) {
-        // Custom skull geometry is drawn by the block entity renderer; hiding the baked block model prevents duplicate placeholder skull rendering.
         return RenderShape.INVISIBLE;
     }
 

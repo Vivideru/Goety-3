@@ -42,7 +42,6 @@ public class BlinkSpell extends Spell {
 
     @Override
     public int defaultCastDuration() {
-        // Blink is an instant reposition spell; keeping a use duration makes the focus feel delayed in 1.21.
         return 0;
     }
 
@@ -112,7 +111,6 @@ public class BlinkSpell extends Spell {
         Vec3 bbOffset = livingEntity.getForward().normalize().multiply(livingEntity.getBbWidth() / 3.0D, 0.0D, livingEntity.getBbHeight() / 3.0D);
         Vec3 bbImpact = blockHitResult.getLocation().subtract(bbOffset);
 
-        // 1.21 ClipContext dereferences the entity parameter, so entity-less probes must use an empty collision context instead of null.
         int ledgeY = (int) level.clip(new ClipContext(Vec3.atBottomCenterOf(pos).add(0.0D, 3.0D, 0.0D), Vec3.atBottomCenterOf(pos), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty())).getLocation().y;
 
         Vec3 correctedPos = new Vec3(pos.getX(), ledgeY, pos.getZ());

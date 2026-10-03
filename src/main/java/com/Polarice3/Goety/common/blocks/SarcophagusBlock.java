@@ -172,7 +172,7 @@ public class SarcophagusBlock extends HorizontalDirectionalBlock implements Enti
                     blockEntity = sarcophagusBlock;
                 }
                 if (blockEntity != null) {
-                    ItemStack drop = new ItemStack(ItemHelper.ITEM_BY_DYE.get(blockEntity.getColor()));
+                    ItemStack drop = new ItemStack(ItemHelper.woolFor(blockEntity.getColor()));
                     SarcophagusBlockEntity.dropItemStack(p_222950_, blockPos.getX(), blockPos.getY(), blockPos.getZ(), drop);
                 }
             }
@@ -219,7 +219,7 @@ public class SarcophagusBlock extends HorizontalDirectionalBlock implements Enti
             level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0F, 1.0F);
             if (level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
                 if (blockEntity != null) {
-                    ItemStack drop = new ItemStack(ItemHelper.ITEM_BY_DYE.get(blockEntity.getColor()));
+                    ItemStack drop = new ItemStack(ItemHelper.woolFor(blockEntity.getColor()));
                     SarcophagusBlockEntity.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), drop);
                     blockEntity.setColor(DyeColor.WHITE);
                 }
@@ -227,7 +227,7 @@ public class SarcophagusBlock extends HorizontalDirectionalBlock implements Enti
             return InteractionResult.SUCCESS;
         } else if (itemStack.is(ItemTags.WOOL) && !state.getValue(CUSHIONED)) {
             if (blockEntity != null) {
-                blockEntity.setColor(ItemHelper.DYE_BY_WOOL.get(itemStack.getItem()));
+                blockEntity.setColor(ItemHelper.colorOfWool(itemStack.getItem()));
             }
             level.setBlock(pos, state.setValue(CUSHIONED, true), 11);
             level.playSound(null, pos, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);

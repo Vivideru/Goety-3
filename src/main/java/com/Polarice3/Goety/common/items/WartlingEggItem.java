@@ -33,7 +33,6 @@ public class WartlingEggItem extends Item {
             wartling.setTrueOwner(player);
             wartling.setLimitedLife(MathHelper.secondsToTicks(9));
             wartling.moveTo(player.blockPosition(), player.getYRot(), player.getXRot());
-            // MobEffect curative item lists are no longer exposed here in 1.21; preserve the harmful-effect transfer behavior.
             player.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL).findFirst().ifPresent(effect -> {
                 wartling.setStoredEffect(effect);
                 player.removeEffect(effect.getEffect());

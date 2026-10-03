@@ -38,7 +38,6 @@ public class Wavewhisperer extends Whisperer{
 
     public Wavewhisperer(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
-        // 1.21 removed setMaxUpStep; use the vanilla step-height attribute for the same movement behavior.
         AttributeInstance stepHeight = this.getAttribute(Attributes.STEP_HEIGHT);
         if (stepHeight != null) {
             stepHeight.setBaseValue(1.25F);

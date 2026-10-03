@@ -86,7 +86,6 @@ public class FocusRadialMenuScreen extends Screen {
                 return FocusRadialMenuScreen.this.tryExtractFocus();
             }
         };
-        // Nested storage mods do not necessarily mirror their item handlers through vanilla inventory synchronization.
         ModNetwork.sendToServer(new CRequestFocusBagSyncPacket());
     }
 

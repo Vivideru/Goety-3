@@ -77,7 +77,6 @@ public abstract class LivingEntityMixin extends Entity {
             int previousInvulnerableTime = this.invulnerableTime;
             float previousLastHurt = this.lastHurt;
             try {
-                // Run the reduced hit through the normal damage pipeline, then restore both values that govern i-frames so rapid spell hits never extend them.
                 this.goety$dealingPartialProjectileDamage = true;
                 this.invulnerableTime = 0;
                 cir.setReturnValue(((LivingEntity) (Object) this).hurt(source, amount * 0.25F));
@@ -95,7 +94,6 @@ public abstract class LivingEntityMixin extends Entity {
             if (this.lastHurtByPlayerTime <= 0 && !this.isAlwaysExperienceDropper()) {
                 if (this.lastHurtByMob instanceof IOwned owned && !this.wasExperienceConsumed() && this.level().getGameRules().getBoolean(GameRules.RULE_DOMOBLOOT)) {
                     if (owned.getMasterOwner() instanceof Player player) {
-                        // 1.21 calculates mob experience with the server level and death source before firing the drop event.
                         int reward = net.neoforged.neoforge.event.EventHooks.getExperienceDrop((LivingEntity) (Object) this, player, this.getExperienceReward(serverLevel, source));
                         ExperienceOrb.award(serverLevel, this.position(), reward);
                     }
@@ -168,6 +166,13 @@ public abstract class LivingEntityMixin extends Entity {
                     }
                 }
             }
+        }
+    }
+
+    @Inject(method = "isInvertedHealAndHarm", at = @At("HEAD"), cancellable = true)
+    public void goetyLichInvertedHealAndHarm(CallbackInfoReturnable<Boolean> cir) {
+        if (LichdomHelper.isLich(this)) {
+            cir.setReturnValue(true);
         }
     }
 

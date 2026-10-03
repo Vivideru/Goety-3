@@ -121,7 +121,6 @@ public class CallFocus extends MagicFocus{
                                 if (event.isCanceled()) {
                                     return;
                                 }
-                                // Dimension changes replace non-player entities in 1.21, so continue with the returned tracked instance.
                                 Entity transferred = livingEntity.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity, vec3));
                                 if (!(transferred instanceof LivingEntity transferredLiving)) {
                                     return;
@@ -157,7 +156,6 @@ public class CallFocus extends MagicFocus{
     }
 
     private static void setSummon(ItemStack stack, LivingEntity livingEntity) {
-        // ItemStack root NBT was removed in 1.21; keep the stored summon UUID in CUSTOM_DATA.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, compoundTag -> setSummon(compoundTag, livingEntity));
     }
 

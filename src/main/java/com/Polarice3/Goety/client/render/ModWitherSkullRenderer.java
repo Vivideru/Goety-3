@@ -28,7 +28,6 @@ public class ModWitherSkullRenderer extends EntityRenderer<ModWitherSkull> {
    }
 
    public void render(ModWitherSkull p_116484_, float p_116485_, float p_116486_, PoseStack p_116487_, MultiBufferSource p_116488_, int p_116489_) {
-      // 1.21 hides the dispatcher renderer map; render the local skull model directly like vanilla WitherSkullRenderer.
       p_116487_.pushPose();
       p_116487_.scale(-1.0F, -1.0F, 1.0F);
       float f = Mth.rotLerp(p_116486_, p_116484_.yRotO, p_116484_.getYRot());

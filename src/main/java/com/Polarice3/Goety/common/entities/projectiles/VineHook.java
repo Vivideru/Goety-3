@@ -78,7 +78,6 @@ public class VineHook extends Projectile {
     }
 
     protected float getHookGravity() {
-        // Entity#getGravity is final in 1.21, so the hook keeps its old projectile gravity behind a custom accessor.
         return 0.03F;
     }
 

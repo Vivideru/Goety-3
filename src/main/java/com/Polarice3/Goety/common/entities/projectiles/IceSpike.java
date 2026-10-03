@@ -53,7 +53,6 @@ public class IceSpike extends AbstractArrow {
     }
 
     public IceSpike(LivingEntity p_36718_, Level p_36719_) {
-        // AbstractArrow serializes its internal weapon stack in 1.21, so keep a harmless non-empty stack while pickup remains disabled.
         super(ModEntityType.ICE_SPIKE.get(), p_36718_, p_36719_, new ItemStack(Items.ARROW), null);
         this.pickup = Pickup.DISALLOWED;
     }
@@ -138,7 +137,6 @@ public class IceSpike extends AbstractArrow {
                 if (flag) {
                     if (entity.isAlive()) {
                         if (this.level() instanceof ServerLevel serverLevel) {
-                            // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                             EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
                         }
                     }
@@ -160,7 +158,6 @@ public class IceSpike extends AbstractArrow {
     }
 
     protected void applyFreezingEffect(LivingEntity livingEntity) {
-        // Check immunity before posting effect events because some external cold mobs recurse through their applicability hooks.
         if (!livingEntity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
             livingEntity.addEffect(new MobEffectInstance(GoetyEffects.FREEZING, MathHelper.secondsToTicks(3 + livingEntity.getRandom().nextInt(2))));
         }

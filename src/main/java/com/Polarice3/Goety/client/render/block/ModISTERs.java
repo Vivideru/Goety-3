@@ -7,7 +7,6 @@ public final class ModISTERs {
     }
 
     public static ModISTER get() {
-        // Item renderers are stateless apart from their reusable block entity cache.
         if (instance == null) {
             instance = new ModISTER();
         }

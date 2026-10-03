@@ -124,7 +124,6 @@ public class BrewCauldronBlock extends BaseEntityBlock{
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; this cauldron's behavior depends on the held item.
         if (pLevel.getBlockEntity(pPos) instanceof BrewCauldronBlockEntity cauldron) {
             ItemStack stack = pPlayer.getItemInHand(pHand);
             boolean bucket = ItemHelper.isValidFluidContainerToFill(stack, Fluids.WATER), waterBucket = ItemHelper.isValidFluidContainerToDrain(stack, Fluids.WATER), glassBottle = stack.getItem() == Items.GLASS_BOTTLE, waterBottle = (stack.getItem() == Items.POTION || stack.getItem() == ModItems.BREW.get()) && ModPotionUtil.getPotion(stack) == Potions.WATER, apple = BrewUtils.brewableFood(stack), waystone = stack.getItem() instanceof WaystoneItem, ladle = stack.getItem() == ModItems.CAULDRON_LADLE.get();

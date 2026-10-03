@@ -9,7 +9,7 @@
 
         "location": "goety:wind_shrine/main_tower_base_1",
 
-        "processors": "minecraft:empty",
+        "processors": "goety:wind_shrine_foundation",
 
         "projection": "rigid",
 
@@ -23,7 +23,7 @@
 
         "location": "goety:wind_shrine/main_tower_base_2",
 
-        "processors": "minecraft:empty",
+        "processors": "goety:wind_shrine_foundation",
 
         "projection": "rigid",
 

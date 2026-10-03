@@ -37,7 +37,6 @@ public class BrewingSacrificeProcessor implements IComponentProcessor {
             ItemStack itemStack;
             EntityType<?> entityType = new BrewEffects().getSacrificeFromEffect(this.brewEffect.getEffectID());
             if (entityType == null) {
-                // Patchouli may request a sacrifice page for effects that only have a catalyst in 1.21 data; keep the book loadable.
                 ItemStack catalyst = new BrewEffects().getCatalystFromEffect(this.brewEffect.getEffectID());
                 return catalyst != null ? IVariable.from(catalyst, level.registryAccess()) : IVariable.empty();
             }
@@ -46,7 +45,6 @@ public class BrewingSacrificeProcessor implements IComponentProcessor {
                 itemStack = new ItemStack(item);
             } else {
                 itemStack = new ItemStack(ModItems.JEI_DUMMY_REQUIRE_SACRIFICE.get());
-                // ItemStack custom names are stored as data components in 1.21.
                 itemStack.set(DataComponents.CUSTOM_NAME, entityType.getDescription());
             }
             return IVariable.from(itemStack, level.registryAccess());

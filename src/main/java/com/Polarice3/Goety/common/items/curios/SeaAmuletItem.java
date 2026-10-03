@@ -31,7 +31,6 @@ public class SeaAmuletItem extends SingleStackItem{
     private static final String CONDUIT_CHARGES = "Conduit Charges";
 
     private static int maxPower() {
-        // Config values are unavailable during class loading, so the amulet capacity is read when the stack updates.
         return ItemConfig.SeaAmuletMax.get();
     }
 
@@ -40,7 +39,6 @@ public class SeaAmuletItem extends SingleStackItem{
     }
 
     private static void updateTag(ItemStack stack, Consumer<CompoundTag> updater) {
-        // ItemStack root NBT was removed in 1.21; mutate a CUSTOM_DATA copy and write it back.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, updater);
     }
 

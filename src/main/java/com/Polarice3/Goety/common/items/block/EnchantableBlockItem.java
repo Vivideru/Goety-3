@@ -31,7 +31,6 @@ public class EnchantableBlockItem extends BlockItemBase {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        // 1.21 passes enchantments as registry holders, so compare by resource key instead of raw instances.
         if (stack.getItem() == ModBlocks.SCULK_DEVOURER.get().asItem()){
             return stack.getCount() == 1
                     && (enchantment.is(ModEnchantments.SOUL_EATER)
@@ -50,7 +49,6 @@ public class EnchantableBlockItem extends BlockItemBase {
         if (stack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof ThroneBlock) {
             return stack.getCount() == 1 && enchantment.is(ModEnchantments.ROYALTY);
         }
-        // Unknown enchantable blocks should not accept every data-driven enchantment just because the stack is singular.
         return super.supportsEnchantment(stack, enchantment);
     }
 
@@ -70,7 +68,6 @@ public class EnchantableBlockItem extends BlockItemBase {
 
     public static void setOwner(@Nullable LivingEntity entity, ItemStack stack) {
         if (entity != null) {
-            // 1.21 stores item custom NBT in the CUSTOM_DATA component instead of the removed root ItemStack tag.
             CustomData.update(DataComponents.CUSTOM_DATA, stack, entityTag -> {
                 entityTag.putUUID("owner", entity.getUUID());
                 entityTag.putString("owner_name", entity.getDisplayName().getString());

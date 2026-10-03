@@ -26,7 +26,6 @@ public class TotemFinder {
     public static FocusBagBinding.BagReference findBagReference(Player playerEntity) {
         ItemStack wand = WandUtil.findWand(playerEntity);
         if (FocusBagBinding.isBound(wand)) {
-            // A bound wand must not silently fall back to another bag when its selected bag is unavailable.
             return FocusBagBinding.findBoundBag(playerEntity, wand);
         }
 

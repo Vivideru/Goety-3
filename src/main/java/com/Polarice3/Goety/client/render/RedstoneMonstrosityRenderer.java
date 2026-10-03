@@ -169,7 +169,6 @@ public class RedstoneMonstrosityRenderer<T extends Mob & IRM> extends MobRendere
         @Override
         public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (!entitylivingbaseIn.isHostile() && MobsConfig.RedstoneMonstrosityTexture.get()) {
-                // In 1.21 the helper expects an ARGB tint, not an overlay UV; white keeps the band texture colors intact.
                 renderColoredCutoutModel(this.getParentModel(), TEXTURES, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, -1);
             }
         }

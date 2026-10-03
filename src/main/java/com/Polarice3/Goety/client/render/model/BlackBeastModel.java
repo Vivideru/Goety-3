@@ -43,7 +43,6 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 		this.fur = this.torso.getChild("fur");
 		this.neck = this.torso.getChild("neck");
 		this.head = this.neck.getChild("head");
-		// The armor model has its own leg geometry and must not inherit the base-model visibility mask.
 		this.rightLegFur = hideFurWhenArmored ? this.stalker.getChild("right_leg").getChild("right_shin").getChild("fur") : null;
 		this.leftLegFur = hideFurWhenArmored ? this.stalker.getChild("left_leg").getChild("left_shin").getChild("fur") : null;
 		this.parts = root.getAllParts().filter((p_170824_) -> {
@@ -152,7 +151,6 @@ public class BlackBeastModel<T extends BlackBeast> extends HierarchicalModel<T> 
 
 		PartDefinition right_shin = right_leg.addOrReplaceChild("right_shin", CubeListBuilder.create().texOffs(30, 51).addBox(-2.0F, -3.0F, -1.0F, 5.0F, 9.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 7.0F, 0.0F, 0.4363F, 0.0F, 0.0F));
 
-		// Keep the leg tufts separate so armor can replace them without hiding the lower legs.
 		right_shin.addOrReplaceChild("fur", CubeListBuilder.create().texOffs(102, 52).addBox(-2.5F, 0.0F, -1.5F, 6.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		PartDefinition right_toe = right_shin.addOrReplaceChild("right_toe", CubeListBuilder.create(), PartPose.offset(0.0F, 3.0F, -0.75F));

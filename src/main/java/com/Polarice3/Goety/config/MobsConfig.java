@@ -232,6 +232,7 @@ public class MobsConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> NecromancerSummonsLife;
     public static final ModConfigSpec.ConfigValue<Boolean> WildfireBlazingHelm;
     public static final ModConfigSpec.ConfigValue<Boolean> WildfireSummonsLife;
+    public static final ModConfigSpec.ConfigValue<Boolean> HurricaneServantCore;
     public static final ModConfigSpec.ConfigValue<Boolean> BlackBeastDayStrength;
     public static final ModConfigSpec.ConfigValue<Boolean> BlackBeastChunkLoad;
     public static final ModConfigSpec.ConfigValue<Boolean> BlackBeastHowlingSoul;
@@ -655,6 +656,8 @@ public class MobsConfig {
                     .define("wildfireBlazingHelm", true);
             WildfireSummonsLife = BUILDER.comment("Whether Wildfire's summons have limited lifespans, Default: true")
                     .define("wildfireSummonsLife", true);
+            HurricaneServantCore = BUILDER.comment("Whether owned Hurricane Servants drop Hurricane Cores, Default: true")
+                    .define("hurricaneServantCore", true);
             BUILDER.pop();
             BUILDER.push("Void Servants");
             VoidMinionHeal = BUILDER.comment("Whether Void Servants can heal if summoned while wearing Nether Robe, Default: true")

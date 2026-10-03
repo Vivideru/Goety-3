@@ -116,7 +116,6 @@ public class AllyTrampler extends RaiderServant implements ICharger, IAutoRideab
     }
 
     public void setConfigurableAttributes(){
-        // Max health follows the saddle (see equipSaddle), so it is not reset from the config here.
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.ARMOR), AttributesConfig.get(AttributesConfig.TramplerArmor));
         MobUtil.setBaseAttributes(this.getAttribute(Attributes.ATTACK_DAMAGE), AttributesConfig.get(AttributesConfig.TramplerDamage));
     }
@@ -150,7 +149,6 @@ public class AllyTrampler extends RaiderServant implements ICharger, IAutoRideab
         if (pCompound.contains("Saddle")) {
             this.setSaddle(pCompound.getBoolean("Saddle"));
         } else if (pCompound.contains("Health")) {
-            // Tramplers saved before saddles existed were always saddled; keep them that way.
             this.setSaddle(true);
         }
         if (pCompound.contains("ArmorItem")) {
@@ -190,7 +188,6 @@ public class AllyTrampler extends RaiderServant implements ICharger, IAutoRideab
 
     @Override
     public Vec3 getPassengerRidingPosition(Entity passenger) {
-        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
         return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 

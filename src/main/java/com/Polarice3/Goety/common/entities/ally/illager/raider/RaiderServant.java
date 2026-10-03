@@ -738,7 +738,6 @@ public abstract class RaiderServant extends Summoned {
                     if (event.isCanceled()) {
                         break;
                     }
-                    // Keep ridden servant mounts in an accessible section while randomTeleport validates their destination.
                     if (livingEntity.level() instanceof ServerLevel serverLevel) {
                         serverLevel.getChunk(BlockPos.containing(event.getTargetX(), event.getTargetY(), event.getTargetZ()));
                     }
@@ -813,7 +812,6 @@ public abstract class RaiderServant extends Summoned {
             if (listTag != null) {
                 ItemStack itemstack = new ItemStack(BannerBlock.byColor(SEHelper.getBannerBaseColor(player)));
                 BannerPatternLayers layers = ItemHelper.bannerLayersFromLegacyTag(listTag, this.registryAccess().lookupOrThrow(Registries.BANNER_PATTERN));
-                // Banner item patterns are stored as data components in 1.21; block entity NBT no longer makes the banner comparable in normal item logic.
                 itemstack.set(DataComponents.BANNER_PATTERNS, layers);
                 return itemstack;
             }
@@ -843,7 +841,6 @@ public abstract class RaiderServant extends Summoned {
                 servant.setLeader(this.getLeader());
             }
         }
-        // Converting would otherwise discard whatever the illager was carrying, including its charm.
         if (convert != null && p_21408_) {
             if (this instanceof ICharmUser charmUser && !charmUser.getCharm().isEmpty()) {
                 if (convert instanceof ICharmUser charmUser1) {

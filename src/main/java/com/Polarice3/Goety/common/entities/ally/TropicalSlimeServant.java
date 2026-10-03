@@ -97,7 +97,6 @@ public class TropicalSlimeServant extends SlimeServant implements IMobTyped{
         super.dropCustomDeathLoot(serverLevel, p_33574_, p_33576_);
         if (serverLevel.getServer() != null) {
             if (this.shouldDropLoot()) {
-                // Loot table lookup moved to reloadable registries in 1.21 and entity killer params were renamed.
                 LootTable loottable = serverLevel.getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ModLootTables.TROPICAL_SLIME));
                 LootParams.Builder lootparams$builder = (new LootParams.Builder(serverLevel)).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.ORIGIN, this.position()).withParameter(LootContextParams.DAMAGE_SOURCE, p_33574_).withOptionalParameter(LootContextParams.ATTACKING_ENTITY, p_33574_.getEntity()).withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, p_33574_.getDirectEntity());
                 if (this.lastHurtByPlayerTime > 0 && this.lastHurtByPlayer != null) {

@@ -95,7 +95,6 @@ public class CuriosIntegration implements ICompatable {
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
         TYPES.keySet().forEach(entry -> {
             if (entry instanceof SingleStackItem item) {
-                // Capability registration runs after item registries freeze, so reuse the registered item instance.
                 CuriosApi.registerCurio(item, item);
             }
         });

@@ -152,7 +152,6 @@ public class SculkConverterBlockEntity extends ModBlockEntity implements IEnchan
 
     public void readNetwork(CompoundTag tag) {
         this.sculkSpreader.load(tag);
-        // Block positions are keyed optionals in 1.21's NbtUtils API.
         NbtUtils.readBlockPos(tag, "Relay").ifPresent(pPos -> this.nearbyRelay = pPos);
         this.loadEnchants(tag);
     }
@@ -160,7 +159,6 @@ public class SculkConverterBlockEntity extends ModBlockEntity implements IEnchan
     public CompoundTag writeNetwork(CompoundTag tag) {
         this.sculkSpreader.save(tag);
         if (this.nearbyRelay != null) {
-            // Block positions are keyed optionals in 1.21's NbtUtils API.
             tag.put("Relay", NbtUtils.writeBlockPos(this.nearbyRelay));
         }
         this.saveEnchants(tag, ModBlocks.SCULK_CONVERTER.get().asItem());

@@ -39,7 +39,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
     private static final float MACE_DAMAGE_SCALE = 1.0F;
 
     public PhilosophersMaceItem() {
-        // Item properties and attributes are built during registration before configs load, so use the declared defaults here.
         super(new Properties().rarity(Rarity.UNCOMMON).durability(DEFAULT_DURABILITY).fireResistant().attributes(createMaceAttributes()));
     }
 
@@ -52,7 +51,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.PhilosophersMaceDurability, DEFAULT_DURABILITY);
     }
 
@@ -106,7 +104,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
 
     @Override
     public float getAttackDamageBonus(Entity target, float damage, DamageSource damageSource) {
-        // The Philosopher's Mace is now a full 1.21.1 mace while preserving its existing Goety tool and persistence behavior.
         return GoetyMaceUtil.getAttackDamageBonus(target, damageSource, MACE_DAMAGE_SCALE);
     }
 
@@ -124,7 +121,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState blockState) {
-        // Minecraft 1.21 queries the stack-aware hook for entity/block tool checks, so keep the mace's legacy all-tool behavior visible there.
         return this.isCorrectToolForDrops(blockState);
     }
 
@@ -149,7 +145,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         ResourceLocation enchantmentId = enchantment.unwrapKey().map(ResourceKey::location).orElse(null);
-        // In 1.21 crossbow enchantments also target the main hand, so rely on item tags plus Goety's explicit melee/tool exceptions.
         return (super.supportsEnchantment(stack, enchantment)
                 || enchantment.is(Enchantments.LOOTING)
                 || enchantment.is(Enchantments.FORTUNE)
@@ -170,7 +165,6 @@ public class PhilosophersMaceItem extends Item implements ISoulRepair, IPersist 
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, context, tooltip, flagIn);
         if (ItemConfig.PhilosophersMacePersist.get() && this.isBroken(stack)) {
-            // 1.21 removed the stack-aware attribute override; keep the visible broken state while the component-based replacement is rebuilt.
             tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
         }
     }

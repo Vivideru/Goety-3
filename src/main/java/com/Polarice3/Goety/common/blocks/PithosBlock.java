@@ -74,7 +74,6 @@ public class PithosBlock extends BaseEntityBlock {
                 if (pPlayer.getItemInHand(pHand).is(ModTags.Items.RESPAWN_BOSS) && MainConfig.PithosRespawn.get() && pLevel instanceof ServerLevel serverLevel && BlockFinder.findStructure(serverLevel, pPlayer, ModTags.Structures.SKULL_LORD_SPAWNS)){
                     ItemStack itemStack = pPlayer.getItemInHand(pHand);
                     if (tileentity instanceof PithosBlockEntity pithosBlock) {
-                        // Randomizable containers now store loot tables as ResourceKeys rather than raw locations.
                         pithosBlock.setLootTable(ResourceKey.create(Registries.LOOT_TABLE, ModLootTables.CRYPT_TOMB), pLevel.random.nextLong());
                     }
                     if (pPlayer instanceof ServerPlayer serverPlayer){
@@ -108,7 +107,6 @@ public class PithosBlock extends BaseEntityBlock {
                 }
             }
 
-            // The old use hook consumed all Pithos interactions; useItemOn preserves held-item boss respawn and opening behavior.
             return ItemInteractionResult.CONSUME;
         }
     }
@@ -155,7 +153,6 @@ public class PithosBlock extends BaseEntityBlock {
         if (pStack.has(DataComponents.CUSTOM_NAME)) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
             if (tileentity instanceof PithosBlockEntity) {
-                // Pithos uses the placed item's custom name as the stored Skull Lord name, not the container display name.
                 ((PithosBlockEntity)tileentity).setSkullLordName(pStack.getHoverName());
             }
         }

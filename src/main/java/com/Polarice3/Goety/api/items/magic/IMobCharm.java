@@ -6,9 +6,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 
-/**
- * A charm a servant can carry and use on its own, with a cooldown stored on the stack.
- */
 public interface IMobCharm {
     String COOL_DOWN = "CoolDown";
 

@@ -59,7 +59,6 @@ public class GrappleSpell extends Spell {
     }
 
     public int spellCooldown(LivingEntity caster){
-        // Focus registration constructs spell instances before NeoForge loads common configs.
         return this.trueCooldown >= 0 ? this.trueCooldown : this.defaultSpellCooldown();
     }
 

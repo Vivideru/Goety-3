@@ -42,7 +42,6 @@ public class HauntedPaintingItem extends ModHangingEntityItem {
 
             CustomData customdata = itemstack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
             if (!customdata.isEmpty()) {
-                // 1.21 stores entity placement NBT in the ENTITY_DATA component instead of the removed root ItemStack tag.
                 EntityType.updateCustomEntityTag(level, player, hangingentity, customdata);
             }
 

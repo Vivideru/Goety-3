@@ -61,7 +61,6 @@ public class GraveGolemSkullBlock extends BaseEntityBlock {
 
     public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
         ItemStack itemStack = new ItemStack(this);
-        // 1.21's clone hook no longer receives the player, so pick-block cannot depend on crouching; preserve stored skull data when present.
         BlockEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof GraveGolemSkullBlockEntity) {
             this.setOwner(itemStack, tileEntity);
@@ -129,7 +128,6 @@ public class GraveGolemSkullBlock extends BaseEntityBlock {
     }
 
     public RenderShape getRenderShape(BlockState pState) {
-        // Custom skull geometry is drawn by the block entity renderer; hiding the baked block model prevents duplicate placeholder skull rendering.
         return RenderShape.INVISIBLE;
     }
 
@@ -199,7 +197,8 @@ public class GraveGolemSkullBlock extends BaseEntityBlock {
     private BlockPattern getOrCreateGraveGolemBase() {
         if (this.graveGolemBase == null) {
             this.graveGolemBase = BlockPatternBuilder.start()
-                    .aisle("~~ ~~", "#####", "BDDDB", "~~D~~")
+                    .aisle("~~ ~~", "#GGG#", "#DDD#", "B~D~B")
+                    .where('G', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.GRAVE_SOIL.get())))
                     .where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.SHADE_STONE_BLOCK.get())))
                     .where('D', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.SKULL_PILE.get())))
                     .where('B', BlockInWorld.hasState(BlockStatePredicate.forBlock(Blocks.BONE_BLOCK)))
@@ -214,7 +213,8 @@ public class GraveGolemSkullBlock extends BaseEntityBlock {
     private BlockPattern getOrCreateGraveGolemFull() {
         if (this.graveGolemFull == null) {
             this.graveGolemFull = BlockPatternBuilder.start()
-                    .aisle("~~^~~", "#####", "BDDDB", "~~D~~")
+                    .aisle("~~^~~", "#GGG#", "#DDD#", "B~D~B")
+                    .where('G', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.GRAVE_SOIL.get())))
                     .where('^', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.GRAVE_GOLEM_SKULL_BLOCK.get())
                             .or(BlockStatePredicate.forBlock(ModBlocks.WALL_GRAVE_GOLEM_SKULL_BLOCK.get()))))
                     .where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(ModBlocks.SHADE_STONE_BLOCK.get())))

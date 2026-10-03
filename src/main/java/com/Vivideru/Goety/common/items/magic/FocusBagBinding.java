@@ -163,7 +163,6 @@ public final class FocusBagBinding {
             ItemStack child = modifiable.getStackInSlot(slot);
             int childSlot = slot;
             Runnable saveChild = () -> {
-                // Reinsert each changed child so component-backed containers persist the complete nested path.
                 modifiable.setStackInSlot(childSlot, child);
                 saveContainer.run();
             };

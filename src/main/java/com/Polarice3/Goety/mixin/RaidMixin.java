@@ -66,7 +66,6 @@ public abstract class RaidMixin {
                 if (raider == null) {
                     break;
                 }
-                // Custom raid entries are joined explicitly because the vanilla raid type array is fixed at bootstrap.
                 this.joinRaid(wave, raider, blockPos, false);
                 this.goety$startRaidNavigation(raider);
             }
@@ -77,7 +76,6 @@ public abstract class RaidMixin {
         if (!this.level.isVillage(raider.blockPosition())) {
             Vec3 target = DefaultRandomPos.getPosTowards(raider, 15, 4, Vec3.atBottomCenterOf(this.center), (float)(Math.PI / 2));
             if (target != null) {
-                // Custom Goety goals can take over MOVE before PathfindToRaidGoal's first tick, so seed the same raid-center path vanilla would request.
                 raider.getNavigation().moveTo(target.x, target.y, target.z, 1.0D);
             }
         }

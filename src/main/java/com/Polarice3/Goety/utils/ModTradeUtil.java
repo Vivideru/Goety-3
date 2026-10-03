@@ -40,7 +40,6 @@ public class ModTradeUtil {
 
     public static void addVillagerTrades(VillagerTradesEvent event, int profLevel, VillagerTrades.ItemListing... trades) {
         List<VillagerTrades.ItemListing> levelTrades = event.getTrades().get(profLevel);
-        // Some compatibility stacks replace trade lists with immutable collections before this event runs.
         if (!(levelTrades instanceof ArrayList<VillagerTrades.ItemListing>)) {
             levelTrades = levelTrades == null ? new ArrayList<>() : new ArrayList<>(levelTrades);
             event.getTrades().put(profLevel, levelTrades);
@@ -106,7 +105,6 @@ public class ModTradeUtil {
                     ItemStack itemstack = MapItem.create(serverlevel, blockpos.getX(), blockpos.getZ(), (byte)2, true, true);
                     MapItem.renderBiomePreviewMap(serverlevel, itemstack);
                     MapItemSavedData.addTargetDecoration(itemstack, blockpos, "+", this.destinationType);
-                    // ItemStack custom names are stored as data components in 1.21.
                     itemstack.set(DataComponents.CUSTOM_NAME, Component.translatable(this.displayName));
                     return new MerchantOffer(new ItemCost(Items.EMERALD, this.emeraldCost), Optional.of(new ItemCost(Items.COMPASS)), itemstack, this.maxUses, this.villagerXp, 0.2F);
                 } else {

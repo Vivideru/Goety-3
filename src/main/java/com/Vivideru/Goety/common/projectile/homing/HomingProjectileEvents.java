@@ -48,7 +48,6 @@ public final class HomingProjectileEvents {
 
     @SubscribeEvent
     public static void onEntityTick(EntityTickEvent.Post event) {
-        // Checking the current entity avoids scanning every entity in every server level for a small tagged subset.
         if (event.getEntity() instanceof Projectile projectile
                 && !projectile.level().isClientSide
                 && projectile.getPersistentData().contains(HOMING_LEVEL_TAG)) {
@@ -61,7 +60,6 @@ public final class HomingProjectileEvents {
         Entity directEntity = event.getSource().getDirectEntity();
         if (directEntity instanceof Projectile projectile
                 && projectile.getPersistentData().contains(HOMING_LEVEL_TAG)) {
-            // Homing ends after the first successful contact so persistent or returning projectiles cannot circle-hit a target.
             clearHoming(projectile);
         }
     }
@@ -77,7 +75,6 @@ public final class HomingProjectileEvents {
             return usedStack.getItem() instanceof IWand ? IWand.getFocus(usedStack) : ItemStack.EMPTY;
         }
 
-        // Instant spells swing their casting hand immediately before adding the projectile to the level.
         if (owner.swinging) {
             ItemStack swungStack = owner.getItemInHand(owner.swingingArm);
             return swungStack.getItem() instanceof IWand ? IWand.getFocus(swungStack) : ItemStack.EMPTY;

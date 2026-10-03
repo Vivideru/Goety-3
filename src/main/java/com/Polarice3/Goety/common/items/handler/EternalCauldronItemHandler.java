@@ -48,7 +48,6 @@ public class EternalCauldronItemHandler extends ItemStackHandler {
 
     @Override
     protected void onContentsChanged(int slot) {
-        // 1.21 stores item inventories in components instead of root NBT/capability share tags.
         this.itemStack.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(this.stacks));
     }
 

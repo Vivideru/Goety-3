@@ -48,7 +48,6 @@ public class VoidVaultBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 
@@ -58,7 +57,6 @@ public class VoidVaultBlock extends BaseEntityBlock {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         } else if (pLevel instanceof ServerLevel serverLevel) {
             if (serverLevel.getBlockEntity(pPos) instanceof VoidVaultBlockEntity vaultBlockEntity) {
-                // Some structure NBTs load vaults as inactive until the next detector tick; key clicks should still drive the same unlock path.
                 VoidVaultBlockEntity.Server.tryUnlock(serverLevel, pPos, pState, vaultBlockEntity.getConfig(), vaultBlockEntity.getServerData(), vaultBlockEntity.getSharedData(), pPlayer, itemStack);
                 return ItemInteractionResult.SUCCESS;
             } else {
@@ -71,7 +69,6 @@ public class VoidVaultBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // Keep empty-hand clicks consumed on active vaults so the 1.21 block interaction path does not look like a no-op.
         return pState.getValue(STATE) == VoidVaultState.ACTIVE ? InteractionResult.sidedSuccess(pLevel.isClientSide) : InteractionResult.PASS;
     }
 

@@ -80,7 +80,6 @@ public class VanguardServant extends AbstractSkeletonServant {
 
     @Override
     public Vec3 getVehicleAttachmentPoint(Entity vehicle) {
-        // Humanoid passengers use their feet as the mount anchor; the vehicle supplies the saddle height.
         return Vec3.ZERO;
     }
 
@@ -350,7 +349,6 @@ public class VanguardServant extends AbstractSkeletonServant {
                 living.knockback((double)(f1 * 0.5F), (double)Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
             }
 
-            // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of LivingEntity#doEnchantDamageEffects.
             EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), p_21372_, damageSource);
             this.setLastHurtMob(p_21372_);
         }
@@ -451,7 +449,6 @@ public class VanguardServant extends AbstractSkeletonServant {
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // MeleeAttackGoal no longer passes distance in 1.21; compute Vanguard's custom reach distance here.
             double distToEnemySqr = VanguardServant.this.distanceToSqr(enemy.getX(), enemy.getBoundingBox().minY, enemy.getZ());
             if (VanguardServant.this.targetClose(enemy, distToEnemySqr)) {
                 if (!VanguardServant.this.isMeleeAttacking()) {

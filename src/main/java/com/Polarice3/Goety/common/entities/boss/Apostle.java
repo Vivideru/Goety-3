@@ -872,7 +872,6 @@ public class Apostle extends SpellCastingCultist implements RangedAttackMob, Sho
 
         float trueAmount = this.isInNether() ? pAmount * (1.0F - (MobsConfig.ApostleNetherDamageReduction.get() / 100.0F)) : pAmount;
         if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            // Clamp the incoming hit before NeoForge damage hooks can observe or forward a value above the boss cap.
             trueAmount = Math.min(trueAmount, AttributesConfig.get(AttributesConfig.ApostleDamageCap).floatValue());
         }
 
@@ -1016,7 +1015,6 @@ public class Apostle extends SpellCastingCultist implements RangedAttackMob, Sho
         BlockPos feet = BlockPos.containing(pos);
         BlockPos body = BlockPos.containing(pos.x, pos.y + this.getBbHeight() * 0.5D, pos.z);
         BlockPos head = BlockPos.containing(pos.x, pos.y + this.getBbHeight(), pos.z);
-        // Delayed teleport stores coordinates before moving, so reject water/lava volumes explicitly at every body height.
         if (!this.level().getFluidState(feet).isEmpty() || !this.level().getFluidState(body).isEmpty() || !this.level().getFluidState(head).isEmpty()) {
             return null;
         }

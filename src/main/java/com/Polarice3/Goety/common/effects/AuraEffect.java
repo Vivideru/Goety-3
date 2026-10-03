@@ -36,6 +36,7 @@ public class AuraEffect extends GoetyBaseEffect {
         this(p_19451_, p_19452_, null);
     }
 
+    @Override
     public boolean applyEffectTick(LivingEntity livingEntity, int amplify) {
         MobEffect effect = this.giveEffect;
         if (this == GoetyEffects.SHIELDING.get()) {

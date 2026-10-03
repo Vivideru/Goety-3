@@ -42,7 +42,6 @@ import java.util.UUID;
 public class EffectBlastTrap extends Entity implements ISpellEntity {
     private static final EntityDataAccessor<Boolean> IMMEDIATE = SynchedEntityData.defineId(EffectBlastTrap.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_COLOR = SynchedEntityData.defineId(EffectBlastTrap.class, EntityDataSerializers.INT);
-    // 1.21 no longer exposes Potions.EMPTY; water is vanilla's no-effect potion holder.
     private Holder<Potion> potion = Potions.WATER;
     private final List<MobEffectInstance> effects = Lists.newArrayList();
     private boolean fixedColor;

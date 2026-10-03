@@ -13,7 +13,6 @@ public class DoomEffect extends GoetyBaseEffect{
 
     public boolean applyEffectTick(LivingEntity affected, int amplifier) {
         if (affected.level() instanceof ServerLevel serverLevel) {
-            // Entity#canChangeDimensions now compares two levels; this effect only needs the old local "may change dimensions" gate.
             if (affected.canChangeDimensions(affected.level(), affected.level())
                     && !affected.getType().is(Tags.EntityTypes.BOSSES)
                     && !affected.isDeadOrDying()) {

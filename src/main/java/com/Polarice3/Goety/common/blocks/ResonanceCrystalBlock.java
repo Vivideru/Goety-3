@@ -86,7 +86,6 @@ public class ResonanceCrystalBlock extends BaseEntityBlock {
                 }
             }
         }
-        // No custom action matched, so let vanilla continue with the default block interaction path.
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 

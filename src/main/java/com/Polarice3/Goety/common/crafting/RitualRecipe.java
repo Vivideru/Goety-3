@@ -74,7 +74,6 @@ public class RitualRecipe implements Recipe<CraftingInput> {
                         TagKey<EntityType<?>> entityToConvert, String entityToConvertDisplayName,
                         TagKey<Structure> structureTag, String structureName,
                         Enchantment enchantment, ResourceLocation enchantmentId, int xpLevelCost, String research) {
-        // Rituals are altar-only recipes, so they must not expose CraftingRecipe metadata to integrations such as Create mixers.
         this.id = id;
         this.group = group;
         this.result = result;

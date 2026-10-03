@@ -200,7 +200,6 @@ public class Inquillager extends HuntingIllagerEntity{
         ItemStack itemstack = this.getMainHandItem();
         if (itemstack.getItem() == Items.IRON_SWORD) {
             Holder<Enchantment> fireAspect = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FIRE_ASPECT);
-            // 1.21 stores enchantments as registry holders on item components; update the component instead of mutating a raw map.
             EnchantmentHelper.updateEnchantments(itemstack, enchantments -> enchantments.upgrade(fireAspect, 2));
             this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
         }
@@ -246,7 +245,6 @@ public class Inquillager extends HuntingIllagerEntity{
         if (flag) {
             int enchantmentLevel = i;
             Holder<Enchantment> sharpness = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS);
-            // 1.21 stores enchantments as registry holders on item components; update the component instead of mutating a raw map.
             EnchantmentHelper.updateEnchantments(itemstack, enchantments -> enchantments.set(sharpness, enchantmentLevel));
         }
 

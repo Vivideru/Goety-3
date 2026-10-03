@@ -12,18 +12,6 @@ import net.neoforged.bus.api.ICancellableEvent;
 
 import org.jetbrains.annotations.Nullable;
 
-/**
- * CastMagicEvent is fired when right-clicking on a block {@link com.Polarice3.Goety.common.items.magic.DarkWand} with a spell. <br>
- * <br>
- * This event is fired via the {@link GoetyEventFactory#onBlockBasedSpell(LevelAccessor, BlockPos, BlockState, ISpell, Direction, LivingEntity)}.<br>
- * <br>
- * This event is {@link Cancelable}.<br>
- * If this event is canceled, the spell is not cast.<br>
- * <br>
- * This event does not have a result. {@link HasResult}<br>
- * <br>
- * This event is fired on the {@link NeoForge#EVENT_BUS}.
- **/
 public class BlockMagicEvent extends BlockEvent implements ICancellableEvent {
     private ISpell spell;
     @Nullable

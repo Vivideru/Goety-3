@@ -115,6 +115,12 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> BlazeSummonDown;
     public static final ModConfigSpec.ConfigValue<Integer> BlazeLimit;
 
+    public static final ModConfigSpec.ConfigValue<Integer> BreezeCost;
+    public static final ModConfigSpec.ConfigValue<Integer> BreezeDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> BreezeCoolDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BreezeSummonDown;
+    public static final ModConfigSpec.ConfigValue<Integer> BreezeLimit;
+
     public static final ModConfigSpec.ConfigValue<Integer> HoggingCost;
     public static final ModConfigSpec.ConfigValue<Integer> HoggingDuration;
     public static final ModConfigSpec.ConfigValue<Integer> HoggingCoolDown;
@@ -650,6 +656,9 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> BoundIllagerLimit;
     public static final ModConfigSpec.ConfigValue<Integer> BlackBeastLimit;
     public static final ModConfigSpec.ConfigValue<Integer> WildfireLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> HurricaneLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> WargLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> CerberusLimit;
     public static final ModConfigSpec.ConfigValue<Integer> RedstoneGolemLimit;
     public static final ModConfigSpec.ConfigValue<Integer> GraveGolemLimit;
     public static final ModConfigSpec.ConfigValue<Integer> RedstoneMonstrosityGlobalLimit;
@@ -686,7 +695,6 @@ public class SpellConfig {
             if (!"Cannot get config value before config is loaded.".equals(exception.getMessage())) {
                 throw exception;
             }
-            // Some entity bootstrap paths still read spell tuning before NeoForge binds common configs.
             return configValue.getDefault();
         }
     }
@@ -921,6 +929,18 @@ public class SpellConfig {
             BlazeLimit = BUILDER.comment("Number of Blaze Servants that can exist around the player, Default: 16")
                     .defineInRange("blazeLimit", 16, 1, Integer.MAX_VALUE);
             BUILDER.pop();
+            BUILDER.push("Breeze Spell");
+            BreezeCost = BUILDER.comment("Breeze Spell Cost, Default: 16")
+                    .defineInRange("breezeCost", 16, 0, Integer.MAX_VALUE);
+            BreezeDuration = BUILDER.comment("Time to cast Breeze Spell, Default: 100")
+                    .defineInRange("breezeDuration", 100, 0, 72000);
+            BreezeCoolDown = BUILDER.comment("Breeze Spell Cooldown, Default: 200")
+                    .defineInRange("breezeCoolDown", 200, 0, Integer.MAX_VALUE);
+            BreezeSummonDown = BUILDER.comment("Breeze Spell Summon Down, Default: 400")
+                    .defineInRange("breezeSummonDown", 400, 0, 72000);
+            BreezeLimit = BUILDER.comment("Number of Breeze Servants that can exist around the player, Default: 16")
+                    .defineInRange("breezeLimit", 16, 1, Integer.MAX_VALUE);
+            BUILDER.pop();
             BUILDER.push("Hogging Spell");
             HoggingCost = BUILDER.comment("Hogging Spell Cost, Default: 24")
                     .defineInRange("hoggingCost", 24, 0, Integer.MAX_VALUE);
@@ -1022,7 +1042,6 @@ public class SpellConfig {
             BUILDER.push("Flame Strike Spell");
             FlameStrikeCost = BUILDER.comment("Flame Strike Spell Cost, Default: 32")
                     .defineInRange("flameStrikeCost", 32, 0, Integer.MAX_VALUE);
-            // Current 1.20.1 balance halves the default charge time.
             FlameStrikeDuration = BUILDER.comment("Time to cast Flame Strike Spell, Default: 60")
                     .defineInRange("flameStrikeTime", 60, 0, 72000);
             FlameStrikeCoolDown = BUILDER.comment("Flame Strike Spell Cooldown, Default: 200")
@@ -1353,8 +1372,8 @@ public class SpellConfig {
             BUILDER.push("Launching Spell");
             LaunchCost = BUILDER.comment("Launch Spell Cost, Default: 4")
                     .defineInRange("launchCost", 4, 0, Integer.MAX_VALUE);
-            LaunchDuration = BUILDER.comment("Time to cast Launching Spell, Default: 0")
-                    .defineInRange("launchTime", 0, 0, 72000);
+            LaunchDuration = BUILDER.comment("Time to cast Launching Spell, Default: 20")
+                    .defineInRange("launchTime", 20, 0, 72000);
             LaunchCoolDown = BUILDER.comment("Launch Spell Cooldown, Default: 20")
                     .defineInRange("launchCoolDown", 20, 0, Integer.MAX_VALUE);
             BUILDER.pop();
@@ -2004,6 +2023,12 @@ public class SpellConfig {
                 .defineInRange("blackBeastLimit", 2, 1, Integer.MAX_VALUE);
         WildfireLimit = BUILDER.comment("Number of Wildfire Servants that an individual player can have in total, Default: 2")
                 .defineInRange("wildfireLimit", 2, 1, Integer.MAX_VALUE);
+        HurricaneLimit = BUILDER.comment("Number of Hurricane Servants that an individual player can have in total, Default: 3")
+                .defineInRange("hurricaneLimit", 3, 1, Integer.MAX_VALUE);
+        WargLimit = BUILDER.comment("Number of Wargs (of any breed) that an individual player can have in total, Default: 3")
+                .defineInRange("wargLimit", 3, 0, Integer.MAX_VALUE);
+        CerberusLimit = BUILDER.comment("Number of Cerberuses that an individual player can have in total, Default: 1")
+                .defineInRange("cerberusLimit", 1, 0, Integer.MAX_VALUE);
         RedstoneGolemLimit = BUILDER.comment("Total number of Redstone Golems an individual player can have, Default: 2")
                 .defineInRange("redstoneGolemLimit", 2, 0, Integer.MAX_VALUE);
         GraveGolemLimit = BUILDER.comment("Total number of Grave Golems an individual player can have, Default: 2")

@@ -27,7 +27,6 @@ public class OwnedDamageSource extends DamageSource {
               : ItemStack.EMPTY;
       String s = "death.attack." + this.getMsgId();
       if (this.owner != null && this.getDirectEntity() != null) {
-         // ItemStack custom names moved to data components in 1.21.
          if (!itemstack.isEmpty() && itemstack.has(DataComponents.CUSTOM_NAME)) {
             return Component.translatable(s + ".item", target.getDisplayName(), this.owner.getDisplayName(), this.getDirectEntity().getDisplayName(), itemstack.getDisplayName());
          } else {

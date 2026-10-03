@@ -57,7 +57,6 @@ public class CryptChestBlock extends ModChestBlock {
     }
 
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pResult) {
-        // Chest opening/locked feedback is a block interaction in 1.21, separate from held-item use.
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else if (pState.getValue(LOCKED)){

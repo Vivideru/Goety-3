@@ -31,7 +31,6 @@ public class FocusCooldown {
         ResourceLocation location = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (location != null) {
             String base = location.toString();
-            // ItemStack root tags were replaced by data components in 1.21; CUSTOM_DATA preserves the old per-stack cooldown key behavior.
             CustomData customData = stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY);
             return customData.isEmpty() ? base : base + customData.copyTag();
         }

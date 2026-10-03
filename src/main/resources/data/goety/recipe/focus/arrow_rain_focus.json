@@ -9,25 +9,25 @@
   "duration": 10,
   "ingredients": [
     {
-      "tag": "c:tools/bows"
+      "tag": "c:tools/bow"
     },
     {
       "item": "minecraft:fletching_table"
     },
     {
-      "tag": "c:tools/bows"
+      "tag": "c:tools/bow"
     },
     {
       "item": "minecraft:fletching_table"
     },
     {
-      "tag": "c:tools/bows"
+      "tag": "c:tools/bow"
     },
     {
       "item": "minecraft:fletching_table"
     },
     {
-      "tag": "c:tools/bows"
+      "tag": "c:tools/bow"
     },
     {
       "item": "minecraft:fletching_table"

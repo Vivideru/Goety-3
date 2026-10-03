@@ -95,8 +95,6 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
 
     @Override
     public void die(DamageSource pCause) {
-        // A servant can leave a furnace lit even when the vanilla furnace has
-        // no active recipe. Always clear the visual state when the worker dies.
         this.setFurnaceLit(false);
         super.die(pCause);
     }
@@ -163,7 +161,6 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
         if (foodProperties == null) {
             return false;
         } else {
-            // FoodProperties exposes record accessors in 1.21, and the meat flag moved to the vanilla meat item tag.
             return foodProperties.effects().isEmpty() || itemStack.is(ItemTags.MEAT) || itemStack.is(Items.ROTTEN_FLESH);
         }
     }
@@ -180,7 +177,6 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
     }
 
     public static ItemStack canCook(ItemStack stack, ServerLevel level) {
-        // Smelting recipes now consume SingleRecipeInput and return RecipeHolder wrappers.
         return level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(stack), level)
                 .map(smeltingRecipe -> smeltingRecipe.value().getResultItem(level.registryAccess()))
                 .filter(itemStack -> !itemStack.isEmpty())
@@ -280,7 +276,6 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
     }
 
     public static boolean validCraft(ItemStack itemStack) {
-        // ItemStack#isEdible was removed; the food component is the direct 1.21 replacement.
         return (itemStack.has(DataComponents.FOOD) || itemStack.is(ModTags.Items.CHEF_CAN_COOK)) && !itemStack.is(ModTags.Items.CHEF_CANNOT_COOK);
     }
 
@@ -331,7 +326,6 @@ public class VindicatorChefServant extends VindicatorServant implements IMobCraf
         }
 
         public static ItemStack smelt(ItemStack stack, ServerLevel level) {
-            // Smelting recipes now consume SingleRecipeInput and return RecipeHolder wrappers.
             return level.getRecipeManager().getRecipeFor(RecipeType.SMELTING, new SingleRecipeInput(stack), level)
                     .map(smeltingRecipe -> smeltingRecipe.value().getResultItem(level.registryAccess()))
                     .filter(itemStack -> !itemStack.isEmpty())

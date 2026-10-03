@@ -66,7 +66,6 @@ public class SummonRitual extends Ritual {
             }
             if (entity instanceof LivingEntity living) {
                 if (living instanceof BlackWolf blackWolf) {
-                    // The health bonus is exclusive to player ritual summons; focus summons also use MOB_SUMMONED and must stay unchanged.
                     blackWolf.setRitualSummonedByPlayer(castingPlayer != null);
                 }
                 this.prepareLivingEntityForSpawn(living, world, blockPos, tileEntity, castingPlayer, this.tame);

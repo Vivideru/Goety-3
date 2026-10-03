@@ -111,7 +111,6 @@ public class WolfTotemBlock extends BaseEntityBlock implements SimpleWaterlogged
         if (stack.getItem() instanceof PickaxeItem) {
             if (!level.isClientSide) {
                 int next = (baseState.getValue(TOP_VARIANT) + 1) % 4;
-                // The top piece is decorative only; keep both halves synced so blockstate models never desync.
                 level.setBlock(basePos, baseState.setValue(TOP_VARIANT, next), 3);
                 BlockState upperState = level.getBlockState(basePos.above());
                 if (upperState.is(this)) {
@@ -133,12 +132,10 @@ public class WolfTotemBlock extends BaseEntityBlock implements SimpleWaterlogged
         BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
         BlockState otherState = level.getBlockState(otherPos);
         if (otherState.is(this) && otherState.getValue(HALF) != half) {
-            // Only the lower half owns loot; harvest it explicitly when the player breaks the top.
             if (!level.isClientSide && half == DoubleBlockHalf.UPPER && !player.isCreative()
                     && player.hasCorrectToolForDrops(otherState)) {
                 Block.dropResources(otherState, level, otherPos, level.getBlockEntity(otherPos), player, player.getMainHandItem());
             }
-            // Suppress shape propagation here so removing the partner cannot drop the clicked half in Creative.
             level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), Block.UPDATE_CLIENTS | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS);
             level.levelEvent(player, 2001, otherPos, Block.getId(otherState));
         }

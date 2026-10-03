@@ -87,12 +87,6 @@ public class DarkWand extends Item implements IWand {
         return stack.has(DataComponents.CUSTOM_DATA);
     }
 
-    /**
-     * Ownership can be represented by a server-side entity reference or only
-     * by the persisted UUID (for example immediately after a chunk reload).
-     * Staff interactions must accept both forms, otherwise own servants cannot
-     * be selected/executed in that window.
-     */
     private static boolean ownedByPlayer(IOwned owned, Player player) {
         if (owned.getOwnerId() != null && owned.getOwnerId().equals(player.getUUID())) {
             return true;
@@ -115,7 +109,6 @@ public class DarkWand extends Item implements IWand {
     private static void updateContainedFocus(ItemStack wandStack, Consumer<ItemStack> updater) {
         SoulUsingItemHandler handler = SoulUsingItemHandler.get(wandStack);
         ItemStack focus = handler.getSlot();
-        // ItemStackHandler exposes a copy of the contained stack; write it back so 1.21 container components persist focus data changes.
         updater.accept(focus);
         handler.setStackInSlot(0, focus);
     }
@@ -165,7 +158,6 @@ public class DarkWand extends Item implements IWand {
     @Override
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (entityIn instanceof LivingEntity livingEntity) {
-            // ItemStack root NBT was removed in 1.21; keep wand runtime counters in CUSTOM_DATA.
             updateData(stack, compound -> {
                 if (!compound.contains(SOULCOST)) {
                     compound.putInt(SOULCOST, 0);
@@ -446,7 +438,6 @@ public class DarkWand extends Item implements IWand {
                 if (!level.isClientSide){
                     BannerPatternLayers bannerPatterns = bannerBlock.getPatterns();
                     if (!bannerPatterns.layers().isEmpty()) {
-                        // Banner block entities expose their patterns as 1.21 components, while Goety stores the player banner in its capability data.
                         SEHelper.setBannerBaseColor(player, bannerBlock.getBaseColor());
                         SEHelper.setBannerPattern(player, ItemHelper.bannerLayersToLegacyTag(bannerPatterns));
                         player.displayClientMessage(Component.translatable("info.goety.banner.add", player.getDisplayName()), true);
@@ -500,7 +491,8 @@ public class DarkWand extends Item implements IWand {
             if (worldIn instanceof ServerLevel serverLevel) {
                 iSpell = GoetyEventFactory.onCastingSpell(livingEntityIn, stack, iSpell, CastTime);
                 if (iSpell != null) {
-                    iSpell.useSpell(serverLevel, livingEntityIn, stack, CastTime, WandUtil.getStats(livingEntityIn, iSpell));
+                    ISpell castingSpell = iSpell;
+                    com.Vivideru.Goety.common.magic.SpellTypeDamage.cast(castingSpell, () -> castingSpell.useSpell(serverLevel, livingEntityIn, stack, CastTime, WandUtil.getStats(livingEntityIn, castingSpell)));
                 } else {
                     livingEntityIn.stopUsingItem();
                 }
@@ -612,7 +604,6 @@ public class DarkWand extends Item implements IWand {
         if (focus.getItem() instanceof CommandFocus && playerIn.isCrouching()){
             if (CommandFocus.hasServant(focus) && hasData(focus)){
                 updateContainedFocusData(itemstack, tag -> {
-                    // The client glow uses the cached entity id, so clearing only the server UUID leaves the old outline visible.
                     tag.remove(CommandFocus.TAG_ENTITY);
                     tag.remove(CommandFocus.TAG_ENTITY_CLIENT);
                 });
@@ -791,7 +782,7 @@ public class DarkWand extends Item implements IWand {
                 ServerLevel serverWorld = (ServerLevel) worldIn;
                 if (playerEntity.isCreative()) {
                     if (hasData(stack)) {
-                        spell.SpellResult(serverWorld, caster, stack, WandUtil.getStats(caster, spell));
+                        com.Vivideru.Goety.common.magic.SpellTypeDamage.cast(spell, () -> spell.SpellResult(serverWorld, caster, stack, WandUtil.getStats(caster, spell)));
                         boolean flag = false;
                         if (spell instanceof IChargingSpell chargingSpell) {
                             if (chargingSpell.shotsNumber(playerEntity, stack) > 0 && this.ShotsFired(stack) >= chargingSpell.shotsNumber(playerEntity, stack)) {
@@ -832,7 +823,7 @@ public class DarkWand extends Item implements IWand {
                         }
                     }
                     if (hasData(stack)) {
-                        spell.SpellResult(serverWorld, caster, stack, WandUtil.getStats(caster, spell));
+                        com.Vivideru.Goety.common.magic.SpellTypeDamage.cast(spell, () -> spell.SpellResult(serverWorld, caster, stack, WandUtil.getStats(caster, spell)));
                         boolean flag = false;
                         if (spell instanceof IChargingSpell chargingSpell) {
                             if (chargingSpell.shotsNumber(playerEntity, stack) > 0 && this.ShotsFired(stack) >= chargingSpell.shotsNumber(playerEntity, stack)) {
@@ -931,7 +922,6 @@ public class DarkWand extends Item implements IWand {
                     }
                 }
             }
-            // NeoForge treats null as "use the normal held-item pose"; EMPTY would suppress third-person hand rendering when no custom pose applies.
             return null;
         }
 

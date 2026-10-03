@@ -128,7 +128,6 @@ public class VexSpell extends SummonSpell {
                     vexentity.getMainHandItem().enchant(caster.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS), potency);
                     vexentity.setItemSlot(EquipmentSlot.MAINHAND, vexentity.getMainHandItem());
                 }
-                // Potency keeps the Vex-specific sharpness bonus, but summoned minions should also receive the shared Buff effect.
                 this.buffSummon(caster, vexentity, potency);
                 this.SummonSap(caster, vexentity);
                 this.setTarget(caster, vexentity);

@@ -17,7 +17,6 @@ import snownee.jade.api.theme.IThemeHelper;
 public enum ZConvertServantProvider implements IEntityComponentProvider, IServerDataProvider<EntityAccessor> {
     INSTANCE;
 
-    // Jade 1.21 requires the tick rate so it can format tick durations as seconds consistently.
     private static final float TICKS_PER_SECOND = 20.0F;
 
     private ZConvertServantProvider() {

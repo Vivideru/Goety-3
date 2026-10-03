@@ -186,7 +186,6 @@ public class PikerServant extends AbstractIllagerServant{
 
         int i = MobUtil.getFireAspect(this);
         if (i > 0) {
-            // 1.21 replaced setSecondsOnFire with igniteForSeconds while preserving the same duration unit.
             p_21372_.igniteForSeconds(i * 4);
         }
 
@@ -196,7 +195,6 @@ public class PikerServant extends AbstractIllagerServant{
                 living.knockback((double)(f1 * 0.5F), (double) Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (double)(-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
             }
 
-            // 1.21 moved post-attack enchant hooks out of Entity, so call the helper on the server level.
             if (this.level() instanceof ServerLevel serverLevel) {
                 EnchantmentHelper.doPostAttackEffects(serverLevel, p_21372_, damageSource);
             }
@@ -307,7 +305,6 @@ public class PikerServant extends AbstractIllagerServant{
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // MeleeAttackGoal no longer passes distance in 1.21; compute it here to keep the custom reach check.
             double distToEnemySqr = PikerServant.this.distanceToSqr(enemy.getX(), enemy.getBoundingBox().minY, enemy.getZ());
             if (PikerServant.this.targetClose(enemy, distToEnemySqr)) {
                 if (!PikerServant.this.isMeleeAttacking()) {

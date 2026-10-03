@@ -50,7 +50,6 @@ public class CursedMetalWolfArmorItem extends AnimalArmorItem {
 
     @Override
     public boolean canEquip(ItemStack stack, EquipmentSlot armorType, LivingEntity entity) {
-        // Keep the canine-only armor from being auto-equipped by generic hostile mob equipment logic.
         return armorType == EquipmentSlot.BODY && (entity instanceof Wolf || entity instanceof BlackWolf && !(entity instanceof Warg) || entity instanceof SkeletonWolf);
     }
 }

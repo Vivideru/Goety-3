@@ -111,7 +111,6 @@ public class LocateRitual extends Ritual {
                 if (this.recipe.getStructureName() != null) {
                     string = this.recipe.getStructureName();
                 }
-                // ItemStack custom names are stored as data components in 1.21.
                 result.set(DataComponents.CUSTOM_NAME, Component.translatable(string));
                 IItemHandler handler = tileEntity.itemStackHandler;
                 handler.insertItem(0, result, false);

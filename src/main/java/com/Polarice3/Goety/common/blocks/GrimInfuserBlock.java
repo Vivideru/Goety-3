@@ -70,7 +70,6 @@ public class GrimInfuserBlock extends BaseEntityBlock implements SimpleWaterlogg
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; the infuser consumes or returns held items here.
         BlockEntity tileentity = pLevel.getBlockEntity(pPos);
         if (tileentity instanceof GrimInfuserBlockEntity burnerTileEntity) {
             ItemStack itemstack = pPlayer.getItemInHand(pHand);

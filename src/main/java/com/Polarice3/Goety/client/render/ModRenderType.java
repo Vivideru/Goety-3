@@ -81,7 +81,6 @@ public class ModRenderType {
                         .setCullState(NO_CULL)
                         .setLightmapState(NO_LIGHTMAP)
                         .setWriteMaskState(COLOR_WRITE)
-                        // 1.21's energy swirl shader expects NEW_ENTITY vertices; magic beams only submit position, UV, and color.
                         .setShaderState(POSITION_TEX_COLOR_SHADER)
                         .createCompositeState(false));
     });

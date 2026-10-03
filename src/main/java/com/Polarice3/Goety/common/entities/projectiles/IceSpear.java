@@ -83,7 +83,6 @@ public class IceSpear extends IceSpike {
                 return;
             }
 
-            // NeoForge 1.21 resolves piercing collisions on both sides, so the client must also skip entities already crossed to avoid an endless collision loop.
             this.piercingIgnoreEntityIds.add(entity.getId());
         }
 
@@ -101,7 +100,6 @@ public class IceSpear extends IceSpike {
                 if (flag) {
                     if (entity.isAlive()) {
                         if (this.level() instanceof ServerLevel serverLevel) {
-                            // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                             EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
                         }
                     }

@@ -49,7 +49,6 @@ public class GoetyBaseEffect extends MobEffect {
     }
 
     public GoetyBaseEffect addAttributeModifier(Holder<Attribute> attribute, String id, double amount, AttributeModifier.Operation operation) {
-        // 1.21 identifies effect attribute modifiers with ResourceLocations instead of raw UUID strings; keep old stable IDs under the mod namespace.
         super.addAttributeModifier(attribute, ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, id.toLowerCase(java.util.Locale.ROOT)), amount, operation);
         return this;
     }
@@ -171,7 +170,6 @@ public class GoetyBaseEffect extends MobEffect {
                     ServerParticleUtil.windParticle(serverLevel, CHILL_HIDE_COLOR, f, livingEntity.getBbHeight() / 2.0F, livingEntity.getId(), livingEntity.position());
                 }
                 if (livingEntity.tickCount % 15 == 0) {
-                    // Use the explicit Chill Hide tint; MapColor values can differ from the spell/effect RGB in 1.21.
                     serverLevel.sendParticles(new AuraParticleOption(livingEntity.getId(), livingEntity.getBbHeight(), CHILL_HIDE_COLOR), livingEntity.getX(), livingEntity.getY() + (livingEntity.getBbHeight() / 2.0F), livingEntity.getZ(), 1, 0, 0, 0, 0.5F);
                 }
             }
@@ -308,7 +306,6 @@ public class GoetyBaseEffect extends MobEffect {
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
-        // NeoForge 1.21 uses this hook instead of the old isDurationEffectTick name.
         return this.isDurationEffectTick(duration, amplifier);
     }
 }

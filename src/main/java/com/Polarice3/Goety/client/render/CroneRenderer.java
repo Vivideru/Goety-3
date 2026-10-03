@@ -23,8 +23,6 @@ public class CroneRenderer extends MobRenderer<Crone, CroneModel<Crone>> {
    }
 
    public void render(Crone p_116412_, float p_116413_, float p_116414_, PoseStack p_116415_, MultiBufferSource p_116416_, int p_116417_) {
-      // Crone drinks from the offhand in 1.21 to avoid interrupting her main-hand ranged brew logic.
-      // Only the actual drink timer should switch to the crossed drinking mesh; held brews in idle use the normal sleeves.
       this.model.setHoldingItem(p_116412_.isDrinkingPotion() && ((!p_116412_.getMainHandItem().isEmpty()
               && (p_116412_.getMainHandItem().getItem() instanceof BrewItem
               || p_116412_.getMainHandItem().getItem() instanceof PotionItem))

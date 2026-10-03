@@ -81,7 +81,6 @@ public class StormCaster extends HuntingIllagerEntity{
     public static AttributeSupplier.Builder setCustomAttributes(){
         return Mob.createMobAttributes()
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
-                // Step height moved from NeoForge's additive attribute to vanilla's STEP_HEIGHT attribute in 1.21.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.MAX_HEALTH, AttributesConfig.get(AttributesConfig.StormCasterHealth))
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.StormCasterArmor))
@@ -255,7 +254,6 @@ public class StormCaster extends HuntingIllagerEntity{
         super.tick();
         if (this.level().isClientSide){
             this.idleAnimationState.animateWhen(!this.isAttacking() && !this.walkAnimation.isMoving(), this.tickCount);
-            // Ambient particles are visual-only and can be generated locally without per-tick server packets.
             if (this.isAlive() && this.tickCount % 3 == 0) {
                 ParticleUtil.windParticle(this.level(), ColorUtil.WHITE, 0.5F + this.random.nextFloat() * 0.5F, 0.0F, this.getId(), this.position());
                 ColorUtil colorUtil = new ColorUtil(0x8d837d);

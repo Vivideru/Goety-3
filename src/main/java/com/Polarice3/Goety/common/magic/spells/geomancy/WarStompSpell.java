@@ -93,7 +93,6 @@ public class WarStompSpell extends Spell {
             public void explodeHurt(Entity target, DamageSource damageSource, double x, double y, double z, double seen, float actualDamage) {
                 if (target instanceof LivingEntity target1){
                     super.explodeHurt(target, damageSource, x, y, z, seen, actualDamage);
-                    // Effects use registry holders in 1.21.1; using the holder avoids unregistered effect serialization.
                     target1.addEffect(new MobEffectInstance(GoetyEffects.STUNNED, MathHelper.secondsToTicks(3)));
                 }
             }

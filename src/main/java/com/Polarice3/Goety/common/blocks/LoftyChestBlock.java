@@ -43,7 +43,6 @@ public class LoftyChestBlock extends ModChestBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState p_51531_, Level p_51532_, BlockPos p_51533_, Player p_51534_, BlockHitResult p_51536_) {
-        // Minecraft 1.21 routes empty-hand/block-only clicks through useWithoutItem; the old use hook is no longer called.
         if (p_51532_.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {

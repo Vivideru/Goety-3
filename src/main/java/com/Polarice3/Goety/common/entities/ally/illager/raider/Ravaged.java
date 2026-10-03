@@ -82,7 +82,6 @@ public class Ravaged extends RaiderServant {
                 .add(Attributes.FOLLOW_RANGE, 35.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.23F)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)
-                // 1.21 uses the vanilla step-height attribute instead of NeoForge's removed additive attribute.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.ARMOR, 2.0D);
     }
@@ -332,7 +331,6 @@ public class Ravaged extends RaiderServant {
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
-        // 1.21 makes getDimensions final; scale the default dimensions instead to preserve size-based ravaged bounds.
         int i = this.getRavagedSize();
         EntityDimensions entitydimensions = super.getDefaultDimensions(p_33113_);
         float f = (entitydimensions.width() + 0.2F * (float)i) / entitydimensions.width();

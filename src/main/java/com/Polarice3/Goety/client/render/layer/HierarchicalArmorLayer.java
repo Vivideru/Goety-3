@@ -73,7 +73,6 @@ public class HierarchicalArmorLayer<T extends LivingEntity, M extends EntityMode
                 break;
             }
         }
-        // 1.21 stores armor texture variants on ArmorMaterial.Layer; ask NeoForge for the final modded texture.
         return ClientHooks.getArmorTexture(entity, stack, layer, usesInnerModel(slot), slot);
     }
 

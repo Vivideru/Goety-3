@@ -431,7 +431,6 @@ public class AbstractSnareling extends AbstractEnderling implements RangedAttack
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // MeleeAttackGoal no longer passes distance in 1.21; compute it here to keep Snareling's teleport chase logic.
             double distToEnemySqr = AbstractSnareling.this.distanceToSqr(enemy.getX(), enemy.getY(), enemy.getZ());
             double d0 = this.getAttackReachSqr(enemy);
             if (distToEnemySqr > d0) {

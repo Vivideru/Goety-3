@@ -72,7 +72,6 @@ public class VoidVaultBlockEntity extends BlockEntity {
         }
 
         if (compoundTag.contains("config")) {
-            // Some pre-1.21 structure NBTs contain an empty key_item object; keep vaults usable with the default config instead of leaving a broken parsed state.
             this.config = parseValue(VoidVaultConfig.CODEC, compoundTag.get("config"), provider).result().orElse(VoidVaultConfig.DEFAULT);
         }
 
@@ -82,12 +81,10 @@ public class VoidVaultBlockEntity extends BlockEntity {
     }
 
     private static <T> com.mojang.serialization.DataResult<T> parseValue(Codec<T> codec, Tag tag, HolderLookup.Provider provider) {
-        // ItemStack codecs in 1.21 can touch registry-backed components such as enchantments, so vault data must use registry-aware NBT ops.
         return codec.parse(serializationOps(provider), tag);
     }
 
     private static <T> Tag encodeValue(Codec<T> codec, T value, HolderLookup.Provider provider) {
-        // ItemStack codecs in 1.21 can touch registry-backed components such as enchantments, so vault data must use registry-aware NBT ops.
         return codec.encodeStart(serializationOps(provider), value).getOrThrow(IllegalStateException::new);
     }
 
@@ -342,12 +339,10 @@ public class VoidVaultBlockEntity extends BlockEntity {
         }
 
         private static boolean canBeUnlocked(VoidVaultConfig config, VoidVaultState state) {
-            // Structure-loaded vaults can stay visually inactive until their first detector tick, but a valid key should still unlock them.
             return config.lootTable() != LootTable.EMPTY.getLootTableId() && !config.keyItem().isEmpty() && state != VoidVaultState.UNLOCKING && state != VoidVaultState.EJECTING;
         }
 
         private static boolean isValidKey(VoidVaultConfig config, ItemStack stack) {
-            // Keys do not need component equality; generated or carried keys may have harmless components in 1.21.
             return stack.is(config.keyItem().getItem()) && stack.getCount() >= config.keyItem().getCount();
         }
 

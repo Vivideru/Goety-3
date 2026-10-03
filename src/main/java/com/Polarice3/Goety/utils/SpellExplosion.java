@@ -35,11 +35,9 @@ public class SpellExplosion {
             f2 *= 2.0F;
         }
         Vec3 vec3 = new Vec3(x, y, z);
-        // Minecraft 1.21 requires the explosion context when checking whether an entity ignores explosion damage.
         Explosion explosion = damageSource.is(DamageTypeTags.IS_EXPLOSION)
                 ? new Explosion(level, source, x, y, z, f2, false, Explosion.BlockInteraction.KEEP)
                 : null;
-        // Bound recursive damage chains before another mod or projectile can re-enter explosion processing indefinitely.
         if (!ExplosionUtil.enterExplosion()) {
             return;
         }
@@ -89,7 +87,6 @@ public class SpellExplosion {
         target.hurt(damageSource, actualDamage);
         double d11 = seen;
         if (target instanceof LivingEntity livingEntity) {
-            // Minecraft 1.21 moved blast-protection knockback dampening to the explosion knockback resistance attribute.
             d11 = seen * (1.0D - livingEntity.getAttributeValue(Attributes.EXPLOSION_KNOCKBACK_RESISTANCE));
         }
         if (damageSource.is(DamageTypeTags.WITCH_RESISTANT_TO)){

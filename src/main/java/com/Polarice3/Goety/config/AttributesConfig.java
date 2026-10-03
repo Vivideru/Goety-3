@@ -246,6 +246,14 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> CerberusHealth;
     public static final ModConfigSpec.ConfigValue<Double> CerberusArmor;
     public static final ModConfigSpec.ConfigValue<Double> CerberusDamage;
+    public static final ModConfigSpec.ConfigValue<Double> BreezeServantHealth;
+    public static final ModConfigSpec.ConfigValue<Double> BreezeServantArmor;
+    public static final ModConfigSpec.ConfigValue<Double> BreezeServantRangeDamage;
+    public static final ModConfigSpec.ConfigValue<Double> HurricaneHealth;
+    public static final ModConfigSpec.ConfigValue<Double> HurricaneArmor;
+    public static final ModConfigSpec.ConfigValue<Double> HurricanePunchDamage;
+    public static final ModConfigSpec.ConfigValue<Double> HurricaneSmashDamage;
+    public static final ModConfigSpec.ConfigValue<Double> HurricaneCycloneDamage;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfHealth;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfArmor;
     public static final ModConfigSpec.ConfigValue<Double> SkeletonWolfDamage;
@@ -385,7 +393,6 @@ public class AttributesConfig {
             if (!"Cannot get config value before config is loaded.".equals(exception.getMessage())) {
                 throw exception;
             }
-            // Entity attribute suppliers are built before NeoForge guarantees common config binding.
             return configValue.getDefault();
         }
     }
@@ -1012,6 +1019,26 @@ public class AttributesConfig {
                         .defineInRange("cerberusArmor", 0.0, 0.0, Double.MAX_VALUE);
                 CerberusDamage = BUILDER.comment("How much damage Cerberus melee attacks deal, Default: 8.0")
                         .defineInRange("cerberusDamage", 8.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Breeze Servant");
+                BreezeServantHealth = BUILDER.comment("How much Max Health Breeze Servants have, Default: 30.0")
+                        .defineInRange("breezeServantHealth", 30.0, 1.0, Double.MAX_VALUE);
+                BreezeServantArmor = BUILDER.comment("How much natural Armor Breeze Servants have, Default: 0.0")
+                        .defineInRange("breezeServantArmor", 0.0, 0.0, Double.MAX_VALUE);
+                BreezeServantRangeDamage = BUILDER.comment("How much damage a direct hit from a Breeze Servant's wind charge deals, Default: 3.0")
+                        .defineInRange("breezeServantRangeDamage", 3.0, 1.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Hurricane");
+                HurricaneHealth = BUILDER.comment("How much Max Health Hurricanes have, Default: 110.0")
+                        .defineInRange("hurricaneHealth", 110.0, 1.0, Double.MAX_VALUE);
+                HurricaneArmor = BUILDER.comment("How much natural Armor Hurricanes have, Default: 0.0")
+                        .defineInRange("hurricaneArmor", 0.0, 0.0, Double.MAX_VALUE);
+                HurricanePunchDamage = BUILDER.comment("How much damage the Hurricane's Zoom-Punch deals, Default: 15.0")
+                        .defineInRange("hurricanePunchDamage", 15.0, 1.0, Double.MAX_VALUE);
+                HurricaneSmashDamage = BUILDER.comment("How much damage the Hurricane's landing smash deals, Default: 8.0")
+                        .defineInRange("hurricaneSmashDamage", 8.0, 1.0, Double.MAX_VALUE);
+                HurricaneCycloneDamage = BUILDER.comment("How much damage the Hurricane's cyclone deals each time it strikes, Default: 2.0")
+                        .defineInRange("hurricaneCycloneDamage", 2.0, 0.0, Double.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Skeleton Wolf");
                 SkeletonWolfHealth = BUILDER.comment("How much Max Health Skeleton Wolves have, Default: 10.0")

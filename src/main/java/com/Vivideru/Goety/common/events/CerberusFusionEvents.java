@@ -12,9 +12,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-/**
- * Offering a Netherite Ingot to one of three Hellhounds gathered at a Howling Totem fuses them into a Cerberus.
- */
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public final class CerberusFusionEvents {
     private CerberusFusionEvents() {

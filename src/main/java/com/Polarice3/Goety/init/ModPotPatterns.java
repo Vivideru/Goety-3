@@ -3,10 +3,15 @@ package com.Polarice3.Goety.init;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.items.ModItems;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.DecoratedPotPattern;
-import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Map;
 
 public class ModPotPatterns {
     public static final DeferredRegister<DecoratedPotPattern> POT_PATTERNS = DeferredRegister.create(Registries.DECORATED_POT_PATTERN, Goety.MOD_ID);
@@ -26,7 +31,21 @@ public class ModPotPatterns {
         return POT_PATTERNS.register(name, () -> new DecoratedPotPattern(ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, name)));
     }
 
+    private static Map<Item, ResourceKey<DecoratedPotPattern>> itemToPattern;
+
+    @Nullable
+    public static ResourceKey<DecoratedPotPattern> patternFor(Item item) {
+        if (itemToPattern == null) {
+            itemToPattern = Map.of(
+                    ModItems.CROSS_POTTERY_SHERD.get(), CROSS.getKey(),
+                    ModItems.DEAD_POTTERY_SHERD.get(), DEAD.getKey(),
+                    ModItems.HAUNT_POTTERY_SHERD.get(), HAUNT.getKey(),
+                    ModItems.NIGHT_POTTERY_SHERD.get(), NIGHT.getKey(),
+                    ModItems.SOUL_POTTERY_SHERD.get(), SOUL.getKey());
+        }
+        return itemToPattern.get(item);
+    }
+
     public static void addPatterns() {
-        // Vanilla's item-to-pot-pattern map is private in 1.21; the patterns are registered here and the item mapping must be supplied through the supported data-driven hook.
     }
 }

@@ -31,10 +31,6 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
 
-/**
- * Soul Heal charm: the wearer casts it with the curio key, and an Illager servant carrying it heals itself with souls
- * it collects from its kills.
- */
 public class SoulHealer extends SingleStackItem implements ISoulContainer, IActivatable, IMobCharm, ISpellHolder {
 
     public SoulHealer(Properties properties) {
@@ -43,7 +39,6 @@ public class SoulHealer extends SingleStackItem implements ISoulContainer, IActi
 
     @Override
     public ISpell getSpell() {
-        // The cooldown cache matches spells by identity, so reuse the Soul Heal focus's own instance to share its cooldown.
         return ((IFocus) ModItems.SOUL_HEAL_FOCUS.get()).getSpell();
     }
 
@@ -95,7 +90,6 @@ public class SoulHealer extends SingleStackItem implements ISoulContainer, IActi
 
     @Override
     public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
-        // Souls and cooldown change the stack's data constantly; only a different item should replay the equip bob.
         return oldStack.getItem() != newStack.getItem();
     }
 

@@ -17,7 +17,6 @@ public class ModCapabilityEvents {
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        // NeoForge 1.21 item capabilities are registered through the mod bus instead of Item#initCapabilities.
         event.registerItem(Capabilities.ItemHandler.ITEM, (stack, context) -> new FocusBagItemHandler(stack, 11), ModItems.FOCUS_BAG.get());
         event.registerItem(Capabilities.ItemHandler.ITEM, (stack, context) -> new FocusBagItemHandler(stack, 21), ModItems.FOCUS_PACK.get());
         event.registerItem(Capabilities.ItemHandler.ITEM, (stack, context) -> new BrewBagItemHandler(stack), ModItems.BREW_BAG.get());

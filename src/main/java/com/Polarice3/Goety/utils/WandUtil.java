@@ -140,7 +140,6 @@ public class WandUtil {
     }
 
     public static int getLevels(ResourceKey<Enchantment> enchantment, LivingEntity livingEntity){
-        // Enchantments are data-driven in 1.21, so a missing datapack entry must not crash spell ticking.
         Optional<Holder.Reference<Enchantment>> optional = livingEntity.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(enchantment);
         if (optional.isEmpty()) {
             return 0;
@@ -154,7 +153,6 @@ public class WandUtil {
     }
 
     public static float damageMultiply() {
-        // Attribute bootstrap can call spell helpers before NeoForge has bound common configs.
         return SpellConfig.get(SpellConfig.SpellDamageMultiplier) * SpellConfig.get(SpellConfig.SpellDamageMultiplierDecimal).floatValue();
     }
 
@@ -166,9 +164,6 @@ public class WandUtil {
         return getLevels(ModEnchantments.RANGE, livingEntity) * 2;
     }
 
-    /**
-     * Level of an enchantment on a specific stack; data-driven enchantments need the holder's registry to resolve.
-     */
     public static int getItemLevel(ResourceKey<Enchantment> enchantment, LivingEntity holder, ItemStack itemStack) {
         return holder.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).get(enchantment)
                 .map(itemStack::getEnchantmentLevel)

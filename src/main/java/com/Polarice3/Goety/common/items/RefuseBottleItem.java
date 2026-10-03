@@ -41,7 +41,8 @@ public class RefuseBottleItem extends Item {
       }
    }
 
-   public int getUseDuration(ItemStack p_41360_) {
+   @Override
+   public int getUseDuration(ItemStack p_41360_, net.minecraft.world.entity.LivingEntity entity) {
       return 40;
    }
 

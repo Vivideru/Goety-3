@@ -146,7 +146,6 @@ public class TransferScroll extends ItemBase {
     public static void setSummon(CompoundTag compoundTag, LivingEntity livingEntity){
         if (compoundTag != null) {
             if (livingEntity != null) {
-                // ItemStack root NBT was removed in 1.21; keep transfer target data in CUSTOM_DATA.
                 compoundTag.putUUID(TAG_ENTITY, livingEntity.getUUID());
             }
         }

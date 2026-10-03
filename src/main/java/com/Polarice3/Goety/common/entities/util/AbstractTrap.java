@@ -40,7 +40,6 @@ public abstract class AbstractTrap extends Entity implements ISpellEntity {
 
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        // 1.21 stores ENTITY_EFFECT as a typed option; use the vanilla default color to preserve the old generic particle.
         builder.define(DATA_PARTICLE, ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, -1));
     }
 

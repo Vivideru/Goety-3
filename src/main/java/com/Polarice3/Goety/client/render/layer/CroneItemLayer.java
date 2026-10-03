@@ -47,7 +47,6 @@ public class CroneItemLayer<T extends Crone> extends CrossedArmsItemLayer<T, Cro
       p_117685_.translate(0.0F, 0.4F, -0.4F);
       p_117685_.mulPose(Axis.XP.rotationDegrees(180.0F));
       if (this.isBrewFallback(itemstack, p_117688_)) {
-         // The vanilla potion fallback uses a flat inventory-facing model, so rotate it toward the Crone's front after the witch drinking pose.
          p_117685_.mulPose(Axis.YP.rotationDegrees(180.0F));
       }
       this.itemInHandRenderer.renderItem(p_117688_, renderStack, ItemDisplayContext.GROUND, false, p_117685_, p_117686_, p_117687_);
@@ -56,7 +55,6 @@ public class CroneItemLayer<T extends Crone> extends CrossedArmsItemLayer<T, Cro
 
    private ItemStack getVisibleItem(T crone) {
       ItemStack offhand = crone.getOffhandItem();
-      // Crones drink from the offhand in 1.21, while CrossedArmsItemLayer only renders the main hand.
       if (offhand.is(Items.POTION) || offhand.is(ModItems.BREW.get())) {
          return offhand;
       }
@@ -64,11 +62,9 @@ public class CroneItemLayer<T extends Crone> extends CrossedArmsItemLayer<T, Cro
    }
 
    private ItemStack getRenderItem(ItemStack itemstack, T crone) {
-      // Crone drinks custom brews; render a vanilla bottle fallback so the drinking animation is visible even if the brew model is not.
       if (this.isBrewFallback(itemstack, crone)) {
          ItemStack renderStack = new ItemStack(Items.POTION);
          if (itemstack.is(ModItems.BREW.get())) {
-            // The fallback must carry the brew color because vanilla potion item rendering tints only from POTION_CONTENTS.
             renderStack.set(DataComponents.POTION_CONTENTS, new PotionContents(Optional.empty(), Optional.of(BrewUtils.getColor(itemstack)), List.of()));
          }
          return renderStack;

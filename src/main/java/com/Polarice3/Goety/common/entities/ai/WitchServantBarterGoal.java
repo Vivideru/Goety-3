@@ -58,7 +58,6 @@ public class WitchServantBarterGoal extends Goal {
                     if (this.witch.getMainHandItem().is(ModTags.Items.WITCH_BETTER_CURRENCY)){
                         luck = 1.0F;
                     }
-                    // Loot tables moved under reloadable registries in 1.21; keep the same barter table selection through the new lookup API.
                     LootTable loottable = this.getLootTable(ModLootTables.WITCH_BARTER);
                     if (this.witch instanceof WarlockServant){
                         loottable = this.getLootTable(ModLootTables.WARLOCK_BARTER);

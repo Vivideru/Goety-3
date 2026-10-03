@@ -138,7 +138,6 @@ public class CursedInfuserBlockEntity extends ModBlockEntity implements Clearabl
 
     @Override
     public int getMaxStackSize() {
-        // Each work slot processes exactly one item per operation.
         return 1;
     }
 
@@ -167,7 +166,6 @@ public class CursedInfuserBlockEntity extends ModBlockEntity implements Clearabl
         Optional<CursedInfuserRecipes> optional = this.getRecipes(pStack);
         optional.ifPresent(furnaceRecipe -> {
             if (!furnaceRecipe.isGrim()) {
-                // The hopper owns the source stack; only its transferred copy belongs to this container.
                 this.placeItem(pStack.copy(), furnaceRecipe.getCookingTime());
             }
         });
@@ -315,7 +313,6 @@ public class CursedInfuserBlockEntity extends ModBlockEntity implements Clearabl
 
     @Override
     public boolean canPlaceItemThroughFace(int pIndex, ItemStack pItemStack, @Nullable Direction pDirection) {
-        // Hopper acceptance checks must never consume or insert items, including simulated transfers.
         if (pIndex != 0 || this.level == null || this.level.isClientSide || !this.isEmpty() || pItemStack.isEmpty()) {
             return false;
         }

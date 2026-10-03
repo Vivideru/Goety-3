@@ -1,0 +1,29 @@
+{
+  "name": "Hurricane",
+  "icon": "goety:hurricane_core",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/kill_a_hurricane",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Deep in the trial chambers the wind itself has learned to fight back. What a heavy core does to a storm can be done to one of your Breeze Servants on purpose: bind the gust to a core, feed it a spirit and it grows into a Hurricane that answers to you."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_breezes_to_hurricane"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:hurricane_servant",
+      "scale": 0.6
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A Hurricane Servant leaps across the battlefield, hurls its fist at whoever threatens its master, calls down cyclones and lands with a smash that scatters everything nearby. Every blow it takes bursts into a gust that shoves attackers away, and arrows bounce off it. Like a Breeze Servant, it heals over time while its master wears the Wind Robe."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It is too large to be dismissed by a careless wand: the first strike only warns. When it falls it leaves a Hurricane Core behind, still carrying the storm inside and remembering its master; use it on a Breeze, or on one of your Breeze Servants, and the same Hurricane Servant takes its place. It fills four slots of an Esoteric Tesseract."
+    }
+  ]
+}

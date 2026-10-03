@@ -181,7 +181,6 @@ public class IceologerServant extends SpellcasterIllagerServant{
     @Override
     protected ResourceKey<LootTable> getDefaultLootTable() {
         if (this.isNatural()){
-            // 1.21 Mob loot tables are registry keys; wrap the mod ResourceLocation to keep the natural variant.
             return ResourceKey.create(Registries.LOOT_TABLE, ModLootTables.NATURAL_ICEOLOGER);
         } else {
             return super.getDefaultLootTable();

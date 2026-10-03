@@ -65,7 +65,6 @@ public class ModRitualCategory implements IRecipeCategory<RitualRecipe> {
         this.ritualCenterX = this.background.getWidth() / 2 - this.iconWidth / 2 - 24;
         this.ritualCenterY = this.background.getHeight() / 2 - this.iconWidth / 2 + 10;
         this.localizedName = this.ritualType == null || Objects.equals(this.ritualType, "") ? Component.translatable("goety.jei.ritual") : Component.translatable( "jei.goety.craftType." + ritualType).append(" ").append(Component.translatable("goety.jei.ritualType"));
-        // ItemStack custom NBT moved into data components in 1.21.
         CustomData.update(DataComponents.CUSTOM_DATA, this.darkAltar, tag -> tag.putBoolean("RenderFull", true));
         CustomData.update(DataComponents.CUSTOM_DATA, this.pedestals, tag -> tag.putBoolean("RenderFull", true));
         this.arrow = guiHelper.createDrawable(

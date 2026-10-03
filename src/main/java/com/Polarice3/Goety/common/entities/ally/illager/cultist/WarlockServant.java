@@ -192,7 +192,6 @@ public class WarlockServant extends CultistServant implements RangedAttackMob {
                         flag = true;
                     }
                     if (!this.getActiveEffects().isEmpty()) {
-                        // 1.21 no longer exposes curative item lists on MobEffect; keep the harmful-effect transfer decision category based.
                         if (this.getActiveEffects().stream().anyMatch((mobEffectInstance -> mobEffectInstance.getEffect().value().getCategory() == MobEffectCategory.HARMFUL))){
                             flag = true;
                         }
@@ -304,7 +303,6 @@ public class WarlockServant extends CultistServant implements RangedAttackMob {
         if (this.level() instanceof ServerLevel serverLevel) {
             wartling.setTrueOwner(MobUtil.getSummonOwner(this));
             wartling.setLimitedLife(MathHelper.secondsToTicks(9));
-            // 1.21 no longer exposes curative item lists on MobEffect; transfer the first harmful effect as before.
             this.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().getCategory() == MobEffectCategory.HARMFUL).findFirst().ifPresent(effect -> {
                 wartling.setStoredEffect(effect);
                 this.removeEffect(effect.getEffect());

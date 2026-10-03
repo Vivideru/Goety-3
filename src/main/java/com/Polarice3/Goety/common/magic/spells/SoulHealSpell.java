@@ -73,7 +73,6 @@ public class SoulHealSpell extends Spell {
             radius += WandUtil.getLevels(ModEnchantments.RADIUS, caster);
         }
         int baseHeal = SpellConfig.SoulHealAmount.get();
-        // The old random range can roll a near-zero heal, which reads as a failed cast during active combat.
         float heal = baseHeal + RandomUtil.nextInt(worldIn.getRandom(), baseHeal * Math.max(0, potency - 1) + 1);
         caster.heal(heal);
         if (radius > 0) {

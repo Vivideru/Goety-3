@@ -106,6 +106,7 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> WITCH_POLE = register("witch_pole", WitchPoleBlock::new);
     public static final DeferredHolder<Block, Block> BREWING_CAULDRON = register("witch_cauldron", BrewCauldronBlock::new);
     public static final DeferredHolder<Block, Block> CRYSTAL_BALL = register("crystal_ball", CrystalBallBlock::new, true);
+    public static final DeferredHolder<Block, Block> PALE_CRYSTAL_BALL = register("pale_crystal_ball", PaleCrystalBallBlock::new, true);
     public static final DeferredHolder<Block, Block> HAUNTED_MIRROR = register("haunted_mirror", HauntedMirrorBlock::new);
     public static final DeferredHolder<Block, Block> HAUNTED_JUG = register("haunted_jug", HauntedJugBlock::new, false);
     public static final DeferredHolder<Block, Block> MAGIC_THORN = register("magic_thorn", MagicThornBlock::new, true, LootTableType.EMPTY);
@@ -1412,7 +1413,6 @@ public class ModBlocks {
     }
 
     private static EndSaplingBlock endSapling(ChorusTree tree){
-        // TreeGrower is final in 1.21, so the Chorus sapling keeps its custom mega-tree logic through EndSaplingBlock.
         return new EndSaplingBlock(tree, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY));
     }
 

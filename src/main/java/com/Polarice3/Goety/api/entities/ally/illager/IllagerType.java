@@ -9,7 +9,6 @@ import net.minecraft.world.level.Level;
 import java.util.ArrayList;
 import java.util.List;
 
-// This enum is not registered in enumextensions.json, so it must stay a regular enum on NeoForge.
 public enum IllagerType {
     NONE(null),
     NORMAL(new ModIllagerType());

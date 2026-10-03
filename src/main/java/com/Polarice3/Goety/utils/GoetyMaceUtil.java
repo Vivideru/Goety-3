@@ -48,7 +48,6 @@ public class GoetyMaceUtil {
 
     public static boolean trySmashEffects(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (attacker instanceof ServerPlayer serverPlayer && MaceItem.canSmashAttack(serverPlayer) && serverPlayer.level() instanceof ServerLevel serverLevel) {
-            // Goety hammer classes keep their own inheritance, so the 1.21 mace landing behavior is mirrored here instead of extending MaceItem.
             if (serverPlayer.isIgnoringFallDamageFromCurrentImpulse() && serverPlayer.currentImpulseImpactPos != null) {
                 if (serverPlayer.currentImpulseImpactPos.y > serverPlayer.position().y) {
                     serverPlayer.currentImpulseImpactPos = serverPlayer.position();

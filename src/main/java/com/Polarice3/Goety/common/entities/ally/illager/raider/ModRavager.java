@@ -219,7 +219,6 @@ public class ModRavager extends RaiderServant implements PlayerRideable, IAutoRi
 
     @Override
     public Vec3 getPassengerRidingPosition(Entity passenger) {
-        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
         return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 
@@ -680,7 +679,6 @@ public class ModRavager extends RaiderServant implements PlayerRideable, IAutoRi
 
     public boolean isFood(ItemStack p_30440_) {
         FoodProperties foodProperties = p_30440_.get(DataComponents.FOOD);
-        // FoodProperties no longer exposes the old meat helper here; accept edible component data and let interaction ownership/health checks gate feeding.
         return foodProperties != null;
     }
 

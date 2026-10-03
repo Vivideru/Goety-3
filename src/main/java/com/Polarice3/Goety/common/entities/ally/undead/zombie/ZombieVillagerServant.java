@@ -88,7 +88,6 @@ public class ZombieVillagerServant extends ZombieServant implements InventoryCar
             p_34397_.put("VillagerData", p_204072_);
         });
         if (this.tradeOffers != null) {
-            // Merchant offers are codec/registry encoded in 1.21 instead of stored as a raw legacy CompoundTag.
             p_34397_.put("Offers", MerchantOffers.CODEC.encodeStart(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), this.tradeOffers).getOrThrow());
         }
 
@@ -113,7 +112,6 @@ public class ZombieVillagerServant extends ZombieServant implements InventoryCar
         }
 
         if (p_34387_.contains("Offers")) {
-            // Merchant offers are codec/registry decoded in 1.21 so item components inside trades survive correctly.
             MerchantOffers.CODEC.parse(this.registryAccess().createSerializationContext(NbtOps.INSTANCE), p_34387_.get("Offers"))
                     .resultOrPartial(Util.prefix("Failed to load offers: ", LOGGER::warn))
                     .ifPresent(pOffers -> this.tradeOffers = pOffers);

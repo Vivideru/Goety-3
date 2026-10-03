@@ -20,7 +20,6 @@ public class EternalCauldronScreen extends AbstractContainerScreen<EternalCauldr
     @Override
     protected void init() {
         super.init();
-        // The original GUI centers this compact title above the single bottle slot.
         this.titleLabelX = (this.imageWidth - this.font.width(this.title)) / 2;
     }
 

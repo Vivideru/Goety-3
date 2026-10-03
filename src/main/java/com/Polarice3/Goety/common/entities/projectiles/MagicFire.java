@@ -139,7 +139,6 @@ public class MagicFire extends GroundProjectile {
         float damage = 2.0F;
         damage += this.getExtraDamage();
         if (target.isAlive() && !target.isInvulnerable()) {
-            // Repeated ground flames should not call hurt during vanilla invulnerability frames, otherwise clients hear hurt sounds without damage.
             if (target.invulnerableTime > 0) {
                 return;
             }

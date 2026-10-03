@@ -50,7 +50,6 @@ public class RobeEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard robe minion logic.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
@@ -120,7 +119,6 @@ public class RobeEvents {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void HurtEvent(LivingIncomingDamageEvent event){
         LivingEntity victim = event.getEntity();
-        // Accumulate every robe modifier once so later checks do not overwrite earlier resistances.
         float finalDamage = event.getAmount();
         if (CuriosFinder.hasFrostRobes(victim)){
             if (ModDamageSource.freezeAttacks(event.getSource()) || event.getSource().is(DamageTypeTags.IS_FREEZING)){

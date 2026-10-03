@@ -149,7 +149,6 @@ public class TroopFocus extends MagicFocus{
                                     if (event.isCanceled()) {
                                         break;
                                     }
-                                    // Dimension changes replace non-player entities in 1.21, so continue with the returned tracked instance.
                                     Entity transferred = livingEntity1.changeDimension(ArcaTeleporter.transition(serverWorld, livingEntity1, vec3));
                                     if (!(transferred instanceof LivingEntity transferredLiving)) {
                                         continue;
@@ -183,7 +182,6 @@ public class TroopFocus extends MagicFocus{
             if (entityType != null) {
                 ResourceLocation name = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
                 if (name != null) {
-                    // ItemStack root NBT was removed in 1.21; keep troop focus target data in CUSTOM_DATA.
                     compoundTag.putString(TAG_ENTITY_TYPE, name.toString());
                 }
             }

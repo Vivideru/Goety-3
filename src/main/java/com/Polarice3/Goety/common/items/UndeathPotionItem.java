@@ -79,7 +79,8 @@ public class UndeathPotionItem extends Item {
         return pStack.isEmpty() ? new ItemStack(Items.GLASS_BOTTLE) : pStack;
     }
 
-    public int getUseDuration(ItemStack pStack) {
+    @Override
+    public int getUseDuration(ItemStack pStack, net.minecraft.world.entity.LivingEntity entity) {
         return 40;
     }
 

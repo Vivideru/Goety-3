@@ -125,10 +125,8 @@ public class SoulBolt extends SpellHurtingProjectile {
                 flag = entity.hurt(damageSource, baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                         EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                     } else if (this.isNecro()) {
-                        // Conversion is selected by the defeated mob type so non-vanilla undead can use their own servant form.
                         if (entity instanceof Zombie) {
                             ServantUtil.convertZombies(entity, livingentity, false);
                         } else if (entity instanceof AbstractSkeleton) {

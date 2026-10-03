@@ -1,0 +1,25 @@
+{
+  "name": "Hurricane",
+  "icon": "goety:whirling_cage",
+  "category": "goety:world/bestiary",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Somewhere in every trial chamber a heavy core sits locked in a Whirling Cage at the heart of a sealed arena, and the wind around it has learned to fight. Break the cage and the core rises, gathers the storm and lets loose a Hurricane: what the Wildfire is to the Blaze, this is to the Breeze."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:whirling_cage",
+      "text": "The cage is all that keeps the core quiet. Whoever breaks it open had better be ready for what it was holding down."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It keeps its distance and never stands still. It hurls its fist where it expects you to be, hard enough to tear a shield from your hands; it gathers a cyclone above its head and flings it after you; and it leaps across the arena to land with a crushing smash. Every blow you land answers with a gust that throws you back, and arrows only bounce off its hide."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Wind charges and falls cannot harm it, and it will not leave its arena on its own. Bring it down and it leaves behind its heavy core, a handful of breeze rods and wind charges, and a treasure pouch."
+    }
+  ]
+}

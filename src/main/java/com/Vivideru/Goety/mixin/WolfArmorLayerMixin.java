@@ -15,7 +15,6 @@ public class WolfArmorLayerMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void goety$skipVanillaWolfArmorForCursedMetal(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Wolf wolf, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
         if (VivideruItems.isVivideruWolfArmor(wolf.getBodyArmorItem())) {
-            // Cursed metal armor has extra model geometry, so the vanilla wolf armor layer is replaced by the Vivideru layer for this item.
             ci.cancel();
         }
     }

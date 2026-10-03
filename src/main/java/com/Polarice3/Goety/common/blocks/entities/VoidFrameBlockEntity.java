@@ -85,7 +85,6 @@ public class VoidFrameBlockEntity extends BlockEntity {
             this.eyeType = compoundTag.getInt("EyeType");
         }
         if (compoundTag.contains("EyeEffects")) {
-            // Eye effects are registry-backed in 1.21, so parse them through the supplied lookup context.
             this.eyeEffects.clear();
             ListTag listtag = compoundTag.getList("EyeEffects", 10);
             DynamicOps<Tag> ops = effectOps(provider);
@@ -118,7 +117,6 @@ public class VoidFrameBlockEntity extends BlockEntity {
         if (parsed.isPresent()) {
             return parsed;
         }
-        // Void Frame structure data can come from older saves, so keep a legacy NBT fallback for custom eye effects.
         Holder<MobEffect> effect = null;
         if (tag.contains("Id", 99)) {
             MobEffect legacyEffect = BuiltInRegistries.MOB_EFFECT.byId(tag.getInt("Id"));

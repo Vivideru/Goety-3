@@ -36,7 +36,6 @@ public class TramplerArmorItem extends Item {
 
    @Override
    public boolean isEnchantable(ItemStack stack) {
-      // These mount armor items are not damageable, so the 1.21 default item check would reject them before their supported enchantments are queried.
       return stack.getCount() == 1;
    }
 

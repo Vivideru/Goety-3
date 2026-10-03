@@ -62,7 +62,6 @@ public class VoidSpawnerBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 
@@ -125,7 +124,6 @@ public class VoidSpawnerBlock extends BaseEntityBlock {
     }
 
     private Optional<Component> getSpawnEntityDisplayName(ItemStack p_256057_) {
-        // Block entity data lives in the BLOCK_ENTITY_DATA component in 1.21 instead of the old BlockItem helper.
         CompoundTag compoundtag = p_256057_.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY).copyTag();
         if (compoundtag.contains("SpawnData", 10)) {
             String s = compoundtag.getCompound("SpawnData").getCompound("entity").getString("id");

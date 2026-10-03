@@ -111,7 +111,6 @@ public class GhastSpell extends SummonSpell {
                 ghast.setFireBallDamage(boost - EffectsUtil.getAmplifierPlus(caster, MobEffects.WEAKNESS.value()));
                 float extraBlast = Mth.clamp(potency, 0, SpellConfig.MaxRadiusLevel.get()) / 2.5F;
                 ghast.setExplosionPower(ghast.getExplosionPower() + extraBlast);
-                // Potency still modifies ghast projectiles, but summon spells also expose it through the shared Buff effect.
                 this.buffSummon(caster, ghast, potency);
                 this.setTarget(caster, ghast);
                 if (worldIn.addFreshEntity(ghast)) {

@@ -122,7 +122,6 @@ public class HellBolt extends WaterHurtingProjectile {
             }
             DamageSource damageSource = ModDamageSource.hellfire(this, entity1);
             if (entity instanceof LivingEntity livingEntity) {
-                // Hellfire is meant to pierce normal i-frames; direct projectiles should not be swallowed by recent damage ticks.
                 livingEntity.invulnerableTime = 0;
             }
             boolean flag = entity.hurt(damageSource, this.getDamage());
@@ -130,7 +129,6 @@ public class HellBolt extends WaterHurtingProjectile {
                 entity.setRemainingFireTicks(i);
             }
             if (entity1 instanceof LivingEntity && this.level() instanceof ServerLevel serverLevel) {
-                // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                 EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
             }
         }

@@ -62,7 +62,6 @@ public class StoneMinistrosity extends RaiderGolemServant {
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
                 .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.StoneMinistrosityDamage))
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.StoneMinistrosityArmor))
-                // 1.21 uses the vanilla step-height attribute instead of NeoForge's removed additive attribute.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 0.75D)
                 .add(Attributes.FOLLOW_RANGE, AttributesConfig.get(AttributesConfig.StoneMinistrosityFollowRange));

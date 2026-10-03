@@ -241,7 +241,6 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
                 if (pyre.capacityAvailable(this.level(), blockPos)
                         && entityType != null
                         && pyre.trainingRequirements(this.level(), blockPos).test(this)
-                        // Training commands can outlive a recreated player instance, so compare UUIDs instead of object identity.
                         && pyre.getTrueOwner() != null
                         && this.getTrueOwner() != null
                         && pyre.getTrueOwner().getUUID().equals(this.getTrueOwner().getUUID())) {
@@ -561,7 +560,6 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
         FoodProperties foodProperties = itemStack.getFoodProperties(this);
         if (foodProperties == null) {
             return false;
-        // FoodProperties no longer exposes the old meat flag, so the vanilla meat tag is the closest gameplay-equivalent check.
         } else if (itemStack.is(ItemTags.MEAT) && foodProperties.nutrition() <= 3) {
             return false;
         } else {

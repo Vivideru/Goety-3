@@ -66,7 +66,6 @@ public class ApparitionDoorBlock extends Block {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; this door should still react to any right-click.
         return switch (this.onActivation(pLevel, pPos, pState)) {
             case SUCCESS -> ItemInteractionResult.SUCCESS;
             case FAIL -> ItemInteractionResult.FAIL;

@@ -40,7 +40,6 @@ public class CursedWargArmorItem extends AnimalArmorItem {
 
     @Override
     public boolean canEquip(ItemStack stack, EquipmentSlot slot, LivingEntity entity) {
-        // The larger armor model is intentionally restricted to Wargs even though it uses the shared 1.21 body slot.
         return slot == EquipmentSlot.BODY && entity instanceof Warg;
     }
 }

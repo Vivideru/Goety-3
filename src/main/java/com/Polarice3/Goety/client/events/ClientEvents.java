@@ -191,7 +191,6 @@ public class ClientEvents {
         if (existing != null && soundHandler.isActive(existing)) {
             return;
         }
-        // Client entity recreation can fire multiple join events in 1.21; keep one ambient loop per Wight UUID.
         WightLoopSound sound = new WightLoopSound(wight);
         WIGHT_LOOP_SOUNDS.put(wight.getUUID(), sound);
         soundHandler.play(sound);
@@ -251,7 +250,6 @@ public class ClientEvents {
         AbstractClientPlayer player = Minecraft.getInstance().player;
         if (player != null){
             if (event.isUseItem()) {
-                // The external scythe crashes inside Item#use, so initialize its optional component before vanilla reaches that call.
                 DiscerningEldritchCompat.initializeSoulFireScythe(player.getItemInHand(InteractionHand.MAIN_HAND));
                 DiscerningEldritchCompat.initializeSoulFireScythe(player.getItemInHand(InteractionHand.OFF_HAND));
             }
@@ -491,7 +489,6 @@ public class ClientEvents {
                     && (layer.getPath().equals("hunger_restored")
                     || layer.getPath().equals("saturation_level")
                     || layer.getPath().equals("exhaustion_level"));
-            // Liches do not use hunger, so compatible food overlays must disappear with the vanilla food layer.
             if (layer.equals(VanillaGuiLayers.FOOD_LEVEL) || appleSkinFoodLayer){
                 event.setCanceled(true);
             }
@@ -827,7 +824,6 @@ public class ClientEvents {
             return;
         }
 
-        // Mirror vanilla's survival HUD gate so custom hearts stay hidden in creative and spectator modes.
         if (minecraft.gameMode == null || !minecraft.gameMode.canHurtPlayer()) {
             return;
         }
@@ -959,37 +955,38 @@ public class ClientEvents {
     private static boolean prevJumpBindState = false;
 
     @SubscribeEvent
+    public static void TickStartEvents(ClientTickEvent.Pre event) {
+        CustomItemsRenderer.incrementTick();
+    }
+
+    @SubscribeEvent
     public static void TickEvents(ClientTickEvent.Post event) {
-        if (true){
-            CustomItemsRenderer.incrementTick();
-        } else {
-            Minecraft minecraft = Minecraft.getInstance();
+        Minecraft minecraft = Minecraft.getInstance();
 
-            if (minecraft.player != null){
-                Player player = minecraft.player;
-                Wight wight = Wight.findWight(player);
-                if (wight != null) {
-                    if (MobUtil.isPlayerLookingTowards(player, minecraft.options.fov().get().floatValue(), wight) && MobUtil.hasVisualLineOfSight(player, wight)){
-                        wight.lookTime += 1;
+        if (minecraft.player != null){
+            Player player = minecraft.player;
+            Wight wight = Wight.findWight(player);
+            if (wight != null) {
+                if (MobUtil.isPlayerLookingTowards(player, minecraft.options.fov().get().floatValue(), wight) && MobUtil.hasVisualLineOfSight(player, wight)){
+                    wight.lookTime += 1;
 
-                        if (wight.lookTime >= MathHelper.secondsToTicks(3)){
-                            if (wight.lookTime % 20 == 0 && wight.getRandom().nextInt(8) == 0) {
-                                wight.lookTime = 0;
-                                ModNetwork.sendToServer(new CTargetPlayerPacket(wight));
-                            }
-                        }
-                    } else {
-                        if (wight.lookTime > 0){
-                            wight.lookTime -= 1;
+                    if (wight.lookTime >= MathHelper.secondsToTicks(3)){
+                        if (wight.lookTime % 20 == 0 && wight.getRandom().nextInt(8) == 0) {
+                            wight.lookTime = 0;
+                            ModNetwork.sendToServer(new CTargetPlayerPacket(wight));
                         }
                     }
+                } else {
+                    if (wight.lookTime > 0){
+                        wight.lookTime -= 1;
+                    }
                 }
-                if (minecraft.options.keyJump.isDown() && !prevJumpBindState && !player.isInWater() && SEHelper.getTicksInAir(player) > 2 && !player.isCreative() && !player.isSpectator() && !player.isPassenger()) {
-                    ModNetwork.sendToServer(new CMultiJumpPacket());
-                    SEHelper.doubleJump(player);
-                }
-                prevJumpBindState = minecraft.options.keyJump.isDown();
             }
+            if (minecraft.options.keyJump.isDown() && !prevJumpBindState && !player.isInWater() && SEHelper.getTicksInAir(player) > 2 && !player.isCreative() && !player.isSpectator() && !player.isPassenger()) {
+                ModNetwork.sendToServer(new CMultiJumpPacket());
+                SEHelper.doubleJump(player);
+            }
+            prevJumpBindState = minecraft.options.keyJump.isDown();
         }
     }
 

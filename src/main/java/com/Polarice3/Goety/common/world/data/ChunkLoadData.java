@@ -25,7 +25,6 @@ public class ChunkLoadData extends SavedData {
         ListTag list = tag.getList("Positions", Tag.TAG_COMPOUND);
         for (int i = 0; i < list.size(); i++) {
             CompoundTag entry = list.getCompound(i);
-            // 1.21 stores BlockPos values behind an explicit tag key; keep a fallback for older X/Y/Z saves.
             BlockPos pos = NbtUtils.readBlockPos(entry, "Pos")
                     .orElseGet(() -> new BlockPos(entry.getInt("X"), entry.getInt("Y"), entry.getInt("Z")));
             int radius = entry.getInt("Radius");
@@ -66,7 +65,6 @@ public class ChunkLoadData extends SavedData {
     }
 
     public static ChunkLoadData get(ServerLevel level) {
-        // DimensionDataStorage now takes a Factory bundling the constructor and registry-aware loader.
         return level.getDataStorage().computeIfAbsent(new SavedData.Factory<>(ChunkLoadData::create, ChunkLoadData::load), DATA_NAME);
     }
 }

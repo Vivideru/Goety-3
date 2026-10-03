@@ -32,7 +32,6 @@ public class OminousBrazierStatueBlock extends StatueBlock {
     }
 
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // This toggle does not depend on the held item, so the 1.21 block-only hook is the correct dispatch path.
         RandomSource randomsource = pLevel.getRandom();
         if (canLight(pState)){
             pLevel.playSound((Player)null, pPos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (randomsource.nextFloat() - randomsource.nextFloat()) * 0.2F + 1.0F);

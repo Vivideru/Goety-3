@@ -32,12 +32,10 @@ public class ModDragonFireball extends AbstractHurtingProjectile {
     }
 
     public ModDragonFireball(Level pWorld, double pX, double pY, double pZ, double pAccelX, double pAccelY, double pAccelZ) {
-        // 1.21 projectile constructors carry acceleration as a Vec3 instead of separate xyz parameters.
         super(ModEntityType.MOD_DRAGON_FIREBALL.get(), pX, pY, pZ, new Vec3(pAccelX, pAccelY, pAccelZ), pWorld);
     }
 
     public ModDragonFireball(Level pWorld, LivingEntity pOwner, double pAccelX, double pAccelY, double pAccelZ) {
-        // 1.21 projectile constructors carry acceleration as a Vec3 instead of separate xyz parameters.
         super(ModEntityType.MOD_DRAGON_FIREBALL.get(), pOwner, new Vec3(pAccelX, pAccelY, pAccelZ), pWorld);
     }
 

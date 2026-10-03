@@ -55,7 +55,6 @@ public class ReviveServantItem extends Item {
             }
             entity.save(entityTag);
             CompoundTag itemNBT = tag(stack);
-            // ItemStack root NBT was removed in 1.21; keep revive entity data in CUSTOM_DATA.
             itemNBT.put("entity", entityTag);
             setTag(stack, itemNBT);
         }

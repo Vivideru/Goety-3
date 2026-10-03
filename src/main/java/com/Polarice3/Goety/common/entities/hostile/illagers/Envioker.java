@@ -154,7 +154,6 @@ public class Envioker extends HuntingIllagerEntity {
             int enchantmentLevel = i;
             Holder<Enchantment> sharpness = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS);
             Holder<Enchantment> knockback = pLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.KNOCKBACK);
-            // 1.21 stores enchantments as registry holders on item components; update the component instead of mutating a raw map.
             EnchantmentHelper.updateEnchantments(itemstack, enchantments -> {
                 enchantments.set(sharpness, enchantmentLevel);
                 enchantments.set(knockback, enchantmentLevel);

@@ -45,13 +45,11 @@ public class DarkScytheItem extends TieredItem {
     }
 
     private static ItemAttributeModifiers createScytheAttributes(Tier itemTier) {
-        // Item attributes are built during registration before configs load, so use the declared defaults here.
         initialDamage = DEFAULT_BASE_DAMAGE + itemTier.getAttackDamageBonus();
         double attackSpeed = 4.0D - DEFAULT_ATTACK_SPEED;
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE, com.Polarice3.Goety.utils.ModAttributeUtil.create(BASE_ATTACK_DAMAGE_ID, initialDamage - 1.0D, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .add(Attributes.ATTACK_SPEED, com.Polarice3.Goety.utils.ModAttributeUtil.create(BASE_ATTACK_SPEED_ID, -attackSpeed, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
-                // NeoForge's old ENTITY_REACH attribute is vanilla ENTITY_INTERACTION_RANGE in 1.21.
                 .add(Attributes.ENTITY_INTERACTION_RANGE, com.Polarice3.Goety.utils.ModAttributeUtil.create("item.goety.scythe.reach", 1.0F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
                 .build();
     }
@@ -65,7 +63,6 @@ public class DarkScytheItem extends TieredItem {
     }
 
     protected int getConfiguredMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.SpecialToolsDurability, ModTiers.SPECIAL.getUses());
     }
 
@@ -173,14 +170,12 @@ public class DarkScytheItem extends TieredItem {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState blockState) {
-        // Minecraft 1.21 asks the stack-aware hook for tool checks, so mirror the scythe's legacy hoe/cobweb behavior.
         return this.isCorrectToolForDrops(blockState);
     }
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         ResourceLocation enchantmentId = enchantment.unwrapKey().map(ResourceKey::location).orElse(null);
-        // Minecraft 1.21 exposes ranged weapon enchantments as main-hand enchantments, so use item tags plus explicit Goety allowances.
         return super.supportsEnchantment(stack, enchantment)
                 || enchantment.is(Enchantments.LOOTING)
                 || enchantment.is(Enchantments.FORTUNE)

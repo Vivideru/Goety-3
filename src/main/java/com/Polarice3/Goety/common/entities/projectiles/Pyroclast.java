@@ -146,7 +146,6 @@ public class Pyroclast extends ThrowableProjectile implements ISpellEntity {
     public void explode(){
         if (!this.level().isClientSide) {
             Entity owner = this.getOwner();
-            // Keep Cataclysm compatibility isolated because this owner type uses its own explosion loot rules.
             if (owner != null && owner.getType().getDescriptionId().contains("netherite_monstrosity")) {
                 boolean flag = this.isDangerous();
                 LootingExplosion.Mode lootMode = CuriosFinder.hasWanting(owner) ? LootingExplosion.Mode.LOOT : LootingExplosion.Mode.REGULAR;

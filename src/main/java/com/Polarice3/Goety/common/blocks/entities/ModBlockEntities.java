@@ -16,7 +16,6 @@ public class ModBlockEntities {
             ModBlocks.SHADE_SARCOPHAGUS.get(), ModBlocks.STONE_SARCOPHAGUS.get(), ModBlocks.DEEPSLATE_SARCOPHAGUS.get(), ModBlocks.SANDSTONE_SARCOPHAGUS.get(), ModBlocks.OMINOUS_SARCOPHAGUS.get(), ModBlocks.CRYPT_SARCOPHAGUS.get()).build(null));
 
     private static Stream<Block> boundBlocks() {
-        // Block entity registration can run while unrelated block holders from the same DeferredRegister are still unbound.
         return ModBlocks.BLOCKS.getEntries().stream()
                 .filter(DeferredHolder::isBound)
                 .map(DeferredHolder::get);

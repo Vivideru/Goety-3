@@ -108,7 +108,6 @@ public class WindBlowerBlockEntity extends BlockEntity {
                 case WEST -> blockPos2 = blockPos2.offset(0, 1, 1);
                 case NORTH -> blockPos2 = blockPos2.offset(1, 1, 0);
             }
-            // AABB no longer accepts BlockPos endpoints directly in 1.21.
             return AABB.encapsulatingFullBlocks(this.getBlockPos(), blockPos2);
         } else {
             return new AABB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
@@ -129,7 +128,6 @@ public class WindBlowerBlockEntity extends BlockEntity {
                     double y = vec3d.y;
                     if (facing.getAxis().isHorizontal()) {
                         double strength = MobUtil.isShifting(entity) ? 0.0D : 0.2D;
-                        // 1.21 is stricter about server-authored movement updates; write the velocity directly so fan pushes sync reliably.
                         entity.setDeltaMovement(vec3d.add(
                                 Mth.sin(facing.getOpposite().toYRot() * (float) Math.PI / 180.0F) * strength,
                                 0.0D,
@@ -153,7 +151,6 @@ public class WindBlowerBlockEntity extends BlockEntity {
                         entity.hasImpulse = true;
                         entity.resetFallDistance();
                     } else {
-                        // 1.21 is stricter about server-authored movement updates; write the velocity directly so fan pushes sync reliably.
                         entity.setDeltaMovement(vec3d.add(0.0D, -0.2D, 0.0D));
                         entity.hasImpulse = true;
                     }

@@ -58,7 +58,6 @@ public class ArcaBlock extends BaseEntityBlock implements IBlockExtension {
     }
 
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // Arca only responds to empty-hand block actions, which are routed through useWithoutItem in 1.21.
         if (pState.hasBlockEntity()) {
             BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
             if (pPlayer.getMainHandItem().isEmpty()) {

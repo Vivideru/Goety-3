@@ -71,7 +71,8 @@ public class RaidingHorn extends Item {
         return stack;
     }
 
-    public int getUseDuration(ItemStack stack) {
+    @Override
+    public int getUseDuration(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
         return 25;
     }
 

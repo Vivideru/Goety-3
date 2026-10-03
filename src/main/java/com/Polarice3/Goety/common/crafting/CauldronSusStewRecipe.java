@@ -96,7 +96,6 @@ public class CauldronSusStewRecipe extends CauldronRecipe {
         ItemStack stew = new ItemStack(Items.SUSPICIOUS_STEW);
         FlowerBlock flower = findFlowerIn(container);
         if (flower != null) {
-            // Suspicious stew effects moved from item NBT to a data component in 1.21.
             stew.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, flower.getSuspiciousEffects());
         }
         return stew;

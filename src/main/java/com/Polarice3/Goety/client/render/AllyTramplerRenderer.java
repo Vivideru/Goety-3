@@ -32,7 +32,6 @@ public class AllyTramplerRenderer extends MobRenderer<AllyTrampler, TramplerMode
     }
 
     public ResourceLocation getTextureLocation(AllyTrampler p_116292_) {
-        // The saddle is painted into the texture, so an unsaddled Trampler uses the bare one.
         return p_116292_.hasSaddle() ? TEXTURE : UNARMORED;
     }
 

@@ -171,7 +171,6 @@ import static net.neoforged.neoforge.event.entity.living.LivingChangeTargetEvent
 public class ModEvents {
 
     public static void registerMissingMappingAliases() {
-        // NeoForge 1.21 removed MissingMappingsEvent; registry aliases preserve the same old-id to new-id remaps.
         BuiltInRegistries.ENTITY_TYPE.addAlias(Goety.location("ally_vex"), ModEntityType.VEX_SERVANT.getId());
         BuiltInRegistries.ENTITY_TYPE.addAlias(Goety.location("ally_irk"), ModEntityType.IRK_SERVANT.getId());
         BuiltInRegistries.ENTITY_TYPE.addAlias(Goety.location("ally_trampler"), ModEntityType.TRAMPLER_SERVANT.getId());
@@ -184,8 +183,6 @@ public class ModEvents {
     public static void onPlayerClone(PlayerEvent.Clone event) {
         Player player = event.getEntity();
         Player original = event.getOriginal();
-
-        // NeoForge attachments are available directly during clone handling.
 
         ILichdom capability2 = LichdomHelper.getCapability(original);
         ILichdom lichdom = LichdomHelper.getCapability(player);
@@ -258,10 +255,8 @@ public class ModEvents {
                         || Math.abs(maxHealth.getBaseValue() - DefaultAttributes.getSupplier(livingType)
                         .getBaseValue(Attributes.MAX_HEALTH)) < 0.000001D;
                 if (usesRegisteredBase) {
-                    // Attribute suppliers are built before common configs load in 1.21, so refresh untouched mobs when they enter the server level.
                     configurableAttributes.setConfigurableAttributes();
                     if (wasAtFullHealth) {
-                        // Keep freshly spawned mobs full while preserving damage already stored on loaded entities.
                         livingEntity.setHealth(livingEntity.getMaxHealth());
                     }
                 }
@@ -283,7 +278,6 @@ public class ModEvents {
                     creeper.goalSelector.addGoal(3, new AvoidEntityGoal<>(creeper, Player.class, (target) -> target != null && CuriosFinder.hasCurio(target, ModItems.FELINE_AMULET.get()), 6.0F, 1.0D, 1.2D, EntitySelector.NO_SPECTATORS::test));
                 }
                 if (entity instanceof Zombie zombie) {
-                    // 1.21 hides NearestAttackableTargetGoal's target type; vanilla zombies already target villagers, so attach the matching Prisoner target directly.
                     zombie.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(zombie, Prisoner.class, false));
                 }
             }
@@ -293,7 +287,6 @@ public class ModEvents {
                 ModDragonFireball dragonFireball;
                 if (original.getOwner() instanceof LivingEntity livingEntity) {
                     Vec3 movement = original.getDeltaMovement();
-                    // 1.21 no longer exposes projectile acceleration fields; use the current movement vector to preserve the replacement fireball direction.
                     dragonFireball = new ModDragonFireball(entity.level(), livingEntity, movement.x, movement.y, movement.z);
                 } else {
                     dragonFireball = new ModDragonFireball(ModEntityType.MOD_DRAGON_FIREBALL.get(), entity.level());
@@ -413,7 +406,6 @@ public class ModEvents {
                 serverWorld.getChunkSource().addRegionTicket(
                         ModTicketTypes.BLOCK, chunkPos, radius, pos);
                 BlockEntity be = serverWorld.getBlockEntity(pos);
-                // Saved loaders may have been disabled since the previous session.
                 if (!(be instanceof IChunkLoader loader) || !loader.shouldChunkLoad()) {
                     serverWorld.getChunkSource().removeRegionTicket(ModTicketTypes.BLOCK, chunkPos, radius, pos);
                     toRemove.add(pos);
@@ -429,7 +421,6 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void worldUnload(LevelEvent.Unload event) {
-        // Custom raid members are handled by the raid spawn hook; Raid.RaiderType.values() is immutable from this path.
         if (!event.getLevel().isClientSide() && event.getLevel() instanceof ServerLevel serverWorld) {
             ILLAGER_SPAWN_MAP.remove(serverWorld);
             WIGHT_SPAWN_MAP.remove(serverWorld);
@@ -593,7 +584,6 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void LivingEffects(EntityTickEvent.Post event){
-        // Entity tick events can fire for non-living entities in NeoForge 1.21, so guard living-only state updates.
         if (!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
@@ -796,7 +786,6 @@ public class ModEvents {
                         }
                     }
                     int foodLevel = Math.max(0, ((VillagerAccessor) villager).goety$getFoodLevel());
-                    // Reading the field directly avoids serializing the full villager and every attachment on each entity tick.
                     if (MiscCapHelper.getCustomFoodLevel(villager) != foodLevel) {
                         MiscCapHelper.setCustomFoodLevel(villager, foodLevel);
                     }
@@ -929,7 +918,6 @@ public class ModEvents {
                         .getOrThrow(Enchantments.FORTUNE);
                 int fortuneLevel = tool.getEnchantmentLevel(fortune);
 
-                // These herb seeds were granted by the legacy break event rather than the grass loot tables.
                 if (player.level().getRandom().nextFloat() < 0.125F) {
                     int count = 1 + RandomUtil.nextInt(player.level().getRandom(), fortuneLevel);
                     Block.popResource(player.level(), event.getPos(), new ItemStack(ModBlocks.HENBANE_SEEDS.get(), count));
@@ -984,14 +972,12 @@ public class ModEvents {
             dirty = true;
         }
         if (dirty) {
-            // Batch per-tick misc changes so mobs with active Goety state only sync once, and untouched mobs do not create attachments.
             MiscCapHelper.sendMiscUpdatePacket(livingEntity);
         }
     }
 
     private static void copyToolEnchantmentsWithSilkTouch(Player player, ItemStack source, ItemStack fakeItem) {
         Holder<Enchantment> silkTouch = player.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SILK_TOUCH);
-        // 1.21 stores enchantments as item components; copy the source component and force Silk Touch for the fake harvesting tool.
         ItemEnchantments sourceEnchantments = EnchantmentHelper.getEnchantmentsForCrafting(source);
         EnchantmentHelper.updateEnchantments(fakeItem, enchantments -> {
             for (it.unimi.dsi.fastutil.objects.Object2IntMap.Entry<Holder<Enchantment>> entry : sourceEnchantments.entrySet()) {
@@ -1151,7 +1137,6 @@ public class ModEvents {
         if (ModDamageSource.isMagicFire(event.getSource())){
             float amount = event.getAmount();
             if (victim.fireImmune() && !victim.hasEffect(GoetyEffects.BURN_HEX)) {
-                // Burn Hex suppresses the normal fire-immunity reduction for magical flames.
                 amount /= 2.0F;
             }
             int k = MobUtil.getDamageProtection(victim, victim.damageSources().inFire());
@@ -1192,7 +1177,6 @@ public class ModEvents {
             Entity entity = event.getSource().getEntity();
             if (entity instanceof Mob mob) {
                 if (mob.getType().is(ModTags.EntityTypes.VILLAGE_GUARDS)) {
-                    // 1.21 removed DamageSource#isIndirect; matching direct and causing entities keeps this as a melee-only guard check.
                     if (event.getSource().getDirectEntity() == event.getSource().getEntity()) {
                         if (mob.getTarget() != victim) {
                             event.setCanceled(true);
@@ -1209,7 +1193,6 @@ public class ModEvents {
         if (target instanceof Player player) {
             if (MobUtil.starAmuletActive(player)){
                 if (event.getSource().getDirectEntity() instanceof AbstractArrow arrow && !(arrow.getOwner() instanceof Apostle && target.level().getDifficulty() == Difficulty.HARD)){
-                    // LivingDamageEvent.Pre is not cancellable in 1.21; zero damage preserves the old cancel outcome.
                     event.setNewDamage(0.0F);
                 }
             }
@@ -1311,7 +1294,6 @@ public class ModEvents {
             }
         }
         if (world instanceof ServerLevel serverLevel) {
-            // Illague conversion is handled while the effect is active; repeating it on death can duplicate conversion state.
             if (killed instanceof AbstractIllager illager){
                 if (!illager.getType().getDescriptionId().contains("magispeller")
                         && !illager.getType().getDescriptionId().contains("faker")
@@ -1372,7 +1354,6 @@ public class ModEvents {
                             }
                             if (killed instanceof Player player1) {
                                 ItemStack head = new ItemStack(Items.PLAYER_HEAD);
-                                // Player head ownership moved from raw item NBT to the profile data component in 1.21.
                                 head.set(DataComponents.PROFILE, new ResolvableProfile(player1.getGameProfile()));
                                 killed.spawnAtLocation(head);
                             }
@@ -1430,7 +1411,6 @@ public class ModEvents {
             Holder<Enchantment> looting = attacker.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.LOOTING);
             lootingLevel = EnchantmentHelper.getEnchantmentLevel(looting, attacker);
         }
-        // LivingDropsEvent no longer exposes the precomputed looting value, so rebuild it and then apply Goety's existing modifiers.
         return LootingLevelHelper.modifyLootingLevel(damageSource, living, lootingLevel);
     }
 
@@ -1763,7 +1743,6 @@ public class ModEvents {
         if (!(event instanceof EntityTeleportEvent.TeleportCommand)
                 && !(event instanceof EntityTeleportEvent.SpreadPlayersCommand)
                 && event.getEntity() instanceof Player player) {
-            // Command teleports are administrative actions and must not trigger the Dragon Ring blast.
             CuriosFinder.dragonBlast(player, event.getPrev());
         }
     }

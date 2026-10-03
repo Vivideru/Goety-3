@@ -97,7 +97,6 @@ public class PedestalBlock extends BaseEntityBlock implements IBlockExtension, S
                 }
             }
         }
-        // The old use hook handled both empty and held-item clicks; useItemOn preserves item insertion/removal clicks.
         return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 
@@ -105,7 +104,6 @@ public class PedestalBlock extends BaseEntityBlock implements IBlockExtension, S
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
             if (!pLevel.isClientSide && tileentity instanceof PedestalBlockEntity pedestal) {
-                // The replacement state may no longer expose a capability, so drop from the block entity that is still being removed.
                 dropInventoryItems(pLevel, pPos, pedestal.itemStackHandler);
             }
 

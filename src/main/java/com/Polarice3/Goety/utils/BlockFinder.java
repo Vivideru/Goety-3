@@ -110,7 +110,6 @@ public class BlockFinder {
         if (target.distanceTo(eyePos) > 128.0D) {
             return false;
         }
-        // 1.21 ClipContext dereferences the entity parameter, so entity-less probes must use an empty collision context instead of null.
         return level.clip(new ClipContext(eyePos, target, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty())).getType() == HitResult.Type.MISS;
     }
 
@@ -174,7 +173,6 @@ public class BlockFinder {
     private static HitResult blockRayTrace(Level level, BlockPos blockPos) {
         Vec3 startPos = new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ());
         Vec3 endPos = new Vec3(blockPos.getX(), 0, blockPos.getZ());
-        // 1.21 ClipContext dereferences the entity parameter, so entity-less probes must use an empty collision context instead of null.
         return level.clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, CollisionContext.empty()));
     }
 
@@ -277,7 +275,6 @@ public class BlockFinder {
 
             if (flag1) {
                 AABB aabb = entity.getBoundingBox().move(blockpos);
-                // Collision and liquid checks can force chunk generation; teleport validation must stay inside already loaded chunks.
                 if (isLoaded(level, aabb) && level.noCollision(entity, aabb) && !level.containsAnyLiquid(aabb)) {
                     flag = true;
                 }
@@ -314,7 +311,6 @@ public class BlockFinder {
 
             if (flag1) {
                 AABB aabb = entity.getBoundingBox().move(vec31);
-                // Collision and liquid checks can force chunk generation; teleport validation must stay inside already loaded chunks.
                 if (isLoaded(level, aabb) && level.noCollision(entity, aabb) && !level.containsAnyLiquid(aabb)) {
                     flag = true;
                 }
@@ -1193,7 +1189,6 @@ public class BlockFinder {
             }
 
             GameType type = player.getAbilities().instabuild ? GameType.CREATIVE : GameType.SURVIVAL;
-            // NeoForge 1.21 exposes block breaking through CommonHooks.fireBlockBreak and no longer returns XP from the hook.
             BlockEvent.BreakEvent breakEvent = CommonHooks.fireBlockBreak(world, type, player, pos, blockstate);
             int exp = 0;
             if (breakEvent.isCanceled()) {

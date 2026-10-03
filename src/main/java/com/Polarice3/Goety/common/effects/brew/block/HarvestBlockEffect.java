@@ -73,7 +73,6 @@ public class HarvestBlockEffect extends BrewEffect {
         AtomicBoolean removedReplant = new AtomicBoolean(false);
         ItemStack fakeHoe = new ItemStack(Items.IRON_HOE);
         if (pAmplifier > 0) {
-            // Enchantments are registry holders in 1.21, so resolve Fortune from the level registry before applying it to the synthetic harvest tool.
             fakeHoe.enchant(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE), pAmplifier);
         }
 

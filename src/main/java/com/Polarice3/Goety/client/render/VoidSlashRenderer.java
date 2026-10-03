@@ -53,7 +53,6 @@ public class VoidSlashRenderer extends EntityRenderer<VoidSlash> {
         float halfWidth = width * 0.5F;
 
         ColorUtil colorUtil = new ColorUtil(ChatFormatting.LIGHT_PURPLE);
-        // The 1.21 entity render pass can provide an unopened base cutout buffer here; the wraith RenderType is the intended glow pass and stays valid for this projectile.
         consumer.addVertex(poseMatrix, -halfWidth, -0.1F, -halfWidth).setColor(colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(0.0F, 1.0F, 0.0F);
         consumer.addVertex(poseMatrix, halfWidth, -0.1F, -halfWidth).setColor(colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(0.0F, 1.0F, 0.0F);
         consumer.addVertex(poseMatrix, halfWidth, -0.1F, halfWidth).setColor(colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(light).setNormal(0.0F, 1.0F, 0.0F);

@@ -87,7 +87,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
     }
 
     protected void updateControlFlags() {
-        // Goety raiders can ride Trampler even when generated #minecraft:raiders tag data is not packed.
         boolean flag = !(this.getControllingPassenger() instanceof Mob mob) || MobUtil.isRaider(mob);
         boolean flag1 = !(this.getVehicle() instanceof Boat);
         this.goalSelector.setControlFlag(Goal.Flag.MOVE, flag);
@@ -100,7 +99,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, AttributesConfig.get(AttributesConfig.TramplerHealth))
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.TramplerArmor))
-                // Step height moved from NeoForge's additive attribute to vanilla's STEP_HEIGHT attribute in 1.21.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.FOLLOW_RANGE, 32.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
@@ -124,7 +122,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
         ItemStack itemStack = this.getItemBySlot(EquipmentSlot.CHEST);
         if(!itemStack.isEmpty()) {
             CompoundTag compoundTag = new CompoundTag();
-            // ItemStack NBT is registry-aware in 1.21, so saving must include this entity's registry access.
             itemStack.save(this.registryAccess(), compoundTag);
             pCompound.put("ArmorItem", compoundTag);
         }
@@ -134,7 +131,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
         super.readAdditionalSaveData(pCompound);
         CompoundTag armorItem = pCompound.getCompound("ArmorItem");
         if(!armorItem.isEmpty()) {
-            // ItemStack deserialization is registry-aware in 1.21 and may return empty when legacy data is invalid.
             this.setArmorEquipment(ItemStack.parseOptional(this.registryAccess(), armorItem));
         }
         this.setConfigurableAttributes();
@@ -154,7 +150,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
 
     @Override
     public Vec3 getPassengerRidingPosition(Entity passenger) {
-        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
         return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 
@@ -373,7 +368,6 @@ public class Trampler extends Raider implements ICharger, ICustomAttributes {
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_29531_) {
-        // LivingEntity#getDimensions is final in 1.21; dynamic standing height now belongs in getDefaultDimensions.
         if (this.clientSideStandAnimation > 0.0F) {
             float f = this.clientSideStandAnimation / 6.0F;
             float f1 = 1.0F + f;

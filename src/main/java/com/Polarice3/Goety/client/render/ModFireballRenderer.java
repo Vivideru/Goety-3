@@ -26,7 +26,6 @@ public class ModFireballRenderer<T extends Entity & ItemSupplier> extends Thrown
         } else if (p_116085_.getType() == ModEntityType.LAVABALL.get()){
             entityType = EntityType.FIREBALL;
         }
-        // 1.21 made the dispatcher renderer map private; keep the existing thrown-item fallback instead of reaching into internals.
         super.render(p_116085_, p_116086_, p_116087_, p_116088_, p_116089_, p_116090_);
     }
 }

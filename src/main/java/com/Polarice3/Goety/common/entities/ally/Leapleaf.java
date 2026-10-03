@@ -104,7 +104,6 @@ public class Leapleaf extends Summoned implements IMobTyped{
                 .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.LeapleafDamage))
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
                 .add(Attributes.ATTACK_KNOCKBACK, 1.0D)
-                // 1.21 moved step height to an attribute; keep the old one-block step behavior through the entity attributes.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.FOLLOW_RANGE, 16.0D);
     }

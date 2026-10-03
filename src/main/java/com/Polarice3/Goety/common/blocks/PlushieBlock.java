@@ -51,7 +51,6 @@ public class PlushieBlock extends BaseEntityBlock implements SimpleWaterloggedBl
 
     private PlushieBlock(Properties properties, int type) {
         super(properties);
-        // Every plushie already has its own block ID, so storing the type in every world block state is redundant.
         this.type = type;
         this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0).setValue(WATERLOGGED, Boolean.FALSE));
     }
@@ -92,7 +91,6 @@ public class PlushieBlock extends BaseEntityBlock implements SimpleWaterloggedBl
             p_48805_.playSound(null, p_48806_, ModSounds.PLUSHIE_SQUEEZE.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             p_48805_.gameEvent(p_48807_, GameEvent.BLOCK_ACTIVATE, p_48806_);
         }
-        // The old use hook consumed all right-clicks; useItemOn preserves that behavior when a held item is present.
         return ItemInteractionResult.sidedSuccess(p_48805_.isClientSide);
     }
 

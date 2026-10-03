@@ -131,7 +131,6 @@ public class DarkAnvilMenu extends AnvilMenu {
             this.repairItemCountCost = 0;
             boolean flag = false;
 
-            // Based on vanilla 1.21 AnvilMenu#createResult; kept local so Dark Anvils can preserve their configurable cost rules.
             if (!itemstack2.isEmpty()) {
                 flag = itemstack2.has(DataComponents.STORED_ENCHANTMENTS);
                 if (itemstack1.isDamageableItem() && itemstack1.getItem().isValidRepairItem(itemstack, itemstack2)) {

@@ -146,7 +146,6 @@ public class RedstoneGolem extends RaiderGolemServant {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
-        // NeoForge 1.21 supplies ServerEntity during spawn packet creation; summoned pose is restored through finalizeSpawn/synced pose instead of the old integer packet payload.
         return super.getAddEntityPacket(serverEntity);
     }
 
@@ -415,13 +414,11 @@ public class RedstoneGolem extends RaiderGolemServant {
     }
 
     public void handleDamageEvent(DamageSource p_270229_) {
-        // LivingEntity owns the private damage bookkeeping in 1.21; delegate after preserving the custom animation trigger.
         super.handleDamageEvent(p_270229_);
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_29531_) {
         if (this.isSitting()) {
-            // LivingEntity#getDimensions is final in 1.21, so the seated size adjustment belongs in the default-dimensions hook.
             return super.getDefaultDimensions(p_29531_).scale(1.0F, 0.85F);
         } else {
             return super.getDefaultDimensions(p_29531_);
@@ -513,7 +510,6 @@ public class RedstoneGolem extends RaiderGolemServant {
                         }
                         if (this.noveltyTick == 42) {
                             this.playSound(ModSounds.REDSTONE_GOLEM_GROWL.get());
-                            // GameEvent.ENTITY_ROAR was removed in 1.21; ENTITY_ACTION preserves the vibration semantics for this roar-like action.
                             this.gameEvent(GameEvent.ENTITY_ACTION);
                         }
                         if (this.noveltyTick >= 92 || this.getTarget() != null || this.hurtTime > 0) {

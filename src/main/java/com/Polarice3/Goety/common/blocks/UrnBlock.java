@@ -98,7 +98,6 @@ public class UrnBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     }
 
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
-        // UrnBlockEntity no longer exposes a custom-name setter in 1.21; keep placement behavior and skip the removed display-name transfer.
 
     }
 

@@ -20,7 +20,6 @@ public class EntityRenderDispatcherMixin {
                 && LichdomHelper.isLich(player)
                 && LichdomHelper.isInLichMode(player)
                 && LichModeRendererHolder.renderer != null) {
-            // 1.21 removed the string-based player model selector, so lich mode swaps the renderer at dispatch time.
             cir.setReturnValue((EntityRenderer<? super T>) LichModeRendererHolder.renderer);
         }
     }

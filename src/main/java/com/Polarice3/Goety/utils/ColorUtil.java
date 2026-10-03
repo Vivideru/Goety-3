@@ -42,7 +42,6 @@ public class ColorUtil {
     }
 
     public ColorUtil(int colorCode){
-        // Treat spell constants as packed RGB values; Color.decode can preserve unwanted high bits from packet/format values.
         int rgb = colorCode & 0xFFFFFF;
         this.red = FastColor.ARGB32.red(rgb) / 255.0F;
         this.green = FastColor.ARGB32.green(rgb) / 255.0F;
@@ -148,12 +147,10 @@ public class ColorUtil {
         }
 
         public static int opaque(int color) {
-            // This utility stores colors as ARGB/RGB; using ABGR here swaps red and blue for special spell colors.
             return FastColor.ARGB32.opaque(color);
         }
 
         public static int transparent(int color) {
-            // Keep the channel order consistent with the rest of ColorUtil.
             return color(0, color);
         }
 

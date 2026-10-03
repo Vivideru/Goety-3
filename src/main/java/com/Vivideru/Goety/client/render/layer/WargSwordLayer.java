@@ -28,17 +28,13 @@ public class WargSwordLayer extends RenderLayer<Warg, WargModel> {
         }
         poseStack.pushPose();
         this.getParentModel().translateToSword(poseStack);
-        // Match the original mouth guide while compensating for the muzzle bone pitch, keeping the grip inside the jaws.
         poseStack.translate(0.3125F, -0.3125F, -0.1875F);
         SwordMount mount = getSwordMount(warg.getMainHandItem());
         if (mount.verticalOffset() != 0.0F) {
-            // Apply screen-space height correction before rotation so it does not slide the grip along the blade.
             poseStack.translate(0.0F, mount.verticalOffset(), 0.0F);
         }
-        // Flat swords are drawn diagonally, while authored 3D swords need a model-specific angle to share the same blade direction.
         poseStack.mulPose(Axis.ZP.rotationDegrees(mount.rotation()));
         if (mount.gripOffset() != 0.0F) {
-            // Move the authored handle point onto the mouth bone so rotation occurs around the grip instead of the model center.
             poseStack.translate(0.0F, mount.gripOffset(), 0.0F);
         }
         poseStack.scale(2.5F, 2.5F, 2.5F);

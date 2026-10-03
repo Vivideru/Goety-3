@@ -24,7 +24,6 @@ public class EnchantRandomlyFunctionMixin {
 
     @ModifyVariable(method = "run", at = @At("STORE"))
     private List<Holder<Enchantment>> filterEnchants(List<Holder<Enchantment>> enchantments) {
-        // Minecraft 1.21 builds this list with Stream#toList, so return a filtered copy instead of mutating the immutable list.
         return enchantments.stream()
                 .filter(enchantment -> enchantment.unwrapKey().map(key -> !FOCUS_ENCHANTMENTS.contains(key)).orElse(true))
                 .toList();

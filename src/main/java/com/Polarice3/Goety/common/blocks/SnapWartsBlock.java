@@ -53,7 +53,6 @@ public class SnapWartsBlock extends Block implements BonemealableBlock {
 
    public void randomTick(BlockState p_221000_, ServerLevel p_221001_, BlockPos p_221002_, RandomSource p_221003_) {
       int i = p_221000_.getValue(AGE);
-      // ForgeHooks crop events moved to CommonHooks in NeoForge 1.21.
       if (i < 2 && CommonHooks.canCropGrow(p_221001_, p_221002_, p_221000_, p_221001_.random.nextInt(5) == 0)) {
          p_221001_.setBlock(p_221002_, p_221000_.setValue(AGE, i + 1), 2);
          CommonHooks.fireCropGrowPost(p_221001_, p_221002_, p_221000_);

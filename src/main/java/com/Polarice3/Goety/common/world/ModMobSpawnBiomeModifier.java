@@ -29,7 +29,6 @@ public class ModMobSpawnBiomeModifier implements BiomeModifier {
     }
 
     public static MapCodec<ModMobSpawnBiomeModifier> makeCodec() {
-        // Biome modifiers are MapCodec-backed in NeoForge 1.21.
         return MapCodec.unit(new ModMobSpawnBiomeModifier());
     }
 }

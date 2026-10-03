@@ -99,7 +99,6 @@ public class Inferno extends BlazeServant {
         super.dropCustomDeathLoot(serverLevel, p_33574_, p_33576_);
         if (this.isNatural()) {
             if (this.level().getServer() != null) {
-                // 1.21 stores loot tables in reloadable registries keyed by ResourceKey rather than direct ResourceLocation lookup.
                 LootTable loottable = serverLevel.getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, ModLootTables.INFERNO));
                 LootParams.Builder lootparams$builder = (new LootParams.Builder(serverLevel)).withParameter(LootContextParams.THIS_ENTITY, this).withParameter(LootContextParams.ORIGIN, this.position()).withParameter(LootContextParams.DAMAGE_SOURCE, p_33574_).withOptionalParameter(LootContextParams.ATTACKING_ENTITY, p_33574_.getEntity()).withOptionalParameter(LootContextParams.DIRECT_ATTACKING_ENTITY, p_33574_.getDirectEntity());
                 if (this.lastHurtByPlayerTime > 0 && this.lastHurtByPlayer != null) {
@@ -255,7 +254,6 @@ public class Inferno extends BlazeServant {
                     }
 
                     if (this.attackTime <= 0) {
-                        // Charged is a ranged wind-up state; it must not bypass the melee cooldown every server tick.
                         this.attackTime = 20;
                         this.blaze.doHurtTarget(livingentity);
                     }

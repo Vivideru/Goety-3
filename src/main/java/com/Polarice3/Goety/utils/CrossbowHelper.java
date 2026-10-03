@@ -27,7 +27,6 @@ import java.util.List;
 public class CrossbowHelper {
 
     public static List<ItemStack> getChargedProjectiles(ItemStack p_40942_) {
-        // Charged crossbow contents are stored as an item component in 1.21 instead of raw NBT.
         return Lists.newArrayList(p_40942_.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).getItems());
     }
 
@@ -79,7 +78,6 @@ public class CrossbowHelper {
     }
 
     public static void clearChargedProjectiles(ItemStack p_40944_) {
-        // Clearing the component matches vanilla 1.21 crossbow discharge behavior.
         p_40944_.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
     }
 
@@ -92,7 +90,6 @@ public class CrossbowHelper {
                     double d1 = target.getY(0.3333333333333333D) - projectile.getY();
                     double d2 = target.getZ() - shooter.getZ();
                     double d3 = Math.sqrt(d0 * d0 + d2 * d2);
-                    // CrossbowAttackMob no longer exposes a single-projectile hook in 1.21, so custom projectiles keep the vanilla target-leading math locally.
                     projectile.shoot(d0, d1 + d3 * 0.2D, d2, velocity, p_40903_);
                 }
             }else {

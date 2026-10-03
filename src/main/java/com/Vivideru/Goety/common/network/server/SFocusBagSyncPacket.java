@@ -61,7 +61,6 @@ public class SFocusBagSyncPacket {
                 ItemStack stack = slot < packet.contents.size() ? packet.contents.get(slot).copy() : ItemStack.EMPTY;
                 handler.setStackInSlot(slot, stack);
             }
-            // Nested item handlers keep their own client-side storage, so write the synchronized bag back through its parents.
             reference.save();
 
         });

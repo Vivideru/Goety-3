@@ -11,7 +11,7 @@
   "xpLevelCost": 5,
   "ingredients": [
     {
-      "tag": "c:tools/bows"
+      "tag": "c:tools/bow"
     },
     {
       "tag": "c:string"

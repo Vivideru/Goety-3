@@ -88,12 +88,10 @@ public class FireTornado extends AbstractCyclone {
     }
 
     public void hurtMobs(LivingEntity living){
-        // Cyclones hit every tick; skip damage calls during i-frames so failed damage does not spam hurt sounds.
         boolean hellfire = this.getTrueOwner() != null && CuriosFinder.hasUnholySet(this.getTrueOwner());
         if (living.invulnerableTime <= 0) {
             if (this.getTrueOwner() != null) {
                 if (hellfire) {
-                    // Keep the hellfire damage type/effect, but do not reset hurt cooldown on a per-tick cyclone.
                     if (living.hurt(ModDamageSource.hellfire(this, this.getTrueOwner()), (AttributesConfig.get(AttributesConfig.ApostleMagicDamage).floatValue() / 1.5F) + this.getDamage())){
                         living.addEffect(new MobEffectInstance(GoetyEffects.BURN_HEX, 1200));
                     }

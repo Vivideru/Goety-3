@@ -79,7 +79,6 @@ public class NecroBrazierBlock extends BaseEntityBlock implements SimpleWaterlog
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; the brazier inserts or removes the held item here.
         BlockEntity tileentity = pLevel.getBlockEntity(pPos);
         if (tileentity instanceof NecroBrazierBlockEntity burnerTileEntity) {
             ItemStack itemstack = pPlayer.getItemInHand(pHand);

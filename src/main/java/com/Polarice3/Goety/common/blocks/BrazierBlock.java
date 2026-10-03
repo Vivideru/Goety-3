@@ -99,7 +99,6 @@ public class BrazierBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; braziers keep toggling from any right-click.
         RandomSource randomsource = pLevel.getRandom();
         if (canLight(pState)){
             pLevel.playSound((Player)null, pPos, SoundEvents.FIRECHARGE_USE, SoundSource.BLOCKS, 1.0F, (randomsource.nextFloat() - randomsource.nextFloat()) * 0.2F + 1.0F);

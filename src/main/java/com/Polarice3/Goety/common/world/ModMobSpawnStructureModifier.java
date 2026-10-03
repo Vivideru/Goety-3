@@ -29,7 +29,6 @@ public class ModMobSpawnStructureModifier implements StructureModifier {
     }
 
     public static MapCodec<ModMobSpawnStructureModifier> makeCodec() {
-        // Structure modifiers are MapCodec-backed in NeoForge 1.21.
         return MapCodec.unit(new ModMobSpawnStructureModifier());
     }
 }

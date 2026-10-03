@@ -97,7 +97,6 @@ public class HauntedJugBlockEntity extends ModBlockEntity {
                         boolean fluidHandler0 = blockEntity != null && !(blockEntity instanceof HauntedJugBlockEntity) && (blockEntity instanceof IFluidHandler || upwardFluidHandler != null) && !blockEntity.getBlockState().getBlock().getDescriptionId().contains("pipe");
                         boolean water = blockState.getBlock() == Blocks.WATER_CAULDRON && blockState.getValue(LayeredCauldronBlock.LEVEL) < 3;
                         boolean vanillaCauldron = blockState.getBlock() == Blocks.CAULDRON || water;
-                        // Crafted cauldron outputs consume their stored level per item, so refilling them here would duplicate the result indefinitely.
                         boolean brewCauldron = blockState.getBlock() instanceof BrewCauldronBlock && blockEntity instanceof BrewCauldronBlockEntity cauldronEntity && blockState.getValue(BrewCauldronBlock.LEVEL) < 3 && BrewUtils.isEmpty(cauldronEntity.getBrew()) && cauldronEntity.mode != BrewCauldronBlockEntity.Mode.CRAFTED;
                         AABB aabb = new AABB(blockPos);
                         List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, aabb, livingEntity -> livingEntity.isAlive() && (livingEntity.getRemainingFireTicks() > 0 || livingEntity instanceof Axolotl));
@@ -182,7 +181,6 @@ public class HauntedJugBlockEntity extends ModBlockEntity {
 
     @Override
     public void readNetwork(CompoundTag compoundNBT) {
-        // Fluid NBT uses registry-aware serialization in 1.21.
         if (this.level != null) {
             this.fluidTank.readFromNBT(this.level.registryAccess(), compoundNBT);
         }
@@ -190,7 +188,6 @@ public class HauntedJugBlockEntity extends ModBlockEntity {
 
     @Override
     public CompoundTag writeNetwork(CompoundTag pCompound) {
-        // Fluid NBT uses registry-aware serialization in 1.21.
         return this.level != null ? this.fluidTank.writeToNBT(this.level.registryAccess(), pCompound) : pCompound;
     }
 

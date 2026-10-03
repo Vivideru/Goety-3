@@ -69,7 +69,6 @@ public class DarkAltarBlock extends BaseEntityBlock implements IBlockExtension, 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack clickedStack, BlockState state, Level world, BlockPos pos, Player player,
                                              InteractionHand hand, BlockHitResult hit) {
-        // Item-based block interaction replaced the old use hook in 1.21; altar activation depends on the held stack.
         BlockEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof DarkAltarBlockEntity darkAltarTile) {
             IItemHandler handler = darkAltarTile.itemStackHandler;
@@ -95,7 +94,6 @@ public class DarkAltarBlock extends BaseEntityBlock implements IBlockExtension, 
             if (tileentity instanceof DarkAltarBlockEntity darkAltar) {
                 darkAltar.stopRitual(false);
                 if (!pLevel.isClientSide) {
-                    // Read the altar inventory directly because its block capability is unavailable after state replacement.
                     dropInventoryItems(pLevel, pPos, darkAltar.itemStackHandler);
                 }
             }

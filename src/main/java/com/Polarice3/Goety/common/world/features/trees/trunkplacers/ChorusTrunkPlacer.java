@@ -43,7 +43,6 @@ public class ChorusTrunkPlacer extends TrunkPlacer {
         this.branchCount = p_272873_;
         this.branchHorizontalLength = p_272789_;
         this.branchStartOffsetFromTop = p_272917_;
-        // IntProvider no longer exposes UniformInt bounds here; sample the same provider twice to preserve branch variability.
         this.secondBranchStartOffsetFromTop = p_272917_;
         this.branchEndOffsetFromTop = p_272948_;
     }

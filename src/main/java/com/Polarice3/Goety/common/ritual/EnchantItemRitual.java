@@ -31,7 +31,6 @@ public class EnchantItemRitual extends Ritual{
                            List<Ingredient> remainingAdditionalIngredients) {
         Holder<Enchantment> enchantment = this.recipe.getEnchantmentHolder();
         return enchantment != null
-                // NeoForge item hooks carry custom enchantment rules that 1.21's raw Enchantment.canEnchant tag check cannot see.
                 && (activationItem.supportsEnchantment(enchantment)
                 || activationItem.getItem() instanceof BookItem
                 || activationItem.getItem() instanceof EnchantedBookItem)
@@ -40,7 +39,6 @@ public class EnchantItemRitual extends Ritual{
     }
 
     public boolean identify(Level world, BlockPos darkAltarPos, Player player, ItemStack activationItem) {
-        // Enchantments can resolve after recipe decoding in 1.21, so identify enchant rituals from the live holder lookup.
         return this.recipe.getEnchantmentHolder() != null
                 && this.areAdditionalIngredientsFulfilled(world, darkAltarPos, player, this.recipe.getIngredients());
     }
@@ -48,8 +46,6 @@ public class EnchantItemRitual extends Ritual{
     public int getLevelCost(ItemStack activationItem){
         Holder<Enchantment> enchantment = this.recipe.getEnchantmentHolder();
         if (EnchantmentHelper.hasAnyEnchantments(activationItem)){
-            // Enchanted books store their levels in STORED_ENCHANTMENTS.  The
-            // helper selects the correct component for both books and normal items.
             ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(activationItem);
             if (enchantment != null && enchantments.getLevel(enchantment) > 0){
                 return this.recipe.getXPLevelCost() * (enchantments.getLevel(enchantment) + 1);
@@ -96,7 +92,6 @@ public class EnchantItemRitual extends Ritual{
             IItemHandler handler = tileEntity.itemStackHandler;
             handler.insertItem(0, result, false);
         } else {
-            // Enchantments are stored as Holder-keyed data components in 1.21.
             if (enchantments.getLevel(enchantment) > 0) {
                 int j2 = enchantments.getLevel(enchantment) + 1;
                 if (j2 > enchantment.value().getMaxLevel()) {

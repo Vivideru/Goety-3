@@ -355,7 +355,6 @@ public class DarkAltarBlockEntity extends PedestalBlockEntity implements GameEve
         this.level.setBlock(this.getBlockPos(), this.getBlockState().setValue(DarkAltarBlock.LIT, flag), 3);
     }
 
-    // Reuse the ritual XP color because this path runs repeatedly while an altar is active.
     private static final ColorUtil XP_COLOR = new ColorUtil(0xd0e45a);
 
     private void addXPParticles(ServerLevel world) {
@@ -562,7 +561,6 @@ public class DarkAltarBlockEntity extends PedestalBlockEntity implements GameEve
         }
         if (!this.level.isClientSide) {
             this.currentRitualRecipe = null;
-            // Clear the saved recipe id as well, otherwise 1.21 reloads the ritual from the recipe manager after completion.
             this.currentRitualRecipeId = null;
             this.castingPlayerId = null;
             this.castingPlayer = null;

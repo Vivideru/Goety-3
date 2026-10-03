@@ -169,7 +169,6 @@ public class EnderKeeper extends AbstractEnderling implements Enemy {
 
     @Override
     public float maxUpStep() {
-        // 1.21 exposes step height through an override/attribute instead of the removed mutable setter.
         return Math.max(super.maxUpStep(), 2.0F);
     }
 
@@ -681,7 +680,6 @@ public class EnderKeeper extends AbstractEnderling implements Enemy {
             }
         }
         if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            // Clamp before NeoForge damage hooks can expose a value above the configured boss cap.
             damage = Math.min(damage, AttributesConfig.get(AttributesConfig.EnderKeeperDamageCap).floatValue());
         }
         if (this.moddedInvul > 0){
@@ -922,7 +920,6 @@ public class EnderKeeper extends AbstractEnderling implements Enemy {
         return false;
     }
 
-    // Vanilla no longer overrides this hook in 1.21, but local code can still query the boss policy.
     public boolean canChangeDimensions() {
         return false;
     }
@@ -1831,7 +1828,6 @@ public class EnderKeeper extends AbstractEnderling implements Enemy {
     }
 
     public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
-        // The spawn data integer is still used client-side to restore the emerging pose.
         return new ClientboundAddEntityPacket(this, serverEntity, this.hasPose(Pose.EMERGING) ? 1 : 0);
     }
 

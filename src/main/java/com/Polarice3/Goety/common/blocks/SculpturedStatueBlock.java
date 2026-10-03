@@ -68,7 +68,6 @@ public class SculpturedStatueBlock extends StatueBlock {
             BlockPos otherPos = state.getValue(HALF) == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
             level.setBlockAndUpdate(pos, state.setValue(POSE, pose));
             BlockState otherState = level.getBlockState(otherPos);
-            // Both halves carry the pose property, so they must be updated together after a wand interaction.
             if (otherState.is(this)) {
                 level.setBlockAndUpdate(otherPos, otherState.setValue(POSE, pose));
             }

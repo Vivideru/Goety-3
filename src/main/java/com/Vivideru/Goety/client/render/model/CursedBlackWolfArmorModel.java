@@ -24,7 +24,6 @@ public class CursedBlackWolfArmorModel<T extends BlackWolf> extends BlackWolfMod
                 .texOffs(16, 14).addBox(1.5F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.25F))
                 .texOffs(16, 14).addBox(-3.5F, -5.0F, 0.0F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.25F))
                 .texOffs(0, 10).addBox(-2.0F, -0.0156F, -5.0F, 4.0F, 3.0F, 4.0F, new CubeDeformation(0.25F)), PartPose.offset(0.0F, -8.0F, -8.0F));
-        // Split the back spikes between both torso bones and compensate for the rear body's lateral offset.
         hound.addOrReplaceChild("body", CubeListBuilder.create().texOffs(58, 27).addBox(-1.0F, -1.0F, 3.25F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(58, 27).addBox(-1.0F, 3.0F, 3.25F, 0.0F, 2.0F, 3.0F, new CubeDeformation(0.0F))
                 .texOffs(16, 16).addBox(-4.0F, 0.0F, -4.0F, 6.0F, 7.0F, 7.0F, new CubeDeformation(0.25F)), PartPose.offsetAndRotation(1.0F, -9.0F, 2.0F, 1.5708F, 0.0F, 0.0F));

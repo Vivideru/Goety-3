@@ -20,6 +20,5 @@ public class ModBlockSetType {
     public static final BlockSetType CORRUPT_CHORUS =
             BlockSetType.register(new BlockSetType(Goety.location("corrupt_chorus").toString()));
     public static final BlockSetType MOD_METAL =
-            // 1.21 adds wind-charge and arrow activation flags plus explicit pressure plate sensitivity to block set types.
             BlockSetType.register(new BlockSetType(Goety.location("metal").toString(), false, false, false, PressurePlateSensitivity.EVERYTHING, ModSoundTypes.MOD_METAL, SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN, SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON));
 }

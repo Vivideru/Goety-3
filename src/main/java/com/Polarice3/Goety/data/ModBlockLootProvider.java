@@ -59,7 +59,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     }
 
     private LootItemCondition.Builder hasShearsOrSilkTouch() {
-        // Enchantment predicates are registry-backed in 1.21, so build silk touch conditions after registries are available.
         return HAS_SHEARS.or(this.hasSilkTouch());
     }
 
@@ -68,7 +67,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     }
 
     private Holder<Enchantment> fortune() {
-        // Loot enchantment functions now store holders, so resolve Fortune from the provider registry.
         return this.registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE);
     }
 

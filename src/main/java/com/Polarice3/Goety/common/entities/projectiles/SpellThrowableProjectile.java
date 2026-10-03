@@ -72,10 +72,6 @@ public abstract class SpellThrowableProjectile extends SpellTargetProjectile {
       return true;
    }
 
-   /**
-    * Entity#getGravity is final in 1.21.1. Override the default gravity hook instead,
-    * which keeps the old projectile gravity value without replacing vanilla gravity logic.
-    */
    @Override
    protected double getDefaultGravity() {
       return 0.03D;

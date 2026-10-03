@@ -88,7 +88,6 @@ public class TridentStorm extends CastSpellTrap{
                 float damage = SpellConfig.get(SpellConfig.TridentStormDamage).floatValue() * WandUtil.damageMultiply();
                 float radius = 3.0F;
                 List<LivingEntity> targets = new ArrayList<>();
-                // 1.21 exposes entity bounds through EntityDimensions instead of EntityType#getAABB.
                 AABB aabb = EntityType.TRIDENT.getDimensions().makeBoundingBox(this.position());
                 for (Entity entity : this.level().getEntitiesOfClass(Entity.class, aabb.inflate(1, 16, 1))) {
                     LivingEntity livingEntity = MobUtil.getLivingTarget(entity);

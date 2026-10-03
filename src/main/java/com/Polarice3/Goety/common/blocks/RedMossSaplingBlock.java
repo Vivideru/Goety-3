@@ -19,7 +19,6 @@ public class RedMossSaplingBlock extends SaplingBlock {
     }
 
     public TriState canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, BlockState plant) {
-        // NeoForge 1.21 switched soil support decisions to TriState so custom support can defer to vanilla when not matched.
         return state.is(ModTags.Blocks.RED_MOSS_PLANTABLES) ? TriState.TRUE : super.canSustainPlant(state, world, pos, facing, plant);
     }
 }

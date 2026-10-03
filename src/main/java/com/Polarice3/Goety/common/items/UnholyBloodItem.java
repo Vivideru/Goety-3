@@ -22,7 +22,6 @@ public class UnholyBloodItem extends Item {
     public static void addPure(ItemStack p_40737_){
         CompoundTag compoundTag = p_40737_.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
         compoundTag.putBoolean(TAG_PURE, true);
-        // ItemStack root NBT was removed in 1.21; keep purity marker in CUSTOM_DATA.
         CustomData.set(DataComponents.CUSTOM_DATA, p_40737_, compoundTag);
     }
 

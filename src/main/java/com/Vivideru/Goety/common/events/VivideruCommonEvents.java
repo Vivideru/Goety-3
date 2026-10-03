@@ -27,7 +27,6 @@ public class VivideruCommonEvents {
         if (event.getEntity() instanceof LivingEntity living) {
             removeInvalidVivideruWolfArmor(living);
             if (!event.getLevel().isClientSide) {
-                // Configurable attributes are reset while reading entity NBT, so restore the saved Totem bonus after joining the level.
                 WolfTotemBlockEntity.restoreWolfTotemBonus(living, false);
             }
         }
@@ -51,8 +50,15 @@ public class VivideruCommonEvents {
         if ((bodyArmor.is(VivideruItems.DARK_WOLF_ARMOR.get()) || bodyArmor.is(VivideruItems.BLACK_BEAST_DARK_ARMOR.get())
                 || bodyArmor.is(VivideruItems.WARG_DARK_ARMOR.get()))
                 && living.tickCount % 100 == 0 && living.getHealth() < living.getMaxHealth()) {
-            // Dark variants mirror the Dark Armor theme with a slow passive recovery instead of a permanent potion effect.
             living.heal(1.0F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onGeomancyHitsWind(LivingIncomingDamageEvent event) {
+        LivingEntity target = event.getEntity();
+        if (!target.level().isClientSide && com.Vivideru.Goety.common.magic.SpellTypeDamage.isWindMob(target)) {
+            event.setAmount(com.Vivideru.Goety.common.magic.SpellTypeDamage.adjust(target, event.getSource(), event.getAmount()));
         }
     }
 
@@ -66,7 +72,6 @@ public class VivideruCommonEvents {
                 && !event.getSource().is(DamageTypes.THORNS)
                 && event.getSource().getEntity() instanceof LivingEntity attacker
                 && attacker != wearer) {
-            // These custom body armors behave as if the wearer had one level of Thorns without storing an enchantment on the item.
             attacker.hurt(attacker.damageSources().thorns(wearer), 3.0F);
         }
     }
@@ -75,8 +80,6 @@ public class VivideruCommonEvents {
     public static void onWargRiderFall(LivingFallEvent event) {
         if (event.getEntity() instanceof net.minecraft.world.entity.player.Player player
                 && player.getVehicle() instanceof Warg) {
-            // The Warg absorbs the leap's landing; otherwise the rider's own
-            // fall distance is still applied by LivingEntity.
             event.setCanceled(true);
         }
     }
@@ -90,7 +93,6 @@ public class VivideruCommonEvents {
         boolean invalidWargArmor = bodyArmor.getItem() instanceof CursedWargArmorItem armorItem
                 && !armorItem.canEquip(bodyArmor, EquipmentSlot.BODY, living);
         if (invalidWolfArmor || invalidBeastArmor || invalidWargArmor) {
-            // Existing worlds may already contain mobs with this armor in BODY, so strip invalid equips as soon as they are observed.
             living.setItemSlot(EquipmentSlot.BODY, ItemStack.EMPTY);
         }
     }

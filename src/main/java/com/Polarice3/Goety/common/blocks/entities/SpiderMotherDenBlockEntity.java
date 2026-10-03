@@ -44,7 +44,6 @@ public class SpiderMotherDenBlockEntity extends ModBlockEntity{
                             double d1 = this.worldPosition.getY() + serverLevel.getRandom().nextInt(3) - 1;
                             double d2 = (double) this.worldPosition.getZ() + (serverLevel.getRandom().nextDouble() - serverLevel.getRandom().nextDouble()) * 4.0D + 0.5D;
                             Entity spiderForBounds = EntityType.SPIDER.create(serverLevel);
-                            // EntityType#getAABB was removed in 1.21, so create a temporary spider to ask for the spawn bounding box.
                             if (spiderForBounds != null) {
                                 spiderForBounds.moveTo(d0, d1, d2);
                             }

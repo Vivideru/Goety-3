@@ -9,9 +9,6 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.EnumSet;
 
-/**
- * Walks a servant around the cycle of waypoints charted with a Patrol Plan, pausing briefly at each one.
- */
 public class ServantPatrolGoal<T extends PathfinderMob & IServant> extends Goal {
     private static final int WAIT_TICKS = 40;
 

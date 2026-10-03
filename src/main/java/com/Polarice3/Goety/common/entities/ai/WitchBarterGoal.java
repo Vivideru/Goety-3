@@ -104,7 +104,6 @@ public class WitchBarterGoal extends Goal {
     }
 
     private LootTable getLootTable(ResourceLocation location) {
-        // 1.21 stores loot tables in reloadable registries keyed by ResourceKey rather than direct ResourceLocation lookup.
         return this.witch.level().getServer().reloadableRegistries().getLootTable(ResourceKey.create(Registries.LOOT_TABLE, location));
     }
 

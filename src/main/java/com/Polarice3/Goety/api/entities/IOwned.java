@@ -10,6 +10,7 @@ import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.utils.SEHelper;
 import com.Polarice3.Goety.utils.ServantUtil;
+import net.minecraft.tags.TagKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -222,7 +223,6 @@ public interface IOwned {
                     }
                 }
                 this.ownerCheck();
-                // Target validation is kept in one path so Wild Rage, PvP and stun rules cannot diverge.
                 this.targetingTick();
                 if (this.getTrueOwner() instanceof Mob mobOwner) {
                     if (mobOwner instanceof Apostle apostle && mob.distanceTo(apostle) > 32) {
@@ -335,7 +335,6 @@ public interface IOwned {
                                         }
                                     }
                                 }
-                                // Guardians require range and line of sight before switching to a servant target.
                                 if (mob instanceof Guardian guardian) {
                                     if (guardian.hasLineOfSight(owned) && guardian.distanceToSqr(owned) > 9.0D) {
                                         mob.setTarget(target);
@@ -409,7 +408,6 @@ public interface IOwned {
     default boolean ownedTeleport(double x, double y, double z) {
         if (this instanceof LivingEntity owned) {
             if (owned.level() instanceof ServerLevel serverLevel) {
-                // Keep the destination section accessible while randomTeleport validates and moves the servant.
                 serverLevel.getChunk(BlockPos.containing(x, y, z));
             }
             boolean teleported = owned.randomTeleport(x, y, z, false);
@@ -562,6 +560,15 @@ public interface IOwned {
     }
 
     default void setHasSummonCheck(int count) {
+    }
+
+    default boolean isGrudgedTowardsTag(TagKey<EntityType<?>> tag) {
+        if (this.getTrueOwner() instanceof Player player) {
+            return SEHelper.getGrudgeEntityTypes(player).stream().anyMatch(entityType -> entityType.is(tag));
+        } else if (this.getOwnerId() != null && this instanceof Entity entity && entity.level() instanceof ServerLevel serverLevel) {
+            return SEHelper.isSavedGrudgeTag(serverLevel, this.getOwnerId(), tag);
+        }
+        return false;
     }
 
     default boolean isGrudgedTowardsType(EntityType<?> entityType) {

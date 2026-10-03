@@ -55,7 +55,6 @@ public class SoulTransferItem extends Item {
                         CompoundTag nbt = new CompoundTag();
                         nbt.putUUID("owner", (arcaTile.getPlayer().getUUID()));
                         nbt.putString("owner_name", arcaTile.getPlayer().getDisplayName().getString());
-                        // ItemStack root NBT was removed in 1.21; keep bound owner data in CUSTOM_DATA.
                         setTag(stack, nbt);
                         pContext.getPlayer().playSound(SoundEvents.ARROW_HIT_PLAYER, 1.0F, 0.45F);
                         world.playLocalSound(blockpos.getX(), blockpos.getY(), blockpos.getZ(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.PLAYERS, 1.0F, 0.45F, false);

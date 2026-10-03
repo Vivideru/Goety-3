@@ -136,12 +136,10 @@ public class HellBlast extends WaterHurtingProjectile {
             }
             DamageSource damageSource = ModDamageSource.hellfire(this, entity1);
             if (entity instanceof LivingEntity livingEntity) {
-                // Hellfire is meant to pierce normal i-frames; direct projectiles should not be swallowed by recent damage ticks.
                 livingEntity.invulnerableTime = 0;
             }
             entity.hurt(damageSource, damage + enchantment);
             if (entity1 instanceof LivingEntity && this.level() instanceof ServerLevel serverLevel) {
-                // 1.21 moved post-hit enchantment callbacks out of Entity; use the server-side helper to preserve weapon enchantment effects.
                 EnchantmentHelper.doPostAttackEffects(serverLevel, entity, damageSource);
             }
             if (flaming != 0){
@@ -181,7 +179,6 @@ public class HellBlast extends WaterHurtingProjectile {
                     super.explodeHurt(target, damageSource, x, y, z, seen, actualDamage);
                     if (damageSource.getDirectEntity() instanceof HellBlast hellBlast){
                         if (hellBlast.getFiery() > 0){
-                            // The explosion callback receives the affected target explicitly; ignite that entity instead of the projectile owner.
                             target.igniteForSeconds(5.0F * hellBlast.getFiery());
                         }
                     }

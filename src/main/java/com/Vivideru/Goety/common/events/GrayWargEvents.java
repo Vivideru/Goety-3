@@ -11,10 +11,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-/**
- * An ordinary tamed wolf raised at a Howling Totem becomes a Gray Warg. Vanilla wolves answer right-clicks by
- * sitting down before any held item is used, so the Waystone has to be handled before the wolf's own interaction.
- */
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public final class GrayWargEvents {
     private GrayWargEvents() {

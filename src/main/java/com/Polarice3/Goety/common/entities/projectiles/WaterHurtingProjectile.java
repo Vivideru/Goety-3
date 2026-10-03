@@ -37,7 +37,6 @@ public abstract class WaterHurtingProjectile extends AbstractHurtingProjectile i
     private void setDirectionalPower(double xPower, double yPower, double zPower) {
         Vec3 power = new Vec3(xPower, yPower, zPower);
         if (power.lengthSqr() > 1.0E-7D) {
-            // 1.20 AbstractHurtingProjectile normalized constructor power to 0.1; storing raw look vectors here makes custom bolts accelerate each tick.
             power = power.normalize().scale(0.1D);
         }
         this.xPower = power.x;
@@ -45,7 +44,6 @@ public abstract class WaterHurtingProjectile extends AbstractHurtingProjectile i
         this.zPower = power.z;
     }
 
-    // Subclasses still need to know whether the custom 1.20-style directional push is active, but the fields remain encapsulated here.
     protected boolean hasDirectionalPower() {
         return this.xPower != 0.0D || this.yPower != 0.0D || this.zPower != 0.0D;
     }
@@ -61,8 +59,6 @@ public abstract class WaterHurtingProjectile extends AbstractHurtingProjectile i
     public void tick() {
         Entity entity = this.getOwner();
         if (this.level().isClientSide || (entity == null || !entity.isRemoved()) && this.level().hasChunkAt(this.blockPosition())) {
-            // Minecraft 1.21 made Projectile's shot-state fields private. This projectile keeps the old
-            // custom tick pipeline, so it mirrors those flags locally instead of delegating to vanilla movement.
             if (!this.hasBeenShot) {
                 this.gameEvent(GameEvent.PROJECTILE_SHOOT, this.getOwner());
                 this.hasBeenShot = true;
@@ -114,7 +110,6 @@ public abstract class WaterHurtingProjectile extends AbstractHurtingProjectile i
             }
         }
 
-        // In 1.21 the projectile base classes seed directional motion differently; keeping f above 1.0 makes these bolts accelerate every tick.
         f = Math.min(f, 1.0F);
         this.setDeltaMovement(vec3.add(this.xPower, this.yPower, this.zPower).scale(f));
         this.setDeltaMovement(this.getDeltaMovement().subtract(0.0D, this.getGravity(), 0.0D));

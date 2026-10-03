@@ -50,7 +50,6 @@ public class WallRedstoneMonstrosityHeadBlock extends BaseEntityBlock {
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        // The DeferredHolder is still unbound while the block is being constructed, so the codec must close over this instance.
         return ModBlockCodecs.singleton(this);
     }
 
@@ -112,7 +111,6 @@ public class WallRedstoneMonstrosityHeadBlock extends BaseEntityBlock {
     }
 
     public RenderShape getRenderShape(BlockState pState) {
-        // Custom skull geometry is drawn by the block entity renderer; hiding the baked block model prevents duplicate placeholder skull rendering.
         return RenderShape.INVISIBLE;
     }
 

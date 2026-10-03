@@ -17,7 +17,6 @@ public class BrazierRecipeProcessor implements IComponentProcessor {
     @Override
     public void setup(Level level, IVariableProvider iVariableProvider) {
         String recipeId = iVariableProvider.get("recipe", level.registryAccess()).asString();
-        // Minecraft 1.21 wraps recipe lookups in RecipeHolder; Patchouli still needs the recipe value.
         this.recipe = Minecraft.getInstance().level.getRecipeManager()
                 .byKey(ResourceLocation.parse(recipeId)).map(RecipeHolder::value).filter(BrazierRecipe.class::isInstance).map(BrazierRecipe.class::cast).orElse(null);
     }

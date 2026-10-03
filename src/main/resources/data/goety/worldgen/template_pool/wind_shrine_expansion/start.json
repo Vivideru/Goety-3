@@ -1,0 +1,10 @@
+{
+  "name": "goety:wind_shrine_expansion/start",
+  "fallback": "goety:wind_shrine/end",
+  "elements": [
+    { "weight": 3, "element": { "location": "goety:wind_shrine/expansion_stairs_6", "processors": "goety:wind_shrine_foundation", "projection": "rigid", "element_type": "minecraft:single_pool_element" } },
+    { "weight": 2, "element": { "location": "goety:wind_shrine/expansion_stairs_12", "processors": "goety:wind_shrine_foundation", "projection": "rigid", "element_type": "minecraft:single_pool_element" } },
+    { "weight": 3, "element": { "location": "goety:wind_shrine/expansion_stairs_steep_6", "processors": "goety:wind_shrine_foundation", "projection": "rigid", "element_type": "minecraft:single_pool_element" } },
+    { "weight": 2, "element": { "location": "goety:wind_shrine/expansion_stairs_steep_12", "processors": "goety:wind_shrine_foundation", "projection": "rigid", "element_type": "minecraft:single_pool_element" } }
+  ]
+}

@@ -19,7 +19,6 @@ public final class WargClientEvents {
             return;
         }
         PlayerModel<?> model = event.getRenderer().getModel();
-        // Vanilla's riding pose projects both legs forward; Warg riders need them hanging beside the wide saddle.
         model.rightLeg.xRot = 0.0F;
         model.rightLeg.yRot = 0.0F;
         model.rightLeg.zRot = 0.12F;

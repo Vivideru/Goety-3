@@ -43,6 +43,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class EvokerServant extends SpellcasterIllagerServant{
     @Nullable
@@ -59,10 +60,10 @@ public class EvokerServant extends SpellcasterIllagerServant{
         super.registerGoals();
         this.goalSelector.addGoal(1, new EvokerCastingSpellGoal());
         this.goalSelector.addGoal(2, new AvoidTargetGoal<>(this, LivingEntity.class, 8.0F, 0.6D, 1.0D));
+        this.goalSelector.addGoal(2, new EvokerRavagingSpellGoal());
         this.goalSelector.addGoal(4, new EvokerSummonSpellGoal());
         this.goalSelector.addGoal(5, new EvokerAttackSpellGoal());
         this.goalSelector.addGoal(6, new EvokerWololoSpellGoal());
-        this.goalSelector.addGoal(6, new EvokerRavagingSpellGoal());
     }
 
     @Override
@@ -398,8 +399,18 @@ public class EvokerServant extends SpellcasterIllagerServant{
     }
 
     public class EvokerRavagingSpellGoal extends SpellcasterUseSpellGoal {
-        private final TargetingConditions ravageTargeting = TargetingConditions.forNonCombat().range(16.0D).selector((p_32710_) -> {
-            return p_32710_.getType().is(ModTags.EntityTypes.VILLAGERS);
+        private final Predicate<LivingEntity> alliedPredicate = mob -> {
+            return !(MobUtil.areAllies(mob, EvokerServant.this)) && !(mob instanceof OwnableEntity ownable && ownable.getOwner() != null && EvokerServant.this.getTrueOwner() != null && (ownable.getOwner() == EvokerServant.this.getTrueOwner() || MobUtil.areAllies(ownable.getOwner(), EvokerServant.this.getTrueOwner())));
+        };
+        private final Predicate<LivingEntity> ravagePredicate = mob -> {
+            return (mob.getType().is(ModTags.EntityTypes.VILLAGERS) || mob.getType().is(ModTags.EntityTypes.PILLAGERS));
+        };
+        private final TargetingConditions ravageTargeting = TargetingConditions.forNonCombat().range(16.0D).selector(this.ravagePredicate);
+        private final TargetingConditions pillagerTargeting = TargetingConditions.forNonCombat().range(16.0D).selector((p_32710_) -> {
+            return p_32710_.getType().is(ModTags.EntityTypes.PILLAGERS) && this.alliedPredicate.test(p_32710_);
+        });
+        private final TargetingConditions villagerTargeting = TargetingConditions.forNonCombat().range(16.0D).selector((p_32710_) -> {
+            return p_32710_.getType().is(ModTags.EntityTypes.VILLAGERS) && this.alliedPredicate.test(p_32710_);
         });
 
         public boolean canUse() {
@@ -421,17 +432,23 @@ public class EvokerServant extends SpellcasterIllagerServant{
                 if (EvokerServant.this.getTrueOwner() instanceof Player player) {
                     if (!SEHelper.hasResearch(player, ResearchList.RAVAGING)){
                         return false;
-                    } else if (EvokerServant.this.isGrudgedTowardsType(EntityType.VILLAGER)) {
-                        List<Mob> list = EvokerServant.this.level().getNearbyEntities(Mob.class, this.ravageTargeting, EvokerServant.this, EvokerServant.this.getBoundingBox().inflate(16.0D, 4.0D, 16.0D));
+                    } else if (EvokerServant.this.getCommandPosEntity() instanceof Mob mob && this.ravagePredicate.test(mob) && !(mob instanceof RaiderServant raiderServant && EvokerServant.this.getLeader() == raiderServant) && mob.distanceTo(EvokerServant.this) <= 16.0D) {
+                        EvokerServant.this.setRavageTarget(mob);
+                        return true;
+                    } else if (EvokerServant.this.isGrudgedTowardsTag(ModTags.EntityTypes.VILLAGERS) || EvokerServant.this.isGrudgedTowardsTag(ModTags.EntityTypes.PILLAGERS)) {
+                        TargetingConditions conditions = this.ravageTargeting;
+                        if (!EvokerServant.this.isGrudgedTowardsTag(ModTags.EntityTypes.VILLAGERS)) {
+                            conditions = this.pillagerTargeting;
+                        } else if (!EvokerServant.this.isGrudgedTowardsTag(ModTags.EntityTypes.PILLAGERS)) {
+                            conditions = this.villagerTargeting;
+                        }
+                        List<Mob> list = EvokerServant.this.level().getNearbyEntities(Mob.class, conditions, EvokerServant.this, EvokerServant.this.getBoundingBox().inflate(16.0D, 4.0D, 16.0D));
                         if (list.isEmpty()) {
                             return false;
                         } else {
                             EvokerServant.this.setRavageTarget(list.get(EvokerServant.this.random.nextInt(list.size())));
                             return true;
                         }
-                    } else if (EvokerServant.this.getCommandPosEntity() instanceof Villager villager && villager.distanceTo(EvokerServant.this) <= 16.0D) {
-                        EvokerServant.this.setRavageTarget(villager);
-                        return true;
                     } else {
                         return false;
                     }
@@ -507,7 +524,11 @@ public class EvokerServant extends SpellcasterIllagerServant{
                 if (EvokerServant.this.getTrueOwner() instanceof Player player1) {
                     player = player1;
                 }
-                Entity entity = MobUtil.convertTo(victim, ModEntityType.RAVAGED.get(), true, player);
+                EntityType<?> entityType = ModEntityType.RAVAGED.get();
+                if (victim.getType().is(ModTags.EntityTypes.PILLAGERS)) {
+                    entityType = ModEntityType.TRAMPLER_SERVANT.get();
+                }
+                Entity entity = MobUtil.convertTo(victim, entityType, true, player);
                 if (entity instanceof Mob mob){
                     mob.setYHeadRot(victim.getYHeadRot());
                     mob.setYRot(victim.getYRot());

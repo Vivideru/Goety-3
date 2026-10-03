@@ -259,7 +259,6 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
 
     @Nullable
     public LivingEntity getTrueOwner() {
-        // Wild Rage intentionally suspends owner allegiance so the servant can attack without owner protections.
         if (this.hasEffect(GoetyEffects.WILD_RAGE)) {
             return null;
         }
@@ -384,7 +383,6 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
     }
 
     public static boolean checkNetherAwareHostileSpawnRules(EntityType<? extends Owned> pType, ServerLevelAccessor pLevel, MobSpawnType pReason, BlockPos pPos, RandomSource pRandom) {
-        // Nether biome modifiers already restrict valid biomes, so these mobs should not fail the overworld darkness check there.
         if (pLevel.getLevel().dimension() == Level.NETHER) {
             return checkAnyLightMonsterSpawnRules(pType, pLevel, pReason, pPos, pRandom);
         }
@@ -400,7 +398,6 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
     }
 
     public static boolean checkNetherAwareDayMonsterSpawnRules(EntityType<? extends Owned> pType, ServerLevelAccessor pLevel, MobSpawnType pReason, BlockPos pPos, RandomSource pRandom) {
-        // Nether spawns are selected by biome data; preserving the block-light gate there prevents valid Nether entries from spawning.
         if (pLevel.getLevel().dimension() == Level.NETHER) {
             return checkAnyLightMonsterSpawnRules(pType, pLevel, pReason, pPos, pRandom);
         }

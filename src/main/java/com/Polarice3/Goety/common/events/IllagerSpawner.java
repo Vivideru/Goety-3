@@ -206,7 +206,6 @@ public class IllagerSpawner {
             if (itemstack.getItem() instanceof CrossbowItem){
                 Holder<net.minecraft.world.item.enchantment.Enchantment> quickCharge = raider.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.QUICK_CHARGE);
                 Holder<net.minecraft.world.item.enchantment.Enchantment> multishot = raider.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.MULTISHOT);
-                // 1.21 stores enchantments as item components, so update the component instead of building the old raw enchantment map.
                 EnchantmentHelper.updateEnchantments(itemstack, enchantments -> {
                     enchantments.set(quickCharge, world.getDifficulty() == Difficulty.HARD ? 2 : 1);
                     enchantments.set(multishot, 1);
@@ -220,7 +219,6 @@ public class IllagerSpawner {
                 }
                 Holder<net.minecraft.world.item.enchantment.Enchantment> sharpness = raider.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS);
                 int sharpnessLevel = i;
-                // 1.21 stores enchantments as item components, so update the component instead of building the old raw enchantment map.
                 EnchantmentHelper.updateEnchantments(itemstack, enchantments -> enchantments.set(sharpness, sharpnessLevel));
                 raider.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
             }
@@ -236,7 +234,6 @@ public class IllagerSpawner {
                 Holder<net.minecraft.world.item.enchantment.Enchantment> sharpness = raider.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SHARPNESS);
                 Holder<net.minecraft.world.item.enchantment.Enchantment> fireAspect = raider.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FIRE_ASPECT);
                 int sharpnessLevel = i;
-                // 1.21 stores enchantments as item components, so update the component instead of building the old raw enchantment map.
                 EnchantmentHelper.updateEnchantments(itemstack, enchantments -> {
                     enchantments.set(sharpness, sharpnessLevel);
                     enchantments.set(fireAspect, 2);

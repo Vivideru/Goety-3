@@ -31,13 +31,11 @@ import net.minecraft.world.phys.BlockHitResult;
 
 public class GraverobberShovelItem extends ShovelItem {
     public GraverobberShovelItem() {
-        // In 1.21 the custom properties must declare durability explicitly so the enchanting table treats the shovel as enchantable.
         super(ModTiers.SPECIAL, (new Properties()).rarity(Rarity.UNCOMMON).durability(ModTiers.SPECIAL.getUses()).attributes(DiggerItem.createAttributes(ModTiers.SPECIAL, 1.5F, -3.0F)));
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        // Default components are built before common configs are loaded in 1.21, so configurable durability has to be read at stack query time.
         return ConfiguredItemUtil.durability(ItemConfig.SpecialToolsDurability, ModTiers.SPECIAL.getUses());
     }
 
@@ -119,7 +117,6 @@ public class GraverobberShovelItem extends ShovelItem {
             return 8.0F;
         } else {
             float speed = super.getDestroySpeed(p_41004_, p_41005_);
-            // NeoForge 1.21 uses the TOOL component for mining speed; preserve the tier speed if it falls back to hand speed.
             return speed <= 1.0F && p_41005_.is(BlockTags.MINEABLE_WITH_SHOVEL) ? ModTiers.SPECIAL.getSpeed() : speed;
         }
     }

@@ -22,7 +22,6 @@ public class EntityRenderersMixin {
     @Inject(method = "createPlayerRenderers(Lnet/minecraft/client/renderer/entity/EntityRendererProvider$Context;)Ljava/util/Map;", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap$Builder;build()Lcom/google/common/collect/ImmutableMap;", shift = At.Shift.BEFORE, remap = false), locals = LocalCapture.CAPTURE_FAILHARD)
     private static void createLichRenderer(EntityRendererProvider.Context context, CallbackInfoReturnable<Map<PlayerSkin.Model, EntityRenderer<? extends Player>>> cir, ImmutableMap.Builder<PlayerSkin.Model, EntityRenderer<? extends Player>> builder) {
         if (ClientUtils.noLoadingExceptions()) {
-            // Player renderers are keyed by PlayerSkin.Model in 1.21, so the custom lich renderer is kept separately and selected by EntityRenderDispatcherMixin.
             LichModeRendererHolder.renderer = new LichModeRenderer(context);
         }
     }

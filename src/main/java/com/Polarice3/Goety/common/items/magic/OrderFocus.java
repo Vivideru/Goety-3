@@ -250,7 +250,6 @@ public class OrderFocus extends MagicFocus{
 
     public static void setServants(ItemStack stack, Player player, LivingEntity livingEntity){
         if (!player.level().isClientSide) {
-            // ItemStack root NBT was removed in 1.21; keep ordered servant ids in CUSTOM_DATA.
             CompoundTag compound = tag(stack);
             List<String> list = new ArrayList<>();
             if (compound.contains(SERVANT_LIST)) {

@@ -97,7 +97,6 @@ public class ModBoat extends Boat {
 
         private Type(Supplier<Block> p_i48146_3_, String p_i48146_4_) {
             this.name = p_i48146_4_;
-            // Boat items touch this enum during item registration, before block holders are always bound.
             this.planks = p_i48146_3_;
         }
 

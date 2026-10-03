@@ -63,7 +63,6 @@ public class SculkDevourerBlockEntity extends OwnedBlockEntity implements GameEv
                 Entity $$4 = p_283014_.sourceEntity();
                 if ($$4 instanceof LivingEntity livingentity) {
                     if (!livingentity.wasExperienceConsumed() && this.getPlayer() != null && SEHelper.getSoulsContainer(this.getPlayer())) {
-                        // Experience rewards now need server context and the attacking/player entity.
                         int i = livingentity.getExperienceReward(p_222777_, this.getPlayer());
                         if (livingentity.shouldDropExperience() && i > 0) {
                             i *= this.getEnchantments().getOrDefault(ModEnchantments.SOUL_EATER, 0) + 1;

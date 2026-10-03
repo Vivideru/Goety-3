@@ -60,7 +60,6 @@ public class OminousShacklesItem extends Item {
                             }
                         }
                     }
-                    // Shackles are a prisoner state/render layer, not held equipment; keeping them out of hand slots preserves the villager-style renderer.
                     prisoner.setHasOminousShackles(true);
                     stack.shrink(1);
                     return InteractionResult.SUCCESS;

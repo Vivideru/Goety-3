@@ -277,7 +277,6 @@ public class HoglinServant extends AnimalSummon implements HoglinBase, PlayerRid
 
     @Override
     public Vec3 getPassengerRidingPosition(Entity passenger) {
-        // Minecraft 1.21 positions passengers through attachment points, so preserve the original riding height explicitly.
         return this.position().add(0.0D, this.getPassengersRidingOffset(), 0.0D);
     }
 

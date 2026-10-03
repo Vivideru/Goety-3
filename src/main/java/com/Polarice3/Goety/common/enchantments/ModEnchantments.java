@@ -25,7 +25,6 @@ public class ModEnchantments {
     public static final ResourceKey<Enchantment> HARDY = key("hardy");
 
     public static void register(IEventBus modEventBus) {
-        // Minecraft 1.21 enchantments are data-driven registry entries, so this method only preserves the old registration call site.
     }
 
     public static Holder<Enchantment> holder(Entity levelSource, ResourceKey<Enchantment> enchantment) {

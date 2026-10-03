@@ -77,7 +77,6 @@ public class WindCallerServant extends SpellcasterIllagerServant{
     public static AttributeSupplier.Builder setCustomAttributes() {
         return Monster.createMonsterAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
-                // Step height moved from NeoForge's additive attribute to vanilla's STEP_HEIGHT attribute in 1.21.
                 .add(Attributes.STEP_HEIGHT, 1.0D)
                 .add(Attributes.FOLLOW_RANGE, AttributesConfig.get(AttributesConfig.WindCallerServantFollowRange))
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.WindCallerServantArmor))

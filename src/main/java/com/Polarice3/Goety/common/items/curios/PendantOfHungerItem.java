@@ -29,7 +29,6 @@ public class PendantOfHungerItem extends SingleStackItem {
     }
 
     private static void updateTag(ItemStack stack, Consumer<CompoundTag> updater) {
-        // ItemStack root NBT was removed in 1.21; mutate a CUSTOM_DATA copy and write it back.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, updater);
     }
 

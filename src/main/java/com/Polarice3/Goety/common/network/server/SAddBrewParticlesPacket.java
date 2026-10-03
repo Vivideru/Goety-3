@@ -35,7 +35,6 @@ public class SAddBrewParticlesPacket {
     }
 
     public static void encode(SAddBrewParticlesPacket packet, FriendlyByteBuf buffer) {
-        // ItemStack network serialization moved to stream codecs that require registry-aware buffers in 1.21.
         ItemStack.OPTIONAL_STREAM_CODEC.encode((RegistryFriendlyByteBuf) buffer, packet.itemStack);
         buffer.writeBlockPos(packet.blockPos);
         buffer.writeBoolean(packet.instant);

@@ -108,7 +108,6 @@ public class FirethornBushBlock extends BushBlock implements BonemealableBlock {
    }
 
    protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState p_57275_, Level p_57276_, BlockPos p_57277_, Player p_57278_, InteractionHand p_57279_, BlockHitResult p_57280_) {
-      // Item-based block interaction replaced the old use hook in 1.21; berry harvesting still depends on the held item.
       int i = p_57275_.getValue(AGE);
       boolean flag = i == 3;
       if (!flag && p_57278_.getItemInHand(p_57279_).is(Items.BONE_MEAL)) {

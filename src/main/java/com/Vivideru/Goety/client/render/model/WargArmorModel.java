@@ -40,7 +40,6 @@ public class WargArmorModel extends HierarchicalModel<Warg> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		// Rebase the exported armor hierarchy onto the Warg pivots so animated neck and torso rotations remain aligned.
 		PartDefinition bone = partdefinition.addOrReplaceChild("bone", CubeListBuilder.create(), PartPose.offset(-1.5F, 10.5F, 2.0F));
 
 		PartDefinition mane = bone.addOrReplaceChild("mane", CubeListBuilder.create().texOffs(0, 15).addBox(-6.0F, -7.0F, -7.0F, 14.0F, 14.0F, 13.0F, new CubeDeformation(0.25F))
@@ -69,8 +68,7 @@ public class WargArmorModel extends HierarchicalModel<Warg> {
 	@Override
 	public void setupAnim(Warg entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		// Armor uses a separate hierarchy, so it must receive the same live head tracking as the base Warg model.
-		this.head.yRot += netHeadYaw * ((float)Math.PI / 180F);
+		this.head.zRot -= netHeadYaw * ((float)Math.PI / 180F);
 		this.head.xRot += headPitch * ((float)Math.PI / 180F);
 		this.animate(entity.idleAnimationState, WargAnimations.idle, ageInTicks);
 		this.animate(entity.walkAnimationState, WargAnimations.walking, ageInTicks);

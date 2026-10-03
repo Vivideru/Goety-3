@@ -35,7 +35,6 @@ public class AddItemLootModifier extends LootModifier {
     private final int count;
 
     protected AddItemLootModifier(LootItemCondition[] conditionsIn, float chance, boolean replace, Item addedItemIn, int count) {
-        // NeoForge 1.21 global loot modifiers are MapCodec-based and LootModifier now owns condition matching.
         super(conditionsIn);
         this.addedItem = addedItemIn;
         this.replace = replace;

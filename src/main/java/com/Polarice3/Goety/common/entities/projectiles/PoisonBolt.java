@@ -116,7 +116,6 @@ public class PoisonBolt extends SpellHurtingProjectile {
                 flag = entity.hurt(entity.damageSources().indirectMagic(this, livingentity), baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        // 1.21 moved post-attack enchant hooks out of Entity, so call the helper with the same damage source.
                         EnchantmentHelper.doPostAttackEffects(serverLevel, entity, entity.damageSources().indirectMagic(this, livingentity));
                     }
                 }

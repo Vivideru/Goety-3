@@ -78,7 +78,6 @@ public class ModCauldronCategory implements IRecipeCategory<CauldronRecipe> {
         if (recipe instanceof CauldronSusStewRecipe) {
             for (FlowerBlock flower : CauldronSusStewRecipe.getFlowers()) {
                 ItemStack stew = new ItemStack(Items.SUSPICIOUS_STEW);
-                // Suspicious stew effects are data components rather than item NBT in 1.21.
                 stew.set(DataComponents.SUSPICIOUS_STEW_EFFECTS, flower.getSuspiciousEffects());
                 output.addItemStack(stew);
             }

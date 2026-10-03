@@ -38,7 +38,7 @@ public class WargRenderer extends MobRenderer<Warg, WargModel> {
 
     @Override
     public ResourceLocation getTextureLocation(Warg warg) {
-        if (warg.isHostile()) {
+        if (warg.isHostile() && warg.getVariant() == Warg.Variant.BLACK) {
             return HOSTILE;
         }
         return switch (warg.getVariant()) {
@@ -52,7 +52,7 @@ public class WargRenderer extends MobRenderer<Warg, WargModel> {
     }
 
     private static ResourceLocation getEyesTexture(Warg warg) {
-        if (warg.isHostile()) {
+        if (warg.isHostile() && warg.getVariant() == Warg.Variant.BLACK) {
             return HOSTILE_EYES;
         }
         return switch (warg.getVariant()) {
@@ -91,14 +91,6 @@ public class WargRenderer extends MobRenderer<Warg, WargModel> {
         }
     }
 
-    /**
-     * Renders the Warg's eyes on their own emissive render type (full brightness, no
-     * ambient occlusion / alpha blending), matching the pattern used by the other
-     * servant renderers (see BlackWolfRenderer.WolfEyesLayer). RenderLayers are always
-     * rendered by LivingEntityRenderer regardless of the entity's invisibility, so this
-     * keeps the eyes visible even while the Warg is invisible - unlike EyesLayer, this
-     * picks the correct eyes texture per variant/hostile state instead of a single fixed one.
-     */
     private static class WargEyesLayer extends RenderLayer<Warg, WargModel> {
         private WargEyesLayer(WargRenderer parent) {
             super(parent);
@@ -108,7 +100,6 @@ public class WargRenderer extends MobRenderer<Warg, WargModel> {
         public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, Warg warg, float limbSwing,
                            float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
             if (warg.getVariant() == Warg.Variant.SKELETAL) {
-                // The Skeletal Warg's empty sockets have no eyes to light up.
                 return;
             }
             VertexConsumer vertexconsumer = buffer.getBuffer(RenderType.eyes(getEyesTexture(warg)));

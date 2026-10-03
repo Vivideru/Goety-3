@@ -47,7 +47,6 @@ public class HauntedArmorStandItem extends Item {
          if (level.noCollision((Entity)null, aabb) && level.getEntities((Entity)null, aabb).isEmpty()) {
             if (level instanceof ServerLevel serverlevel) {
                Consumer<HauntedArmorStand> consumer = EntityType.createDefaultStackConfig(serverlevel, itemstack, p_40510_.getPlayer());
-               // Entity stack NBT is now consumed from the ENTITY_DATA component by the default stack config.
                HauntedArmorStand armorStand = ModEntityType.HAUNTED_ARMOR_STAND.get().create(serverlevel, consumer, blockpos, MobSpawnType.SPAWN_EGG, true, true);
                if (armorStand == null) {
                   return InteractionResult.FAIL;

@@ -1,6 +1,6 @@
 package com.Vivideru.Goety.common.world;
 
-import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.config.SpellConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -26,13 +26,13 @@ public class CerberusTotemData extends SavedData {
     }
 
     public boolean canCreate(UUID owner, ResourceKey<Level> dimension, BlockPos totemPos) {
-        if (MainConfig.CerberusLimit.get() <= 0) {
+        if (SpellConfig.CerberusLimit.get() <= 0) {
             return false;
         }
         long owned = this.cerberuses.values().stream().filter(entry -> entry.owner().equals(owner)).count();
         boolean occupiedTotem = this.cerberuses.values().stream().anyMatch(entry -> entry.owner().equals(owner)
                 && entry.dimension().equals(dimension.location()) && entry.totemPos().equals(totemPos));
-        return owned < MainConfig.CerberusLimit.get() && !occupiedTotem;
+        return owned < SpellConfig.CerberusLimit.get() && !occupiedTotem;
     }
 
     public void register(UUID cerberus, UUID owner, ResourceKey<Level> dimension, BlockPos totemPos) {

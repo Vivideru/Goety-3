@@ -14,7 +14,6 @@ final class SkullItemData {
     }
 
     static void update(ItemStack stack, java.util.function.Consumer<CompoundTag> updater) {
-        // 1.21 stores item custom NBT in the CUSTOM_DATA component instead of the removed root ItemStack tag.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, updater);
     }
 }

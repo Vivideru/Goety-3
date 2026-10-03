@@ -41,9 +41,6 @@ public final class GemPotencyCapHandler {
 
         Map<ResourceLocation, Double> totals = new HashMap<>();
         for (GemInstance gem : SocketHelper.getGems(event.getItemStack())) {
-            // Resolve the compatibility bonus from the gem id instead of relying on the
-            // category cached in an older socketed stack. The containing item has already
-            // been verified as a Goety wand, so all nine school mappings are safe here.
             if (!gem.gem().isBound()) {
                 continue;
             }

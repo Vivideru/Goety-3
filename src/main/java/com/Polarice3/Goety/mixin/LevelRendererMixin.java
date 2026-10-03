@@ -33,7 +33,6 @@ public class LevelRendererMixin {
     )
     private void renderOverlays(DeltaTracker deltaTracker, boolean drawBlockOutline, Camera camera, GameRenderer gameRenderer,
                                 LightTexture lightTexture, Matrix4f modelViewMatrix, Matrix4f projectionMatrix, CallbackInfo ci) {
-        // LevelRenderer no longer receives a PoseStack in 1.21, so provide a fresh stack at the same render hook point.
         LightningEffect.onWorldRenderLast(camera, deltaTracker.getGameTimeDeltaPartialTick(false), new PoseStack(), renderBuffers);
     }
 }

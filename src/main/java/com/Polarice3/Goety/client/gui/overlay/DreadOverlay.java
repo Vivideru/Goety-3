@@ -51,13 +51,11 @@ public class DreadOverlay {
         alpha = Math.clamp(alpha, 0.0F, 1.0F);
         RenderSystem.disableDepthTest();
         RenderSystem.depthMask(false);
-        // The 1.21 immediate GUI path does not enable blending for this manual quad, so the dread texture's alpha would render as a solid black screen.
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, alpha);
         RenderSystem.setShaderTexture(0, location);
-        // Minecraft 1.21 builds immediate GUI meshes through Tesselator#begin and uploads the finished mesh explicitly.
         BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
         bufferbuilder.addVertex(0.0F, screenHeight, -90.0F).setUv(0.0F, 1.0F);
         bufferbuilder.addVertex(screenWidth, screenHeight, -90.0F).setUv(1.0F, 1.0F);

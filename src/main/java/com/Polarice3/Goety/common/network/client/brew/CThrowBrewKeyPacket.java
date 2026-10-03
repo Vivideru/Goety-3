@@ -61,7 +61,6 @@ public class CThrowBrewKeyPacket {
 
             player.awardStat(Stats.ITEM_USED.get(bagFocus.getItem()));
             if (!player.getAbilities().instabuild) {
-                // Direct stack mutation does not update the bag's container component in 1.21, while handler extraction persists the new count.
                 bagHandler.extractItem(swapSlot, 1, false);
             }
             if (player instanceof ServerPlayer serverPlayer) {

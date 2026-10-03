@@ -21,7 +21,6 @@ public class SummonTargetGoal extends NearestAttackableTargetGoal<LivingEntity> 
 
     public SummonTargetGoal(Mob ownedEntity, int randomInterval, boolean pMustSee, boolean pMustReach,
                             Predicate<LivingEntity> targetPredicate) {
-        // Guardians need their vanilla distance selector in addition to servant ownership filtering.
         super(ownedEntity, LivingEntity.class, randomInterval, pMustSee, pMustReach, targetPredicate);
     }
 

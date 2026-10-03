@@ -105,7 +105,6 @@ public class BlackIronArmor extends ArmorItem implements ISoulDiscount, IPersist
 
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
         if (this.isNotBroken(stack) || !ItemConfig.BlackIronPersist.get()) {
-            // Armor attributes are supplied by item components in 1.21; this stack hook intentionally has no dynamic modifiers.
             return ImmutableMultimap.of();
         } else {
             return ImmutableMultimap.of();

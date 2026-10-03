@@ -43,7 +43,6 @@ import java.util.function.Supplier;
 public class ServantSpawnEggItem extends DeferredSpawnEggItem {
 
     public ServantSpawnEggItem(final Supplier<? extends EntityType<? extends Mob>> entityTypeSupplier, int backgroundColor, int highlightColor, Properties builder) {
-        // DeferredHolder's registry type is EntityType<?> in 1.21; DeferredSpawnEggItem only needs it as a mob type supplier.
         super(entityTypeSupplier, backgroundColor, highlightColor, builder);
     }
 
@@ -84,13 +83,12 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
                     if (player.isCrouching()){
                         owned.setTrueOwner(player);
                         if (owned instanceof Mob mob){
-                            // ItemStack root NBT was removed in 1.21; pass no legacy spawn-data tag until entity components are mapped.
                             EventHooks.finalizeMobSpawn(mob, serverLevel, serverLevel.getCurrentDifficultyAt(mob.blockPosition()), MobSpawnType.SPAWN_EGG, null);
                         }
                     }
                 }
                 configureSpawnedEntity(entity);
-                itemstack.shrink(1);
+                itemstack.consume(1, player);
                 level.gameEvent(p_43223_.getPlayer(), GameEvent.ENTITY_PLACE, blockpos);
             }
 
@@ -119,7 +117,6 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
                         if (p_43226_.isCrouching()){
                             owned.setTrueOwner(p_43226_);
                             if (owned instanceof Mob mob){
-                                // ItemStack root NBT was removed in 1.21; pass no legacy spawn-data tag until entity components are mapped.
                                 EventHooks.finalizeMobSpawn(mob, serverLevel, serverLevel.getCurrentDifficultyAt(mob.blockPosition()), MobSpawnType.SPAWN_EGG, null);
                             }
                         }
@@ -139,9 +136,6 @@ public class ServantSpawnEggItem extends DeferredSpawnEggItem {
         }
     }
 
-    /**
-     * Allows specialized servant eggs to apply variant data after ownership has been assigned.
-     */
     protected void configureSpawnedEntity(Entity entity) {
     }
 

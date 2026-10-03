@@ -219,7 +219,6 @@ public class HauntedSkull extends Minion implements IMobTyped {
         return 1.0F;
     }
 
-    // Goals do not expose mob typing; keeping IMobTyped here made them abstract under the 1.21 interface contract.
     public class RandomMoveGoal extends Goal {
         public RandomMoveGoal() {
             this.setFlags(EnumSet.of(Flag.MOVE));
@@ -264,7 +263,6 @@ public class HauntedSkull extends Minion implements IMobTyped {
         }
     }
 
-    // Goals do not expose mob typing; keeping IMobTyped here made them abstract under the 1.21 interface contract.
     public class ChargeGoal extends Goal {
         public ChargeGoal() {
             this.setFlags(EnumSet.of(Flag.MOVE));

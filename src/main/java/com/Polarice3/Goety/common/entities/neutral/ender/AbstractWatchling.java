@@ -354,7 +354,6 @@ public class AbstractWatchling extends AbstractEnderling {
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // MeleeAttackGoal no longer passes distance in 1.21; compute it here to keep Watchling's smash timing/range logic.
             double distToEnemySqr = AbstractWatchling.this.distanceToSqr(enemy.getX(), enemy.getY(), enemy.getZ());
             double d0 = this.getAttackReachSqr(enemy);
             boolean smash = AbstractWatchling.this.random.nextBoolean();

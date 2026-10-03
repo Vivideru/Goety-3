@@ -107,7 +107,6 @@ public class DeathScytheItem extends DarkScytheItem implements ISoulRepair, IPer
                         vector3d.y,
                         vector3d.z);
                 scytheSlash.setOwner(pPlayer);
-                // The projectile is created outside the item attribute query path, so read the current config directly.
                 scytheSlash.setDamage(ItemConfig.ScytheBaseDamage.get().floatValue() + ItemConfig.DeathScytheDamage.get().floatValue());
                 scytheSlash.setTotalLife(300);
                 pLevel.addFreshEntity(scytheSlash);

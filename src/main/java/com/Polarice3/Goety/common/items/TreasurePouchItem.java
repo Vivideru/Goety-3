@@ -30,7 +30,6 @@ public class TreasurePouchItem extends ItemBase {
                     playerIn.drop(itemstack1, false);
                 }
             }
-            // Only the server should consume the pouch after generating loot; client-side mutation can desync the held stack.
             playerIn.playSound(SoundEvents.ARMOR_EQUIP_LEATHER.value(), 1.0F, 1.0F);
             itemstack.shrink(1);
         }

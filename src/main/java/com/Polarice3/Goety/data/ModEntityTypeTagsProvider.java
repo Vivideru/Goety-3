@@ -3,6 +3,7 @@ package com.Polarice3.Goety.data;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.init.ModTags;
+import com.Vivideru.Goety.common.entities.VivideruEntityTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -130,9 +131,11 @@ public class ModEntityTypeTagsProvider extends IntrinsicHolderTagsProvider<Entit
                 ModEntityType.BONE_LORD.get(),
                 ModEntityType.APOSTLE.get(),
                 ModEntityType.ENDER_KEEPER.get(),
-                ModEntityType.VIZIER.get());
-        // MobTypeHelper uses the vanilla undead tag as the 1.21 replacement for LivingEntity#getMobType,
-        // so every Goety entity that behaved as undead in 1.20.1 must be mirrored here.
+                ModEntityType.VIZIER.get(),
+                VivideruEntityTypes.BREEZE_SERVANT.get(),
+                VivideruEntityTypes.HURRICANE.get(),
+                VivideruEntityTypes.HURRICANE_SERVANT.get());
+        this.tag(EntityTypeTags.DEFLECTS_PROJECTILES).add(VivideruEntityTypes.BREEZE_SERVANT.get(), VivideruEntityTypes.HURRICANE.get(), VivideruEntityTypes.HURRICANE_SERVANT.get());
         this.tag(EntityTypeTags.UNDEAD)
                 .addTag(ModTags.EntityTypes.ZOMBIE_SERVANTS)
                 .addTag(ModTags.EntityTypes.SKELETON_SERVANTS)

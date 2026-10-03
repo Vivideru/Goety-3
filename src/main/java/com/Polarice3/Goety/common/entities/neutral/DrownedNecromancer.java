@@ -85,7 +85,6 @@ public class DrownedNecromancer extends AbstractNecromancer {
 
     @Override
     public float maxUpStep() {
-        // 1.21 exposes step height through an override/attribute instead of the removed mutable setter.
         return Math.max(super.maxUpStep(), 1.25F);
     }
 
@@ -919,7 +918,6 @@ public class DrownedNecromancer extends AbstractNecromancer {
                             }
                         }
                         BlockPos blockPos = BlockFinder.SummonRadius(DrownedNecromancer.this.blockPosition(), summonedentity, serverLevel);
-                        // Necromancers can themselves be servants, so their summons must inherit the effective master owner.
                         LivingEntity owner = MobUtil.getSummonOwner(DrownedNecromancer.this);
                         summonedentity.setTrueOwner(owner);
                         summonedentity.moveTo(blockPos, DrownedNecromancer.this.getYRot(), DrownedNecromancer.this.getXRot());

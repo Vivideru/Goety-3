@@ -376,7 +376,6 @@ public class PoisonQuillVine extends AbstractVine{
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
-        // 1.21 makes getDimensions final; scale the default vine bounds to keep the emergence animation collision shape.
         float i = (this.getAge() / this.localEmergingTime());
         EntityDimensions entitydimensions = this.getType().getDimensions();
         return entitydimensions.scale(1, i);

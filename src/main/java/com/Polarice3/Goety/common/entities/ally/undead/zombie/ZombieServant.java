@@ -341,10 +341,14 @@ public class ZombieServant extends Summoned implements IMobTyped {
     }
 
     protected void handleAttributes(float difficulty) {
-        Objects.requireNonNull(this.getAttribute(Attributes.KNOCKBACK_RESISTANCE)).addPermanentModifier(new AttributeModifier(Goety.location("random_spawn_bonus"), this.random.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADD_VALUE));
+        AttributeInstance knockback = Objects.requireNonNull(this.getAttribute(Attributes.KNOCKBACK_RESISTANCE));
+        knockback.removeModifier(Goety.location("random_spawn_bonus"));
+        knockback.addPermanentModifier(new AttributeModifier(Goety.location("random_spawn_bonus"), this.random.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADD_VALUE));
         double d0 = this.random.nextDouble() * 1.5D * (double)difficulty;
+        AttributeInstance followRange = Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE));
+        followRange.removeModifier(Goety.location("random_zombie_spawn_bonus"));
         if (d0 > 1.0D) {
-            Objects.requireNonNull(this.getAttribute(Attributes.FOLLOW_RANGE)).addPermanentModifier(new AttributeModifier(Goety.location("random_zombie_spawn_bonus"), d0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+            followRange.addPermanentModifier(new AttributeModifier(Goety.location("random_zombie_spawn_bonus"), d0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
         }
 
     }

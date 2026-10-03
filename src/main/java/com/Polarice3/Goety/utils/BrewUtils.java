@@ -62,12 +62,10 @@ public class BrewUtils {
     private static final Component NO_EFFECT = Component.translatable("effect.none").withStyle(ChatFormatting.GRAY);
 
     private static CompoundTag getCustomData(ItemStack stack) {
-        // Minecraft 1.21 stores free-form item NBT in the CUSTOM_DATA component instead of ItemStack#getTag.
         return stack.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
     }
 
     private static void updateCustomData(ItemStack stack, java.util.function.Consumer<CompoundTag> updater) {
-        // CustomData.update preserves the data-component lifecycle, including removal when the tag becomes empty.
         CustomData.update(DataComponents.CUSTOM_DATA, stack, updater);
     }
 
@@ -222,7 +220,6 @@ public class BrewUtils {
 
     public static ItemStack setCustomEffects(ItemStack stack, Collection<MobEffectInstance> instances1, Collection<BrewEffectInstance> instances) {
         if (!instances1.isEmpty()){
-            // Vanilla potion effects live in POTION_CONTENTS in 1.21; keeping them in custom data makes brews look empty and undrinkable.
             ModPotionUtil.setCustomEffects(stack, List.copyOf(instances1));
         }
         if (!instances.isEmpty()) {
@@ -405,7 +402,6 @@ public class BrewUtils {
             Holder<Potion> potion = ModPotionUtil.getPotion(itemStack);
             List<MobEffectInstance> list = ModPotionUtil.getMobEffects(itemStack);
             List<BrewEffectInstance> list1 = BrewUtils.getBrewEffects(itemStack);
-            // Custom-only brews still use water as their base potion, so they must not enter the plain-water branch.
             boolean flag = potion.is(Potions.WATER) && list.isEmpty() && list1.isEmpty();
             if (flag) {
                 applyWater(livingEntity, itemStack, target, blockPos);
@@ -507,7 +503,6 @@ public class BrewUtils {
                 if (livingTarget.isAffectedByPotions()) {
                     double d0 = vec3.distanceToSqr(livingTarget.position());
                     if (d0 < areaSqr) {
-                        // Splash falloff is distance/radius in vanilla; using radius squared makes distant instant brews apply at near full strength.
                         double d1 = 1.0D - Math.sqrt(d0) / area;
                         if (livingTarget == target) {
                             d1 = 1.0D;

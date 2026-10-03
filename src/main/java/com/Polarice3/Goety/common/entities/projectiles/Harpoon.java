@@ -21,12 +21,10 @@ public class Harpoon extends Arrow {
     }
 
     public Harpoon(Level p_36866_, LivingEntity p_36867_) {
-        // Arrow constructors now require the projectile item stack used for pickup/data initialization.
         super(p_36866_, p_36867_, new ItemStack(Items.ARROW), null);
     }
 
     public Harpoon(Level pLevel, LivingEntity pOwner, ItemStack pPickupStack, ItemStack pWeaponStack) {
-        // 1.21 moves crossbow enchantment transfer into the Arrow constructor through the firing weapon stack.
         super(pLevel, pOwner, pPickupStack, pWeaponStack);
     }
 

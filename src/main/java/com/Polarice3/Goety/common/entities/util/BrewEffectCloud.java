@@ -68,7 +68,6 @@ public class BrewEffectCloud extends Entity {
         builder.define(DATA_COLOR, 0);
         builder.define(DATA_RADIUS, 0.5F);
         builder.define(DATA_WAITING, false);
-        // 1.21 stores ENTITY_EFFECT as a typed option; use the vanilla default color to preserve the old generic particle.
         builder.define(DATA_PARTICLE, ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, -1));
     }
 
@@ -385,7 +384,6 @@ public class BrewEffectCloud extends Entity {
         p_19737_.putFloat("RadiusOnUse", this.radiusOnUse);
         p_19737_.putFloat("RadiusPerTick", this.radiusPerTick);
         p_19737_.putFloat("Radius", this.getRadius());
-        // 1.21 removed ParticleOptions#writeToString; store the particle type id so simple cloud particles survive save/load.
         p_19737_.putString("Particle", BuiltInRegistries.PARTICLE_TYPE.getKey(this.getParticle().getType()).toString());
         if (this.ownerUUID != null) {
             p_19737_.putUUID("Owner", this.ownerUUID);

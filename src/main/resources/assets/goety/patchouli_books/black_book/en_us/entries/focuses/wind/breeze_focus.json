@@ -1,0 +1,23 @@
+{
+  "name": "Breezing Focus",
+  "icon": "goety:breeze_focus",
+  "category": "goety:focuses/wind",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Binding the rods of a Breeze around an animated core produces a focus that calls forth a $(l:goety:summons/breeze_servants)Breeze Servant$(): a living gust that leaps and slides around your enemies, pelting them with wind charges. Potency strengthens each summoned Breeze, adding damage and knockback to its wind charges for every level."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/breeze_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with the $(l:crafts/staff/wind_staff)Wind Staff$() summons two Breezes at once."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:breeze_focus": 1
+  }
+}

@@ -74,7 +74,6 @@ public class ModItems {
 
         @Override
         public boolean isFoil(ItemStack stack) {
-            // SimpleFoiledItem was removed; keep the old always-glint behavior for these stackable materials.
             return true;
         }
     }
@@ -381,6 +380,7 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> CUSHION_FOCUS = ITEMS.register("cushion_focus", () -> new MagicFocus(new CushionSpell()));
     public static final DeferredHolder<Item, Item> WHIRLWIND_FOCUS = ITEMS.register("whirlwind_focus", () -> new MagicFocus(new WhirlwindSpell()));
     public static final DeferredHolder<Item, Item> CYCLONE_FOCUS = ITEMS.register("cyclone_focus", () -> new MagicFocus(new CycloneSpell()));
+    public static final DeferredHolder<Item, Item> BREEZE_FOCUS = ITEMS.register("breeze_focus", () -> new MagicFocus(new com.Vivideru.Goety.common.magic.spells.BreezeSpell()));
     public static final DeferredHolder<Item, Item> UPDRAFT_FOCUS = ITEMS.register("updraft_focus", () -> new MagicFocus(new UpdraftSpell()));
     public static final DeferredHolder<Item, Item> WIND_BLAST_FOCUS = ITEMS.register("wind_blast_focus", () -> new MagicFocus(new WindBlastSpell()));
     public static final DeferredHolder<Item, Item> RAZOR_WIND_FOCUS = ITEMS.register("razor_wind_focus", () -> new MagicFocus(new RazorWindSpell()));
@@ -464,7 +464,6 @@ public class ModItems {
 
     //Tools & Weapons
     public static final DeferredHolder<Item, Item> DARK_WAND = ITEMS.register("dark_wand", () -> new DarkWand());
-    // Staff attributes are baked into item components during registration before configs load, so use the declared defaults here.
     public static final DeferredHolder<Item, Item> OMINOUS_STAFF = ITEMS.register("ominous_staff", () -> new DarkStaff(DEFAULT_STAFF_DAMAGE, SpellType.ILL));
     public static final DeferredHolder<Item, Item> NECRO_STAFF = ITEMS.register("necro_staff", () -> new DarkStaff(DEFAULT_STAFF_DAMAGE, SpellType.NECROMANCY));
     public static final DeferredHolder<Item, Item> GEO_STAFF = ITEMS.register("geo_staff", () -> new DarkStaff(DEFAULT_STAFF_DAMAGE, SpellType.GEOMANCY));
@@ -500,7 +499,6 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> DARK_HOE = ITEMS.register("dark_hoe", ModToolItems.DarkHoeItem::new);
     public static final DeferredHolder<Item, Item> HUNGRY_DAGGER = ITEMS.register("hungry_dagger", () -> new FangedDaggerItem(ModTiers.DARK));
     public static final DeferredHolder<Item, Item> FELL_BLADE = ITEMS.register("fell_blade", () -> new SwordItem(ModTiers.SPECIAL, new Item.Properties().durability(256).attributes(SwordItem.createAttributes(ModTiers.SPECIAL, 3, -2.4F))));
-    // In 1.21 the tier no longer injects durability into these custom properties, and the enchanting table rejects non-damageable items.
     public static final DeferredHolder<Item, Item> FROZEN_BLADE = ITEMS.register("frozen_blade", () -> new SwordItem(ModTiers.SPECIAL, new Item.Properties().durability(ModTiers.SPECIAL.getUses()).attributes(SwordItem.createAttributes(ModTiers.SPECIAL, 4, -2.4F))));
     public static final DeferredHolder<Item, Item> BLADE_OF_ENDER = ITEMS.register("blade_of_ender", BladeOfEnderItem::new);
     public static final DeferredHolder<Item, Item> INFERNAL_TOME = ITEMS.register("infernal_tome", InfernalTome::new);
@@ -513,7 +511,6 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> SOUL_POTTERY_SHERD = ITEMS.register("soul_pottery_sherd", ItemBase::new);
 
     //Discs
-    // 1.21 moved music disc playback data to JukeboxSong holders; keep the items registered until that registry is ported.
     public static final DeferredHolder<Item, Item> MUSIC_DISC_ENDERMAN = ITEMS.register("music_disc_enderman", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("enderman"))));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_RM = ITEMS.register("music_disc_rm", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("rm"))));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_VIZIER = ITEMS.register("music_disc_vizier", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("vizier"))));

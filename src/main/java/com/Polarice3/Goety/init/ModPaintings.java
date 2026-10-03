@@ -16,7 +16,6 @@ public class ModPaintings {
     }
 
     private static PaintingVariant painting(String name, int pixelWidth, int pixelHeight) {
-        // PaintingVariant stores block-sized painting dimensions in 1.21; the renderer converts them back to texture pixels.
         return new PaintingVariant(pixelWidth / 16, pixelHeight / 16, ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, name));
     }
 

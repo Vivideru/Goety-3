@@ -229,8 +229,6 @@ public class HauntedBroom extends Entity implements OwnableEntity {
             this.ownerCheck();
         }
         if (this.isVehicle() && this.getControllingPassenger() instanceof Player player) {
-            // Client-controlled vehicles do not always receive their own rotation back from the server before rendering.
-            // Keep yRotO untouched so the renderer can interpolate turns smoothly between ticks.
             this.setYRot(player.getYRot());
             if (!this.level().isClientSide) {
                 if (ItemConfig.HauntedBroomSoulDistance.get() > 0 && this.prevLoc.distanceTo(this.position()) >= Mth.square(ItemConfig.HauntedBroomSoulDistance.get())) {

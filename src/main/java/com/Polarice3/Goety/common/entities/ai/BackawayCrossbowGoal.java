@@ -144,7 +144,6 @@ public class BackawayCrossbowGoal<T extends PathfinderMob & RangedAttackMob & Cr
     }
 
     private void clearCrossbowCharge(ItemStack stack) {
-        // Crossbow charge state moved from setCharged to the CHARGED_PROJECTILES data component in 1.21.
         stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY);
     }
 

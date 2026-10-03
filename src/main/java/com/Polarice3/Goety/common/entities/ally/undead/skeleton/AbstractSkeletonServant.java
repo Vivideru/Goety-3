@@ -210,7 +210,6 @@ public abstract class AbstractSkeletonServant extends Summoned implements Ranged
         if (level instanceof ServerLevel serverLevel) {
             if (level.getBiome(blockPos).is(Tags.Biomes.IS_COLD_OVERWORLD) && level.canSeeSky(blockPos)) {
                 entityType = ModEntityType.STRAY_SERVANT.get();
-            // Use the structure tag so modded outposts can opt into the skeleton pillager variant.
             } else if (BlockFinder.findStructure(serverLevel, blockPos, ModTags.Structures.PILLAGER_OUTPOST)) {
                 entityType = ModEntityType.SKELETON_PILLAGER_SERVANT.get();
             } else if (player != null && BlockFinder.findStructure(serverLevel, blockPos, ModTags.Structures.CAN_SUMMON_WITHER_SKELETONS) && SEHelper.hasResearch(player, ResearchList.BYGONE)) {

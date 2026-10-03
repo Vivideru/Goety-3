@@ -64,7 +64,6 @@ public enum SummonOwnerProvider implements IEntityComponentProvider, StreamServe
         }
 
         if (resolvedOwner instanceof IOwned owned && owned.getMasterOwner() != null) {
-            // Summons created by summons should display the effective master owner instead of the intermediate mob.
             resolvedOwner = owned.getMasterOwner();
             ownerUUID = resolvedOwner.getUUID();
             ownerID = resolvedOwner.getId();

@@ -1,6 +1,6 @@
 package com.Vivideru.Goety.common.world;
 
-import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.config.SpellConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -26,13 +26,13 @@ public class WargTotemData extends SavedData {
     }
 
     public boolean canCreate(UUID owner, ResourceKey<Level> dimension, BlockPos totemPos) {
-        if (MainConfig.WargLimit.get() <= 0) {
+        if (SpellConfig.WargLimit.get() <= 0) {
             return false;
         }
         long owned = this.wargs.values().stream().filter(entry -> entry.owner().equals(owner)).count();
         boolean occupiedTotem = this.wargs.values().stream().anyMatch(entry -> entry.owner().equals(owner)
                 && entry.dimension().equals(dimension.location()) && entry.totemPos().equals(totemPos));
-        return owned < MainConfig.WargLimit.get() && !occupiedTotem;
+        return owned < SpellConfig.WargLimit.get() && !occupiedTotem;
     }
 
     public void register(UUID warg, UUID owner, ResourceKey<Level> dimension, BlockPos totemPos) {

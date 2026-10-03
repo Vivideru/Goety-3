@@ -127,7 +127,6 @@ public class VoidShockBomb extends SpellThrowableProjectile {
                 flag = entity.hurt(damageSource, damage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                         EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                     }
                 }
@@ -200,7 +199,6 @@ public class VoidShockBomb extends SpellThrowableProjectile {
 
     @Override
     protected double getDefaultGravity() {
-        // 1.21 makes Entity#getGravity final; projectiles customize gravity through getDefaultGravity instead.
         return 0.025F;
     }
 

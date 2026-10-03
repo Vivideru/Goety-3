@@ -162,7 +162,6 @@ public class SurgingOrb extends SpellHurtingProjectile{
             this.discard();
         }
         if (this.getTarget() != null && this.getTarget().isAlive() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(this.getTarget())) {
-            // Start steering as soon as the client receives the synced target so the orb never appears parked at spawn.
             if (this.tickCount >= 0) {
                 Vec3 toTarget = this.getTarget().position().add(0, 0.25F, 0).subtract(this.position());
 
@@ -239,7 +238,6 @@ public class SurgingOrb extends SpellHurtingProjectile{
         double d2 = this.getZ() + vec3.z;
         ProjectileUtil.rotateTowardsMovement(this, 0.2F);
         float f = this.getInertia();
-        // Surging Orb intentionally preserves its 1.20 inertia scaling so the Velocity enchantment changes its flight behavior.
         this.setDeltaMovement(vec3.add(this.getDirectionalPower()).scale(f));
         this.setPos(d0, d1, d2);
     }

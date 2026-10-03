@@ -47,7 +47,6 @@ public class LichModeRenderer extends LichPlayerRenderer<AbstractClientPlayer, L
             int color = LichdomHelper.lichModeColor(p_116986_);
             if (p_116986_ instanceof Player && color > -1) {
                 VertexConsumer vertexconsumer = p_116984_.getBuffer(RenderType.eyes(CUSTOM));
-                // 1.21 packs the model tint into a single ARGB int instead of four floats.
                 this.getParentModel().renderToBuffer(p_116983_, vertexconsumer, 15728640, OverlayTexture.NO_OVERLAY, 0xFF000000 | color);
             } else {
                 super.render(p_116983_, p_116984_, p_116985_, p_116986_, p_116987_, p_116988_, p_116989_, p_116990_, p_116991_, p_116992_);

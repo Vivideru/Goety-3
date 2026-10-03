@@ -93,9 +93,6 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
                     if (this.getNearbyFurnaceUsers(serverLevel, new AABB(this.furnace).inflate(4.0D), this.furnace).isEmpty()) {
                         if (this.tryTicks <= 1200) {
                             BlockState blockState = this.mob.level().getBlockState(this.furnace);
-                            // Goal#canContinueToUse delegates back to canUse().
-                            // canUse deliberately rejects an already-working mob, so
-                            // calling super here stopped and restarted the job every tick.
                             return this.mob.isFurnace(blockState);
                         }
                     }
@@ -108,7 +105,6 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
     public void start() {
         this.moveMobToBlock();
         this.tryTicks = 0;
-        // Keep the work pose stable while the servant walks to its furnace.
         this.mob.setUsingFurnace(true);
     }
 
@@ -150,8 +146,6 @@ public class MobFurnaceGoal<T extends Mob & IMobCrafter> extends Goal {
                 if (this.shouldRecalculatePath()) {
                     this.mob.getNavigation().moveTo((double)((float)this.furnace.getX()) + 0.5D, (double)this.furnace.getY(), (double)((float)this.furnace.getZ()) + 0.5D, this.speedModifier);
                 }
-                // Do not clear the work state while navigating: pathing around
-                // the furnace used to make the chef's arms flash every tick.
             } else {
                 this.mob.getNavigation().stop();
                 this.mob.lookAt(EntityAnchorArgument.Anchor.EYES, Vec3.atCenterOf(this.furnace));

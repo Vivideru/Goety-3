@@ -108,7 +108,6 @@ public class BrewItem extends Item {
     }
 
     public int getUseDuration(ItemStack p_43001_, LivingEntity pEntity) {
-        // Minecraft 1.21 asks items for use duration with the consuming entity; the old overload is ignored.
         return 32 - BrewUtils.getQuaff(p_43001_);
     }
 
@@ -125,7 +124,6 @@ public class BrewItem extends Item {
     }
 
     public boolean isFoil(ItemStack p_42999_) {
-        // Potion no longer owns foil state in 1.21; keep the item and custom brew-effect glint checks.
         return super.isFoil(p_42999_) || BrewUtils.hasBrewEffect(p_42999_);
     }
 }

@@ -194,7 +194,6 @@ public class PillagerServant extends AbstractIllagerServant implements CrossbowA
         if (p_219056_.nextInt(300) == 0) {
             ItemStack itemstack = this.getMainHandItem();
             if (itemstack.is(Items.CROSSBOW)) {
-                // 1.21 stores enchantments as components keyed by registry holders instead of mutable Enchantment maps.
                 itemstack.enchant(this.level().registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING), 1);
                 this.setItemSlot(EquipmentSlot.MAINHAND, itemstack);
             }

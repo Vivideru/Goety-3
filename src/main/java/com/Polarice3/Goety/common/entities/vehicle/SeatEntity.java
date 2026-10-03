@@ -72,7 +72,6 @@ public class SeatEntity extends Entity implements IEntityWithComplexSpawn {
         if (!this.hasPassenger(pEntity)) {
             return;
         }
-        // 1.21 removed the old riding-offset helpers; keep the seat anchored at its block position and apply only Goety's custom per-entity offset.
         double d0 = this.getY();
         pCallback.accept(pEntity, this.getX(), d0 + getCustomEntitySeatOffset(pEntity), this.getZ());
     }

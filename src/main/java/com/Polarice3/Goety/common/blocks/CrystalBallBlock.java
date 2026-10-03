@@ -80,7 +80,6 @@ public class CrystalBallBlock extends Block {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Minecraft 1.21 routes held-item block interactions through useItemOn; the old use hook is no longer called.
         if (!pLevel.isClientSide && pLevel.getDifficulty() != Difficulty.PEACEFUL) {
             if (pLevel instanceof ServerLevel serverLevel) {
                 if (pState.getValue(POWERED)) {

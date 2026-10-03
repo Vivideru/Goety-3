@@ -123,7 +123,6 @@ public class HarvestGoal extends Goal {
                                     this.servant.level().gameEvent(GameEvent.BLOCK_PLACE, this.aboveFarmlandPos, GameEvent.Context.of(this.servant, blockstate1));
                                     flag = true;
                                 } else if (itemstack.getItem() instanceof SpecialPlantable specialPlantable) {
-                                    // ZombieVillagerServant is not a vanilla Villager, so preserve the old servant-only planting behavior while using NeoForge's guarded placement hook.
                                     if (specialPlantable.canPlacePlantAtPosition(itemstack, this.servant.level(), this.aboveFarmlandPos, Direction.DOWN)) {
                                         specialPlantable.spawnPlantAtPosition(itemstack, this.servant.level(), this.aboveFarmlandPos, Direction.DOWN);
                                         flag = true;

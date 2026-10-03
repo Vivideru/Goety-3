@@ -62,7 +62,8 @@ public class UnguentItem extends Item {
         }
     }
 
-    public int getUseDuration(ItemStack p_41360_) {
+    @Override
+    public int getUseDuration(ItemStack p_41360_, net.minecraft.world.entity.LivingEntity entity) {
         return 100;
     }
 
@@ -75,9 +76,8 @@ public class UnguentItem extends Item {
         if (itemStack.is(this)) {
             boolean flag = useRemain >= 0;
             if (flag) {
-                int i = this.getUseDuration(itemStack) - useRemain + 1;
+                int i = this.getUseDuration(itemStack, livingEntity) - useRemain + 1;
                 if (i % 10 == 5) {
-                    // The old helper was removed during the 1.21 port; emit the same item particles directly on the server.
                     if (level instanceof ServerLevel serverLevel) {
                         serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.SLIME_BALL)), livingEntity.getX(), livingEntity.getY(0.5D), livingEntity.getZ(), 5, 0.25D, 0.25D, 0.25D, 0.05D);
                     }

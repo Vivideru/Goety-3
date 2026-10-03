@@ -2,7 +2,6 @@ package com.Polarice3.Goety.api.magic;
 
 import net.minecraft.network.chat.Component;
 
-// This enum is not registered in enumextensions.json, so it must stay a regular enum on NeoForge.
 public enum SpellType {
     NONE("none"),
     NECROMANCY("necromancy"),

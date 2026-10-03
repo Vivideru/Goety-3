@@ -29,7 +29,6 @@ public class SFocusSpecificCooldownPacket {
     }
 
     public static void encode(SFocusSpecificCooldownPacket packet, FriendlyByteBuf buffer) {
-        // ItemStack network serialization moved to stream codecs that require registry-aware buffers in 1.21.
         ItemStack.OPTIONAL_STREAM_CODEC.encode((RegistryFriendlyByteBuf) buffer, packet.itemStack);
         buffer.writeUtf(packet.key);
         buffer.writeVarInt(packet.duration);

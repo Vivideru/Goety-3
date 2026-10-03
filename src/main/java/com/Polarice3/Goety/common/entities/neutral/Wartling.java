@@ -163,7 +163,6 @@ public class Wartling extends AbstractSpiderServant {
                         livingEntity.addEffect(this.getStoredEffect());
                     }
                 } else if (!livingEntity.getActiveEffects().isEmpty()){
-                    // 1.21 no longer exposes curative item lists on MobEffect; keep the stored-effect choice beneficial-only.
                     livingEntity.getActiveEffects().stream().filter(mobEffect -> mobEffect.getEffect().value().isBeneficial()).findFirst().ifPresent(effect -> {
                         this.setStoredEffect(effect);
                         livingEntity.removeEffect(effect.getEffect());
@@ -290,7 +289,6 @@ public class Wartling extends AbstractSpiderServant {
     }
 
     protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
-        // 1.21 makes getDimensions final; scale the default dimensions here to preserve mega Wartling size.
         EntityDimensions entitydimensions = super.getDefaultDimensions(p_33113_);
         return this.isMega() ? entitydimensions.scale(2.0F) : entitydimensions;
     }

@@ -151,7 +151,6 @@ public class Ripper extends Raider {
     protected EntityDimensions getDefaultDimensions(Pose p_33113_) {
         float i = this.getRipperSize();
         EntityDimensions entitydimensions = super.getDefaultDimensions(p_33113_);
-        // Entity#getDimensions is final in 1.21, so keep the size scaling in the default-dimensions hook.
         float f = (entitydimensions.width() + (0.2F * i)) / entitydimensions.width();
         return entitydimensions.scale(f);
     }
@@ -250,7 +249,6 @@ public class Ripper extends Raider {
             } else if ((this.isWet || this.isShaking) && this.isShaking) {
                 if (this.shakeAnim == 0.0F) {
                     this.playSound(SoundEvents.WOLF_SHAKE, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-                    // ENTITY_SHAKE was removed in 1.21; ENTITY_ACTION preserves the non-specific movement game event.
                     this.gameEvent(GameEvent.ENTITY_ACTION);
                 }
 
@@ -397,7 +395,6 @@ public class Ripper extends Raider {
                                     ripper.setTarget(livingentity);
                                     ripper.finalizeSpawn(serverlevel, this.level().getCurrentDifficultyAt(ripper.blockPosition()), MobSpawnType.REINFORCEMENT, (SpawnGroupData) null);
                                     serverlevel.addFreshEntityWithPassengers(ripper);
-                                    // Reinforcement charges use stable 1.21 modifier ids; remove an existing charge before reapplying so repeated hits cannot crash on duplicate ids.
                                     spawnChance.removeModifier(com.Polarice3.Goety.utils.ModAttributeUtil.stableId("Caller charge"));
                                     spawnChance.addPermanentModifier(com.Polarice3.Goety.utils.ModAttributeUtil.create("Caller charge", (double) -0.05F, AttributeModifier.Operation.ADD_VALUE));
                                     AttributeInstance spawnChance2 = ripper.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE);

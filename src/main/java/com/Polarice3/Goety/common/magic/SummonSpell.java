@@ -115,7 +115,6 @@ public abstract class SummonSpell extends Spell implements ISummonSpell {
     }
 
     public int durationEnchantmentLevel(LivingEntity caster) {
-        // Duration should only extend summon lifespan when the focus actually carries Duration; other focus enchantments must not add hidden lifetime.
         return WandUtil.getLevels(ModEnchantments.DURATION, caster);
     }
 

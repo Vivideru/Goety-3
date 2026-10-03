@@ -539,7 +539,6 @@ public class CuriosFinder {
         if (livingEntity instanceof Player player && CuriosFinder.hasCurio(player, ModItems.RING_OF_THE_DRAGON.get())) {
             ItemStack ring = CuriosFinder.findCurio(player, ModItems.RING_OF_THE_DRAGON.get());
             if (player.level() instanceof ServerLevel serverLevel && !player.getCooldowns().isOnCooldown(ring.getItem())) {
-                // The ring trades the old passive breath bonus for a controlled blast at the teleport origin.
                 float radius = 3.0F + MobUtil.getItemEnchantmentLevel(player, ring, ModEnchantments.RADIUS) * 0.5F;
                 ColorUtil color = ColorUtil.LIGHT_PURPLE;
                 serverLevel.sendParticles(new CircleExplodeParticleOption(color.red(), color.green(), color.blue(), radius, 1),

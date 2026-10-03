@@ -1,0 +1,14 @@
+{
+  "fallback": "goety:trial_chambers/chambers/end_fallback",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "goety:trial_chambers/hurricane_chamber",
+        "processors": "minecraft:trial_chambers_copper_bulb_degradation",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

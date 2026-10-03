@@ -50,7 +50,6 @@ public class CustomItemsRenderer extends BlockEntityWithoutLevelRenderer {
         }
 
         if (itemStackIn.getItem() == ModItems.NAMELESS_STAFF.get()) {
-            // Reset and apply the animated pose before every render pass so the base and glow layers stay aligned.
             this.staffModel.animate(tick + partialTick);
             matrixStackIn.pushPose();
             matrixStackIn.translate(0.5F, 0.5F, 0.5F);

@@ -63,7 +63,6 @@ import java.util.*;
 
 public class GraveGolem extends AbstractGolemServant implements IMobTyped {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(GraveGolem.class, EntityDataSerializers.BYTE);
-    // Matches the 4.6 second SUMMON animation so the roar and the Haunts line up with it.
     public static float SUMMON_SECONDS_TIME = 4.6F;
     private int activateTick;
     public int attackTick;
@@ -163,7 +162,6 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
         for(int i = 0; i < this.inventory.getContainerSize(); ++i) {
             ItemStack itemstack = this.inventory.getItem(i);
             if (!itemstack.isEmpty()) {
-                // ItemStack codecs are registry-aware in 1.21, so entity saves must use the level registry access.
                 listnbt.add(itemstack.save(this.registryAccess()));
             }
         }
@@ -189,7 +187,6 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
             ListTag listnbt = pCompound.getList("Inventory", 10);
 
             for (int i = 0; i < listnbt.size(); ++i) {
-                // ItemStack codecs are registry-aware in 1.21, so entity loads must use the level registry access.
                 ItemStack itemstack = ItemStack.parseOptional(this.registryAccess(), listnbt.getCompound(i));
                 if (!itemstack.isEmpty()) {
                     this.inventory.addItem(itemstack);
@@ -537,11 +534,9 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
                 }
                 if (this.summonTick == MathHelper.secondsToTicks(SUMMON_SECONDS_TIME) - 36){
                     this.playSound(ModSounds.GRAVE_GOLEM_ROAR.get(), 2.0F, 1.0F);
-                    // GameEvent.ENTITY_ROAR was removed in 1.21; ENTITY_ACTION keeps the roar's vibration.
                     this.gameEvent(GameEvent.ENTITY_ACTION, this);
                 }
                 if (this.summonTick <= (MathHelper.secondsToTicks(SUMMON_SECONDS_TIME - 2)) && this.summonCount != 0) {
-                    // Up to six Haunts, only on spots where they actually fit, from a bounded number of tries.
                     int j = 0;
                     for (int i = 0; i < 32 && j < 6; ++i){
                         BlockPos blockPos = this.blockPosition();
@@ -753,7 +748,6 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
 
         @Override
         protected void checkAndPerformAttack(LivingEntity enemy) {
-            // The 1.21 melee hook no longer receives distance, so keep the old reach check by recomputing it here.
             double distToEnemySqr = GraveGolem.this.distanceToSqr(enemy.getX(), enemy.getY(), enemy.getZ());
             if (GraveGolem.this.targetClose(enemy, distToEnemySqr) && !GraveGolem.this.isShooting()) {
                 GraveGolem.this.doHurtTarget(enemy);
@@ -838,7 +832,6 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
                     GraveGolem.this.setDeltaMovement(GraveGolem.this.getDeltaMovement().multiply(0.6D, 1.0D, 0.6D));
                 }
 
-                // The old doEnchantDamageEffects helper was replaced by the enchantment post-attack hook.
                 if (GraveGolem.this.level() instanceof ServerLevel serverLevel) {
                     EnchantmentHelper.doPostAttackEffects(serverLevel, target, GraveGolem.this.getServantAttack());
                 }

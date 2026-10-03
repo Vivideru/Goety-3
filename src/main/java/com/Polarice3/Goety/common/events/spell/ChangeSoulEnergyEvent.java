@@ -5,18 +5,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.bus.api.ICancellableEvent;
 
-/**
- * ChangeSoulEnergyEvent is fired when player gains or loss Soul Energy. <br>
- * <br>
- * This event is fired via both {@link GoetyEventFactory#onSoulEnergyGain(Player, int)} & {@link GoetyEventFactory#onSoulEnergyLoss(Player, int)}.<br>
- * <br>
- * This event is {@link Cancelable}.<br>
- * If this event is canceled, the amount is set to 0.<br>
- * <br>
- * This event does not have a result. {@link HasResult}<br>
- * <br>
- * This event is fired on the {@link NeoForge#EVENT_BUS}.
- **/
 public class ChangeSoulEnergyEvent extends PlayerEvent implements ICancellableEvent {
     private int soulChange;
 

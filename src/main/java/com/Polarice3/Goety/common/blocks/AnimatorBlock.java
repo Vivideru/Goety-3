@@ -60,7 +60,6 @@ public class AnimatorBlock extends BaseEntityBlock implements IBlockExtension {
 
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
-        // Block entity data is stored directly in a data component in 1.21 instead of inside the old BlockEntityTag wrapper.
         CompoundTag compoundnbt = pStack.getOrDefault(DataComponents.BLOCK_ENTITY_DATA, CustomData.EMPTY).copyTag();
         if (compoundnbt.contains("item")) {
             pLevel.setBlock(pPos, pState.setValue(POWERED, Boolean.TRUE), 2);
@@ -70,7 +69,6 @@ public class AnimatorBlock extends BaseEntityBlock implements IBlockExtension {
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Minecraft 1.21 routes held-item block interactions through useItemOn; the Waystone insertion depends on the clicked item.
         if (pHand == InteractionHand.MAIN_HAND) {
             BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
             if (tileEntity instanceof AnimatorBlockEntity animatorBlock && animatorBlock.getItem().isEmpty() && itemStack.getItem() instanceof WaystoneItem) {
@@ -85,7 +83,6 @@ public class AnimatorBlock extends BaseEntityBlock implements IBlockExtension {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
-        // Empty-hand animator controls use the block-only 1.21 hook instead of the removed old use signature.
         BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
         if (tileEntity instanceof AnimatorBlockEntity animatorBlock) {
             if (pPlayer.isCrouching() && animatorBlock.getPosition() != null){
@@ -113,7 +110,6 @@ public class AnimatorBlock extends BaseEntityBlock implements IBlockExtension {
             if (tileentity instanceof AnimatorBlockEntity animatorBlock) {
                 ItemStack itemstack = animatorBlock.getItem();
                 if (!itemstack.isEmpty()) {
-                    // Event 1010 controls jukebox playback in 1.21, so use the intended removal sound directly.
                     pLevel.playSound(null, pPos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
                     animatorBlock.clearContent();
                     float f = 0.7F;

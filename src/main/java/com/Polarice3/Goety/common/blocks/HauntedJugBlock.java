@@ -82,7 +82,6 @@ public class HauntedJugBlock extends BaseEntityBlock implements SimpleWaterlogge
     }
 
     protected ItemInteractionResult useItemOn(ItemStack pClickedStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        // Item-based block interaction replaced the old use hook in 1.21; the jug only reacts to fluid containers and bottles.
         ItemStack itemStack = pPlayer.getItemInHand(pHand);
         if (!pLevel.isClientSide){
             if (pLevel.getBlockEntity(pPos) instanceof HauntedJugBlockEntity jugBlockEntity){

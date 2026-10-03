@@ -39,7 +39,6 @@ public class SculkConverterBlock extends EnchanteableBlock {
     }
 
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pResult) {
-        // Empty-hand block interactions are dispatched through useWithoutItem in Minecraft 1.21.
         if (!pLevel.isClientSide) {
             BlockEntity tileentity = pLevel.getBlockEntity(pPos);
             if (tileentity instanceof SculkConverterBlockEntity converterBlockEntity) {

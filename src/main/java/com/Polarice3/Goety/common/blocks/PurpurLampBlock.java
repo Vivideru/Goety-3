@@ -66,7 +66,6 @@ public class PurpurLampBlock extends Block implements SimpleWaterloggedBlock {
             pLevel.playSound((Player)null, pPos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.5F, 0.5F);
             pLevel.setBlockAndUpdate(pPos, pState.setValue(BlockStateProperties.LIT, Boolean.FALSE));
         }
-        // The old use hook toggled the lamp even with a held item, so consume the item-on-block interaction here.
         return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 

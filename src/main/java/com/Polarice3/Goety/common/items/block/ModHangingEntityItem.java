@@ -70,7 +70,6 @@ public class ModHangingEntityItem extends Item {
 
          CustomData customdata = itemstack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
          if (!customdata.isEmpty()) {
-            // 1.21 stores entity placement NBT in the ENTITY_DATA component instead of the removed root ItemStack tag.
             EntityType.updateCustomEntityTag(level, player, hangingentity, customdata);
          }
 
@@ -104,7 +103,6 @@ public class ModHangingEntityItem extends Item {
                   p_270630_.add(Component.translatable(p_270217_.location().toLanguageKey("painting", "title")).withStyle(ChatFormatting.YELLOW));
                   p_270630_.add(Component.translatable(p_270217_.location().toLanguageKey("painting", "author")).withStyle(ChatFormatting.GRAY));
                });
-               // 1.21 PaintingVariant dimensions are already block counts, so dividing by 16 makes every custom painting display as 1x1.
                p_270630_.add(Component.translatable("painting.dimensions", p_270767_.value().width(), p_270767_.value().height()));
             }, () -> {
                p_270630_.add(TOOLTIP_RANDOM_VARIANT);

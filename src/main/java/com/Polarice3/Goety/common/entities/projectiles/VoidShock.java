@@ -288,7 +288,6 @@ public class VoidShock extends SpellEntity {
             var damageSource = this.damageSources().indirectMagic(this, entity1);
             entity.hurt(damageSource, damage);
             if (entity1 instanceof LivingEntity living) {
-                // 1.21 routes post-attack enchantment hooks through EnchantmentHelper instead of Projectile#doEnchantDamageEffects.
                 EnchantmentHelper.doPostAttackEffects((ServerLevel)this.level(), entity, damageSource);
                 if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(living)) {
                     if (living.level().getRandom().nextFloat() <= 0.25F) {
