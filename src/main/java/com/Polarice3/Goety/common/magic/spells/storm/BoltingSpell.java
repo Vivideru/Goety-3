@@ -67,8 +67,8 @@ public class BoltingSpell extends Spell {
         int potency = spellStat.getPotency();
         double velocity = spellStat.getVelocity();
         if (WandUtil.enchantedFocus(caster)){
-            potency = WandUtil.getPotencyLevel(caster);
-            velocity = WandUtil.getLevels(ModEnchantments.VELOCITY, caster);
+            potency += WandUtil.getPotencyLevel(caster);
+            velocity += WandUtil.getLevels(ModEnchantments.VELOCITY, caster);
         }
         caster.hurtMarked = true;
         caster.setOnGround(false);

@@ -5,6 +5,7 @@ import com.Polarice3.Goety.api.items.IPersist;
 import com.Polarice3.Goety.api.items.armor.ISoulDiscount;
 import com.Polarice3.Goety.client.render.ModModelLayer;
 import com.Polarice3.Goety.client.render.model.MaleficHelmModel;
+import com.Vivideru.Goety.client.render.model.ArmorModelCache;
 import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.config.ItemConfig;
 import com.google.common.collect.ImmutableMultimap;
@@ -40,6 +41,11 @@ public class MaleficHelm extends ArmorItem implements ISoulDiscount, IPersist {
     @Override
     public int getMaxDamage(ItemStack stack) {
         return ModArmorMaterials.configuredDurability(Type.HELMET, ItemConfig.MaleficDurability, 30);
+    }
+
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return com.Polarice3.Goety.utils.ConfiguredItemUtil.positive(ItemConfig.MaleficEnchantability, 15);
     }
 
     @Override
@@ -118,9 +124,7 @@ public class MaleficHelm extends ArmorItem implements ISoulDiscount, IPersist {
         super.initializeClient(consumer);
         consumer.accept(new IClientItemExtensions() {
            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-               EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
-               ModelPart root = modelSet.bakeLayer(ModModelLayer.MALEFIC_HELM);
-               MaleficHelmModel model = new MaleficHelmModel(root);
+               MaleficHelmModel model = ArmorModelCache.get(ModModelLayer.MALEFIC_HELM, MaleficHelmModel::new);
                model.hat.visible = equipmentSlot == EquipmentSlot.HEAD;
                model.body.visible = equipmentSlot == EquipmentSlot.CHEST;
                model.rightArm.visible = equipmentSlot == EquipmentSlot.CHEST;

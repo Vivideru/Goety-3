@@ -1,0 +1,29 @@
+{
+  "name": "飑旋",
+  "icon": "goety:hurricane_core",
+  "category": "goety:mutations",
+  "advancement": "goety:goety/kill_a_hurricane",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在试炼密室深处，风本身已学会反击。沉重核心对风暴所做的事，也可以刻意施加在你的旋风人仆从身上：将烈风束缚于核心，再喂以灵魂，它便会成长为一只听命于你的飑旋。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_breezes_to_hurricane"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:hurricane_servant",
+      "scale": 0.6
+    },
+    {
+      "type": "patchouli:text",
+      "text": "飑旋仆从在战场上来去如风，向任何威胁其主人的目标挥拳，召唤旋风，并以一记重击落地，将周围的一切震散。它受到的每一次打击都会爆开一阵狂风，将攻击者推开，箭矢也会从它身上弹开。与旋风人仆从一样，当主人穿着烈风长袍时，它会随时间恢复生命。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当它倒下时，会留下一颗飑旋核心，其中仍承载着风暴，并记得它的主人；将其用在旋风人身上，或用在你的旋风人仆从身上，同一只飑旋仆从便会取代其位置。"
+    }
+  ]
+}

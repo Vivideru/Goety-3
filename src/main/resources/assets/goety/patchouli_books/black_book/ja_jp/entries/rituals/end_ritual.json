@@ -1,22 +1,22 @@
 {
-  "name": "End Ritual",
+  "name": "エンドの儀式",
   "icon": "goety:void_block",
   "category": "goety:rituals",
   "sortnum": 8,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Be in the End $(li)16 Void Blocks $(li)64 End Stone Variants $(li)32 Purpur Blocks Any"
+      "text": "必要: $(li)ジ・エンドにあること$(li)16 虚空ブロック(Goety)(li)64 エンドストーンレンガ $(li)32 あらゆるプルプァブロック"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/end_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "儀式をどのように配置するかの例"
     },
     {
       "type": "patchouli:text",
-      "text": "The concentrated essence of the Void helps channel the powers of the end of all things into making arcane rituals."
+      "text": "虚空の濃縮されたエッセンスは、すべてのもののエンドの力を神秘的な儀式に導くのに役立ちます。"
     }
   ]
 }

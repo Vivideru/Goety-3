@@ -38,6 +38,8 @@ public class ModTags {
 
         public static final TagKey<Block> HAUNTED_LOGS = tag("haunted_logs");
         public static final TagKey<Block> SHADE_STONE = tag("shade_stone");
+        public static final TagKey<Block> BRAZIER = tag("brazier");
+        public static final TagKey<Block> END_LIMESTONE = tag("end_limestone");
         public static final TagKey<Block> MARBLE_BLOCKS = tag("marble_blocks");
         public static final TagKey<Block> INDENTED_GOLD_BLOCKS = tag("indented_gold_blocks");
         public static final TagKey<Block> JADE_BLOCKS = tag("jade_blocks");
@@ -78,6 +80,7 @@ public class ModTags {
     public static class Items {
         private static void init(){}
 
+        public static final TagKey<Item> HAMMERS = tag("hammers");
         public static final TagKey<Item> WANDS = tag("wands");
         public static final TagKey<Item> STAFFS = tag("staffs");
         public static final TagKey<Item> TOTEMS = tag("totems");
@@ -104,7 +107,7 @@ public class ModTags {
         public static final TagKey<Item> WITCH_CURRENCY = tag("witch_currency");
         public static final TagKey<Item> WITCH_BETTER_CURRENCY = tag("witch_better_currency");
         public static final TagKey<Item> WRECKABLE = tag("wreakable");
-        public static final TagKey<Item> UNWRECKABLE = tag("unwreakable");
+        public static final TagKey<Item> UNWRECKABLE = tag("unwreckable");
 
         private static TagKey<Item> tag(String name)
         {
@@ -179,6 +182,8 @@ public class ModTags {
         public static final TagKey<EntityType<?>> WANTING_ENTITIES = tag("wanting_entities");
         public static final TagKey<EntityType<?>> SUMMON_KILL = tag("summon_kill");
         public static final TagKey<EntityType<?>> IGNORE_SERVANTS = tag("ignore_servants");
+        public static final TagKey<EntityType<?>> UNENCHANTABLE = tag("unenchantable");
+        public static final TagKey<EntityType<?>> GARMENT_HEAL = tag("garment_heal");
         public static final TagKey<EntityType<?>> UNSTUNNABLE = tag("unstunnable");
         public static final TagKey<EntityType<?>> UNTANGLEABLE = tag("untangleable");
         public static final TagKey<EntityType<?>> UNBLOWABLE_ENTITIES = tag("unblowable_entities");
@@ -221,7 +226,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> VOID_HEAL = tag("void_heal");
         public static final TagKey<EntityType<?>> NECRO_HEAL = tag("necro_heal");
         public static final TagKey<EntityType<?>> NECRO_NO_DEBUFF = tag("necro_no_debuff");
-        public static final TagKey<EntityType<?>> UNWRECKABLE = tag("unwreakable");
+        public static final TagKey<EntityType<?>> UNWRECKABLE = tag("unwreckable");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return create(Goety.location(name));
@@ -359,6 +364,7 @@ public class ModTags {
         public static final TagKey<DamageType> FROST_ATTACKS = tag("frost_attacks");
         public static final TagKey<DamageType> SHOCK_ATTACKS = tag("shock_attacks");
         public static final TagKey<DamageType> WATER_ATTACKS = tag("water_attacks");
+        public static final TagKey<DamageType> ELEMENTAL = tag("elemental");
         public static final TagKey<DamageType> MAGIC_FIRE = tag("magic_fire");
         public static final TagKey<DamageType> HELLFIRE = tag("hellfire");
         public static final TagKey<DamageType> NO_KNOCKBACK = tag("no_knockback");

@@ -1,12 +1,12 @@
 {
-  "name": "Unholy Robes",
+  "name": "Нечестивые одежды",
   "icon": "goety:unholy_robe",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/kill_a_apostle",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using the $(l)purest$() blood of the dark emissary, $(l)which can only be obtained by slaying them within the Nether$(), you've made replica of their garments. The Robes gives you immunity to fire and Burn Hexes, and both robe and hat empowers some spells with hellfire."
+      "text": "Используя $(l)чистейшую$() кровь тёмного посланника, $(l)которую можно получить, только убив его в Незере$(), вы создали точную копию его одежд. Мантия даёт вам иммунитет к огню и проклятию ожога, а вместе со шляпой наделяет некоторые заклинания адским пламенем."
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Unholy Hat reduces all incoming damage towards the wearer when within the Nether, as well as capping the configurable max amount of damage the wearer can take much like Apostles. The Unholy Robes grants resistance to hellfire damage."
+      "text": "Нечестивая шляпа в два раза снижает получаемый урон, если вы находитесь в Незере, а также ограничивает максимальное получаемое количество урона, подобно апостолам. Нечестивая мантия даёт устойчивость к адскому пламени."
     }
   ],
   "extra_recipe_mappings": {

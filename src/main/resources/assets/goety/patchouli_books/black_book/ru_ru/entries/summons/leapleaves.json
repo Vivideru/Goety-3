@@ -17,6 +17,10 @@
       "type": "multiblock",
       "multiblock_id": "goety:leapleaf",
       "text": "Нажмите ПКМ по центральным разросшимся корням ядром оживления."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The creature can be healed by right-clicking on them with Bone Meals."
     }
   ]
 }

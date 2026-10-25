@@ -1,11 +1,11 @@
 {
-  "name": "Blossoming Focus",
+  "name": "Фокус цветения",
   "icon": "goety:blossoming_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell lobs an thorny ball of wild energies that will grow several poisonous thorns around the area of its impact."
+      "text": "Фокус стреляет колючим клубком дикой энергии, который создаёт несколько ядовитых шипов при попадании."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() increases the radius."
+      "text": "Использование $(l:crafts/staff/wild_staff)дикого посоха$() увеличивает радиус действия."
     }
   ],
   "extra_recipe_mappings": {

@@ -14,6 +14,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.TrialSpawnerBlock;
+import net.minecraft.world.level.block.entity.trialspawner.TrialSpawnerState;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.BakedModelWrapper;
@@ -26,13 +28,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Wraps the vanilla vault and trial spawner models: when the block entity carries a Goety variant, every quad is
+ * retextured with the variant's texture set (same file names under the variant's folder). Missing files keep the vanilla texture.
+ */
 public class VaultVariantModel extends BakedModelWrapper<BakedModel> {
-    private static final ModelProperty<Boolean> WIND_SHRINE = new ModelProperty<>();
-    private static final String WIND_SHRINE_TEXTURES = "block/wind_vault/";
+    private static final ModelProperty<String> VARIANT = new ModelProperty<>();
+    private static final String VAULT_PREFIX = "block/vault_";
+    private static final String SPAWNER_PREFIX = "block/trial_spawner_";
     private static final int U_OFFSET = 4;
     private static final int V_OFFSET = 5;
-    private final Map<Object, List<BakedQuad>> retextured = new ConcurrentHashMap<>();
-    private static final Object NO_SIDE = new Object();
+    private final Map<String, List<BakedQuad>> retextured = new ConcurrentHashMap<>();
 
     public VaultVariantModel(BakedModel original) {
         super(original);
@@ -41,26 +47,28 @@ public class VaultVariantModel extends BakedModelWrapper<BakedModel> {
     @Override
     public ModelData getModelData(BlockAndTintGetter level, BlockPos pos, BlockState state, ModelData modelData) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity != null && VaultVariants.isWindShrine(blockEntity)) {
-            return modelData.derive().with(WIND_SHRINE, true).build();
-        }
-        return modelData;
+        String variant = blockEntity == null ? null : VaultVariants.variantOf(blockEntity);
+        return variant == null ? modelData : modelData.derive().with(VARIANT, variant).build();
     }
 
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, RandomSource rand, ModelData data, @Nullable RenderType renderType) {
         List<BakedQuad> quads = super.getQuads(state, side, rand, data, renderType);
-        if (!Boolean.TRUE.equals(data.get(WIND_SHRINE)) || quads.isEmpty()) {
+        String variant = data.get(VARIANT);
+        if (variant == null || quads.isEmpty()) {
             return quads;
         }
-        return this.retextured.computeIfAbsent(side == null ? NO_SIDE : side, key -> retexture(quads));
+        // A trial spawner waiting for players shares the vanilla "active" model; variants may give that state its own side texture.
+        boolean waiting = state != null && state.hasProperty(TrialSpawnerBlock.STATE) && state.getValue(TrialSpawnerBlock.STATE) == TrialSpawnerState.WAITING_FOR_PLAYERS;
+        return this.retextured.computeIfAbsent(variant + "|" + (waiting ? "waiting|" : "") + (side == null ? "none" : side.getName()), key -> retexture(quads, variant, waiting));
     }
 
     @Override
     public TextureAtlasSprite getParticleIcon(ModelData data) {
         TextureAtlasSprite original = super.getParticleIcon(data);
-        if (Boolean.TRUE.equals(data.get(WIND_SHRINE))) {
-            TextureAtlasSprite replacement = windShrineSprite(original);
+        String variant = data.get(VARIANT);
+        if (variant != null) {
+            TextureAtlasSprite replacement = variantSprite(original, variant, false);
             if (replacement != null) {
                 return replacement;
             }
@@ -68,11 +76,11 @@ public class VaultVariantModel extends BakedModelWrapper<BakedModel> {
         return original;
     }
 
-    private static List<BakedQuad> retexture(List<BakedQuad> quads) {
+    private static List<BakedQuad> retexture(List<BakedQuad> quads, String variant, boolean waiting) {
         List<BakedQuad> result = new ArrayList<>(quads.size());
         for (BakedQuad quad : quads) {
             TextureAtlasSprite from = quad.getSprite();
-            TextureAtlasSprite to = windShrineSprite(from);
+            TextureAtlasSprite to = variantSprite(from, variant, waiting);
             if (to == null) {
                 result.add(quad);
                 continue;
@@ -94,13 +102,29 @@ public class VaultVariantModel extends BakedModelWrapper<BakedModel> {
     }
 
     @Nullable
-    private static TextureAtlasSprite windShrineSprite(TextureAtlasSprite original) {
+    private static TextureAtlasSprite variantSprite(TextureAtlasSprite original, String variant, boolean waiting) {
         ResourceLocation name = original.contents().name();
-        if (!name.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE) || !name.getPath().startsWith("block/vault_")) {
+        if (!name.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
             return null;
         }
-        ResourceLocation replacement = Goety.location(WIND_SHRINE_TEXTURES + name.getPath().substring("block/".length()));
-        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(replacement);
+        String folder = name.getPath().startsWith(VAULT_PREFIX) ? VaultVariants.vaultTextures(variant)
+                : name.getPath().startsWith(SPAWNER_PREFIX) ? VaultVariants.spawnerTextures(variant) : null;
+        if (folder == null) {
+            return null;
+        }
+        String file = name.getPath().substring("block/".length());
+        if (waiting && file.startsWith("trial_spawner_side_active")) {
+            TextureAtlasSprite sprite = atlasSprite(Goety.location(folder + file.replace("side_active", "side_waiting")));
+            if (sprite != null) {
+                return sprite;
+            }
+        }
+        return atlasSprite(Goety.location(folder + file));
+    }
+
+    @Nullable
+    private static TextureAtlasSprite atlasSprite(ResourceLocation location) {
+        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(InventoryMenu.BLOCK_ATLAS).apply(location);
         return sprite.contents().name().equals(MissingTextureAtlasSprite.getLocation()) ? null : sprite;
     }
 }

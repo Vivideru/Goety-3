@@ -1,16 +1,16 @@
 {
-  "name": "Ominous Shackles",
+  "name": "不吉な手錠",
   "icon": "goety:ominous_shackles",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Villagers can hard to wrangle, with the common technique of putting them in a boat makes one look silly when riding on land. With these shackles, you won't be having trouble moving them that much."
+      "text": "村人たちをまとめるのはなかなか大変です。よくあるやり方では、ボートに乗せて陸にのぼる...これは滑稽に見えてしまいます。これがあれば、彼らを移動させるのにそれほど苦労することはありません。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:ominous_shackles",
-      "text": "Using these on Villagers or Wandering Traders will turn them into $(l:mutations/prisoners)Prisoners$()."
+      "text": "これらを村人や行商人に使用すると、$(l:mutations/prisoners)村人囚人$()に変わります。"
     }
   ]
 }

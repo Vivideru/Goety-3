@@ -1,5 +1,5 @@
 {
-  "name": "Adept Nether Ritual",
+  "name": "基本的なネザーの儀式",
   "icon": "minecraft:blackstone",
   "category": "goety:rituals",
   "advancement": "minecraft:story/enter_the_nether",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Be in the Nether $(li)8 Basalts Any $(li)16 Blackstone Any $(li)4 Glowstone"
+      "text": "要件: $(li)ネザー$(li)8玄武岩（その他派生も可）$(li)16 ブラックストーン（その他派生も可）$(li)4 グロウストーン"
     },
     {
       "type": "patchouli:image",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Nether is a dimension full of Soul Energy, as shown with the endless amounts of Soul Sand that littered the realm. However, there still needs structure to create Nether related artifacts to focus the abundance into one place. The Blackstone and Basalt can be of any kind."
+      "text": "ネザーは、領域に散らばる無限の量のソウルサンドで示されるように、ソウルエネルギーに満ちた次元です。 ただし、豊富さを 1 か所に集中させるためにネザー関連のアーティファクトを作成するための構造がまだ必要です。 ブラックストーンと玄武岩はどんな種類のものでも構いません。"
     }
   ]
 }

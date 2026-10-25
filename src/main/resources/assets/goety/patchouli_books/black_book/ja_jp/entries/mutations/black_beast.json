@@ -1,5 +1,5 @@
 {
-  "name": "Black Beast",
+  "name": "ブラックビースト",
   "icon": "minecraft:chain",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_haunting_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Having a Wraith properly possess a Black Wolf results in a powerful, and unnatural, creature that can rend your enemies asunder through it's withering claws and curses or, if their foe is beyond their reach, summoning apparitions of their heads to bite them."
+      "text": "レイスをブラックウルフに適切に憑依させると、呪いとウィザーの爪で敵を引き裂く不自然で強力な生き物が生まれます。"
     },
     {
       "type": "goety:ritual",
@@ -20,7 +20,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The beast can be healed by feeding it meat much like tamed wolves, and can passively heal if their owner dons a Wild Robe. Right-clicking on them with a Taglock Kit, that has a Tagged creature on it, will cause them to hunt said creature down before returning to their owner once they slay their query."
+      "text": "ブラックビーストはオオカミと同じように、肉をあげることで回復します。また、所持者が野生のローブを着ていれば自動的に回復します。ブラックビーストを生き物がタグ付けされたタグロックキットをもって右クリックすると、その生き物を抹殺し、さらに所持者の元に戻る前に同じ種類の生き物を抹殺します。"
     },
     {
       "type": "patchouli:spotlight",
@@ -29,7 +29,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Mob based on 'Nightmare Stalker' from 'Born In Chaos' mod by 'mongoose_artist'."
+      "text": "ブラックビーストはmongoose_artistによるBorn In Chaos modのMob、Nightmare Stalkerがモデルです。"
     }
   ],
   "extra_recipe_mappings": {

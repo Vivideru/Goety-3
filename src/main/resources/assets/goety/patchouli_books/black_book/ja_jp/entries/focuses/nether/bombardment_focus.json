@@ -1,12 +1,12 @@
 {
-  "name": "Bombardment Focus",
+  "name": "弾幕のフォーカス",
   "icon": "goety:bombardment_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "An upgraded version of the humble Fireball spell. Now, you can shoot a barrage of fireballs and fly up like the Blazes."
+      "text": "控えめなファイアボール呪文のアップグレード版です。ファイアボールの弾幕を発射し、ブレイズのように飛び上がることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -14,11 +14,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Enchanting the focus with Duration will increase the number of volleys that you can shoot."
+      "text": "フォーカスに持続時間をエンチャントすると、射撃できる一斉射撃の数が増加します。"
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() will cause you to shoot two more fireballs per volley."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、一斉射撃ごとに2つの火の玉をさらに発射することになります。"
     }
   ]
 }

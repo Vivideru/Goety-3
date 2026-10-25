@@ -1,11 +1,11 @@
 {
-  "name": "Sprites",
+  "name": "スプライト",
   "icon": "minecraft:glass",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You have of tales of lights dancing in bogs or swamps, luring travellers to their deaths. At first, you thought they would simply lure victims around in circles until they get tired and starve to death. Turns out, instead of having them starve, they would just zap them to death."
+      "text": "沼地や湿原で光が踊るように現れ、旅人を死へと誘い込むという話を聞いたことがあるでしょう。最初は、光は単に犠牲者をぐるぐると回して疲れ果てさせ、餓死させるだけだと思っていました。ところが、餓死させるのではなく、光で感電死させてしまうのだと分かったのです。"
     },
     {
       "type": "patchouli:entity",

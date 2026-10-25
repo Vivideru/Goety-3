@@ -1,23 +1,28 @@
 {
   "name": "水晶玉",
-  "icon": "goety:crystal_ball",
+  "icon": "goety:pale_crystal_ball",
   "category": "goety:crafts/artifice",
-  "advancement": "goety:goety/get_crystal_ball",
   "pages": [
     {
       "type": "patchouli:text",
       "text": "水晶玉は、占いや未来予知に用いられることで知られています。"
     },
     {
+      "type": "goety:ritual",
+      "recipe": "goety:pale_crystal_ball"
+    },
+    {
       "type": "patchouli:text",
       "text": "位置を保存した$(l:crafts/waystone)ウェイストーン$()を使用すると、その場所がロードされている場合、その場所を見ることができます。登録した$(l:crafts/taglock_kit)タグロックキット$()を使用すると、その犠牲者があなたと同じ生物であるか、またはあなたから80ブロック以内にいる場合、犠牲者の視点から見ることができます。"
     },
     {
-      "type": "patchouli:text",
-      "text": "どちらの方法も、場所または犠牲者が同じ次元にあることを必要とします。"
+      "type": "patchouli:spotlight",
+      "item": "goety:crystal_ball",
+      "text": "どちらの方法も、対象となる場所や犠牲者がボールと同じ次元にあり、かつ水晶玉から1024ブロック以内にある必要があります。ただし、そうした特定の制限を受けない水晶玉についての噂も存在します……。"
     }
   ],
   "extra_recipe_mappings": {
-    "goety:crystal_ball": 1
+    "goety:pale_crystal_ball": 1,
+    "goety:crystal_ball": 3
   }
 }

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "__comment": "items that cannot be destroyed by Ring of Wrecking",
+  "values": [
+    "goety:malefic_helm"
+  ]
+}

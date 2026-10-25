@@ -1,11 +1,11 @@
 {
-  "name": "Haunted Glasses",
+  "name": "幽霊のガラス",
   "icon": "goety:haunted_glass",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With ectoplasms, you've created a glass that's only intangible to you and your fellows, allowing you all to pass through it like air. Creatures and items cannot pass through, and the glass can be tinted to prevent even light to pass."
+      "text": "エクトプラズムを使用すると、あなたとあなたの仲間にとってのみ無形のガラスが作成され、全員が空気のようにそれを通過できるようになります。 生き物やアイテムは通過できず、ガラスに色を付けて光さえも通さないようにすることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You can also invert the glass' functionality, making everything but you and your fellows from passing."
+      "text": "また、ガラスの機能を反転して、自分と仲間以外のすべてが通行できないようにすることもできます。"
     },
     {
       "type": "patchouli:crafting",

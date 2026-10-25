@@ -1,5 +1,5 @@
 {
-  "name": "Dark Armor",
+  "name": "闇の鎧",
   "icon": "goety:dark_helmet",
   "category": "goety:crafts/equipment",
   "advancement": "goety:goety/craft_dark_ingot",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While Dark Alloy can be used to craft regular tools, when it comes to armor, it seems to require more... elaborate ways of crafting them. The armor looks nothing like the others you have crafted, looking more elaborate yet intimidating, but it still provides Diamond level protection and toughness, as well as some knockback resistance."
+      "text": "ダークメタルインゴットは通常の道具の作成には使えますが、鎧となると、より…複雑な作り方が必要なようです。この鎧は、これまで作成した他の鎧とは全く異なり、より精巧で威圧的な見た目ですが、それでもダイヤモンドレベルの防御力と耐久性、そしてある程度のノックバック耐性を備えています。"
     },
     {
       "type": "patchouli:text",
-      "text": "Much like the Black Iron Armor set, the armor also provides discount on Soul Energy, but also slightly mitigates magic, fire and explosive damage."
+      "text": "黒き鉄セットと同様に、この鎧もソウルエネルギーの割引を提供します。さらに、魔法、火、爆発によるダメージもわずかに軽減します。"
     },
     {
       "type": "goety:ritual",

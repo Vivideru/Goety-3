@@ -1,12 +1,12 @@
 {
-  "name": "Wither Necromancer",
+  "name": "Визер-некромант",
   "icon": "goety:nether_staff",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_buried_and_bygone_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've discovered a more powerful variant of regular Necromancers, one that burns with the fires of the Nether, shooting jets of flames from the ground and withers their foes. Rather than regular Skeletons, the ritual is performed on a Wither Skeleton instead."
+      "text": "Вы обнаружили более могущественную разновидность некромантов, которые горят пламенем Незера, вызывают из земли струи пламени и истребляют врагов. Ритуал проводится не над скелетом, а над визер-скелетом."
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Much like regular Necromancers, they can be taught to summon more than just Wither Skeletons. Right-clicking with certain Necromancy Focuses allows them to summon more types of servants. Right-clicking on them with an empty hand will cause the Necromancer to summon Undead Servants for you. They are healed the same way as regular Wither Skeleton Servants."
+      "text": "Как и обычных некромантов, их можно научить призывать не только визер-скелетов. Нажатие по ним ПКМ определёнными некро-фокусами позволяет им призывать больше различных прислужников. Нажатие ПКМ пустой рукой заставит их призывать прислужников-нежить. Их можно исцелять также, как и визер-скелетов-прислужников."
     },
     {
       "type": "patchouli:entity",
@@ -23,7 +23,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:soul_jar[minecraft:custom_data={Wither:1b}]",
-      "text": "Should a Wither Necromancer fall, having an $(l:crafts/empty_soul_jar)Empty Soul Jar$() will cause their soul to fill it, which, when right-clicked on a Wither Skeleton, will revive them using said Wither Skeleton as their new body."
+      "text": "Если визер-некромант погибнет, то его душа может переместиться в $(l:crafts/empty_soul_jar)пустую банку душ$(), которая способна его оживить. Для этого нужно нажать ПКМ банкой душ по визер-скелету."
     }
   ]
 }

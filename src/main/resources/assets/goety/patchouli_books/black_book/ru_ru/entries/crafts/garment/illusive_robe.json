@@ -1,11 +1,11 @@
 {
-  "name": "Illusive Robes",
+  "name": "Иллюзорные одежды",
   "icon": "goety:illusion_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using the Occult Fabrics, you are able to create a set of Illusive Robes that will make you immune to Blindness effect and turn invisible when you do, making you highly undetectable to mobs and others of your kind."
+      "text": "Из оккультных тканей вы можете создать иллюзорную мантию, которая будет становиться невидимой вместе с вами, что сделает вас совершенно незаметным для мобов и других вам подобных."
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The robe also buffs the Mirror Spell by making your Doppelgangers' attack actually hurt their targets, though not by a lot."
+      "text": "Мантия также усиливает фокус отражения, заставляя ваших двойников наносить урон, хотя и небольшой."
     }
   ],
   "extra_recipe_mappings": {

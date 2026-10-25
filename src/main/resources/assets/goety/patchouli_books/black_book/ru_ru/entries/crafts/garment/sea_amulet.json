@@ -1,11 +1,11 @@
 {
-  "name": "Sea Amulet",
+  "name": "Морской амулет",
   "icon": "goety:sea_amulet",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Sea Amulet provides the effect Conduit Power towards the wearer whenever they're underwater, using up its inner charges. In order to charge the amulet, the wearer must be 8 blocks near an active Conduit underwater. The amulet will only provide its effect if the wearer doesn't have it or when the previous effect is 5 seconds away from expiring."
+      "text": "Морской амулет даёт владельцу силу источника, когда он находится под водой, расходуя свой заряд. Чтобы зарядить амулет, владелец должен находиться в 8 метрах от активированного источника под водой. Амулет будет действовать только в том случае, если у его владельца нет эффекта или если до его истечения осталось меньше 5-ти секунд."
     },
     {
       "type": "goety:ritual",

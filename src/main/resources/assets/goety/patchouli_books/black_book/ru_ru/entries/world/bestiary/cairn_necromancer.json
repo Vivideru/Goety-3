@@ -1,17 +1,17 @@
 {
-  "name": "Cairn Necromancers",
+  "name": "Нагробный некромант",
   "icon": "goety:crypt_stone",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_cairn_necromancer",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Long dead officials risen to undeath to maintain and guard the Crypt with their undead servants. They appear to be an offshoot of the ancient Necromancers of the desert, utilizing the power of the cold."
+      "text": "Давно умершая знать стала нежитью, чтобы охранять склеп вместе со своими прислужниками. Нагробные некроманты используют силу холода и, видимо, являются подвидом древних некромантов пустыни."
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:cairn_necromancer",
-      "text": "Summons multiple Strays and shoots Ice Spikes."
+      "text": "Призывает скелетов и стреляет ледяными шипами."
     }
   ]
 }

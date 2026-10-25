@@ -7,6 +7,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SnowLayerBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.lighting.LightEngine;
 
@@ -55,13 +57,20 @@ public class RedMossBlock extends Block implements BonemealableBlock {
             if (!p_222509_.isLoaded(p_222510_)) {
                 return;
             }
+            if (p_222508_.hasProperty(BlockStateProperties.SNOWY)) {
+                boolean snowy = p_222509_.getBlockState(p_222510_.above()).is(BlockTags.SNOW);
+                if (p_222508_.getValue(BlockStateProperties.SNOWY) != snowy) {
+                    p_222509_.setBlock(p_222510_, p_222508_.setValue(BlockStateProperties.SNOWY, snowy), 2);
+                }
+            }
             if (p_222509_.getMaxLocalRawBrightness(p_222510_.above()) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 
                 for (int i = 0; i < 4; ++i) {
                     BlockPos blockpos = p_222510_.offset(p_222511_.nextInt(3) - 1, p_222511_.nextInt(5) - 3, p_222511_.nextInt(3) - 1);
                     if (p_222509_.getBlockState(blockpos).is(this.convertState.getBlock()) && canPropagate(blockstate, p_222509_, blockpos)) {
-                        p_222509_.setBlockAndUpdate(blockpos, blockstate);
+                        BlockState spread = blockstate.hasProperty(BlockStateProperties.SNOWY) ? blockstate.setValue(BlockStateProperties.SNOWY, p_222509_.getBlockState(blockpos.above()).is(BlockTags.SNOW)) : blockstate;
+                        p_222509_.setBlockAndUpdate(blockpos, spread);
                     }
                 }
             }

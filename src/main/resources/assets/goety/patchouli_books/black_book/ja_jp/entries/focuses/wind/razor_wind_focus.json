@@ -1,11 +1,11 @@
 {
-  "name": "Razor Wind Focus",
+  "name": "レーザーウィンドのフォーカス",
   "icon": "goety:razor_wind_focus",
   "category": "goety:focuses/wind",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus hones the wind into a thin, sharp blade, shooting out to slice any non-allied creature in its path at high speed."
+      "text": "このフォーカスでは、風が薄く鋭い刃に変わり、味方以外の生き物を高速で切り裂くように発射されます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/wind_staff)Wind Staff$() increases the initial width of the blade."
+      "text": "$(l:crafts/staff/wind_staff)風の杖$()で唱えると、刃の初期幅を広げます。"
     }
   ],
   "extra_recipe_mappings": {

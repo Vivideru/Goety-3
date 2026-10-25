@@ -1,11 +1,11 @@
 {
-  "name": "Banish Focus",
+  "name": "Фокус изгнания",
   "icon": "goety:banish_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A spell that requires the caster to directly right click a living target, where upon the target is teleported away from the caster. Perfect for getting rid of certain foes or annoyances!"
+      "text": "Заклинание, требующее прямого нажатия ПКМ по жертве. Это телепортирует её прочь от вас. Идеально подходит для избавления от некоторых врагов!"
     },
     {
       "type": "goety:ritual",

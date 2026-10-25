@@ -1,11 +1,11 @@
 {
-  "name": "Overgrowth Focus",
+  "name": "過成長のフォーカス",
   "icon": "goety:overgrowth_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With soul energy, you conjure forth powerful immobile vines to block your targets path or, if crouching/shifting, conjure forth a powerful flowered vine that shoots poisonous quills. Shift-casting while looking at a target will cause the poisonous vine to be summoned next to you instead."
+      "text": "魂のエネルギーを使って、強力で動かない蔓を呼び出してターゲットの進路をブロックしたり、しゃがんだり移動したりすると、毒針を発射する強力な花の咲く蔓を呼び出します。 ターゲットを見ながらシフトキャストすると、代わりに毒の蔓が隣に召喚されます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting the spell underwater will summon powerful immobile kelps instead. No difference other than aesthetic and need to be underwater, though the poisonous kelp's quills aren't affected by water. Wearing a $(l:crafts/garment/wild_robe)Wild Robe$() allows you to move past the vines and kelps."
+      "text": "水中で呪文を唱えると、代わりに強力な動けない昆布を召喚します。 見た目の美しさと水中にある必要があること以外に違いはありませんが、有毒な昆布の羽根は水の影響を受けません。 $(l:crafts/garment/wild_robe)野生のローブ$() を着ると、蔓や昆布の間を通り抜けることができます。"
     }
   ],
   "extra_recipe_mappings": {

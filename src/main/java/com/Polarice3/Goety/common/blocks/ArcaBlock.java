@@ -2,6 +2,16 @@ package com.Polarice3.Goety.common.blocks;
 
 import com.Polarice3.Goety.common.blocks.entities.ArcaBlockEntity;
 import com.Polarice3.Goety.common.capabilities.soulenergy.ISoulEnergy;
+import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.WaystoneItem;
+import com.Polarice3.Goety.common.network.ModNetwork;
+import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import com.Polarice3.Goety.utils.SEHelper;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
@@ -57,6 +67,36 @@ public class ArcaBlock extends BaseEntityBlock implements IBlockExtension {
         }
     }
 
+    @Override
+    protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (itemStack.is(ModItems.WAYSTONE.get()) && pLevel.getBlockEntity(pPos) instanceof ArcaBlockEntity arcaTileEntity) {
+            if (arcaTileEntity.getPlayer() == pPlayer) {
+                ISoulEnergy soulEnergy = SEHelper.getCapability(pPlayer);
+                if (WaystoneItem.isSameDimension(arcaTileEntity, itemStack)) {
+                    BlockPos blockPos = WaystoneItem.getBlockPos(itemStack);
+                    if (blockPos != null && !blockPos.equals(soulEnergy.getArcaRevivePos())) {
+                        if (blockPos.distToCenterSqr(pPos.getCenter()) <= Mth.square(8)) {
+                            soulEnergy.setArcaRevivePos(blockPos);
+                            SEHelper.sendSEUpdatePacket(pPlayer);
+                            if (pLevel instanceof ServerLevel) {
+                                ModNetwork.sendTo(pPlayer, new SPlayPlayerSoundPacket(SoundEvents.RESPAWN_ANCHOR_SET_SPAWN, 1.0F, 1.0F));
+                            }
+                            pPlayer.displayClientMessage(Component.translatable("info.goety.waystone.revivePos"), true);
+                            return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
+                        } else {
+                            pPlayer.displayClientMessage(Component.translatable("info.goety.waystone.difDimension"), true);
+                            return ItemInteractionResult.FAIL;
+                        }
+                    }
+                } else {
+                    pPlayer.displayClientMessage(Component.translatable("info.goety.waystone.difDimension"), true);
+                    return ItemInteractionResult.FAIL;
+                }
+            }
+        }
+        return super.useItemOn(itemStack, pState, pLevel, pPos, pPlayer, pHand, pHit);
+    }
+
     protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHit) {
         if (pState.hasBlockEntity()) {
             BlockEntity tileEntity = pLevel.getBlockEntity(pPos);
@@ -92,9 +132,10 @@ public class ArcaBlock extends BaseEntityBlock implements IBlockExtension {
             if (tileEntity instanceof ArcaBlockEntity arcaTileEntity){
                 if (arcaTileEntity.getPlayer() != null){
                     ISoulEnergy soulEnergy = SEHelper.getCapability(arcaTileEntity.getPlayer());
-                    if (soulEnergy.getArcaBlock() == arcaTileEntity.getBlockPos()) {
+                    if (arcaTileEntity.getBlockPos().equals(soulEnergy.getArcaBlock())) {
                         soulEnergy.setSEActive(false);
                         soulEnergy.setArcaBlock(null);
+                        soulEnergy.setArcaRevivePos(null);
                         soulEnergy.setArcaBlockDimension(null);
                         SEHelper.sendSEUpdatePacket(arcaTileEntity.getPlayer());
                     }

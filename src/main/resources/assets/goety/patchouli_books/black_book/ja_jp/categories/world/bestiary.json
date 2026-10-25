@@ -1,6 +1,6 @@
 {
-  "name": "Bestiary",
-  "description": "Documentation of creatures that inhabit this world.",
+  "name": "この世界の生き物",
+  "description": "この世界に生息する生き物たちの記録。",
   "icon": "minecraft:spawner",
   "parent": "goety:world",
   "sortnum": 1

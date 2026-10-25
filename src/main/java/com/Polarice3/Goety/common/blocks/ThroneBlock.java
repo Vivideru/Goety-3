@@ -147,7 +147,7 @@ public class ThroneBlock extends HorizontalDirectionalBlock implements SimpleWat
     public boolean isThrone(Level world, BlockPos pos) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof IEnchantedBlock enchantedBlock) {
-            return enchantedBlock.getEnchantments().getOrDefault(ModEnchantments.ROYALTY, 0) >= 1;
+            return enchantedBlock.getEnchantmentLevel(ModEnchantments.ROYALTY) >= 1;
         }
         return true;
     }

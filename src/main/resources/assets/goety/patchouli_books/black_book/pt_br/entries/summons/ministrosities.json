@@ -18,6 +18,18 @@
     {
       "type": "patchouli:text",
       "text": "Pode-se invocar essas criaturas usando um $(l:focuses/geomancy/ministrous_focus)Foco Ministruosidade$(). Elas podem ser curadas clicando com Pedra nelas."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_redstone_ministrosity_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:redstone_ministrosity"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Summoned while wearing a $(l:crafts/garment/geo_robe)Geo Robes$() or through ritual, these ministrosities are stronger than their stone counterparts and are immune to fire."
     }
   ]
 }

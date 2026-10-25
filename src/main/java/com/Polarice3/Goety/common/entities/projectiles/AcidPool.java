@@ -9,7 +9,12 @@ import com.Polarice3.Goety.utils.ColorUtil;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
+import com.Polarice3.Goety.utils.ModPotionUtil;
+import com.google.common.collect.Lists;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerEntity;
@@ -20,7 +25,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 
 import java.util.ArrayList;
@@ -34,6 +42,10 @@ public class AcidPool extends AbstractTrap {
     private static final EntityDataAccessor<Integer> DATA_WARMUP_COLOR = SynchedEntityData.defineId(AcidPool.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_INV_TIME = SynchedEntityData.defineId(AcidPool.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<String> DATA_SOUND_EVENT = SynchedEntityData.defineId(AcidPool.class, EntityDataSerializers.STRING);
+    private Holder<Potion> potion = Potions.WATER;
+    private final List<MobEffectInstance> effects = Lists.newArrayList();
+    private boolean fixedColor;
+    private boolean explodeEffect = true;
     private int warmupDelayTicks = 0;
     private int lifeTick;
     private boolean sentSpikeEvent;
@@ -71,6 +83,7 @@ public class AcidPool extends AbstractTrap {
     protected void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("Active", this.sentSpikeEvent);
+        compound.putBoolean("ExplodeEffect", this.explodeEffect);
         compound.putFloat("Radius", this.radius());
         compound.putFloat("Damage", this.getDamage());
         compound.putFloat("PercentDamage", this.getPercentDamage());
@@ -80,6 +93,19 @@ public class AcidPool extends AbstractTrap {
         compound.putInt("Warmup", this.getWarmupDelayTicks());
         compound.putInt("LifeTick", this.lifeTick);
         compound.putString("Sound", this.getSoundEvent());
+        if (this.potion != Potions.WATER) {
+            compound.putString("Potion", BuiltInRegistries.POTION.getKey(this.potion.value()).toString());
+        }
+
+        if (!this.effects.isEmpty()) {
+            ListTag listtag = new ListTag();
+
+            for(MobEffectInstance mobeffectinstance : this.effects) {
+                listtag.add(mobeffectinstance.save());
+            }
+
+            compound.put("Effects", listtag);
+        }
     }
 
     @Override
@@ -87,6 +113,9 @@ public class AcidPool extends AbstractTrap {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Active")){
             this.sentSpikeEvent = compound.getBoolean("Active");
+        }
+        if (compound.contains("ExplodeEffect")){
+            this.explodeEffect = compound.getBoolean("ExplodeEffect");
         }
         if (compound.contains("Radius")){
             this.setRadius(compound.getFloat("Radius"));
@@ -98,7 +127,7 @@ public class AcidPool extends AbstractTrap {
             this.setPercentDamage(compound.getFloat("PercentDamage"));
         }
         if (compound.contains("Color")){
-            this.setColor(compound.getInt("Color"));
+            this.setUnfixedColor(compound.getInt("Color"));
         }
         if (compound.contains("WarmupColor")){
             this.setWarmupColor(compound.getInt("WarmupColor"));
@@ -114,6 +143,21 @@ public class AcidPool extends AbstractTrap {
         }
         if (compound.contains("Sound")){
             this.setSoundEvent(compound.getString("Sound"));
+        }
+        if (compound.contains("Potion", 8)) {
+            this.setPotion(BuiltInRegistries.POTION.getHolder(ResourceLocation.parse(compound.getString("Potion"))).<Holder<Potion>>map(holder -> holder).orElse(Potions.WATER));
+        }
+
+        if (compound.contains("Effects", 9)) {
+            ListTag listtag = compound.getList("Effects", 10);
+            this.effects.clear();
+
+            for(int i = 0; i < listtag.size(); ++i) {
+                MobEffectInstance mobeffectinstance = MobEffectInstance.load(listtag.getCompound(i));
+                if (mobeffectinstance != null) {
+                    this.addEffect(mobeffectinstance);
+                }
+            }
         }
     }
 
@@ -139,12 +183,53 @@ public class AcidPool extends AbstractTrap {
         return this.getEntityData().get(DATA_PERCENT_DAMAGE);
     }
 
+    private void updateColor() {
+        if (this.potion == Potions.WATER && this.effects.isEmpty()) {
+            this.getEntityData().set(DATA_COLOR, 0);
+        } else {
+            this.getEntityData().set(DATA_COLOR, ModPotionUtil.getColor(ModPotionUtil.getAllEffects(this.potion, this.effects)));
+        }
+
+    }
+
+    public void setPotion(Holder<Potion> p_19723_) {
+        this.potion = p_19723_;
+        if (!this.fixedColor) {
+            this.updateColor();
+        }
+    }
+
+    public void addEffect(MobEffectInstance p_19717_) {
+        this.effects.add(p_19717_);
+        if (!this.fixedColor) {
+            this.updateColor();
+        }
+    }
+
     public int getColor() {
         return this.getEntityData().get(DATA_COLOR);
     }
 
     public void setColor(int p_19715_) {
+        this.fixedColor = true;
         this.getEntityData().set(DATA_COLOR, p_19715_);
+    }
+
+    public void setUnfixedColor(int p_19715_) {
+        this.getEntityData().set(DATA_COLOR, p_19715_);
+    }
+
+    public List<MobEffectInstance> getEffects() {
+        List<MobEffectInstance> list = new ArrayList<>();
+
+        for (MobEffectInstance mobeffectinstance : this.potion.value().getEffects()) {
+            list.add(new MobEffectInstance(mobeffectinstance.getEffect(), mobeffectinstance.mapDuration((p_267926_) -> p_267926_ / 4), mobeffectinstance.getAmplifier(), mobeffectinstance.isAmbient(), mobeffectinstance.isVisible()));
+        }
+
+        if (!this.effects.isEmpty()) {
+            list.addAll(this.effects);
+        }
+        return list;
     }
 
     public int getWarmupColor() {
@@ -179,6 +264,10 @@ public class AcidPool extends AbstractTrap {
         this.getEntityData().set(DATA_SOUND_EVENT, p_19715_);
     }
 
+    public void setExplodeEffect(boolean explodeEffect) {
+        this.explodeEffect = explodeEffect;
+    }
+
     public void refreshDimensions() {
         double d0 = this.getX();
         double d1 = this.getY();
@@ -198,13 +287,15 @@ public class AcidPool extends AbstractTrap {
             if (this.getWarmupDelayTicks() <= 0) {
                 if (!this.sentSpikeEvent) {
                     this.sentSpikeEvent = true;
-                    SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(ResourceLocation.parse(this.getSoundEvent()));
-                    this.playSound(soundEvent, 1.0F, 1.0F);
-                    ColorUtil colorUtil = new ColorUtil(this.getColor());
-                    ServerParticleUtil.circularParticles(serverLevel, ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY() + 1.0F, this.getZ(), colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius());
-                    ServerParticleUtil.circularParticles(serverLevel, ModParticleTypes.ROLLING_SPIRAL.get(), this.getX(), this.getY() + 1.0F, this.getZ(), colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius());
-                    serverLevel.sendParticles(new SphereExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius(), 1), this.getX(), this.getY(), this.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
-                    serverLevel.sendParticles(new CircleExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius(), 1), this.getX(), this.getY(), this.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                    if (this.explodeEffect) {
+                        SoundEvent soundEvent = SoundEvent.createVariableRangeEvent(ResourceLocation.parse(this.getSoundEvent()));
+                        this.playSound(soundEvent, 1.0F, 1.0F);
+                        ColorUtil colorUtil = new ColorUtil(this.getColor());
+                        ServerParticleUtil.circularParticles(serverLevel, ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY() + 1.0F, this.getZ(), colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius());
+                        ServerParticleUtil.circularParticles(serverLevel, ModParticleTypes.ROLLING_SPIRAL.get(), this.getX(), this.getY() + 1.0F, this.getZ(), colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius());
+                        serverLevel.sendParticles(new SphereExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius(), 1), this.getX(), this.getY(), this.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                        serverLevel.sendParticles(new CircleExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), this.radius(), 1), this.getX(), this.getY(), this.getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                    }
                 }
             } else {
                 --this.warmupDelayTicks;
@@ -247,6 +338,15 @@ public class AcidPool extends AbstractTrap {
                             if (flag) {
                                 if (this.getInvTime() > -1) {
                                     livingEntity.invulnerableTime = this.getInvTime();
+                                }
+                                if (!this.getEffects().isEmpty()) {
+                                    for (MobEffectInstance mobeffectinstance1 : this.getEffects()) {
+                                        if (mobeffectinstance1.getEffect().value().isInstantenous()) {
+                                            mobeffectinstance1.getEffect().value().applyInstantenousEffect(this, this.getOwner(), livingEntity, mobeffectinstance1.getAmplifier(), 0.5D);
+                                        } else {
+                                            livingEntity.addEffect(new MobEffectInstance(mobeffectinstance1), this);
+                                        }
+                                    }
                                 }
                             }
                         }

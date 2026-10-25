@@ -1,6 +1,6 @@
 {
-  "name": "Necromancy",
-  "description": "The power over the dead.",
+  "name": "ネクロマンシー",
+  "description": "死者を支配する力。",
   "icon": "goety:rotting_focus",
   "parent": "goety:focuses"
 }

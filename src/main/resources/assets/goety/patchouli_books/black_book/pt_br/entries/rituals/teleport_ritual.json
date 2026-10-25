@@ -2,6 +2,7 @@
   "name": "Teletransporte com Rituais",
   "icon": "goety:waystone",
   "category": "goety:rituals",
+  "sortnum": 2,
   "priority": true,
   "pages": [
     {

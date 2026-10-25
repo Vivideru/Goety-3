@@ -1,5 +1,5 @@
 {
-  "name": "Corruption Focus",
+  "name": "腐敗のフォーカス",
   "icon": "goety:corruption_focus",
   "category": "goety:focuses",
   "advancement": "goety:goety/gain_night_beacon",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Night Beacon holds tremendous power, you believe that by supplying it with Soul Energy, you'll be be able to transform it's night bringing beam into something more devastating!"
+      "text": "ナイトビーコンには途方もない力があり、ソウルエネルギーを供給することで、夜を変身させてビームをより破壊的なものに変えることができると信じています。"
     },
     {
       "type": "goety:ritual",

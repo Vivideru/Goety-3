@@ -1,21 +1,21 @@
 {
-  "name": "Reprobates",
+  "name": "リプロベイト",
   "icon": "minecraft:crimson_planks",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_reprobate",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Unlike Witches, these heathens throw an entire cask of potions that all mixed into an acidic pool. They are said to also deliver these potions to dark forces."
+      "text": "ウィッチとは異なり、これらの異教徒は樽いっぱいの薬を混ぜ合わせ、酸性のプールに投げ込む。彼らはまた、これらの薬を闇の勢力に届けているとも言われている。"
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:reprobate",
-      "text": "They're resistant to magic much like their Witch cousins."
+      "text": "ウィッチと同じように、魔法に耐性があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "If a Wandering Trader gets struck by lightning, they will transform into a Reprobate."
+      "text": "行商人が雷に打たれると、リプロベイトになります。"
     }
   ]
 }

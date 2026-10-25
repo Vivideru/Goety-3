@@ -120,6 +120,7 @@ public class MobsConfig {
     public static final ModConfigSpec.ConfigValue<Integer> BossInvulnerabilityTime;
 
     public static final ModConfigSpec.ConfigValue<Integer> ApostleNetherDamageReduction;
+    public static final ModConfigSpec.ConfigValue<Integer> ApostleSmiteDamageReduction;
 
     public static final ModConfigSpec.ConfigValue<Boolean> ZombieServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> DrownedServantTexture;
@@ -155,6 +156,7 @@ public class MobsConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> MountaineerServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> CrusherServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> EvokerServantTexture;
+    public static final ModConfigSpec.ConfigValue<Boolean> EnchanterServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> GeomancerServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> IceologerServantTexture;
     public static final ModConfigSpec.ConfigValue<Boolean> CryologerServantTexture;
@@ -240,6 +242,9 @@ public class MobsConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> RavagerHostileConvert;
     public static final ModConfigSpec.ConfigValue<Boolean> RedstoneGolemHostileConvert;
     public static final ModConfigSpec.ConfigValue<Boolean> RedstoneMonstrosityHostileConvert;
+
+    public static final ModConfigSpec.ConfigValue<Boolean> ZombieVindicatorHostileConvert;
+    public static final ModConfigSpec.ConfigValue<Boolean> SkeletonPillagerHostileConvert;
 
     public static final ModConfigSpec.ConfigValue<Boolean> VillagerHate;
     public static final ModConfigSpec.ConfigValue<Boolean> VillagerHateRavager;
@@ -461,6 +466,8 @@ public class MobsConfig {
                         .define("crusherServantTexture", true);
                 EvokerServantTexture = BUILDER.comment("If Evoker Servants have custom textures, Default: true")
                         .define("evokerServantTexture", true);
+                EnchanterServantTexture = BUILDER.comment("If Enchanter Servants have custom textures, Default: true")
+                        .define("enchanterServantTexture", true);
                 GeomancerServantTexture = BUILDER.comment("If Geomancer Servants have custom textures, Default: true")
                         .define("geomancerServantTexture", true);
                 IceologerServantTexture = BUILDER.comment("If Iceologer Servants have custom textures, Default: true")
@@ -568,6 +575,10 @@ public class MobsConfig {
                     .defineInRange("zombieServantBabyChance", 0.05, 0.0, 1.0D);
             ZombieServantChickenJockeyChance = BUILDER.comment("Chance that a baby zombie servant is summoned as a Chicken Jokey, Default: 0.05")
                     .defineInRange("zombieServantChickenJockeyChance", 0.05, 0.0, 1.0D);
+            ZombieVindicatorHostileConvert = BUILDER.comment("Whether Zombie Vindicators, when summoned as hostile and without owner, will convert into their hostile counterpart, Default: true")
+                    .define("zombieVindicatorHostileConvert", true);
+            SkeletonPillagerHostileConvert = BUILDER.comment("Whether Skeleton Pillagers, when summoned as hostile and without owner, will convert into their hostile counterpart, Default: true")
+                    .define("skeletonPillagerHostileConvert", true);
             BUILDER.pop();
             BUILDER.push("Water Servants");
             WaterMinionHeal = BUILDER.comment("Whether Water Servants can heal if summoned while wearing Abyss Robe, Default: true")
@@ -1129,6 +1140,8 @@ public class MobsConfig {
                     .define("apostleNetherFancyDeath", true);
             ApostleNetherDamageReduction = BUILDER.comment("How much damage is reduced, by percentage, on the Apostle when in the Nether, setting to 100 will make them invulnerable, Default: 50")
                     .defineInRange("apostleNetherDamageReduction", 50, 0, 100);
+            ApostleSmiteDamageReduction = BUILDER.comment("How much damage caused by Smite enchantment is reduced, by percentage, on the Apostle, setting to 100 will make them immune to Smite enchanted attacks, Default: 25")
+                    .defineInRange("apostleSmiteDamageReduction", 25, 0, 100);
             BUILDER.pop();
             BUILDER.push("Damned");
             DamnedShootIndicator = BUILDER.comment("Whether Damned shoot indicator is enabled. Default: true")

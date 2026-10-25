@@ -5,7 +5,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.Mth;
 
-public class FireParticle extends TextureSheetParticle {
+public class FireParticle extends ReversibleParticle {
    private final SpriteSet sprites;
    private boolean ember = false;
 
@@ -143,6 +143,23 @@ public class FireParticle extends TextureSheetParticle {
          flameparticle.lifetime = 16;
          flameparticle.ember = true;
          return flameparticle;
+      }
+   }
+
+   public static class FlamethrowerProvider implements ParticleProvider<SimpleParticleType> {
+      private final SpriteSet sprite;
+
+      public FlamethrowerProvider(SpriteSet p_106827_) {
+         this.sprite = p_106827_;
+      }
+
+      public Particle createParticle(SimpleParticleType p_106838_, ClientLevel p_106839_, double p_106840_, double p_106841_, double p_106842_, double p_106843_, double p_106844_, double p_106845_) {
+         FireParticle fireParticle = new FireParticle(p_106839_, p_106840_, p_106841_, p_106842_, p_106843_, p_106844_, p_106845_, this.sprite);
+         fireParticle.reversed = p_106839_.getRandom().nextBoolean();
+         fireParticle.xd = p_106843_;
+         fireParticle.yd = p_106844_;
+         fireParticle.zd = p_106845_;
+         return fireParticle;
       }
    }
 

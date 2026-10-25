@@ -163,6 +163,21 @@ public interface IServant extends IOwned, IChunkLoader {
         this.setBoundPos(null);
     }
 
+    default boolean isInPatrolPoint(BlockPos blockPos) {
+        AABB aabb = new AABB(blockPos).inflate(1.0D);
+        if (this instanceof Entity entity) {
+            return entity.getBoundingBox().inflate(1.0D).intersects(aabb);
+        }
+        return false;
+    }
+
+    default boolean moveToPatrolPoint(BlockPos pos, double speed) {
+        if (this instanceof PathfinderMob mob) {
+            return mob.getNavigation().moveTo(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, speed);
+        }
+        return false;
+    }
+
     @Nullable
     default LivingEntity getPriorityTarget() {
         return null;
@@ -578,6 +593,10 @@ public interface IServant extends IOwned, IChunkLoader {
         }
     }
 
+    default double getFollowSpeed() {
+        return 1.0D;
+    }
+
     default double getCommandSpeed(){
         return 1.25D;
     }
@@ -637,12 +656,16 @@ public interface IServant extends IOwned, IChunkLoader {
         }
     }
 
+    default boolean altStaying() {
+        return false;
+    }
+
     default void stayingMode(){
         if (this instanceof Mob owned) {
             AttributeInstance modifiableattributeinstance = owned.getAttribute(Attributes.MOVEMENT_SPEED);
             if (modifiableattributeinstance != null) {
                 boolean isRidden = owned.getControllingPassenger() instanceof IServant servant && servant.isStaying();
-                if (this.isStaying() || isRidden) {
+                if (this.isStaying() || isRidden || this.altStaying()) {
                     if (owned.getNavigation().getPath() != null) {
                         owned.getNavigation().stop();
                     }

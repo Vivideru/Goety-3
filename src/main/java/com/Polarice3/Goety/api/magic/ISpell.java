@@ -195,6 +195,11 @@ public interface ISpell {
     }
 
     @Nullable
+    default SoundEvent CastingSound(LivingEntity caster, ItemStack wand){
+        return this.CastingSound(caster);
+    }
+
+    @Nullable
     default SoundEvent CastingSound(LivingEntity caster){
         return this.CastingSound();
     }

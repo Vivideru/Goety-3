@@ -1,15 +1,17 @@
 {
-  "name": "Jade Ores",
+  "name": "翡翠の鉱石",
   "icon": "goety:jade_ore",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Jades are one of the most illusive ores to find in the world. They hold the power of the winds within themselves and can only be found in places of high elevations like Mountains, specifically the peaks of them."
+      "text": "翡翠は、世界で見つかる最も幻の鉱石の 1 つです。 その中に風の力を秘めており、山のような標高の高い場所、特にその頂上でのみ見つけることができます。"
     },
     {
       "type": "patchouli:image",
-      "images": ["goety:textures/gui/entries/jade_ore.png"],
+      "images": [
+        "goety:textures/gui/entries/jade_ore.png"
+      ],
       "border": true
     }
   ],

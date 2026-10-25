@@ -36,8 +36,5 @@
       "type": "patchouli:text",
       "text": "Если голем деактивирован, нажатие ПКМ пустой рукой повернёт его в вашу сторону."
     }
-  ],
-  "extra_recipe_mappings": {
-    "goety:resonance_crystal": 4
-  }
+  ]
 }

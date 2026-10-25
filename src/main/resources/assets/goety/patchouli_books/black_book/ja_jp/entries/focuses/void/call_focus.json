@@ -1,11 +1,11 @@
 {
-  "name": "Call Focus",
+  "name": "コールフォーカス",
   "icon": "goety:call_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While certain focuses can summon all associated servants towards you, certain servants don't have that and/or you want to summon a specific servant. The Call Focus allows you to do just that. Simply left click on the servant and it will save it, allowing you to summon them when casting with it. To remove the save, just right click the air with it while crouching."
+      "text": "特定のフォーカスでは関連するすべてのサーヴァントを自分に向かって召喚できますが、特定のサーヴァントにはそれがなかったり、特定のサーヴァントを召喚したい場合があります。 コールフォーカス を使用すると、まさにそれが可能になります。 サーヴァントを右クリックするだけで保存され、キャスト時にサーヴァントを召喚できるようになります。 セーブを削除するには、しゃがんだ状態で空中を右クリックします。"
     },
     {
       "type": "goety:ritual",

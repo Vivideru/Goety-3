@@ -66,6 +66,7 @@ public class ModBoat extends Boat {
             case PINE -> ModItems.PINE_BOAT.get();
             case CHORUS -> ModItems.CHORUS_BOAT.get();
             case CORRUPT_CHORUS -> ModItems.CORRUPT_CHORUS_BOAT.get();
+            case MARSH -> ModItems.MARSH_BOAT.get();
         };
     }
 
@@ -88,7 +89,8 @@ public class ModBoat extends Boat {
         WINDSWEPT(() -> ModBlocks.WINDSWEPT_PLANKS.get(), "windswept"),
         PINE(() -> ModBlocks.PINE_PLANKS.get(), "pine"),
         CHORUS(() -> ModBlocks.CHORUS_PLANKS.get(), "chorus"),
-        CORRUPT_CHORUS(() -> ModBlocks.CORRUPT_CHORUS_PLANKS.get(), "corrupt_chorus");
+        CORRUPT_CHORUS(() -> ModBlocks.CORRUPT_CHORUS_PLANKS.get(), "corrupt_chorus"),
+        MARSH(() -> ModBlocks.MARSH_PLANKS.get(), "marsh");
 
         private final String name;
         private final Supplier<Block> planks;

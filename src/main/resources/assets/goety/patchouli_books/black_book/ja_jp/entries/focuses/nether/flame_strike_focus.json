@@ -1,12 +1,12 @@
 {
-  "name": "Flame Strike Focus",
+  "name": "フレイムストライクのフォーカス",
   "icon": "goety:flame_strike_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The power of the Nether allows you to summon forth pillars of flames that either surrounds you or, if looking directly at a valid target, your foe."
+      "text": "ネザーの力により、自分を囲む炎の柱、または有効なターゲットである敵を直接見ている時に別の出し方で炎の柱を召喚することができます。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() will double the radius of fire pillars."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、炎の柱の半径が2倍になります。"
     }
   ],
   "extra_recipe_mappings": {

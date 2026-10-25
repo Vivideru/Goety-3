@@ -1,16 +1,16 @@
 {
-  "name": "Void Blocks & Liquid",
+  "name": "エンドのブロック・液体",
   "icon": "goety:void_block",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've heard of interesting blocks and liquids found in the End that are harmful to those that thread upon them, unless they are spawns of the End themselves..."
+      "text": "エンドには興味深いブロックや液体があますが、その上を歩くとエンドの産物でない限り有害だと聞いたことがあるでしょう..."
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:void_bottle",
-      "text": "To obtain a Bottle of Void, you must use an empty Glass Bottle below the dimension's minimum build height, -64 Y for the Overworld, 0 for both the Nether and the End, though one can say it's easier to obtain in the End as it has no Bedrock blocking the Void."
+      "text": "虚空の瓶を入手するには、次元の最小建築高度以下で空のガラス瓶を使用する必要があります。この高さは、オーバーワールドの場合はY -64、ネザーとエンドの場合はY 0です。ただし、エンドでは奈落が岩盤で塞がれていない分、入手しやすいと言えます。"
     },
     {
       "type": "patchouli:crafting",
@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Both Void Blocks and Liquid will inflict damage that's equal to 5%% of max health per second, while also giving and amplifying Void Touched effect to creatures that move through them. Enderman, Endermites and Enderlings are immune to the effects, but not Shulkers strangely enough."
+      "text": "虚空ブロックと液体はどちらも、毎秒最大体力の5%に相当するダメージを与え、さらにその上を通過するクリーチャーにヴォイドタッチド効果を与え、増幅させます。エンダーマン、エンダーマイト、エンダーリングはこれらの効果を受けませんが、不思議なことにシュルカーは受けます。"
     },
     {
       "type": "patchouli:crafting",
@@ -31,11 +31,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A Void Barrel is a volatile block that will unleash an explosion of void when set off, breaking itself in the process. To set the barrel off, either right-click on it, activate it with redstone or shoot a projectile at it."
+      "text": "虚空の樽はヴォイドの爆発を引き起こし、同時に破壊される不安定なブロックです。樽を爆発させるには、右クリックするか、レッドストーンで起動するか、発射物を撃ち込む必要があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Liquid Void can also create decorative blocks when interacted with either Water or Lava. Pouring Water on source Liquid Void will turn it into Void Block."
+      "text": "液体の虚空は、水または溶岩と相互作用することで装飾ブロックを作成することができます。液体の虚空に水を注ぐと、虚空ブロックに変換されます。"
     },
     {
       "type": "patchouli:crafting",
@@ -69,22 +69,22 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:end_soil",
-      "text": "When a flowing water meets flowing void, it creates End Soil. Not only can Chorus Flowers grow on them, but having lava flow onto it with Blue Ice adjacent will create renewable Obsidian. Bone mealing on it will create some plants that seems to be related to Chorus Plants."
+      "text": "水が虚空の液体と出会うと、エンドソイルが生成されます。コーラスフラワーを生やせるだけでなく、青い氷に隣接した溶岩流を流すと、再生可能な黒曜石が生成されます。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:chorus/chorus_sapling",
-      "text": "One can also create a sapling from the void, which provides a new set of wood-like blocks that are not burnable. They can only be planted on End Soil."
+      "text": "虚空から苗木を作ることもできます。苗木は燃えない、木のようなブロックを新たに生み出します。苗木はエンドソイルなど(後述)に植えることができます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:chorus_sapling",
-      "text": "Growing 4 Chorus Saplings in a 2x2 area will create a gigantic Chorus Tree that has Corrupted Chorus Logs, which also provide another set of wood-like blocks, or Liquid Void within itself."
+      "text": "2x2のエリアに4本のコーラス苗木を育てると、巨大なコーラスツリーが作成されます。このツリーには、別の木のようなブロックのセット、またはそれ自体の中に虚空の液体を提供する、腐敗したコーラスの原木が含まれます。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:chorus/chorus_growth",
-      "text": "You've discovered a way to make an ecosystem using this growth. It can be used to create, or right-clicked on certain end-related blocks, to create foliage."
+      "text": "このアイテムを利用して生態系を作る方法を発見しました。これを使って、あるいはエンド関連の特定のブロックを右クリックして、葉っぱを作ることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -103,32 +103,32 @@
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:bone_meal",
-      "text": "Bone mealing these blocks will grow Chorus Ferns and Chorus Tall Grass on top of them. Chorus Grass Blocks can spread to adjacent Smooth End Stones."
+      "text": "これらのブロックに骨粉を使用すると、その上にコーラスシダとコーラス草が生えます。コーラス草ブロックは隣接する滑らかなエンドストーンに広がります。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:end/end_growth_block",
-      "text": "You've also discovered another type of foliage that can be introduced in the End, one that looks fleshy and seems to grow vines, when applied bone meal, similar to Twisting Vines of the Nether. End Growth Blocks can spread to adjacent End Rocks."
+      "text": "エンドに出現する別の種類の葉っぱも発見しました。肉厚で、骨粉を使うとツルが生えるように見えます。ネザーのねじれたツタに似ています。エンドグロースブロックは隣接するエンドロックに広がります。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:end/end_dirt",
-      "text": "Applying Void directly to dirt seems to make it purple and untillable by hoe, but it can grow some Chorus Stalks when bone mealed and be used as terrain decoration. It can spread to other dirt."
+      "text": "土に直接虚空を使うと紫色になり、くわで耕作できなくなるようですが、骨粉を使うとコーラスの茎が生え、地形の装飾として使用できます。また、他の土にも拡散する可能性があります。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:chorus_blossom_leaves",
-      "text": "Chorus Saplings can be planted on both End Growth Blocks and End Dirt but, when fully grown, instead of having yellow leaves, they grow leaves that look more like Chorus Flowers."
+      "text": "コーラス苗木はエンドグロースブロックとエンド土の両方に植えることができますが、完全に成長すると、黄色い葉ではなく、コーラスフラワーに似た葉が生えます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:end_mud",
-      "text": "Applying a Water Bottle on an End Soil will turn it into End Mud. Using a Glass Bottle on it will turn it back to End Soil, but will give you End Mud Bottle, which can filled into a Cauldron to make a Cauldron of End Mud."
+      "text": "エンドソイルに水入りの瓶を使用すると、エンド泥に変化します。ガラス瓶を使用すると、エンドソイルに戻り、エンド泥入りの瓶が手に入ります。これを大釜に注ぐと、エンド泥の大釜を作ることができます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:end_mud_bucket",
-      "text": "Filling a Bucket with the content of a full cauldron will give a Bucket of Liquid End Mud, which functions similar to Water, except it does not damage beings of The End and spreads a bit slowly."
+      "text": "大釜をエンド泥で満たせば、バケツを使うことでエンド泥のバケツが得られます。これは水と同様に機能しますが、エンドの生き物にダメージを与えず、ゆっくりと広がります。"
     }
   ],
   "extra_recipe_mappings": {

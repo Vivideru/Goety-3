@@ -1,11 +1,11 @@
 {
-  "name": "Void Robes",
+  "name": "ヴォイドのローブ",
   "icon": "goety:void_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Void Robes imbues the wearer the power of the End. Wearers will have the chance of dodge attacks through teleportation, be immune to Void Touched and can move through Void Blocks freely. The Robes also makes Void Spells cheaper."
+      "text": "ヴォイドのローブは着用者にエンドの力を授けます。着用者はテレポートによる攻撃回避の機会を得るほか、ヴォイドタッチドを受けなくなり、虚空ブロックを自由に通過できるようになります。また、ローブを着用することでヴォイド呪文のソウルコストも半減されます。"
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Void Crown reduce the amount of time to cast Void spells by half and keeps certain void servants from dying off like Vexes. It also allows the wearer to gaze into Endermen without aggravating them."
+      "text": "ヴォイドの冠は、ヴォイド呪文の詠唱時間を半分に短縮し、ヴェックスのように特定のヴォイドの従者が死滅するのを防ぎます。また、着用者はエンダーマンを刺激することなく見つめることができます。"
     }
   ],
   "extra_recipe_mappings": {

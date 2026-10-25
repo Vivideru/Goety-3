@@ -250,7 +250,7 @@ public class BrewCauldronBlock extends BaseEntityBlock{
                         }
                     }
                 }
-                if (pState.getValue(ModStateProperties.LEVEL_BREW) != targetLevel) {
+                if (targetLevel > -1 && pState.getValue(ModStateProperties.LEVEL_BREW) != targetLevel) {
                     pLevel.setBlockAndUpdate(pPos, pState.setValue(ModStateProperties.LEVEL_BREW, targetLevel));
                 }
                 if (playSound) {

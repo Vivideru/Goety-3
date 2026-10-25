@@ -1,11 +1,11 @@
 {
-  "name": "Skeleton Horse",
+  "name": "Лошадь-скелет",
   "icon": "minecraft:skeleton_horse_spawn_egg",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Despite its boniness, the steed can not only withstand being ridden without breaking under weight, but can also ride underwater."
+      "text": "Несмотря на свою костлявость, этот скакун не только выдерживает езду верхом, но и может передвигаться под водой."
     },
     {
       "type": "goety:ritual",

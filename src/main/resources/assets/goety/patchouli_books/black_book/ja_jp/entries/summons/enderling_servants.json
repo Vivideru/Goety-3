@@ -1,15 +1,15 @@
 {
-  "name": "Enderling Servants",
+  "name": "エンダーリングの従者",
   "icon": "minecraft:ender_pearl",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sub-species to Enderman, these odd creatures are far more sustainable to being bound to their summoner than their nigh impossible to control cousin."
+      "text": "エンダーマンの亜種であるこれらの奇妙な生き物は、制御がほぼ不可能な同族よりも、召喚者に縛られることに耐えることができます。"
     },
     {
       "type": "patchouli:text",
-      "text": "All Enderlings are capable of teleportation, but unlike the Enderman, they don't teleport as often and some of them would disappear from combat for a couple of seconds to confuse their foes. They are also vulnerable to water."
+      "text": "エンダーマンのように、エンダーリングは全員テレポート能力を持っていますが、頻繁にテレポートするわけではありません。中には敵を混乱させるために数秒間戦闘から姿を消す者もいます。また、彼らは水に弱いです。"
     },
     {
       "type": "goety:ritual",
@@ -19,11 +19,11 @@
       "anchor": "watchling",
       "type": "patchouli:entity",
       "entity": "goety:watchling_servant",
-      "text": "Unfortunately, the book is incapable of showing their eyes properly for some arcane reason."
+      "text": "残念ながら本では、何らかの不可解な理由により、彼らの目を適切に表示することができません。"
     },
     {
       "type": "patchouli:text",
-      "text": "Watchling Servants are simple brutes that attack by teleporting in front of their enemy and swinging their arms at them. They can either be summoned through a ritual or casting with a $(l:focuses/void/watching_focus)Watching Focus$()."
+      "text": "ウォッチリングの従者は、敵の目の前にテレポートし、腕を振り回して攻撃するシンプルな怪物です。儀式によって召喚するか、$(l:focuses/void/watching_focus)フォーカス$()で召喚することができます。"
     },
     {
       "type": "goety:ritual",
@@ -36,7 +36,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Blastling Servants are the toughest enderling health-wise, and attack by shooting a volley of hot goo at their enemies, though they would temporarily run or teleport away if a foe gets close to them. They can either be summoned through a ritual or casting with a $(l:focuses/void/blasting_focus)Blasting Focus$()."
+      "text": "ブラストリングの従者は体力の面で最も頑丈なエンダーリングであり、敵に向かって熱い粘液を一気に発射して攻撃します。ただし、敵が近づくと一時的に逃走したりテレポートしたりします。儀式、または$(l:focuses/void/blasting_focus)フォーカス$()で召喚できます。"
     },
     {
       "type": "goety:ritual",
@@ -49,11 +49,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Snareling Servants are odd yet devious. They would first attempt at shooting their Snareling Goop at their foe, which would ensnare them for a time when hit, then they would either teleport or run towards their foe and attack them with their arms. They would temporarily try to run or teleport away if a foe gets close to them, if they're not ensnared. They can either be summoned through a ritual or casting with a $(l:focuses/void/snaring_focus)Snaring Focus$()."
+      "text": "スネアリングの従者は奇妙であり狡猾です。彼らはまず粘液を敵に向けて発射し、命中すると一定時間敵を捕らえます。その後、テレポートするか敵に向かって走り、腕で攻撃します。捕らえられていない場合、敵が近づいてくると一時的に逃走またはテレポートしようとします。儀式、または$(l:focuses/void/snaring_focus)フォーカス$()で召喚できます。"
     },
     {
       "type": "patchouli:text",
-      "text": "They can be healed by feeding them Chorus Fruits or wearing $(l:crafts/garment/void_robe)Void Robes with soul energy$()."
+      "text": "コーラスフルーツを食べさせたり、ソウルエネルギーがある状態で$(l:crafts/garment/void_robe)ヴォイドローブ$()を着用したりすることで回復できます。"
     }
   ]
 }

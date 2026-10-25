@@ -1,11 +1,11 @@
 {
-  "name": "Quaking Focus",
+  "name": "地響きのフォーカス",
   "icon": "goety:quaking_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The caster summons forth tremors in front of them, hurting and flinging non-allied creatures towards the air. Casting the spell while crouching will summon tremors around the caster instead."
+      "text": "術者の前方に地響きを発生させ、味方以外のクリーチャーにダメージを与え、空中に吹き飛ばします。しゃがんだ状態で呪文を唱えると、代わりに術者の周囲に地響きを発生させます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will summon tremors in an arc angle that will also disable shields. Cast crouching increases radius."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、弧を描くように地響きを発生させ、盾を解除します。しゃがんだ状態で発動した場合は範囲が増大します。"
     }
   ]
 }

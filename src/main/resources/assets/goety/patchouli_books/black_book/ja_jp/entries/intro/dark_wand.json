@@ -1,5 +1,5 @@
 {
-  "name": "Dark Wand",
+  "name": "闇の杖",
   "icon": "goety:dark_wand",
   "category": "goety:intro",
   "sortnum": 6,
@@ -7,16 +7,16 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It seems magical beings, like Evokers, cast spells by chanting and waving. They seemed to know how to cast these spells by heart through long studies and rituals. Fortunately, you've found a way to cast spells without prolong study by using a wand."
+      "text": "エヴォーカーのような魔法の存在は、唱えたり手を振ったりすることで呪文を唱えるようです。 彼らは長い研究と儀式を通して、これらの呪文を唱える方法を暗記しているようでした。 幸いなことに、あなたは杖を使って、長時間勉強せずに呪文を唱える方法を見つけました。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:dark_wand",
-      "text": "Using the newly discovered Magic Fabrics, you are able to use Soul Energy to cast spells."
+      "text": "新たに発見されたマジックファブリックとホーンテッドログを使用すると、ソウルエネルギーを使用して呪文を唱えることができます。"
     },
     {
       "type": "patchouli:text",
-      "text": "However, the wand needs a $(l:focuses)Focus$() in order for a spell to be cast. Once the Focus is fitted in the wand, all the user must do is concentrate on the spell and have enough Soul Energy to cast a spell. To fit a Focus in the Wand, Press the Open Wand Focus Slot button (Default: Z) while holding the Wand and add the focus through your inventory. Having too many focuses might necessitate the creation of a $(l:crafts/garment/focus_bag)Focus Bag$(). To start making focuses, one must make an Empty Focus first."
+      "text": "ただし、呪文を唱えるには杖に $(l:focuses)フォーカス$() が必要です。 フォーカスが杖に取り付けられたら、ユーザーがしなければならないことは、呪文に集中し、呪文を唱えるのに十分な魂のエネルギーを持っていることだけです。 ワンドにフォーカスを合わせるには、ワンドを押したままワンド フォーカス スロットを開くボタン (デフォルト: Z) を押し、インベントリにフォーカスを追加します。"
     },
     {
       "type": "patchouli:crafting",

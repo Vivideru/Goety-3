@@ -69,6 +69,9 @@ public class WindShrineExpansionStructure extends Structure {
 
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+        if (com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine()) {
+            return Optional.empty();
+        }
         WindShrinePlans.Resolver resolver = WindShrinePlans.Resolver.of(context);
         Optional<WindShrinePlans.Plan> parent = WindShrinePlans.shrineWithDoorIn(resolver, context.chunkPos(), this.door, this.searchChunks);
         if (parent.isEmpty()) {
@@ -125,7 +128,7 @@ public class WindShrineExpansionStructure extends Structure {
             LOGGER.warn("Wind Shrine wing {} could not start at door {} (facing {}) of the shrine in chunk {}", this.door, door.target(), door.facing(), plan.chunk());
         }
         return stub.map(s -> new GenerationStub(s.position(), Either.left(builder -> {
-            WindShrinePlacementRules.beginWing(plan, this.door, this.maxDepth);
+            WindShrinePlacementRules.beginWing(plan, this.door, this.maxDepth, context.chunkPos());
             try {
                 s.generator().ifLeft(generator -> generator.accept(builder));
             } finally {

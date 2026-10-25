@@ -10,6 +10,7 @@
     "ArrowItemMixin",
     "BaseFireBlockMixin",
     "BlockPlaceContextMixin",
+    "CampfireBlockMixin",
     "ChorusFlowerBlockMixin",
     "ChorusPlantBlockMixin",
     "EnchantRandomlyFunctionMixin",
@@ -47,6 +48,7 @@
     "MinecraftMixin",
     "MouseHandlerMixin",
     "PlayerRendererAccessor",
+    "ScreenEffectRendererMixin",
     "SpinAttackEffectLayerMixin"
   ]
 }

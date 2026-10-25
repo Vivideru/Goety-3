@@ -7,6 +7,12 @@
   "mixins": [
     "WolfCursedMetalArmorMixin",
     "ChunkGeneratorWindShrineMixin",
+    "PlacedFeatureCryptMixin",
+    "BeardifierCryptMixin",
+    "BlenderWindShrineMixin",
+    "BlenderAccessor",
+    "NoiseBasedChunkGeneratorWindShrineMixin",
+    "WorldCarverWindShrineMixin",
     "ChunkStatusTasksWindShrineMixin",
     "BiomeWindShrineMixin",
     "ResourceOrTagKeyArgumentWindShrineMixin",
@@ -14,12 +20,25 @@
     "JigsawPlacerWindShrineMixin",
     "JigsawRotationWindShrineMixin",
     "StructurePiecesBuilderAccessor",
+    "BaseContainerBlockEntityAccessor",
+    "BlockStateBasePolarCrystalMixin",
+    "BlockStateBaseSealMixin",
+    "LevelSealMixin",
     "DecoratedPotPatternsMixin",
     "VaultBlockEntityMixin",
-    "MoveControlStrafeMixin"
+    "TrialSpawnerBlockEntityMixin",
+    "MoveControlStrafeMixin",
+    "NearestAttackableTargetGoalAccessor",
+    "MobTargetAccessor",
+    "RandomStrollGoalAccessor"
   ],
   "client": [
-    "WolfArmorLayerMixin"
+    "WolfArmorLayerMixin",
+    "LivingEntityRendererPlinthMixin",
+    "EntityRenderersAccessor",
+    "EntityRendererAccessor",
+    "LivingEntityRendererExtraServantMixin",
+    "GeoEntityRendererExtraServantMixin"
   ],
   "injectors": {
     "defaultRequire": 1

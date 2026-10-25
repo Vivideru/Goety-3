@@ -1,11 +1,11 @@
 {
-  "name": "Ice Axes",
+  "name": "Ледорубы",
   "icon": "goety:iron_ice_axe",
   "category": "goety:crafts/equipment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These pickaxe looking axes are useful at collecting ice and pushing you up over obstacles, though they lack the shield-disabling and wood-stripping abilities of true axes."
+      "text": "Эти инструменты, похожие на кирки, полезны для добычи льда и преодоления препятствий, хотя рубить они ничего не могут."
     },
     {
       "type": "patchouli:crafting",

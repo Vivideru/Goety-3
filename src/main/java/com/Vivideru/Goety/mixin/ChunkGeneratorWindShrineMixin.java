@@ -11,9 +11,14 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.RandomState;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -27,14 +32,33 @@ public abstract class ChunkGeneratorWindShrineMixin {
         if (structureManager.shouldGenerateStructures()) {
             WindShrineTerrain.apply(level, chunk, (ChunkGenerator) (Object) this, structureManager);
             StructureTerrain.apply(level, chunk);
+            com.Vivideru.Goety.common.world.structures.crypt.CryptShell.apply(level, chunk, structureManager);
+            com.Vivideru.Goety.common.world.structures.crypt.CryptMound.remember(chunk);
+            com.Vivideru.Goety.common.world.structures.crypt.CryptExclusion.begin(level, chunk, structureManager);
         }
+    }
+
+    /**
+     * Every decoration step seeds the random before its structures and features: the first vegetation step is where the
+     * crypt's hill grows, after the pieces are placed and before the trees, so trees grow on the hill instead of in it.
+     */
+    @WrapOperation(method = "applyBiomeDecoration", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/WorldgenRandom;setFeatureSeed(JII)V"))
+    private void goety$growMoundBeforeVegetation(WorldgenRandom random, long decorationSeed, int index, int step, Operation<Void> original,
+                                                @Local(argsOnly = true) WorldGenLevel level, @Local(argsOnly = true) ChunkAccess chunk, @Local(argsOnly = true) StructureManager structureManager) {
+        if (step >= GenerationStep.Decoration.VEGETAL_DECORATION.ordinal() && structureManager.shouldGenerateStructures()) {
+            com.Vivideru.Goety.common.world.structures.crypt.CryptMound.growOnce(level, chunk, structureManager);
+        }
+        original.call(random, decorationSeed, index, step);
     }
 
     @Inject(method = "applyBiomeDecoration", at = @At("TAIL"))
     private void goety$windShrineCleanup(WorldGenLevel level, ChunkAccess chunk, StructureManager structureManager, CallbackInfo ci) {
         if (structureManager.shouldGenerateStructures()) {
             WindShrineTerrain.cleanup(level, chunk);
+            com.Vivideru.Goety.common.world.structures.crypt.CryptCleanup.apply(level, chunk, structureManager);
+            com.Vivideru.Goety.common.world.structures.crypt.CryptMound.growOnce(level, chunk, structureManager);
         }
+        com.Vivideru.Goety.common.world.structures.crypt.CryptExclusion.end();
     }
 
     @Inject(method = "createStructures", at = @At("HEAD"))
@@ -51,7 +75,8 @@ public abstract class ChunkGeneratorWindShrineMixin {
     private void goety$reserveGround(StructureSet.StructureSelectionEntry entry, StructureManager structureManager, RegistryAccess registryAccess, RandomState randomState, StructureTemplateManager templates, long seed, ChunkAccess chunk, ChunkPos chunkPos, SectionPos sectionPos, CallbackInfoReturnable<Boolean> cir) {
         ChunkGenerator generator = (ChunkGenerator) (Object) this;
         if (WindShrinePlans.reservesSurface(entry.structure().value(), registryAccess, generator, randomState, templates, seed, chunk, chunkPos)
-                || StructureTerrain.reserves(entry.structure().value(), registryAccess, generator, randomState, chunk, chunkPos)) {
+                || StructureTerrain.reserves(entry.structure().value(), registryAccess, generator, randomState, chunk, chunkPos)
+                || com.Vivideru.Goety.common.world.structures.crypt.CryptPlans.reserves(entry.structure().value(), registryAccess, generator, randomState, templates, seed, chunk, chunkPos)) {
             cir.setReturnValue(false);
         }
     }

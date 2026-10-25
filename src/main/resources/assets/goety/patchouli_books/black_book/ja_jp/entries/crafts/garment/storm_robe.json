@@ -1,11 +1,11 @@
 {
-  "name": "Storm Robes",
+  "name": "嵐のローブ",
   "icon": "goety:storm_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A variant of the Wind Robes that takes the very lightning in its fabrics. Much like the Wind Robes, the robes allows you to fall slowly. Wearing the Robes also halves the Soul Cost for Storm Spells, but not Wind Spells unfortunately."
+      "text": "風のローブの亜種で、生地自体に雷を宿しています。風のローブと同様に、このローブはゆっくりと落下する効果があります。また、このローブを装備すると嵐の呪文の魂のコストが半減しますが、残念ながら風の呪文は半減しません。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Creatures of the storms slowly heal themselves with their summoner's soul energy, should they wear this robe."
+      "text": "嵐の従者は、このローブを着ると召喚者のソウルエネルギーによってゆっくりと回復します。"
     },
     {
       "type": "goety:ritual",
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Storm Crown reduce the amount of time to cast Storm spells by half and keeps your storm servants from dying off like Vexes."
+      "text": "嵐の冠は、嵐の呪文を唱える時間を半分に短縮し、嵐の従者がヴェックスのように消滅するのを防ぎます。"
     }
   ],
   "extra_recipe_mappings": {

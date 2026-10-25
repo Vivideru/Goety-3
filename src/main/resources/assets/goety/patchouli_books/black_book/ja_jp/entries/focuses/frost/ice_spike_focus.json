@@ -1,11 +1,11 @@
 {
-  "name": "Ice Spike Focus",
+  "name": "アイススパイクのフォーカス",
   "icon": "goety:ice_spike_focus",
   "category": "goety:focuses/frost",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Shoots a spike of ice towards the caster's line of sight. Creatures struck by the spike will get Freezing from 1 to 3 seconds."
+      "text": "術者の視線に向かってアイススパイクを発射します。当たったクリーチャーは1～3秒間凍結状態になります。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will shoot an Ice Spear, a larger variant that pierces through enemies, instead."
+      "text": "$(l:crafts/staff/frost_staff)氷の杖$()で唱えると、代わりに敵を貫通する大型のアイススピアを発射します。"
     }
   ]
 }

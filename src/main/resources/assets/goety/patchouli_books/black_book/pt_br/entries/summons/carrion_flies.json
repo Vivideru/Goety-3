@@ -20,6 +20,10 @@
       "entity": "goety:carrion_fly"
     },
     {
+      "type": "patchouli:entity",
+      "entity": "goety:carrion_maggot"
+    },
+    {
       "type": "patchouli:text",
       "text": "Elas podem, em dificuldades mais altas, atravessar paredes por algum motivo. Clicar com o botão direito em uma Mosca de Carniça leal com carne irá curá-la, embora em Vermes de Carniça, isso fará com que eles formem um casulo antes de se transformarem em uma Mosca de Carniça."
     }

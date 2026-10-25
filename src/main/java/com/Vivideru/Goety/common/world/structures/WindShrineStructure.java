@@ -25,9 +25,13 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class WindShrineStructure extends Structure {
+    /** Jigsaw size and reach of the classic shrine, as in its original structure file. */
+    private static final int CLASSIC_SIZE = 4;
+    private static final int CLASSIC_MAX_DISTANCE = 80;
     public static final MapCodec<WindShrineStructure> CODEC = RecordCodecBuilder.<WindShrineStructure>mapCodec(instance -> instance.group(
             settingsCodec(instance),
             StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(s -> s.startPool),
+            StructureTemplatePool.CODEC.optionalFieldOf("classic_start_pool").forGetter(s -> s.classicStartPool),
             ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(s -> s.startJigsawName),
             Codec.intRange(0, 30).fieldOf("size").forGetter(s -> s.maxDepth),
             Codec.intRange(1, 256).fieldOf("max_distance_from_center").forGetter(s -> s.maxDistanceFromCenter),
@@ -40,6 +44,8 @@ public class WindShrineStructure extends Structure {
     ).apply(instance, WindShrineStructure::new));
 
     public final Holder<StructureTemplatePool> startPool;
+    /** The pre-mountain shrine: a plain jigsaw build used when the classic Wind Shrine is configured. */
+    public final Optional<Holder<StructureTemplatePool>> classicStartPool;
     public final Optional<ResourceLocation> startJigsawName;
     public final int maxDepth;
     public final int maxDistanceFromCenter;
@@ -50,9 +56,10 @@ public class WindShrineStructure extends Structure {
     public final int maxCut;
     public final int slopeRadius;
 
-    public WindShrineStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, int maxDistanceFromCenter, int summitY, int sampleRadius, int minSurface, int maxLift, int maxCut, int slopeRadius) {
+    public WindShrineStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<Holder<StructureTemplatePool>> classicStartPool, Optional<ResourceLocation> startJigsawName, int maxDepth, int maxDistanceFromCenter, int summitY, int sampleRadius, int minSurface, int maxLift, int maxCut, int slopeRadius) {
         super(settings);
         this.startPool = startPool;
+        this.classicStartPool = classicStartPool;
         this.startJigsawName = startJigsawName;
         this.maxDepth = maxDepth;
         this.maxDistanceFromCenter = maxDistanceFromCenter;
@@ -64,16 +71,30 @@ public class WindShrineStructure extends Structure {
         this.slopeRadius = slopeRadius;
     }
 
+    /** The classic shrine sits on the terrain like the original data-driven structure did: beard_box adaptation instead of our mountain. */
+    @Override
+    public net.minecraft.world.level.levelgen.structure.TerrainAdjustment terrainAdaptation() {
+        return this.isClassic() ? net.minecraft.world.level.levelgen.structure.TerrainAdjustment.BEARD_BOX : super.terrainAdaptation();
+    }
+
+    public boolean isClassic() {
+        return this.classicStartPool.isPresent() && com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine();
+    }
+
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
         ChunkPos chunkPos = context.chunkPos();
+        if (this.isClassic()) {
+            BlockPos start = new BlockPos(chunkPos.getMinBlockX(), 0, chunkPos.getMinBlockZ());
+            return JigsawPlacement.addPieces(context, this.classicStartPool.get(), Optional.empty(), CLASSIC_SIZE, start, true, Optional.of(Heightmap.Types.WORLD_SURFACE_WG), CLASSIC_MAX_DISTANCE, PoolAliasLookup.EMPTY, DimensionPadding.ZERO, LiquidSettings.APPLY_WATERLOGGING);
+        }
         if (!this.isSiteSuitable(context)) {
             return Optional.empty();
         }
         BlockPos start = new BlockPos(chunkPos.getMinBlockX(), this.summitY, chunkPos.getMinBlockZ());
         Optional<GenerationStub> stub = JigsawPlacement.addPieces(context, this.startPool, this.startJigsawName, this.maxDepth, start, false, Optional.empty(), this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, DimensionPadding.ZERO, LiquidSettings.APPLY_WATERLOGGING);
         return stub.map(s -> new GenerationStub(s.position(), Either.left(builder -> {
-            WindShrinePlacementRules.beginShrine(this.summitY, this.maxDepth);
+            WindShrinePlacementRules.beginShrine(this.summitY, this.maxDepth, context.chunkPos());
             try {
                 s.generator().ifLeft(generator -> generator.accept(builder));
             } finally {
@@ -93,12 +114,18 @@ public class WindShrineStructure extends Structure {
         int[] samples = new int[25];
         int i = 0;
         int highest = Integer.MIN_VALUE;
-        for (int dx = -2; dx <= 2; dx++) {
-            for (int dz = -2; dz <= 2; dz++) {
-                int height = context.chunkGenerator().getBaseHeight(centerX + dx * step, centerZ + dz * step, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) - 1;
-                samples[i++] = height;
-                highest = Math.max(highest, height);
+        // The site is judged on the natural land, before the shrine's own mountain raises it.
+        WindShrineBlend.suppress();
+        try {
+            for (int dx = -2; dx <= 2; dx++) {
+                for (int dz = -2; dz <= 2; dz++) {
+                    int height = context.chunkGenerator().getBaseHeight(centerX + dx * step, centerZ + dz * step, Heightmap.Types.WORLD_SURFACE_WG, context.heightAccessor(), context.randomState()) - 1;
+                    samples[i++] = height;
+                    highest = Math.max(highest, height);
+                }
             }
+        } finally {
+            WindShrineBlend.resume();
         }
         Arrays.sort(samples);
         int median = samples[samples.length / 2];

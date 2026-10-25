@@ -37,13 +37,19 @@
     {
       "type": "patchouli:entity",
       "entity": "goety:inferno",
-      "scale": 0.95,
+      "scale": 0.95
+    },
+    {
+      "type": "patchouli:text",
       "text": "Primos dos Blazes, os Infernos são imunes a água e suas chamas queimam até mesmo quem resiste ao fogo."
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:malghast",
-      "scale": 0.75,
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
       "text": "Menores que Ghasts, mas superiores, esses monstros cospem bolas de chamas profanas que queimam tudo. Às vezes, lançam bolas de lava comuns, que podem ser rebatidas."
     },
     {

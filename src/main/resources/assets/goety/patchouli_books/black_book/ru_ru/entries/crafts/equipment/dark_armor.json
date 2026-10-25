@@ -1,5 +1,5 @@
 {
-  "name": "Dark Armor",
+  "name": "Тёмная броня",
   "icon": "goety:dark_helmet",
   "category": "goety:crafts/equipment",
   "advancement": "goety:goety/craft_dark_ingot",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While Dark Alloy can be used to craft regular tools, when it comes to armor, it seems to require more... elaborate ways of crafting them. The armor looks nothing like the others you have crafted, looking more elaborate yet intimidating, but it still provides Diamond level protection and toughness, as well as some knockback resistance."
+      "text": "В то время как тёмный сплав можно использовать для создания обычных инструментов, когда дело доходит до брони, нужны более... утончённые методы. Броня не похожа на любую другую: она выглядит более продуманной, но в то же время устрашающей. Однако она по-прежнему обеспечивает защиту и твёрдость на уровне алмазной, а также сопротивление отбрасыванию."
     },
     {
       "type": "patchouli:text",
-      "text": "Much like the Black Iron Armor set, the armor also provides discount on Soul Energy, but also slightly mitigates magic, fire and explosive damage."
+      "text": "Как и броня из чёрного железа, эти доспехи также дают скидку на использование энергии душ, но также немного уменьшают урон от магии, огня и взрывов."
     },
     {
       "type": "goety:ritual",

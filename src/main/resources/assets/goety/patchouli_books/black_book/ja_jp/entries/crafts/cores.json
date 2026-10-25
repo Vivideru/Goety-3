@@ -1,18 +1,18 @@
 {
-  "name": "Cores of Magic",
+  "name": "魔法のコア",
   "icon": "goety:empty_focus",
   "category": "goety:crafts",
   "priority": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Magical cores are used to create all kinds of spells and equipments and can be crafted through all kinds of rituals."
+      "text": "マジカルコアはあらゆる種類の呪文や装備の作成に使用され、あらゆる種類の儀式を通じて作成できます。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:empty_focus",
       "title": "Empty Focus",
-      "text": "The $(l:intro/magical_components)Empty Focus$() is the core for all magical Focuses."
+      "text": "$(l:intro/magical_components)空のフォーカス$() はすべての魔法のフォーカスのコアです."
     },
     {
       "type": "goety:ritual",

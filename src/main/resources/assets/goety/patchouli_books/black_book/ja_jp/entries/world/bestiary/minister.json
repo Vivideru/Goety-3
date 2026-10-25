@@ -1,12 +1,12 @@
 {
-  "name": "Ministers",
+  "name": "大臣",
   "icon": "goety:ominous_orb",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_minister",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Illagers higher in rank and prestige than Evokers. Indeed, they are most likely to be the leader of the Illager tribe they are a part of. Ministers are notorious for plundering civilizations and their oratory skills, which they use to empower other Illagers or to viciously mock their foes."
+      "text": "エヴォーカーよりも地位も名声も高い邪悪な村人。 実際、彼らは彼らが所属する邪悪な村人部族のリーダーである可能性が最も高いです。 大臣は文明を略奪し、その弁論術を駆使して他の邪悪な村人に力を与えたり、敵を悪意に嘲笑したりすることで悪名高い。"
     },
     {
       "type": "patchouli:entity",
@@ -16,7 +16,7 @@
       "type": "patchouli:spotlight",
       "item": "goety:ominous_orb",
       "title": "Minister's Staff",
-      "text": "It is said that the Staff they wield is either inspired by or plundered and modified from a nameless kingdom, with the staff's orb radiating great magic. Ministers are also good at blocking hits with their staff, though unfortunately for them, their staffs aren't as durable as a standard shield."
+      "text": "彼らが振るう杖は、無名の王国からインスピレーションを得たか、略奪して改造されたものであり、杖の球体からは偉大な魔法が放射されていると言われています。 大臣は杖で攻撃を防ぐことにも優れていますが、残念なことに、大臣の杖は標準の盾ほど耐久性がありません。 おそらく、杖、または少なくともそのオーブを、破壊せずに略奪する方法があるかもしれません..."
     },
     {
       "type": "patchouli:spotlight",

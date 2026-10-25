@@ -1,0 +1,54 @@
+{
+  "name": "座狼",
+  "icon": "goety:warg_spawn_egg",
+  "category": "goety:summons",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "座狼是由经验丰富的黑狼培育而成的强大战犬。它们更强壮、更坚韧，免疫击退，能够跃过障碍，且不会因短距离坠落而受伤。与它们较小的同类一样，它们对主人保持忠诚，可以用肉来治疗。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:warg",
+      "scale": 0.7
+    },
+    {
+      "type": "patchouli:text",
+      "text": "要创造一只座狼，需在$(l:goety:crafts/artifice/howling_totem)狼性图腾$()的八格范围内保留至少四只已驯服的狼。将指路石绑定到图腾上，然后对一只符合条件的狼使用。它将转变为对应品种的座狼：黑狼及其同类保留其本性，普通的驯服狼则产生灰色品种，而狱犬无法以此方式晋升。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "每个图腾只能创造一只座狼，且一位主人通常最多指挥三只。在该座狼存活期间，破坏图腾不会释放其座狼槽位。座狼仍会绑定其原始图腾，并可受益于图腾的保护。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "已拥有的座狼可装备鞍并骑乘，蓄力跳跃能携带狼与骑手跨越长距离。它也可以用嘴衔住任意剑，以横扫旋转和上撩垂直斩击取代原有的撕咬攻击。空手右键可收回剑。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "座狼使用它们自己专用的更大号护甲。这些护甲以及其他犬类仆从护甲的配方记录在$(l:goety:crafts/artifice/howling_totem#canine_armor)嚎叫图腾条目$()中。"
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "cerberus",
+      "text": "$(l)地狱三首犬$()$(br)狱犬无法被培育为座狼，因为它们体内的火焰回应着一种更为古老的饥渴。将三只狱犬聚在一起，那份饥渴便会自行完成晋升，将三头野兽融合为一头三首的地狱三首犬。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:cerberus",
+      "scale": 0.4
+    },
+    {
+      "type": "patchouli:text",
+      "text": "在你的$(l:goety:crafts/artifice/howling_totem)嚎叫图腾$()周围八格范围内聚集三只已驯服的狱犬，然后向其中一只献上下界合金锭。那只狱犬将变为地狱三首犬；另外两只会被吸入其中，只留下一缕青烟。下界合金锭也随它们一同消耗。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "地狱三首犬远比任何座狼都要沉重，免疫火焰伤害，且被视为下界生物：穿戴$(l:goety:crafts/garment/nether_robe)下界长袍$()的主人可以像治疗其他下界仆从一样治疗它。每个图腾只能培育一只，而一位主人通常也只能保有一只。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "它的三张嘴永远充满火焰，因此永远不会衔剑。除了燃烧的撕咬之外，它还能像$(l:goety:focuses/nether/fire_breath_focus)火焰吐息$()聚晶一样喷吐火焰，每个头颅沿着各自的方向喷射数秒，然后这头野兽必须再次蓄力。它佩戴与座狼相同的护甲。"
+    }
+  ]
+}

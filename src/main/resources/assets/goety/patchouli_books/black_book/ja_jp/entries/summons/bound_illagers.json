@@ -1,12 +1,12 @@
 {
-  "name": "Bound Illagers",
+  "name": "縛られたイリジャー",
   "icon": "minecraft:totem_of_undying",
   "category": "goety:summons",
   "advancement": "goety:goety/kill_a_evoker",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While a Vindicator can be raised as a Zombie, a Pillager a Skeleton, to truly make a proper undead version of the powerful Evokers and other Illager spellcasters, one must be more... spiritual in their pursuit."
+      "text": "ヴィンディケーターはゾンビとして、ピリジャーはスケルトンとして育てることができますが、強力なエヴォーカーや他のイリジャーの魔法使いの真のアンデッド版を作るには、もっと... 精神的な追求が必要です。"
     },
     {
       "type": "patchouli:entity",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Unlike the other two, Bound Evokers can float above ground and is unaffected by gravity. Despite their spiritual looks, they cannot phase through walls and can still be harmed with conventional weaponry."
+      "text": "他の2体とは異なり、縛られたエヴォーカーは浮遊することができ、重力の影響を受けません。壁を透過することはできず、従来の武器でダメージを与えることができます。"
     },
     {
       "type": "goety:ritual",
@@ -26,7 +26,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "No longer bound to the ground, these undead spellcasters nonetheless retain their mastery over the earth."
+      "text": "もはや地面にいないにもかかわらず、これらのアンデッドの魔法使いたちは依然として地球に対する支配力を保持しています。"
     },
     {
       "type": "goety:ritual",
@@ -38,7 +38,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Bound Iceologers are as chilly as they are in life but, this time, their Ice Chunks are falling on someone else's head instead of yours."
+      "text": "縛られたアイソロジャーは生きている時と同じくらい冷酷ですが、今回は彼らの氷の塊があなたの頭ではなく、誰か他の人の頭に落ちてきます。"
     },
     {
       "type": "goety:ritual",
@@ -50,7 +50,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "As teary as they are in life, the undead Cryologers will rain hail and conjure walls upon their enemies. For some reason, despite their teary-eyed appearance, they seemed to be less miserable and more apathetic to their predicament than the other bound illagers."
+      "text": "生前は涙もろいアンデッドのクライオロジャーは、敵に氷雨を降らせ、壁を召喚する。なぜか、涙目で見守る姿とは裏腹に、他の縛られたイリジャーたちほど、悲惨さや窮状への無関心さは感じられない。"
     },
     {
       "type": "goety:ritual",
@@ -63,7 +63,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These Illagers retain their power over the wind in death, with a neat caveat of truly being able to fly rather than slowly fall to the ground."
+      "text": "これらの縛られたイリジャーは、死んでも風を操る力を保持していますが、ゆっくりと地面に落ちるのではなく、本当に飛ぶことができるという便利な点があります。"
     },
     {
       "type": "goety:ritual",
@@ -75,7 +75,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Not even death can stop the storm within these plunderers, and they're willing to reveal it to their foes."
+      "text": "死をもってしても、内なる嵐を止めることはできず、彼らはそれを敵に明かすつもりでいる。"
     },
     {
       "type": "goety:ritual",
@@ -83,11 +83,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These bound souls can be healed by right-clicking on them with Ectoplasm."
+      "text": "これらの縛られたイリジャーは、エクトプラズムで右クリックすることで回復することができます。"
     },
     {
       "type": "patchouli:text",
-      "text": "As they still retain their mental faculties, these souls can be given your $(l:goety:mutations/illager_servants#banner)personal banner$() and lead your $(l:goety:mutations/illager_servants)Illager servants$() as well."
+      "text": "彼らはまだ精神的能力を保持しているため、これらの魂に$(l:goety:mutations/illager_servants#banner)個人的な旗$()を与えることができ、また $(l:goety:mutations/illager_servants)イリジャーの従者$()を率いることもできます。"
     }
   ]
 }

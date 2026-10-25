@@ -1,11 +1,11 @@
 {
-  "name": "Geo Staff",
+  "name": "地の杖",
   "icon": "goety:geo_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While Geomancers use simple wooden canes to power their geomancy, you've know you can do better with the Amethysts you have lying around."
+      "text": "ジオマンサーは地質系呪文のパワーを高めるために単純な木の杖を使用しますが、あなたは家にあるアメジストを使う方がよいことを知っています。"
     },
     {
       "type": "goety:ritual",
@@ -13,10 +13,10 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Geo Staff empowers up several Geomancy spells, granting more power over the very earth itself!"
+      "text": "地の杖はいくつかのジオマンシー呪文を強化し、地球そのものに対するさらなる力を与えます。"
     }
   ],
   "extra_recipe_mappings": {
-    "goety:wind_staff": 1
+    "goety:geo_staff": 1
   }
 }

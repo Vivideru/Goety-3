@@ -1,11 +1,11 @@
 {
-  "name": "Mooshroom",
+  "name": "ムーシュルーム",
   "icon": "minecraft:red_mushroom",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With some red mushrooms and a cow, you're able to turn said cow into a red Mooshroom."
+      "text": "赤いキノコと牛があれば、牛を赤いムーシュルームに変えることができます。"
     },
     {
       "type": "goety:ritual",

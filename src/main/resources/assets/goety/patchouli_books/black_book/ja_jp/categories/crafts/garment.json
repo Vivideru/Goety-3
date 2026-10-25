@@ -1,6 +1,6 @@
 {
-  "name": "Garments",
-  "description": "Curios and Clothing of Dark Wizards.",
+  "name": "服",
+  "description": "闇の魔法使いの骨董品と衣服。",
   "icon": "goety:dark_hat",
   "parent": "goety:crafts",
   "sortnum": 2

@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sarcophagi function the same as beds, but instead of sleeping through the night, you sleep through the day instead."
+      "text": "Sarcophagi functions the same as beds, but instead of sleeping through the night, you sleep through the day instead."
     },
     {
       "type": "patchouli:crafting",
@@ -15,11 +15,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "goety:deepslate_sarcophagus",
-      "recipe2": "goety:ominous/ominous_sarcophagus"
+      "recipe2": "goety:sandstone_sarcophagus"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "goety:crypt_sarcophagus"
+      "recipe": "goety:ominous/ominous_sarcophagus",
+      "recipe2": "goety:crypt_sarcophagus"
     },
     {
       "type": "patchouli:spotlight",

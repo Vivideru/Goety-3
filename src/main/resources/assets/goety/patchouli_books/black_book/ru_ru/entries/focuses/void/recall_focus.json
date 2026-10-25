@@ -1,11 +1,11 @@
 {
-  "name": "Recall Focus",
+  "name": "Фокус воспоминания",
   "icon": "goety:recall_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Recall Focus allows the caster to teleport back to a location saved by the Focus. To use the Focus, it needs to have a location saved by right-clicking on either an $(l:crafts/artifice/arca)Arca$() owned by the Caster, a Bed, or a Respawn Anchor with it. Shift-right clicking the Focus will clear any saved location."
+      "text": "Фокус воспоминания позволяет телепортироваться обратно на место, сохранённое в нём. Чтобы использовать фокус, необходимо сохранить в нём место, нажав ПКМ по вашей $(l:crafts/artifice/arca)арке$(), кровати или якорю возрождения, держа его в руке. Нажатием ПКМ, присев, можно удалить сохранённое место."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The spell also allows the caster to teleport their servant to the stored location, where they will stand by if they are able, by right-clicking on them."
+      "text": "Фокус также позволяет телепортировать в сохранённое место прислужника, нажав по нему ПКМ. Телепортированный прислужник будет стоять на месте."
     }
   ],
   "extra_recipe_mappings": {

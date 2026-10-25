@@ -1,5 +1,5 @@
 {
-  "name": "Abominable Machines",
+  "name": "忌まわしい機械",
   "icon": "minecraft:end_stone",
   "category": "goety:rumors",
   "advancement": "goety:goety/read_warred_scroll",
@@ -7,12 +7,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "From the warred scrolls there's mention of a powerful variant, stronger than even the Redstone Golems, that was made and banished to a lost land. There's also mentioned of how some scholars recorded how this beast was made before they were destroyed, but surely there's some that still remains..."
+      "text": "終端のスクロール​​には、レッドストーンゴーレムよりも強力なものが作られ、失われた地へ追放されたという記述があります。また、この怪物が滅ぼされる前に、一部の学者がどのようにして作られたかを記録していたという記述もありますが、きっとまだ残っているものがあるのでしょう…"
     },
     {
       "type": "patchouli:quest",
       "trigger": "goety:goety/get_shrouded_blueprint",
-      "text": "The scroll mentions that the beast's design may have came from a being of $(l)The End$(), and its secrets lies within a $(l)terminal of power$()."
+      "text": "スクロールには、怪物のデザインは$(l)エンド$()の存在から生まれた可能性があり、その秘密は$(l)ターミナル$()の中にあると記されています。"
     }
   ]
 }

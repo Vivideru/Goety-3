@@ -1,5 +1,5 @@
 {
-  "name": "Dark Anvil",
+  "name": "Тёмная наковальня",
   "icon": "goety:dark_anvil",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/craft_dark_ingot",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Anvils can be very annoying to deal with. Not only can they break, they also demand a lot, and have a limit of, experience they can take. With Dark Alloy, you are able to create a much better Anvil."
+      "text": "Наковальни бывают очень неудобными. Они не только ломаются, но и требуют много опыта и имеют определённый его предел. Используя тёмный сплав, вы можете создать наковальню гораздо лучшего качества."
     },
     {
       "type": "patchouli:crafting",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Dark Anvil can repair itself when placed on top of a $(l:intro/cursed_cage)Cursed Cage$(), where it would uncommonly take a large amount of Soul Energy from it to mend itself. Using the Dark Anvil does not multiply the repair cost of the item by 2, but will add by 1. Instead of preventing you from repairing/enchanting items if the level cost is too high, the cost will stay at the level limit, allowing the item to be used on the anvil regardless."
+      "text": "Тёмная наковальня может чиниться сама по себе, если её поместить на $(l:intro/cursed_cage)проклятую клетку$(), где для её восстановления потребуется очень большое количество энергии душ. Использование тёмной наковальни не умножит стоимость ремонта на 2, а увеличит на 1. Вместо того, чтобы препятствовать вам чинить/зачаровывать предметы, если стоимость слишком высока, она оставит её на предельном уровне, позволяя улучшать предмет бесконечно."
     }
   ],
   "extra_recipe_mappings": {

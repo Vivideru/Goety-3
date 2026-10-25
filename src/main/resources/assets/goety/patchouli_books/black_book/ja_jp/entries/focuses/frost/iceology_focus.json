@@ -1,11 +1,11 @@
 {
-  "name": "Iceology Focus",
+  "name": "アイスチャンクのフォーカス",
   "icon": "goety:iceology_focus",
   "category": "goety:focuses/frost",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You have learned a branch of Illager Magic called Iceology. With this focus, you are able to summon a chunk of floating ice above a target that will then smash onto them after a small amount of time, stunning them for a few seconds."
+      "text": "イリジャーの魔法の一分野、「氷学」/「アイソロジー」です。この魔法を習得すると、対象の頭上にアイスチャンクを召喚し、一定時間後にその氷塊を敵に叩きつけ、数秒間スタンさせることができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will decrease hovering time for Ice Chunks."
+      "text": "$(l:crafts/staff/frost_staff)氷の杖$()で唱えると、アイスチャンクのホバリング時間が短縮されます。"
     }
   ],
   "extra_recipe_mappings": {

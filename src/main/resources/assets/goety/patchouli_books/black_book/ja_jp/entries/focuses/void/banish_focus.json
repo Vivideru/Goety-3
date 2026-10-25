@@ -1,11 +1,11 @@
 {
-  "name": "Banish Focus",
+  "name": "追放のフォーカス",
   "icon": "goety:banish_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A spell that requires the caster to directly right click a living target, where upon the target is teleported away from the caster. Perfect for getting rid of certain foes or annoyances!"
+      "text": "術者が生きているターゲットを直接右クリックし、そのターゲットを術者から離れた場所にテレポートさせる呪文です。特定の敵や厄介者を排除するのに最適です。"
     },
     {
       "type": "goety:ritual",

@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.goety.music_disc_skull_lord.desc"
+  },
+  "length_in_seconds": 106.0,
+  "sound_event": "goety:skull_lord_theme_disc"
+}

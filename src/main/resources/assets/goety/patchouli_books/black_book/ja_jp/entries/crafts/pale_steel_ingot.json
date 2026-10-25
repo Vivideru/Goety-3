@@ -1,15 +1,15 @@
 {
-  "name": "Pale Steel Ingots",
+  "name": "ペールスチールのインゴット",
   "icon": "goety:pale_steel_ingot",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've been confused over the metal found on the shoulderpads and belt of Pillagers and the armor of Ravagers. Are they Silver? Platinum? Odd colored Iron? Desaturated Diamond? After some testing and 'negotiating' you've discovered that it's, in a way, all of them."
+      "text": "ピリジャーの肩当てやベルト、そしてラヴェジャーの鎧に使われている金属が何なのか、気になりませんか？。銀？プラチナ？奇妙な色の鉄？それとも彩度を落としたダイヤモンド？いくつか試して「交渉」した結果、ある意味、全部同じ素材であることが分かりました。"
     },
     {
       "type": "patchouli:text",
-      "text": "Some are silver, some are platinum, some are just colored iron and so on. They just look and, in some cases, act the same to you. You've decided to recreate the most common type of the illager metal as silver and platinum might not be available, or probably too valuable, to use for dark purposes."
+      "text": "銀のもの、プラチナのもの、鉄に色をつけただけのものなど、様々な種類があります。見た目も、場合によっては作用も、あなたには同じに見えます。銀やプラチナは入手困難、あるいはおそらく高価すぎて闇の目的には使えないかもしれないので、イリジャーの金属の中で最も一般的な種類を再現することにしました。"
     },
     {
       "type": "patchouli:crafting",

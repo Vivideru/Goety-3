@@ -1,0 +1,25 @@
+{
+  "name": "飑旋",
+  "icon": "goety:whirling_cage",
+  "category": "goety:world/bestiary",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在每一座试炼密室的某处，都有一颗沉重核心被锁在封印竞技场中心的风旋牢笼中，而它周围的风已学会战斗。打破牢笼，核心便会升起，汇聚风暴，释放出一只飑旋。正如野火之于烈焰人，它就是旋风人的对应存在。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:whirling_cage",
+      "text": "牢笼是唯一让核心保持安静的东西。打破它的人最好准备好面对它一直压制着的东西。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "飑旋擅长保持距离，从不停留原地。它会将拳头掷向你预计会出现的位置，力道足以将盾牌从你手中打飞。它能够在头顶汇聚旋风，然后向你抛来；它还会跃过竞技场，以毁灭性的重击落地。你每击中它一次，都会换来一阵将你推开的狂风，而箭矢只会从它的身体上弹开。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "风弹和坠落都无法伤害它，它也不会自行离开自己的竞技场。将它击倒后，它会留下沉重核心、少量旋风棒和风弹，以及一个宝藏袋。"
+    }
+  ]
+}

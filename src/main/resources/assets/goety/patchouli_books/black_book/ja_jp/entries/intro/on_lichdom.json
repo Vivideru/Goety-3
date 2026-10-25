@@ -1,5 +1,5 @@
 {
-  "name": "Caveats of being a Lich",
+  "name": "リッチになることの注意点",
   "icon": "minecraft:skeleton_skull",
   "category": "goety:intro",
   "advancement": "goety:goety/become_lich",
@@ -7,23 +7,30 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You have finally become the ultimate Undead. As you may have guessed, you have the strengths and weaknesses of Undeath. For starters, your hunger no longer goes up or down. When injured, you will use up the Soul Energy within your Totem to heal up all injuries (unless you're on fire)."
+      "text": "ついに、あなたは究極のアンデッドとなりました。お察しの通り、あなたにはアンデッドとしての強みと弱みが備わっています。まず、空腹度が変動することはなくなりました。負傷した際は、トーテムに蓄えられたソウルエネルギーを消費してすべての傷を癒やします（ただし、炎上している場合を除きます）。"
     },
     {
       "type": "patchouli:text",
-      "text": "Second, you cannot get the Poison, Regeneration, Hunger and/or Saturation effect. You will burn up in Sunlight unless you have something on your head and you gain more injuries from the Smite Enchantment. Also Villagers hate you unless you've cured a lot of them from being Zombies."
+      "text": "第2に「毒」「再生」「空腹」「満腹度回復」といったステータス効果を受けられなくなります。頭に何かを装備していないと日光で燃えてしまいますし、「アンデッド特効」のエンチャントによるダメージも多く受けるようになります。また、ゾンビ化した村人を多数治療して人間に戻していない限り、村人たちからは嫌われてしまいます。"
     },
     {
       "type": "patchouli:text",
-      "text": "On the plus side, most Undead creatures no longer attack you, you can never drown and you can stay in the Sunlight all day long as you're wearing a Helmet or have Fire Resistance! Being Undead also means that Potions of Harming heals you while Potions of Healing harms you the same way as your Undead brethren."
+      "text": "利点としては、ほとんどのアンデッドが襲ってこなくなるほか、溺れることがなくなり、ヘルメットを装備するか火炎耐性の効果があれば、日光の下でも一日中過ごせるようになります。また、アンデッドである以上、ダメージのポーションで回復し、回復のポーションでダメージを受けるという点も、他のアンデッドと同様です。"
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:crafts/artifice/arca)Arca$() resurrections are initiated no matter the amount of Soul Energy is within it. However, should the number of Soul Energy be less that the usual number needed to revive you or that your Arca has been destroyed, you will lose your lichdom upon death."
+      "text": "$(l:crafts/artifice/arca)アルカ$()による復活は、内部のソウルエネルギーにかかわらず開始されます。ただし、ソウルエネルギー量が復活に必要な通常量を下回っている場合や、アルカが破壊されている場合には、死亡時にリッチとしての状態を失うことになります。"
     },
     {
       "type": "patchouli:text",
-      "text": "You can also regain your living form by pressing the Lich Form key (Default: N). The form somehow does not fool anyone, but at least you have your former looks back."
+      "text": "「リッチ形態」キー（デフォルト：N）を押すことで、生前の姿に戻ることもできます。その姿で誰かを欺くことはできませんが、少なくとも元の外見を取り戻すことは可能です。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:haunted_mirror",
+      "title": "色変え",
+      "advancement": "goety:goety/read_haunting_scroll",
+      "text": "幽霊の鏡を染料で右クリックすると、リッチフォームの色を変更することもできます。カスタムカラーを解除するには、水入りバケツで鏡を右クリックしてください。"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Necro Staff",
+  "name": "Некро-посох",
   "icon": "goety:necro_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Ectoplasms dropped by the Wraiths gave you an idea. With some $(l:intro/magical_components)Cursed Metal Ingots$(), you've managed to create an upgrade to your $(l:intro/dark_wand)Wand$() and create a Staff fit for a Necromancer."
+      "text": "Эктоплазма призраков навела вас на мысль. С помощью $(l:intro/magical_components)слитков проклятого металла$() вам удалось обновить свою $(l:intro/dark_wand)палочку$() и создать посох, подходящий для некроманта."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Necro Staff powers up Necroturgic spells, allowing one to summon more than 1 Undead Servant per cast for example."
+      "text": "Некро-посох усиливает некротургические заклинания, позволяя, например, призывать более 1 нежити-прислужника за одно использование."
     }
   ],
   "extra_recipe_mappings": {

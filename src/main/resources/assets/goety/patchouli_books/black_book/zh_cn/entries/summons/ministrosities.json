@@ -26,6 +26,10 @@
     {
       "type": "patchouli:entity",
       "entity": "goety:redstone_ministrosity"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "穿戴$(l:crafts/garment/geo_robe)占卜长袍$()时或通过仪式召唤的这些小兽比岩石小兽更强大，并且免疫火焰。"
     }
   ]
 }

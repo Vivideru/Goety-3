@@ -1,5 +1,6 @@
 {
   "values": [
-    "#goety:no_knockback"
+    "#goety:no_knockback",
+    "goety:soul_burn"
   ]
 }

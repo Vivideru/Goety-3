@@ -86,7 +86,7 @@ public class ApparitionDoorBlock extends Block {
     }
 
     private InteractionResult onActivation(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (pState.getValue(VANISHED) || pState.getValue(ACTIVE)) {
+        if (pState.getValue(VANISHED) || pState.getValue(ACTIVE) || com.Vivideru.Goety.common.blocks.entities.SealerHooks.isSealed(pLevel, pPos)) {
             return InteractionResult.FAIL;
         }
 
@@ -134,7 +134,7 @@ public class ApparitionDoorBlock extends Block {
     public void checkAndActivateCastleDoor(Level pLevel, BlockPos pPos) {
         BlockState state = pLevel.getBlockState(pPos);
 
-        if (state.getBlock() instanceof ApparitionDoorBlock && !state.getValue(VANISHED) && !state.getValue(ACTIVE)) {
+        if (state.getBlock() instanceof ApparitionDoorBlock && !state.getValue(VANISHED) && !state.getValue(ACTIVE) && !com.Vivideru.Goety.common.blocks.entities.SealerHooks.isSealed(pLevel, pPos)) {
             this.changeToActiveBlock(pLevel, pPos, state);
         }
     }

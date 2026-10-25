@@ -1,11 +1,11 @@
 {
-  "name": "Taglock Kit",
+  "name": "タグロックキット",
   "icon": "goety:taglock_kit",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A taglock kit is used to collect taglocks from creatures or rivals. Taglocks are used to create a link between target and witchcraft."
+      "text": "タグロック キットは、生き物やライバルからタグロックを収集するために使用されます。 タグロックはターゲットと魔術の間にリンクを作成するために使用されます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,11 +13,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To collect taglocks, simply left click the kit on a being. One can also obtain a taglock by right-clicking it on a bed that's been used by a beings like yourself. For some reason, you can't obtain Villager taglocks this way."
+      "text": "タグロックを収集するには、存在上のキットを左クリックするだけです。 また、あなたのような存在が使用したベッド上でタグロックを右クリックしてタグロックを入手することもできます。 何らかの理由で、この方法では村人のタグロックを入手できません。"
     },
     {
       "type": "patchouli:text",
-      "text": "Be warn! While tagging a creature is a simple matter, tagging a fellow being like yourself requires a more sneaky approach, as they can notice your failed attempt!"
+      "text": "注意してください! 生き物にタグを付けるのは簡単ですが、自分と同じような仲間にタグを付けるには、あなたの失敗に気づく可能性があるため、より卑劣なアプローチが必要です。"
     }
   ]
 }

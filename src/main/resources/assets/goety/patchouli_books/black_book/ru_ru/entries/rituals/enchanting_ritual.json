@@ -2,6 +2,7 @@
   "name": "Ритуальное зачарование",
   "icon": "minecraft:enchanted_book",
   "category": "goety:rituals",
+  "sortnum": 1,
   "priority": true,
   "pages": [
     {

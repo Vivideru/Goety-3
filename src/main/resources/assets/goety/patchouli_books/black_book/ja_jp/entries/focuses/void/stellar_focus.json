@@ -1,12 +1,12 @@
 {
-  "name": "Stellar Focus",
+  "name": "ヴォイドステラーのフォーカス",
   "icon": "goety:stellar_focus",
   "category": "goety:focuses/void",
   "advancement": "goety:goety/kill_an_ender_keeper",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The echoes of the void allows you to create a spell that, when concentrated, continuously summon projectiles that, after a second of being conjured, will home onto a foes location and explode in a blast of void energy."
+      "text": "虚空の残響により、連続的に発射物を召喚する呪文を作成できます。発射物は召喚されてから1秒後に敵のいる場所に誘導され、輝かしい虚空のエネルギーとして爆発します。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/void_staff)Void Staff$() summons more projectiles."
+      "text": "$(l:crafts/staff/void_staff)ヴォイドの杖$()で唱えると、より多く召喚します。"
     }
   ],
   "extra_recipe_mappings": {

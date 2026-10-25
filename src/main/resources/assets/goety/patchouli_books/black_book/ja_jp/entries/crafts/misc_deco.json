@@ -1,15 +1,15 @@
 {
-  "name": "Misc. Decorations",
+  "name": "その他の装飾",
   "icon": "goety:gold_candlestick",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The dark arts is a pathway to many abilities some consider to be... pretty? Your journey through the dark arts has lead you to discover several decorations that lets you feel more like a true dark wizard."
+      "text": "闇の魔術は、ある人たちが「美しい」と考えるような多くの能力への道を開く。闇の魔術を探求する旅を通して、あなたは真の闇の魔法使いになった気分を味わえるいくつかの装飾品を発見した。"
     },
     {
       "type": "patchouli:text",
-      "text": "Ironically, one of the things you've found are better ways to light up your lair."
+      "text": "皮肉なことに、あなたが発見したことの一つは、自分の隠れ家をより良く照らす方法でした。"
     },
     {
       "type": "patchouli:crafting",
@@ -42,7 +42,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:royal_carpet_corner",
-      "text": "Normal carpets don't cut out for you. The floors of your lair needs to be more opulent for your feet to walk on. Unfortunately, your carpets need to be put into pieces for you to combine into a proper carpet way."
+      "text": "普通のカーペットでは物足りない。あなたの隠れ家の床は、足元にふさわしい、もっと豪華なものでなければならない。残念ながら、カーペットをきちんと組み合わせるには、複数のパーツを作る必要がある。"
     },
     {
       "type": "patchouli:crafting",
@@ -67,7 +67,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:royal_throne",
-      "text": "What good is a lair without a throne to sit on? You can even have a Servant sit on one, by either commanding them to it, or have them guard, through waystone or command, on the position of the throne. To get them off, you can command them off, set them to guard another position, or simply dismiss them."
+      "text": "座る玉座のない隠れ家に何の意味があるだろうか？従者に玉座に座らせることもできます。命令して座らせるか、ウェイストーンや命令を使って玉座の位置を守らせるかのどちらかだ。従者を玉座から降ろすには、命令して降ろすか、別の場所を守らせるか、あるいは単に解雇すればよい。"
     },
     {
       "type": "patchouli:crafting",
@@ -94,11 +94,11 @@
       "recipe": "goety:royal_throne",
       "recipe2": "goety:frosted_throne"
     },
-    {
+	{
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Royalty",
-      "text": "Thrones of all types can be enchanted with Royalty through a Ritual. Not only will no one but you or your allies can sit on the throne, but sitting on it will cause up to 4 nearby allies to take up incoming damage towards you. If someone else breaks the throne, it will lose its enchantment."
+      "title": "近衛兵/ロイヤリティ",
+      "text": "あらゆる種類の玉座に「近衛兵」というエンチャントをかけることができます。この魔法をかけると、あなたやあなたの仲間以外は玉座に座ることができなくなるだけでなく、玉座に座ると、近くにいる最大4人の仲間があなたへのダメージを代わりに受けてくれます。もし誰かが玉座を破壊した場合、効果は失われます。"
     },
     {
       "type": "goety:ritual",

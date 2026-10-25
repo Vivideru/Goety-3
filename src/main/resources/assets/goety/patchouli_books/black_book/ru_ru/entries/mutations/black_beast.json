@@ -1,5 +1,5 @@
 {
-  "name": "Black Beast",
+  "name": "Чёрный зверь",
   "icon": "minecraft:chain",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_haunting_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Having a Wraith properly possess a Black Wolf results in a powerful, and unnatural, creature that can rend your enemies asunder through it's withering claws and curses or, if their foe is beyond their reach, summoning apparitions of their heads to bite them."
+      "text": "Если призрак овладеет чёрным волком, то в результате получится могущественное и неестественное существо, способное рвать врагов на части своими когтями, иссушать и проклинать их. Если враг окажется вне досягаемости, то существо будет насылать на него призрачные копии своей головы."
     },
     {
       "type": "goety:ritual",
@@ -20,16 +20,16 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The beast can be healed by feeding it meat much like tamed wolves, and can passively heal if their owner dons a Wild Robe. Right-clicking on them with a Taglock Kit, that has a Tagged creature on it, will cause them to hunt said creature down before returning to their owner once they slay their query."
+      "text": "Зверя можно вылечить, накормив его мясом, как прирученных волков, и он может пассивно исцеляться, если его владелец наденет дикую мантию. Нажатие по нему ПКМ использованным набором привязки, заставит его выследить существо и расправиться с ним, а затем вернуться к владельцу."
     },
-    {
+	{
       "type": "patchouli:spotlight",
       "item": "goety:howling_soul",
-      "text": "Upon death, the beast would be reduced to a soul where it can be right-clicked on a Black Wolf, loyal or not, to have it possess and mutate it back to its original form."
+      "text": "После смерти зверь превращается в душу, которой можно нажать ПКМ по чёрному волку, даже враждебному, чтобы завладеть им и вернуть ему первоначальную форму."
     },
     {
       "type": "patchouli:text",
-      "text": "Mob based on 'Nightmare Stalker' from 'Born In Chaos' mod by 'mongoose_artist'."
+      "text": "Моб основан на «кошмарном сталкере» из мода mongoose_artist «Born In Chaos»."
     }
   ],
   "extra_recipe_mappings": {

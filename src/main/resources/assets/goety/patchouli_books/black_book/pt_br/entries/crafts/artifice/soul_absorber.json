@@ -9,6 +9,10 @@
       "text": "Com a $(l:crafts/artifice/arca)Arca$(), criaste um dispositivo que transfere energia de Totens das Almas, Totens de Evokers e Areia das Almas para a Arca."
     },
     {
+      "type": "patchouli:text",
+      "text": "With the Soul Absorber, you are able to siphon the Soul Energies from not only your Totem of Souls but other items such as the Evokers' Totems and Soul Sand to put within your $(l:crafts/artifice/arca)Arca$(). While the Soul Absorber will slowly drain Totem of Souls, other items will simply burn up and disappear once it has absorbed its Soul Energy."
+    },
+    {
       "type": "goety:ritual",
       "recipe": "goety:soul_absorber"
     }

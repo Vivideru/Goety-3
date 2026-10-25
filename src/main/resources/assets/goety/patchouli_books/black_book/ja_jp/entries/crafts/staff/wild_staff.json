@@ -1,11 +1,11 @@
 {
-  "name": "Wild Staff",
+  "name": "野生の杖",
   "icon": "goety:wild_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The natural world can be hard to tame, but with some dark magic and wood, you've crafted a staff that heightens the natural and unnatural powers of Wild spells."
+      "text": "自然界を手なずけるのは難しいこともありますが、闇の魔法と木を使って、野生の呪文の自然な力と不自然な力を高める杖を作ることができます。"
     },
     {
       "type": "goety:ritual",

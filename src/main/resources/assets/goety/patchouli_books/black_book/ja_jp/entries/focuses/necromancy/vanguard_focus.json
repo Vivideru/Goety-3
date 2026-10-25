@@ -1,12 +1,12 @@
 {
-  "name": "Vanguard Focus",
+  "name": "ヴァンガードのフォーカス",
   "icon": "goety:vanguard_focus",
   "category": "goety:focuses/necromancy",
   "advancement": "goety:goety/read_front_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've discovered a way to summon loyal guards from beyond the grave using this focus. You have a feeling that this spell was stolen and repurposed from an ancient king."
+      "text": "このフォーカスを使って、墓場から忠実な護衛を召喚する方法を発見しました。この呪文は古代の王から盗まれ、再利用された可能性があります。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more vanguards at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるヴァンガードの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

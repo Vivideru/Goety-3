@@ -2,9 +2,7 @@
   "name": "预言仪式",
   "icon": "goety:crystal_ball",
   "category": "goety:rituals",
-  "advancement": "goety:goety/get_crystal_ball",
   "sortnum": 2,
-  "secret": false,
   "pages": [
     {
       "type": "patchouli:text",
@@ -41,6 +39,10 @@
     {
       "type": "goety:ritual",
       "recipe": "goety:locate/stronghold"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:locate/trial_chambers"
     },
     {
       "type": "goety:ritual",

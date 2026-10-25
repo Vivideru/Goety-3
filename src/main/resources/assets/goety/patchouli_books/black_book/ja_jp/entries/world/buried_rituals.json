@@ -1,11 +1,11 @@
 {
-  "name": "Buried Rituals",
+  "name": "埋もれた儀式の跡",
   "icon": "minecraft:suspicious_sand",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The desert is full of buried secrets, but these appeared to be once a site of a ritual, but of what?"
+      "text": "砂漠には隠された秘密が満ちているが、ここはかつて何かの儀式が行われていた場所だったようだ。しかし、それは何の儀式だったのだろうか？"
     },
     {
       "type": "patchouli:image",

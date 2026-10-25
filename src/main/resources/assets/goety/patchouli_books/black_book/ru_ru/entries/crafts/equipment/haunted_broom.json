@@ -23,6 +23,10 @@
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
       "title": "Зачарование метлы",
+      "text": "Haunted Brooms have their own unique enchantments. Hardy makes them less likely to break and Fealty will cause them to return back to their placer when broken as well as prevent others from using it once placed after getting the enchantment."
+    },
+    {
+      "type": "patchouli:text",
       "text": "На одержимую метлу, как ни странно, можно наложить некоторые $(l:focuses/focus_enchantments)чары для фокусов$(). Вектор увеличит скорость метлы, а горение добавит особый эффект: если метла сломается при столкновении, то она взорвётся! Размер взрыва зависит от скорости метлы."
     },
     {

@@ -100,7 +100,7 @@ public class Summoned extends Owned implements IServant {
     }
 
     public void followGoal(){
-        this.goalSelector.addGoal(5, new FollowOwnerGoal<>(this, 1.0D, 10.0F, 2.0F));
+        this.goalSelector.addGoal(5, new FollowOwnerGoal<>(this, this.getFollowSpeed(), 10.0F, 2.0F));
     }
 
     public void targetRetaliateGoal() {
@@ -171,7 +171,9 @@ public class Summoned extends Owned implements IServant {
     }
 
     public void setTarget(@Nullable LivingEntity target) {
-        if (this.isGuardingArea() && !this.isPrioritizing()){
+        if (this.getPacifyTick() > 0) {
+            this.overrideSetTarget(null);
+        } else if (this.isGuardingArea() && !this.isPrioritizing()){
             if (target != null) {
                 if (target.distanceToSqr(this.vec3BoundPos()) <= Mth.square(this.guardingRange())) {
                     this.overrideSetTarget(target);
@@ -929,7 +931,7 @@ public class Summoned extends Owned implements IServant {
 
         public boolean canUse() {
             if (super.canUse()){
-                return (!this.summonedEntity.isStaying() && !this.summonedEntity.isCommanded() || this.summonedEntity.getTrueOwner() == null) && !(this.summonedEntity.getNavigation() instanceof WaterBoundPathNavigation);
+                return (!this.summonedEntity.isStaying() && !this.summonedEntity.altStaying() && !this.summonedEntity.isCommanded() || this.summonedEntity.getTrueOwner() == null) && !(this.summonedEntity.getNavigation() instanceof WaterBoundPathNavigation);
             } else {
                 return false;
             }

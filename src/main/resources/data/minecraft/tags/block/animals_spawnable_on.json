@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "goety:red_moss_dirt",
+    "goety:red_moss_siltstone",
+    "goety:red_moss_highrock",
+    "goety:red_moss_block"
+  ]
+}

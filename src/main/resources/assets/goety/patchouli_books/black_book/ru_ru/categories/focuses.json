@@ -1,6 +1,6 @@
 {
-  "name": "Focuses",
-  "description": "Focuses are used to cast spells when inserted in a Wand or Staff.",
+  "name": "Фокусы",
+  "description": "Фокусы, вставленные в палочку или посох, используются для исполнения заклинаний.",
   "icon": "goety:dark_wand",
   "sortnum": 2
 }

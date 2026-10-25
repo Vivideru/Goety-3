@@ -1,11 +1,11 @@
 {
-  "name": "Barricade Focus",
+  "name": "バリケードのフォーカス",
   "icon": "goety:barricade_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the power of the focus, you're able to harass your enemies by either summoning either a row, square or randomly placed Totemic Walls in front of them, or, if crouching while spell casting, summon either a singular or multiple Totemic Bombs around them. If not crouching, always summons a row of Totemic Walls if not targeting an enemy."
+      "text": "フォーカスの力によって、敵の前方に一列、正方形、またはランダムに配置されたトーテミックウォールを召喚することで、敵を攻撃・妨害することができます。また、しゃがんだ状態で呪文を唱えている場合は、敵の周囲に1個または4個のトーテミックボムを召喚することもできます。しゃがんでいない場合は、敵をターゲットしていない限り、常に一列のトーテミックウォールを召喚します。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() increases chance of summoning four Totemic Bombs instead of one."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、トーテミックボムを4個召喚する確率が上がります。ところで、あなたはアイスウォールを見たことがありますか...？"
     }
   ],
   "extra_recipe_mappings": {

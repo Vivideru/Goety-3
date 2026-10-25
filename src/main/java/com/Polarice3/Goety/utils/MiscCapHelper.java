@@ -176,6 +176,49 @@ public class MiscCapHelper {
         }
     }
 
+    public static int getEnchanterID(LivingEntity livingEntity){
+        return getCapability(livingEntity).getEnchanterID();
+    }
+
+    public static void setEnchanterID(LivingEntity livingEntity, int mob){
+        IMisc misc = getCapability(livingEntity);
+        if (misc.getEnchanterID() != mob) {
+            misc.setEnchanterID(mob);
+            MiscCapHelper.sendMiscUpdatePacket(livingEntity);
+        }
+    }
+
+    @Nullable
+    public static Entity getEnchanter(LivingEntity livingEntity){
+        IMisc misc = getExistingCapability(livingEntity);
+        if (misc == null || misc.getEnchanterID() == 0) {
+            return null;
+        }
+        Entity entity = livingEntity.level().getEntity(misc.getEnchanterID());
+        return entity != null && entity.isAlive() ? entity : null;
+    }
+
+    public static void setEnchanter(LivingEntity livingEntity, @Nullable Entity entity){
+        if (entity == null){
+            setEnchanterID(livingEntity, 0);
+        } else {
+            setEnchanterID(livingEntity, entity.getId());
+        }
+    }
+
+    public static boolean isEnchanter(LivingEntity livingEntity) {
+        return getEnchanterTime(livingEntity) > 0;
+    }
+
+    public static int getEnchanterTime(LivingEntity livingEntity){
+        return getCapability(livingEntity).getEnchanterTime();
+    }
+
+    public static void setEnchanterTime(LivingEntity livingEntity, int time){
+        getCapability(livingEntity).setEnchanterTime(time);
+        MiscCapHelper.sendMiscUpdatePacket(livingEntity);
+    }
+
     public static int getNoHealTime(LivingEntity livingEntity){
         return getCapability(livingEntity).getNoHealTime();
     }
@@ -255,6 +298,10 @@ public class MiscCapHelper {
         tag.putInt("ambientSoundTime", misc.ambientSoundTime());
         tag.putInt("clientTargetID", misc.getClientTargetID());
         tag.putInt("mobTargetID", misc.getMobTargetID());
+        tag.putInt("enchanterID", misc.getEnchanterID());
+        if (misc.getEnchanterTime() > 0) {
+            tag.putInt("enchanterTime", misc.getEnchanterTime());
+        }
         if (misc.getNoHealTime() > 0) {
             tag.putInt("noHealTime", misc.getNoHealTime());
         }
@@ -292,6 +339,12 @@ public class MiscCapHelper {
         }
         if (tag.contains("mobTargetID")){
             misc.setMobTargetID(tag.getInt("mobTargetID"));
+        }
+        if (tag.contains("enchanterID")){
+            misc.setEnchanterID(tag.getInt("enchanterID"));
+        }
+        if (tag.contains("enchanterTime")){
+            misc.setEnchanterTime(tag.getInt("enchanterTime"));
         }
         if (tag.contains("noHealTime")){
             misc.setNoHealTime(tag.getInt("noHealTime"));

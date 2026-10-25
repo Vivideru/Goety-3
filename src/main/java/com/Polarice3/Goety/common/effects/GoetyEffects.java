@@ -108,6 +108,9 @@ public class GoetyEffects {
     public static final DeferredHolder<MobEffect, MobEffect> NECROSIS = EFFECTS.register("necrosis",
             () -> new GoetyBaseEffect(MobEffectCategory.NEUTRAL, 0x2f4e17));
 
+    public static final DeferredHolder<MobEffect, MobEffect> SOUL_BURN = EFFECTS.register("soul_burn",
+            () -> new BrewMobEffect(MobEffectCategory.HARMFUL, 0, false));
+
     public static final DeferredHolder<MobEffect, MobEffect> VOID_TOUCHED = EFFECTS.register("void_touched",
             () -> new GoetyBaseEffect(MobEffectCategory.HARMFUL, 0));
 
@@ -116,6 +119,13 @@ public class GoetyEffects {
 
     public static final DeferredHolder<MobEffect, MobEffect> TREMOR_SENSE = EFFECTS.register("tremor_sense",
             () -> new GoetyBaseEffect(MobEffectCategory.BENEFICIAL, 0));
+
+    public static final DeferredHolder<MobEffect, MobEffect> ENCHANTED = EFFECTS.register("enchanted",
+            () -> new GoetyBaseEffect(MobEffectCategory.BENEFICIAL, 0)
+                    .addAttributeModifier(Attributes.ATTACK_SPEED, ModUUIDUtil.uuidString("effect.goety.enchanted.attack_speed"),
+                            1.0D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED, ModUUIDUtil.uuidString("effect.goety.enchanted.movement_speed"),
+                            0.25D, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
     public static final DeferredHolder<MobEffect, MobEffect> HYSTERIA = EFFECTS.register("hysteria",
             HysteriaEffect::new);

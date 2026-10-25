@@ -1,11 +1,11 @@
 {
-  "name": "Blink Focus",
+  "name": "まばたきのフォーカス",
   "icon": "goety:blink_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This focus allows you to teleport towards a location you are looking at, provided said location is within range."
+      "text": "このフォーカスを使用すると、範囲内にある場合、見ている場所に向かってテレポートできます。"
     },
     {
       "type": "goety:ritual",

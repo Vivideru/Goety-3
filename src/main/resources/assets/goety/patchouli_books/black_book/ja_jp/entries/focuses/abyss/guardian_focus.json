@@ -1,19 +1,19 @@
 {
-  "name": "Guardian Focus",
+  "name": "ガーディアンのフォーカス",
   "icon": "goety:guardian_focus",
   "category": "goety:focuses/abyss",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Somehow, you're able to create a spell that summons forth and binds the guardians of the monuments under your command."
+      "text": "どういうわけか、あなたは自分の指揮下にある海底神殿の守護者を召喚する呪文を作成することができます。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/guardian_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/abyss_staff)Abyss Staff$() will summon two guardians at once."
+      "text": "$(l:crafts/staff/abyss_staff)深淵の杖$()で唱えると、2体召喚できます。"
     }
   ],
   "extra_recipe_mappings": {

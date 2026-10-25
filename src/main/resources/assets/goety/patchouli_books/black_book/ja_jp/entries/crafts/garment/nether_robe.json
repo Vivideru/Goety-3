@@ -1,5 +1,5 @@
 {
-  "name": "Nether Robes",
+  "name": "ネザーのローブ",
   "icon": "goety:nether_robe",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/read_bygone_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the growing knowledge of the Nether, you've managed to craft a robe that imbues the wearer with its flames. Wearers will be resistant to fire attacks and extinguish fire from them more quickly. The Robes also makes Nether Spells cheaper and Nether servants regenerate using their summoner's soul energy."
+      "text": "ネザーに関する知識が深まったため、着用者に炎を吹き込むローブを作ることができました。火の攻撃に耐性がつき、火の攻撃をより早く消すことができます。ネザーの呪文のソウルコストを下げ、、ネザーの従者は召喚者のソウルエネルギーを使って再生します。"
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Nether Crown reduce the amount of time to cast Nether spells by half and keeps your nether-spawned servants from dying off like Vexes."
+      "text": "ネザーの冠はネザーの呪文を唱える時間を半分にし、ネザーの従者がヴェックスのように死んでしまうのを防ぎます。"
     }
   ],
   "extra_recipe_mappings": {

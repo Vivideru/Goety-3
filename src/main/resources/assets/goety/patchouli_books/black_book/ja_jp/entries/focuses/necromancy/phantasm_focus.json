@@ -1,19 +1,19 @@
 {
-  "name": "Phantasm Focus",
+  "name": "ファントムのフォーカス",
   "icon": "goety:phantasm_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Phantoms are quite an oddity, beings that fly between reality and un-reality, only appearing towards the sleep-deprived. With this focus, you're able to summon and bind them to your will."
+      "text": "ファントムは非常に奇妙な存在で、現実と非現実の間を飛び回り、睡眠不足の人にのみ現れます。このフォーカスを使えば、彼らを召喚し、命令することができます。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/phantasm_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more phantoms at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるファントムの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

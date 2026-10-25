@@ -1,11 +1,11 @@
 {
-  "name": "Order Focus",
+  "name": "Фокус приказания",
   "icon": "goety:order_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A modified Command Focus that can stores up to 8 servants for you to command with."
+      "text": "Улучшенный фокус командования, способный запоминать до 8 прислужников."
     },
     {
       "type": "goety:ritual",

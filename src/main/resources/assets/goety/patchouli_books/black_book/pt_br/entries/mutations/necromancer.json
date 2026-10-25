@@ -21,6 +21,22 @@
       "text": "Eles só aceitam focos que invocam criaturas que não podem invocar. Aceitam Foco da Putrefação, Foco Ósseo, Foco Assustador, Foco dos Ceifadores, Foco da Vanguarda e Foco do Guarda Negra."
     },
     {
+      "type": "patchouli:text",
+      "text": "Right-clicking on them with an empty hand will cause the Necromancer to summon Undead Servants for you. They are healed the same way as regular Skeleton Servants."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:necromancer_servant"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:convert_stray_to_cairn_necromancer"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:cairn_necromancer_servant"
+    },
+    {
       "type": "goety:ritual",
       "recipe": "goety:convert_mossy_skeleton_to_mossy_necromancer"
     },

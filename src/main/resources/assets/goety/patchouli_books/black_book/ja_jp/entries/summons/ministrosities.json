@@ -1,11 +1,11 @@
 {
-  "name": "Ministrosities",
+  "name": "ミニモンスター",
   "icon": "minecraft:stone",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A tiny little golem that not only run around in excitement, but also rip through foes with their stone maw."
+      "text": "興奮して走り回るだけでなく、石の口で敵を引き裂く小さなゴーレム。"
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/geomancy/ministrous_focus)Ministrous Focus$(). They can be healed by right-clicking on them with Stone."
+      "text": "これらは、$(l:focuses/geomancy/ministrous_focus)ミニモンスターのフォーカス$()を使って呼び出すことができます。また、右クリックで石を与えることで回復できます。"
     },
     {
       "type": "goety:ritual",

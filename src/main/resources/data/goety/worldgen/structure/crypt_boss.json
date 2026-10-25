@@ -1,0 +1,31 @@
+{
+  "type": "goety:crypt_wing",
+  "biomes": "#minecraft:is_overworld",
+  "step": "surface_structures",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        { "type": "goety:haunted_armor", "weight": 20, "minCount": 1, "maxCount": 1 },
+        { "type": "goety:crypt_slime", "weight": 10, "minCount": 1, "maxCount": 1 },
+        { "type": "minecraft:zombie", "weight": 10, "minCount": 1, "maxCount": 1 },
+        { "type": "minecraft:skeleton", "weight": 10, "minCount": 1, "maxCount": 1 },
+        { "type": "goety:reaper", "weight": 5, "minCount": 1, "maxCount": 1 },
+        { "type": "goety:border_wraith", "weight": 5, "minCount": 1, "maxCount": 1 },
+        { "type": "goety:bone_spider", "weight": 5, "minCount": 1, "maxCount": 1 },
+        { "type": "goety:cairn_necromancer", "weight": 1, "minCount": 1, "maxCount": 1 }
+      ]
+    }
+  },
+  "terrain_adaptation": "bury",
+  "start_pool": "goety:crypt/wing_start",
+  "start_jigsaw_name": "goety:crypt/wing_start",
+  "size": 7,
+  "max_distance_from_center": 128,
+  "level": 1,
+  "door": 0,
+  "kind": "boss",
+  "search_chunks": 24,
+  "terminal": "crypt/boss_chamber",
+  "exit_pool": "goety:crypt/boss/corridor_exits"
+}

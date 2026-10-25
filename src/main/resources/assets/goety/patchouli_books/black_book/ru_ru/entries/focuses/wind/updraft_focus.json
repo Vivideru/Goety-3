@@ -15,8 +15,5 @@
       "type": "patchouli:text",
       "text": "Использование $(l:crafts/staff/wind_staff)ветряного посоха$() увеличивает радиус действия."
     }
-  ],
-  "extra_recipe_mappings": {
-    "goety:updraft_focus": 1
-  }
+  ]
 }

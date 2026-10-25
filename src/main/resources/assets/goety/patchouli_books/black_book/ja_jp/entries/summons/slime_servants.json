@@ -1,11 +1,11 @@
 {
-  "name": "Slime Servant",
+  "name": "スライムの従者",
   "icon": "minecraft:slime_block",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With an $(l:crafts/cores)Animation Core$() on a Block of Slime or casting Slimy spell, you're able to conjure a loyal Slime Servant. Using a Slimeball will heal them but a Block of Slime on them will not only heal, but also increase their size up to a point."
+      "text": "$(l:crafts/cores)アニメーションコア$() を使用すると、スライムのブロックに忠実なスライム サーヴァントとして命を吹き込むことができます。 スライムボールを使用するとそれらは回復されますが、スライムのブロックは回復するだけでなく、サイズもある程度まで大きくなります。"
     },
     {
       "type": "patchouli:entity",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "If a Block of Slime is surrounded by water, the resulting slime appears to be tropical to say the least, with fishes swimming within itself and being able to traverse through water far better than their other variants. When slain, creatures nearby will gain oxygen with the range and amount depending on size."
+      "text": "忠実な従者にアニメーション化できるのはスライムだけではありません。 マグマ ブロックにアニメーション コアを使用すると、マグマ ブロックが忠実なマグマ キューブの従者に変わります。 スライムのブロックの代わりに、マグマ クリームを使用して回復し、マグマ ブロックを使用してサイズを拡大します。"
     },
     {
       "type": "patchouli:entity",

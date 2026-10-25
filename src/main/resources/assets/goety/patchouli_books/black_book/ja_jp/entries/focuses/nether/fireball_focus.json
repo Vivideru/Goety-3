@@ -1,12 +1,12 @@
 {
-  "name": "Fireball Focus",
+  "name": "ファイアボールのフォーカス",
   "icon": "goety:fireball_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The power of the Blazes are now at your finger tip. No longer will you need to use a Dispenser and Fire Charges, now you can be the Dispenser!"
+      "text": "ブレイズの力を指先で操れるようになりました。もうディスペンサーとファイアチャージを使う必要はありません。あなた自身がディスペンサーになれるのです！"
     },
     {
       "type": "patchouli:crafting",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() will shoot two extra fireballs."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、追加の火の玉を2つ発射します。"
     }
   ]
 }

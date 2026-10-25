@@ -1,12 +1,12 @@
 {
-  "name": "Whisperers",
+  "name": "Шептуны",
   "icon": "minecraft:vine",
   "category": "goety:summons",
   "advancement": "goety:goety/read_floral_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Despite their names, Whisperers are loud and odd creatures that can conjure forth quick growing vines to block their target's path, summon two Poison-Quill Vines and entangling roots upon their target's legs."
+      "text": "Несмотря на свои имена, шептуны — громкие и странные существа, которые могут вызывать быстрорастущие лозы, преграждающие путь, две ядовитые лозы и опутывающие корни у ног жертвы."
     },
     {
       "type": "patchouli:entity",
@@ -15,12 +15,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/wild/whispering_focus)Whispering Focus$(), or by right-clicking on the center Jungle Leaves of this configuration with an Animation Core for one without limited lifespan."
+      "text": "Можно вызвать этих существ на время с помощью $(l:focuses/wild/whispering_focus)фокуса шёпота$() или навсегда, нажав ПКМ по центральному блоку мха ядром оживления в этой структуре."
     },
     {
       "type": "multiblock",
       "multiblock_id": "goety:whisperer",
-      "text": "Right click the Moss Block with an Animation Core."
+      "text": "Нажмите ПКМ по центральному блоку мха ядром оживления."
     },
     {
       "type": "patchouli:text",

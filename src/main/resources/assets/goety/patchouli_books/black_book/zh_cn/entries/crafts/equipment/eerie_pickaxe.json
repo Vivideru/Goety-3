@@ -15,5 +15,8 @@
       "type": "patchouli:text",
       "text": "这把镐子可以在铁砧上用$(l:intro/magical_components)诅咒金属锭$()修复."
     }
-  ]
+  ],
+  "extra_recipe_mappings": {
+    "goety:eerie_pickaxe": 1
+  }
 }

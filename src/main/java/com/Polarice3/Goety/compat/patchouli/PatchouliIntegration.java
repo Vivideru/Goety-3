@@ -24,6 +24,7 @@ public class PatchouliIntegration implements ICompatable {
     public void setup(FMLCommonSetupEvent event) {
         registerMultiblock(Goety.location("whisperer"), WHISPERER);
         registerMultiblock(Goety.location("leapleaf"), LEAPLEAF);
+        registerMultiblock(Goety.location("flame_construct"), FLAME_CONSTRUCT);
         registerMultiblock(Goety.location("ice_golem"), ICE_GOLEM);
         registerMultiblock(Goety.location("squall_golem"), SQUALL_GOLEM);
         registerMultiblock(Goety.location("redstone_golem"), REDSTONE_GOLEM);
@@ -101,6 +102,31 @@ public class PatchouliIntegration implements ICompatable {
                 'L', leaves,
                 'C', blossom,
                 '0', roots
+        );
+    });
+
+    public static final Supplier<IMultiblock> FLAME_CONSTRUCT = Suppliers.memoize(() -> {
+        IStateMatcher brazier = PatchouliAPI.get().predicateMatcher(ModBlocks.DEEPSLATE_BRAZIER.get(),
+                state -> state.is(ModTags.Blocks.BRAZIER));
+        IStateMatcher magma = PatchouliAPI.get().predicateMatcher(Blocks.MAGMA_BLOCK,
+                state -> state.is(Blocks.MAGMA_BLOCK));
+        IStateMatcher deepslate = PatchouliAPI.get().predicateMatcher(Blocks.DEEPSLATE,
+                state -> state.getBlock().getDescriptionId().contains("deepslate") && state.isSolid());
+        return PatchouliAPI.get().makeMultiblock(
+                new String[][] {
+                        {
+                                "B"
+                        },
+                        {
+                                "0"
+                        },
+                        {
+                                "D"
+                        }
+                },
+                'B', brazier,
+                'D', deepslate,
+                '0', magma
         );
     });
 

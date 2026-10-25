@@ -1,11 +1,11 @@
 {
-  "name": "Illusive Robes",
+  "name": "幻影魔女のローブ",
   "icon": "goety:illusion_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using the Occult Fabrics, you are able to create a set of Illusive Robes that will make you immune to Blindness effect and turn invisible when you do, making you highly undetectable to mobs and others of your kind."
+      "text": "狂信者の布を使用すると、作成すると透明になるイリューシブローブのセットを作成でき、Mob や同種の他の人々から非常に検出されにくくなります。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The robe also buffs the Mirror Spell by making your Doppelgangers' attack actually hurt their targets, though not by a lot."
+      "text": "ローブはまた、ドッペルゲンガーの攻撃がターゲットに実際にダメージを与えることで、ミラーの呪文をバフしますが、それほど大きくはありません。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,0 +1,7 @@
+{
+  "name": "goety:crypt/entrance_upper",
+  "fallback": "minecraft:empty",
+  "elements": [
+    { "weight": 1, "element": { "location": "goety:crypt/entrance_upper_a", "processors": "goety:crypt_ignore_void", "projection": "rigid", "element_type": "minecraft:single_pool_element" } }
+  ]
+}

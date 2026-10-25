@@ -1,6 +1,16 @@
 package com.Polarice3.Goety.common.entities.ally.illager;
 
 import com.Polarice3.Goety.api.entities.IMobCrafter;
+import com.Polarice3.Goety.api.entities.IGolem;
+import com.Polarice3.Goety.api.entities.INeedSaddle;
+import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.entities.IShielded;
+import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.common.entities.ai.MobSingleCraftingGoal;
+import com.Polarice3.Goety.common.items.ModItems;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import com.Polarice3.Goety.client.particles.SmashParticleOption;
 import com.Polarice3.Goety.common.blocks.DarkAnvilBlock;
 import com.Polarice3.Goety.common.entities.ModEntityType;
@@ -75,12 +85,16 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
     private static List<CraftingRecipe> ARMOR_RECIPE_CACHE = null;
     private static List<CraftingRecipe> WEAPON_RECIPE_CACHE = null;
     private static List<CraftingRecipe> ALL_CRAFTING_CACHE = null;
+    private static CraftingRecipe OMINOUS_SADDLE_RECIPE = null;
+    private static CraftingRecipe PUTTY_RECIPE = null;
     public static String IDLE = "idle";
     public static String ATTACK = "attack";
+    public static String SMITH = "smith";
     public int attackTick;
     public boolean isRunning = false;
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState attackAnimationState = new AnimationState();
+    public AnimationState smithAnimationState = new AnimationState();
 
     public CrusherServant(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -89,17 +103,35 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new MeleeGoal());
-        this.goalSelector.addGoal(1, new ForgeArmorGoal<>(this));
-        this.goalSelector.addGoal(2, new ForgeWeaponGoal<>(this));
-        this.goalSelector.addGoal(3, new SmeltingGoal<>(this));
-        this.goalSelector.addGoal(4, new EquipArmorGoal(this));
-        this.goalSelector.addGoal(5, new EquipWeaponGoal(this));
-        this.goalSelector.addGoal(6, new AttackGoal(1.0D));
+        this.goalSelector.addGoal(1, new AttackGoal(1.0D));
+        this.goalSelector.addGoal(2, new EquipSaddleGoal(this));
+        this.goalSelector.addGoal(3, new EquipArmorGoal(this));
+        this.goalSelector.addGoal(4, new EquipWeaponGoal(this));
+        this.goalSelector.addGoal(5, new ForgeOminousSaddleGoal<>(this));
+        this.goalSelector.addGoal(6, new ForgePuttyGoal<>(this));
+        this.goalSelector.addGoal(7, new ForgeArmorGoal<>(this));
+        this.goalSelector.addGoal(8, new ForgeWeaponGoal<>(this));
+        this.goalSelector.addGoal(9, new SmeltingGoal<>(this));
+        this.goalSelector.addGoal(10, new RepairGolemGoal(this));
+    }
+
+    public void throwGoal() {
+        super.throwGoal();
+        this.goalSelector.addGoal(3, new RepairRoyalGuardShield(this));
     }
 
     public void chestGoal() {
         super.chestGoal();
+        this.goalSelector.addGoal(5, new LootSaddleGoal<>(this));
+        this.goalSelector.addGoal(5, new LootPuttyGoal<>(this));
         this.goalSelector.addGoal(6, new LootOreGoal<>(this));
+    }
+
+    public void miscGoal() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(11, new RaiderWanderGoal<>(this, 0.6D));
+        this.goalSelector.addGoal(12, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(13, new LookAtPlayerGoal(this, Mob.class, 8.0F));
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -143,10 +175,17 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
         this.readCrafterData(pCompound);
     }
 
+    @Override
+    public int getBaseInvSize() {
+        return 16;
+    }
+
     public static void invalidateRecipeCache() {
         ARMOR_RECIPE_CACHE = null;
         WEAPON_RECIPE_CACHE = null;
         ALL_CRAFTING_CACHE = null;
+        OMINOUS_SADDLE_RECIPE = null;
+        PUTTY_RECIPE = null;
     }
 
     @Override
@@ -215,6 +254,8 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
             return 1;
         } else if (Objects.equals(animation, ATTACK)){
             return 2;
+        } else if (Objects.equals(animation, SMITH)){
+            return 3;
         } else {
             return 0;
         }
@@ -224,6 +265,7 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
         List<AnimationState> animationStates = new ArrayList<>();
         animationStates.add(this.idleAnimationState);
         animationStates.add(this.attackAnimationState);
+        animationStates.add(this.smithAnimationState);
         return animationStates;
     }
 
@@ -258,6 +300,10 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
                     case 2:
                         this.attackAnimationState.start(this.tickCount);
                         this.stopMostAnimation(this.attackAnimationState);
+                        break;
+                    case 3:
+                        this.smithAnimationState.start(this.tickCount);
+                        this.stopMostAnimation(this.smithAnimationState);
                         break;
                 }
             }
@@ -418,6 +464,32 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
                     .toList();
         }
         return ALL_CRAFTING_CACHE;
+    }
+
+    @Nullable
+    private static CraftingRecipe getOminousSaddleRecipe(ServerLevel level) {
+        if (OMINOUS_SADDLE_RECIPE == null) {
+            for (RecipeHolder<CraftingRecipe> recipe : level.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING)) {
+                if (recipe.value().getResultItem(level.registryAccess()).is(ModItems.OMINOUS_SADDLE.get())) {
+                    OMINOUS_SADDLE_RECIPE = recipe.value();
+                    break;
+                }
+            }
+        }
+        return OMINOUS_SADDLE_RECIPE;
+    }
+
+    @Nullable
+    private static CraftingRecipe getPuttyRecipe(ServerLevel level) {
+        if (PUTTY_RECIPE == null) {
+            for (RecipeHolder<CraftingRecipe> recipe : level.getRecipeManager().getAllRecipesFor(RecipeType.CRAFTING)) {
+                if (recipe.value().getResultItem(level.registryAccess()).is(ModItems.REPAIR_PUTTY.get())) {
+                    PUTTY_RECIPE = recipe.value();
+                    break;
+                }
+            }
+        }
+        return PUTTY_RECIPE;
     }
 
     public static ItemStack canSmelt(ItemStack stack, ServerLevel level) {
@@ -881,6 +953,21 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
             super(mob, 60, 0.75F);
         }
 
+        @Override
+        public int timeToAnimateWork() {
+            return 30;
+        }
+
+        @Override
+        public void playWorkAnimation() {
+            this.mob.setAnimationState(SMITH);
+        }
+
+        @Override
+        public void returnIdleAnimation() {
+            this.mob.setAnimationState(IDLE);
+        }
+
         private List<RaiderServant> getAllies() {
             if (--this.allyCheckCooldown <= 0) {
                 this.allyCheckCooldown = 60;
@@ -1007,6 +1094,21 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
 
         public ForgeWeaponGoal(T mob) {
             super(mob, 60, 0.75F);
+        }
+
+        @Override
+        public int timeToAnimateWork() {
+            return 30;
+        }
+
+        @Override
+        public void playWorkAnimation() {
+            this.mob.setAnimationState(SMITH);
+        }
+
+        @Override
+        public void returnIdleAnimation() {
+            this.mob.setAnimationState(IDLE);
         }
 
         private List<RaiderServant> getAllies() {
@@ -1387,7 +1489,392 @@ public class CrusherServant extends AbstractIllagerServant implements IMobCrafte
             }
         }
     }
+
+    public static class ForgeOminousSaddleGoal<T extends CrusherServant> extends MobSingleCraftingGoal<T> {
+
+        public ForgeOminousSaddleGoal(T mob) {
+            super(mob, 60, 0.75F, predicate(mob), itemStack -> itemStack.is(ModItems.OMINOUS_SADDLE.get()));
+        }
+
+        @Override
+        public int timeToAnimateWork() {
+            return 30;
+        }
+
+        @Override
+        public void playWorkAnimation() {
+            this.mob.setAnimationState(SMITH);
+        }
+
+        @Override
+        public void returnIdleAnimation() {
+            this.mob.setAnimationState(IDLE);
+        }
+
+        public static Predicate<LivingEntity> predicate(IOwned owned) {
+            return living -> {
+                if (living instanceof INeedSaddle saddle && living instanceof RaiderServant mob) {
+                    return mob.getTrueOwner() == owned.getTrueOwner()
+                            && !saddle.hasSaddle()
+                            && mob.getTarget() == null;
+                }
+                return false;
+            };
+        }
+
+        @Override
+        public CraftingRecipe getRecipe(ServerLevel serverLevel) {
+            return getOminousSaddleRecipe(serverLevel);
+        }
+    }
+
+    public static class ForgePuttyGoal<T extends CrusherServant> extends MobSingleCraftingGoal<T> {
+
+        public ForgePuttyGoal(T mob) {
+            super(mob, 60, 0.75F, predicate(mob), itemStack -> itemStack.is(ModItems.REPAIR_PUTTY.get()));
+        }
+
+        @Override
+        public int timeToAnimateWork() {
+            return 30;
+        }
+
+        @Override
+        public void playWorkAnimation() {
+            this.mob.setAnimationState(SMITH);
+        }
+
+        @Override
+        public void returnIdleAnimation() {
+            this.mob.setAnimationState(IDLE);
+        }
+
+        public static Predicate<LivingEntity> predicate(IOwned owned) {
+            return living -> {
+                EntityType<?> entityType = living.getType();
+                if (entityType.is(ModTags.EntityTypes.GARMENT_HEAL)) {
+                    return false;
+                }
+                if (living instanceof IGolem golem && golem instanceof IServant servant && golem instanceof Mob mob) {
+                    return servant.getTrueOwner() == owned.getTrueOwner()
+                            && living.getHealth() < living.getMaxHealth()
+                            && mob.getTarget() == null;
+                }
+                return false;
+            };
+        }
+
+        @Override
+        public CraftingRecipe getRecipe(ServerLevel serverLevel) {
+            return getPuttyRecipe(serverLevel);
+        }
+    }
+
+    public static class EquipSaddleGoal extends Goal {
+        private static final int SEARCH_RADIUS = 16;
+        private final CrusherServant crusher;
+
+        public EquipSaddleGoal(CrusherServant crusher) {
+            this.crusher = crusher;
+            this.setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
+        }
+
+        @Nullable
+        private ItemStack findSaddle() {
+            return this.crusher.itemsInInv(stack -> stack.is(ModItems.OMINOUS_SADDLE.get())).stream().findFirst().orElse(null);
+        }
+
+        @Nullable
+        private LivingEntity findUnsaddled() {
+            return this.crusher.level().getEntitiesOfClass(LivingEntity.class, this.crusher.getBoundingBox().inflate(SEARCH_RADIUS), predicate(this.crusher)).stream().findFirst().orElse(null);
+        }
+
+        public static Predicate<LivingEntity> predicate(IOwned owned) {
+            return living -> {
+                if (living instanceof INeedSaddle saddle && living instanceof RaiderServant mob) {
+                    return mob.getTrueOwner() == owned.getTrueOwner()
+                            && !saddle.hasSaddle()
+                            && mob.getTarget() == null;
+                }
+                return false;
+            };
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.crusher.getTarget() != null) {
+                return false;
+            }
+            if (this.crusher.isStaying()) {
+                return false;
+            }
+            if (!(this.crusher.level() instanceof ServerLevel)) {
+                return false;
+            }
+            return this.findUnsaddled() != null && this.findSaddle() != null;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.findUnsaddled() != null && this.findSaddle() != null;
+        }
+
+        @Override
+        public void tick() {
+            LivingEntity ally = this.findUnsaddled();
+            if (ally == null) {
+                return;
+            }
+            ItemStack itemStack = this.findSaddle();
+            if (itemStack == null) {
+                return;
+            }
+
+            if (!this.crusher.isWithinDistance(ally, ally.getBbWidth() + 1.0F)) {
+                this.crusher.getNavigation().moveTo(ally.getX(), ally.getY(), ally.getZ(), 0.75F);
+            } else {
+                this.crusher.getNavigation().stop();
+                if (ally instanceof INeedSaddle saddle) {
+                    saddle.equipSaddle(true);
+                    itemStack.shrink(1);
+                }
+                this.crusher.getInventory().setChanged();
+            }
+        }
+    }
+
+    public static class RepairGolemGoal extends Goal {
+        private static final int SEARCH_RADIUS = 16;
+        private final CrusherServant crusher;
+
+        public RepairGolemGoal(CrusherServant crusher) {
+            this.crusher = crusher;
+            this.setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
+        }
+
+        @Nullable
+        private ItemStack findPutty() {
+            return this.crusher.itemsInInv(stack -> stack.is(ModItems.REPAIR_PUTTY.get())).stream().findFirst().orElse(null);
+        }
+
+        @Nullable
+        private Mob findGolemNeedingRepairs() {
+            return this.crusher.level().getEntitiesOfClass(Mob.class, this.crusher.getBoundingBox().inflate(SEARCH_RADIUS), predicate()).stream().findFirst().orElse(null);
+        }
+
+        public Predicate<Mob> predicate() {
+            return living -> {
+                EntityType<?> entityType = living.getType();
+                if (entityType.is(ModTags.EntityTypes.GARMENT_HEAL)) {
+                    return false;
+                }
+                if (living instanceof IGolem golem && golem instanceof IServant servant) {
+                    return servant.getTrueOwner() == this.crusher.getTrueOwner()
+                            && living.getHealth() < living.getMaxHealth()
+                            && living.getTarget() == null;
+                }
+                return false;
+            };
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.crusher.getTarget() != null) {
+                return false;
+            }
+            if (this.crusher.isStaying()) {
+                return false;
+            }
+            if (!(this.crusher.level() instanceof ServerLevel)) {
+                return false;
+            }
+            return this.findGolemNeedingRepairs() != null && this.findPutty() != null;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.findGolemNeedingRepairs() != null && this.findPutty() != null;
+        }
+
+        @Override
+        public void tick() {
+            Mob ally = this.findGolemNeedingRepairs();
+            if (ally == null) {
+                return;
+            }
+            ItemStack itemStack = this.findPutty();
+            if (itemStack == null) {
+                return;
+            }
+
+            if (!this.crusher.isWithinDistance(ally, ally.getBbWidth() + 1.0F)) {
+                this.crusher.getNavigation().moveTo(ally.getX(), ally.getY(), ally.getZ(), 0.75F);
+            } else {
+                this.crusher.getNavigation().stop();
+                ally.heal(25.0F);
+                float f1 = 1.0F + (ally.getRandom().nextFloat() - ally.getRandom().nextFloat()) * 0.2F;
+                ally.playSound(SoundEvents.IRON_GOLEM_REPAIR, 1.0F, f1);
+                itemStack.shrink(1);
+                if (ally.level() instanceof ServerLevel serverLevel) {
+                    for (int i = 0; i < 7; ++i) {
+                        double d0 = ally.getRandom().nextGaussian() * 0.02D;
+                        double d1 = ally.getRandom().nextGaussian() * 0.02D;
+                        double d2 = ally.getRandom().nextGaussian() * 0.02D;
+                        serverLevel.sendParticles(ModParticleTypes.HEAL_EFFECT.get(), ally.getRandomX(1.0D), ally.getRandomY() + 0.5D, ally.getRandomZ(1.0D), 0, d0, d1, d2, 0.5F);
+                    }
+                }
+                this.crusher.getInventory().setChanged();
+            }
+        }
+    }
+
+    public static class RepairRoyalGuardShield extends ThrowItemGoal {
+
+        public RepairRoyalGuardShield(AbstractIllagerServant illager){
+            super(illager);
+            this.predicate = itemStack -> itemStack.is(Tags.Items.INGOTS_IRON);
+            this.targetPredicate = living -> living instanceof RoyalGuardServant servant
+                    && servant.getTrueOwner() == illager.getTrueOwner()
+                    && servant.getShieldHealth() < servant.getMaxShieldHealth()
+                    && !servant.isRaiding()
+                    && !servant.isCelebrating()
+                    && servant.getMarked() == null
+                    && servant.getTarget() == null;
+        }
+
+        public void tick() {
+            if (this.target == null){
+                this.stop();
+                return;
+            }
+            this.illager.getLookControl().setLookAt(this.target, 10.0F, (float)this.illager.getMaxHeadXRot());
+            if (!this.illager.itemsInInv(this.predicate).isEmpty()) {
+                Optional<ItemStack> optional = this.illager.itemsInInv(this.predicate).stream().findFirst();
+                if (optional.isPresent()) {
+                    ItemStack itemStack = optional.get();
+                    if (!itemStack.isEmpty()){
+                        if (this.illager.isWithinThrowingDistance(this.target)){
+                            this.illager.getNavigation().stop();
+                            ++this.throwTime;
+                            if (this.throwTime > 20){
+                                if (this.target instanceof IShielded shielded) {
+                                    shielded.repairShield(this.illager, itemStack);
+                                }
+                                this.throwTime = 0;
+                                if (this.target.level() instanceof ServerLevel serverLevel) {
+                                    for (int i = 0; i < 7; ++i) {
+                                        double d0 = this.target.getRandom().nextGaussian() * 0.02D;
+                                        double d1 = this.target.getRandom().nextGaussian() * 0.02D;
+                                        double d2 = this.target.getRandom().nextGaussian() * 0.02D;
+                                        serverLevel.sendParticles(ModParticleTypes.HEAL_EFFECT.get(), this.target.getRandomX(1.0D), this.target.getRandomY() + 0.5D, this.target.getRandomZ(1.0D), 0, d0, d1, d2, 0.5F);
+                                    }
+                                }
+                            }
+                        } else {
+                            this.illager.getNavigation().moveTo(this.target, 0.6F);
+                        }
+                    } else {
+                        this.stop();
+                    }
+                } else {
+                    this.stop();
+                }
+            } else {
+                this.stop();
+            }
+        }
+    }
+
+    public static class LootSaddleGoal<T extends AbstractIllagerServant> extends IllagerChestGoal<T> {
+
+        public LootSaddleGoal(T illager) {
+            super(illager);
+            this.chestPredicate = itemStack -> itemStack.is(ModItems.OMINOUS_SADDLE.get());
+        }
+
+        public boolean hasItemInInv() {
+            return true;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.illager.getChestPos() == null) {
+                return false;
+            }
+            if (this.illager.getBoundPos() != null){
+                if (this.illager.getChestPos() != null){
+                    if (!this.illager.isWithinGuard(this.illager.getChestPos())){
+                        return false;
+                    }
+                }
+            }
+            if (this.illager.getChestLevel() != this.illager.level().dimension()) {
+                return false;
+            }
+            if (!this.isChestRaidable(this.illager.level(), this.illager.getChestPos())){
+                return false;
+            }
+            if (!this.illager.itemsInInv(stack -> stack.is(ModItems.OMINOUS_SADDLE.get())).isEmpty()) {
+                return false;
+            }
+            return super.canUse();
+        }
+
+        @Override
+        public void chestInteract(Container container) {
+            for (ItemStack itemStack : this.getItems(container)) {
+                if (this.illager.getInventory().canAddItem(itemStack)){
+                    this.illager.getInventory().addItem(itemStack.copyAndClear());
+                    container.setChanged();
+                }
+            }
+        }
+    }
+
+    public static class LootPuttyGoal<T extends AbstractIllagerServant> extends IllagerChestGoal<T> {
+
+        public LootPuttyGoal(T illager) {
+            super(illager);
+            this.chestPredicate = itemStack -> itemStack.is(ModItems.REPAIR_PUTTY.get());
+        }
+
+        public boolean hasItemInInv() {
+            return true;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (this.illager.getChestPos() == null) {
+                return false;
+            }
+            if (this.illager.getBoundPos() != null){
+                if (this.illager.getChestPos() != null){
+                    if (!this.illager.isWithinGuard(this.illager.getChestPos())){
+                        return false;
+                    }
+                }
+            }
+            if (this.illager.getChestLevel() != this.illager.level().dimension()) {
+                return false;
+            }
+            if (!this.isChestRaidable(this.illager.level(), this.illager.getChestPos())){
+                return false;
+            }
+            int getPutties = this.illager.itemsInInv(stack -> stack.is(ModItems.REPAIR_PUTTY.get())).size();
+            if (getPutties >= 24) {
+                return false;
+            }
+            return super.canUse();
+        }
+
+        @Override
+        public void chestInteract(Container container) {
+            for (ItemStack itemStack : this.getItems(container)) {
+                if (this.illager.getInventory().canAddItem(itemStack)){
+                    this.illager.getInventory().addItem(itemStack.copyAndClear());
+                    container.setChanged();
+                }
+            }
+        }
+    }
 }
-
-
-

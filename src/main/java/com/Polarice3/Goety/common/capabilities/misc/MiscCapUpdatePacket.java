@@ -44,7 +44,7 @@ public class MiscCapUpdatePacket {
                 Level level = Goety.PROXY.getLevel();
                 if (level instanceof ClientLevel clientLevel) {
                     Entity entity = clientLevel.getEntity(packet.entityID);
-                    if (entity != null) {
+                    if (entity != null && packet.tag != null) {
                         entity.getExistingData(MiscProvider.CAPABILITY).ifPresent((misc) -> {
                             MiscCapHelper.load(packet.tag, misc);
                         });

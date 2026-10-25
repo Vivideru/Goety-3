@@ -1,11 +1,11 @@
 {
-  "name": "Ender Chest Focus",
+  "name": "エンダーチェストのフォーカス",
   "icon": "goety:ender_chest_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple focus, that when cast allows you to access your Ender Chest from the tip of your wand."
+      "text": "シンプルなフォーカスで、キャストすると杖の先端からエンダーチェストにアクセスできるようになります。"
     },
     {
       "type": "goety:ritual",

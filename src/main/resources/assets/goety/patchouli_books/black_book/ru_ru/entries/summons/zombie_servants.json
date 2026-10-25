@@ -45,6 +45,14 @@
     },
     {
       "type": "patchouli:entity",
+      "entity": "goety:zombie_villager_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A simple Zombie Villager, only more loyal and less curable. Summoning a zombie in a Village will summon a Zombie Villager Servant."
+    },
+    {
+      "type": "patchouli:entity",
       "entity": "goety:frozen_zombie_servant"
     },
     {
@@ -58,6 +66,14 @@
     {
       "type": "patchouli:text",
       "text": "Находясь в биоме джунглей, у вас есть шанс призвать тропического зомби-прислужника, и он будет 100%-ный, если призывать зомби с помощью $(l:crafts/staff/wild_staff)дикого посоха$(). Его атаки отравляют, а если на вас $(l:crafts/garment/wild_robe)дикая мантия$(), то накладывают кислотный яд."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:frayed_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Находясь в биоме джунглей, у вас есть шанс призвать обугленника-прислужника, и он будет 100%-ный, если призывать зомби с помощью $(l:crafts/staff/storm_staff)штормового посоха$(). Его удары вызывают судороги, а сам он имеет устойчивость к штормовым и молниеносным атакам."
     },
     {
       "type": "patchouli:entity",

@@ -2,6 +2,7 @@
   "name": "Túnica do Vento",
   "icon": "goety:wind_robe",
   "category": "goety:crafts/garment",
+  "advancement": "goety:goety/read_mistral_scroll",
   "pages": [
     {
       "type": "patchouli:text",
@@ -25,6 +26,7 @@
     }
   ],
   "extra_recipe_mappings": {
-    "goety:wind_robe": 1
+    "goety:wind_robe": 1,
+    "goety:wind_crown": 3
   }
 }

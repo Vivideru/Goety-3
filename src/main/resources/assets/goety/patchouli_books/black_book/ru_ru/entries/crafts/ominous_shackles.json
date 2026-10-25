@@ -1,16 +1,16 @@
 {
-  "name": "Ominous Shackles",
+  "name": "Зловещие кандалы",
   "icon": "goety:ominous_shackles",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Villagers can hard to wrangle, with the common technique of putting them in a boat makes one look silly when riding on land. With these shackles, you won't be having trouble moving them that much."
+      "text": "Крестьян трудно перевозить, поскольку обычная техника, при которой их сажают в лодку, неудобна и выглядит глупо. Эти кандалы помогут с их перемещением."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:ominous_shackles",
-      "text": "Using these on Villagers or Wandering Traders will turn them into $(l:mutations/prisoners)Prisoners$()."
+      "text": "Если заковать в кандалы крестьянина или странствующего торговца, он превратится в $(l:mutations/prisoners)пленника$()."
     }
   ]
 }

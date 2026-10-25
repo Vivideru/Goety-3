@@ -1,15 +1,19 @@
 {
-  "name": "Frost Breath Focus",
+  "name": "Фокус ледяного дыхания",
   "icon": "goety:frost_breath_focus",
   "category": "goety:focuses/frost",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With a cold breath, creatures in front of you will shiver to the grave."
+      "text": "От холодного дыхания существа на вашем пути оледенеют до смерти."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:focus/frost_breath_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will not only increases the damage, but also snows and freezes terrain."
     }
   ]
 }

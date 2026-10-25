@@ -1,11 +1,11 @@
 {
-  "name": "Summon Storm",
+  "name": "Призыв грозы",
   "icon": "minecraft:netherrack",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple yet powerful ritual that conjures up a Thunderstorm. Useful to those who wish to hide from the sun."
+      "text": "Простой, но мощный ритуал, вызывающий грозу. Полезно для тех, кто хочет спрятаться от солнца."
     },
     {
       "type": "goety:ritual",

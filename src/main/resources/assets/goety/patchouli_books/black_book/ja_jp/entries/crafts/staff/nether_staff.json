@@ -1,5 +1,5 @@
 {
-  "name": "Nether Staff",
+  "name": "ネザーの杖",
   "icon": "goety:nether_staff",
   "category": "goety:crafts/staff",
   "advancement": "goety:goety/read_bygone_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After learning the powers of the Wither Necromancers, you're able to replicate their staff, empowering your Nether spells."
+      "text": "ウィザー ネクロマンサーの力を習得すると、その杖を複製してネザー スペルを強化できるようになります。"
     },
     {
       "type": "goety:ritual",

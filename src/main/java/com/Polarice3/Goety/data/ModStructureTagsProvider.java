@@ -2,6 +2,7 @@ package com.Polarice3.Goety.data;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.world.structures.ModStructures;
+import com.Vivideru.Goety.common.world.structures.VivideruStructures;
 import com.Polarice3.Goety.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -30,8 +31,8 @@ public class ModStructureTagsProvider extends TagsProvider<Structure> {
                 .addTag(StructureTags.ON_WOODLAND_EXPLORER_MAPS)
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath("repurposed_structures", "collections/mansions"));
         this.tag(ModTags.Structures.CRONE_SPAWNS).add(ModStructures.BLIGHTED_SHACK_KEY);
-        this.tag(ModTags.Structures.SKULL_LORD_SPAWNS).add(ModStructures.CRYPT_KEY);
-        this.tag(ModTags.Structures.CRYPT).add(ModStructures.CRYPT_KEY);
+        this.tag(ModTags.Structures.SKULL_LORD_SPAWNS).add(ModStructures.CRYPT_KEY).add(VivideruStructures.CRYPT_BOSS);
+        this.tag(ModTags.Structures.CRYPT).add(ModStructures.CRYPT_KEY).add(VivideruStructures.CRYPT_WINGS.toArray(new net.minecraft.resources.ResourceKey[0]));
         this.tag(ModTags.Structures.NECROMANCER_POWER).addTag(ModTags.Structures.CRYPT).add(ModStructures.GRAVEYARD_KEY);
         this.tag(ModTags.Structures.CAN_SUMMON_BRUTES).add(BuiltinStructures.BASTION_REMNANT);
         this.tag(ModTags.Structures.CAN_SUMMON_WITHER_SKELETONS)

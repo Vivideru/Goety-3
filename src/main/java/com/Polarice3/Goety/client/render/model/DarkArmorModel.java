@@ -221,6 +221,7 @@ public class DarkArmorModel extends HumanoidModel<LivingEntity> {
       float f = Mth.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
       float f1 = Mth.cos((float)((double)(limbSwing * 0.6662F) + Math.PI)) * 1.4F * limbSwingAmount;
       float f2 = Math.min(f, f1);
+      this.cape.resetPose();
       this.cape.xRot += -f2 / 2.0F;
       return this;
    }

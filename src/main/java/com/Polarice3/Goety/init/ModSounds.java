@@ -583,6 +583,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> THUNDER_STRIKE_FAST = create("thunder_strike_fast");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TOCK = create("tock");
+    public static final DeferredHolder<SoundEvent, SoundEvent> DECREE = create("decree");
     public static final DeferredHolder<SoundEvent, SoundEvent> INTRUDER_ALERT = create("intruder_alert");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> ROAR_SPELL = create("roar_spell");
@@ -664,6 +665,43 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> VOID_TOUCHED_DEACTIVATE = create("void_touched_deactivate");
     public static final DeferredHolder<SoundEvent, SoundEvent> VOID_TOUCHED_LOOP = create("void_touched_loop");
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_EAT = create("soul_eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_IDLE = create("flame_construct_idle");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_HURT = create("flame_construct_hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_PRE_BREATH = create("flame_construct_pre_breath");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BREATH_STAND = create("flame_construct_breath_stand");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BREATH = create("flame_construct_breath");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BREATH_END = create("flame_construct_breath_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_PRE_BLAST = create("flame_construct_pre_blast");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BLAST_JUMP = create("flame_construct_blast_jump");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BLAST = create("flame_construct_blast");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_HUNKER_DOWN_VOCAL = create("flame_construct_hunker_down_vocal");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_HUNKER_DOWN = create("flame_construct_hunker_down");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_LEG_TUCK = create("flame_construct_leg_tuck");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_TWIST = create("flame_construct_twist");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_CLOSE = create("flame_construct_close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BORED_SIDE = create("flame_construct_bored_side");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_BORED_DOWN = create("flame_construct_bored_down");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_STAND_UP = create("flame_construct_stand_up");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_LOOP = create("flame_construct_loop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_STEP = create("flame_construct_step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_DEATH = create("flame_construct_death");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_AMBIENT = create("enchanter_ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_HURT = create("enchanter_hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_ATTACK = create("enchanter_attack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_SPELL = create("enchanter_spell");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_BEAM = create("enchanter_beam");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_BEAM_LOOP = create("enchanter_beam_loop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> ENCHANTER_DEATH = create("enchanter_death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOOK = create("book");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOOK_BLADDER = create("book_bladder");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOOK_CLOSE = create("book_close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BOOK_THROW = create("book_throw");
+
+    public static final DeferredHolder<SoundEvent, SoundEvent> MASTER_FANG_TELEGRAPH = create("master_fang_telegraph");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MASTER_FANG_SUMMON = create("master_fang_summon");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MASTER_FANG_SPAWN = create("master_fang_spawn");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MASTER_FANG_SNAP = create("master_fang_snap");
     public static final DeferredHolder<SoundEvent, SoundEvent> PLUSHIE_SQUEEZE = create("plushie_squeeze");
     public static final DeferredHolder<SoundEvent, SoundEvent> JOKE = create("joke");
 
@@ -789,6 +827,15 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_VIZIER = create("vizier_theme_disc");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_RM = create("rm_theme_disc");
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_ENDERMAN = create("enderman_theme_disc");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CRONE_THEME = create("crone_theme");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CRONE_THEME_POST = create("crone_theme_post");
+    public static final DeferredHolder<SoundEvent, SoundEvent> HERESIARCH_THEME = create("heresiarch_theme");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SKULL_LORD_THEME = create("skull_lord_theme");
+    public static final DeferredHolder<SoundEvent, SoundEvent> WITHER_NECROMANCER_THEME = create("wither_necromancer_theme");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_CRONE = create("crone_theme_disc");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_HERESIARCH = create("heresiarch_theme_disc");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_SKULL_LORD = create("skull_lord_theme_disc");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_WITHER_NECROMANCER = create("wither_necromancer_theme_disc");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_POST = create("boss_post");
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_POST_2 = create("boss_post_second");

@@ -1,5 +1,5 @@
 {
-  "name": "Nameless Staff",
+  "name": "名も無き杖",
   "icon": "goety:nameless_staff",
   "category": "goety:crafts/staff",
   "advancement": "goety:goety/read_forbidden_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the forbidden texts, you have discovered a way to harness the power of the night, allowing you to create a powerful staff that bring you supremacy in necromancy."
+      "text": "禁じられた文書を使用して、あなたは夜の力を利用する方法を発見し、ネクロマンシーでの優位性をもたらす強力な杖を作成できるようになりました。"
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:focuses/soul_bolt_focus)Soul Bolts$() shot from this staff will turn into the more powerful Necro Bolts. Casting the $(l:focuses/illusion_focus)Mirror Spell$() while also wearing the $(l:crafts/garment/nameless_set)Nameless Set$() will cause them to shoot a single Necro Bolt at your target instead."
+      "text": "この杖から発射される$(l:focuses/soul_bolt_focus)ソウルボルト$()は、より強力なネクロボルトに変わります。$(l:focuses/illusion_focus)ミラースペル$()を同時に発動すると、$(l: crafts/garment/nameless_set)名もなきセットで$() を実行すると、代わりにターゲットにネクロ ボルトを 1 本発射します。"
     }
   ],
   "extra_recipe_mappings": {

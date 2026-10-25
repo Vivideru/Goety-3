@@ -1,11 +1,11 @@
 {
-  "name": "Steaming Focus",
+  "name": "蒸気のフォーカス",
   "icon": "goety:steaming_focus",
   "category": "goety:focuses/abyss",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell allows you to shoot a torrent of hot steaming missiles towards the direction you're looking at, damaging and knocking back creatures when hit."
+      "text": "この呪文を使用すると、見ている方向に向かって熱い蒸気のミサイルを発射し、当たるとクリーチャーにダメージを与えてノックバックさせることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/abyss_staff)Abyss Staff$() allows the caster to shoot more torrents of missiles."
+      "text": "$(l:crafts/staff/abyss_staff)深淵の杖$()で唱えると、術者はより多くのミサイルを発射できるようになります。"
     }
   ]
 }

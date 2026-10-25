@@ -1,0 +1,13 @@
+{
+  "structures": [
+    {
+      "structure": "goety:crypt_vault",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "goety:crypt_wing",
+    "salt": 1876543458,
+    "search_chunks": 24
+  }
+}

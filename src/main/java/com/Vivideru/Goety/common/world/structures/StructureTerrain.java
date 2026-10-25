@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.RandomState;
@@ -87,9 +88,14 @@ public final class StructureTerrain {
         }
     }
 
-    public record Profile(ResourceKey<Structure> key, int margin, int halfExtent, Optional<String> piece, int trunk) {
+    /** {@code floorOffset}: how far above the piece's bottom its ground floor lies; the terrain is brought to that level. */
+    public record Profile(ResourceKey<Structure> key, int margin, int halfExtent, Optional<String> piece, int trunk, int floorOffset) {
         Profile(ResourceKey<Structure> key, int margin, int halfExtent) {
-            this(key, margin, halfExtent, Optional.empty(), 0);
+            this(key, margin, halfExtent, Optional.empty(), 0, 0);
+        }
+
+        Profile(ResourceKey<Structure> key, int margin, int halfExtent, Optional<String> piece, int trunk) {
+            this(key, margin, halfExtent, piece, trunk, 0);
         }
 
         int keepAway() {
@@ -104,12 +110,13 @@ public final class StructureTerrain {
         }
 
         BoundingBox footprint(BoundingBox box) {
+            int floor = box.minY() + this.floorOffset;
             if (this.trunk <= 0) {
-                return box;
+                return this.floorOffset == 0 ? box : new BoundingBox(box.minX(), floor, box.minZ(), box.maxX(), box.maxY(), box.maxZ());
             }
             int cx = (box.minX() + box.maxX()) / 2;
             int cz = (box.minZ() + box.maxZ()) / 2;
-            return new BoundingBox(Math.max(box.minX(), cx - this.trunk), box.minY(), Math.max(box.minZ(), cz - this.trunk),
+            return new BoundingBox(Math.max(box.minX(), cx - this.trunk), floor, Math.max(box.minZ(), cz - this.trunk),
                     Math.min(box.maxX(), cx + this.trunk), box.maxY(), Math.min(box.maxZ(), cz + this.trunk));
         }
 
@@ -132,6 +139,7 @@ public final class StructureTerrain {
         profile("ruined_monastery", 10, 48);
         ResourceKey<Structure> spiderDen = ResourceKey.create(Registries.STRUCTURE, Goety.location("spider_den"));
         PROFILES.put(spiderDen, new Profile(spiderDen, 6, 12, Optional.of("spider_den/tree"), 5));
+        // The crypt shapes its own ground: CryptMound settles the hidden entrance into the terrain after the pieces are placed.
     }
 
     private static void profile(String name, int margin, int halfExtent) {
@@ -279,24 +287,24 @@ public final class StructureTerrain {
                 int x = originX + gx;
                 int z = originZ + gz;
                 ChunkAccess holder = chunk;
+                int sx = x;
+                int sz = z;
                 if ((x >> 4) != chunkPos.x || (z >> 4) != chunkPos.z) {
-                    if (!region.hasChunk(x >> 4, z >> 4)) {
-                        continue;
-                    }
-                    holder = region.getChunk(x >> 4, z >> 4);
+                    sx = Mth.clamp(x, chunkPos.getMinBlockX(), chunkPos.getMaxBlockX());
+                    sz = Mth.clamp(z, chunkPos.getMinBlockZ(), chunkPos.getMaxBlockZ());
                 }
-                int hint = Math.max(heightOf(holder, x & 15, z & 15, Heightmap.Types.OCEAN_FLOOR_WG, Heightmap.Types.OCEAN_FLOOR),
-                        heightOf(holder, x & 15, z & 15, Heightmap.Types.WORLD_SURFACE_WG, Heightmap.Types.WORLD_SURFACE));
+                int hint = Math.max(heightOf(holder, sx & 15, sz & 15, Heightmap.Types.OCEAN_FLOOR_WG, Heightmap.Types.OCEAN_FLOOR),
+                        heightOf(holder, sx & 15, sz & 15, Heightmap.Types.WORLD_SURFACE_WG, Heightmap.Types.WORLD_SURFACE));
                 int y = Math.min(holder.getMaxBuildHeight() - 1, hint + 4);
                 int floor = holder.getMinBuildHeight();
                 BlockPos.MutableBlockPos probe = new BlockPos.MutableBlockPos();
-                while (y > floor && holder.getBlockState(probe.set(x, y, z)).isAir()) {
+                while (y > floor && holder.getBlockState(probe.set(sx, y, sz)).isAir()) {
                     y--;
                 }
                 column.surfaceTop = y;
                 boolean water = false;
                 while (y > floor) {
-                    BlockState state = holder.getBlockState(probe.set(x, y, z));
+                    BlockState state = holder.getBlockState(probe.set(sx, y, sz));
                     if (!state.getFluidState().isEmpty()) {
                         water = true;
                     } else if (isSolidTop(state)) {
@@ -548,7 +556,17 @@ public final class StructureTerrain {
         if (state.isAir() || !state.getFluidState().isEmpty() || state.is(Blocks.POWDER_SNOW) || state.is(Blocks.SNOW)) {
             return false;
         }
+        if (isVegetation(state)) {
+            return false;
+        }
         return state.blocksMotion() || isGround(state);
+    }
+
+    /** Trees and plants spilling in from neighbouring chunks must not count as ground, or the ground gets filled up to the canopy. */
+    private static boolean isVegetation(BlockState state) {
+        return state.is(BlockTags.LEAVES) || state.is(BlockTags.LOGS) || state.is(BlockTags.SAPLINGS) || state.is(BlockTags.FLOWERS) || state.is(BlockTags.WART_BLOCKS)
+                || state.is(Blocks.CACTUS) || state.is(Blocks.BAMBOO) || state.is(Blocks.SUGAR_CANE) || state.is(Blocks.MUSHROOM_STEM) || state.is(Blocks.BROWN_MUSHROOM_BLOCK)
+                || state.is(Blocks.RED_MUSHROOM_BLOCK) || state.is(Blocks.COCOA) || state.is(Blocks.MELON) || state.is(Blocks.PUMPKIN) || state.canBeReplaced();
     }
 
     private static int heightOf(ChunkAccess chunk, int x, int z, Heightmap.Types worldGen, Heightmap.Types finished) {
@@ -581,8 +599,13 @@ public final class StructureTerrain {
         STRUCTURE_STATE.remove();
     }
 
+    @Nullable
+    public static ChunkGeneratorStructureState structureState() {
+        return STRUCTURE_STATE.get();
+    }
+
     public static boolean reserves(Structure candidate, RegistryAccess registryAccess, ChunkGenerator generator, RandomState randomState, LevelHeightAccessor heightAccessor, ChunkPos chunkPos) {
-        if (candidate.step() != GenerationStep.Decoration.SURFACE_STRUCTURES || candidate instanceof WindShrineStructure || candidate instanceof WindShrineExpansionStructure) {
+        if (candidate.step() != GenerationStep.Decoration.SURFACE_STRUCTURES || candidate instanceof WindShrineStructure || candidate instanceof WindShrineExpansionStructure || candidate instanceof com.Vivideru.Goety.common.world.structures.crypt.CryptStructure || candidate instanceof com.Vivideru.Goety.common.world.structures.crypt.CryptWingStructure) {
             return false;
         }
         ChunkGeneratorStructureState state = STRUCTURE_STATE.get();

@@ -14,6 +14,10 @@
     {
       "type": "patchouli:text",
       "text": "Conjurar com $(l:crafts/staff/abyss_staff)Cajado do Abismo$() invoca outro tentáculo depois que o tentáculo inicial atingir um alvo."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Based on @rangoonruler's suggestion"
     }
   ]
 }

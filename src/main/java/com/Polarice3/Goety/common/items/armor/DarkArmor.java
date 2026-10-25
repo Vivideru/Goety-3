@@ -6,6 +6,7 @@ import com.Polarice3.Goety.api.items.ISoulRepair;
 import com.Polarice3.Goety.api.items.armor.ISoulDiscount;
 import com.Polarice3.Goety.client.render.ModModelLayer;
 import com.Polarice3.Goety.client.render.model.DarkArmorModel;
+import com.Vivideru.Goety.client.render.model.ArmorModelCache;
 import com.Polarice3.Goety.common.entities.ally.illager.AbstractIllagerServant;
 import com.Polarice3.Goety.common.entities.ally.illager.cultist.CultistServant;
 import com.Polarice3.Goety.common.entities.ally.undead.bound.AbstractBoundIllager;
@@ -56,6 +57,11 @@ public class DarkArmor extends ArmorItem implements ISoulRepair, ISoulDiscount, 
     @Override
     public int getMaxDamage(ItemStack stack) {
         return ModArmorMaterials.configuredDurability(this.type, ItemConfig.DarkArmorDurability, 15);
+    }
+
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return com.Polarice3.Goety.utils.ConfiguredItemUtil.positive(ItemConfig.DarkArmorEnchantability, 20);
     }
 
     @Override
@@ -126,9 +132,9 @@ public class DarkArmor extends ArmorItem implements ISoulRepair, ISoulDiscount, 
         super.initializeClient(consumer);
         consumer.accept(new IClientItemExtensions() {
            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-               EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
-               ModelPart root = modelSet.bakeLayer(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.DARK_ARMOR_INNER : ModModelLayer.DARK_ARMOR_OUTER);
-               DarkArmorModel model = new DarkArmorModel(root).animate(livingEntity);
+               DarkArmorModel model = ArmorModelCache.get(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.DARK_ARMOR_INNER : ModModelLayer.DARK_ARMOR_OUTER, DarkArmorModel::new).animate(livingEntity);
+               model.cape.visible = true;
+               model.villager = false;
                model.hat.visible = equipmentSlot == EquipmentSlot.HEAD;
                model.body.visible = equipmentSlot == EquipmentSlot.CHEST;
                model.rightArm.visible = equipmentSlot == EquipmentSlot.CHEST;

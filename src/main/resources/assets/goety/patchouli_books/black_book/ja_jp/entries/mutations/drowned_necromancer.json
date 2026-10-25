@@ -1,12 +1,12 @@
 {
-  "name": "Drowned Necromancer",
+  "name": "ドラウンドネクロマンサー",
   "icon": "goety:abyss_staff",
   "category": "goety:mutations",
   "advancement": "goety:goety/unlock_necromancer",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've discovered a more powerful variant of regular Necromancers, one that still retains their flesh and holds great power over the ocean, shooting torrents of steam missiles and conjure falling tridents around themselves. Rather than Skeletons, the ritual is performed on a Drowned instead."
+      "text": "通常のネクロマンサーのより強力な亜種を発見しました。肉体を保持し、海上で大きな力を持ち、蒸気ミサイルの奔流を発射し、落下するトライデントを周囲に召喚します。スケルトンではなく、ドラウンドに対して儀式が行われます。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Much like regular Necromancers, they can be taught to summon more than just Drowned. Right-clicking with certain Necromancy Focuses allows them to summon more types of servants. Right-clicking on them with an empty hand will cause the Necromancer to summon Undead Servants for you. They are healed the same way as regular Drowned Servants."
+      "text": "通常のネクロマンサーと同様に、彼らにドラウンド以外の召喚を教えることができます。ある特定のネクロマンシーフォーカスで右クリックすると、より多くの種類の従者を召喚できます。何も持っていない手で右クリックすると、ネクロマンサーがアンデッドの従者を召喚します。アンデッドの従者は通常のドラウンドの従者と同じ方法で回復します。"
     },
     {
       "type": "patchouli:entity",
@@ -23,7 +23,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:soul_jar[minecraft:custom_data={Drowned:1b}]",
-      "text": "Should a Drowned Necromancer fall, having an $(l:crafts/empty_soul_jar)Empty Soul Jar$() will cause their soul to fill it, which, when right-clicked on a Drowned, will revive them using said Drowned as their new body."
+      "text": "ドラウンドネクロマンサーが倒れた場合、$(l:crafts/empty_soul_jar)空のソウルの瓶$() があれば魂が瓶に満たされ、ドラウンドを右クリックすると、そのドラウンドを新しい媒体として蘇生します。"
     }
   ],
   "extra_recipe_mappings": {

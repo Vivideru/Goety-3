@@ -1,11 +1,11 @@
 {
-  "name": "Wild Robes",
+  "name": "野生のローブ",
   "icon": "goety:wild_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Wild Robes allows you to harness the power of nature far more efficiently and effectively. Servants that spews poison, for instance, will instead give Acid Venom, which affects even the Undead. Consequently, the Robes also provides immunity to poison and said venom!"
+      "text": "野生のローブを使用すると、自然の力をより効率的かつ効果的に活用できます。例えば、毒を使う従者は、代わりにアンデッドにも影響を与える酸毒を与えます。その結果、ローブは毒や酸毒に対する免疫も提供します。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Creatures born from Wild magic can slowly heal themselves using their summoner's soul energy, should the summoner don this robe."
+      "text": "野生の呪文で生まれた従者は、召喚者がこのローブを着ていれば、召喚者のソウルエネルギーを使ってゆっくりと再生します。"
     },
     {
       "type": "goety:ritual",
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Wild Crown reduce the amount of time to cast Wild spells by half and keeps your wild servants from dying off like Vexes."
+      "text": "野生の冠は、野生の呪文を唱える時間を半分に短縮し、野生の従者がヴェックスのように死んでしまうのを防ぎます。"
     }
   ],
   "extra_recipe_mappings": {

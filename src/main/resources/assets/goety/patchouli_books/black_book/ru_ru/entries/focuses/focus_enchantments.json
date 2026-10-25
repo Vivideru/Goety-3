@@ -1,5 +1,5 @@
 {
-  "name": "Focus Enchantments",
+  "name": "Зачарование фокусов",
   "icon": "minecraft:enchanting_table",
   "category": "goety:focuses",
   "sortnum": 0,
@@ -7,55 +7,55 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Focuses have their own specialize enchantments, but not all Focuses can be enchanted nor accept every enchantments. There are many enchantments that are only applicable to certain Focuses. Enchanted Focuses doubles the amount of Soul Energy needed to cast."
+      "text": "У фокусов есть свои особые чары, но не все фокусы могут быть зачарованы. Существует пять зачарований, которые применимы только к определённым фокусам: мощность, радиус, горение, диапазон и поглощение жизни."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Potency",
-      "text": "Potency increases the damage of your spells."
+      "title": "Мощность",
+      "text": "Увеличивает урон, наносимый вашими заклинаниями."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Duration",
-      "text": "Your spells and your summons lasts longer."
+      "title": "Период",
+      "text": "У ваших заклинаний увеличивается время действия, а у прислужников — жизни."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Radius",
-      "text": "Increases the radius of your spells, this generally means any explosive spells has a higher explosive radius. For certain spells, radius allows spells to more accurately find the nearest enemy to hit."
+      "title": "Радиус",
+      "text": "Увеличивает радиус действия ваших заклинаний. Как правило, это радиус взрыва. Некоторым заклинаниям радиус позволяет более точно находить ближайшую цель."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Burning",
-      "text": "Your spells sets targets on fire or extends how long the target remains burning."
+      "title": "Горение",
+      "text": "Ваши заклинания поджигают жертв или увеличивают время их горения."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Range",
-      "text": "Your spells goes further by 2 blocks per level. The most common of enchantments."
+      "title": "Диапазон",
+      "text": "Ваши заклинания становятся более дальнобойными. Имеет 10 уровней, каждый уровень увеличивает диапазон на 1 метр. Наиболее распространенное из заклинаний."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Life Absorb",
-      "text": "Your spells absorb health from targets when hit. Very Rare and is not compatible with Potency."
+      "title": "Поглощение жизни",
+      "text": "При попадании в цель ваши заклинания поглощают здоровье. Очень редкое и несовместимое с «мощностью»."
+    },
+	{
+      "type": "patchouli:spotlight",
+      "item": "minecraft:enchanted_book",
+      "title": "Магнетизм",
+      "text": "Разрушенные вашими заклинаниями блоки будут перемещаться к вам в инвентарь. Очень редкое."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:enchanted_book",
-      "title": "Magnetize",
-      "text": "Your spells immediately pulls blocks broken by them into your inventory. Very Rare."
-    },
-    {
-      "type": "patchouli:spotlight",
-      "item": "minecraft:enchanted_book",
-      "title": "Velocity",
-      "text": "Projectiles made from your spells move quicker."
+      "title": "Вектор",
+      "text": "У снарядов ваших заклинаний увеличивается скорость."
     }
   ]
 }

@@ -1,20 +1,20 @@
 {
-  "name": "Final Terminal",
+  "name": "Последний оплот",
   "icon": "goety:void_spawner",
   "category": "goety:world",
   "advancement": "minecraft:story/enter_the_end",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Within the End, lies a structure that holds various treasures and secrets. It is rumored to be guarded by subspecies of Endermen, Enderlings."
+      "text": "На просторах Энда находится сооружение, наполненное различными сокровищами и секретами. Ходят слухи, что его охраняют потомки эндерменов — эндервиды."
     },
     {
       "type": "patchouli:text",
-      "text": "Going through the structure, one can come across Void Keys and arenas containing Void Frames. Using said keys on the frames will summon forth a powerful creature, that drops a Void Shard when slain. The structure also contains vaults that can be opened with the keys."
+      "text": "Внутри строения можно найти ключи пустоты и арены с пустотными рамками. Использование вышеупомянутых ключей на рамках вызовет могущественное существо, из которого выпадет осколок пустоты. В сооружении также есть хранилища, которые можно открыть этими же ключами."
     },
     {
       "type": "patchouli:text",
-      "text": "On top of the terminal lies a Void Shrine. It requires four Void Shards to be inserted before a powerful warrior is summoned. Defeating the warrior will cause an object to appear, placed on the Void Shrine, that can give a monstrous secret."
+      "text": "На вершине оплота стоит пустотное святилище. В него требуется вставить четыре осколка пустоты, чтобы вызвать могучего воителя. После победы над ним в святилище пустоты появится предмет, раскрывающий чудовищную тайну."
     },
     {
       "type": "goety:ritual",

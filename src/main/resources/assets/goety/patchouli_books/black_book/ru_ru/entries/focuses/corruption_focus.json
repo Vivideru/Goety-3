@@ -1,5 +1,5 @@
 {
-  "name": "Corruption Focus",
+  "name": "Фокус разрушения",
   "icon": "goety:corruption_focus",
   "category": "goety:focuses",
   "advancement": "goety:goety/gain_night_beacon",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Night Beacon holds tremendous power, you believe that by supplying it with Soul Energy, you'll be be able to transform it's night bringing beam into something more devastating!"
+      "text": "Маяк ночи обладает огромной силой, и вы верите, что, наполнив его энергией душ, можно превратить этот луч тьмы во что-то более разрушительное!"
     },
     {
       "type": "goety:ritual",

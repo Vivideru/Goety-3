@@ -1,8 +1,8 @@
 {
-  "comparator_output": 12,
+  "comparator_output": 14,
   "description": {
     "translate": "item.goety.music_disc_vizier.desc"
   },
-  "length_in_seconds": 180.0,
+  "length_in_seconds": 93.0,
   "sound_event": "goety:vizier_theme_disc"
 }

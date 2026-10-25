@@ -1,7 +1,9 @@
 package com.Vivideru.Goety.common.world.structures;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.SectionPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Rotation;
@@ -28,6 +30,7 @@ public final class WindShrinePlacementRules {
     private static final double INWARD_COSINE = -0.85D;
     private static final double WEDGE = Math.toRadians(40.0D);
     private static final int MAX_WING_PIECES = 210;
+    private static final int REFERENCE_CHUNKS = 8;
     private static final ThreadLocal<Session> SESSION = new ThreadLocal<>();
     private static final ThreadLocal<Rotation> FORCED_ROTATION = new ThreadLocal<>();
 
@@ -62,6 +65,8 @@ public final class WindShrinePlacementRules {
         final List<BoundingBox> foreign = new ArrayList<>();
         final List<StairBox> stairs = new ArrayList<>();
         AABB freeBounds;
+        BoundingBox reach;
+        AABB candidateBounds;
         BoundingBox parentBox;
         int parentDepth;
         int doorFloorY = Integer.MIN_VALUE;
@@ -81,7 +86,7 @@ public final class WindShrinePlacementRules {
         }
     }
 
-    private enum Reason { COLLISION, FOREIGN, WEDGE, WING_FULL, UNFINISHABLE, CLOSING_SPACE, STAIRS_CLIMB, TOWER_HEIGHT, WING_CLIMB, DESCENT_QUOTA, INWARD, FOOTPRINT }
+    private enum Reason { COLLISION, FOREIGN, REACH, WEDGE, WING_FULL, UNFINISHABLE, CLOSING_SPACE, STAIRS_CLIMB, TOWER_HEIGHT, WING_CLIMB, DESCENT_QUOTA, INWARD, FOOTPRINT }
 
     private static boolean reject(Session session, Reason reason) {
         session.rejected[reason.ordinal()]++;
@@ -91,12 +96,28 @@ public final class WindShrinePlacementRules {
     private WindShrinePlacementRules() {
     }
 
-    public static void beginShrine(int summitY, int maxDepth) {
-        SESSION.set(new Session(false, summitY, maxDepth, null));
+    public static void beginShrine(int summitY, int maxDepth, ChunkPos startChunk) {
+        Session session = new Session(false, summitY, maxDepth, null);
+        session.reach = reachOf(startChunk);
+        SESSION.set(session);
     }
 
-    public static void beginWing(WindShrinePlans.Plan parent, int index, int maxDepth) {
+    /**
+     * Chunks only store references to structure starts found within REFERENCE_CHUNKS chunks of them,
+     * so a piece that leaves this box is never placed in the chunks beyond it and the building ends in a flat cut.
+     */
+    private static BoundingBox reachOf(ChunkPos startChunk) {
+        return new BoundingBox(SectionPos.sectionToBlockCoord(startChunk.x - REFERENCE_CHUNKS), Integer.MIN_VALUE / 2, SectionPos.sectionToBlockCoord(startChunk.z - REFERENCE_CHUNKS),
+                SectionPos.sectionToBlockCoord(startChunk.x + REFERENCE_CHUNKS) + 15, Integer.MAX_VALUE / 2, SectionPos.sectionToBlockCoord(startChunk.z + REFERENCE_CHUNKS) + 15);
+    }
+
+    private static boolean withinReach(BoundingBox reach, BoundingBox box) {
+        return box.minX() >= reach.minX() && box.maxX() <= reach.maxX() && box.minZ() >= reach.minZ() && box.maxZ() <= reach.maxZ();
+    }
+
+    public static void beginWing(WindShrinePlans.Plan parent, int index, int maxDepth, ChunkPos startChunk) {
         Session session = new Session(true, parent.summitY(), maxDepth, parent.center());
+        session.reach = reachOf(startChunk);
         session.foreign.addAll(parent.obstaclesFor(index));
         session.doorPos = parent.door(index).map(WindShrinePlans.Door::target).orElse(null);
         SESSION.set(session);
@@ -129,9 +150,21 @@ public final class WindShrinePlacementRules {
         return forced == null ? random : forced;
     }
 
-    public static void beginParent(PoolElementStructurePiece parent, int depth, VoxelShape free, StructureTemplateManager templates) {
+    private static AABB boundsOf(Object shape) {
+        return shape instanceof VoxelShape voxelShape && !voxelShape.isEmpty() ? voxelShape.bounds() : null;
+    }
+
+    public static void candidateBounds(AABB bounds) {
         Session session = SESSION.get();
         if (session != null) {
+            session.candidateBounds = bounds;
+        }
+    }
+
+    public static void beginParent(PoolElementStructurePiece parent, int depth, Object freeShape, StructureTemplateManager templates) {
+        Session session = SESSION.get();
+        if (session != null) {
+            AABB free = boundsOf(freeShape);
             if (session.wing && depth == 0 && LOGGER.isDebugEnabled()) {
                 StringBuilder jigsaws = new StringBuilder();
                 for (net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo info : parent.getElement().getShuffledJigsawBlocks(templates, parent.getPosition(), parent.getRotation(), RandomSource.create(0L))) {
@@ -139,14 +172,14 @@ public final class WindShrinePlacementRules {
                     BlockPos target = info.pos().relative(facing);
                     jigsaws.append(' ').append(info.nbt() == null ? "?" : info.nbt().getString("name")).append('@').append(info.pos().toShortString()).append('>').append(facing).append(parent.getBoundingBox().isInside(target) ? "(interior)" : "");
                 }
-                LOGGER.debug("Wind Shrine wing start {} rot {} box {} free {} jigsaws:{}", parent.getElement(), parent.getRotation(), parent.getBoundingBox(), free == null ? "?" : free.bounds(), jigsaws);
+                LOGGER.debug("Wind Shrine wing start {} rot {} box {} free {} jigsaws:{}", parent.getElement(), parent.getRotation(), parent.getBoundingBox(), free == null ? "?" : free, jigsaws);
             }
             session.parentBox = parent.getBoundingBox();
             session.parentDepth = depth;
             remember(session, session.parentBox);
             if (depth == 0 && session.startName.isEmpty()) {
                 session.startName = parent.getElement().toString() + " " + parent.getBoundingBox();
-                session.freeBounds = free == null ? null : free.bounds();
+                session.freeBounds = free;
                 if (session.startName.contains(STAIRS)) {
                     session.stairs.add(new StairBox(parent.getBoundingBox(), runsAwayFrom(session.doorPos, parent.getBoundingBox())));
                 }
@@ -243,12 +276,12 @@ public final class WindShrinePlacementRules {
         return result;
     }
 
-    public static boolean rejectOrCollides(boolean collides, VoxelShape candidateShape) {
+    public static boolean rejectOrCollides(boolean collides) {
         Session session = SESSION.get();
-        if (session == null) {
+        if (session == null || session.candidateBounds == null) {
             return collides;
         }
-        AABB aabb = candidateShape.bounds();
+        AABB aabb = session.candidateBounds;
         BoundingBox box = new BoundingBox(Mth.floor(aabb.minX), Mth.floor(aabb.minY), Mth.floor(aabb.minZ), Mth.floor(aabb.maxX), Mth.floor(aabb.maxY), Mth.floor(aabb.maxZ));
         boolean stackedCandidate = session.parentDirection.getAxis().isVertical();
         if (collides) {
@@ -262,6 +295,9 @@ public final class WindShrinePlacementRules {
             if (other.intersects(box)) {
                 return reject(session, Reason.FOREIGN);
             }
+        }
+        if (session.reach != null && !withinReach(session.reach, box)) {
+            return reject(session, Reason.REACH);
         }
         WindShrinePieceProfiles.Profile profile = session.candidateProfile;
         if (profile.open()) {

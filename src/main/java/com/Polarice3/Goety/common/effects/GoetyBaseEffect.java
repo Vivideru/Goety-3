@@ -6,11 +6,13 @@ import com.Polarice3.Goety.utils.MobTypeHelper;
 import com.Polarice3.Goety.init.ModMobType;
 
 import com.Polarice3.Goety.client.particles.AuraParticleOption;
+import com.Polarice3.Goety.client.particles.MagicSmokeParticleOption;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.client.particles.ShockwaveParticleOption;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayWorldSoundPacket;
 import com.Polarice3.Goety.init.ModSounds;
+import com.Polarice3.Goety.config.MainConfig;
 import com.Polarice3.Goety.utils.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -46,6 +48,15 @@ public class GoetyBaseEffect extends MobEffect {
 
     public GoetyBaseEffect(MobEffectCategory p_19451_, int p_19452_) {
         super(p_19451_, p_19452_);
+    }
+
+    /** Effects registered without a colour are meant to show no particles; vanilla would otherwise draw them in black. */
+    @Override
+    public net.minecraft.core.particles.ParticleOptions createParticleOptions(MobEffectInstance instance) {
+        if (this.getColor() == 0) {
+            return net.minecraft.core.particles.ColorParticleOption.create(net.minecraft.core.particles.ParticleTypes.ENTITY_EFFECT, 0);
+        }
+        return super.createParticleOptions(instance);
     }
 
     public GoetyBaseEffect addAttributeModifier(Holder<Attribute> attribute, String id, double amount, AttributeModifier.Operation operation) {
@@ -233,6 +244,34 @@ public class GoetyBaseEffect extends MobEffect {
                             livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 5, 0, false, false));
                         }
                     }
+                }
+            }
+        }
+        if (this == GoetyEffects.SOUL_BURN.get()){
+            if (livingEntity.tickCount % 20 == 0) {
+                boolean flag = livingEntity.hurt(ModDamageSource.getDamageSource(world, ModDamageSource.SOUL_BURN), 2.0F);
+                if (livingEntity instanceof Player player && flag) {
+                    int amount;
+                    if (MainConfig.MaxSouls.get() <= 100) {
+                        amount = 2;
+                    } else {
+                        amount = (MainConfig.MaxSouls.get() / 100) * 2;
+                    }
+                    SEHelper.decreaseSoulsNoDiscount(player, amount);
+                }
+
+            }
+        }
+        if (this == GoetyEffects.ENCHANTED.get()) {
+            if (!world.isClientSide) {
+                if (world instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(new MagicSmokeParticleOption(0xffecff, 0x9f34cd, 10 + world.getRandom().nextInt(10), 0.2F, -0.01F), livingEntity.getRandomX(0.5D), livingEntity.getRandomY(), livingEntity.getRandomZ(0.5D), 0, 0.0F, 0.0F, 0.0F, 1.0F);
+                }
+                Entity entity = MiscCapHelper.getEnchanter(livingEntity);
+                if (entity == null || !entity.isAlive() || (entity instanceof LivingEntity living && living.isDeadOrDying())) {
+                    livingEntity.removeEffect(GoetyEffects.ENCHANTED);
+                } else if (entity instanceof LivingEntity living) {
+                    MiscCapHelper.setEnchanterTime(living, 5);
                 }
             }
         }

@@ -1,18 +1,18 @@
 {
-  "name": "Cores of Magic",
+  "name": "Магические ядра",
   "icon": "goety:empty_focus",
   "category": "goety:crafts",
   "priority": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Magical cores are used to create all kinds of spells and equipments and can be crafted through all kinds of rituals."
+      "text": "Магические ядра используются для создания всевозможных заклинаний и снаряжения и создаются через различные ритуалы."
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:empty_focus",
-      "title": "Empty Focus",
-      "text": "The $(l:intro/magical_components)Empty Focus$() is the core for all magical Focuses."
+      "title": "Пустой фокус",
+      "text": "$(l:intro/magical_components)Пустой фокус$() — основа всех магических фокусов."
     },
     {
       "type": "goety:ritual",

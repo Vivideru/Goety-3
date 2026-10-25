@@ -1,12 +1,12 @@
 {
-  "name": "Maverick Servant",
-  "icon": "minecraft:iron_sword",
+  "name": "マーヴェリックの従者",
+  "icon": "goety:wicked_boline",
   "category": "goety:mutations",
   "advancement": "goety:goety/craft_unholy_robe",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Mavericks appear to be highly devoted to the Nether that they only obey those that are highly devoted to it. However, wearing the Unholy set near a trader that's underneath a block of Crying Obsidian will cause the newly convert to see you as a master of the Nether and obey your commands."
+      "text": "マーヴェリックはネザーに深く帰依しているようで、同じようにネザーに深く帰依している者のみに従う。しかし、泣く黒曜石のブロックの下にある商人の近くで反神聖のセットを着用すると、新たに改宗したマーヴェリックはあなたをネザーの支配者とみなし、あなたの命令に従うようになる。"
     },
     {
       "type": "patchouli:entity",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You're also able to trade with your Maverick Servant by giving them an Emerald, without needing to wear appropriate attire to do so. You can also trade with other Maverick Servants, provided you're allied to their master, if they have one, and wearing the appropriate attire."
+      "text": "マーヴェリックの従者にエメラルドを渡すことで、適切な服装をしなくても取引を行うことができます。また、他のマーヴェリックの従者とも取引可能です。ただし、その従者に主がいる場合は、その主と同盟を結び、適切な服装をしていれば可能です。"
     }
   ]
 }

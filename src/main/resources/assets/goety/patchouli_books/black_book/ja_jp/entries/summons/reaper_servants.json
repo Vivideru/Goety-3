@@ -1,12 +1,12 @@
 {
-  "name": "Reaper Servant",
+  "name": "リーパーの従者",
   "icon": "goety:reaper_servant_spawn_egg",
   "category": "goety:summons",
   "advancement": "goety:goety/kill_a_reaper",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These spectres are called and bound by your will to the point where their scythes won't cut either you or your allies."
+      "text": "これらの幽霊はあなたの意志によって呼び出され、縛られ、彼らの鎌はあなたやあなたの仲間を切ることができないほどです。"
     },
     {
       "type": "patchouli:entity",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/necromancy/reaping_focus)Reaping Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "これらのクリーチャーは、$(l:focuses/necromancy/reaping_focus)リーパーのフォーカス$()を使用するか、儀式(これで召喚すると、寿命に制限がありません)を通じて呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Reapers can be healed by right-clicking on them with Ectoplasm."
+      "text": "リーパーはエクトプラズムで右クリックすると回復できます。"
     }
   ]
 }

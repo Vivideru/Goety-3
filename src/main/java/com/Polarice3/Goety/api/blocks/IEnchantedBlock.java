@@ -47,5 +47,10 @@ public interface IEnchantedBlock {
         return Optional.ofNullable(CommonHooks.resolveLookup(Registries.ENCHANTMENT));
     }
 
+    /** The map holds the enchantments themselves, so a key must be resolved through the registry before the lookup. */
+    default int getEnchantmentLevel(ResourceKey<Enchantment> key) {
+        return this.enchantmentLookup().flatMap(lookup -> lookup.get(key)).map(holder -> this.getEnchantments().getOrDefault(holder.value(), 0)).orElse(0);
+    }
+
 }
 

@@ -108,7 +108,8 @@ public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
                         ModDamageSource.DISMISSED,
                         ModDamageSource.DEATH);
         this.tag(DamageTypeTags.NO_KNOCKBACK)
-                .addTag(ModTags.DamageTypes.NO_KNOCKBACK);
+                .addTag(ModTags.DamageTypes.NO_KNOCKBACK)
+                .add(ModDamageSource.SOUL_BURN);
         this.tag(ModTags.DamageTypes.PHYSICAL)
                 .add(DamageTypes.PLAYER_ATTACK,
                         DamageTypes.MOB_ATTACK,
@@ -138,6 +139,11 @@ public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
                         ModDamageSource.DRENCH,
                         ModDamageSource.DIRECT_DRENCH,
                         ModDamageSource.INDIRECT_DRENCH);
+        this.tag(ModTags.DamageTypes.ELEMENTAL)
+                .addTag(ModTags.DamageTypes.FIRE_ATTACKS)
+                .addTag(ModTags.DamageTypes.FROST_ATTACKS)
+                .addTag(ModTags.DamageTypes.SHOCK_ATTACKS)
+                .addTag(ModTags.DamageTypes.WATER_ATTACKS);
         this.tag(ModTags.DamageTypes.MAGIC_FIRE)
                 .add(ModDamageSource.MAGIC_FIRE,
                         ModDamageSource.MAGIC_FIREBALL,
@@ -148,10 +154,7 @@ public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
         this.tag(ModTags.DamageTypes.WANTING_DAMAGE)
                 .addTag(DamageTypeTags.WITCH_RESISTANT_TO)
                 .addTag(ModTags.DamageTypes.NO_KNOCKBACK)
-                .addTag(ModTags.DamageTypes.FIRE_ATTACKS)
-                .addTag(ModTags.DamageTypes.FROST_ATTACKS)
-                .addTag(ModTags.DamageTypes.SHOCK_ATTACKS)
-                .addTag(ModTags.DamageTypes.WATER_ATTACKS)
+                .addTag(ModTags.DamageTypes.ELEMENTAL)
                 .add(DamageTypes.WITHER_SKULL)
                 .add(ModDamageSource.LOOT_EXPLODE,
                         ModDamageSource.LOOT_EXPLODE_OWNED);

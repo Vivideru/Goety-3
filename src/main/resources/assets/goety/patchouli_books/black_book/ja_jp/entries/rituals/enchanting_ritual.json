@@ -1,5 +1,5 @@
 {
-  "name": "Enchanting With Rituals",
+  "name": "儀式で魅惑する",
   "icon": "minecraft:enchanted_book",
   "category": "goety:rituals",
   "sortnum": 1,
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Dark Altar can enchant items using certain ingredients, soul energy, and the ritual caster's own experience levels."
+      "text": "ダーク アルターは、特定の材料、魂のエネルギー、および儀式を行う者自身の経験レベルを使用してアイテムをエンチャントできます。"
     },
     {
       "type": "patchouli:text",
-      "text": "The rituals can enchant even enchanted items, so long as the item's enchantments are compatible with the enchantment, and can increase the level enchantment as well. However, when increasing the enchantment level, the experience level required is doubled."
+      "text": "儀式は、アイテムのエンチャントがエンチャントと互換性がある限り、エンチャントされたアイテムにもエンチャントすることができ、エンチャントのレベルを上げることもできます。ただし、エンチャントのレベルを上げる場合、必要な経験レベルは 2 倍になります。"
     },
     {
       "type": "goety:ritual",

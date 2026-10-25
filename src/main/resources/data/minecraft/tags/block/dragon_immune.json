@@ -18,6 +18,7 @@
     "goety:void_spawner",
     "goety:void_vault",
     "goety:void_frame",
-    "goety:void_shrine"
+    "goety:void_shrine",
+    "#goety:end_limestone"
   ]
 }

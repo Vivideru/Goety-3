@@ -1,11 +1,11 @@
 {
-  "name": "Surging Focus",
+  "name": "サージングのフォーカス",
   "icon": "goety:surging_focus",
   "category": "goety:focuses/storm",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell sacrifices the size of the Electro Orbs to allow the caster to rapidly shoot smaller orbs that can arc towards a target the caster is looking at after charging up."
+      "text": "この呪文は、電撃球の大きさを犠牲にする代わりに、術者がチャージした後、術者が見ている標的に向かって弧を描く小さな球体を素早く発射できるようにする。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/storm_staff)Storm Staff$() will cause your bolts to have a higher chance of inflicting Spasms and have minor chain lightning effect."
+      "text": "$(l:crafts/staff/storm_staff)嵐の杖$()で唱えると、ボルトがけいれん効果を引き起こす可能性が高くなり、小さな電撃の連鎖が発生します。"
     }
   ]
 }

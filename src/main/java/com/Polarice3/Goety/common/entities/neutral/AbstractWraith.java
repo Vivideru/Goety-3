@@ -457,7 +457,25 @@ public class AbstractWraith extends Summoned implements IMobTyped {
 
     public boolean canTeleport(){
         net.neoforged.neoforge.event.entity.EntityTeleportEvent.EnderEntity event = net.neoforged.neoforge.event.EventHooks.onEnderTeleport(this, this.getX(), this.getY(), this.getZ());
-        return !event.isCanceled() && !this.isStaying() && this.teleportCooldown <= 0 && !this.isPostTeleporting();
+        return !event.isCanceled() && !this.isStaying() && this.teleportCooldown <= 0 && !this.isPostTeleporting() && this.hasTeleportSpot();
+    }
+
+    /** Looks for a spot the teleport would accept before the animation starts, so a Wraith never winds up where it cannot go. */
+    protected boolean hasTeleportSpot() {
+        if (this.level().isClientSide() || this.getTarget() == null || !this.getSensing().hasLineOfSight(this.getTarget())) {
+            return true;
+        }
+        for (int i = 0; i < 32; ++i) {
+            double d3 = this.getTarget().getX() + (this.getRandom().nextDouble() - 0.5D) * 20.0F;
+            double d4 = this.getTarget().getY();
+            double d5 = this.getTarget().getZ() + (this.getRandom().nextDouble() - 0.5D) * 20.0F;
+            BlockPos blockPos1 = BlockPos.containing(d3, d4, d5);
+            if ((MobUtil.isFireImmune(this) || !BlockFinder.hasSunlight(this.level(), blockPos1)) && BlockFinder.canSeeBlock(this.getTarget(), blockPos1)
+                    && this.level().noCollision(this, this.getBoundingBox().move(d3 - this.getX(), d4 - this.getY(), d5 - this.getZ()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected void teleport() {
@@ -472,6 +490,7 @@ public class AbstractWraith extends Summoned implements IMobTyped {
                         if (BlockFinder.canSeeBlock(this.getTarget(), blockPos1)) {
                             if (this.randomTeleport(d3, d4, d5, false)) {
                                 this.teleportHits();
+                                this.teleportCooldown = 100;
                                 this.setIsTeleporting(false);
                                 MobUtil.instaLook(this, this.getTarget());
                                 break;

@@ -24,6 +24,13 @@
     {
       "type": "patchouli:text",
       "text": "你也可以通过按下切换形态键（默认：N）来切换成你成为巫妖前的生命形态。不知怎么的，这种形式骗不了任何人，但至少你知道自己变成了什么。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:haunted_mirror",
+      "title": "改变颜色",
+      "advancement": "goety:goety/read_haunting_scroll",
+      "text": "你也可以通过手持染料右键点击缠魂魔镜来改变巫妖形态的颜色。如果你想要移除自定义颜色，用水桶右键点击镜子。"
     }
   ]
 }

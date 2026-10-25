@@ -1,11 +1,11 @@
 {
-  "name": "Ring of Want",
+  "name": "Кольцо желания",
   "icon": "goety:ring_of_want",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Ring of Want allows creatures to drop more loot when slain by your spells or by creatures conjured up by you. For the Ring to work, you must enchant it, where it will accept the Wanting Enchantment which functions similar to Looting."
+      "text": "Кольцо желания позволяет вам получать больше предметов с существ, если его убили вы или ваши прислужники. Чтобы кольцо заработало, вы должны зачаровать его на чародейском столе на «желанность», которая действует аналогично «добыче»."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing the Ring of Want with Wanting III or more will cause your Fangs to have a 25%% chance (100%% if it's a Player) of dropping a creature's head/skull."
+      "text": "Убийство оружием с «добычей» более высокого уровня перекрывает эффект «желанности». Кольцо желания с «желанностью III» или выше даст вашим клыкам 25%%-ный шанс (100%%-ный в случае с вами подобными) на получение головы/черепа убитого существа."
     }
   ],
   "extra_recipe_mappings": {

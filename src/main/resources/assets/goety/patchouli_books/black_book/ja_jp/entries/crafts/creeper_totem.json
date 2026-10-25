@@ -1,11 +1,11 @@
 {
-  "name": "Creeper Totems",
+  "name": "クリーパートーテム",
   "icon": "goety:creeper_totem",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A decorative block that changes textures when placed on one another."
+      "text": "重ねて置くとテクスチャが変化する装飾ブロックです。"
     },
     {
       "type": "patchouli:crafting",

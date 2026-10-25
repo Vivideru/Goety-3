@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.goety.music_disc_wither_necromancer.desc"
+  },
+  "length_in_seconds": 79.0,
+  "sound_event": "goety:wither_necromancer_theme_disc"
+}

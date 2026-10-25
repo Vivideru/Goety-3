@@ -1,0 +1,22 @@
+{
+  "name": "goety:crypt_classic/tomb",
+
+  "fallback": "goety:crypt_classic/true_final_hallway",
+
+  "elements": [
+    {
+
+      "weight": 1,
+      "element": {
+
+        "location": "goety:crypt_classic/tomb",
+
+        "processors": "goety:no_waterlogging",
+
+        "projection": "rigid",
+
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

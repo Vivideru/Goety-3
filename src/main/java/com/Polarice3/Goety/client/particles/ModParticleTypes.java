@@ -135,6 +135,9 @@ public class ModParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BIG_FIRE_GROUND = PARTICLE_TYPES.register("big_fire_ground",
             () -> new SimpleParticleType(false));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FLAMETHROWER = PARTICLE_TYPES.register("flamethrower",
+            () -> new SimpleParticleType(false));
+
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BIG_SOUL_FIRE = PARTICLE_TYPES.register("big_soul_fire",
             () -> new SimpleParticleType(false));
 
@@ -178,6 +181,21 @@ public class ModParticleTypes {
             () -> new SimpleParticleType(false));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SMALL_END_FIRE = PARTICLE_TYPES.register("small_end_fire",
+            () -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> END_GLOW_ORB = PARTICLE_TYPES.register("end_glow_orb",
+            () -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> END_GLOW_HALO = PARTICLE_TYPES.register("end_glow_halo",
+            () -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> END_LANTERN_FIRE = PARTICLE_TYPES.register("end_lantern_fire",
+            () -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> END_LANTERN_FIRE_INVERTED = PARTICLE_TYPES.register("end_lantern_fire_inverted",
+            () -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> END_LANTERN_FIRE_SPARK = PARTICLE_TYPES.register("end_lantern_fire_spark",
             () -> new SimpleParticleType(false));
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FROST = PARTICLE_TYPES.register("frost",
@@ -384,6 +402,12 @@ public class ModParticleTypes {
 
     public static final DeferredHolder<ParticleType<?>, ParticleType<GatherTrailParticleOption>> GATHER_TRAIL = PARTICLE_TYPES.register("gather_trail",
             () -> particleType(false, GatherTrailParticleOption.CODEC, GatherTrailParticleOption.STREAM_CODEC));
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<GatherSquareParticleOption>> GATHER_SQUARE = PARTICLE_TYPES.register("gather_square",
+            () -> particleType(false, GatherSquareParticleOption.CODEC, GatherSquareParticleOption.STREAM_CODEC));
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<ColoredSpellSquareParticleOption>> COLORED_SPELL_SQUARE = PARTICLE_TYPES.register("colored_spell_square",
+            () -> particleType(false, ColoredSpellSquareParticleOption.CODEC, ColoredSpellSquareParticleOption.STREAM_CODEC));
 
     public static final DeferredHolder<ParticleType<?>, ParticleType<GatherFrostParticleOption>> FROST_GATHER = PARTICLE_TYPES.register("frost_gather",
             () -> particleType(false, GatherFrostParticleOption.CODEC, GatherFrostParticleOption.STREAM_CODEC));

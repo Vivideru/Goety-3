@@ -1,7 +1,8 @@
 {
   "name": "Вольнодумцы-прислужники",
-  "icon": "minecraft:iron_sword",
+  "icon": "goety:wicked_boline",
   "category": "goety:mutations",
+  "advancement": "goety:goety/craft_unholy_robe",
   "pages": [
     {
       "type": "patchouli:text",

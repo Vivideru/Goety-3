@@ -1,11 +1,11 @@
 {
-  "name": "Reaping Focus",
+  "name": "Фокус жатвы",
   "icon": "goety:reaping_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These soul hungering apparitions are not only useful at mowing down multiple foes, but also gather soul energy for their necromantic master."
+      "text": "Эти жаждущие душ призраки не только полезны в битве, но и способны собирать энергию душ для своего владельца."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more reapers at once."
+      "text": "Использование $(l:crafts/staff/necro_staff)некро-посоха$() позволяет вызывать больше жнецов."
     }
   ],
   "extra_recipe_mappings": {

@@ -1,11 +1,11 @@
 {
-  "name": "Command Focus",
+  "name": "Фокус командования",
   "icon": "goety:command_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The command focus allows the caster to command a servant to move towards a position. If used on a creature, it will move to the creature's location, but if the creature is a mount, most servants can ride on it."
+      "text": "Фокус командования позволяет приказать прислужнику переместиться на определенную позицию. При нажатии по существу прислужник переместится на его местоположение, но если существо ездовое, то большая часть прислужников его оседлает."
     },
     {
       "type": "patchouli:crafting",
@@ -13,11 +13,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "To use the command focus, it must be equipped in a wand/staff. Then the caster must left click the wand/staff on a servant to start commanding it. The caster can shift-right click into the air to remove the servant from the command focus."
+      "text": "Для использования фокус командования должен быть встроен в палочку/посох. Затем нужно нажать ЛКМ палочкой/посохом по прислужнику, чтобы начать командовать им. Можно нажать ПКМ по воздуху, присев, чтобы отвязать прислужника от фокуса командования."
     },
     {
       "type": "patchouli:text",
-      "text": "The servant can still move, even if it's on Standing By mode. To dismount a mounted servant, shift-right click on the mount itself."
+      "text": "Прислужником можно управлять, даже если он стоит на месте. Чтобы спешить прислужника, нажмите ПКМ по ездовому существу, присев."
     }
   ]
 }

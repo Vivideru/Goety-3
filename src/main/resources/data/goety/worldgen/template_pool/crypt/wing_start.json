@@ -1,0 +1,8 @@
+{
+  "name": "goety:crypt/wing_start",
+  "fallback": "minecraft:empty",
+  "elements": [
+    { "weight": 2, "element": { "location": "goety:crypt/corridor_straight_wing_a", "processors": "goety:crypt_ignore_void", "projection": "rigid", "element_type": "minecraft:single_pool_element" } },
+    { "weight": 1, "element": { "location": "goety:crypt/corridor_straight_web_wing_a", "processors": "goety:crypt_ignore_void", "projection": "rigid", "element_type": "minecraft:single_pool_element" } }
+  ]
+}

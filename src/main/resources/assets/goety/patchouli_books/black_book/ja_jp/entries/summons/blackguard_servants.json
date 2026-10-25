@@ -1,12 +1,12 @@
 {
-  "name": "Blackguard Servant",
+  "name": "ブラックガードの従者",
   "icon": "goety:blackguard_servant_spawn_egg",
   "category": "goety:summons",
   "advancement": "goety:goety/read_front_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Based on the ancient vanguards, you've created a zombie variation that focuses on intimidation and brute force, rather than finesse. Wearing heavy plated armor and a spiked club, these undead horrors trade speed for strength and power."
+      "text": "ヴァンガードに基づいていますが、より攻撃力や強さに重点が置かれ、重装甲で、棘がついたメイスを持っています。移動速度は落ちましたが、それでも恐怖のアンデッドです。"
     },
     {
       "type": "patchouli:entity",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "If they're shield-less, right click on them with an Iron Ingot to give them their shield back when they're not attacking.$(br)One can call these creatures through the use of a $(l:focuses/necromancy/blackguard_focus)Blackguard Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "盾がない場合は、鉄のインゴットで右クリックすると、攻撃していないときに盾を渡します。$(br)これらのクリーチャーは$(l:focuses/necromancy/blackguard_focus)ブラックガードのフォーカス$()や寿命の制限なしで召喚する儀式によって呼び出すことができます。"
     },
     {
       "type": "goety:ritual",

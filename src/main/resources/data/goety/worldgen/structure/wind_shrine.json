@@ -6,6 +6,7 @@
   },
   "terrain_adaptation": "none",
   "start_pool": "goety:wind_shrine/start_pool",
+  "classic_start_pool": "goety:wind_shrine_classic/start_pool",
   "size": 10,
   "max_distance_from_center": 128,
   "summit_y": 222,

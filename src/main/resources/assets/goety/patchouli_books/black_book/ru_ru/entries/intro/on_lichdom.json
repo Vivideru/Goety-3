@@ -24,6 +24,13 @@
     {
       "type": "patchouli:text",
       "text": "Вы также можете вернуть себе прежнюю форму, нажав клавишу «облик лича» (по умолчанию: N). Обмануть так никого не выйдет, зато вы вернёте свою внешность."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:haunted_mirror",
+      "title": "Changing Colors",
+      "advancement": "goety:goety/read_haunting_scroll",
+      "text": "You can also change the color of your Lich Form by right-clicking a Haunted Mirror with a dye. To remove the custom color, right-click the mirror with a bucket of water."
     }
   ]
 }

@@ -1,20 +1,20 @@
 {
-  "name": "Wind Blast Focus",
+  "name": "突風のフォーカス",
   "icon": "goety:wind_blast_focus",
   "category": "goety:focuses/wind",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Wind Blast Focus allows you to summon a blast of wind in front of you, knocking back creatures in your line of sight. The blast deals no damage unfortunately, but you can throw creatures off of ledges from a, admittedly short, distance!"
+      "text": "このフォーカスは、目の前に突風を発生させ、視界内のクリーチャーを吹き飛ばします。残念ながらこの突風はダメ​​ージを与えませんが、確かに短い距離からクリーチャーを崖から突き落とすことができます。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:focus/wind_blast_focus",
-      "text": "When cast by different staffs, the wind blast might give additional effects to targets."
+      "text": "異なる杖で発動した場合、突風はターゲットに追加の効果を与える可能性があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/wind_staff)Wind Staff$() increases knockback distance."
+      "text": "$(l:crafts/staff/wind_staff)風の杖$()で唱えると、ノックバック距離を増加します。"
     }
   ]
 }

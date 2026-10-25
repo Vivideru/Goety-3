@@ -1,12 +1,12 @@
 {
-  "name": "Sculk Devourer",
+  "name": "スカルクを貪る者",
   "icon": "goety:sculk_devourer",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/get_sculk_catalyst",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Sculk Catalyst is a fascinating thing. It converts Experience into Sculk which spreads across the world, but with some tinkering, you've managed to turn the Catalyst into a Soul Energy collector that converts Experience straight to Soul Energy."
+      "text": "スカルクカタリストは魅力的なものです。 それは経験を世界中に広がるスカルクに変換しますが、少し工夫することで、カタリストを経験を直接ソウルエネルギーに変換するソウルエネルギーコレクターに変えることができました。"
     },
     {
       "type": "patchouli:crafting",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The amount of Soul Energy delivered is the same amount as the experience dropped. The Devourer can be enchanted with Soul Eater and Radius. Radius multiplies the area of which Experience is absorbed, ie, Radius I doubles the area, Radius II triples. Soul Eater multiplies the amount of Soul Energy gathered from Experience."
+      "text": "提供されるソウルエネルギーの量は、ドロップされた経験値と同じ量です。貪る者は ソウルイーターと 半径 でエンチャントできます。 半径 は経験値が吸収される領域を倍増します。つまり、半径 I は領域を 2 倍、半径 II は 3 倍になります。 ソウルイーターは経験から集めたソウルエネルギーの量を倍増します。"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Soul Heal Focus",
+  "name": "ソウルヒールのフォーカス",
   "icon": "goety:soul_heal_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This focus allows you to heal wounds through soul energy. However, the healing amount is not consistent, having a chance of healing a large portion or a little."
+      "text": "このフォーカスにより、魂のエネルギーを通じて傷を癒すことができます。 ただし、回復量は一定ではなく、かなり回復する場合もあれば、少し回復する場合もあります。"
     },
     {
       "type": "goety:ritual",

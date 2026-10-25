@@ -21,6 +21,10 @@ import com.Polarice3.Goety.config.MobsConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.*;
+import com.Polarice3.Goety.common.items.ModItems;
+import net.minecraft.world.entity.item.ItemEntity;
+import org.jetbrains.annotations.Nullable;
+import java.util.Collection;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -325,7 +329,13 @@ public class ServantEvents {
             }
         }
         RaiderServant raider = null;
-        if (killer instanceof RaiderServant servant) {
+        if (killer == null) {
+            if (killed.getLastHurtByMob() instanceof RaiderServant servant) {
+                raider = servant;
+            } else if (MobUtil.getOwner(killed.getLastHurtByMob()) instanceof RaiderServant servant) {
+                raider = servant;
+            }
+        } else if (killer instanceof RaiderServant servant) {
             raider = servant;
         } else if (MobUtil.getOwner(killer) instanceof RaiderServant servant) {
             raider = servant;
@@ -487,38 +497,48 @@ public class ServantEvents {
 
     @SubscribeEvent
     public static void DropEvents(LivingDropsEvent event){
+        Collection<ItemEntity> collection = event.getDrops();
         if (event.getEntity() != null) {
             LivingEntity victim = event.getEntity();
             if (!victim.level().isClientSide) {
                 if (victim instanceof Mob) {
                     if (MobsConfig.IllagerServantCollectLoot.get()){
-                        AbstractIllagerServant servant = null;
-                        if (victim.getLastHurtByMob() instanceof IOwned minion){
-                            if (minion.getTrueOwner() instanceof AbstractIllagerServant servant1) {
-                                servant = servant1;
-                            }
-                        } else {
-                            if (event.getSource().getEntity() instanceof IOwned minion) {
-                                if (minion.getTrueOwner() instanceof AbstractIllagerServant servant1) {
-                                    servant = servant1;
-                                }
-                            }
-                        }
-                        if (victim.getLastHurtByMob() instanceof AbstractIllagerServant servant1) {
-                            servant = servant1;
-                        } else if (event.getSource().getEntity() instanceof AbstractIllagerServant servant1) {
-                            servant = servant1;
-                        }
+                        AbstractIllagerServant servant = getIllagerServant(event, victim);
                         if (servant != null){
                             if (servant.getTrueOwner() != null) {
-                                servant.addDrops(event.getDrops());
-                                event.getDrops().clear();
+                                if (CuriosFinder.hasCurio(servant.getTrueOwner(), ModItems.RING_OF_WRECKING.get())) {
+                                    collection.removeIf(itemEntity -> ItemHelper.isWreckable(itemEntity.getItem()));
+                                }
+                                servant.addDrops(collection);
+                                collection.clear();
                             }
                         }
                     }
                 }
             }
         }
+    }
+
+    @Nullable
+    private static AbstractIllagerServant getIllagerServant(LivingDropsEvent event, LivingEntity victim) {
+        AbstractIllagerServant servant = null;
+        if (victim.getLastHurtByMob() instanceof IOwned minion){
+            if (minion.getTrueOwner() instanceof AbstractIllagerServant servant1) {
+                servant = servant1;
+            }
+        } else {
+            if (event.getSource().getEntity() instanceof IOwned minion) {
+                if (minion.getTrueOwner() instanceof AbstractIllagerServant servant1) {
+                    servant = servant1;
+                }
+            }
+        }
+        if (victim.getLastHurtByMob() instanceof AbstractIllagerServant servant1) {
+            servant = servant1;
+        } else if (event.getSource().getEntity() instanceof AbstractIllagerServant servant1) {
+            servant = servant1;
+        }
+        return servant;
     }
 
     @SubscribeEvent

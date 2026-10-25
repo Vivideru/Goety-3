@@ -1,19 +1,19 @@
 {
-  "name": "Leeching Focus",
+  "name": "吸血のフォーカス",
   "icon": "goety:leeching_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Taking the life out of your enemies is one thing, but actually eating it is another. The spell siphons a non-allied target the caster's looking at, hurting them and healing the caster the amount the target lost."
+      "text": "敵の命を奪うことと、実際に敵を食べることは別のことです。この呪文は、術者が見つめている敵を吸血し、ターゲットが体力を失った分だけ術者を回復します。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/leeching_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() will give Weakness effect to target."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、ターゲットに弱体化を与えます。"
     }
   ],
   "extra_recipe_mappings": {

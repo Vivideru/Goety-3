@@ -54,6 +54,7 @@ import com.Polarice3.Goety.common.items.equipment.DarkScytheItem;
 import com.Polarice3.Goety.common.items.equipment.IceAxeItem;
 import com.Polarice3.Goety.common.items.equipment.PhilosophersMaceItem;
 import com.Polarice3.Goety.common.items.equipment.SickleItem;
+import com.Polarice3.Goety.common.capabilities.misc.MiscCapUpdatePacket;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
 import com.Polarice3.Goety.common.network.server.SPlayWorldSoundPacket;
@@ -180,6 +181,14 @@ public class ModEvents {
     }
 
     @SubscribeEvent
+    public static void syncMiscOnTrack(PlayerEvent.StartTracking event) {
+        if (event.getEntity() instanceof ServerPlayer player && event.getTarget() instanceof LivingEntity target
+                && MiscCapHelper.getExistingCapability(target) != null) {
+            ModNetwork.sendTo(player, new MiscCapUpdatePacket(target));
+        }
+    }
+
+    @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
         Player player = event.getEntity();
         Player original = event.getOriginal();
@@ -203,6 +212,7 @@ public class ModEvents {
         soulEnergy.setRecoil(capability3.getRecoil());
         soulEnergy.setArcaBlock(capability3.getArcaBlock());
         soulEnergy.setArcaBlockDimension(capability3.getArcaBlockDimension());
+        soulEnergy.setArcaRevivePos(capability3.getArcaRevivePos());
         soulEnergy.setRestPeriod(capability3.getRestPeriod());
         for (Research research : capability3.getResearch()){
             soulEnergy.addResearch(research);
@@ -971,6 +981,10 @@ public class ModEvents {
             misc.setSunscreen(misc.getSunscreen() - 1);
             dirty = true;
         }
+        if (misc.getEnchanterTime() > 0) {
+            misc.setEnchanterTime(misc.getEnchanterTime() - 1);
+            dirty = true;
+        }
         if (dirty) {
             MiscCapHelper.sendMiscUpdatePacket(livingEntity);
         }
@@ -1629,9 +1643,12 @@ public class ModEvents {
 
     @SubscribeEvent
     public static void ExplosionDetonateEvent(ExplosionEvent.Detonate event){
-        if (event.getExplosion() != null) {
-            event.getAffectedEntities().removeIf(entity -> (entity instanceof ItemEntity && ((ItemEntity) entity).getItem().getItem() == ModItems.UNHOLY_BLOOD.get()));
-            event.getAffectedEntities().removeIf(entity -> (entity instanceof ItemEntity && ((ItemEntity) entity).getItem().getItem() == ModBlocks.NIGHT_BEACON_ITEM.get()));
+        try {
+            if (event.getExplosion() != null) {
+                event.getAffectedEntities().removeIf(entity -> (entity instanceof ItemEntity && ((ItemEntity) entity).getItem().getItem() == ModItems.UNHOLY_BLOOD.get()));
+                event.getAffectedEntities().removeIf(entity -> (entity instanceof ItemEntity && ((ItemEntity) entity).getItem().getItem() == ModBlocks.NIGHT_BEACON_ITEM.get()));
+            }
+        } catch (UnsupportedOperationException ignored){
         }
     }
 

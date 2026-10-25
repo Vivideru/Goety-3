@@ -1,17 +1,17 @@
 {
-  "name": "Insight in the Sands",
+  "name": "Прозрение в песках",
   "icon": "minecraft:sand",
   "category": "goety:rumors",
   "read_by_default": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've been working on improving your Necromantic powers when you heard something. There's something within the Desert that can increase your knowledge, perhaps within those $(l)pyramids$()?"
+      "text": "Вы работали над улучшением своих некромантических способностей, как вдруг кое-что узнали: в пустыне есть нечто, что может расширить ваши познания. Возможно, оно в этих $(l)пирамидах$()?"
     },
     {
       "type": "patchouli:quest",
       "trigger": "goety:goety/read_front_scroll",
-      "text": "Whispers mentioned of spirited away knowledge being hidden in the sands."
+      "text": "Ходят слухи, что в песках спрятаны похищенные знания."
     }
   ]
 }

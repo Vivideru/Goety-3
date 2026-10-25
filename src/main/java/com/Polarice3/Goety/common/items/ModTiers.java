@@ -1,5 +1,7 @@
 package com.Polarice3.Goety.common.items;
 
+import com.Polarice3.Goety.config.ItemConfig;
+import com.Polarice3.Goety.utils.ConfiguredItemUtil;
 import com.google.common.base.Suppliers;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -81,7 +83,12 @@ public enum ModTiers implements Tier {
     }
 
     public int getEnchantmentValue() {
-        return this.enchantmentValue;
+        return switch (this) {
+            case SPECIAL -> ConfiguredItemUtil.positive(ItemConfig.SpecialToolsEnchantability, this.enchantmentValue);
+            case DARK -> ConfiguredItemUtil.positive(ItemConfig.DarkToolsEnchantability, this.enchantmentValue);
+            case DEATH -> ConfiguredItemUtil.positive(ItemConfig.DeathScytheEnchantability, this.enchantmentValue);
+            default -> this.enchantmentValue;
+        };
     }
 
     public Ingredient getRepairIngredient() {

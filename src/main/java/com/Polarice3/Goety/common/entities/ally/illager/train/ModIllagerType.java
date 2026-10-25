@@ -18,6 +18,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.common.Tags;
 
 public class ModIllagerType implements ITrainIllager {
@@ -40,6 +42,8 @@ public class ModIllagerType implements ITrainIllager {
             return mob.getType() == ModEntityType.VINDICATOR_SERVANT.get();
         } else if (entityType == ModEntityType.ROYAL_GUARD_SERVANT.get()) {
             return mob.getType() == ModEntityType.VINDICATOR_SERVANT.get() && mob instanceof IOwned owned && owned.getTrueOwner() instanceof Player player && SEHelper.hasResearch(player, ResearchList.FRONT);
+        } else if (entityType == ModEntityType.IMPERIAL_GUARD_SERVANT.get()) {
+            return mob.getType() == ModEntityType.PILLAGER_SERVANT.get() && hasResearch(mob, ResearchList.FRONT);
         } else if (entityType == ModEntityType.PIKER_SERVANT.get()) {
             return mob instanceof Neollager neollager && neollager.getTrueOwner() instanceof Player player && SEHelper.hasResearch(player, ResearchList.FRONT);
         } else {
@@ -59,6 +63,12 @@ public class ModIllagerType implements ITrainIllager {
                 && checker.hasBlocks(blockState -> blockState.is(Tags.Blocks.FENCES_WOODEN), 16)
                 && checker.hasBlocks(blockState -> blockState.is(BlockTags.WOOL), 20)) {
             return ModEntityType.PILLAGER_SERVANT.get();
+        } else if (checker.hasBlocks(blockState -> blockState.getBlock() instanceof OminousStatueBlock || blockState.getBlock() instanceof OminousBrazierStatueBlock, 4)
+                && checker.hasBlocks(blockState -> blockState.is(BlockTags.BANNERS), 4)
+                && checker.hasBlocks(blockState -> blockState.is(Blocks.HAY_BLOCK) || blockState.is(Blocks.TARGET), 4)
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof FletchingTableBlock, 4)
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof StashUrnBlock, 8)){
+            return ModEntityType.IMPERIAL_GUARD_SERVANT.get();
         } else if (checker.hasBlocks(blockState -> blockState.getBlock() instanceof GrindstoneBlock, 2)
                 && checker.hasBlocks(blockState -> blockState.getBlock() instanceof SmithingTableBlock, 2)
                 && checker.hasBlocks(blockState -> blockState.is(Tags.Blocks.FENCES_WOODEN), 16)
@@ -96,10 +106,10 @@ public class ModIllagerType implements ITrainIllager {
                 && checker.hasBlocks(blockState -> blockState.getBlock() instanceof AnvilBlock, 4)){
             return ModEntityType.CRUSHER_SERVANT.get();
         } else if (checker.hasBlocks(blockState -> blockState.getBlock() instanceof OminousStatueBlock || blockState.getBlock() instanceof OminousBrazierStatueBlock, 4)
-                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof FancyCarpetBlock, 16)
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof StairCarpetBlock, 16)
                 && checker.hasBlocks(blockState -> blockState.is(BlockTags.BANNERS), 4)
                 && checker.hasBlocks(blockState -> blockState.getBlock() instanceof AnvilBlock, 4)
-                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof StashUrnBlock, 4)){
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof StashUrnBlock, 8)){
             return ModEntityType.ROYAL_GUARD_SERVANT.get();
         } else if (BlockFinder.getNearbyEnchantPower(level, blockPos, range, 32)
                 && BlockFinder.getNearbyLitCandles(level, blockPos, range, 16)
@@ -109,6 +119,13 @@ public class ModIllagerType implements ITrainIllager {
                 && checker.hasBlocks(blockState -> blockState.getBlock() instanceof AbstractSkullBlock || blockState.getBlock() instanceof TallSkullBlock || blockState.getBlock() instanceof WallTallSkullBlock, 4)
                 && checker.hasBlocks(blockState -> blockState.getBlock() instanceof FlowerPotBlock flowerPotBlock && flowerPotBlock.getPotted() != Blocks.AIR, 4)) {
             return ModEntityType.EVOKER_SERVANT.get();
+        } else if (BlockFinder.getNearbyEnchantPower(level, blockPos, range, 64)
+                && checker.hasBlocks(blockState -> (blockState.getBlock() instanceof CandlestickBlock && blockState.getValue(BlockStateProperties.LIT)) || (blockState.getBlock() instanceof WallCandlestickBlock && blockState.getValue(BlockStateProperties.LIT)) || (blockState.getBlock() instanceof CandelabraBlock && blockState.getValue(BlockStateProperties.LIT)), 2)
+                && checker.hasBlocks(blockState -> blockState.is(Blocks.LECTERN), 1)
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof StashUrnBlock, 4)
+                && checker.hasBlocks(blockState -> blockState.getBlock() instanceof EnchantingTableBlock, 1)
+                && checker.hasBlockEntities(blockEntity -> blockEntity instanceof ChiseledBookShelfBlockEntity blockEntity1 && BlockFinder.filledWithEnchantedBook(blockEntity1), 4)) {
+            return ModEntityType.ENCHANTER_SERVANT.get();
         } else if (checker.hasBlocks(blockState -> blockState.is(Blocks.AMETHYST_BLOCK), 16)
                 && checker.hasBlocks(blockState -> blockState.getBlock().getDescriptionId().contains("deepslate"), 64)
                 && checker.hasBlocks(blockState -> blockState.is(ModBlocks.CREEPER_TOTEM.get()), 16)) {

@@ -126,6 +126,9 @@ public class ModBlockEntities {
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OminousIdolBlockEntity>> OMINOUS_IDOL = BLOCK_ENTITY.register("ominous_idol",
             () -> BlockEntityType.Builder.of(OminousIdolBlockEntity::new, ModBlocks.OMINOUS_IDOL.get()).build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OminousDecreeBlockEntity>> OMINOUS_DECREE = BLOCK_ENTITY.register("ominous_decree",
+            () -> BlockEntityType.Builder.of(OminousDecreeBlockEntity::new, ModBlocks.OMINOUS_DECREE.get()).build(null));
+
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PithosBlockEntity>> PITHOS = BLOCK_ENTITY.register("pithos",
             () -> BlockEntityType.Builder.of(PithosBlockEntity::new, ModBlocks.PITHOS.get()).build(null));
 
@@ -250,6 +253,9 @@ public class ModBlockEntities {
                 return BlockEntityType.Builder.of(PlushieBlockEntity::new, blocks).build(null);
             }
     );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EndLanternBlockEntity>> END_LANTERN = BLOCK_ENTITY.register("end_lantern",
+            () -> BlockEntityType.Builder.of(EndLanternBlockEntity::new, ModBlocks.END_WALL_LANTERN.get(), ModBlocks.END_STANDING_LANTERN.get(), ModBlocks.END_FLOATING_LANTERN.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SculpturedStatueBlockEntity>> SCULPTURED_STATUE = BLOCK_ENTITY.register("sculptured_statue",
             () -> BlockEntityType.Builder.of(SculpturedStatueBlockEntity::new,

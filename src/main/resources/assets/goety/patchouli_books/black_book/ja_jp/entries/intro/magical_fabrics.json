@@ -1,5 +1,5 @@
 {
-  "name": "Magical Fabrics",
+  "name": "魔法の生地",
   "icon": "goety:dark_fabric",
   "category": "goety:intro",
   "sortnum": 5,
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Lapis Lazuli seems to be the main component for utilizing magic. Combining it with a bunch of strings creates a special string that channels magic better than its mundane counterpart. By combining these special strings with a dye or some other component, you're capable of creating special fabrics."
+      "text": "ラピスラズリは魔法を利用するための主成分のようです。 これを多数の文字列と組み合わせると、ありふれた文字列よりも魔法をうまく伝える特別な文字列が作成されます。 これらの特別な糸を染料やその他の成分と組み合わせることで、特別な生地を作ることができます。"
     },
     {
       "type": "patchouli:crafting",

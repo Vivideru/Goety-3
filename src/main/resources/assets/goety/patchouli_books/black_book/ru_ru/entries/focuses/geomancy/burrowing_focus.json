@@ -1,11 +1,11 @@
 {
-  "name": "Burrowing Focus",
+  "name": "Фокус бурения",
   "icon": "goety:burrowing_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus shoots a beam of magical energy that's capable of mining the very rock and stone with tougher materials taking longer to mine."
+      "text": "Фокус стреляет лучом магической энергии, который способен разрушать каменные породы. Добыча более прочных материалов занимает больше времени."
     },
     {
       "type": "patchouli:crafting",
@@ -13,11 +13,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Potency enchantment increases the speed of mining and on higher levels allows the spell to mine blocks that require diamond or netherite tools."
+      "text": "«Мощность» увеличивает скорость разрушения, а на высоких уровнях позволяет использовать заклинание для добычи блоков, требующих алмазных или незеритовых инструментов."
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will cause the spell to mine in a 3x3 area, so long as the blocks are mine-able with pickaxe or shovel."
+      "text": "Использование $(l:crafts/staff/geo_staff)гео-посоха$() позволяет разрушать блоки в области 3 на 3, но только если они добываются киркой ил лопатой."
     }
   ]
 }

@@ -1,0 +1,31 @@
+{
+  "name": "Cursed Plinth",
+  "icon": "goety:plinth_stone",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/read_haunting_scroll",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Cursed Plinth is a low plate of stone on which golems and $(l:world/bestiary/haunted_armor)Haunted Armors$() can rest as statues. While resting they recover 2% of their health every second and mend their armor and weapons at the same pace, make no sound, cannot be harmed and never despawn. The statue faces the way the Plinth was placed; a Rotation Focus turns the plate, and the statue with it. Bind a $(l:crafts/waystone)Waystone$() to a Plinth, then use it on one of your golems or Haunted Armors: it will walk to the Plinth and turn to stone there. A servant simply told to guard a Plinth adopts it as well once it stands on it."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:plinth_stone"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "When an enemy comes within 4 blocks of the Cursed Plinth, the statue comes to life and attacks. Once it has had no target for five seconds it returns to its Plinth and rests again. Each level of the Radius enchantment on the Plinth adds 6 blocks to the distance at which the guardian wakes."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A single Cursed Plinth carries Haunted Armors and the smaller golems. Squall, Ice, Grave and Redstone Golems need a square of 3x3 Plinths, and the Redstone Monstrosity a square of 5x5; the guardian rests on the middle plate, and a Waystone bound to any plate of the square leads it there. Any Cursed Plinth of any stone can be used for the square. A Plinth glows while it is mending the guardian on it."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Cursed Plinths are forged in the same way from any of the stones used for Pedestals: Stone, Deepslate, Blackstone, Nether Brick, End Stone, Prismarine, Ominous Stone, Highrock, Marble, Crypt Stone and Shade Stone. A golem or Haunted Armor that is not yours but stands idle on a Plinth adopts it as well, which is how the guardians of ruins keep watch over their halls."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:plinth_stone": 1
+  }
+}

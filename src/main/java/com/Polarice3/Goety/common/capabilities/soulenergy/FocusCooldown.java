@@ -1,9 +1,12 @@
 package com.Polarice3.Goety.common.capabilities.soulenergy;
 
 
+import com.Polarice3.Goety.api.items.magic.ISpellHolder;
+import com.Polarice3.Goety.common.magic.spells.wind.LaunchSpell;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SFocusCooldownPacket;
 import com.Polarice3.Goety.common.network.server.SFocusSpecificCooldownPacket;
+import com.Polarice3.Goety.config.SpellConfig;
 import com.google.common.collect.Maps;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -62,12 +65,27 @@ public class FocusCooldown {
         return 0.0F;
     }
 
+    private static boolean pausedInAir(Player player, Item item) {
+        return !player.onGround()
+                && item instanceof ISpellHolder holder && holder.getSpell() instanceof LaunchSpell
+                && SpellConfig.LaunchNoAirRecharge.get();
+    }
+
+    private static boolean pausedInAir(Player player, String key) {
+        int data = key.indexOf('{');
+        ResourceLocation location = ResourceLocation.tryParse(data < 0 ? key : key.substring(0, data));
+        return location != null && pausedInAir(player, BuiltInRegistries.ITEM.get(location));
+    }
+
     public void tick(Player player, Level level) {
         if (!this.cooldowns.isEmpty()) {
             Iterator<Map.Entry<Item, CooldownInstance>> iterator = this.cooldowns.entrySet().iterator();
 
             while(iterator.hasNext()) {
                 Map.Entry<Item, CooldownInstance> entry = iterator.next();
+                if (pausedInAir(player, entry.getKey())) {
+                    continue;
+                }
                 entry.getValue().decreaseTime();
                 if (entry.getValue().time <= 0) {
                     iterator.remove();
@@ -82,6 +100,9 @@ public class FocusCooldown {
 
             while(iterator.hasNext()) {
                 Map.Entry<String, CooldownInstance> entry = iterator.next();
+                if (pausedInAir(player, entry.getKey())) {
+                    continue;
+                }
                 entry.getValue().decreaseTime();
                 if (entry.getValue().time <= 0) {
                     iterator.remove();

@@ -1,11 +1,11 @@
 {
-  "name": "Telekinesis Focus",
+  "name": "テレキネシスのフォーカス",
   "icon": "goety:telekinesis_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Causes a targeted item or creature to float towards the caster's crosshairs, but only if the target is equal or smaller than the caster's size, if the focus is not enchanted with Potency."
+      "text": "ターゲットのアイテムまたはクリーチャーが術者の十字線に向かって浮遊しますが、ターゲットが術者のサイズと同じかそれより小さい場合、フォーカスが効力でエンチャントされていない場合に限ります。"
     },
     {
       "type": "goety:ritual",

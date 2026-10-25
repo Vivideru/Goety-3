@@ -1,19 +1,19 @@
 {
-  "name": "Reaping Focus",
+  "name": "リーパーのフォーカス",
   "icon": "goety:reaping_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These soul hungering apparitions are not only useful at mowing down multiple foes, but also gather soul energy for their necromantic master."
+      "text": "これらの魂を飢えた亡霊は、複数の敵をなぎ倒すのに役立つだけでなく、死霊術師の主人のために魂のエネルギーを集めるのにも役立ちます。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/reaping_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more reapers at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるリーパーの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

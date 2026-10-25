@@ -1,24 +1,24 @@
 {
-  "name": "Grimoire of Grounding",
+  "name": "Гриумар заземления",
   "icon": "goety:grimoire_of_grounding",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sometimes, you want some of your servants, or their subspecies so to speak, to stay where they are when mass teleporting them through crouch casting their associated summoning spell or through other spells."
+      "text": "Иногда вы хотите, чтобы некоторые ваши прислужники или их, так сказать, подвиды оставались на месте, когда вы телепортируете их с помощью приседания, используя соответствующий фокус призыва или любой другой."
     },
     {
       "type": "patchouli:text",
-      "text": "When mentioning recording their subspecies, what it means is that if you were to add Jungle Zombie Servants to it, crouch casting Rotting Spell will summon all variants of Zombie Servants except for Jungle. "
+      "text": "Внесение подвидов означает, что если, например, вы запишете в гримуар тропических зомби-прислужников, то используя фокус гниения, присев, он призовёт к вам всех зомби-прислужников, кроме тропических."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:grimoire_of_grounding",
-      "text": "Right clicking in the air shows who you have grounded. Shift right click to see the species."
+      "text": "Нажатие ПКМ по воздуху покажет, кого вы заземлили. Нажмите ПКМ, присев, чтобы посмотреть виды."
     },
     {
       "type": "patchouli:text",
-      "text": "Call Spell still works even if stored summon is recorded in the grimoire. For Troop Spell, only individuals recorded on the grimoire aren't teleported. The grimoire adds and erases servants the same way other grimoires do for creatures."
+      "text": "Фокус призыва по-прежнему работает, даже если выбранный прислужник внесён в гримуар. При использовании фокуса армии не телепортируются только отдельные прислужники, внесённые в гримуар. Гримуар добавляет и удаляет прислужников так же, как это делают другие гримуары."
     },
     {
       "type": "patchouli:text",

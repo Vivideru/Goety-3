@@ -1,5 +1,5 @@
 {
-  "name": "Adept Nether Ritual",
+  "name": "Начинающий ритуал Незера",
   "icon": "minecraft:blackstone",
   "category": "goety:rituals",
   "advancement": "minecraft:story/enter_the_nether",
@@ -7,17 +7,17 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Be in the Nether $(li)8 Basalts Any $(li)16 Blackstone Any $(li)4 Glowstone"
+      "text": "Требования: $(li)Алтарь должен находиться в Незере $(li)8 любых базальтовых блоков $(li)16 любых чернитных блоков $(li)4 светокамня"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/adept_nether.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "Пример того, как можно провести ритуал."
     },
     {
       "type": "patchouli:text",
-      "text": "The Nether is a dimension full of Soul Energy, as shown with the endless amounts of Soul Sand that littered the realm. However, there still needs structure to create Nether related artifacts to focus the abundance into one place. The Blackstone and Basalt can be of any kind."
+      "text": "Незер — измерение, наполненное энергией душ, о чём свидетельствуют бесконечные долины песка душ. Однако для создания артефактов, связанных с Незером, всё ещё требуется структура, которая сосредоточит эту энергию в одном месте. Чернит и базальт могут быть любыми."
     }
   ]
 }

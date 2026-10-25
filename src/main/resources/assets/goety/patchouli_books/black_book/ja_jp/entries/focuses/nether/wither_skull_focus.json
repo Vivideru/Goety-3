@@ -1,5 +1,5 @@
 {
-  "name": "Wither Skull Focus",
+  "name": "ウィザースカルのフォーカス",
   "icon": "goety:wither_skull_focus",
   "category": "goety:focuses/nether",
   "advancement": "goety:goety/kill_a_apostle",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The unholy blood of the Nether's emissary allows you to upgrade your Skull Focus to replicate the skulls of the Wither! Beware of its destructive abilities!"
+      "text": "ネザーの使者の血は、スカルのフォーカスをアップグレードしてウィザーの頭蓋骨を再現することを可能にします！ただし、その破壊力にはご注意ください！"
     },
     {
       "type": "goety:ritual",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() shoots two more wither skulls."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、さらに2つのウィザースカルを撃ちます。"
     }
   ],
   "extra_recipe_mappings": {

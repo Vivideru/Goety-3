@@ -1,17 +1,16 @@
 package com.Polarice3.Goety.common.entities.ally.undead.zombie;
 
+import com.Polarice3.Goety.api.entities.IShielded;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
-import com.Polarice3.Goety.client.particles.SmashParticleOption;
 import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.ai.ShieldedMeleeGoal;
+import com.Polarice3.Goety.common.entities.ai.ShieldedPreMeleeGoal;
 import com.Polarice3.Goety.common.entities.ally.Summoned;
 import com.Polarice3.Goety.config.AttributesConfig;
 import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
-import com.Polarice3.Goety.utils.*;
+import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ItemParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -19,7 +18,6 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
@@ -28,23 +26,17 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.Tags;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class BlackguardServant extends ZombieServant{
+public class BlackguardServant extends ZombieServant implements IShielded {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BlackguardServant.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> HAS_SHIELD = SynchedEntityData.defineId(BlackguardServant.class, EntityDataSerializers.BOOLEAN);
     public int attackTick;
@@ -59,8 +51,16 @@ public class BlackguardServant extends ZombieServant{
 
     @Override
     public void attackGoal() {
-        this.goalSelector.addGoal(1, new MeleeGoal());
-        this.goalSelector.addGoal(4, new BlackguardAttackGoal());
+        this.goalSelector.addGoal(1, new ShieldedMeleeGoal<>(this) {
+            public void playPreAttack() {
+                this.mob.playSound(ModSounds.BLACKGUARD_PRE_ATTACK.get(), this.mob.getSoundVolume() + 1.0F, this.mob.getVoicePitch());
+            }
+
+            public void playSmash() {
+                this.mob.playSound(ModSounds.BLACKGUARD_SMASH.get(), this.mob.getSoundVolume() + 1.0F, this.mob.getVoicePitch());
+            }
+        });
+        this.goalSelector.addGoal(4, new ShieldedPreMeleeGoal<>(this));
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -70,7 +70,7 @@ public class BlackguardServant extends ZombieServant{
                 .add(Attributes.MOVEMENT_SPEED, 0.23F)
                 .add(Attributes.KNOCKBACK_RESISTANCE, 1.0F)
                 .add(Attributes.ATTACK_DAMAGE, AttributesConfig.get(AttributesConfig.BlackguardServantDamage))
-                .add(Attributes.ATTACK_KNOCKBACK, 1.0F)
+                .add(Attributes.ATTACK_KNOCKBACK, 1.5F)
                 .add(Attributes.ARMOR, AttributesConfig.get(AttributesConfig.BlackguardServantArmor))
                 .add(Attributes.ARMOR_TOUGHNESS, AttributesConfig.get(AttributesConfig.BlackguardServantToughness));
     }
@@ -90,18 +90,12 @@ public class BlackguardServant extends ZombieServant{
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("hasShield")){
-            this.setShield(pCompound.getBoolean("hasShield"));
-        }
-        if (pCompound.contains("ShieldHeath")){
-            this.setShieldHealth(pCompound.getInt("ShieldHeath"));
-        }
+        this.readShieldedData(pCompound);
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        pCompound.putBoolean("hasShield", this.hasShield());
-        pCompound.putInt("ShieldHeath", this.getShieldHealth());
+        this.addShieldedData(pCompound);
     }
 
     @Override
@@ -146,24 +140,9 @@ public class BlackguardServant extends ZombieServant{
         this.shieldHealth = shieldHealth;
     }
 
+    @Override
     public int getMaxShieldHealth() {
         return AttributesConfig.get(AttributesConfig.BlackguardServantShield);
-    }
-
-    public void destroyShield(){
-        if (this.hasShield()) {
-            if (this.getShieldHealth() > 1){
-                this.setShieldHealth(this.getShieldHealth() - 1);
-                this.playSound(SoundEvents.SHIELD_BLOCK);
-            } else {
-                this.setShieldHealth(0);
-                this.setShield(false);
-                this.playSound(ModSounds.SHIELD_BREAK.get(), 1.5F, 1.0F);
-                if (this.level() instanceof ServerLevel serverLevel){
-                    ServerParticleUtil.addParticlesAroundSelf(serverLevel, new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ANVIL)), this);
-                }
-            }
-        }
     }
 
     public boolean isMeleeAttacking() {
@@ -174,6 +153,15 @@ public class BlackguardServant extends ZombieServant{
         this.setFlags(1, attacking);
         this.attackTick = 0;
         this.level().broadcastEntityEvent(this, (byte) 5);
+    }
+
+    @Override
+    public int getAttackTick() {
+        return this.attackTick;
+    }
+
+    public void setAttackTick(int attackTick) {
+        this.attackTick = attackTick;
     }
 
     @Override
@@ -226,6 +214,11 @@ public class BlackguardServant extends ZombieServant{
         super.die(pCause);
     }
 
+    @Override
+    public int xpReward() {
+        return 20;
+    }
+
     protected void playHurtSound(DamageSource p_21160_) {
         SoundEvent soundevent = this.getHurtSound(p_21160_);
         if (soundevent != null) {
@@ -269,25 +262,7 @@ public class BlackguardServant extends ZombieServant{
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (!this.level().isClientSide) {
-            if (this.hasShield() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-                this.destroyShield();
-                return false;
-            } else {
-                if (this.getTarget() != null) {
-                    if (source.getEntity() instanceof LivingEntity livingEntity) {
-                        double d0 = this.distanceTo(this.getTarget());
-                        double d1 = this.distanceTo(livingEntity);
-                        if (MobUtil.ownedCanAttack(this, livingEntity) && livingEntity != this.getTrueOwner()) {
-                            if (d0 > d1) {
-                                this.setTarget(livingEntity);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return super.hurt(source, amount);
+        return this.hurtShielded(source, amount, () -> super.hurt(source, amount));
     }
 
     @Override
@@ -299,29 +274,21 @@ public class BlackguardServant extends ZombieServant{
 
     @Override
     public void handleEntityEvent(byte p_21375_) {
-        if (p_21375_ == 4){
-            this.stopAllAnimations();
-            this.attackAnimationState.start(this.tickCount);
-        } else if (p_21375_ == 5){
-            this.attackTick = 0;
-        } else if (p_21375_ == 6){
-            this.setShield(true);
-            this.setShieldHealth(this.getMaxShieldHealth());
+        if (p_21375_ == 4 || p_21375_ == 5 || p_21375_ == 6){
+            this.handleShieldedEvent(p_21375_);
         } else {
             super.handleEntityEvent(p_21375_);
         }
     }
 
+    @Override
+    public void animateAttack() {
+        this.stopAllAnimations();
+        this.attackAnimationState.start(this.tickCount);
+    }
+
     protected double getAttackReachSqr(LivingEntity enemy) {
-        return (double)(this.getBbWidth() * 6.0F * this.getBbWidth() * 6.0F + enemy.getBbWidth());
-    }
-
-    public boolean targetClose(LivingEntity enemy, double distToEnemySqr){
-        return distToEnemySqr <= this.getAttackReachSqr(enemy) || this.getBoundingBox().intersects(enemy.getBoundingBox());
-    }
-
-    public Vec3 getHorizontalLookAngle() {
-        return this.calculateViewVector(0, this.getYRot());
+        return this.getShieldedAttackReachSqr(enemy);
     }
 
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
@@ -344,143 +311,10 @@ public class BlackguardServant extends ZombieServant{
                 }
                 return InteractionResult.SUCCESS;
             }
-            if (!this.level().isClientSide) {
-                if (!this.hasShield() && itemstack.is(Tags.Items.INGOTS_IRON) && this.getTarget() == null && this.hurtTime <= 0){
-                    if (!pPlayer.getAbilities().instabuild) {
-                        itemstack.shrink(1);
-                    }
-                    this.setShield(true);
-                    this.setShieldHealth(this.getMaxShieldHealth());
-                    this.level().broadcastEntityEvent(this, (byte) 6);
-                    this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value(), 1.0F, 1.0F);
-                    return InteractionResult.SUCCESS;
-                }
+            if (!this.hasShield() && this.isShieldRepair(itemstack) && this.getTarget() == null && this.hurtTime <= 0) {
+                return this.repairShield(pPlayer, itemstack);
             }
         }
-        return InteractionResult.PASS;
-    }
-
-    class BlackguardAttackGoal extends MeleeAttackGoal {
-        private int delayCounter;
-        private static final float SPEED = 1.0F;
-
-        public BlackguardAttackGoal() {
-            super(BlackguardServant.this, SPEED, true);
-        }
-
-        @Override
-        public boolean canUse() {
-            return BlackguardServant.this.getTarget() != null
-                    && BlackguardServant.this.getTarget().isAlive();
-        }
-
-        @Override
-        public void start() {
-            BlackguardServant.this.setAggressive(true);
-            this.delayCounter = 0;
-        }
-
-        @Override
-        public void stop() {
-            BlackguardServant.this.getNavigation().stop();
-            if (BlackguardServant.this.getTarget() == null) {
-                BlackguardServant.this.setAggressive(false);
-            }
-        }
-
-        @Override
-        public void tick() {
-            LivingEntity livingentity = BlackguardServant.this.getTarget();
-            if (livingentity == null) {
-                return;
-            }
-
-            BlackguardServant.this.lookControl.setLookAt(livingentity, 30.0F, 30.0F);
-            double d0 = BlackguardServant.this.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
-
-            if (--this.delayCounter <= 0 && !BlackguardServant.this.targetClose(livingentity, d0)) {
-                this.delayCounter = 10;
-                BlackguardServant.this.getNavigation().moveTo(livingentity, SPEED);
-            }
-
-            this.checkAndPerformAttack(livingentity, BlackguardServant.this.distanceToSqr(livingentity.getX(), livingentity.getBoundingBox().minY, livingentity.getZ()));
-        }
-
-        protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-            if (BlackguardServant.this.targetClose(enemy, distToEnemySqr)) {
-                if (!BlackguardServant.this.isMeleeAttacking()) {
-                    BlackguardServant.this.setMeleeAttacking(true);
-                }
-            }
-        }
-    }
-
-    class MeleeGoal extends Goal {
-        public MeleeGoal() {
-            this.setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
-        }
-
-        @Override
-        public boolean canUse() {
-            return BlackguardServant.this.getTarget() != null
-                    && BlackguardServant.this.isMeleeAttacking();
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return BlackguardServant.this.attackTick < MathHelper.secondsToTicks(1.42F);
-        }
-
-        @Override
-        public void start() {
-            BlackguardServant.this.setMeleeAttacking(true);
-            BlackguardServant.this.level().broadcastEntityEvent(BlackguardServant.this, (byte) 4);
-        }
-
-        @Override
-        public void stop() {
-            BlackguardServant.this.setMeleeAttacking(false);
-        }
-
-        @Override
-        public void tick() {
-            if (BlackguardServant.this.getTarget() != null) {
-                LivingEntity livingentity = BlackguardServant.this.getTarget();
-                MobUtil.instaLook(BlackguardServant.this, livingentity);
-            }
-            if (BlackguardServant.this.attackTick == 1){
-                BlackguardServant.this.playSound(ModSounds.BLACKGUARD_PRE_ATTACK.get(), BlackguardServant.this.getSoundVolume() + 1.0F, BlackguardServant.this.getVoicePitch());
-            }
-            if (BlackguardServant.this.attackTick == 9){
-                BlackguardServant.this.playSound(ModSounds.BLACKGUARD_SMASH.get(), BlackguardServant.this.getSoundVolume() + 1.0F, BlackguardServant.this.getVoicePitch());
-            }
-            if (BlackguardServant.this.attackTick == 14) {
-                double x = BlackguardServant.this.getX() + BlackguardServant.this.getHorizontalLookAngle().x * 2;
-                double y = BlackguardServant.this.getY();
-                double z = BlackguardServant.this.getZ() + BlackguardServant.this.getHorizontalLookAngle().z * 2;
-                AABB aabb = MobUtil.makeAttackRange(x, y, z, 3, 3, 3);
-                for (LivingEntity target : BlackguardServant.this.level().getEntitiesOfClass(LivingEntity.class, aabb)) {
-                    if (target != BlackguardServant.this && !MobUtil.areAllies(target, BlackguardServant.this)) {
-                        BlackguardServant.this.doHurtTarget(target);
-                    }
-                }
-                if (BlackguardServant.this.level() instanceof ServerLevel serverLevel){
-                    double groundY = BlockFinder.findGroundY(serverLevel, x, y, z);
-
-                    BlockPos blockPos = BlockPos.containing(x, groundY - 1.0D, z);
-                    BlockParticleOption option = new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(blockPos));
-                    for (int i = 0; i < 2; ++i) {
-                        ServerParticleUtil.circularParticles(serverLevel, option, x, groundY + 0.25D, z, 1.5F);
-                    }
-                    ColorUtil colorUtil = new ColorUtil(serverLevel.getBlockState(blockPos).getMapColor(serverLevel, blockPos).col);
-                    serverLevel.sendParticles(new SmashParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), 1.5F, 10), x, groundY, z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-                }
-            }
-        }
-
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
+        return super.mobInteract(pPlayer, pHand);
     }
 }
-

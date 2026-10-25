@@ -1,11 +1,11 @@
 {
-  "name": "Ring of Thirst",
+  "name": "Кольцо жажды",
   "icon": "goety:ring_of_thirst",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Eerie Pickaxe might be useful for collecting Experience Orbs, there are times where even that ability is not enough. With this ring, experience is immediately given to the wearer if it's dropped by killing a creature, personally or through a servant."
+      "text": "Жуткая кирка может пригодиться для сбора опыта, но иногда даже её недостаточно. Обладатель этого кольца немедленно собирает опыт, полученный при убийстве существа (им или его прислужником)."
     },
     {
       "type": "goety:ritual",

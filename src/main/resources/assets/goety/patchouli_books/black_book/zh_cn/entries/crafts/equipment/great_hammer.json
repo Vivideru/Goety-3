@@ -15,5 +15,8 @@
       "type": "patchouli:text",
       "text": "锤子可以破坏3*3的区域，但挖掘速度低于镐。因为锤子是用来打造武器的，用它右键点击一个铁块会把它变成一个损坏的铁砧。锤子可以用铁锭在铁砧上修理."
     }
-  ]
+  ],
+  "extra_recipe_mappings": {
+    "goety:great_hammer": 1
+  }
 }

@@ -1,19 +1,19 @@
 {
-  "name": "Zombie Servant",
+  "name": "ゾンビの従者",
   "icon": "minecraft:zombie_head",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Zombies are the most common undead creature to crawl out of the dark, and it's no surprise that summoning and controlling them aren't exactly hard to do, whether it be from spell or ritual."
+      "text": "ゾンビは暗闇から這い出てくる最も一般的なアンデッドであり、呪文や儀式のいずれによっても、ゾンビを召喚して制御することがそれほど難しいことではないのは当然です。"
     },
     {
       "type": "patchouli:text",
-      "text": "The following texts will detail the variants of zombies a necromancer can summon."
+      "text": "以下のテキストでは、召喚できるゾンビの亜種について詳しく説明します。"
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/necromancy/rotting_focus)Rotting Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "これらは$(l:focuses/necromancy/rotting_focus)ゾンビのフォーカス$()を使用するか、寿命に制限のない従者を召喚する儀式を通じて呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Zombie Servants are simple in their functions, kill anyone who hurts you or any hostile creatures and follow you much like Tamed Wolves, only taller and stinkier. "
+      "text": "ゾンビの従者の機能は単純で、敵対的な生き物やあなたを傷つける者を殺し、飼いならされたオオカミのようにあなたに従いますが、背が高くて臭いだけです。"
     },
     {
       "type": "patchouli:entity",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Zombie Servants can be summoned or converted into different variants. Casting the Rotting Focus in a Desert exposed to the sky will summon a Husk Servant."
+      "text": "ゾンビの従者は召喚等により様々な亜種に変化させることができます。空に面した砂漠でゾンビのフォーカスを唱えると、ハスクの従者が召喚されます。"
     },
     {
       "type": "patchouli:entity",
@@ -41,7 +41,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Trying to summon a Zombie underwater would summon a Drowned Servant instead. Drowned Servants can accept Tridents and will attack the same way as a regular Drowned."
+      "text": "水中でゾンビを召喚しようとすると、代わりにドラウンドの従者が召喚されます。トライデントを装備でき、通常のドラウンドと同じように攻撃します。"
     },
     {
       "type": "patchouli:entity",
@@ -49,7 +49,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A simple Zombie Villager, only more loyal and less curable. Summoning a zombie in a Village will summon a Zombie Villager Servant."
+      "text": "シンプルなゾンビ村人。忠誠心がより強く、治癒能力は低い。村でゾンビを召喚すると、ゾンビ村人の従者が召喚されます。"
     },
     {
       "type": "patchouli:entity",
@@ -57,7 +57,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Summoning a Zombie in a cold, snowy environment, or with a $(l:crafts/staff/frost_staff)Frost Staff$(), will call forth a Frozen Zombie Servant. Frozen Zombie Servants will slow down their targets through their fists or their snowballs they chuck. Much like Strays, they don't take damage from Freezing."
+      "text": "寒くて雪の降る環境でゾンビを召喚するか、$(l:crafts/staff/frost_staff)氷の杖$()を使用すると、フローズンゾンビの従者が召喚されます。近接攻撃や雪玉で対象の移動速度を低下させます。ストレイと同様に、凍結によるダメージは受けません。"
     },
     {
       "type": "patchouli:entity",
@@ -65,7 +65,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While being in a Jungle biome, one might have a chance of summoning a Jungle Zombie Servant instead, a 100%% if summoned with a $(l:crafts/staff/wild_staff)Wild Staff$(). Their attacks inflicts Poison, but if their summoner dons the $(l:crafts/garment/wild_robe)Wild Robes$(), they will inflict Acid Venom."
+      "text": "ジャングルバイオームにいる場合、代わりにジャングルゾンビの従者を召喚する可能性があります。$(l:crafts/staff/wild_staff)野生の杖$()で召喚した場合、100%の確率で召喚されます。ジャングルゾンビの従者の攻撃は毒攻撃ですが、召喚者が$(l:crafts/garment/wild_robe)野生のローブ$()を装備している場合は、酸毒を付与します。"
     },
     {
       "type": "patchouli:entity",
@@ -73,7 +73,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "When exposed to an open thunderstorm, there's a 50%% chance of summoning a Frayed Servant instead of a regular Zombie, a 100%% when summoned with a $(l:crafts/staff/storm_staff)Storm Staff$(). They inflict Spasms when they attack and take 50%% less damage from shock or lightning attacks."
+      "text": "雷雨にさらされると、通常のゾンビではなく、50%の確率でフレイドの従者が召喚されます。$(l:crafts/staff/storm_staff)嵐の杖$()で召喚した場合は100%の確率です。攻撃時に痙攣効果を与え、ショック攻撃や雷によるダメージを半減します。"
     },
     {
       "type": "patchouli:entity",
@@ -81,7 +81,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Summoning a zombie within the mansions of the Illagers, will summon forth loyal Zombie Vindicators instead. It appears that many Vindicators are buried within their homes, still clutching their axes."
+      "text": "イリジャーの屋敷内でゾンビを召喚すると、代わりに忠実なゾンビヴィンディケーターの従者が召喚されます。どうやら多くのヴィンディケーターが斧を握りしめたまま、家の中に埋もれているようです。"
     },
     {
       "type": "patchouli:entity",
@@ -89,7 +89,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Nether is full of Zombified Piglins that it comes to no surprised that casting the spell within the abominable realm will call forth one that's loyal towards you. Fire-resistant and scares Piglins like any other of its kind."
+      "text": "ネザーにはゾンビ化したピグリンが溢れているため、この忌まわしい領域で呪文を唱えれば、ゾンビピグリンの従者が召喚されるのも当然と言えるでしょう。彼らは火に耐性があり、通常と同様にピグリンを怖がらせます。"
     },
     {
       "type": "patchouli:entity",
@@ -97,11 +97,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Brutish guardians of the bastions rarely, if ever, leave their home, and most have their bodies burnt by the surrounding lava. Nonetheless, there's still a chance of summoning a Zombified version when casting within their holds."
+      "text": "要塞の野蛮な守護者たちは滅多に故郷を離れることはなく、そのほとんどは周囲の溶岩に焼かれて死んでしまう。それでも、要塞内で呪文を唱えると、ゾンビ化したものを召喚する可能性は依然としてあります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Zombie Servants in all variants can accept any Armor but only accept Swords or Axes."
+      "text": "すべてのバリエーションのゾンビの従者は、任意の鎧を受け入れることができますが、受け入れる武器は剣または斧のみです。"
     }
   ]
 }

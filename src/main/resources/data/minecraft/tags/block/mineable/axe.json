@@ -18,6 +18,8 @@
     "goety:witch_pole",
     "goety:magic_thorn",
     "goety:overgrown_roots",
-    "goety:corpse_blossom"
+    "goety:corpse_blossom",
+    "#goety:marsh_wood_blocks",
+    "#goety:weathered_wood_blocks"
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Ring of Want",
+  "name": "欲望のリング",
   "icon": "goety:ring_of_want",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Ring of Want allows creatures to drop more loot when slain by your spells or by creatures conjured up by you. For the Ring to work, you must enchant it, where it will accept the Wanting Enchantment which functions similar to Looting."
+      "text": "欲望のリングは、あなたの呪文や従者によって倒されたクリーチャーが、より多くの戦利品を落とすようにする骨董品です。リングを機能させるにはエンチャントをする必要があります。エンチャントすれば、略奪と同様の効果を持つ「欲望」のエンチャントがリングに付与されます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing the Ring of Want with Wanting III or more will cause your Fangs to have a 25%% chance (100%% if it's a Player) of dropping a creature's head/skull."
+      "text": "ドロップ効果を持つ武器を装備した状態で呪文を唱えたり、従者に敵を倒させたりすると、ドロップ増加の効果がリングに上書きされることがあります。ただし、ドロップ増加のレベルが指輪の欲望レベルよりも高い場合です。欲望III以上のリングを装備すると、あなたの牙からクリーチャーの頭部/頭蓋骨をドロップする確率が25%%（プレイヤーの場合は100%%）になります。"
     }
   ],
   "extra_recipe_mappings": {

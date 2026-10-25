@@ -28,19 +28,22 @@ public abstract class VaultBlockEntityMixin extends BlockEntity {
 
     @Inject(method = "getUpdateTag", at = @At("RETURN"))
     private void goety$syncVariant(HolderLookup.Provider registries, CallbackInfoReturnable<CompoundTag> cir) {
-        if (VaultVariants.isWindShrine(this)) {
-            cir.getReturnValue().put(VaultVariants.PERSISTENT_DATA, VaultVariants.windShrineMarker());
+        String variant = VaultVariants.variantOf(this);
+        if (variant != null) {
+            cir.getReturnValue().put(VaultVariants.PERSISTENT_DATA, VaultVariants.marker(variant));
         }
     }
 
     @Inject(method = "loadAdditional", at = @At("TAIL"))
     private void goety$variantKey(CompoundTag tag, HolderLookup.Provider registries, CallbackInfo ci) {
-        if (VaultVariants.isWindShrine(this)) {
-            ItemStack key = VaultVariants.windShrineKey(this.getBlockState());
-            if (!ItemStack.isSameItemSameComponents(this.config.keyItem(), key)) {
-                this.config = new VaultConfig(this.config.lootTable(), this.config.activationRange(), this.config.deactivationRange(), key,
-                        this.config.overrideLootTableToDisplay(), this.config.playerDetector(), this.config.entitySelector());
-            }
+        String variant = VaultVariants.variantOf(this);
+        if (variant == null) {
+            return;
+        }
+        ItemStack key = VaultVariants.keyFor(variant, this.getBlockState());
+        if (key != null && !ItemStack.isSameItemSameComponents(this.config.keyItem(), key)) {
+            this.config = new VaultConfig(this.config.lootTable(), this.config.activationRange(), this.config.deactivationRange(), key,
+                    this.config.overrideLootTableToDisplay(), this.config.playerDetector(), this.config.entitySelector());
         }
     }
 }

@@ -1,17 +1,17 @@
 {
-  "name": "Insight in the Sands",
+  "name": "砂の洞察",
   "icon": "minecraft:sand",
   "category": "goety:rumors",
   "read_by_default": true,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've been working on improving your Necromantic powers when you heard something. There's something within the Desert that can increase your knowledge, perhaps within those $(l)pyramids$()?"
+      "text": "あなたは死霊術の力を向上させることに取り組んでいたとき、何かを聞きました。 砂漠の中には、おそらく $(l)ピラミッド$() の中に、あなたの知識を増やすことができる何かがあります。"
     },
     {
       "type": "patchouli:quest",
       "trigger": "goety:goety/read_front_scroll",
-      "text": "Whispers mentioned of spirited away knowledge being hidden in the sands."
+      "text": "神隠しの知識が砂の中に隠されているという噂がある。"
     }
   ]
 }

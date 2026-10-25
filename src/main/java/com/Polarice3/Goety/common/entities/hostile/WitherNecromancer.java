@@ -5,6 +5,7 @@ import com.Polarice3.Goety.common.entities.neutral.AbstractNecromancer;
 import com.Polarice3.Goety.common.entities.neutral.AbstractWitherNecromancer;
 import com.Polarice3.Goety.common.network.ModServerBossInfo;
 import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.utils.MiscCapHelper;
 import com.Polarice3.Goety.utils.ModLootTables;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -86,6 +87,7 @@ public class WitherNecromancer extends AbstractWitherNecromancer implements Enem
             this.bossInfo.update();
         }
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+        MiscCapHelper.updateMobTarget(this);
     }
 
     @Override

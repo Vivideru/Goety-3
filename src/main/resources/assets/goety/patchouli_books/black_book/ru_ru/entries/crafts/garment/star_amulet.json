@@ -1,11 +1,11 @@
 {
-  "name": "Soul Shield Amulet",
+  "name": "Амулет щита душ",
   "icon": "goety:star_amulet",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Soul Shield Amulet mimics the Wither's shield when its power has ebbed. Should its wearer be half or less of their maximum health, arrows will bounced off them. Should one be capable of Creative Flight without being in Creative, they will find themselves grounded when the shield is up."
+      "text": "Амулет щита душ имитирует щит визера, который он использует во второй фазе. Если у владельца остаётся половина или меньше максимального здоровья, он будет отражать стрелы. Если человек способен к полёту, не находясь в творческом режиме, то он опустится на землю, когда щит будет поднят."
     },
     {
       "type": "goety:ritual",

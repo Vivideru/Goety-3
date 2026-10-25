@@ -86,6 +86,7 @@ public class WindBlowerBlockEntity extends BlockEntity {
             Direction facing = state.getValue(WindBlowerBlock.FACING);
 
             int distance;
+            boolean partialBlocked = false;
             for (distance = 1; distance < state.getValue(WindBlowerBlock.POWER); distance++) {
                 BlockPos blockPos = getBlockPos().relative(facing, distance);
                 BlockState state2 = this.level.getBlockState(blockPos);
@@ -97,18 +98,26 @@ public class WindBlowerBlockEntity extends BlockEntity {
                     this.level.removeBlock(blockPos, false);
                     this.level.levelEvent((Player)null, 1009, blockPos, 0);
                 }
-                if ((state2.isSolid() && state2.isSolidRender(this.level, blockPos)) || state2.liquid()) {
+                // Water and other liquids do not stop the wind: only blocks do.
+                if (state2.isSolid() && state2.isSolidRender(this.level, blockPos)) {
+                    break;
+                }
+                // Slabs, stairs and other partial blocks with a full face across the wind's path also stop it,
+                // and their own space is left out so entities standing on them are not pushed.
+                if (!state2.isCollisionShapeFullBlock(this.level, blockPos)
+                        && (state2.isFaceSturdy(this.level, blockPos, facing.getOpposite()) || state2.isFaceSturdy(this.level, blockPos, facing))) {
+                    partialBlocked = true;
                     break;
                 }
             }
-            BlockPos blockPos2 = this.getBlockPos().relative(facing, distance);
+            BlockPos blockPos2 = this.getBlockPos().relative(facing, partialBlocked ? distance - 1 : distance);
             switch (facing) {
                 case UP, EAST, SOUTH -> blockPos2 = blockPos2.offset(1, 1, 1);
                 case DOWN -> blockPos2 = blockPos2.offset(1, 0, 1);
                 case WEST -> blockPos2 = blockPos2.offset(0, 1, 1);
                 case NORTH -> blockPos2 = blockPos2.offset(1, 1, 0);
             }
-            return AABB.encapsulatingFullBlocks(this.getBlockPos(), blockPos2);
+            return new AABB(Vec3.atLowerCornerOf(this.getBlockPos()), Vec3.atLowerCornerOf(blockPos2));
         } else {
             return new AABB(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
         }

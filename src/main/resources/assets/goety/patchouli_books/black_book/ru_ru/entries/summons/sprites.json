@@ -9,7 +9,12 @@
     },
     {
       "type": "patchouli:entity",
-      "entity": "goety:sprite"
+      "entity": "goety:sprite",
+      "scale": 0.75
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_sprite_thrall"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "name": "Heretic Servant",
+  "name": "ヘレティクの従者",
   "icon": "minecraft:blaze_powder",
   "category": "goety:mutations",
   "advancement": "goety:goety/craft_unholy_robe",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Usually when a Villager sleeps next to a Nether Portal, they have a chance of turning into a Heretic. When wearing an Unholy Hat and Robe while being near them however, will cause them to not only turn to heresy, but also serve you as loyal acolytes."
+      "text": "通常、村人がネザーポータルの隣で眠ると、ヘレティックへと変貌する可能性があります。しかし、反神聖の帽子とローブを身に着けて近くにいると、彼らはヘレティックへと変貌するだけでなく、忠実な侍祭としてあなたに仕えるようになります。"
     },
     {
       "type": "patchouli:entity",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You're also able to trade with your Heretic Servant by giving them an Emerald, without needing to wear appropriate attire to do so. You can also trade with other Heretic Servants, provided you're allied to their master, if they have one, and wearing the appropriate attire."
+      "text": "ヘレティックの従者にエメラルドを渡すことで、適切な服装をしなくても取引を行うことができます。また、ヘレティックの従者に主人がいる場合、その主人と同盟を結び、適切な服装をしていれば、他のヘレティックの従者とも取引が可能です。"
     }
   ]
 }

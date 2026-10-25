@@ -1,5 +1,5 @@
 {
-  "name": "Ravager Armor",
+  "name": "Разорительская броня",
   "icon": "goety:iron_ravager_armor",
   "category": "goety:crafts",
   "advancement": "goety:goety/read_ravaging_scroll",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While reading the scroll on the secrets of $(l:mutations/ravaged)Ravagers$(), you've came up with an idea of creating specialize armor that augments their already $(l:crafts/ominous_saddle)armored saddles$()."
+      "text": "Читая свиток, посвященный секретам $(l:mutations/ravaged)разорителей$(), вы пришли к идее создания специальной брони, которая дополняла бы их и без того $(l:crafts/ominous_saddle)бронированные сёдла$()."
     },
     {
       "type": "patchouli:text",
-      "text": "Creating armor for the massive beast requires a lot of Iron and metal but it will provide a large amount of protection for the newly transformed $(l:mutations/ravaged)Ravager$(). However, the $(l:mutations/ravaged)Ravager$() must be $(l:crafts/ominous_saddle)Saddled$() before applying the armor. You've heard rumors that you're not the first to think of armoring up Ravagers..."
+      "text": "Создание брони для такого массивного зверя требует много железа и металла, но она обеспечит надежную защиту только что трансформированному $(l:mutations/ravaged)разорителю$(). Однако для этого $(l:mutations/ravaged)разоритель$() должен быть $(l:crafts/ominous_saddle)осёдлан$(). До вас дошли слухи, что вы не первый, кто додумался вооружить разорителей..."
     },
     {
       "type": "goety:ritual",

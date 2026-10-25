@@ -1,11 +1,11 @@
 {
-  "name": "Dark Manors",
+  "name": "暗い邸宅",
   "icon": "minecraft:dark_oak_log",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Illagers are quite progressive compared to their passive cousins. Some have set up some Manors outside of their Mansions to study the world and its aspects."
+      "text": "邪悪な村人は、消極的な従兄弟たちに比べてかなり進歩的です。 世界とその側面を研究するために、邸宅の外にいくつかの邸宅を設立した人もいます。"
     },
     {
       "type": "patchouli:image",

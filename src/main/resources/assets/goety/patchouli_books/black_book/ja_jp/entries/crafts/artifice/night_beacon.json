@@ -1,5 +1,5 @@
 {
-  "name": "Night Beacon",
+  "name": "ナイトビーコン",
   "icon": "goety:night_beacon",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/gain_night_beacon",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Night Beacon is an ancient device told within Villager Legends. They say that the Piglins placed it upon a Nether Portal, where it caused the Overworld to be in perpetual night."
+      "text": "ナイトビーコンは、村人の伝説の中で語られる古代の装置です。 彼らは、ピグリンがそれをネザーポータルに置き、そこでオーバーワールドを永遠の夜にさせたと言います。"
     },
     {
       "type": "patchouli:text",
-      "text": "But the legends spoke of its destruction. Perhaps what you have obtained was a replica of such arcane device, one that much like the legends of old, can bring eternal night upon the world."
+      "text": "しかし、伝説ではその破壊について語られていました。 おそらくあなたが手に入れたのは、古い伝説によく似た、世界に永遠の夜をもたらす、そのような難解な装置のレプリカだったのでしょう。"
     }
   ],
   "extra_recipe_mappings": {

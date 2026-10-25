@@ -1,0 +1,8 @@
+{
+  "name": "goety:crypt/caps",
+  "fallback": "minecraft:empty",
+  "elements": [
+    { "weight": 1, "element": { "location": "goety:crypt/segment_end_1_a", "processors": "goety:crypt_ignore_void", "projection": "rigid", "element_type": "minecraft:single_pool_element" } },
+    { "weight": 1, "element": { "location": "goety:crypt/segment_end_2_a", "processors": "goety:crypt_ignore_void", "projection": "rigid", "element_type": "minecraft:single_pool_element" } }
+  ]
+}

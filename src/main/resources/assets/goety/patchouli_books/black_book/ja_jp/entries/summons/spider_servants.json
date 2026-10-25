@@ -1,15 +1,15 @@
 {
-  "name": "Spider Servant",
+  "name": "クモの従者",
   "icon": "minecraft:cobweb",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Simple, yet ravenous creatures, these giant arthopods can be great assets in combat, though they are very blind when within bright light."
+      "text": "シンプルでありながら貪欲なこれらの巨大な節足動物は、戦闘においては大きな武器となります。"
     },
     {
       "type": "patchouli:text",
-      "text": "The following texts will detail the variants of spiders a Spider Nest can train."
+      "text": "以下のテキストでは、蜘蛛の巣で訓練できるクモの亜種について詳しく説明します。"
     },
     {
       "type": "patchouli:entity",
@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The basic Spider found in the dark, only loyal towards you. Does whatever a Spider a can."
+      "text": "暗闇の中で見つけられる基本的なスパイダーで、あなたに対してのみ忠実です。 スパイダーにできることは何でもやる。"
     },
     {
       "type": "patchouli:entity",
@@ -27,7 +27,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A smaller and venomous subspecies of Spiders. Wearing Wild Robes will make these spiders inflict Acid Venom instead of regular Poison."
+      "text": "小型で有毒なクモの亜種。 野生のローブを着ていると、これらのクモは通常の毒の代わりに酸毒を与えます。"
     },
     {
       "type": "patchouli:entity",
@@ -36,7 +36,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Unlike their brutish counterparts, Web Spiders would not immediately attack their foes, but instead shoot a ball of web that, when hit, entangles them for a while, where upon they will rush towards them at high speed."
+      "text": "野蛮な蜘蛛とは異なり、ウェブ蜘蛛はすぐに敵を攻撃するのではなく、蜘蛛の巣のボールを発射します。攻撃を受けるとしばらく敵を絡め取り、その後高速で敵に向かって突進します。"
     },
     {
       "type": "patchouli:entity",
@@ -54,7 +54,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A bone covered spider that shoots Bone Shards at their foes from afar, only going onto melee if their target is close."
+      "text": "骨で覆われたクモで、遠くから敵に骨の破片を発射しますが、ターゲットが近い場合にのみ近接攻撃を行います。"
     },
     {
       "type": "patchouli:text",

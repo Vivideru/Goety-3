@@ -2,23 +2,23 @@
   "type": "goety:ritual",
   "ritual_type": "goety:craft",
   "activation_item": {
-    "tag": "c:glass_blocks"
+    "tag": "c:gems/quartz"
   },
-  "craftType": "forge",
+  "craftType": "magic",
   "soulCost": 1,
   "duration": 10,
   "ingredients": [
     {
-      "item": "goety:pale_steel_ingot"
-    },
-    {
-      "item": "goety:pale_steel_ingot"
-    },
-    {
       "item": "goety:ectoplasm"
     },
     {
-      "item": "goety:ectoplasm"
+      "tag": "goety:ominous_metal_ingot"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "tag": "c:ender_pearls"
     }
   ],
   "result": {

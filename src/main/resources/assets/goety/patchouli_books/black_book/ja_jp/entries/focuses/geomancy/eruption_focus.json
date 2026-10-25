@@ -1,11 +1,11 @@
 {
-  "name": "Eruption Focus",
+  "name": "火山のフォーカス",
   "icon": "goety:eruption_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus allows you to summon forth a small volcano that would spew several pyroclastic rocks to the sky, which would fall around it, exploding and hopefully hurting and stunning your foes."
+      "text": "このフォーカスにより、小さな火山を召喚して、いくつかの火砕岩を空に噴き出させることができます。この火砕岩は火山の周囲に落ち、爆発して敵を傷つけることになります。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() summon three small volcanoes instead of one."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、小さな火山を3個召喚します。"
     }
   ],
   "extra_recipe_mappings": {

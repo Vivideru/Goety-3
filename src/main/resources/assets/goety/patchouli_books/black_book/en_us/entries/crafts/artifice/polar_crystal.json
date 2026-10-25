@@ -1,0 +1,22 @@
+{
+  "name": "Polar Crystal",
+  "icon": "goety:polar_crystal",
+  "category": "goety:crafts/artifice",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Polar Crystal grows on any face of a block, be it floor, wall or ceiling. Any spell that strikes it, whether a bolt, a fireball or a beam, flips it between its dark and its glowing blue state."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:polar_crystal"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While glowing, the crystal gives a full redstone signal to the block it grows on, and that block passes the signal on: mechanisms up to three blocks away from the crystal react to it. Strike it again to switch it off. Beams count as a single strike while they stay on the crystal."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:polar_crystal": 1
+  }
+}

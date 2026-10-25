@@ -1,11 +1,11 @@
 {
-  "name": "Chilling Focus",
+  "name": "チルハイドのフォーカス",
   "icon": "goety:chilling_focus",
   "category": "goety:focuses/frost",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus not only increases your armor points, but it also cause any being that attacks you in melee to freeze. The spell can also be casted onto an allied creature by looking at them while crouch casting."
+      "text": "この呪文はアーマーポイントを増加させるだけでなく、近接攻撃してくる敵を凍結状態にします。また、しゃがんで味方クリーチャーを見ながら唱えることで、そのクリーチャーにもこの呪文を唱えることができます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will apply the effect to nearby allies around the caster or the target."
+      "text": "$(l:crafts/staff/frost_staff)氷の杖$()で唱えると、術者またはターゲットの周囲の近くの味方に効果を適用します。"
     }
   ]
 }

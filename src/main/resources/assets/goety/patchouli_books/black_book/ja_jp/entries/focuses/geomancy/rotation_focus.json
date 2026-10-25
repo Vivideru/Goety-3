@@ -1,11 +1,11 @@
 {
-  "name": "Rotation Focus",
+  "name": "回転のフォーカス",
   "icon": "goety:rotation_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple focus that rotates and changed a block's orientation and facing direction."
+      "text": "ブロックの向きと向きを回転させて変更するシンプルなフォーカス。"
     },
     {
       "type": "patchouli:crafting",

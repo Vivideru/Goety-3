@@ -1,6 +1,6 @@
 {
-  "name": "Nether",
-  "description": "The power over the fiery pits of the Nether.",
+  "name": "ネザー",
+  "description": "ネザーの燃えるような穴を支配する力。",
   "icon": "goety:fireball_focus",
   "parent": "goety:focuses"
 }

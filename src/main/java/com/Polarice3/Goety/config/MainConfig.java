@@ -70,12 +70,15 @@ public class MainConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> ShowWandCooldown;
     public static final ModConfigSpec.ConfigValue<Boolean> WheelGuiMovement;
     public static final ModConfigSpec.ConfigValue<Boolean> ShowNum;
+    public static final ModConfigSpec.ConfigValue<Boolean> ShowChange;
 
     public static final ModConfigSpec.ConfigValue<Boolean> BetterDragonFireball;
     public static final ModConfigSpec.ConfigValue<Boolean> RobesIronResist;
     public static final ModConfigSpec.ConfigValue<Boolean> IronBuff;
     public static final ModConfigSpec.ConfigValue<Boolean> CataclysmVoidStone;
     public static final ModConfigSpec.ConfigValue<Boolean> OminousStoneGenerator;
+
+    public static final ModConfigSpec.ConfigValue<Boolean> SoulFireBurn;
 
     public static final ModConfigSpec.ConfigValue<Boolean> EnableNightBeacon;
     public static final ModConfigSpec.ConfigValue<Boolean> RitualEnchants;
@@ -145,6 +148,8 @@ public class MainConfig {
                 .define("wheelGuiMovement", true);
         ShowNum = BUILDER.comment("Show numerical amount of Souls on the Soul Energy Bar, Default: false")
                 .define("showNumber", false);
+        ShowChange = BUILDER.comment("Show how much soul energy is added or removed on the Soul Energy Bar, Default: true")
+                .define("showChange", true);
         SoulGuiHorizontal = BUILDER.comment("Horizontal Position of where the Soul Energy Bar is located, Default: 100")
                 .defineInRange("soulGuiHorizontal", 100, -Integer.MAX_VALUE, Integer.MAX_VALUE);
         SoulGuiVertical = BUILDER.comment("Vertical Position of where the Soul Energy Bar is located, Default: -5")
@@ -171,6 +176,8 @@ public class MainConfig {
                 .define("cataclysmVoidStone", true);
         OminousStoneGenerator = BUILDER.comment("If there's a Block of Lapis Lazuli below, Lava interacting with water will generate Ominous Stone. Default: true")
                 .define("ominousStoneGenerator", true);
+        SoulFireBurn = BUILDER.comment("Change Soul Fire behavior to give Soul Burn effect instead of simply burning entities. Default: true")
+                .define("soulFireBurn", true);
         BUILDER.pop();
         BUILDER.push("Blocks");
         SarcophagusSleep = BUILDER.comment("Whether a Sarcophagus can be slept in.").define("sarcophagusSleep", true);

@@ -20,6 +20,7 @@ import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.chunk.PalettedContainer;
@@ -27,6 +28,12 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.core.Registry;
 import net.minecraft.core.SectionPos;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
+import com.Polarice3.Goety.common.blocks.RedMossBlock;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
+import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -35,6 +42,10 @@ import net.neoforged.neoforge.common.Tags;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +54,7 @@ public final class WindShrineTerrain {
     public static final int PLATEAU_MARGIN = 3;
     private static final int PROTECT_MARGIN = 6;
     private static final int PROTECT_FADE = 22;
+    private static final int FOREIGN_SEARCH_CHUNKS = 8;
     private static final double STAIR_MARGIN = 1.0D;
     private static final double STAIR_FADE = 2.5D;
     private static final int MOAT_RADIUS = 5;
@@ -65,7 +77,16 @@ public final class WindShrineTerrain {
     private static final double STEEP_RATE_MAX = 2.4D;
     private static final double GENTLE_RATE_MIN = 0.3D;
     private static final double GENTLE_RATE_MAX = 0.55D;
+    /** Sets how far the edge of the windswept slopes wanders (see {@link #slope}). */
     private static final double FOOT_LENGTH = 55.0D;
+    /** How far past the windswept slopes the mountain base takes to merge into the natural land, before its noise variation. */
+    private static final double FOOT_BLEND = 150.0D;
+    /** The longest merge, so plans know how far the noise generator is affected. */
+    public static final int FOOT_BLEND_MAX = (int) Math.ceil(FOOT_BLEND * 1.25D) + 1;
+    /** Relief of the mountain base, faded out as it merges into the land. */
+    private static final double FOOT_RELIEF = 6.0D;
+    /** Columns this far past the windswept slopes are still painted (snow, red moss) but no longer shaped. */
+    private static final int FOOT_PAINT = 16;
     private static final double TERRACE_MIN = 6.0D;
     private static final double TERRACE_MAX = 10.0D;
     private static final double TERRACE_STRENGTH = 0.85D;
@@ -73,6 +94,8 @@ public final class WindShrineTerrain {
     private static final int STONE_BLEND = 16;
     private static final int SUMMIT_ROCK_DEPTH = 6;
     private static final int TREE_SPACING = 5;
+    private static final double SNOW_LINE_WOBBLE = 6.0D;
+    private static final double SNOW_LINE_DETAIL = 2.5D;
     public static final ResourceKey<Biome> WINDSWEPT_PEAKS_BIOME = ResourceKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "windswept_peaks"));
 
     private record TreeSpot(BlockPos pos, ResourceKey<ConfiguredFeature<?, ?>> feature) {
@@ -90,6 +113,9 @@ public final class WindShrineTerrain {
     }
 
     public static void cleanup(ChunkAccess chunk) {
+        if (chunk.getPersistedStatus().isOrAfter(ChunkStatus.FULL) || com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine()) {
+            return;
+        }
         boolean windswept = false;
         for (LevelChunkSection section : chunk.getSections()) {
             if (section.getBiomes() instanceof PalettedContainer<Holder<Biome>> container && container.maybeHas(holder -> holder.is(WINDSWEPT_PEAKS_BIOME))) {
@@ -124,20 +150,73 @@ public final class WindShrineTerrain {
                     state = ModBlocks.RED_MOSS_DIRT.get().defaultBlockState();
                     chunk.setBlockState(cursor, state, false);
                 }
-                if (state.hasProperty(net.minecraft.world.level.block.state.properties.BlockStateProperties.SNOWY) && state.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.SNOWY)) {
-                    chunk.setBlockState(cursor, state.setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.SNOWY, false), false);
+                if (state.hasProperty(BlockStateProperties.SNOWY) && state.getValue(BlockStateProperties.SNOWY)) {
+                    chunk.setBlockState(cursor, state.setValue(BlockStateProperties.SNOWY, false), false);
                 }
             }
         }
+        int settled = settleRedMoss(chunk);
         if (windsweptColumns > 0 && LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Wind Shrine cleanup {}: {} windswept columns, {} snow layers removed", chunkPos, windsweptColumns, removed);
+            LOGGER.debug("Wind Shrine cleanup {}: {} windswept columns, {} snow layers removed, {} red moss blocks settled", chunkPos, windsweptColumns, removed, settled);
         }
+    }
+
+    private static int settleRedMoss(ChunkAccess chunk) {
+        ChunkPos chunkPos = chunk.getPos();
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        BlockPos.MutableBlockPos coverPos = new BlockPos.MutableBlockPos();
+        int maxY = chunk.getMaxBuildHeight() - 1;
+        int settled = 0;
+        for (int s = 0; s < chunk.getSectionsCount(); s++) {
+            LevelChunkSection section = chunk.getSection(s);
+            if (section.hasOnlyAir() || !section.maybeHas(state -> state.getBlock() instanceof RedMossBlock)) {
+                continue;
+            }
+            int bottom = SectionPos.sectionToBlockCoord(chunk.getSectionYFromSectionIndex(s));
+            for (int ly = 0; ly < 16 && bottom + ly < maxY; ly++) {
+                for (int lx = 0; lx < 16; lx++) {
+                    for (int lz = 0; lz < 16; lz++) {
+                        BlockState state = section.getBlockState(lx, ly, lz);
+                        if (!(state.getBlock() instanceof RedMossBlock moss)) {
+                            continue;
+                        }
+                        pos.set(chunkPos.getMinBlockX() + lx, bottom + ly, chunkPos.getMinBlockZ() + lz);
+                        coverPos.setWithOffset(pos, Direction.UP);
+                        BlockState cover = chunk.getBlockState(coverPos);
+                        BlockState result;
+                        if (!mossSurvives(chunk, state, pos, cover, coverPos)) {
+                            result = moss.convertState;
+                        } else if (state.hasProperty(BlockStateProperties.SNOWY)) {
+                            result = state.setValue(BlockStateProperties.SNOWY, cover.is(BlockTags.SNOW));
+                        } else {
+                            continue;
+                        }
+                        if (result != state) {
+                            chunk.setBlockState(pos, result, false);
+                            settled++;
+                        }
+                    }
+                }
+            }
+        }
+        return settled;
+    }
+
+    private static boolean mossSurvives(ChunkAccess chunk, BlockState state, BlockPos pos, BlockState cover, BlockPos coverPos) {
+        if (cover.is(Blocks.SNOW) && cover.getValue(SnowLayerBlock.LAYERS) == 1) {
+            return true;
+        }
+        if (cover.getFluidState().getAmount() == 8) {
+            return false;
+        }
+        return LightEngine.getLightBlockInto(chunk, state, pos, cover, coverPos, Direction.UP, cover.getLightBlock(chunk, coverPos)) < 15;
     }
 
     public static void apply(WorldGenLevel level, ChunkAccess chunk, ChunkGenerator generator, StructureManager structureManager) {
         if (!(level instanceof WorldGenRegion region)) {
             return;
         }
+        WindShrineBlend.settle(chunk, region.getLevel().getChunkSource().randomState());
         List<WindShrinePlans.Plan> plans = WindShrinePlans.forChunk(region, generator);
         if (plans.isEmpty()) {
             return;
@@ -149,8 +228,31 @@ public final class WindShrineTerrain {
         StructureTerrain.refreshHeightmaps(chunk);
     }
 
+    private static boolean isForeign(Structure structure) {
+        return !(structure instanceof WindShrineStructure) && !(structure instanceof WindShrineExpansionStructure) && structure.step() == GenerationStep.Decoration.SURFACE_STRUCTURES;
+    }
+
     private static List<BoundingBox> foreignPieces(WorldGenRegion region, StructureManager structureManager, ChunkPos chunkPos) {
         List<BoundingBox> boxes = new ArrayList<>();
+        Set<StructureStart> seen = Collections.newSetFromMap(new IdentityHashMap<>());
+        for (int dx = -FOREIGN_SEARCH_CHUNKS; dx <= FOREIGN_SEARCH_CHUNKS; dx++) {
+            for (int dz = -FOREIGN_SEARCH_CHUNKS; dz <= FOREIGN_SEARCH_CHUNKS; dz++) {
+                if (!region.hasChunk(chunkPos.x + dx, chunkPos.z + dz)) {
+                    continue;
+                }
+                ChunkAccess neighbour;
+                try {
+                    neighbour = region.getChunk(chunkPos.x + dx, chunkPos.z + dz);
+                } catch (RuntimeException ignored) {
+                    continue;
+                }
+                for (Map.Entry<Structure, StructureStart> entry : neighbour.getAllStarts().entrySet()) {
+                    if (isForeign(entry.getKey()) && entry.getValue().isValid() && seen.add(entry.getValue())) {
+                        collectForeign(entry.getValue(), chunkPos, boxes);
+                    }
+                }
+            }
+        }
         for (int dx = -1; dx <= 1; dx++) {
             for (int dz = -1; dz <= 1; dz++) {
                 ChunkPos neighbour = new ChunkPos(chunkPos.x + dx, chunkPos.z + dz);
@@ -159,22 +261,29 @@ public final class WindShrineTerrain {
                 }
                 List<StructureStart> starts;
                 try {
-                    starts = structureManager.startsForStructure(neighbour, structure -> !(structure instanceof WindShrineStructure) && !(structure instanceof WindShrineExpansionStructure) && structure.step() == GenerationStep.Decoration.SURFACE_STRUCTURES);
+                    starts = structureManager.startsForStructure(neighbour, WindShrineTerrain::isForeign);
                 } catch (RuntimeException ignored) {
                     continue;
                 }
                 for (StructureStart start : starts) {
-                    for (StructurePiece piece : start.getPieces()) {
-                        BoundingBox box = piece.getBoundingBox();
-                        if (box.maxX() >= chunkPos.getMinBlockX() - PROTECT_MARGIN - PROTECT_FADE - 2 && box.minX() <= chunkPos.getMaxBlockX() + PROTECT_MARGIN + PROTECT_FADE + 2
-                                && box.maxZ() >= chunkPos.getMinBlockZ() - PROTECT_MARGIN - PROTECT_FADE - 2 && box.minZ() <= chunkPos.getMaxBlockZ() + PROTECT_MARGIN + PROTECT_FADE + 2) {
-                            boxes.add(box);
-                        }
+                    if (seen.add(start)) {
+                        collectForeign(start, chunkPos, boxes);
                     }
                 }
             }
         }
         return boxes;
+    }
+
+    private static void collectForeign(StructureStart start, ChunkPos chunkPos, List<BoundingBox> boxes) {
+        int reach = PROTECT_MARGIN + PROTECT_FADE + 2;
+        for (StructurePiece piece : start.getPieces()) {
+            BoundingBox box = piece.getBoundingBox();
+            if (box.maxX() >= chunkPos.getMinBlockX() - reach && box.minX() <= chunkPos.getMaxBlockX() + reach
+                    && box.maxZ() >= chunkPos.getMinBlockZ() - reach && box.minZ() <= chunkPos.getMaxBlockZ() + reach) {
+                boxes.add(box);
+            }
+        }
     }
 
     private static double protection(List<BoundingBox> foreign, int x, int z) {
@@ -193,6 +302,246 @@ public final class WindShrineTerrain {
     private static final double BANK_SLOPE = 0.7D;
     private static final int BANK_FLAT = 2;
     private static final int BANK_REACH = 32;
+
+    /**
+     * The mountain profile at one column, worked out from the shrine's footprints alone, so the noise generator (the base of
+     * the mountain) and the terrain pass (its slopes) agree on it. {@code d} is the distance past the plateau, warped so the
+     * edge wanders; the steep summit slopes take {@code steepLength} of it, then the windswept slopes {@code windsweptLength}.
+     */
+    record Slope(WindShrinePlans.Footprint nearestFootprint, double nearest, int floorY, int cap, double steepRate, double gentleRate,
+                 double steepDrop, double steepLength, double windsweptTop, double windsweptLength, double beyond, double d) {
+        double footStart() {
+            return this.steepLength + this.windsweptLength;
+        }
+    }
+
+    /** The profile at a column, or null when the column is farther than {@code limit} from every footprint. */
+    @org.jetbrains.annotations.Nullable
+    static Slope slope(WindShrinePlans.Plan plan, int x, int z, double[] distances, int limit) {
+        List<WindShrinePlans.Footprint> footprints = plan.footprints();
+        double nearest = Double.MAX_VALUE;
+        WindShrinePlans.Footprint nearestFootprint = null;
+        for (int i = 0; i < footprints.size(); i++) {
+            distances[i] = footprints.get(i).distanceTo(x, z);
+            if (distances[i] < nearest) {
+                nearest = distances[i];
+                nearestFootprint = footprints.get(i);
+            }
+        }
+        if (nearest > limit || nearestFootprint == null) {
+            return null;
+        }
+        double weightSum = 0.0D;
+        double floorSum = 0.0D;
+        int cap = Integer.MAX_VALUE;
+        double margin = nearestFootprint.stairs ? STAIR_MARGIN : PLATEAU_MARGIN;
+        boolean apron = nearest <= margin;
+        for (int i = 0; i < footprints.size(); i++) {
+            double extra = distances[i] - nearest;
+            WindShrinePlans.Footprint footprint = footprints.get(i);
+            if (apron) {
+                if (extra <= 0.0D) {
+                    weightSum = 1.0D;
+                    floorSum = footprint.floorAt(x, z);
+                }
+                continue;
+            }
+            if (extra <= BLEND_DISTANCE) {
+                double w = 1.0D - extra / (BLEND_DISTANCE + 0.5D);
+                w *= w;
+                weightSum += w;
+                floorSum += w * footprint.floorAt(x, z);
+            }
+            if (distances[i] <= BANK_REACH && extra <= BLEND_DISTANCE + BANK_FLAT) {
+                cap = Math.min(cap, footprint.floorAt(x, z) + (int) Math.floor(Math.max(0.0D, distances[i] - BANK_FLAT) * BANK_SLOPE));
+            }
+        }
+        int floorY = (int) Math.round(floorSum / weightSum);
+        long seed = plan.seed();
+        int snowLine = plan.summitY() - SNOW_BAND;
+        int peaksFoot = snowLine - PEAKS_BAND;
+        double steepRate = STEEP_RATE_MIN + (STEEP_RATE_MAX - STEEP_RATE_MIN) * unit(perlin(seed ^ 0x3A9D51C7E2B86F04L, x * 0.02D, z * 0.02D));
+        double gentleRate = GENTLE_RATE_MIN + (GENTLE_RATE_MAX - GENTLE_RATE_MIN) * unit(perlin(seed ^ 0x5F1A3C9D2B7E6481L, x * 0.014D, z * 0.014D));
+        double footLength = FOOT_LENGTH * (0.7D + 0.6D * unit(perlin(seed ^ 0x1C9E5A3F7D2B8460L, x * 0.02D, z * 0.02D)));
+        double steepDrop = Math.max(0.0D, floorY - snowLine);
+        double steepLength = steepDrop / steepRate;
+        double windsweptTop = Math.min(floorY, snowLine);
+        double windsweptLength = Math.max(0.0D, windsweptTop - peaksFoot) / gentleRate;
+        double total = steepLength + windsweptLength + footLength;
+        double beyond = nearest - margin;
+        double warp = beyond <= 0.0D ? 0.0D : boundaryOffset(seed, x, z) * total * EDGE_WARP * Math.min(1.0D, beyond / 20.0D);
+        double d = Math.max(0.0D, beyond - warp);
+        return new Slope(nearestFootprint, nearest, floorY, cap, steepRate, gentleRate, steepDrop, steepLength, windsweptTop, windsweptLength, beyond, d);
+    }
+
+    /** How far from its footprints a shrine still builds land in the noise generator. */
+    public static int footReach(WindShrinePlans.Plan plan) {
+        return plan.reach() + FOOT_BLEND_MAX;
+    }
+
+    /**
+     * The base of the mountain at a column, as the noise generator builds it on the natural ground: {@code {weight, height}},
+     * or null where the shrine leaves the land alone. The land rises by weight x (height - ground) where the base is higher
+     * than the ground. Under the steep and windswept slopes it is filled up to a flat base at the foot of the windswept slopes
+     * (weight 1), which the terrain pass then shapes; past them the base keeps sinking at the windswept slope while its weight
+     * fades smoothly to nothing, so the natural hills come back little by little. The distance is the true distance from the
+     * edge of the windswept slopes, so the foot is as wide wherever that edge wanders.
+     */
+    @org.jetbrains.annotations.Nullable
+    public static double[] foot(WindShrinePlans.Plan plan, int x, int z) {
+        double dd = FootField.of(plan).distance(x, z);
+        if (Double.isNaN(dd)) {
+            return null;
+        }
+        long seed = plan.seed();
+        int peaksFoot = plan.summitY() - SNOW_BAND - PEAKS_BAND;
+        if (dd <= 0.0D) {
+            return new double[]{1.0D, peaksFoot};
+        }
+        double length = FOOT_BLEND * (0.75D + 0.5D * unit(perlin(seed ^ 0x4A7C2E9B1D5F3068L, x * 0.01D, z * 0.01D)));
+        if (dd >= length) {
+            return null;
+        }
+        double t = dd / length;
+        double weight = 1.0D - t * t * (3.0D - 2.0D * t);
+        double gentleRate = GENTLE_RATE_MIN + (GENTLE_RATE_MAX - GENTLE_RATE_MIN) * unit(perlin(seed ^ 0x5F1A3C9D2B7E6481L, x * 0.014D, z * 0.014D));
+        double relief = (perlin(seed ^ 0x58E1B3D97A2C4F06L, x * 0.025D, z * 0.025D) + 0.4D * perlin(seed ^ 0x2C7E5A1F9B3D6084L, x * 0.07D, z * 0.07D))
+                * FOOT_RELIEF * Math.min(1.0D, dd / 16.0D) * (1.0D - t);
+        return new double[]{weight, peaksFoot - gentleRate * dd + relief};
+    }
+
+    /**
+     * Distance from the edge of a shrine's windswept slopes (0 on and under them), sampled once per shrine on a grid and
+     * computed with an exact Euclidean distance transform, since the warp that makes the edge wander is no distance itself.
+     */
+    private static final class FootField {
+        private static final int STEP = 4;
+        private static final Map<WindShrinePlans.Plan, FootField> FIELDS = new com.google.common.collect.MapMaker().weakKeys().makeMap();
+        private final int minX;
+        private final int minZ;
+        private final int width;
+        private final int depth;
+        private final float[] distance;
+
+        static FootField of(WindShrinePlans.Plan plan) {
+            FootField field = FIELDS.get(plan);
+            if (field == null) {
+                synchronized (plan) {
+                    field = FIELDS.get(plan);
+                    if (field == null) {
+                        field = new FootField(plan);
+                        FIELDS.put(plan, field);
+                    }
+                }
+            }
+            return field;
+        }
+
+        private FootField(WindShrinePlans.Plan plan) {
+            int margin = footReach(plan) + 2 * STEP;
+            BoundingBox hull = plan.hull();
+            this.minX = Math.floorDiv(hull.minX() - margin, STEP) * STEP;
+            this.minZ = Math.floorDiv(hull.minZ() - margin, STEP) * STEP;
+            this.width = (hull.maxX() + margin - this.minX) / STEP + 1;
+            this.depth = (hull.maxZ() + margin - this.minZ) / STEP + 1;
+            double[] squared = new double[this.width * this.depth];
+            double[] distances = new double[plan.footprints().size()];
+            int reach = plan.reach();
+            for (int gx = 0; gx < this.width; gx++) {
+                for (int gz = 0; gz < this.depth; gz++) {
+                    Slope slope = slope(plan, this.minX + gx * STEP, this.minZ + gz * STEP, distances, reach);
+                    boolean under = slope != null && (slope.beyond() <= 0.0D || slope.d() <= slope.footStart());
+                    squared[gx * this.depth + gz] = under ? 0.0D : Double.POSITIVE_INFINITY;
+                }
+            }
+            transform(squared, this.width, this.depth);
+            this.distance = new float[squared.length];
+            for (int i = 0; i < squared.length; i++) {
+                this.distance[i] = (float) (Math.sqrt(squared[i]) * STEP);
+            }
+        }
+
+        /** In blocks, interpolated between the grid points; NaN outside the grid. */
+        double distance(int x, int z) {
+            double fx = (x - this.minX) / (double) STEP;
+            double fz = (z - this.minZ) / (double) STEP;
+            int gx = Mth.floor(fx);
+            int gz = Mth.floor(fz);
+            if (gx < 0 || gz < 0 || gx + 1 >= this.width || gz + 1 >= this.depth) {
+                return Double.NaN;
+            }
+            double tx = fx - gx;
+            double tz = fz - gz;
+            double d00 = this.distance[gx * this.depth + gz];
+            double d10 = this.distance[(gx + 1) * this.depth + gz];
+            double d01 = this.distance[gx * this.depth + gz + 1];
+            double d11 = this.distance[(gx + 1) * this.depth + gz + 1];
+            if (Double.isInfinite(d00) || Double.isInfinite(d10) || Double.isInfinite(d01) || Double.isInfinite(d11)) {
+                return Double.NaN;
+            }
+            return Mth.lerp(tz, Mth.lerp(tx, d00, d10), Mth.lerp(tx, d01, d11));
+        }
+
+        /** Squared Euclidean distance transform in place (Felzenszwalb and Huttenlocher), first along z, then along x. */
+        private static void transform(double[] grid, int width, int depth) {
+            double[] line = new double[Math.max(width, depth)];
+            double[] out = new double[line.length];
+            int[] hulls = new int[line.length];
+            double[] bounds = new double[line.length + 1];
+            for (int gx = 0; gx < width; gx++) {
+                for (int gz = 0; gz < depth; gz++) {
+                    line[gz] = grid[gx * depth + gz];
+                }
+                transform1d(line, depth, out, hulls, bounds);
+                for (int gz = 0; gz < depth; gz++) {
+                    grid[gx * depth + gz] = out[gz];
+                }
+            }
+            for (int gz = 0; gz < depth; gz++) {
+                for (int gx = 0; gx < width; gx++) {
+                    line[gx] = grid[gx * depth + gz];
+                }
+                transform1d(line, width, out, hulls, bounds);
+                for (int gx = 0; gx < width; gx++) {
+                    grid[gx * depth + gz] = out[gx];
+                }
+            }
+        }
+
+        private static void transform1d(double[] f, int n, double[] out, int[] hulls, double[] bounds) {
+            int k = -1;
+            for (int q = 0; q < n; q++) {
+                if (Double.isInfinite(f[q])) {
+                    continue;
+                }
+                while (k >= 0) {
+                    int p = hulls[k];
+                    double s = ((f[q] + q * (double) q) - (f[p] + p * (double) p)) / (2.0D * (q - p));
+                    if (s <= bounds[k]) {
+                        k--;
+                    } else {
+                        break;
+                    }
+                }
+                k++;
+                hulls[k] = q;
+                bounds[k] = k == 0 ? Double.NEGATIVE_INFINITY : ((f[q] + q * (double) q) - (f[hulls[k - 1]] + hulls[k - 1] * (double) hulls[k - 1])) / (2.0D * (q - hulls[k - 1]));
+                bounds[k + 1] = Double.POSITIVE_INFINITY;
+            }
+            if (k < 0) {
+                java.util.Arrays.fill(out, 0, n, Double.POSITIVE_INFINITY);
+                return;
+            }
+            int j = 0;
+            for (int q = 0; q < n; q++) {
+                while (bounds[j + 1] < q) {
+                    j++;
+                }
+                double dq = q - hulls[j];
+                out[q] = dq * dq + f[hulls[j]];
+            }
+        }
+    }
 
     private static final class Column {
         boolean active;
@@ -232,69 +581,38 @@ public final class WindShrineTerrain {
                 int z = originZ + gz;
                 boolean inside = gx >= 2 && gx <= 17 && gz >= 2 && gz <= 17;
 
-                double nearest = Double.MAX_VALUE;
-                WindShrinePlans.Footprint nearestFootprint = null;
-                for (int i = 0; i < footprints.size(); i++) {
-                    distances[i] = footprints.get(i).distanceTo(x, z);
-                    if (distances[i] < nearest) {
-                        nearest = distances[i];
-                        nearestFootprint = footprints.get(i);
-                    }
-                }
-                if (nearest > reach) {
+                Slope slope = slope(plan, x, z, distances, reach);
+                if (slope == null) {
                     continue;
                 }
-                double weightSum = 0.0D;
-                double floorSum = 0.0D;
-                int cap = Integer.MAX_VALUE;
-                double margin = nearestFootprint != null && nearestFootprint.stairs ? STAIR_MARGIN : PLATEAU_MARGIN;
-                boolean apron = nearest <= margin;
-                for (int i = 0; i < footprints.size(); i++) {
-                    double extra = distances[i] - nearest;
-                    WindShrinePlans.Footprint footprint = footprints.get(i);
-                    if (apron) {
-                        if (extra <= 0.0D) {
-                            weightSum = 1.0D;
-                            floorSum = footprint.floorAt(x, z);
-                        }
-                        continue;
-                    }
-                    if (extra <= BLEND_DISTANCE) {
-                        double w = 1.0D - extra / (BLEND_DISTANCE + 0.5D);
-                        w *= w;
-                        weightSum += w;
-                        floorSum += w * footprint.floorAt(x, z);
-                    }
-                    if (!apron && distances[i] <= BANK_REACH && extra <= BLEND_DISTANCE + BANK_FLAT) {
-                        cap = Math.min(cap, footprint.floorAt(x, z) + (int) Math.floor(Math.max(0.0D, distances[i] - BANK_FLAT) * BANK_SLOPE));
-                    }
-                }
-                int floorY = (int) Math.round(floorSum / weightSum);
+                WindShrinePlans.Footprint nearestFootprint = slope.nearestFootprint();
+                double nearest = slope.nearest();
+                int cap = slope.cap();
+                int floorY = slope.floorY();
 
-                int surfaceY = Mth.clamp(heightAt(region, chunk, inside, x, z) - 1, minBuildY, maxY);
-                int naturalY = findNaturalTerrainY(region, chunk, inside, x, z, surfaceY, minBuildY, cursor);
+                int sx = inside ? x : Mth.clamp(x, chunkPos.getMinBlockX(), chunkPos.getMaxBlockX());
+                int sz = inside ? z : Mth.clamp(z, chunkPos.getMinBlockZ(), chunkPos.getMaxBlockZ());
+                int surfaceY = Mth.clamp(heightAt(region, chunk, true, sx, sz) - 1, minBuildY, maxY);
+                int naturalY = findNaturalTerrainY(region, chunk, true, sx, sz, surfaceY, minBuildY, cursor);
                 int lift = floorY - naturalY;
                 if (lift == 0 && nearest > PLATEAU_MARGIN) {
                     continue;
                 }
 
-                double steepRate = STEEP_RATE_MIN + (STEEP_RATE_MAX - STEEP_RATE_MIN) * unit(perlin(seed ^ 0x3A9D51C7E2B86F04L, x * 0.02D, z * 0.02D));
-                double gentleRate = GENTLE_RATE_MIN + (GENTLE_RATE_MAX - GENTLE_RATE_MIN) * unit(perlin(seed ^ 0x5F1A3C9D2B7E6481L, x * 0.014D, z * 0.014D));
-                double footLength = FOOT_LENGTH * (0.7D + 0.6D * unit(perlin(seed ^ 0x1C9E5A3F7D2B8460L, x * 0.02D, z * 0.02D)));
-                double steepDrop = Math.max(0.0D, floorY - snowLine);
-                double steepLength = steepDrop / steepRate;
-                double windsweptTop = Math.min(floorY, snowLine);
-                double windsweptLength = Math.max(0.0D, windsweptTop - peaksFoot) / gentleRate;
-                double footTop = Math.min(floorY, peaksFoot);
-                double total = steepLength + windsweptLength + footLength;
-                double beyond = nearest - margin;
-                double warp = beyond <= 0.0D ? 0.0D : boundaryOffset(seed, x, z) * total * EDGE_WARP * Math.min(1.0D, beyond / 20.0D);
-                double d = Math.max(0.0D, beyond - warp);
-                if (beyond > 0.0D && d >= total + 16.0D) {
+                double steepRate = slope.steepRate();
+                double gentleRate = slope.gentleRate();
+                double steepDrop = slope.steepDrop();
+                double steepLength = slope.steepLength();
+                double windsweptTop = slope.windsweptTop();
+                double windsweptLength = slope.windsweptLength();
+                double beyond = slope.beyond();
+                double d = slope.d();
+                // Past the windswept slopes the noise generator has already built the foot of the mountain (WindShrineBlend):
+                // the columns just beyond are only painted, the rest is left alone.
+                if (beyond > 0.0D && d >= slope.footStart() + FOOT_PAINT) {
                     continue;
                 }
-                boolean pastProfile = beyond > 0.0D && d >= total;
-                double t = beyond <= 0.0D ? 0.0D : Mth.clamp(d / total, 0.0D, 1.0D);
+                boolean pastProfile = beyond > 0.0D && d > slope.footStart();
 
                 int targetY;
                 double columnWild = 0.0D;
@@ -314,7 +632,7 @@ public final class WindShrineTerrain {
                         double cragAmplitude = (3.0D + 5.0D * Math.min(1.0D, steepDrop / 45.0D)) * boost * fade;
                         h += (ridged(seed, x, z) + 0.6D * ridged(seed ^ 0x2E7B9C4D1F6A8350L, x * 2, z * 2)) * cragAmplitude;
                         h += perlin(seed ^ 0x7B3E9A1C5D2F8046L, x * 0.15D, z * 0.15D) * 2.0D * boost * fade;
-                    } else if (d <= steepLength + windsweptLength) {
+                    } else {
                         double dd = d - steepLength;
                         h = windsweptTop - gentleRate * dd;
                         double step = TERRACE_MIN + (TERRACE_MAX - TERRACE_MIN) * unit(perlin(seed ^ 0x6E2A9C4F1B8D3075L, x * 0.012D, z * 0.012D));
@@ -323,20 +641,6 @@ public final class WindShrineTerrain {
                         h = Mth.lerp(TERRACE_STRENGTH * Math.min(1.0D, dd / 12.0D), h, shelf);
                         h += relief(seed, x, z) * 1.2D * boost;
                         terraced = true;
-                    } else {
-                        double dd = d - steepLength - windsweptLength;
-                        double s = Mth.clamp(dd / footLength, 0.0D, 1.0D);
-                        s = s * s * (3.0D - 2.0D * s);
-                        double baseline = Mth.lerp(s, footTop, naturalY);
-                        double remaining = Math.max(0.0D, footTop - naturalY) * (1.0D - s);
-                        double footFade = (1.0D - s) * (1.0D - s);
-                        double footCrag = Mth.clamp(2.0D + remaining * 0.12D, 2.0D, 5.0D) * boost * footFade;
-                        double footStep = 3.0D + 3.0D * unit(perlin(seed ^ 0x6E2A9C4F1B8D3075L, x * 0.02D, z * 0.02D));
-                        double footWarp = perlin(seed ^ 0x1D4B7A9E3C6F5820L, x * 0.08D, z * 0.08D) * footStep * 0.4D;
-                        double stepped = Math.floor((baseline + footWarp) / footStep) * footStep;
-                        double gully = -Math.abs(ridgedCoarse(seed ^ 0x4C1F8B2E6A9D3750L, x, z)) * footCrag * 0.7D;
-                        double rubble = -Math.abs(perlin(seed ^ 0x7B3E9A1C5D2F8046L, x * 0.15D, z * 0.15D)) * 1.0D * boost * footFade;
-                        h = Math.min(baseline, stepped) + gully + rubble;
                     }
                     targetY = (int) Math.round(h);
                     if (naturalY > targetY && d > steepLength && (!terraced || naturalY - targetY > 8)) {
@@ -453,8 +757,9 @@ public final class WindShrineTerrain {
                 finalTop[lx][lz] = targetY;
                 boolean beyondApron = column.nearest > PLATEAU_MARGIN + 2 && column.protect >= 1.0D;
                 BlockState top = chunk.getBlockState(cursor.set(x, targetY, z));
-                double peaks = peaksShare(seed, x, z, targetY, snowLine, peaksFoot);
-                boolean snowBand = targetY >= snowLine;
+                int localSnowLine = snowLineAt(seed, x, z, snowLine);
+                double peaks = peaksShare(seed, x, z, targetY, localSnowLine, peaksFoot);
+                boolean snowBand = targetY >= localSnowLine;
                 if (peaks <= 0.0D && !snowBand) {
                     continue;
                 }
@@ -521,7 +826,7 @@ public final class WindShrineTerrain {
                 for (int y = top - 1; y >= Math.max(top - depth, peaksFoot - STONE_BLEND / 2); y--) {
                     BlockState state = chunk.getBlockState(cursor.set(x, y, z));
                     if (state.is(BlockTags.BASE_STONE_OVERWORLD) || state.is(BlockTags.DIRT) || state.is(Blocks.GRAVEL)) {
-                        BlockState rock = mountainStone(seed, x, y, z, snowLine, peaksFoot, y == top - 1);
+                        BlockState rock = mountainStone(seed, x, y, z, snowLine, peaksFoot);
                         if (rock != null) {
                             chunk.setBlockState(cursor, rock, false);
                         }
@@ -628,7 +933,7 @@ public final class WindShrineTerrain {
         BlockState cover = null;
         boolean windsweptGround = top.is(ModBlocks.DARK_DIRT.get()) || top.is(ModBlocks.COBBLED_DARK_DIRT.get()) || top.is(ModBlocks.RED_MOSS_BLOCK.get()) || top.is(ModBlocks.RED_MOSS_DIRT.get());
         if (windsweptGround || (top.is(Blocks.GRASS_BLOCK) || top.is(Blocks.PODZOL)) && roll % 7 < peaks * 7) {
-            cover = roll < 50 ? ModBlocks.SIENNA_GRASS.get().defaultBlockState() : roll < 62 ? ModBlocks.SIENNA_FERN.get().defaultBlockState() : roll < 66 ? ModBlocks.WINDSWEPT_DEAD_BUSH.get().defaultBlockState() : roll < 76 ? ModBlocks.WINDSWEPT_SAPLING.get().defaultBlockState() : null;
+            cover = roll < 50 ? ModBlocks.SIENNA_GRASS.get().defaultBlockState() : roll < 62 ? ModBlocks.SIENNA_FERN.get().defaultBlockState() : roll < 66 ? ModBlocks.WINDSWEPT_DEAD_BUSH.get().defaultBlockState() : null;
         } else if (top.is(Blocks.GRASS_BLOCK) || top.is(Blocks.PODZOL)) {
             cover = roll < 56 ? Blocks.SHORT_GRASS.defaultBlockState() : roll < 72 ? Blocks.FERN.defaultBlockState() : roll == 72 ? Blocks.DANDELION.defaultBlockState() : roll == 73 ? Blocks.POPPY.defaultBlockState() : roll == 74 ? Blocks.AZURE_BLUET.defaultBlockState() : null;
         } else if (top.is(Blocks.SNOW_BLOCK) && roll < 48) {
@@ -673,6 +978,12 @@ public final class WindShrineTerrain {
 
     private static int spotRank(long seed, int x, int z) {
         return Math.floorMod(hash(seed ^ 0x2F7C1A9E4B6D8350L, x, z), 1 << 20) * 4096 + Math.floorMod(x, 64) * 64 + Math.floorMod(z, 64);
+    }
+
+    private static int snowLineAt(long seed, int x, int z, int snowLine) {
+        double broad = perlin(seed ^ 0x3D8A6F1C9B2E7450L, x * 0.018D, z * 0.018D);
+        double detail = perlin(seed ^ 0x7E1C4B9A2D6F8305L, x * 0.07D, z * 0.07D);
+        return snowLine + (int) Math.round(broad * SNOW_LINE_WOBBLE + detail * SNOW_LINE_DETAIL);
     }
 
     private static double peaksShare(long seed, int x, int z, int y, int snowLine, int peaksFoot) {
@@ -756,6 +1067,7 @@ public final class WindShrineTerrain {
                 int x = chunkPos.getMinBlockX() + cx * 4 + 2;
                 int z = chunkPos.getMinBlockZ() + cz * 4 + 2;
                 double dither = perlin(seed ^ 0x5B8D2F7A3C1E9640L, x * 0.05D, z * 0.05D) * 0.4D;
+                int localSnowLine = snowLineAt(seed, x, z, snowLine);
                 for (int s = 0; s < chunk.getSectionsCount(); s++) {
                     LevelChunkSection section = chunk.getSection(s);
                     if (!(section.getBiomes() instanceof PalettedContainer<Holder<Biome>> container)) {
@@ -764,7 +1076,7 @@ public final class WindShrineTerrain {
                     int bottom = SectionPos.sectionToBlockCoord(chunk.getSectionYFromSectionIndex(s));
                     for (int cy = 0; cy < 4; cy++) {
                         int y = bottom + cy * 4 + 2;
-                        if (y >= snowLine) {
+                        if (y >= localSnowLine) {
                             container.set(cx, cy, cz, peaks);
                         } else if (y >= peaksFoot - PEAKS_FADE && (y - (peaksFoot - PEAKS_FADE)) / (double) PEAKS_FADE + dither > 0.5D) {
                             container.set(cx, cy, cz, windswept);
@@ -955,10 +1267,6 @@ public final class WindShrineTerrain {
             return roll % 7 == 0 ? ModBlocks.DIRTY_SILTSTONE_BLOCK.get().defaultBlockState() : ModBlocks.SILTSTONE_BLOCK.get().defaultBlockState();
         }
         return ModBlocks.CRAGROCKS_BLOCK.get().defaultBlockState();
-    }
-
-    private static double ridgedCoarse(long seed, int x, int z) {
-        return 1.0D - 2.0D * Math.abs(perlin(seed ^ 0x5E8C1A7D3B9F2046L, x * 0.09D, z * 0.09D));
     }
 
     private static double ridged(long seed, int x, int z) {

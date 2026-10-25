@@ -1,0 +1,21 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "item": "goety:animation_core"
+  },
+  "craftType": "forge",
+  "soulCost": 5,
+  "duration": 20,
+  "research": "haunting",
+  "ingredients": [
+    { "item": "minecraft:end_stone_brick_slab" },
+    { "item": "minecraft:end_stone_brick_slab" },
+    { "item": "minecraft:end_stone_brick_slab" },
+    { "item": "goety:ectoplasm" },
+    { "item": "goety:ectoplasm" }
+  ],
+  "result": {
+    "id": "goety:plinth_end_stone"
+  }
+}

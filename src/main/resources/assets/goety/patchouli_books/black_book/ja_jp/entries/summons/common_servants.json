@@ -1,5 +1,5 @@
 {
-  "name": "Servant Attributes",
+  "name": "従者の属性",
   "icon": "goety:zombie_servant_spawn_egg",
   "category": "goety:summons",
   "sortnum": 0,
@@ -7,15 +7,15 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Servants summoned by either Rituals or Spells tend to share some attributes with each other. For starters, they attack all kinds of Hostile Creatures, they won't attack each other if they share an Summoner, they have a limited lifespan and a limit on how many Servants a Summoner can have."
+      "text": "儀式または呪文によって召喚された従者は、互いにいくつかの属性を共有する傾向があります。 まず第一に、彼らはあらゆる種類の敵対的なモブを攻撃します。サモナーを共有している場合は互いに攻撃しません。サモナーには寿命とサモナーが持つことができる従者の数に制限があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "However, certain types of servants last forever if their summoner dons a associated crown and they can use their summoner's Soul Energy to heal themselves (provided they're not on fire) if said summoner wears the associated robe or, in the case of undead servants, Necro Cape. Undead Servants will burn in sunlight when not wearing a Helmet."
+      "text": "ただし、アンデッドの従者は、召喚者がネクロクラウンを着用している場合は永遠に持続し、召喚者がネクロマントを着用している場合は、召喚者のソウルエネルギーを使用して自分自身を回復することができます（炎上していない場合）。 アンデッドの従者はヘルメットを着用していない場合、太陽光で焼けてしまいます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Servants can teleport to their Summoner if their summoner has their Focus equipped to their wands and cast the spell when crouching. If the summoned Servant is not a Vex, hitting them (or, if enabled through config, right click on them) with a $(l:intro/dark_wand)Wand$()/Staff will either make them follow the Summoner, wander around the area or stay put."
+      "text": "アンデッドの召使は、召喚者が杖にフォーカスを装備し、しゃがんだときに呪文を唱えている場合、召喚者にテレポートできます。 召喚された従者がヴェックスでない場合、$(l:intro/dark_wand)Wand$()/Staff でそれらを叩く (または、設定で有効になっている場合は右クリックする) と、従者はサモナーに従うか、歩き回るかのいずれかになります。 エリアを離れるか、その場に留まります。"
     }
   ]
 }

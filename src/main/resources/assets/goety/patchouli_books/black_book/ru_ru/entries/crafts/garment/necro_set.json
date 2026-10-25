@@ -1,11 +1,11 @@
 {
-  "name": "Necromancer Set",
+  "name": "Некро-одежды",
   "icon": "goety:necro_cape",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The power of commanding Zombies and Skeletons sounds wonderful, but with the power of the Necro Cape, your Necroturgic abilities enhance even further. Wearing it causes your Skeletons' arrows to pass through allied creatures, and Zombies can turn wild Zombies into more Servants that obeys you."
+      "text": "Умение командовать зомби и скелетами звучит замечательно, но с помощью некро-плаща ваши некротургические способности возрастут ещё больше. С ним скелеты будут время от времени стрелять стрелами слабости, а зомби — превращать обычных зомби в ваших прислужников."
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Necro Crown keeps your undead horde from decaying like Vexes and will reduce the amount of time to cast Necromancy spells by half. Be warned, wearing a Necro Crown in daylight will cause the wearer to gain Weakness, Hunger when wearing the Cape."
+      "text": "Некро-корона не даёт вашей армии нежити исчезать подобно врединам и вдвое сокращает время использования некро-фокусов."
     }
   ],
   "extra_recipe_mappings": {

@@ -104,8 +104,7 @@ public class CursedCageBlockEntity extends BlockEntity implements Clearable {
                 if (SEHelper.getSEActive(player)) {
                     int Soulcount = SEHelper.getSESouls(player);
                     if (Soulcount > 0) {
-                        SEHelper.decreaseSESouls(player, souls);
-                        SEHelper.sendSEUpdatePacket(player);
+                        SEHelper.decreaseSoulsNoDiscount(player, souls);
                         ArcaBlockEntity arcaTile = (ArcaBlockEntity) this.level.getBlockEntity(SEHelper.getArcaBlock(player));
                         if (arcaTile != null) {
                             arcaTile.generateParticles();

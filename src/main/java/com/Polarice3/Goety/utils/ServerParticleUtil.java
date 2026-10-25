@@ -88,6 +88,9 @@ public class ServerParticleUtil {
             if (pParticleData instanceof GatherTrailParticleOption option) {
                 vector3d = new Vec3(option.getEndX(), option.getEndY(), option.getEndZ());
             }
+            if (pParticleData instanceof GatherSquareParticleOption option) {
+                vector3d = new Vec3(option.getEndX(), option.getEndY(), option.getEndZ());
+            }
             for(BlockPos blockpos : positions) {
                 if (serverWorld.getRandom().nextInt(25) == 0) {
                     float f = -0.5F + serverWorld.getRandom().nextFloat();
@@ -96,6 +99,39 @@ public class ServerParticleUtil {
                     BlockPos blockpos1 = blockpos.subtract(entity.blockPosition());
                     Vec3 vector3d1 = (new Vec3(f, f1, f2)).add(blockpos1.getX(), blockpos1.getY(), blockpos1.getZ());
                     serverWorld.sendParticles(pParticleData, vector3d.x, vector3d.y, vector3d.z, 1, vector3d1.x, vector3d1.y, vector3d1.z, 0.5F);
+                }
+            }
+        }
+    }
+
+    public static void gatherHorizontalParticles(ParticleOptions pParticleData, Entity entity, ServerLevel serverWorld, int range){
+        List<BlockPos> positions = Lists.newArrayList();
+        if (serverWorld != null) {
+            for(int x = -range; x <= range; ++x) {
+                for(int z = -range; z <= range; ++z) {
+                    int xAbs = Math.abs(x);
+                    int zAbs = Math.abs(z);
+                    if ((x == 0 && (zAbs == range) || z == 0 && (xAbs == range))) {
+                        BlockPos blockpos1 = entity.blockPosition().offset(x, 0, z);
+                        positions.add(blockpos1);
+                    }
+                }
+            }
+            Vec3 vector3d = new Vec3(entity.position().x, entity.getEyeY(), entity.position().z);
+            if (pParticleData instanceof GatherTrailParticleOption option) {
+                vector3d = new Vec3(option.getEndX(), option.getEndY(), option.getEndZ());
+            }
+            if (pParticleData instanceof GatherSquareParticleOption option) {
+                vector3d = new Vec3(option.getEndX(), option.getEndY(), option.getEndZ());
+            }
+            for(BlockPos blockpos : positions) {
+                if (serverWorld.getRandom().nextInt(25) == 0) {
+                    float f = -0.5F + serverWorld.getRandom().nextFloat();
+                    float f1 = -0.5F + serverWorld.getRandom().nextFloat();
+                    float f2 = -0.5F + serverWorld.getRandom().nextFloat();
+                    BlockPos blockPos = blockpos.subtract(entity.blockPosition());
+                    Vec3 vec3 = (new Vec3(f, f1, f2)).add(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+                    serverWorld.sendParticles(pParticleData, vector3d.x, vector3d.y, vector3d.z, 1, vec3.x, vec3.y, vec3.z, 0.5F);
                 }
             }
         }

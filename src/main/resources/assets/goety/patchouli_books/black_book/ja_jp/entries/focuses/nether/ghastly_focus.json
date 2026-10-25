@@ -1,12 +1,12 @@
 {
-  "name": "Ghastly Focus",
+  "name": "ガストのフォーカス",
   "icon": "goety:ghastly_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus allows you to summon forth miniature Ghasts that, while less destructive, are still potent fire spewers."
+      "text": "このフォーカスにより、破壊力は劣るものの、強力な火を噴く小型のガストを召喚できるようになります。"
     },
     {
       "type": "goety:ritual",
@@ -14,12 +14,12 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() summons more ghasts at once."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、一度に召喚されるミニガストの数が増えます。"
     },
     {
       "type": "patchouli:text",
       "advancement": "goety:goety/read_bygone_scroll",
-      "text": "Wearing a Nether Robes will casting this spell will summon forth Ghast Servants instead of Mini-Ghasts, though in smaller amounts even when cast with Nether Staff."
+      "text": "ネザーのローブを着用してこの呪文を唱えると、ミニガストの代わりに通常のガストがの従者召喚されますが、ネザーの杖で唱えた場合でも召喚される数は少なくなります。"
     }
   ],
   "extra_recipe_mappings": {

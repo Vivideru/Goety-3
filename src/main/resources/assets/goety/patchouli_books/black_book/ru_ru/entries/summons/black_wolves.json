@@ -43,17 +43,42 @@
     },
     {
       "type": "patchouli:entity",
+      "entity": "goety:winter_wolf",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Белые собаки, наводящие ужас на обитателей холодных биомов своими леденящими клыками и устойчивостью к оледенению. Их можно вызвать, вставив $(l:focuses/wild/hunting_focus)фокус охоты$() в $(l:crafts/staff/frost_staff)морозный посох$() или использовав его в снежном биоме, или с помощью ритуала."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_winter_wolf_thrall"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:stormhound",
+      "scale": 0.5
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Ходят легенды о дьявольских гончих, которые появляются с раскатами грома, и теперь их молниеносные клыки в вашей власти. Их можно вызвать, вставив $(l:focuses/wild/hunting_focus)фокус охоты$() в $(l:crafts/staff/frost_staff)штормовой посох$() или использовав его под грозовым небом, или с помощью ритуала."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_stormhound_thrall"
+    },
+    {
+      "type": "patchouli:entity",
       "entity": "goety:hellhound",
       "scale": 0.5
     },
     {
       "type": "patchouli:text",
-      "text": "Черные волки, которые бродят по инфернальному измерению. Невосприимчивы к огню и поджигают врагов своим укусом. Их можно вызвать, использовав $(l:focuses/wild/hunting_focus)фокус охоты$() или проведя ритуал призыва чёрного волка в Незере."
+      "text": "Вы слышали сказания и мифы о гончих, утаскивающих проклятых в огни Незера. Возможно, пришло время приструнить этих гончих. Их можно призвать, применив $(l:focuses/wild/hunting_focus)заклинание охоты$() с $(l:crafts/staff/nether_staff)незерским посохом$(), в биомах Незера или с помощью другого ритуала."
     },
     {
-      "type": "patchouli:text",
-      "advancement": "goety:goety/read_bygone_scroll",
-      "text": "Также их можно вызвать, вставив $(l:focuses/wild/hunting_focus)фокус охоты$() в $(l:crafts/staff/nether_staff)незерский посох$()."
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_hellhound_thrall"
     }
   ]
 }

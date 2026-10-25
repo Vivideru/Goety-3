@@ -1,11 +1,11 @@
 {
-  "name": "Graverobber's Shovel",
+  "name": "墓荒らしのシャベル",
   "icon": "goety:graverobber_shovel",
   "category": "goety:crafts/equipment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A Shovel suited for gravediggers and grave robbers, the shovel breaks 2 blocks instead of one when breaking a blocks like dirt, allowing the user to dig up graves on the fly. The reason for its name is how the shovel has a 10%% chance of digging up remains when breaking blocks like dirt or sand."
+      "text": "墓掘りや墓荒らしに適したシャベルで、土などのブロックを壊すときに1つではなく2つのブロックを壊すため、その場で墓を掘ることができます。 その名前の理由は、シャベルが土や砂などのブロックを壊すときに 10%% の確率で遺跡を掘り出すことに由来しています。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The shovel can be repaired on an anvil with a $(l:intro/magical_components)Cursed Metal Ingot$()."
+      "text": "シャベルは$(l:intro/magical_components)を使って金床で修理できます$()."
     }
   ],
   "extra_recipe_mappings": {

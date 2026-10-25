@@ -1,11 +1,11 @@
 {
-  "name": "Sorcerous Keeps",
+  "name": "魔法の砦",
   "icon": "goety:crag_bricks",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While Illagers tend to stick to one side of magic, there are rumors that some of them seek to master all of them and hold themselves into specialize keeps... along with some prisoners."
+      "text": "イリジャーは魔法の一つの側面に固執する傾向がありますが、彼らの中にはすべての魔法を習得しようとし、囚人とともに専門の砦に留まろうとする者もいるという噂があります。"
     },
     {
       "type": "patchouli:image",

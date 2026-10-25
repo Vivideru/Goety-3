@@ -1,11 +1,11 @@
 {
-  "name": "Feasting Focus",
+  "name": "追尾牙のフォーカス",
   "icon": "goety:feast_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the power of Ender Pearls and the Hunger Core, you are able to call upon Fangs at the bottom of any creature around you. More accurate than the average Biting Focus, though only if said creature doesn't move."
+      "text": "エンダー パールとハンガー コアの力により、周囲のあらゆる生き物の底にあるファングを呼び出すことができます。 ただし、クリーチャーが動かない場合に限りますが、平均的な 牙のフォーカスよりも正確です。"
     },
     {
       "type": "goety:ritual",

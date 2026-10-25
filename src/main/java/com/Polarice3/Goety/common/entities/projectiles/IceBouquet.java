@@ -41,6 +41,8 @@ public class IceBouquet extends GroundProjectile {
     private static final EntityDataAccessor<Boolean> CENTER = SynchedEntityData.defineId(IceBouquet.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Float> DATA_EXTRA_DAMAGE = SynchedEntityData.defineId(IceBouquet.class, EntityDataSerializers.FLOAT);
     public boolean isDying;
+    /** The caster's hurt timer as last seen: concentration breaks only on a hit taken after the bouquet was called. */
+    private int ownerHurtTime = -1;
 
     public IceBouquet(EntityType<? extends Entity> p_i50170_1_, Level p_i50170_2_) {
         super(p_i50170_1_, p_i50170_2_);
@@ -256,7 +258,10 @@ public class IceBouquet extends GroundProjectile {
             if (this.getOwner() != null){
                 if (this.getOwner() instanceof Mob){
                     if (this.needsConcentrate()) {
-                        if (this.getOwner().hurtTime > 0 && this.tickCount < 10 && !this.getOwner().isDeadOrDying()) {
+                        int hurtTime = this.getOwner().hurtTime;
+                        boolean freshHit = this.ownerHurtTime >= 0 && hurtTime > this.ownerHurtTime;
+                        this.ownerHurtTime = hurtTime;
+                        if (freshHit && this.tickCount < 10 && !this.getOwner().isDeadOrDying()) {
                             this.lifeTicks = 14;
                             this.level().broadcastEntityEvent(this, (byte) 7);
                         }

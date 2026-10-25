@@ -1,11 +1,11 @@
 {
-  "name": "Apparition Door",
+  "name": "幽霊の扉",
   "icon": "goety:apparition_door",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Apparition Door is a device that will turn intangible when right-clicked or activated through redstone. The door also trigger other adjacent doors to do the same."
+      "text": "幽霊の扉は、右クリックするか、レッドストーンを介してアクティブ化すると、無形になる装置です。 このドアは、他の隣接するドアにも同様の動作を引き起こします。"
     },
     {
       "type": "patchouli:crafting",

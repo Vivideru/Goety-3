@@ -11,6 +11,7 @@ import com.Polarice3.Goety.common.network.server.SLightningPacket;
 import com.Polarice3.Goety.utils.ColorUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -60,7 +61,7 @@ public class VoidShrineBlockEntity extends PedestalBlockEntity {
                         vec3 = vec3.offsetRandom(this.level.getRandom(), 3.0F);
                         serverLevel.sendParticles(new WindBlowParticleOption(new ColorUtil(ChatFormatting.LIGHT_PURPLE), width, height), vec3.x, vec3.y, vec3.z, 0, 0.0F, 1.0F, 0.0F, 1.0F);
                     }
-                    if (this.tick == 100) {
+                    if (this.tick == 100 && !this.hasBoundKeeper(serverLevel)) {
                         this.breakBlocksAround();
                         Vec3 vec3 = this.worldPosition.above().getCenter();
                         EnderKeeper keeper = new EnderKeeper(ModEntityType.ENDER_KEEPER.get(), serverLevel);
@@ -115,16 +116,23 @@ public class VoidShrineBlockEntity extends PedestalBlockEntity {
         this.coolTick = coolTick;
     }
 
-    public void readNetwork(CompoundTag compound) {
-        super.readNetwork(compound);
+    @Override
+    public void readNetwork(CompoundTag compound, HolderLookup.Provider provider) {
+        super.readNetwork(compound, provider);
         this.tick = compound.getInt("Tick");
         this.coolTick = compound.getInt("CoolTick");
     }
 
-    public CompoundTag writeNetwork(CompoundTag compound) {
-        CompoundTag compoundTag = super.writeNetwork(compound);
+    @Override
+    public CompoundTag writeNetwork(CompoundTag compound, HolderLookup.Provider provider) {
+        CompoundTag compoundTag = super.writeNetwork(compound, provider);
         compoundTag.putInt("Tick", this.tick);
         compoundTag.putInt("CoolTick", this.coolTick);
         return compoundTag;
+    }
+
+    private boolean hasBoundKeeper(ServerLevel serverLevel) {
+        return !serverLevel.getEntitiesOfClass(EnderKeeper.class, new AABB(this.worldPosition).inflate(128.0D),
+                keeper -> keeper.isAlive() && this.worldPosition.equals(keeper.getBoundPos())).isEmpty();
     }
 }

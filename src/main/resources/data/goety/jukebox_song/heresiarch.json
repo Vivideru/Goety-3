@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.goety.music_disc_heresiarch.desc"
+  },
+  "length_in_seconds": 91.0,
+  "sound_event": "goety:heresiarch_theme_disc"
+}

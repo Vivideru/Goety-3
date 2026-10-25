@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.items.magic;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.api.items.IShowOutlines;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
 import com.mojang.serialization.Codec;
@@ -35,7 +36,7 @@ import java.util.List;
  * Charts a cycle of waypoints that owned servants patrol once the plan is used on them (or blown to them with a
  * Command Horn held in the other hand). Based on @Minecraft-LightLand's ModularGolems PathRecordCard.
  */
-public class PatrolPlan extends Item {
+public class PatrolPlan extends Item implements IShowOutlines {
     private static final Codec<List<GlobalPos>> LIST_CODEC = GlobalPos.CODEC.listOf();
     private static final String PATROL_PATH = "PatrolPath";
     private static final double MAX_WAYPOINT_DISTANCE_SQR = 256.0D;

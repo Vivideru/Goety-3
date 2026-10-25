@@ -1,21 +1,21 @@
 {
-  "name": "Heretics",
+  "name": "ヘレティック",
   "icon": "goety:infernal_tome",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_heretic",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A cousin to Witches, these partisans shout unholy chants at their targets, summoning flame blasts beneath their feet, summon forth a creature of the Nether from a dying breath of a nearby creature."
+      "text": "ウィッチのいとこに相当するカルト集団で、ターゲットに向かって呪文を詠唱し、足元に炎の爆発を起こします。また、死者の息からネザーの生き物を召喚します。"
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:heretic",
-      "text": "They're resistant to magic much like their Witch cousins."
+      "text": "ウィッチと同じように、魔法に耐性があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "If a Villager sleeps near an active Nether Portal, they have a chance of transforming into a Heretic."
+      "text": "村人がアクティブなネザーポータルの近くにいると、ヘレティックになる可能性があります。"
     }
   ]
 }

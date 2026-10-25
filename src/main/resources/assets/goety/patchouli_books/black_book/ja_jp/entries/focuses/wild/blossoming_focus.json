@@ -1,19 +1,19 @@
 {
-  "name": "Blossoming Focus",
+  "name": "開花のフォーカス",
   "icon": "goety:blossoming_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell lobs an thorny ball of wild energies that will grow several poisonous thorns around the area of its impact."
+      "text": "この呪文は、野生のエネルギーである棘の弾を発射し、その衝撃領域の周囲にいくつかの有毒な棘を呼び起こします。。開花と言っても、歯のフォーカスのように刺す感じが近いです。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/blossoming_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() increases the radius."
+      "text": "$(l:crafts/staff/wild_staff)野生の杖$()で唱えると、範囲が増加します。"
     }
   ],
   "extra_recipe_mappings": {

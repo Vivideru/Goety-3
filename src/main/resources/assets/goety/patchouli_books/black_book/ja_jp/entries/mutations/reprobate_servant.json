@@ -1,11 +1,11 @@
 {
-  "name": "Reprobate Servant",
+  "name": "リプロベイトの従者",
   "icon": "minecraft:crimson_planks",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Lately, Wandering Traders seems to transform when shot with Lightning, you began pondering if you can make a servant out of Reprobates much like you did with Witches. After a while, you discovered that some Soul Energy, a Magic Emerald and a Mystic Core can turn a bumbling trader into a loyal Reprobate."
+      "text": "最近、行商人が雷を受けると変身するようだったので、ウィッチにしたように、従者にできるのではないかと考え始めた。しばらくして、ソウルエネルギー、覚醒したエメラルド、そしてミスティックコアがあれば、不器用な行商人を忠実なリプロベイトに変えることができると分かった。"
     },
     {
       "type": "goety:ritual",
@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You're also able to trade with your Reprobate Servant by giving them an Emerald, without needing to wear appropriate attire to do so. You can also trade with other Reprobate Servants, provided you're allied to their master, if they have one, and wearing the appropriate attire."
+      "text": "リプロベイトの従者にエメラルドを渡すことで、適切な服装をしなくても取引を行うことができます。また、他のリプロベイトの従者とも取引可能です。ただし、その従者に主がいる場合は、その主と同盟を結び、適切な服装をしていれば可能です。"
     }
   ]
 }

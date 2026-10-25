@@ -1,11 +1,11 @@
 {
-  "name": "Abyss Staff",
+  "name": "Глубоководный посох",
   "icon": "goety:abyss_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Abyss Staff gives the wielder great authority over the waves, increasing the power of Abyss Spells."
+      "text": "Глубоководный посох даёт владельцу абсолютную власть над волнами, увеличивая силу глубоководных заклинаний."
     },
     {
       "type": "goety:ritual",

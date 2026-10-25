@@ -1,11 +1,11 @@
 {
-  "name": "Dark Manors",
+  "name": "Тёмные поместья",
   "icon": "minecraft:dark_oak_log",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Illagers are quite progressive compared to their passive cousins. Some have set up some Manors outside of their Mansions to study the world and its aspects."
+      "text": "Злодеяне довольно прогрессивны по сравнению со своими мирными сородичами. Некоторые из них построили поместья за пределами особняков, чтобы изучать мир и его тайны."
     },
     {
       "type": "patchouli:image",

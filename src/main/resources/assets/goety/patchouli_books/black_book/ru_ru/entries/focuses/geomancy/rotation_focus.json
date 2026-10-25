@@ -1,11 +1,11 @@
 {
-  "name": "Rotation Focus",
+  "name": "Фокус вращения",
   "icon": "goety:rotation_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple focus that rotates and changed a block's orientation and facing direction."
+      "text": "Простой фокус, который поворачивает блок, изменяя его направление."
     },
     {
       "type": "patchouli:crafting",

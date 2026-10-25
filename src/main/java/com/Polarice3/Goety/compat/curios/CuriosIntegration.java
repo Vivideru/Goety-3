@@ -24,6 +24,7 @@ public class CuriosIntegration implements ICompatable {
             .put(ModItems.RING_OF_THE_DRAGON.get(), "ring")
             .put(ModItems.RING_OF_WRECKING.get(), "ring")
             .put(ModItems.DARK_HAT.get(), "head")
+            .put(ModItems.DARK_CROWN.get(), "head")
             .put(ModItems.GRAND_TURBAN.get(), "head")
             .put(ModItems.FROST_CROWN.get(), "head")
             .put(ModItems.WIND_CROWN.get(), "head")

@@ -1,5 +1,5 @@
 {
-  "name": "Trampler",
+  "name": "トランプラー",
   "icon": "minecraft:saddle",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_ravaging_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "It appears you've found a way to create a violent horse-like steed made from Illagers instead of Villagers. Unlike Ravagers, these steeds appeared ready to be mounted out of the gate."
+      "text": "村人ではなくイリジャーから作られた凶暴な馬のような獣を作成する方法を見つけたようです。ラヴェジャーとは異なり、トランプラーは門から出て馬に乗る準備ができているように見えました。"
     },
     {
       "type": "goety:ritual",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Much like camels, pressing jump will charge up their dash, allowing you to manually charge at your foes."
+      "text": "ラクダと同じように、ジャンプを押すとダッシュがチャージされ、手動で敵に突撃できるようになります。"
     },
     {
       "type": "patchouli:entity",
@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Tramplers can be part of a $(l:goety:mutations/illager_servants)raiding party$(), though they cannot be leaders."
+      "text": "トランプラーは$(l:goety:mutations/illager_servants)レイダー$()の一員になることはできますが、リーダーになることはできません。"
     }
   ]
 }

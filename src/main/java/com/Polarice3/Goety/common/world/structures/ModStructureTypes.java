@@ -12,5 +12,6 @@ public class ModStructureTypes {
     public static DeferredHolder<StructureType<?>, StructureType<BiggerJigsawStructure>> BIGGER_JIGSAW_STRUCTURE = STRUCTURE_TYPE.register("bigger_jigsaw", () -> () -> BiggerJigsawStructure.CODEC);
     public static DeferredHolder<StructureType<?>, StructureType<CryptStructure>> CRYPT_STRUCTURE = STRUCTURE_TYPE.register("crypt", () -> () -> CryptStructure.CODEC);
     public static DeferredHolder<StructureType<?>, StructureType<FinalTerminalStructure>> FINAL_TERMINAL_STRUCTURE = STRUCTURE_TYPE.register("final_terminal", () -> () -> FinalTerminalStructure.CODEC);
+    public static DeferredHolder<StructureType<?>, StructureType<WreckedMansionStructure>> WRECKED_MANSION = STRUCTURE_TYPE.register("wrecked_mansion", () -> () -> WreckedMansionStructure.CODEC);
 
 }

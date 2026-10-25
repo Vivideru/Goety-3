@@ -34,12 +34,14 @@ import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.DirectionalPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.ChiseledBookShelfBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -988,6 +990,20 @@ public class BlockFinder {
         }
 
         return currentCount >= enchantPower;
+    }
+
+    public static boolean filledWithEnchantedBook(ChiseledBookShelfBlockEntity entity) {
+        if (entity == null) {
+            return false;
+        }
+        int i = 0;
+        for (int j = 0; j < ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.size(); ++j) {
+            ItemStack itemStack = entity.getItem(j);
+            if (itemStack.is(Items.ENCHANTED_BOOK)) {
+                ++i;
+            }
+        }
+        return i >= ChiseledBookShelfBlock.SLOT_OCCUPIED_PROPERTIES.size();
     }
 
     //Based from Bosses of Mass Destruction codes: https://github.com/CERBON-MODS/Bosses-of-Mass-Destruction-FORGE/blob/master/Common/src/main/java/com/cerbon/bosses_of_mass_destruction/util/BMDUtils.java#L28

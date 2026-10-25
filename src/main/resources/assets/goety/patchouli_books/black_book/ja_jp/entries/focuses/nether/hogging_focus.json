@@ -1,12 +1,12 @@
 {
-  "name": "Hogging Focus",
+  "name": "バーニングホグリンのフォーカス",
   "icon": "goety:hogging_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Hogging focus summons an short-lived ethereal hoglin that will charge towards an enemy and explode upon contact."
+      "text": "このフォーカスは、短命で幽霊のようなホグリンを召喚し、敵に向かって突進させ、接触すると爆発します。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() summons more Burning Hoglins at once."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、一度にさらに多くのバーニングホグリンを召喚します。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,5 +1,5 @@
 {
-  "name": "Redstone Golem",
+  "name": "レッドストーンゴーレム",
   "icon": "minecraft:redstone_block",
   "category": "goety:summons",
   "advancement": "goety:goety/read_warred_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Plundering through old architectures, you've came across a sort of blueprint for a powerful Golem that's used for wars in ancient days. The Golem seems mighty, though it requires a mold made of Diamonds and Stone Bricks to create such a terrible beast."
+      "text": "古い建築物を略奪すると、古代に戦争に使用された強力なゴーレムの設計図のようなものを見つけました。 ゴーレムは強そうに見えますが、このような恐ろしい獣を作成するにはダイヤモンドと石レンガで作られた型が必要です。"
     },
     {
       "type": "patchouli:entity",
@@ -17,11 +17,11 @@
     {
       "type": "multiblock",
       "multiblock_id": "goety:redstone_golem",
-      "text": "Right click the center Redstone Block with an Animation Core."
+      "text": "アニメーション コアのある中央のレッドストーン ブロックを右クリックします。"
     },
     {
       "type": "patchouli:text",
-      "text": "The Stone Bricks can be substituted with other similar blocks such as Deepslate Bricks. The resulting Golem proves far superior to the Iron Golems as not only is it stronger, but it can be commanded to follow, wander or stay in position through a wand/staff. They can be repaired by right-clicking on them with Redstone Dusts or Blocks."
+      "text": "Stone Bricks は、Deepslate Bricks などの他の同様のブロックで置き換えることができます。 出来上がったゴーレムは、より強いだけでなく、杖や杖を使って追いかけたり、さまよったり、その場にとどまるように命令できるため、アイアンゴーレムよりもはるかに優れていることがわかります。 レッドストーンダストまたはブロックを右クリックして修復できます。"
     },
     {
       "type": "patchouli:crafting",
@@ -31,7 +31,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:redstone_golem_skull",
-      "text": "Should the Golem fell from battle or command, they will drop their 'skull'. The Skull can be used to revive the Golem in a cheaper manner. However, the Skull remembers it's original creator and master and the revived Golem will only follow their commands."
+      "text": "ゴーレムが戦闘または指揮から落ちた場合、彼らは「頭」を落とします。 スカルを使用すると、より安価な方法でゴーレムを復活させることができます。 しかし、スカルは元の創造主であり主人であることを覚えており、復活したゴーレムは彼らの命令にのみ従うでしょう。"
     },
     {
       "type": "multiblock",
@@ -40,7 +40,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Redstone Golems can be part of a $(l:goety:mutations/illager_servants)raiding party$(), though they cannot be leaders."
+      "text": "レッドストーンゴーレムは$(l:goety:mutations/illager_servants)レイダー$()の一員になることはできますが、リーダーになることはできません。"
     }
   ],
   "extra_recipe_mappings": {

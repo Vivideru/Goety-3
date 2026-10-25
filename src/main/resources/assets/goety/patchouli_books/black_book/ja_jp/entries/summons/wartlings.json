@@ -1,11 +1,11 @@
 {
-  "name": "Wartlings",
+  "name": "イボ",
   "icon": "minecraft:nether_wart",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Wartlings have the same properties as Spiders, though they are much smaller and weaker. A Wartling can only exist for 9 seconds before either dying or returning back to its user, where it will disappear and heal the user the amount of health it had."
+      "text": "イボはクモと同じ性質を持っていますが、はるかに小さくて弱いです。 イボは死ぬかユーザーの元に戻るまで 9 秒間しか存在できません。イボは消滅し、ユーザーの体力を回復します。"
     },
     {
       "type": "patchouli:entity",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Should the user have a negative effect on them, the next Wartling will take and 'store' that effect in them, which will cause them to leave a cloud of the stored effect once they perish. The stored effect does not effect them and they cannot be effected by the same effect as the one they stored. These Wartlings do not return to their user."
+      "text": "ユーザーがそれらにマイナスの影響を与えた場合、次のイボはその効果を取り込み、その効果を「保存」します。これにより、ユーザーが消滅すると、保存された効果の雲が残ります。 保存された効果はそれらに影響を与えず、保存された効果と同じ効果を受けることはできません。 これらのイボはユーザーの元には戻りません。"
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ingots/silver",
+      "required": false
+    },
+    "goety:pale_steel_ingot"
+  ]
+}

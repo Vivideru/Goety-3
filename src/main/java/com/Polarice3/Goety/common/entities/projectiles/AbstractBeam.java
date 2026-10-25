@@ -103,6 +103,7 @@ public abstract class AbstractBeam extends Entity implements IEntityWithComplexS
             Set<LivingEntity> entities = new HashSet<>();
             AABB aabb = new AABB(this.position(), this.position()).inflate(this.beamWidth);
             double distanceToDestination = beamTraceDistance(MAX_RAYTRACE_DISTANCE, 1.0f, false);
+            com.Vivideru.Goety.common.events.PlinthSealerCrystalEvents.onBeamHit(this, beamTraceResult(MAX_RAYTRACE_DISTANCE, 1.0F, false));
             double distanceTraveled = 0;
             while (!(this.position().distanceTo(aabb.getCenter()) > distanceToDestination) && !(this.position().distanceTo(aabb.getCenter()) > MAX_RAYTRACE_DISTANCE)) {
                 for (Entity entity : this.level().getEntitiesOfClass(Entity.class, aabb)) {

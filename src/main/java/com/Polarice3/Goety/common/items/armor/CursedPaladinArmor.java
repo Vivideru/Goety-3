@@ -4,6 +4,7 @@ import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.items.IPersist;
 import com.Polarice3.Goety.client.render.ModModelLayer;
 import com.Polarice3.Goety.client.render.model.CursedPaladinArmorModel;
+import com.Vivideru.Goety.client.render.model.ArmorModelCache;
 import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.config.ItemConfig;
 import com.Polarice3.Goety.utils.ItemHelper;
@@ -44,6 +45,11 @@ public class CursedPaladinArmor extends ArmorItem implements IPersist {
     }
 
     @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return com.Polarice3.Goety.utils.ConfiguredItemUtil.positive(ItemConfig.CursedPaladinEnchantability, 20);
+    }
+
+    @Override
     public boolean isBarVisible(ItemStack stack) {
         return this.isDamaged(stack);
     }
@@ -64,7 +70,7 @@ public class CursedPaladinArmor extends ArmorItem implements IPersist {
     }
 
     public <T extends LivingEntity> int damageItem(ItemStack stack, int amount, T entity, Consumer<net.minecraft.world.item.Item> onBroken) {
-        if (ItemHelper.armorSet(entity, this.getMaterial())){
+        if (entity != null && ItemHelper.armorSet(entity, this.getMaterial())){
             if (entity.getRandom().nextBoolean()){
                 return 0;
             }
@@ -108,9 +114,7 @@ public class CursedPaladinArmor extends ArmorItem implements IPersist {
         super.initializeClient(consumer);
         consumer.accept(new IClientItemExtensions() {
            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-               EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
-               ModelPart root = modelSet.bakeLayer(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.CURSED_PALADIN_ARMOR_INNER : ModModelLayer.CURSED_PALADIN_ARMOR_OUTER);
-               CursedPaladinArmorModel model = new CursedPaladinArmorModel(root).animate(livingEntity);
+               CursedPaladinArmorModel model = ArmorModelCache.get(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.CURSED_PALADIN_ARMOR_INNER : ModModelLayer.CURSED_PALADIN_ARMOR_OUTER, CursedPaladinArmorModel::new).animate(livingEntity);
                model.hat.visible = equipmentSlot == EquipmentSlot.HEAD;
                model.body.visible = equipmentSlot == EquipmentSlot.CHEST;
                model.rightArm.visible = equipmentSlot == EquipmentSlot.CHEST;

@@ -303,6 +303,11 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> SmackStoneDuration;
     public static final ModConfigSpec.ConfigValue<Integer> SmackStoneCoolDown;
     public static final ModConfigSpec.ConfigValue<Double> SmackStoneDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> TemblorClapCost;
+    public static final ModConfigSpec.ConfigValue<Integer> TemblorClapDuration;
+    public static final ModConfigSpec.ConfigValue<Integer> TemblorClapCoolDown;
+    public static final ModConfigSpec.ConfigValue<Double> TemblorClapDamage;
+    public static final ModConfigSpec.ConfigValue<Double> TemblorClapMaxDamage;
 
     public static final ModConfigSpec.ConfigValue<Integer> MinistrousCost;
     public static final ModConfigSpec.ConfigValue<Integer> MinistrousDuration;
@@ -338,6 +343,9 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> LaunchCost;
     public static final ModConfigSpec.ConfigValue<Integer> LaunchDuration;
     public static final ModConfigSpec.ConfigValue<Integer> LaunchCoolDown;
+    public static final ModConfigSpec.ConfigValue<Boolean> LaunchNoAirRecharge;
+    public static final ModConfigSpec.ConfigValue<Double> LaunchBasePower;
+    public static final ModConfigSpec.ConfigValue<Double> LaunchPotencyPower;
 
     public static final ModConfigSpec.ConfigValue<Integer> FlyingCost;
     public static final ModConfigSpec.ConfigValue<Integer> FlyingChargeUp;
@@ -656,6 +664,7 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> BoundIllagerLimit;
     public static final ModConfigSpec.ConfigValue<Integer> BlackBeastLimit;
     public static final ModConfigSpec.ConfigValue<Integer> WildfireLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> FlameConstructLimit;
     public static final ModConfigSpec.ConfigValue<Integer> HurricaneLimit;
     public static final ModConfigSpec.ConfigValue<Integer> WargLimit;
     public static final ModConfigSpec.ConfigValue<Integer> CerberusLimit;
@@ -1307,6 +1316,18 @@ public class SpellConfig {
             SmackStoneDamage = BUILDER.comment("How much base damage Smack Stones deals, Default: 4.0")
                     .defineInRange("smackStoneDamage", 4.0, 1.0, Double.MAX_VALUE);
             BUILDER.pop();
+            BUILDER.push("Temblor Clap Spell");
+            TemblorClapCost = BUILDER.comment("Temblor Clap Spell Cost, Default: 40")
+                    .defineInRange("temblorClapCost", 40, 0, Integer.MAX_VALUE);
+            TemblorClapDuration = BUILDER.comment("Time to cast Temblor Clap Spell, Default: 0")
+                    .defineInRange("temblorClapTime", 0, 0, 72000);
+            TemblorClapCoolDown = BUILDER.comment("Temblor Clap Spell Cooldown, Default: 140")
+                    .defineInRange("temblorClapCoolDown", 140, 0, Integer.MAX_VALUE);
+            TemblorClapDamage = BUILDER.comment("How much base minimum damage Temblor Clap Spell deals, Default: 3.0")
+                    .defineInRange("temblorClapMinDamage", 3.0, 1.0, Double.MAX_VALUE);
+            TemblorClapMaxDamage = BUILDER.comment("How much base maximum damage Temblor Clap Spell deals, Default: 9.0")
+                    .defineInRange("temblorClapMaxDamage", 9.0, 2.0, Double.MAX_VALUE);
+            BUILDER.pop();
             BUILDER.push("Ministrous Spell");
             MinistrousCost = BUILDER.comment("Ministrous Spell Cost, Default: 8")
                     .defineInRange("ministrousCost", 8, 0, Integer.MAX_VALUE);
@@ -1376,6 +1397,12 @@ public class SpellConfig {
                     .defineInRange("launchTime", 20, 0, 72000);
             LaunchCoolDown = BUILDER.comment("Launch Spell Cooldown, Default: 20")
                     .defineInRange("launchCoolDown", 20, 0, Integer.MAX_VALUE);
+            LaunchNoAirRecharge = BUILDER.comment("Do not recharge the Launching Focus while the caster is not on the ground, Default: false")
+                    .define("launchNoAirRecharge", false);
+            LaunchBasePower = BUILDER.comment("Base launching power of the Launching Spell; the Wind Staff multiplies it by 2.5, Default: 1.0")
+                    .defineInRange("launchBasePower", 1.0, 0.0, Double.MAX_VALUE);
+            LaunchPotencyPower = BUILDER.comment("Launching power added per Potency level, Default: 0.5")
+                    .defineInRange("launchPotencyPower", 0.5, 0.0, Double.MAX_VALUE);
             BUILDER.pop();
             BUILDER.push("Flight Spell");
             FlyingCost = BUILDER.comment("Flight Spell Cost, Default: 4")
@@ -2023,8 +2050,10 @@ public class SpellConfig {
                 .defineInRange("blackBeastLimit", 2, 1, Integer.MAX_VALUE);
         WildfireLimit = BUILDER.comment("Number of Wildfire Servants that an individual player can have in total, Default: 2")
                 .defineInRange("wildfireLimit", 2, 1, Integer.MAX_VALUE);
-        HurricaneLimit = BUILDER.comment("Number of Hurricane Servants that an individual player can have in total, Default: 3")
-                .defineInRange("hurricaneLimit", 3, 1, Integer.MAX_VALUE);
+        FlameConstructLimit = BUILDER.comment("Number of Flame Constructs that an individual player can have in total, Default: 32")
+                .defineInRange("flameConstructLimit", 32, 1, Integer.MAX_VALUE);
+        HurricaneLimit = BUILDER.comment("Number of Hurricane Servants that an individual player can have in total, Default: 2")
+                .defineInRange("hurricaneLimit", 2, 1, Integer.MAX_VALUE);
         WargLimit = BUILDER.comment("Number of Wargs (of any breed) that an individual player can have in total, Default: 3")
                 .defineInRange("wargLimit", 3, 0, Integer.MAX_VALUE);
         CerberusLimit = BUILDER.comment("Number of Cerberuses that an individual player can have in total, Default: 1")

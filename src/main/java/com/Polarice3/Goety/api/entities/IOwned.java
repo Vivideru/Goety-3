@@ -175,7 +175,7 @@ public interface IOwned {
     }
 
     default void onCeaseFire(ServerPlayer player){
-
+        this.setPacifyTick(60);
     }
 
     default void onStopAttack() {
@@ -184,6 +184,13 @@ public interface IOwned {
                 serverLevel.broadcastEntityEvent(entity, (byte) 20);
             }
         }
+    }
+
+    default int getPacifyTick() {
+        return 0;
+    }
+
+    default void setPacifyTick(int ticks) {
     }
 
     default void checkHostility() {
@@ -247,11 +254,18 @@ public interface IOwned {
                     this.reviveTick();
                     this.setRevivingTime(this.getRevivingTime() - 1);
                 }
+                if (this.getPacifyTick() > 0) {
+                    this.pacify();
+                    this.setPacifyTick(this.getPacifyTick() - 1);
+                }
             }
         }
     }
 
     default void targetingTick() {
+        if (this.getPacifyTick() > 0) {
+            return;
+        }
         if (this instanceof Mob mob && !StunnedEvents.isStunned(mob)) {
             if (mob.getTarget() != null && ServantUtil.nullifyTarget(this, mob.getTarget())) {
                 LivingEntity oldTarget = mob.getTarget();
@@ -358,6 +372,27 @@ public interface IOwned {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    default void pacify() {
+        if (this instanceof Mob mob) {
+            if (mob.getTarget() != null) {
+                mob.setTarget(null);
+                if (mob.getLastHurtByMob() != null){
+                    mob.setLastHurtByMob(null);
+                }
+                if (mob.getBrain() != null) {
+                    mob.getBrain().eraseMemory(MemoryModuleType.ATTACK_TARGET);
+                    mob.getBrain().eraseMemory(MemoryModuleType.ANGRY_AT);
+                    mob.getBrain().eraseMemory(MemoryModuleType.HURT_BY);
+                }
+                if (mob instanceof NeutralMob neutralMob) {
+                    neutralMob.setPersistentAngerTarget(null);
+                    neutralMob.stopBeingAngry();
+                }
+                mob.setAggressive(false);
             }
         }
     }

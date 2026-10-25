@@ -1,12 +1,12 @@
 {
-  "name": "Wight",
+  "name": "Умертвие",
   "icon": "goety:shadow_essence",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_wight",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A strange entity that appears near beings that have a high amount of soul energy."
+      "text": "Странная сущность, появляющаяся рядом с теми, у кого много энергии душ."
     },
     {
       "type": "patchouli:entity",
@@ -15,12 +15,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:shadow_essence",
-      "title": "Essence of Shadow",
-      "text": "When slain, they drop some odd 'essences' that seems to suck in light. Perhaps they can be used to create certain items."
+      "title": "Теневая эссенция",
+      "text": "При убийстве с него выпадают странные «эссенции», которые, кажется, поглощают свет. Возможно, их можно использовать для создания некоторых предметов."
     },
     {
       "type": "patchouli:text",
-      "text": "Some, who have seen and survived an encounter of one, believed them to be a creation of a $(l:world/crypts)dark and cold place$()..."
+      "text": "Некоторые из тех, кто пережил встречу с ними, считали их порождением $(l:world/crypts)тёмного и холодного места$()..."
     }
   ],
   "extra_recipe_mappings": {

@@ -16,6 +16,14 @@
       "type": "patchouli:crafting",
       "recipe": "goety:dark_hat",
       "text": "O Chapéu das Trevas ajuda a focar nos feitiços, reduzindo o tempo de conjuração."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark_crown",
+      "text": "A Coroa das Trevas também reduz o tempo necessário para conjurar feitiços. Um adorno de cabeça mais adequado para quem está prestes a se tornar realeza."
     }
-  ]
+  ],
+  "extra_recipe_mappings": {
+    "goety:dark_robe_fancy": 1
+  }
 }

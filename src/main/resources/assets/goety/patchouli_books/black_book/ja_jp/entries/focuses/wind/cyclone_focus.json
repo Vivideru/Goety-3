@@ -1,11 +1,11 @@
 {
-  "name": "Cyclone Focus",
+  "name": "サイクロンのフォーカス",
   "icon": "goety:cyclone_focus",
   "category": "goety:focuses/wind",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus sends forth a powerful cyclone pulling in any nearby creatures and throwing them around. Casting with the $(l:crafts/staff/wind_staff)Wind Staff$() will cause the cyclone to constantly deal a small amount of damage to targets caught in it."
+      "text": "フォーカスは強力なサイクロンを放出し、近くの生き物を引き寄せて投げ飛ばします。風の杖で詠唱すると、サイクロンが巻き込まれたターゲットに継続的に少量のダメージを与えます。"
     },
     {
       "type": "goety:ritual",

@@ -1,11 +1,11 @@
 {
-  "name": "Warlock Set",
+  "name": "Чернокнижные одежды",
   "icon": "goety:warlock_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Warlocks are known to have a very fungal brown robes with a nice sash wrapped around it. With some Red Wool, A couple of Wartful Eggs and Nether Warts, you've figured out how to make your own Warlock sash and which makes it so using that a Wartful Egg no longer harms you."
+      "text": "Известно, что у чернокнижников очень красивые коричневые мантии, обвязанные поясом. Вы придумали, как из красной шерсти, пары обросших яиц и незерского нароста, сделать свой собственный чернокнижный пояс, который делает так, что обросшие яйца больше не наносят вам урон при использовании."
     },
     {
       "type": "patchouli:crafting",
@@ -17,11 +17,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Warlock Robe causes the wearer to be resistant to magic damage and provides a 10%% chance of not consuming any Wartful Eggs or a Snap Fungi and gives a 25%% chance for an additional Snap Fungi to drop from full grown Snap Warts. The Sash and Robe also cause Spiders to more likely drop Spider Eggs. If the wearer has a negative status effect, the garment will automatically use up any Wartful Eggs within the wearer's inventory."
+      "text": "Чернокнижная мантия даёт владельцу защиту от взрывов и 10%%-ный шанс не потратить обросшее яйцо. Пояс и мантия также повышают вероятность выпадения паучьих яиц с пауков. Если у владельца появляется вредный эффект, одежды автоматически используют обросшее яйцо из его инвентаря, чтобы перенести этот эффект на наростника."
     },
     {
       "type": "patchouli:text",
-      "text": "Much like wearing a Witches Hat and Robe, wearing Warlock Robes causes all Witches and Warlocks to be neutral and barter-able."
+      "text": "Подобно ведьминой шляпе и мантии, чернокнижная мантия делает всех ведьм и чернокнижников нейтральными и способными к торговле."
     }
   ],
   "extra_recipe_mappings": {

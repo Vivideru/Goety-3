@@ -25,13 +25,20 @@
     },
     {
       "type": "patchouli:image",
-      "images": ["goety:textures/gui/entries/arca.png"],
+      "images": [
+        "goety:textures/gui/entries/arca.png"
+      ],
       "border": true,
       "text": "Руны показывают, какая арка используется."
     },
     {
       "type": "patchouli:text",
       "text": "У вас может быть только ОДНА арка, так как установка другой приведет к тому, что новая арка заменит прежнюю. Если арка сломана, энергия душ, хранящаяся внутри, будет медленно испаряться, вызывая душевный голод, который ослабляет и замедляет вас, пока вся энергия не иссякнет или не будет установлена другая арка. Если у вас несколько арк, нажатие ПКМ по неиспользуемой пустой рукой покажет, какая арка используется."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:waystone",
+      "text": "You can adjust where the Arca will place you down when saving you from death. Right-click on the Arca with a Waystone, that has recorded a position within 8 blocks from the Arca, and it will try to revive you at that location instead of near itself."
     }
   ],
   "extra_recipe_mappings": {

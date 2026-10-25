@@ -2,9 +2,7 @@
   "name": "Ritual do Oráculo",
   "icon": "goety:crystal_ball",
   "category": "goety:rituals",
-  "advancement": "goety:goety/get_crystal_ball",
   "sortnum": 2,
-  "secret": false,
   "pages": [
     {
       "type": "patchouli:text",
@@ -12,7 +10,9 @@
     },
     {
       "type": "patchouli:image",
-      "images": ["goety:textures/gui/entries/divination_ritual.png"],
+      "images": [
+        "goety:textures/gui/entries/divination_ritual.png"
+      ],
       "border": true,
       "text": "Um exemplo de como o ritual pode ser montado."
     },
@@ -39,6 +39,10 @@
     {
       "type": "goety:ritual",
       "recipe": "goety:locate/stronghold"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:locate/trial_chambers"
     },
     {
       "type": "goety:ritual",

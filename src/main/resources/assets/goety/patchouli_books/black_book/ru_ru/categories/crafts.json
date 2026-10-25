@@ -1,6 +1,6 @@
 {
-  "name": "Crafts",
-  "description": "Your craftsmanship should not go to waste when it comes to the arcane.",
+  "name": "Рецепты",
+  "description": "Ваше мастерство созидания не должно пропасть даром, когда дело доходит до тайн.",
   "icon": "goety:focus_bag",
   "sortnum": 5
 }

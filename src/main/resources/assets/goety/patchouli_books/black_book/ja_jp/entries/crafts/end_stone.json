@@ -1,11 +1,11 @@
 {
-  "name": "End Stone & Purpur Variants",
+  "name": "エンドストン&プルプァの亜種",
   "icon": "goety:end_stone_tiles",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Apparently delving into the dark arts gives you knowledge of making new block variants for End Stone and Purpur Blocks."
+      "text": "闇の魔術を探求すると、エンドストーンやパープルブロックの新しいブロックバリアントを作成する知識が得られるようです。"
     },
     {
       "type": "patchouli:crafting",

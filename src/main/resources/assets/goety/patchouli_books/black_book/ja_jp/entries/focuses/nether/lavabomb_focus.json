@@ -1,12 +1,12 @@
 {
-  "name": "Lava Bomb Focus",
+  "name": "溶岩爆弾のフォーカス",
   "icon": "goety:lavaball_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You can feel the power of the Nether overtaking you. Unlike the Ghasts, you do not weep. After all, it is a good pain. Your Lavaballs deal no environmental damage when cast while crouching."
+      "text": "ネザーの力があなたを圧倒するのを感じます。ガストとは違い、あなたは泣かない。結局のところ、それは良い痛みです。しゃがんだ状態で溶岩爆弾を発射すると、地形にダメージを与えないようにできます。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() will shoot two extra lava bombs."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、追加で溶岩爆弾を2つ発射します。"
     }
   ],
   "extra_recipe_mappings": {

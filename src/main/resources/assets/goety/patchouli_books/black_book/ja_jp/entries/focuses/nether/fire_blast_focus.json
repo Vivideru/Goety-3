@@ -1,11 +1,11 @@
 {
-  "name": "Fire Blast Focus",
+  "name": "ファイアブラストのフォーカス",
   "icon": "goety:fire_blast_focus",
   "category": "goety:focuses/nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You emit an fiery explosion at your position, hurting all nearby creatures and burning them. The explosion deals fire damage and does not harm the caster or their allies."
+      "text": "自分の位置で激しい爆発を起こし、近くのすべての生き物を傷つけ、それらを燃やします。爆発は火によるダメージを与えますが、術者自身やその仲間にはダメージを与えません。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() increases explosion range a bit."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、爆発範囲が少し増加します。"
     }
   ],
   "extra_recipe_mappings": {

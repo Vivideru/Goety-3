@@ -1,11 +1,11 @@
 {
-  "name": "Bulwark Focus",
+  "name": "ブルワークフォーカス",
   "icon": "goety:bulwark_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus will initially summon four magical shields to orbit around you, each absorbing an attack before breaking, knocking back the attacker. After a while, the shields will disappear."
+      "text": "フォーカスは最初に 4 つの魔法の盾を召喚してあなたの周りを周回し、それぞれが破壊する前に攻撃を吸収し、攻撃者をノックバックします。 しばらくすると盾が消えます。"
     },
     {
       "type": "goety:ritual",

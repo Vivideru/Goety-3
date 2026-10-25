@@ -1,22 +1,24 @@
 {
-  "name": "Sabbath Ritual",
+  "name": "安息日の儀式",
   "icon": "minecraft:crying_obsidian",
   "category": "goety:rituals",
   "sortnum": 10,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)8 Crying Obsidian $(li)16 Obsidian $(li)4 Soul Fires"
+      "text": "必要条件: $(li)8 泣く黒曜石 $(li)16 黒曜石 $(li)4 魂の火"
     },
     {
       "type": "patchouli:image",
-      "images": ["goety:textures/gui/entries/sabbath_ritual.png"],
+      "images": [
+        "goety:textures/gui/entries/sabbath_ritual.png"
+      ],
       "border": true,
       "text": "An example of how the ritual can be placed."
     },
     {
       "type": "patchouli:text",
-      "text": "You've heard rumors of a powerful being that lurks within the Nether. Rumor has it that a cabal of Nether Cultists met with what a being they called an 'Apostle' in a circle of Obsidian where they appeared before them and told them secrets."
+      "text": "ネザーに潜む強力な存在についての噂を耳にしたことがあるでしょう。噂によると、ネザーのカルト信者の一団が、オブシディアンのサークル内で「使徒」と呼ばれる存在と会い、その存在が彼らの前に現れて秘密を語ったそうです。"
     },
     {
       "type": "goety:ritual",
@@ -28,7 +30,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Perhaps, with some trickery, magic and a baiting material, you are capable of summoning one for your own purposes, though you shouldn't summon one within the Nether where they're at their most powerful. (Recommended Equipment: Enchanted Armor, Smite Weapons and Efficiency Pickaxe)"
+      "text": "おそらく、いくつかのトリック、魔法、そしておとり材料があれば、自分の目的のために召喚することができるでしょう。ただし、最も強力になるネザー内で召喚すべきではありません。(推奨装備: エンチャントされた鎧、アンデット特効武器、効率化ツルハシ)"
     }
   ]
 }

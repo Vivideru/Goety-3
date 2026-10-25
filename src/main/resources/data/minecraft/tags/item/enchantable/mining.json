@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "goety:iron_ice_axe",
+    "goety:reinforced_ice_axe",
+    "goety:diamond_ice_axe",
     "#minecraft:axes",
     "#minecraft:pickaxes",
     "#minecraft:shovels",

@@ -1,11 +1,11 @@
 {
-  "name": "Wild Robes",
+  "name": "Дикие одежды",
   "icon": "goety:wild_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Wild Robes allows you to harness the power of nature far more efficiently and effectively. Servants that spews poison, for instance, will instead give Acid Venom, which affects even the Undead. Consequently, the Robes also provides immunity to poison and said venom!"
+      "text": "Дикая мантия позволяет вам использовать силу природы гораздо эффективнее. Например, прислужники, накладывающие отравление, вместо него будут накладывать кислотный яд, который действует даже на нежить. Следовательно, мантия также обеспечивает иммунитет к отравлению и упомянутому яду!"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Creatures born from Wild magic can slowly heal themselves using their summoner's soul energy, should the summoner don this robe."
+      "text": "Существа, порождённые дикой магией, могут медленно исцеляться, используя энергию душ создателя, если он наденет эту мантию."
     },
     {
       "type": "goety:ritual",
@@ -21,7 +21,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Wild Crown reduce the amount of time to cast Wild spells by half and keeps your wild servants from dying off like Vexes."
+      "text": "Дикая корона вдвое сокращает время использования диких заклинаний и не даёт вашим диким прислужникам исчезать, подобно врединам."
     }
   ],
   "extra_recipe_mappings": {

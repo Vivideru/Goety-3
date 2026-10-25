@@ -1,6 +1,6 @@
 {
-  "name": "Geomancy",
-  "description": "The power over the earth.",
+  "name": "Геомантия",
+  "description": "Власть над землёй.",
   "icon": "goety:barricade_focus",
   "parent": "goety:focuses"
 }

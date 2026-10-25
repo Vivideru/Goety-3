@@ -37,10 +37,23 @@
     },
     {
       "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
+      "entity": "goety:imperial_guard_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "盾の陰から強力な矢を敵に浴びせかけ、上官を守るよう高度な訓練を受けたピリジャー。あなたは砂漠にあったスクロールを研究する中で、独創的な発想によりこの役割を考案しました。"
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
       "entity": "goety:piker_servant"
     },
     {
       "type": "patchouli:text",
+      "advancement": "goety:goety/read_front_scroll",
       "text": "高度な訓練を受け、規律正しいイリジャーは、自分の位置から遠く離れた標的を刺すことが可能です。"
     },
     {
@@ -57,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "指揮下にある最も凶悪なイリジャーの一人。斧で盾を無効化し、大量のダメージを与える。従順にさせたいなら、「Johnny」という名前は避けた方が良いだろう。"
+      "text": "最も凶悪なイリジャーの一人。斧で盾を無効化し、大量のダメージを与えます。従順にさせたいなら、「Johnny」という名前は避けた方が良いだろう。"
     },
     {
       "type": "patchouli:entity",
@@ -83,16 +96,18 @@
     },
     {
       "type": "patchouli:text",
-      "text": "これらのイリジャーは通常、他のイリジャーのために武器を鍛造しますが、強力なハンマーで敵を粉砕することもできます。"
+      "text": "これらのイリジャーは通常、他のイリジャーのために武器を鍛造しますが、強力なハンマーで敵を粉砕することもできます。彼らは自身に紐付けられたチェストから鉱石を取り出し、近くのかまどや溶鉱炉で精錬することができます。また、他のイリジャーが武器を失った際には新たな武器を製作したり、十分な資源があり、かつ対象のイラジャーがエンチャント付きの武器を所持していない場合には、より高性能な武器を作ったりすることもあります。さらに、彼らは「修理用パテ」を作成し、それを使って近くの損傷した味方のゴーレム系を修理することもできます。"
     },
     {
       "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
       "entity": "goety:royal_guard_servant",
       "scale": 0.75
     },
     {
       "type": "patchouli:text",
-      "text": "威圧的な態度とメイスによる強力な一撃で上官を護衛する、高位のイラジャーです。盾を失っている場合、攻撃中でない時に鉄インゴットを持って右クリックすると、盾を再び持たせることができます。"
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "威圧的な態度とメイスによる強力な一撃で上官を護衛する、高位のイリジャーです。盾を失っている場合、攻撃中でない時に鉄インゴットを持って右クリックすると、盾を再び持たせることができます。"
     },
     {
       "type": "patchouli:entity",
@@ -100,7 +115,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "闇の魔術の使い手だが、使える呪文は2つに限られている。しかし、呪文の使い手としてはかなり優秀です。戦闘に関しては、刺されないように走り回るのが好きなようだ。主人が$(l:rumors/ravaging)荒らし方$()を学んだ場合、村人をラヴェジャーに変えることが可能です。そのためには、$(l:goety:focuses/command_focus)命令$()して $(l:goety:mutations/illager_servants#banner)エヴォーカーを1人に導く$() か、村人全体が$(l:goety:crafts/grimoire_of_grudges)恨みを抱いている$()場合は近くに1人、さらにエヴォーカーが2人いる必要があります。"
+      "text": "闇の魔術の使い手だが、使える呪文は2つに限られている。しかし、呪文の使い手としてはかなり優秀です。戦闘に関しては、刺されないように走り回るのが好きなようだ。主人が$(l:rumors/ravaging)荒らし方$()を学んだ場合、村人をラヴェジャーに変えることが可能です(ピリジャーをトランプラーにすることも可能です)。そのためには、$(l:goety:focuses/command_focus)命令$()して $(l:goety:mutations/illager_servants#banner)エヴォーカーを1人に導く$() か、村人全体が$(l:goety:crafts/grimoire_of_grudges)恨みを抱いている$()場合は近くに1人、さらにエヴォーカーが2人いる必要があります。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:enchanter_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "これらの学者は、敵と対峙した際に近くの味方に魔法をかけ、その能力値やダメージ耐性を高めることができます。この強化の効果(リンク)を維持できるのは一定時間のみであり、魔法をかけられた味方が術者から離れすぎると効果は途切れてしまいます。"
     },
     {
       "type": "patchouli:entity",
@@ -129,19 +152,23 @@
     {
       "type": "patchouli:entity",
       "entity": "goety:wind_caller_servant",
+      "advancement": "goety:goety/read_mistral_scroll",
       "scale": 0.75
     },
     {
       "type": "patchouli:text",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "空の支配者であるこの大きな髪の魔術師は、敵を上空に投げ飛ばしたり、風で吹き飛ばしたりすることができます。"
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:storm_caster_servant",
+      "advancement": "goety:goety/read_mistral_scroll",
       "scale": 0.75
     },
     {
       "type": "patchouli:text",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "宝物を探しているときも、宝物を守っているときも、これらのイリジャーは容赦なく敵を感電させて灰にします。"
     },
     {
@@ -157,12 +184,14 @@
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:black_banner",
-      "anchor": "旗",
+      "anchor": "banner",
       "title": "個人的な旗",
       "text": "イリジャーは独自の不吉な旗を持っていますが、自分の支配を示す独自の旗を持つのも楽しく、また便利でしょう。独自の旗を登録するには、旗を置き、ブロック系フォーカスの無い杖（できない例：$(l:goety:focuses/geomancy/pulverize_focus)粉砕のフォーカス$()）で右クリックするだけです。"
     },
     {
       "type": "patchouli:entity",
+      "name": "Illager Captain",
+      "anchor": "captain",
       "entity": "goety:pillager_servant{HandItems:[{Count:1,id:\"minecraft:crossbow\"},{}], ArmorItems:[{},{},{},{Count:1,id:\"minecraft:black_banner\"}]}",
       "scale": 0.5,
       "text": "ピリジャーの従者のようなイリジャーはリーダーにすることができます。"
@@ -178,7 +207,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:waystone",
-      "anchor": "レイド",
+      "anchor": "raid",
       "title": "襲撃",
       "text": "リーダーのイリジャーをチャンクロードされた村の位置を保存したウェイストーンを持ち、オフハンドにヤギの角笛(または襲撃の角笛)を装備して右クリックすると、そのイリジャーは村を襲撃し、子供村人以外の村人を全員攻撃します。タグロックと同様に、リーダーは近くのリーダーのいない襲撃者を仲間に加えます。"
     },
@@ -193,7 +222,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:ominous_shackles",
-      "anchor": "村人を捕獲",
+      "anchor": "capture",
       "title": "誘拐",
       "text": "鎖を持って襲撃者を右クリックすると、襲撃者は「誘拐モード」に入ります。このモードでは、村人を殺すのではなく、誘拐者に従う$(l:goety:mutations/prisoners)村人囚人$()に変え、プレイヤーの指示に従います。誘拐モード中の襲撃者をハサミを持った状態で右クリックすると、誘拐モードが解除されます。"
     },
@@ -204,17 +233,24 @@
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:chest",
+      "anchor": "chest",
       "title": "チェストとの相互作用",
       "text": "イリジャーをロックされていないチェストの位置を保存したウェイストーンで右クリックすると、そのチェストは食料の倉庫として登録され、近くにいる間は食料を取り出すことができます。そのイリジャーがリーダーだった場合、リーダーをフォローしている従者も同じチェストを登録します。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:raiding_chest",
-      "text": "イリジャーは通常のチェストとは別に、別のチェストを登録することもできます。登録すると、イリジャーは他のチェストの上に戦利品を預けようとし、そのチェストからアイテムを持ち出そうとしなくなります。"
+      "text": "イリジャーは通常のチェストとは別に、別のチェストを登録することもできます。登録すると、イリジャーは他のチェストの上に戦利品を預けますが、そのチェストからアイテムを持ち出せません。"
     },
     {
       "type": "patchouli:text",
       "text": "イリジャーには鎧を与えることができ(設定がtrueに設定されている場合)、オフハンドが空である限り不死のトーテムを与えることができます。"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_healer",
+      "title": "チャーム",
+      "text": "特定のアイテムをイリジャーに与えると、新たな能力を付与することができます。イリジャーを右クリックするだけでチャームを装備させることができ、棒で右クリックすれば装備中のチャームを外すことが可能です(ただし、オフハンドにトーテムを持っていない場合に限ります)。"
     }
   ]
 }

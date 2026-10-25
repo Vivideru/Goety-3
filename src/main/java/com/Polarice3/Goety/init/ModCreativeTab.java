@@ -60,6 +60,8 @@ public class ModCreativeTab {
                             output.accept(VivideruItems.HURRICANE_CORE.get());
                             output.accept(VivideruItems.GALE_KEY.get());
                             output.accept(VivideruItems.OMINOUS_GALE_KEY.get());
+                            output.accept(VivideruItems.CRYPT_KEY.get());
+                            output.accept(VivideruItems.OMINOUS_CRYPT_KEY.get());
                         }
                     }
                 });
@@ -82,11 +84,32 @@ public class ModCreativeTab {
             .displayItems((parameters, output) -> {
                 ModItems.ITEMS.getEntries().forEach(i -> {
                     if (i.get() instanceof BlockItem) {
+                        if (i.get() == ModBlocks.RUSTY_IRON_GRATE.get().asItem()) {
+                            output.accept(VivideruItems.CURSED_METAL_GRATE.get());
+                        }
                         output.accept(i.get());
+                        if (i.get() == ModBlocks.SHADE_OSSUARY.get().asItem()) {
+                            output.accept(VivideruItems.WOLF_TOTEM.get());
+                        } else if (i.get() == ModBlocks.SPIDER_MOTHER_DEN.get().asItem()) {
+                            output.accept(VivideruItems.WHIRLING_CAGE.get());
+                        } else if (i.get() == ModBlocks.PEDESTAL_CRYPT_STONE.get().asItem()) {
+                            output.accept(VivideruItems.PLINTH_STONE.get());
+                            output.accept(VivideruItems.PLINTH_DEEPSLATE.get());
+                            output.accept(VivideruItems.PLINTH_OMINOUS_STONE.get());
+                            output.accept(VivideruItems.PLINTH_NETHER_BRICK.get());
+                            output.accept(VivideruItems.PLINTH_BLACKSTONE.get());
+                            output.accept(VivideruItems.PLINTH_END_STONE.get());
+                            output.accept(VivideruItems.PLINTH_HIGHROCK.get());
+                            output.accept(VivideruItems.PLINTH_MARBLE.get());
+                            output.accept(VivideruItems.PLINTH_PRISMARINE.get());
+                            output.accept(VivideruItems.PLINTH_CRYPT_STONE.get());
+                            output.accept(VivideruItems.PLINTH_DARK.get());
+                        } else if (i.get() == ModBlocks.ANIMATOR.get().asItem()) {
+                            output.accept(VivideruItems.SEALER.get());
+                            output.accept(VivideruItems.POLAR_CRYSTAL.get());
+                        }
                     }
                 });
-                output.accept(VivideruItems.WOLF_TOTEM.get());
-                output.accept(VivideruItems.WHIRLING_CAGE.get());
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FOCUS_TAB = CREATIVE_MODE_TABS.register(Goety.MOD_ID + "_focus", () -> CreativeModeTab.builder()

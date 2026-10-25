@@ -1,11 +1,11 @@
 {
-  "name": "Skull Focus",
+  "name": "スカルのフォーカス",
   "icon": "goety:skull_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With this focus, you're able to summon forth Skulls haunted by spirits from beyond that will follow you and charge at any nearby hostile mob, exploding on impact."
+      "text": "このフォーカスにより、あなたをフォローして、近くの敵対的な暴徒に突撃し、衝撃で爆発する、あの世からの霊にとりつかれた頭蓋骨を召喚することができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more skulls at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるホーンテッドスカルの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

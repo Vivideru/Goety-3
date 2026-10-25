@@ -1,5 +1,5 @@
 {
-  "name": "Stormlander",
+  "name": "Громовержец",
   "icon": "goety:stormlander",
   "category": "goety:crafts/equipment",
   "advancement": "goety:goety/get_stormlander",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Stormlander, enchanted with the power of the raging storm, is a treasure of the Illagers."
+      "text": "Громовержец, владеющий силой бушующей грозы, является сокровищем злодеян."
     },
     {
       "type": "patchouli:text",
-      "text": "It can perform the same functionalities as it's mundane counterpart. The hammer can be repaired on an anvil with a $(l:crafts/pale_steel_ingot)Pale Steel Ingot$()."
+      "text": "Он может выполнять те же функции, что и его обычный аналог. Молот можно починить на наковальне с помощью $(l:crafts/pale_steel_ingot)слитков бледной стали$()."
     }
   ],
   "extra_recipe_mappings": {

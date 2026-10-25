@@ -1,11 +1,11 @@
 {
-  "name": "Storm Staff",
+  "name": "Штормовой посох",
   "icon": "goety:storm_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The power of the storms and lightning rest within this staff. With it, storm spells are no longer affected by Lightning Rods and can chain lightning multiple non-allied mobs."
+      "text": "Сила грома и молний сосредоточена в этом посохе. С его помощью громоотводы не будут воздействовать на грозовые заклинания, которые смогут поражать несколько целей за раз."
     },
     {
       "type": "goety:ritual",

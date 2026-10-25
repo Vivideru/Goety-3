@@ -1,51 +1,46 @@
 package com.Polarice3.Goety.common.entities.ally.illager;
 
-import com.Polarice3.Goety.client.particles.SmashParticleOption;
+import com.Polarice3.Goety.api.entities.IShielded;
 import com.Polarice3.Goety.common.entities.ModEntityType;
+import com.Polarice3.Goety.common.entities.ai.ShieldedMeleeGoal;
+import com.Polarice3.Goety.common.entities.ai.ShieldedPreMeleeGoal;
 import com.Polarice3.Goety.common.entities.ally.undead.zombie.ZombieRoyalGuardServant;
 import com.Polarice3.Goety.common.entities.neutral.Owned;
 import com.Polarice3.Goety.config.AttributesConfig;
+import com.Polarice3.Goety.config.MobsConfig;
 import com.Polarice3.Goety.init.ModSounds;
-import com.Polarice3.Goety.utils.*;
+import com.Polarice3.Goety.utils.CuriosFinder;
+import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ItemParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
-public class RoyalGuardServant extends AbstractIllagerServant {
+public class RoyalGuardServant extends AbstractIllagerServant implements IShielded {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(RoyalGuardServant.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Boolean> HAS_SHIELD = SynchedEntityData.defineId(RoyalGuardServant.class, EntityDataSerializers.BOOLEAN);
     public int attackTick;
@@ -60,8 +55,16 @@ public class RoyalGuardServant extends AbstractIllagerServant {
 
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new MeleeGoal());
-        this.goalSelector.addGoal(4, new RoyalGuardAttackGoal());
+        this.goalSelector.addGoal(1, new ShieldedMeleeGoal<>(this) {
+            public void playPreAttack() {
+                this.mob.playSound(ModSounds.ROYAL_GUARD_PRE_ATTACK.get(), this.mob.getSoundVolume() * 0.5F, this.mob.getVoicePitch() * 0.75F);
+            }
+
+            public void playSmash() {
+                this.mob.playSound(ModSounds.BLACKGUARD_SMASH.get(), this.mob.getSoundVolume() + 1.0F, this.mob.getVoicePitch());
+            }
+        });
+        this.goalSelector.addGoal(4, new ShieldedPreMeleeGoal<>(this, this.getFollowSpeed()));
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -91,20 +94,15 @@ public class RoyalGuardServant extends AbstractIllagerServant {
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("hasShield")){
-            this.setShield(pCompound.getBoolean("hasShield"));
-        }
-        if (pCompound.contains("ShieldHeath")){
-            this.setShieldHealth(pCompound.getInt("ShieldHeath"));
-        }
+        this.readShieldedData(pCompound);
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        pCompound.putBoolean("hasShield", this.hasShield());
-        pCompound.putInt("ShieldHeath", this.getShieldHealth());
+        this.addShieldedData(pCompound);
     }
 
+    @Override
     public double getFollowSpeed() {
         return 1.25D;
     }
@@ -156,24 +154,9 @@ public class RoyalGuardServant extends AbstractIllagerServant {
         this.shieldHealth = shieldHealth;
     }
 
+    @Override
     public int getMaxShieldHealth() {
         return AttributesConfig.get(AttributesConfig.RoyalGuardServantShield);
-    }
-
-    public void destroyShield(){
-        if (this.hasShield()) {
-            if (this.getShieldHealth() > 1){
-                this.setShieldHealth(this.getShieldHealth() - 1);
-                this.playSound(SoundEvents.SHIELD_BLOCK);
-            } else {
-                this.setShieldHealth(0);
-                this.setShield(false);
-                this.playSound(ModSounds.SHIELD_BREAK.get(), 1.5F, 1.0F);
-                if (this.level() instanceof ServerLevel serverLevel){
-                    ServerParticleUtil.addParticlesAroundSelf(serverLevel, new ItemParticleOption(ParticleTypes.ITEM, new ItemStack(Items.ANVIL)), this);
-                }
-            }
-        }
     }
 
     public boolean isMeleeAttacking() {
@@ -186,6 +169,7 @@ public class RoyalGuardServant extends AbstractIllagerServant {
         this.level().broadcastEntityEvent(this, (byte) 5);
     }
 
+    @Override
     public int getAttackTick() {
         return this.attackTick;
     }
@@ -195,6 +179,22 @@ public class RoyalGuardServant extends AbstractIllagerServant {
     }
 
     protected void populateDefaultEquipmentSlots(RandomSource randomSource, DifficultyInstance difficulty) {
+    }
+
+    public boolean wantsToPickUp(ItemStack itemStack) {
+        return MobsConfig.IllagerServantPickUpDrops.get()
+                && this.isShieldRepair(itemStack)
+                && this.getInventory().canAddItem(itemStack)
+                || super.wantsToPickUp(itemStack);
+    }
+
+    public boolean validLootToStore(ItemStack itemStack) {
+        return super.validLootToStore(itemStack) && !this.isShieldRepair(itemStack);
+    }
+
+    @Override
+    public boolean validItemToTake(ItemStack itemStack) {
+        return this.isShieldRepair(itemStack) && this.itemsInInv(this::isShieldRepair).size() <= 24 || super.validItemToTake(itemStack);
     }
 
     public List<AnimationState> getAnimations(){
@@ -244,6 +244,11 @@ public class RoyalGuardServant extends AbstractIllagerServant {
         super.die(pCause);
     }
 
+    @Override
+    public int xpReward() {
+        return 20;
+    }
+
     protected void playHurtSound(DamageSource damageSource) {
         SoundEvent soundevent = this.getHurtSound(damageSource);
         if (soundevent != null) {
@@ -290,20 +295,21 @@ public class RoyalGuardServant extends AbstractIllagerServant {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public void healServant() {
+        super.healServant();
         if (!this.level().isClientSide) {
-            if (this.hasShield() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-                this.destroyShield();
-                return false;
-            } else if (this.getTarget() != null && source.getEntity() instanceof LivingEntity livingEntity) {
-                double d0 = this.distanceTo(this.getTarget());
-                double d1 = this.distanceTo(livingEntity);
-                if (MobUtil.ownedCanAttack(this, livingEntity) && livingEntity != this.getTrueOwner() && d0 > d1) {
-                    this.setTarget(livingEntity);
-                }
+            if (this.getShieldHealth() < this.getMaxShieldHealth() && this.getTarget() == null && this.hurtTime <= 0) {
+                this.itemsInInv(this::isShieldRepair)
+                        .stream()
+                        .findFirst()
+                        .ifPresent(itemStack -> this.repairShield(this, itemStack));
             }
         }
-        return super.hurt(source, amount);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        return this.hurtShielded(source, amount, () -> super.hurt(source, amount));
     }
 
     @Override
@@ -315,169 +321,32 @@ public class RoyalGuardServant extends AbstractIllagerServant {
 
     @Override
     public void handleEntityEvent(byte event) {
-        if (event == 4){
-            this.stopAllAnimations();
-            this.attackAnimationState.start(this.tickCount);
-        } else if (event == 5){
-            this.attackTick = 0;
-        } else if (event == 6){
-            this.setShield(true);
-            this.setShieldHealth(this.getMaxShieldHealth());
+        if (event == 4 || event == 5 || event == 6){
+            this.handleShieldedEvent(event);
         } else {
             super.handleEntityEvent(event);
         }
     }
 
+    @Override
+    public void animateAttack() {
+        this.stopAllAnimations();
+        this.attackAnimationState.start(this.tickCount);
+    }
+
     protected double getAttackReachSqr(LivingEntity enemy) {
-        return (double)(this.getBbWidth() * 6.0F * this.getBbWidth() * 6.0F + enemy.getBbWidth());
-    }
-
-    public boolean targetClose(LivingEntity enemy, double distToEnemySqr){
-        return distToEnemySqr <= this.getAttackReachSqr(enemy) || this.getBoundingBox().intersects(enemy.getBoundingBox());
-    }
-
-    public Vec3 getHorizontalLookAngle() {
-        return this.calculateViewVector(0, this.getYRot());
+        return this.getShieldedAttackReachSqr(enemy);
     }
 
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
         if (this.getTrueOwner() != null && player == this.getTrueOwner()) {
-            if (!this.level().isClientSide && !this.hasShield() && itemstack.is(Tags.Items.INGOTS_IRON) && this.getTarget() == null && this.hurtTime <= 0){
-                if (!player.getAbilities().instabuild) {
-                    itemstack.shrink(1);
+            if (!this.level().isClientSide) {
+                if (!this.hasShield() && this.isShieldRepair(itemstack) && this.getTarget() == null && this.hurtTime <= 0) {
+                    return this.repairShield(player, itemstack);
                 }
-                this.setShield(true);
-                this.setShieldHealth(this.getMaxShieldHealth());
-                this.level().broadcastEntityEvent(this, (byte) 6);
-                this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value(), 1.0F, 1.0F);
-                return InteractionResult.SUCCESS;
             }
         }
         return super.mobInteract(player, hand);
     }
-
-    class RoyalGuardAttackGoal extends MeleeAttackGoal {
-        private int delayCounter;
-        private static final float SPEED = 1.0F;
-
-        public RoyalGuardAttackGoal() {
-            super(RoyalGuardServant.this, SPEED, true);
-        }
-
-        @Override
-        public boolean canUse() {
-            return RoyalGuardServant.this.getTarget() != null
-                    && RoyalGuardServant.this.getTarget().isAlive();
-        }
-
-        @Override
-        public void start() {
-            RoyalGuardServant.this.setAggressive(true);
-            this.delayCounter = 0;
-        }
-
-        @Override
-        public void stop() {
-            RoyalGuardServant.this.getNavigation().stop();
-            if (RoyalGuardServant.this.getTarget() == null) {
-                RoyalGuardServant.this.setAggressive(false);
-            }
-        }
-
-        @Override
-        public void tick() {
-            LivingEntity livingentity = RoyalGuardServant.this.getTarget();
-            if (livingentity == null) {
-                return;
-            }
-
-            RoyalGuardServant.this.lookControl.setLookAt(livingentity, 30.0F, 30.0F);
-            double d0 = RoyalGuardServant.this.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
-
-            if (--this.delayCounter <= 0 && !RoyalGuardServant.this.targetClose(livingentity, d0)) {
-                this.delayCounter = 10;
-                RoyalGuardServant.this.getNavigation().moveTo(livingentity, SPEED);
-            }
-
-            this.checkAndPerformAttack(livingentity, RoyalGuardServant.this.distanceToSqr(livingentity.getX(), livingentity.getBoundingBox().minY, livingentity.getZ()));
-        }
-
-        protected void checkAndPerformAttack(LivingEntity enemy, double distToEnemySqr) {
-            if (RoyalGuardServant.this.targetClose(enemy, distToEnemySqr)) {
-                if (!RoyalGuardServant.this.isMeleeAttacking()) {
-                    RoyalGuardServant.this.setMeleeAttacking(true);
-                }
-            }
-        }
-    }
-
-    class MeleeGoal extends Goal {
-        public MeleeGoal() {
-            this.setFlags(EnumSet.of(Flag.LOOK, Flag.MOVE));
-        }
-
-        @Override
-        public boolean canUse() {
-            return RoyalGuardServant.this.getTarget() != null
-                    && RoyalGuardServant.this.isMeleeAttacking();
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return RoyalGuardServant.this.attackTick < MathHelper.secondsToTicks(1.42F);
-        }
-
-        @Override
-        public void start() {
-            RoyalGuardServant.this.setMeleeAttacking(true);
-            RoyalGuardServant.this.level().broadcastEntityEvent(RoyalGuardServant.this, (byte) 4);
-        }
-
-        @Override
-        public void stop() {
-            RoyalGuardServant.this.setMeleeAttacking(false);
-        }
-
-        @Override
-        public void tick() {
-            if (RoyalGuardServant.this.getTarget() != null) {
-                LivingEntity livingentity = RoyalGuardServant.this.getTarget();
-                MobUtil.instaLook(RoyalGuardServant.this, livingentity);
-            }
-            if (RoyalGuardServant.this.attackTick == 1){
-                RoyalGuardServant.this.playSound(ModSounds.ROYAL_GUARD_PRE_ATTACK.get(), RoyalGuardServant.this.getSoundVolume() * 0.5F, RoyalGuardServant.this.getVoicePitch() * 0.75F);
-            }
-            if (RoyalGuardServant.this.attackTick == 9){
-                RoyalGuardServant.this.playSound(ModSounds.BLACKGUARD_SMASH.get(), RoyalGuardServant.this.getSoundVolume() + 1.0F, RoyalGuardServant.this.getVoicePitch());
-            }
-            if (RoyalGuardServant.this.attackTick == 14) {
-                double x = RoyalGuardServant.this.getX() + RoyalGuardServant.this.getHorizontalLookAngle().x * 2;
-                double y = RoyalGuardServant.this.getY();
-                double z = RoyalGuardServant.this.getZ() + RoyalGuardServant.this.getHorizontalLookAngle().z * 2;
-                AABB aabb = MobUtil.makeAttackRange(x, y, z, 3, 3, 3);
-                for (LivingEntity target : RoyalGuardServant.this.level().getEntitiesOfClass(LivingEntity.class, aabb)) {
-                    if (target != RoyalGuardServant.this && !MobUtil.areAllies(target, RoyalGuardServant.this)) {
-                        RoyalGuardServant.this.doHurtTarget(target);
-                    }
-                }
-                if (RoyalGuardServant.this.level() instanceof ServerLevel serverLevel){
-                    double groundY = BlockFinder.findGroundY(serverLevel, x, y, z);
-                    BlockPos blockPos = BlockPos.containing(x, groundY - 1.0D, z);
-                    BlockParticleOption option = new BlockParticleOption(ParticleTypes.BLOCK, serverLevel.getBlockState(blockPos));
-                    for (int i = 0; i < 2; ++i) {
-                        ServerParticleUtil.circularParticles(serverLevel, option, x, groundY + 0.25D, z, 1.5F);
-                    }
-                    ColorUtil colorUtil = new ColorUtil(serverLevel.getBlockState(blockPos).getMapColor(serverLevel, blockPos).col);
-                    serverLevel.sendParticles(new SmashParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), 1.5F, 10), x, groundY, z, 1, 0.0D, 0.0D, 0.0D, 0.0D);
-                }
-            }
-        }
-
-        public boolean requiresUpdateEveryTick() {
-            return true;
-        }
-    }
 }
-
-

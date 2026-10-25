@@ -1,11 +1,11 @@
 {
-  "name": "Poison Dart Focus",
+  "name": "毒の矢のフォーカス",
   "icon": "goety:poison_dart_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Shoots a poison quill towards the caster's line of sight. Creatures struck by the quill will be poisoned."
+      "text": "術者の視線に向かって毒の羽根を発射します。羽根に当たった生き物は毒状態になります。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/wild_staff)Wild Staff$() will shoot a quill that pierces through multiple targets."
+      "text": "$(l:crafts/staff/wild_staff)野生の杖$()で唱えると、複数のターゲットを貫通する羽根を発射します。"
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Ravaged",
+  "name": "ラヴェジャー作成の秘密",
   "icon": "goety:savage_tooth",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_ravaging_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The secrets of creating Ravagers have been revealed to you. As you have long suspected, Ravagers are made from average Villagers through magical means. The conversion, however, is not instantaneous. The Villager is turned into, what it's called, Ravaged, and will need to consume large amount of flesh before it can transition into a full Ravager."
+      "text": "あなたが長い間疑問に思っていたように、ラヴェジャーは魔法の手段によって平均的な村人から作られています。 ただし、変換は瞬時には行われません。 村人はいわゆる「荒廃」に変わり、完全な荒廃者に変わる前に大量の肉を消費する必要があります。。"
     },
     {
       "type": "goety:ritual",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Ravaged can be fed by throwing Rotten Flesh at it, or siccing them onto any Villager, or Illager surprisingly, and have them kill the latter. Unsurprisingly, Villagers provide the most amount of flesh than any other. Once the Ravaged has transformed, it would need a specialized saddle that will make it not only rideable, but also stronger."
+      "text": "荒廃者は腐った肉を投げつけたり、驚くべきことに村人や村人に切りつけて村人や村人を殺させたりすることで餌を得ることができます。 当然のことながら、村人は他の誰よりも多くの肉を提供します。 荒廃者が変身すると、乗りやすくなるだけでなく、より強くなる特殊なサドルが必要になります。"
     },
     {
       "type": "patchouli:entity",
@@ -24,7 +24,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Fully grown Ravagers can be part of a $(l:goety:mutations/illager_servants)raiding party$(), though they cannot be leaders."
+      "text": "ラヴェジャーは$(l:goety:mutations/illager_servants)レイダー$()の一員になることはできますが、リーダーになることはできません。"
     }
   ]
 }

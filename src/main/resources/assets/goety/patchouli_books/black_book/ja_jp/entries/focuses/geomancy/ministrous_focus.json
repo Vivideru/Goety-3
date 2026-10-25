@@ -1,11 +1,11 @@
 {
-  "name": "Ministrous Focus",
+  "name": "ミニモンスターのフォーカス",
   "icon": "goety:ministrous_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell summons a $(l:summons/ministrosities)Stone Ministrosity$(), a simple golem that can move quickly to bite down your foes."
+      "text": "$(l:summons/ministrosities)石のミニモンスター$()という素早く動いて敵を噛むができるシンプルなゴーレムを召喚します。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will summon additional Ministrosities. Casting while wearing $(l:crafts/garment/geo_robe)Geo Robes$() will summon Redstone Ministrosities instead."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、追加でミニモンスターを召喚します。"
     }
   ]
 }

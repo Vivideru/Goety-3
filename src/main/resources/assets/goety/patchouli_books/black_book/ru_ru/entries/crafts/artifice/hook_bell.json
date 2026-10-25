@@ -1,11 +1,11 @@
 {
-  "name": "Hook Bell",
+  "name": "Колокол притяжения",
   "icon": "goety:hook_bell",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When dealing with Raids, some of the Raiders have a bad tendency of falling into holes, appearing in places deep underground and so on. After many research, you've managed to improve on the Villager's Bell to not only have a much higher radius of effect, but also teleports any Raider towards the Bell's vicinity if they're more than 16 Blocks away from it!"
+      "text": "Во время рейда некоторые рейдеры имеют дурную привычку проваливаться в ямы, появляться глубоко под землей и т.д. После долгих исследований вам удалось усовершенствовать колокол крестьян, чтобы он не только имел гораздо больший радиус действия, но и телепортировал рейдера к себе, если он находится более чем в 16 метрах!"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Unfortunately, the newly Hook Bell does not respond to any Redstone power and can only be rung, by hand or from projectiles shot, from beings like yourself."
+      "text": "К сожалению, колокол притяжения не реагирует на редстоун, и в него можно позвонить только вручную или с помощью снарядов, брошенных подобными вам существами."
     }
   ],
   "extra_recipe_mappings": {

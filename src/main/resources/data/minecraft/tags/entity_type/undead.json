@@ -23,6 +23,9 @@
     "goety:haunt",
     "goety:wight",
     "goety:skull_lord",
-    "goety:bone_lord"
+    "goety:bone_lord",
+    "goety:rogueguard_servant",
+    "goety:hostile_zombie_vindicator",
+    "goety:hostile_skeleton_pillager"
   ]
 }

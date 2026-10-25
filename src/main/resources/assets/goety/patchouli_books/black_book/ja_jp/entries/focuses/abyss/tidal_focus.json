@@ -1,11 +1,11 @@
 {
-  "name": "Tidal Focus",
+  "name": "潮汐のフォーカス",
   "icon": "goety:tidal_focus",
   "category": "goety:focuses/abyss",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell conjures a surge of flowing water in front of the caster, pushing back and damaging non-allied targets."
+      "text": "潮汐(ちょうせき)の呪文は術者の前に水流のうねりを引き起こし、味方以外のターゲットを押し返してダメージを与えます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/abyss_staff)Abyss Staff$() will summon three tidal surges in front of the caster instead of one."
+      "text": "$(l:crafts/staff/abyss_staff)深淵の杖$()で唱えると、術者の前に1つではなく3つの水流を召喚します。"
     }
   ],
   "extra_recipe_mappings": {

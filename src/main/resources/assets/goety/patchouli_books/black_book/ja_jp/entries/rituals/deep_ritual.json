@@ -1,22 +1,22 @@
 {
-  "name": "Deep Ritual",
+  "name": "深淵の儀式",
   "icon": "minecraft:prismarine_bricks",
   "category": "goety:rituals",
   "sortnum": 6,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Altar is in Deep Ocean biome and below sea level $(br)$(l)OR$()$() $(li)4 Sea Lanterns $(li)16 Prismarine Blocks Any $(li)16 Granite Blocks Any $(br)Altar must be waterlogged$()"
+      "text": "必要: $(li)深海バイオームかつ海面下にあること$(br)$(l)OR$()$() $(li)4 シーランタン $(li)16 あらゆるプリズマリンブロック $(li)16 あらゆる花崗岩 $(br)海面下にあること$()"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/deep_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "儀式をどのように配置するかの例"
     },
     {
       "type": "patchouli:text",
-      "text": "The power of the ocean courses through the Altar, allowing you harness the very tides for your own diabolical purposes."
+      "text": "海の力は祭壇を通り抜け、あなた自身の邪悪な目的のために潮流そのものを制御することを可能にします。"
     }
   ]
 }

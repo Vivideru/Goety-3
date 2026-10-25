@@ -1,11 +1,11 @@
 {
-  "name": "Meteor Shower Focus",
+  "name": "流星のフォーカス",
   "icon": "goety:meteor_shower_focus",
   "category": "goety:focuses/nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Infusing the Arrow Rain Focus with the power of the nether, you call upon a rain of explosive lava bombs instead of arrows."
+      "text": "ネザーの力を弾雨のフォーカスに注入すると、矢の代わりに溶岩爆弾の雨を降らせることができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() increases the number of lava bombs falling from the sky."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、空から落ちてくる溶岩爆弾の数が増加します。"
     }
   ],
   "extra_recipe_mappings": {

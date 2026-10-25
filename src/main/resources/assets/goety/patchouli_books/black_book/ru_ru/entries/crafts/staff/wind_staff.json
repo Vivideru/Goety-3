@@ -1,11 +1,12 @@
 {
-  "name": "Wind Staff",
+  "name": "Ветряной посох",
   "icon": "goety:wind_staff",
   "category": "goety:crafts/staff",
+  "advancement": "goety:goety/read_mistral_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've learned tales of a sanctum and their control and experimentation of winds and how they can control it to an extant through their staffs. After some research and experimentation, you've discovered a way to replicate their ancient staffs."
+      "text": "Вы узнали о святилище, экспериментах с ветрами и о том, как ими можно управлять с помощью посохов. После некоторых исследований и экспериментов вы нашли способ воссоздать их древние посохи."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Wind Staff obviously powers up Wind spells, granting greater control over the winds themselves."
+      "text": "Очевидно, что ветряной посох усиливает ветряные заклинания, предоставляя больший контроль над его порывами."
     }
   ],
   "extra_recipe_mappings": {

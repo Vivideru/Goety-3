@@ -1,12 +1,12 @@
 {
-  "name": "Ender Keeper",
+  "name": "エンダーキーパー",
   "icon": "goety:void_shrine",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_an_ender_keeper",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A powerful entity of The End, called to guard the secrets of the dimension and the void."
+      "text": "次元と虚空の秘密を守るために召喚された、エンドの強力な存在。"
     },
     {
       "type": "patchouli:entity",
@@ -15,21 +15,21 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The being holds mastery over both swordsmanship and void magic, piercing their enormous blade through their foes and summoning orbs of void magic that shoots towards their targets. Their blade and attacks inflicts Void Touched."
+      "text": "この存在は剣技と虚空魔法の両方に熟達しており、巨大な刃で敵を貫き、ヴォイドオーブを召喚して標的へと放ちます。その刃と攻撃は、敵にヴォイドタッチドを与えます。"
     },
     {
       "type": "patchouli:text",
-      "text": "It's best to stay clear of the Ender Keeper, through using mobility spells such as $(l:goety:focuses/wind/launch_focus)Launch$() or $(l:goety:focuses/wild/grapple_focus)Grapple$() to move away. Be vigilant when calling upon Servants to face this foe, for one of its attacks will drag nearby creatures towards itself, absorbing their health, before letting loose an explosion of void."
+      "text": "エンダーキーパーから離れるには、$(l:goety:focuses/wind/launch_focus)打ち上げ$()や$(l:goety:focuses/wild/grapple_focus)グラップル$()などの移動呪文を使って距離を置くのが最善です。従者を召喚してこの敵と対峙させる際は、エンダーキーパーの攻撃の一つが近くのクリーチャーを引き寄せ、体力を​​吸収した後、虚空の爆発を放つため、警戒が必要です。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:shrouded_blueprint",
-      "text": "When slain, the shrine from which they are called from will reveal its treasure, a mysterious blueprint... one that with the help of dark magic will reveal its contents."
+      "text": "殺されると、彼らが呼び出された聖堂はその宝物、神秘的な設計図を明らかにします...それは闇の魔法の助けを借りてその内容を明らかにするものです。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:void_echo",
-      "text": "The Keeper also drops some echoes of the very void itself, which can be used to create powerful spells and items."
+      "text": "強力な呪文やアイテムを作成するために使用できる、虚空そのものの残響もいくつか落とします。"
     }
   ],
   "extra_recipe_mappings": {

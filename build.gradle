@@ -72,6 +72,14 @@ repositories {
         }
     }
     maven {
+        name = "Create Maven"
+        url = "https://maven.createmod.net"
+        content {
+            includeGroup "dev.engine-room.flywheel"
+            includeGroup "net.createmod.ponder"
+        }
+    }
+    maven {
         name = "Curios"
         url = "https://maven.theillusivec4.top"
     }
@@ -117,6 +125,19 @@ dependencies {
     // Sophisticated Backpacks runtime testing
     runtimeOnly "maven.modrinth:sophisticated-backpacks:${sophisticated_backpacks_version}"
     runtimeOnly "maven.modrinth:sophisticated-core:${sophisticated_core_version}"
+
+    // Structure Layout Optimizer runtime testing (changes jigsaw placement; check it against the crypt and Wind Shrine rules)
+    runtimeOnly "maven.modrinth:structure-layout-optimizer:${structure_layout_optimizer_version_id}"
+    runtimeOnly "maven.modrinth:resourceful-config:${resourceful_config_version_id}"
+    // WorldEdit runtime testing (building and inspecting structure pieces in the dev client)
+    runtimeOnly "maven.modrinth:worldedit:${worldedit_version_id}"
+    // Create runtime testing (compatibility of contraptions and kinetics with Goety blocks and structures)
+    runtimeOnly "maven.modrinth:create:${create_version_id}"
+    runtimeOnly "dev.engine-room.flywheel:flywheel-neoforge-1.21.1:${flywheel_version}"
+    runtimeOnly "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc1.21.1"
+    // Mowzie's Mobs runtime testing (extra servants and focuses made from another mod's mobs)
+    runtimeOnly "maven.modrinth:mowzies-mobs:${mowzies_mobs_version_id}"
+    runtimeOnly "maven.modrinth:geckolib:${geckolib_version_id}"
 
     if (!project.hasProperty('skipShaderRuntime')) {
         runtimeOnly "maven.modrinth:YL57xq9U:${iris_version_id}"

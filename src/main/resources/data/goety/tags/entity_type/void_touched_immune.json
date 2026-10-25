@@ -47,6 +47,14 @@
     {
       "id": "legendary_monsters:flameborn_warrior",
       "required": false
+    },
+    {
+      "id": "alexsmobs:enderiophage",
+      "required": false
+    },
+    {
+      "id": "alexsmobs:endergrade",
+      "required": false
     }
   ]
 }

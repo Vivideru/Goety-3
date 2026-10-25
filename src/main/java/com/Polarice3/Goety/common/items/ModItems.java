@@ -143,6 +143,8 @@ public class ModItems {
 
     public static final DeferredHolder<Item, Item> END_MUD_BOTTLE = ITEMS.register("end_mud_bottle", () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)));
     public static final DeferredHolder<Item, Item> END_MUD_BUCKET = ITEMS.register("end_mud_bucket", () -> new BucketItem(ModFluids.END_MUD_FLUID_SOURCE.get(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredHolder<Item, Item> END_MINERAL_BOTTLE = ITEMS.register("end_mineral_bottle", () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE)));
+    public static final DeferredHolder<Item, Item> END_MINERAL_BUCKET = ITEMS.register("end_mineral_bucket", () -> new BucketItem(ModFluids.END_MINERAL_FLUID_SOURCE.get(), (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)));
 
     public static final DeferredHolder<Item, Item> PHILOSOPHERS_STONE = ITEMS.register("philosophers_stone", PhilosophersStone::new);
     public static final DeferredHolder<Item, Item> DARK_SCROLL = ITEMS.register("dark_scroll", DarkScrollItem::new);
@@ -212,6 +214,8 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> ROTTEN_BOAT = ITEMS.register("rotten_boat", () -> new ModBoatItem(false, ModBoat.Type.ROTTEN, (new Item.Properties()).stacksTo(1)));
     public static final DeferredHolder<Item, Item> ROTTEN_CHEST_BOAT = ITEMS.register("rotten_chest_boat", () -> new ModBoatItem(true, ModBoat.Type.ROTTEN, (new Item.Properties()).stacksTo(1)));
 
+    public static final DeferredHolder<Item, Item> MARSH_BOAT = ITEMS.register("marsh_boat", () -> new ModBoatItem(false, ModBoat.Type.MARSH, (new Item.Properties()).stacksTo(1)));
+    public static final DeferredHolder<Item, Item> MARSH_CHEST_BOAT = ITEMS.register("marsh_chest_boat", () -> new ModBoatItem(true, ModBoat.Type.MARSH, (new Item.Properties()).stacksTo(1)));
     public static final DeferredHolder<Item, Item> WINDSWEPT_BOAT = ITEMS.register("windswept_boat", () -> new ModBoatItem(false, ModBoat.Type.WINDSWEPT, (new Item.Properties()).stacksTo(1)));
     public static final DeferredHolder<Item, Item> WINDSWEPT_CHEST_BOAT = ITEMS.register("windswept_chest_boat", () -> new ModBoatItem(true, ModBoat.Type.WINDSWEPT, (new Item.Properties()).stacksTo(1)));
 
@@ -245,6 +249,7 @@ public class ModItems {
     public static final DeferredHolder<Item, ? extends SingleStackItem> PENDANT_OF_HUNGER = ITEMS.register("pendant_of_hunger", PendantOfHungerItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> TARGETING_MONOCLE = ITEMS.register("targeting_monocle", TargetingMonocleItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> DARK_HAT = ITEMS.register("dark_hat", MagicHatItem::new);
+    public static final DeferredHolder<Item, ? extends SingleStackItem> DARK_CROWN = ITEMS.register("dark_crown", MagicHatItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> GRAND_TURBAN = ITEMS.register("grand_turban", MagicHatItem::new);
     public static final DeferredHolder<Item, ? extends SingleStackItem> FROST_CROWN = ITEMS.register("frost_crown", () -> new MagicCrownItem(SpellType.FROST));
     public static final DeferredHolder<Item, ? extends SingleStackItem> WIND_CROWN = ITEMS.register("wind_crown", () -> new MagicCrownItem(SpellType.WIND));
@@ -341,6 +346,7 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> QUAKING_FOCUS = ITEMS.register("quaking_focus", () -> new MagicFocus(new QuakingSpell()));
     public static final DeferredHolder<Item, Item> EARTH_PUNCH_FOCUS = ITEMS.register("earth_punch_focus", () -> new MagicFocus(new EarthFistSpell()));
     public static final DeferredHolder<Item, Item> SMACK_STONE_FOCUS = ITEMS.register("smack_stone_focus", () -> new MagicFocus(new SmackStoneSpell()));
+    public static final DeferredHolder<Item, Item> TEMBLOR_CLAP_FOCUS = ITEMS.register("temblor_clap_focus", () -> new MagicFocus(new TemblorClapSpell()));
     public static final DeferredHolder<Item, Item> MINISTROUS_FOCUS = ITEMS.register("ministrous_focus", () -> new MagicFocus(new MinistrousSpell()));
     public static final DeferredHolder<Item, Item> PULVERIZE_FOCUS = ITEMS.register("pulverize_focus", () -> new MagicFocus(new PulverizeSpell()));
     public static final DeferredHolder<Item, Item> ROTATION_FOCUS = ITEMS.register("rotation_focus", () -> new MagicFocus(new RotationSpell()));
@@ -512,6 +518,10 @@ public class ModItems {
 
     //Discs
     public static final DeferredHolder<Item, Item> MUSIC_DISC_ENDERMAN = ITEMS.register("music_disc_enderman", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("enderman"))));
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_CRONE = ITEMS.register("music_disc_crone", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("crone"))));
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_HERESIARCH = ITEMS.register("music_disc_heresiarch", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("heresiarch"))));
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_SKULL_LORD = ITEMS.register("music_disc_skull_lord", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("skull_lord"))));
+    public static final DeferredHolder<Item, Item> MUSIC_DISC_WITHER_NECROMANCER = ITEMS.register("music_disc_wither_necromancer", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("wither_necromancer"))));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_RM = ITEMS.register("music_disc_rm", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("rm"))));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_VIZIER = ITEMS.register("music_disc_vizier", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("vizier"))));
     public static final DeferredHolder<Item, Item> MUSIC_DISC_KEEPER = ITEMS.register("music_disc_keeper", () -> new Item((new Item.Properties()).stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(jukeboxSong("keeper"))));

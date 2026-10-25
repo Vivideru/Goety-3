@@ -1,21 +1,21 @@
 {
-  "name": "Mavericks",
-  "icon": "minecraft:iron_sword",
+  "name": "マーヴェリック",
+  "icon": "goety:wicked_boline",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_maverick",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "More hands on than their cousins, they apply potions effects through their blades, before fleeing and drinking a potion to buff themselves."
+      "text": "ウィッチよりも戦闘向けになった、いとこに相当するこのカルト集団は、刃を通してポーション効果を与え、その後逃げてポーションを飲み、自分自身を強化します。"
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:maverick",
-      "text": "They're resistant to magic much like their Witch cousins."
+      "text": "ウィッチと同じように、魔法に耐性があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "If a Wandering Trader is underneath a Crying Obsidian Block, they have a chance of transforming into a Maverick."
+      "text": "行商人が泣く黒曜石ブロックの下にいる場合、マーヴェリックに変身する可能性があります。"
     }
   ]
 }

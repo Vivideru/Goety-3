@@ -62,8 +62,9 @@ public class LaunchSpell extends Spell {
         caster.hurtMarked = true;
         caster.setOnGround(false);
         Vec3 vector3d = caster.getLookAngle();
-        double power = rightStaff(staff) ? 2.5D : 1.0D;
-        double d0 = power + (potency / 2.0D);
+        double basePower = SpellConfig.LaunchBasePower.get();
+        double power = rightStaff(staff) ? basePower * 2.5D : basePower;
+        double d0 = power + (potency * SpellConfig.LaunchPotencyPower.get());
         caster.setDeltaMovement(vector3d.x * d0, vector3d.y * d0, vector3d.z * d0);
         caster.hasImpulse = true;
         caster.fallDistance = 0;

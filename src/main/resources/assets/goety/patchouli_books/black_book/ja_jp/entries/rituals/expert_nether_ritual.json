@@ -1,5 +1,5 @@
 {
-  "name": "Expert Nether Ritual",
+  "name": "熟練のネザー儀式",
   "icon": "minecraft:nether_bricks",
   "category": "goety:rituals",
   "advancement": "minecraft:story/enter_the_nether",
@@ -7,17 +7,17 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Be in the Nether $(li)4 Wither Skeleton Skulls $(li)32 Nether/Red Nether Bricks $(li)8 Nether Warts"
+      "text": "要件: $(li)ネザーに作る必要がある $(li)4 ウィザースケルトンの頭蓋骨 $(li)32 ネザー/赤いネザーレンガ $(li)8 ネザーウォート"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/expert_nether.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "祭祀の置き方の一例。"
     },
     {
       "type": "patchouli:text",
-      "text": "The Wither Skeletons are the charred remains of the Fortress' original inhabitants, ones Nether Cultists called 'Nephilim', betrayed by their own flaming creations. Even in death, they still hold magical power, and perhaps even retained some arcane knowledge for advanced magics. Perhaps the Warts growing from the anguish of the damned also holds some of its victims' knowledge as well."
+      "text": "ウィザー スケルトンは、要塞の元の住民、ネザー カルト信者が「ネフィリム」と呼んだ、彼ら自身の燃える創造物に裏切られた黒焦げの残骸です。 死んでも彼らはまだ魔法の力を保持しており、おそらく高度な魔法のためのいくつかの難解な知識さえ保持しています。 おそらく、呪われた人々の苦痛から成長したイボには、犠牲者の知識の一部も含まれているのでしょう。"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Braziers",
+  "name": "火鉢",
   "icon": "goety:shade_brazier",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Just because you're a dark wizard doesn't mean you can't be decorative. These braziers are a fancy way of providing light and burn any fool that stand on them when lit. The braziers can also be unlit by right-clicking on them, and relit the same way."
+      "text": "闇の魔法使いだからといって、装飾ができないわけではありません。これらの火鉢は、光を提供するための派手な手段であり、火がつくと、その上に立つ愚か者を燃やします。火鉢は右クリックして消灯することもでき、同じ方法で再び点灯することもできます。"
     },
     {
       "type": "patchouli:crafting",
@@ -29,7 +29,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Like torches and campfires, these braziers can also burn with soul fire."
+      "text": "松明や焚火と同様に、これらの火鉢も魂の火で燃えます。"
     },
     {
       "type": "patchouli:crafting",

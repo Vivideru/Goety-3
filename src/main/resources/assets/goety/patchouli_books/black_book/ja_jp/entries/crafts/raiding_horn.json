@@ -1,11 +1,11 @@
 {
-  "name": "Raiding Horn",
+  "name": "襲撃の角笛",
   "icon": "goety:raiding_horn",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The horn allows you to cause your $(l:mutations/illager_servants#raid)Raiders$() to start raiding the village you're in when used."
+      "text": "この角笛を使用すると、$(l:mutations/illager_servants#raid)襲撃者$()があなたのいる村を襲撃し始めるようになります。"
     },
     {
       "type": "patchouli:crafting",

@@ -1,16 +1,16 @@
 {
-  "name": "Soul Absorber",
+  "name": "Пожиратель душ",
   "icon": "goety:soul_absorber",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/get_arca",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the $(l:crafts/artifice/arca)Arca$(), you wonder what you should do with your old Totem of Souls. Stashing it away is an option, but you wondered if you can somehow transfer all the Soul Energy within it towards your Arca."
+      "text": "Имея $(l:crafts/artifice/arca)арку$() вы задаетесь вопросом: что делать со своим старым тотемом душ? Можно спрятать его куда подальше, но вам интересно, сможете ли вы перенести энергию душ, которая в нём находится, в свою арку."
     },
     {
       "type": "patchouli:text",
-      "text": "With the Soul Absorber, you are able to siphon the Soul Energies from not only your Totem of Souls but other items such as the Evokers' Totems and Soul Sand to put within your $(l:crafts/artifice/arca)Arca$(). While the Soul Absorber will slowly drain Totem of Souls, other items will simply burn up and disappear once it has absorbed its Soul Energy."
+      "text": "С помощью пожирателя душ вы можете забирать энергию душ не только из своего тотема душ, но и из других предметов, таких как тотемы заклинателей и песок душ, чтобы хранить её в своей $(l:crafts/artifice/arca)арке$(). В то время как пожиратель душ будет медленно истощать тотем душ, другие предметы просто исчезнут, как только он поглотит их энергию."
     },
     {
       "type": "goety:ritual",

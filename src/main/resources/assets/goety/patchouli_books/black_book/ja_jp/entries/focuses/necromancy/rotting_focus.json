@@ -1,11 +1,11 @@
 {
-  "name": "Rotting Focus",
+  "name": "ゾンビのフォーカス",
   "icon": "goety:rotting_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The true first step to Necroturgy is to summon and command a Zombie. Zombies comes in multiple variants, and the focus allows you to summon a variant depending on location and environment where the spell is casted."
+      "text": "ネクロマンシーへの真の第一歩は、ゾンビを召喚し、命令することです。ゾンビには複数の亜種が存在し、呪文を唱える場所や環境に応じて、異なる亜種を召喚することができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more zombies at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるゾンビの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

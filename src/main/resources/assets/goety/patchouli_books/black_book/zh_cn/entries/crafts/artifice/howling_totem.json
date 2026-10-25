@@ -1,0 +1,73 @@
+{
+  "name": "狼性图腾",
+  "icon": "goety:wolf_totem",
+  "category": "goety:crafts",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "狼性图腾是忠诚猎犬的纪念碑。它可以召唤永久的狼仆从，将犬类仆从绑定至其庇护之下，并将一只符合条件的黑狼晋升为$(l:goety:summons/wargs)座狼$()。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:wolf_totem"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)装饰雕刻$()$(br2)放置后的狼性图腾上半部分可以呈现几种不同形态。手持任意镐子右键点击图腾，可循环切换其装饰雕刻。这仅改变外观，不会影响其仆从或存储状态。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "向图腾献上一份生肉和一根骨头，即可召唤两只拥有更高生命值的永久狼。漏斗可供给这两种祭品。召唤的品种取决于图腾周围的环境：墓穴方块生成骷髅狼，寒冷群系生成凛冬狼，风暴天气可能生成风暴犬，下界则生成狱犬。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "将指路石绑定到图腾上，然后对一名兼容的仆从使用，使图腾成为其返回点。其正下方的$(l:goety:intro/cursed_cage)诅咒笼子$()提供灵魂能量，每次救援消耗100点灵魂能量。被救援的仆从会处于受伤状态，在恢复之前无法再次被救援。"
+    },
+    {
+      "type": "patchouli:text",
+      "anchor": "canine_armor",
+      "text": "$(bold)犬类护甲$()$(br2)为狼、暗兽或座狼锻造的每件护甲，都会在穿戴者受到攻击时反击，如同拥有一级荆棘附魔。黑暗金属变体提供20点护甲值，并缓慢恢复穿戴者的生命值。护甲可通过对其对应的仆从使用来装备。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:cursed_metal_wolf_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:dark_wolf_armor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "诅咒金属狼铠和黑暗狼铠适用于成年狼、黑狼和骷髅狼。锻造之戒可能为仪式召唤的黑狼提供诅咒金属狼铠，但绝不会提供黑暗禁书版本。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:black_beast_cursed_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:black_beast_dark_armor"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "暗兽和座狼需要为它们更大的体型量身定制的护甲。它们的护甲不能与普通狼甲互换，且必须由主人装备。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:warg_cursed_armor"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:warg_dark_armor"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:wolf_totem": 1,
+    "goety:cursed_metal_wolf_armor": 6,
+    "goety:dark_wolf_armor": 7,
+    "goety:black_beast_cursed_armor": 9,
+    "goety:black_beast_dark_armor": 10,
+    "goety:warg_cursed_armor": 12,
+    "goety:warg_dark_armor": 13
+  }
+}

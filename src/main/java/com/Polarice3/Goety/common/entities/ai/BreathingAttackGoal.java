@@ -83,6 +83,10 @@ public class BreathingAttackGoal<T extends Mob & IBreathing> extends Goal {
         this.attacker.getLookControl().setLookAt(spewX, spewY, spewZ, 100.0F, 100.0F);
         this.rotateAttacker(spewX, spewY, spewZ, 100.0F, 100.0F);
 
+        this.breathOut();
+    }
+
+    public void breathOut() {
         int duration = this.maxDuration - this.durationLeft;
         if (duration > 5) {
             for (Entity entity : MobUtil.getTargets(this.attacker.level(), this.attacker, this.spewingRange, 3.0D)) {

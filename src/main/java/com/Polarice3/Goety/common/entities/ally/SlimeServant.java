@@ -436,6 +436,19 @@ public class SlimeServant extends Summoned implements IMobTyped{
         return false;
     }
 
+    @Override
+    public boolean moveToPatrolPoint(BlockPos pos, double speed) {
+        if (this.getMoveControl() instanceof SlimeServantMoveControl control) {
+            double dx = pos.getX() + 0.5D - this.getX();
+            double dz = pos.getZ() + 0.5D - this.getZ();
+            float yRot = (float)(Mth.atan2(dz, dx) * (180D / Math.PI)) - 90.0F;
+            control.setDirection(yRot, this.isDealsDamage());
+            control.setWantedMovement(speed);
+            return true;
+        }
+        return false;
+    }
+
     public Item getIncreaseItem(){
         return Items.SLIME_BLOCK;
     }
@@ -756,6 +769,7 @@ public class SlimeServant extends Summoned implements IMobTyped{
 
         public boolean canUse() {
             return this.slime.getTarget() == null
+                    && !this.slime.isPatrolling()
                     && (this.slime.getTrueOwner() == null || this.slime.isWandering())
                     && (this.slime.onGround() || this.slime.isInWater() || this.slime.isInLava() || this.slime.hasEffect(MobEffects.LEVITATION))
                     && this.slime.getMoveControl() instanceof SlimeServantMoveControl;

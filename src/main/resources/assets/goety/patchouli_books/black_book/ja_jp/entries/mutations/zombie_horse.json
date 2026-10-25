@@ -1,11 +1,11 @@
 {
-  "name": "Zombie Horse",
+  "name": "ゾンビホース",
   "icon": "minecraft:zombie_horse_spawn_egg",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A rotten steed for a rotten wizard, these undead horses are much more docile and quicker than any Zombies you know."
+      "text": "腐った魔法使いにとって腐った馬であるこれらのアンデッド馬は、あなたが知っているどのゾンビよりもはるかに従順で素早いです。"
     },
     {
       "type": "goety:ritual",

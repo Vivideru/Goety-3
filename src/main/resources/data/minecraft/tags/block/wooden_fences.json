@@ -7,6 +7,9 @@
     "goety:pine_fence",
     "goety:steep_fence",
     "goety:chorus_fence",
-    "goety:corrupt_chorus_fence"
+    "goety:corrupt_chorus_fence",
+    "goety:marsh_fence",
+    "goety:weathered_dark_oak_fence",
+    "goety:weathered_oak_fence"
   ]
 }

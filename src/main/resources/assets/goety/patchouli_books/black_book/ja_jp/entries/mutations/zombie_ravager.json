@@ -1,5 +1,5 @@
 {
-  "name": "Zombie Ravager",
+  "name": "ゾンビラヴェジャー",
   "icon": "minecraft:rotten_flesh",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_ravaging_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You know what's better than a regular Ravager? An Undead one! Well, kinda. Much like most Undead, the Zombie Ravager would burn in sunlight, and can't swim in water. The Zombie Ravager is also slower than its living counter part, but has a tiny boost in Armor points. Overall, a perfect mount for a Necromancer or for someone who hates sunlight and love rotting corpses."
+      "text": "通常のラヴェジャーより何が優れているか知っていますか? アンデッドだ！ まあ...ちょっと。 ほとんどのアンデッドと同じように、ゾンビラヴェジャーは太陽光で燃えてしまい、水の中を泳ぐことができません。 ゾンビラヴェジャーも生きているものより遅いですが、アーマー ポイントがわずかに増加します。 全体として、ネクロマンサーや日光が嫌いで腐った死体が好きな人にとっては完璧な乗り物です。"
     },
     {
       "type": "goety:ritual",

@@ -1,11 +1,11 @@
 {
-  "name": "Necrotic Brazier",
+  "name": "壊死性火鉢",
   "icon": "goety:necro_brazier",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Deep Dark holds a lot of Necrotic energies, as evidence by the abundance of Sculk that doted the underbiome. By infusing a Shade Brazier with Necrotic elements, you've created a device that can channel the dark energies of the biome to create all kinds of items."
+      "text": "アンダーバイオームに多数存在するスカルクが証拠に示すように、ディープ ダークには多くの壊死エネルギーが存在します。火鉢に ネクロティック要素を注入することで、バイオームの暗いエネルギーを流し、あらゆる種類のアイテムを作成できるデバイスを作成しました。"
     },
     {
       "type": "goety:ritual",
@@ -13,11 +13,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Necrotic Brazier burns with a green flame that seems to not harm the Undead, and can only burn if placed within the Deep Dark. The Brazier takes in multiple items to craft one, and the items can either be placed by hand or dropped on top of it. It will not accept any items dropped on to it if it's in the process of crafting."
+      "text": "壊死性火鉢 は緑色の炎で燃えますが、アンデッドには害を及ぼさないように見え、ディープダーク内に置かれた場合にのみ燃えることができます。 火鉢は複数のアイテムを取り込んで 1 つを作成し、アイテムは手で置くか、火鉢の上に落とすことができます。 製作中の場合は、アイテムを落としても受け付けません。"
     },
     {
       "type": "patchouli:text",
-      "text": "The Necrotic Brazier will slowly take Soul Energy from the surrounding $(l:crafts/artifice/soul_candlestick)Soul Candlesticks$(), only completing, and spewing out the resulting item, once it has taken enough consuming all the items placed in it. Breaking every $(l:crafts/artifice/soul_candlestick)Candlesticks$(), not having enough Soul Energy from them, or attempting to place or remove an item from the Brazier will cause it to spit out all of its items, wasting any consumed Soul Energy."
+      "text": "壊死性火鉢 は周囲の $(l:crafts/artifice/soul_candlestick)Soul Candlesticks$() からソウル エネルギーをゆっくりと奪い、その中に置かれているすべてのアイテムを十分に消費した後でのみ完成し、結果として得られるアイテムを吐き出します。 すべての $(l:crafts/artifice/soul_candlestick)Candlesticks$() を壊すか、そこから十分なソウル エネルギーを取得しないか、または火鉢からアイテムを配置または削除しようとすると、すべてのアイテムが吐き出され、消費されたアイテムは無駄になります。 魂のエネルギー。"
     }
   ],
   "extra_recipe_mappings": {

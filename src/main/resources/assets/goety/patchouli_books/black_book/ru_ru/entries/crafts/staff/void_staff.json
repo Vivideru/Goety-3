@@ -1,11 +1,11 @@
 {
-  "name": "Void Staff",
+  "name": "Пустотный посох",
   "icon": "goety:void_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the void and the End whirling around this eldritch staff, your Void Spells become more greater."
+      "text": "Эссенция пустоты и Энда обвивает этот загадочный посох, увеличивая силу пустотных заклинаний."
     },
     {
       "type": "goety:ritual",

@@ -1,15 +1,15 @@
 {
-  "name": "Doppelganger",
+  "name": "ドッペルゲンガー",
   "icon": "minecraft:player_head",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While similar to the clones conjured by Illusioners, these Doppelgangers will instead draw attention from hostile creatures and will disappear once hit or their summoner getting hit."
+      "text": "イリュージョナーによって呼び出されたクローンと似ていますが、これらのドッペルゲンガーは敵対的なクリーチャーの注意を引きつけ、攻撃されるか召喚者が攻撃を受けると消滅します。"
     },
     {
       "type": "patchouli:text",
-      "text": "Their arrows do no damage to enemies and they will disappear after a certain amount of time."
+      "text": "彼らの矢は敵にダメージを与えず、一定時間が経過すると消滅します。"
     }
   ]
 }

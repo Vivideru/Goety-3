@@ -1,6 +1,7 @@
 package com.Polarice3.Goety.common.world.features;
 
 import com.Polarice3.Goety.Goety;
+import com.google.common.collect.ImmutableList;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
 import com.Polarice3.Goety.common.world.features.configs.ModTreeFeatureConfig;
 import com.Polarice3.Goety.common.world.features.trees.trunkplacers.ChorusTrunkPlacer;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.CherryFoliagePlacer;
@@ -35,6 +37,8 @@ public class ConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> SAPLING_HAUNTED_TREE = key("haunted_tree_sapling");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SAPLING_ROTTEN_TREE = key("rotten_tree_sapling");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SAPLING_FANCY_ROTTEN_TREE = key("fancy_rotten_tree_sapling");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SAPLING_MARSH_TREE = key("marsh_tree_sapling");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SAPLING_FANCY_MARSH_TREE = key("fancy_marsh_tree_sapling");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WINDSWEPT_TREE = key("windswept_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WINDSWEPT_TREE_2 = key("second_windswept_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> PINE_TREE = key("pine_tree");
@@ -60,6 +64,8 @@ public class ConfiguredFeatures {
         FeatureUtils.register(p_256171_, SAPLING_ROTTEN_TREE, Feature.TREE, createRotten().ignoreVines().build());
         FeatureUtils.register(p_256171_, SAPLING_FANCY_ROTTEN_TREE, Feature.TREE, createFancyRotten().build());
         FeatureUtils.register(p_256171_, WINDSWEPT_TREE_2, Feature.TREE, createWindswept2().build());
+        FeatureUtils.register(p_256171_, SAPLING_MARSH_TREE, Feature.TREE, createMarsh().build());
+        FeatureUtils.register(p_256171_, SAPLING_FANCY_MARSH_TREE, Feature.TREE, createFancyMarsh().build());
         FeatureUtils.register(p_256171_, CHORUS_TREE, Feature.TREE, createChorus().build());
         FeatureUtils.register(p_256171_, CHORUS_BLOSSOM_TREE, Feature.TREE, createChorusBlossom().build());
         FeatureUtils.register(p_256171_, MEGA_CHORUS_TREE, ModFeatures.CHORUS_TREE.get(), createMegaChorus().build());
@@ -84,6 +90,14 @@ public class ConfiguredFeatures {
 
     private static TreeConfiguration.TreeConfigurationBuilder createFancyRotten() {
         return (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.ROTTEN_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(ModBlocks.ROTTEN_LEAVES.get()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).ignoreVines();
+    }
+
+    private static TreeConfiguration.TreeConfigurationBuilder createMarsh() {
+        return createStraightBlobTree(ModBlocks.MARSH_LOG.get(), ModBlocks.MARSH_LEAVES.get(), 5, 3, 0, 3).decorators(ImmutableList.of(new LeaveVineDecorator(0.25F)));
+    }
+
+    private static TreeConfiguration.TreeConfigurationBuilder createFancyMarsh() {
+        return (new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(ModBlocks.MARSH_LOG.get()), new FancyTrunkPlacer(3, 11, 0), BlockStateProvider.simple(ModBlocks.MARSH_LEAVES.get()), new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))).decorators(ImmutableList.of(new LeaveVineDecorator(0.25F)));
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createWindswept() {

@@ -15,6 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class BiomeWindShrineMixin {
     @Inject(method = "shouldSnow", at = @At("HEAD"), cancellable = true)
     private void goety$noSnowOnWindsweptPeaks(LevelReader level, BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+        if (com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine()) {
+            return;
+        }
         ChunkAccess chunk = level.getChunk(pos.getX() >> 4, pos.getZ() >> 4, ChunkStatus.BIOMES, false);
         if (chunk != null && chunk.getNoiseBiome(pos.getX() >> 2, pos.getY() >> 2, pos.getZ() >> 2).is(WindShrineTerrain.WINDSWEPT_PEAKS_BIOME)) {
             cir.setReturnValue(false);

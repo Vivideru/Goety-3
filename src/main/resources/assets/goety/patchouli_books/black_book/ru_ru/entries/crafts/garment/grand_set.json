@@ -1,5 +1,5 @@
 {
-  "name": "Grand Set",
+  "name": "Великие одежды",
   "icon": "goety:grand_turban",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/get_ruby",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Vizier has some snazzy robes themselves, and a good looking turban too. With their Ruby, you can replicate these garments and get some of their special abilities!"
+      "text": "У визирей тоже есть шикарная мантия и красивый тюрбан. С помощью их рубинов можно воспроизвести эти одежды и получить некоторые особые способности!"
     },
     {
       "type": "patchouli:text",
-      "text": "You feel like you've might as well! You've already took the Evoker's style, why not move up on the world?"
+      "text": "Вы чувствуете, что могли бы это сделать! Вы уже переняли стиль заклинателя, почему бы вам не продвинуться по карьерной лестнице?"
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While taking damage while wearing the Turban, you will have a 50%%, or a 100%% if you're at or below half of your maximum health, of spawning a loyal Irk that will defend you. If you use the Vexing Spell while crouching, it will kill of your Irks, healing you a heart per killed."
+      "text": "Получая урон в тюрбане, есть 50%%-ный или 100%%-ный, если у вас меньше половины максимального здоровья, шанс появления прислуживающего вам досаждателя, который будет вас защищать. Если вы используете фокус вреда, присев, он убьёт всех ваших досаждателей, исцеляя вам одно сердце за каждого."
     },
     {
       "type": "goety:ritual",
@@ -27,7 +27,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "At first, the Robe seems to be just another recolor of the Dark Robes, but when casting a spell through your wand you've discovered that doing so will give you the Vizier's shield, halving all incoming damage so long as you're spellcasting."
+      "text": "Поначалу мантия кажется просто покрашенной в другой цвет тёмной мантией, но, взмахнув палочкой, вы обнаруживаете, что вас окружает щит визиря, уменьшающий вдвое весь наносимый урон, пока вы используете заклинание."
     }
   ],
   "extra_recipe_mappings": {

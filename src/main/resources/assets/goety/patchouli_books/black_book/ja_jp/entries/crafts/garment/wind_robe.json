@@ -1,11 +1,12 @@
 {
-  "name": "Wind Robes",
+  "name": "風のローブ",
   "icon": "goety:wind_robe",
   "category": "goety:crafts/garment",
+  "advancement": "goety:goety/read_mistral_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Wind Robes allows you to fall slowly(or not so slowly when holding shift) and make you immune to fall damage. However, every second the robes slow your fall, Soul Energy is consumed. Wearing the Robes also halves the Soul Cost for Wind Spells."
+      "text": "風のローブを着ると、落下速度が遅くなり(Shiftキーを押しながらだと落下速度が速くなります)、落下ダメージを受けなくなります。ただし、ローブが落下速度を遅くするごとにソウルエネルギーが消費されます。また、ローブを装備すると、風の呪文のソウルコストを半減します。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The creatures of the winds can use their summoner's soul energy to slowly heal themselves, should they wear this robe."
+      "text": "風の従者は、このローブを着ると召喚者のソウルエネルギーによってゆっくりと回復します。"
     },
     {
       "type": "goety:ritual",
@@ -21,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The jade crown will halved the time to cast Wind spells and keeps your wind servants from dying off, like Vexes, when worn."
+      "text": "風の冠は、風の呪文を唱える時間を半分に短縮し、風の従者がヴェックスのように消滅するのを防ぎます。"
     }
   ],
   "extra_recipe_mappings": {

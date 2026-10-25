@@ -51,6 +51,11 @@
     {
       "type": "patchouli:text",
       "text": "Меньшие по размерам, но намного превосходящие гастов, эти яростные монстры изрыгают шары нечестивого пламени, которое прожигает всё насквозь. Иногда эти существа выпускают обычный лавовый шар, который можно отбить."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:unholy_blood[minecraft:custom_data={Pure:1b}]",
+      "text": "There are whispers that their blood remains Pure when dropped within the Nether..."
     }
   ],
   "extra_recipe_mappings": {

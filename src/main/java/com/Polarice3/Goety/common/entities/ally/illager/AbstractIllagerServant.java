@@ -13,6 +13,7 @@ import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.effects.brew.BrewEffectInstance;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.common.entities.ai.IllagerLootFoodChestGoal;
+import com.Polarice3.Goety.common.entities.ai.IllagerLootItemsChestGoal;
 import com.Polarice3.Goety.common.entities.ai.IllagerPutFoodChestGoal;
 import com.Polarice3.Goety.common.entities.ai.IllagerPutLootChestGoal;
 import com.Polarice3.Goety.common.entities.ally.illager.raider.*;
@@ -98,7 +99,7 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
     @Nullable
     public BlockPos dumpChestPos;
     public String dumpChestDim = Level.OVERWORLD.location().toString();
-    private final SimpleContainer inventory = new SimpleContainer(8);
+    private final SimpleContainer inventory = new SimpleContainer(this.getBaseInvSize());
 
     public AbstractIllagerServant(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -136,6 +137,7 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
         this.goalSelector.addGoal(2, new IllagerPutFoodChestGoal<>(this));
         this.goalSelector.addGoal(4, new IllagerPutLootChestGoal<>(this));
         this.goalSelector.addGoal(7, new IllagerLootFoodChestGoal<>(this));
+        this.goalSelector.addGoal(8, new IllagerLootItemsChestGoal<>(this));
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -181,6 +183,10 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
     @Override
     public void setCharm(ItemStack itemStack) {
         this.charmItem = itemStack;
+    }
+
+    public int getBaseInvSize() {
+        return 8;
     }
 
     public SimpleContainer getInventory() {
@@ -567,6 +573,10 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
         }
     }
 
+    public boolean validItemToTake(ItemStack itemStack) {
+        return itemStack.getItem() instanceof IMobCharm && this.getCharm().isEmpty();
+    }
+
     public boolean validLootToStore(ItemStack itemStack) {
         return !itemStack.isEmpty() && !this.validFood(itemStack);
     }
@@ -671,6 +681,11 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
 
     @Nullable
     public AbstractIllagerServant getBreedOffspring(ServerLevel serverLevel, AbstractIllagerServant illager) {
+        if (!MobsConfig.IllagerServantAllBreed.get()){
+            if (!(this instanceof Neollager)) {
+                return null;
+            }
+        }
         Neollager neollager = new Neollager(ModEntityType.NEOLLAGER.get(), serverLevel);
         neollager.copyTrueOwner(this);
         EventHooks.finalizeMobSpawn(neollager, serverLevel, serverLevel.getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.BREEDING, null);
@@ -683,11 +698,15 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
         return neollager;
     }
 
+    public boolean trainFaster(Mob mob) {
+        return mob instanceof PillagerServant || mob instanceof MountaineerServant;
+    }
+
     @Override
     public int trainSpeed(EntityType<? extends Mob> entityType) {
         int i = this.isBaby() ? 2 : 1;
         Mob mob = entityType.create(this.level());
-        if (mob instanceof PillagerServant){
+        if (this.trainFaster(mob)){
             i *= 2;
         }
         if (this.hasEffect(GoetyEffects.INSIGHT)) {
@@ -1329,8 +1348,8 @@ public abstract class AbstractIllagerServant extends RaiderServant implements IT
         }
 
         public Optional<BlockPos> getVacantBed(ServerLevel serverLevel) {
-            return serverLevel.getPoiManager().find((holder) -> holder.is(PoiTypes.HOME)
-                    , (blockPos -> true), this.illager.blockPosition(), 8, PoiManager.Occupancy.HAS_SPACE);
+            return serverLevel.getPoiManager().findClosest((holder) -> holder.is(PoiTypes.HOME)
+                    , this.illager.blockPosition(), 8, PoiManager.Occupancy.HAS_SPACE);
         }
 
         public boolean canReach(BlockPos p_217502_) {

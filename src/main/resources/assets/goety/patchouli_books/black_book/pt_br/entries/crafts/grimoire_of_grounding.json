@@ -19,6 +19,10 @@
     {
       "type": "patchouli:text",
       "text": "O Feitiço de Chamada ainda funciona mesmo que a invocação armazenada esteja registada no grimório. No caso do Feitiço de Tropa, apenas os indivíduos registados no grimório não serão teleportados. Este grimório adiciona e remove servos da mesma forma que outros grimórios fazem com criaturas."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The grimoire also prevents temporary servants recorded in it to be dismissed via the 'Dismiss Temporary Servants' key."
     }
   ]
 }

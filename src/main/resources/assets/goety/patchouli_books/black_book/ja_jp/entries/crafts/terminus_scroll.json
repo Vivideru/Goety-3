@@ -1,5 +1,5 @@
 {
-  "name": "Terminus Scroll",
+  "name": "終端のスクロール",
   "icon": "goety:terminus_scroll",
   "category": "goety:crafts",
   "advancement": "goety:goety/get_shrouded_blueprint",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The blueprint shares some similarities with the Warred Scroll, making you think that transcribing it into a readable schematic requires something that's from a similar creation."
+      "text": "設計図は 戦争のスクロール といくつかの類似点があり、それを判読可能な設計図に書き写すには、同様の作品からの何かが必要であると考えられます。"
     },
     {
       "type": "goety:ritual",

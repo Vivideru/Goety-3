@@ -1,12 +1,12 @@
 {
-  "name": "Wight",
+  "name": "ワイト",
   "icon": "goety:shadow_essence",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_wight",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A strange entity that appears near beings that have a high amount of soul energy."
+      "text": "ソウルエネルギーを多く持つ存在の近くに現れる異形の存在。"
     },
     {
       "type": "patchouli:entity",
@@ -15,12 +15,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:shadow_essence",
-      "title": "Essence of Shadow",
-      "text": "When slain, they drop some odd 'essences' that seems to suck in light. Perhaps they can be used to create certain items."
+      "title": "影のエッセンス",
+      "text": "ワイトは光を吸い込むような奇妙な「エッセンス」をドロップします。おそらく、特定のアイテムを作成するために使用できます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Some, who have seen and survived an encounter of one, believed them to be a creation of a $(l:world/crypts)dark and cold place$()..."
+      "text": "遭遇したのを目撃した人は、それらが $(l:world/crypts)dark and cold place$() の創造物であると信じている..."
     }
   ],
   "extra_recipe_mappings": {

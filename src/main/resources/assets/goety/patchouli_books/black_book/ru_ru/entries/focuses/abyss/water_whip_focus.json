@@ -14,6 +14,10 @@
     {
       "type": "patchouli:text",
       "text": "Использование $(l:crafts/staff/abyss_staff)глубоководного фокуса$() позволяет превращать руку дважды."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Based on @rangoonruler's suggestion"
     }
   ]
 }

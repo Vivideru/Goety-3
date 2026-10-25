@@ -1,11 +1,11 @@
 {
-  "name": "Hail Focus",
+  "name": "氷雨のフォーカス",
   "icon": "goety:hail_focus",
   "category": "goety:focuses/frost",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Summons a cloud of snow high above a target block or creature, where it will rain freezing snow, that deals small damage and gives Freezing for 5 seconds."
+      "text": "対象のブロックまたはクリーチャーの上空高くに雪雲を召喚し、そこに雹(ひょう)を降らせます。この雹はターゲットに小さなダメージを与え、5秒間凍結させることができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/frost_staff)Frost Staff$() will cause the hail cloud to follow a valid target."
+      "text": "$(l:crafts/staff/frost_staff)氷の杖$()で唱えると、雪雲が有効なターゲットを追うようになります。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,12 +1,12 @@
 {
-  "name": "Skull Lords",
+  "name": "スカルロード",
   "icon": "minecraft:skeleton_skull",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_skull_lord",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Desecrating and trying to open a jar of the grand tomb unleashed an enraged lord that once ruled the structure. It appears that they hold a piece of dark magic with them that they couldn't complete within their lifetime."
+      "text": "壮大な墓の壺を冒涜して開けようとしたことで、かつてこの建造物を支配していた激怒した領主が解き放たれました。 彼らは一生の間に完成させることができなかった闇の魔法を持っているようです。"
     },
     {
       "type": "patchouli:entity",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Unfortunately for would be treasure hunters and mages, the dark master of the Crypt managed to stay bound to the material world to guard their treasure. Their heads are the source of their power and intellect and is protected whenever they reconstituted their armored yet skeletonized bodies."
+      "text": "トレジャーハンターや魔術師にとっては残念なことに、地下室の闇の支配者は彼らの宝物を守るためになんとか物質世界に縛られ続けました。 彼らの頭は彼らの力と知性の源であり、鎧を着て白骨化した体を再構築するたびに保護されます。"
     },
     {
       "type": "patchouli:spotlight",

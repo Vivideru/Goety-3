@@ -1,15 +1,15 @@
 {
-  "name": "Twilight Goats",
+  "name": "夕闇のヤギ",
   "icon": "minecraft:goat_horn",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Dark colored and vicious counterparts of regular goats, these dark omens will ram onto their masters enemies or skewer them with their horns, or bites if they lose them."
+      "text": "普通のヤギの暗い色をした凶暴な邪悪な獣は、主人の敵に体当たりしたり、角で串刺しにしたり、角を失った場合は噛み付いたりします。"
     },
     {
       "type": "patchouli:text",
-      "text": "One can call upon twilight goats through the use of a $(l:focuses/wild/hunting_focus)Hunting Focus$() while on a mountain, or through casting it with a $(l:crafts/staff/wind_staff)Wind Staff$(), or through a ritual which summons one without a limited lifespan."
+      "text": "山にいるときに $(l:focuses/wild/hunting_focus)狩猟のフォーカス$() を使用するか、それを$(l:crafts/staff/wind_staff)風の杖$()で唱えるか、儀式(寿命に制限のない召喚ができます)を行うことで、夕闇のヤギを呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on a loyal Twilight Goat with any type of edible food will heal them."
+      "text": "肉で右クリックすると回復します。"
     }
   ]
 }

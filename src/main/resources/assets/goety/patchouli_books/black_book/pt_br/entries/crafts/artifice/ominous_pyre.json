@@ -18,7 +18,14 @@
     },
     {
       "type": "patchouli:text",
+      "title": "Servos da Guarda Imperial",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)Nota: O dono deve ter lido o $(l:goety:rumors/desert)Pergaminho da Frente$()$()$(br)Requisitos: $(li)Servo Saqueador $(li)4 Estátuas Sinistras $(li)4 Estandartes $(li)4 Fenos/Blocos Alvo $(li)4 Mesas de Flecheiro $(li)2 Bigornas $(li)8 $(l:goety:crafts/stash_urn)Urnas de Reserva$()"
+    },
+    {
+      "type": "patchouli:text",
       "title": "Servos Lanceiros",
+      "advancement": "goety:goety/read_front_scroll",
       "text": "$(o)Nota: O dono deve ter lido o $(l:goety:rumors/desert)Pergaminho da Frente$()$()$(br)Requisitos: $(li)Neollager $(li)2 Rebolos $(li)2 Mesas de Ferraria $(li)16 Cercas de Madeira $(li)32 Troncos $(li)4 Barris $(li)4 Camas $(li)2 Bigornas"
     },
     {
@@ -39,7 +46,7 @@
     {
       "type": "patchouli:text",
       "title": "Servos Montanheses",
-      "text": "Requisitos: $(li)Servo Vingadore $(li)A Pira deve estar em biomas com neve $(li)16 Cercas de Madeira $(li)20 Lãs $(li)8 Barris $(li)4 Sopradores de Vento Energizados"
+      "text": "$(o)Nota: Vingadores treinam mais rapidamente em Servos Montanheses$()$(br)Requisitos: $(li)Servo Vingadore $(li)A Pira deve estar em biomas com neve $(li)16 Cercas de Madeira $(li)20 Lãs $(li)8 Barris $(li)4 Sopradores de Vento Energizados"
     },
     {
       "type": "patchouli:text",
@@ -48,13 +55,19 @@
     },
     {
       "type": "patchouli:text",
-      "title": "Servos Guarda Real",
-      "text": "Requirements: $(li)Servo Vingadore $(li)4 Ominous Statues $(li)16 Royal/Frosty Carpets $(li)4 Estandartes $(li)4 Bigornas $(li)4 $(l:goety:crafts/stash_urn)Urnas de Reserva$()"
+      "title": "Servos Guardas Reais",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)Nota: O dono deve ter lido o $(l:goety:rumors/desert)Pergaminho da Frente$()$()$(br)Requisitos: $(li)Servo Vingadore $(li)4 Estátuas Sinistras $(li)16 Tapetes Reais/Gelados $(li)4 Estandartes $(li)4 Bigornas $(li)8 $(l:goety:crafts/stash_urn)Urnas de Reserva$()"
     },
     {
       "type": "patchouli:text",
       "title": "Servos Invocadores",
       "text": "Requisitos: $(li)Neollager Mágico $(li)32 Estantes de Livros/Poder de Encantamento $(li)16 Velas Acesas $(li)4 Cabeças $(li)4 Vasos com Plantas $(li)2 Estandartes $(li)4 $(l:goety:crafts/stash_urn)Urnas de Reserva$() $(li)1 Atril"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Servos Encantadores",
+      "text": "Requisitos: $(li)Neollager Mágico $(li)64 Estantes de Livros/Poder de Encantamento $(li)2 Castiçais/Candelabros Acesos $(li)1 Atril $(li)1 Mesa de Encantamento $(li)4 $(l:goety:crafts/stash_urn)Urnas de Reserva$() $(li)4 Estantes Cinzeladas preenchidas com Livros Encantados"
     },
     {
       "type": "patchouli:text",
@@ -74,11 +87,13 @@
     {
       "type": "patchouli:text",
       "title": "Servos Xãmas",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "Requisitos: $(li)Neollager Mágico $(li)64 Blocos de Mármore $(li)32 Blocos de Jade $(li)4 Blocos de Ouro Rebaixados"
     },
     {
       "type": "patchouli:text",
       "title": "Servos Conjuradores da Tempestade",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "Requisitos: $(li)Geomante ou Invocador do Vento $(li)A Pira deve estar exposta a uma Tempestade $(li)32 Blocos de Cobre (Qualquer) $(li)64 Blocos de Tijolos (Qualquer) $(li)4 Para-raios"
     },
     {

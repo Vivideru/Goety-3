@@ -34,6 +34,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
@@ -236,6 +237,19 @@ public class PhantomServant extends SummonedFlying implements IMobTyped {
 
     public double getPassengersRidingOffset() {
         return this.getEyeHeight();
+    }
+
+    @Override
+    public boolean isInPatrolPoint(BlockPos blockPos) {
+        AABB aabb = new AABB(blockPos).expandTowards(0.0D, 10.0D, 0.0D).inflate(3.0D);
+        return this.getBoundingBox().inflate(1.0D).intersects(aabb);
+    }
+
+    @Override
+    public boolean moveToPatrolPoint(BlockPos pos, double speed) {
+        this.anchorPoint = pos.above(5);
+        this.moveTargetPoint = Vec3.atCenterOf(this.anchorPoint);
+        return true;
     }
 
     enum AttackPhase {

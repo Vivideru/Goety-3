@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "goety:marsh_planks"
+    }
+  },
+  "result": {
+    "id": "goety:marsh_boat"
+  }
+}

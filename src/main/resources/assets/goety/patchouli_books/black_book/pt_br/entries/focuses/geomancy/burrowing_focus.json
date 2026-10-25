@@ -14,6 +14,10 @@
     {
       "type": "patchouli:text",
       "text": "O encantamento Potência aumenta a velocidade de mineração e, em níveis mais altos, permite que o feitiço mine blocos que exigem ferramentas de diamante ou netherita."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will cause the spell to mine in a 3x3 area, so long as the blocks are mine-able with pickaxe or shovel."
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Bouncy Bubble Focus",
+  "name": "Фокус упругого пузыря",
   "icon": "goety:bouncy_bubble_focus",
   "category": "goety:focuses/abyss",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "An odd spell that summons forth a bubble that bounces from surfaces and creatures, somehow hurting them as though it were sharp or made of acid. After bouncing multiple times, the bubble will burst, hurting nearby non-allied creatures."
+      "text": "Странное заклинание, создающее большой пузырь, который отскакивает от поверхностей и жертв, нанося им урон, как будто он колючий или кислотный. После многократного отскакивания пузырь лопается, нанося урон по области."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/abyss_staff)Abyss Staff$() will summon multiple Bouncy Bubbles instead of one."
+      "text": "Использование $(l:crafts/staff/abyss_staff)глубоководного посоха$() позволяет создать два пузыря вместо одного."
     }
   ],
   "extra_recipe_mappings": {

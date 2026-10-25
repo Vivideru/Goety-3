@@ -1,5 +1,5 @@
 {
-  "name": "Grand Set",
+  "name": "グランドセット",
   "icon": "goety:grand_turban",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/get_ruby",
@@ -7,11 +7,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Vizier has some snazzy robes themselves, and a good looking turban too. With their Ruby, you can replicate these garments and get some of their special abilities!"
+      "text": "宰相はおしゃれなローブを着ていて、見栄えの良いターバンも持っています。 ルビーを使用すると、これらの衣服を複製し、特別な能力を得ることができます。"
     },
     {
       "type": "patchouli:text",
-      "text": "You feel like you've might as well! You've already took the Evoker's style, why not move up on the world?"
+      "text": "あなたもそうかもしれないと感じています！ あなたはすでにエヴォーカーのスタイルを取り入れていますが、さらに上の世界に進んでみてはいかがでしょうか？"
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While taking damage while wearing the Turban, you will have a 50%%, or a 100%% if you're at or below half of your maximum health, of spawning a loyal Irk that will defend you. If you use the Vexing Spell while crouching, it will kill of your Irks, healing you a heart per killed."
+      "text": "ターバンをかぶっているときにダメージを受けると、50%%、または最大体力の半分以下の場合は 100%% で、あなたを守る忠実な インクが生成されます。 しゃがみながら Vexing Spell を使用すると、インクが殺され、殺されるたびにハートが回復します。"
     },
     {
       "type": "goety:ritual",
@@ -27,7 +27,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "At first, the Robe seems to be just another recolor of the Dark Robes, but when casting a spell through your wand you've discovered that doing so will give you the Vizier's shield, halving all incoming damage so long as you're spellcasting."
+      "text": "最初は、ローブはダーク ローブの単なる色変更のように見えますが、杖を通して呪文を唱えると、宰相の盾が得られ、呪文を唱えている間は受けるダメージがすべて半分になることがわかりました。"
     }
   ],
   "extra_recipe_mappings": {

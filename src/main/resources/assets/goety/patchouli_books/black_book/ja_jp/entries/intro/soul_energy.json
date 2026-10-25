@@ -1,5 +1,5 @@
 {
-  "name": "Soul Energy",
+  "name": "ソウル エネルギー",
   "icon": "goety:totem_of_roots",
   "category": "goety:intro",
   "sortnum": 2,
@@ -7,20 +7,20 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've researched on the secrets of the Illagers magic powers, Soul Energy, and you pondered on how to utilize and collect this energy."
+      "text": "あなたはイラジャーの魔法の力であるソウル エネルギーの秘密を研究し、このエネルギーをどのように活用し、収集するかを考えました。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:totem_of_roots",
-      "text": "With some twigs, an Ectoplasm and some Lapis Lazuli, you've managed to create your first Totem!"
+      "text": "小枝、エクトプラズム、エメラルドをいくつか使って、最初のトーテムを作成することができました。"
     },
     {
       "type": "patchouli:text",
-      "text": "When killing a being with the Totem in the Hotbar or on a Charm Slot, it will fill up with Soul Energy. The amount depends on which creature is slain, but considering the Illagers disposition towards the Villagers, it's not hard to figure out which creature has the most amount of Soul Energy."
+      "text": "ホットバーまたはチャームスロットのトーテムで存在を殺すと、ソウルエネルギーで満たされます。 その量はどのクリーチャーが殺されるかによって異なりますが、村人に対する村人の気質を考慮すると、どのクリーチャーが最も多くのソウルエネルギーを持っているかを把握するのは難しくありません。"
     },
     {
       "type": "patchouli:text",
-      "text": "Soul Energy is what fuels their magic, and it seems to have a relation with Experience, though while Experience is used to enchant items and repair items if it has Mending, you've figure that Soul Energy can be used for more exotic purposes."
+      "text": "ソウル エネルギーは彼らの魔法の原動力であり、経験値と関係があるようですが、経験値はアイテムにエンチャントを付けたり、修復機能がある場合はアイテムを修復したりするために使用されますが、ソウル エネルギーはよりエキゾチックな目的にも使用できることがわかりました。"
     }
   ]
 }

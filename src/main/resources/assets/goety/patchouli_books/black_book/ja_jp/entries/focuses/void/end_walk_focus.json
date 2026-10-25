@@ -1,11 +1,11 @@
 {
-  "name": "End Walk Focus",
+  "name": "エンドフォークフォーカス",
   "icon": "goety:end_walk_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus taps into the energies of the End, granting you true invisibility that hides even your armor for a small duration. However, interacting with any creature or block will not only break the invisibility, but also teleports you back to where you cast the spell."
+      "text": "焦点はジ・エンドのエネルギーを利用し、短時間の間、鎧さえも隠す真の透明性を与えます。 ただし、クリーチャーやブロックと対話すると、透明性が解除されるだけでなく、呪文を唱えた場所にテレポートされてしまいます。"
     },
     {
       "type": "goety:ritual",

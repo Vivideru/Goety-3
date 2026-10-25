@@ -1,11 +1,11 @@
 {
-  "name": "Jade Ores",
+  "name": "Нефритовые руды",
   "icon": "goety:jade_ore",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Jades are one of the most illusive ores to find in the world. They hold the power of the winds within themselves and can only be found in places of high elevations like Mountains, specifically the peaks of them."
+      "text": "Нефрит — одна из самых магических руд во всём мире. Он содержит в себе силу ветров и может быть найден только в высокогорьях, особенно на вершинах."
     },
     {
       "type": "patchouli:image",

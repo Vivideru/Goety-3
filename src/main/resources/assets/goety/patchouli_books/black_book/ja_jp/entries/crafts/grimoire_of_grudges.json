@@ -1,15 +1,15 @@
 {
-  "name": "Grimoire of Grudges",
+  "name": "恨みのグリモワール",
   "icon": "goety:grimoire_of_grudges",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sometimes, you feel like you have an intense grudge against a certain being, yet your servants won't attack them unprovoked! Fortunately, you've devised a terrible book, one that when hitting that being with it causes it to record them."
+      "text": "時々、あなたは特定の存在に対して激しい恨みを持っているように感じますが、それでもあなたの召使は彼らを無理由に攻撃しません。 幸いなことに、あなたは恐ろしい本を発明しました。それは、その存在を攻撃すると記録されるというものです。"
     },
     {
       "type": "patchouli:text",
-      "text": "Any being recorded in this grimoire will cause all your servants to be automatically hostile towards said being. The grimoire can record multiple beings, ranging from Villagers to even beings like you! That's not all, if your grudge extends towards species, hitting the being while crouching will cause the being's species be recorded! For example, crouching and hitting a Villager with the grimoire will make all your servants hostile towards ALL Villagers."
+      "text": "このグリモワールに記録されたものはすべて、あなたのすべての召使を自動的にその存在に対して敵対的にします。 グリモアには、村人からあなたのような存在まで、複数の存在を記録できます。 それだけではなく、あなたの恨みが種にまで及ぶ場合、しゃがんだ状態でその存在を攻撃すると、その存在の種が記録されます。 たとえば、しゃがんでグリモワールで村人を殴ると、すべての従者がすべての村人に対して敵対的になります。"
     },
     {
       "type": "patchouli:crafting",
@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "However, if you're in a forgiving mood and want to erase the grudge, you can simply right click on the being you have a grudge with, or shift right click if you have a grudge against the entire species, the grudge will be erased from the grimoire. Until you hit them again."
+      "text": "ただし、許したい気分で恨みを消したい場合は、恨みを持っている存在を右クリックするか、種族全体に対して恨みを持っている場合は、 シフトキーを押して右クリックすると、恨みが消えます。 グリモアから。 もう一度殴るまでは。"
     },
     {
       "type": "patchouli:text",

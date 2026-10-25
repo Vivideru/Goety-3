@@ -1,11 +1,11 @@
 {
-  "name": "Void Robes",
+  "name": "Пустотные одежды",
   "icon": "goety:void_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Void Robes imbues the wearer the power of the End. Wearers will have the chance of dodge attacks through teleportation, be immune to Void Touched and can move through Void Blocks freely. The Robes also makes Void Spells cheaper."
+      "text": "Пустотная мантия наделяет вас силой Энда. Она даёт шанс на уклонение от атаки с помощью телепортации и неуязвимость к пустотному касанию, а также позволяет беспрепятственно проходить сквозь пустотные блоки. Она удешевляет пустотные заклинания."
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Void Crown reduce the amount of time to cast Void spells by half and keeps certain void servants from dying off like Vexes. It also allows the wearer to gaze into Endermen without aggravating them."
+      "text": "Пустотная корона вдвое сокращает время использования пустотных заклинаний и не даёт пустотным прислужникам исчезать, подобно врединам. Она также позволяет спокойно смотреть эндерменам в глаза."
     }
   ],
   "extra_recipe_mappings": {

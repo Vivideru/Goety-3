@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
+    "goety:iron_ice_axe",
+    "goety:reinforced_ice_axe",
+    "goety:diamond_ice_axe",
     "#minecraft:enchantable/sword",
     "#minecraft:axes",
     "#c:tools/hammers"

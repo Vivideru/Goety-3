@@ -1,21 +1,26 @@
 {
-  "name": "Dark Robes",
+  "name": "Тёмные одежды",
   "icon": "goety:dark_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Evokers wear such snazzy robes, that you wonder if they're just for show or there's something special about them. By utilizing Dark and Magic Fabrics, you've managed to not only replicate their Robes, but also make some new additions, and discover they hold some special properties."
+      "text": "Заклинатели носят такие шикарные одежды, что невольно задумываешься: они так красуются, или в этих мантиях есть что-то особенное? Используя тёмные и волшебные ткани, вам удалось не только воспроизвести их одежды, но и улучшить их, обнаружив, что они обладают особыми свойствами."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:dark_robe",
-      "text": "The Robes worn by Evokers help channel their magic more efficiently, utilizing 15%% of the Soul Cost needed to cast the spell."
+      "text": "Мантии заклинателей помогают более эффективно направлять магию, уменьшая стоимость заклинаний на 15%."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:dark_hat",
-      "text": "The Dark Hat helps you focus on your spells, reducing the time needed to cast them."
+      "text": "Тёмная шляпа помогает вам сконцентрироваться на заклинаниях, сокращая время, необходимое для их использования."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:dark_crown",
+      "text": "The Dark Crown also reduces the time needed to cast spells. A headwear more fitting for soon-to-be royalty."
     }
   ],
   "extra_recipe_mappings": {

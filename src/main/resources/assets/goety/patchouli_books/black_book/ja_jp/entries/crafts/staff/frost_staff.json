@@ -1,11 +1,11 @@
 {
-  "name": "Frost Staff",
+  "name": "雪の杖",
   "icon": "goety:frost_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Through the freezing cold of the Frost Staff, the power of Frost Spells is heightened."
+      "text": "雪の杖の凍てつく冷気を通して、氷の呪文の力が高まります。"
     },
     {
       "type": "goety:ritual",

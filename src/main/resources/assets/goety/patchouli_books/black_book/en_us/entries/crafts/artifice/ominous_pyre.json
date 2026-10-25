@@ -18,7 +18,14 @@
     },
     {
       "type": "patchouli:text",
+      "title": "Imperial Guard Servants",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)Note: Owner must have read $(l:goety:rumors/desert)Front Scroll$()$()$(br)Requirements: $(li)Pillager Servant $(li)4 Ominous Statues $(li)4 Banners $(li)4 Hay/Target Blocks $(li)4 Fletching Tables $(li)2 Anvils $(li)8 $(l:goety:crafts/stash_urn)Stash Urns$()"
+    },
+    {
+      "type": "patchouli:text",
       "title": "Piker Servants",
+      "advancement": "goety:goety/read_front_scroll",
       "text": "$(o)Note: Owner must have read $(l:goety:rumors/desert)Front Scroll$()$()$(br)Requirements: $(li)Neollager $(li)2 Grindstone $(li)2 Smithing Tables $(li)16 Wooden Fences $(li)32 Logs $(li)4 Barrels $(li)4 Beds $(li)2 Anvils"
     },
     {
@@ -39,7 +46,7 @@
     {
       "type": "patchouli:text",
       "title": "Mountaineer Servants",
-      "text": "Requirements: $(li)Vindicator Servant $(li)Pyre must be in snowing biomes $(li)16 Wooden Fences $(li)20 Wools $(li)8 Barrels $(li)4 Powered Wind Blowers"
+      "text": "$(o)Note: Vindicators are quicker to train into Mountaineer Servants$()$(br)Requirements: $(li)Vindicator Servant $(li)Pyre must be in snowing biomes $(li)16 Wooden Fences $(li)20 Wools $(li)8 Barrels $(li)4 Powered Wind Blowers"
     },
     {
       "type": "patchouli:text",
@@ -49,12 +56,18 @@
     {
       "type": "patchouli:text",
       "title": "Royal Guard Servants",
-      "text": "Requirements: $(li)Vindicator Servant $(li)4 Ominous Statues $(li)16 Royal/Frosty Carpets $(li)4 Banners $(li)4 Anvils $(li)4 $(l:goety:crafts/stash_urn)Stash Urns$()"
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)Note: Owner must have read $(l:goety:rumors/desert)Front Scroll$()$()$(br)Requirements: $(li)Vindicator Servant $(li)4 Ominous Statues $(li)16 Royal/Frosty Carpets $(li)4 Banners $(li)4 Anvils $(li)8 $(l:goety:crafts/stash_urn)Stash Urns$()"
     },
     {
       "type": "patchouli:text",
       "title": "Evoker Servants",
       "text": "Requirements: $(li)Magic Neollager $(li)32 Bookshelves/Enchant Power $(li)16 Lit Candles $(li)4 Heads $(li)4 Filled Flower Pots $(li)2 Banners $(li)4 $(l:goety:crafts/stash_urn)Stash Urns$() $(li)1 Lectern"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Enchanter Servants",
+      "text": "Requirements: $(li)Magic Neollager $(li)64 Bookshelves/Enchant Power $(li)2 Lit Candlesticks/Candelabras $(li)1 Lectern $(li)1 Enchanting Table $(li)4 $(l:goety:crafts/stash_urn)Stash Urns$() $(li)4 Chiseled Bookshelves filled with Enchanted Books"
     },
     {
       "type": "patchouli:text",
@@ -74,11 +87,13 @@
     {
       "type": "patchouli:text",
       "title": "Wind Caller Servants",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "Requirements: $(li)Magic Neollager $(li)64 Marble Blocks $(li)32 Jade Blocks $(li)4 Indented Gold Blocks"
     },
     {
       "type": "patchouli:text",
       "title": "Storm Caster Servants",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "Requirements: $(li)Geomancer or Wind Caller $(li)Pyre must be exposed to Thunderstorm $(li)32 Copper Blocks Any $(li)64 Bricks Blocks Any $(li)4 Lightning Rods"
     },
     {

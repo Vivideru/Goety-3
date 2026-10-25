@@ -1,12 +1,12 @@
 {
-  "name": "Empty Soul Jar",
+  "name": "空のソウルの瓶",
   "icon": "goety:empty_soul_jar",
   "category": "goety:crafts",
   "advancement": "goety:goety/unlock_necromancer",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With some Shade Stone, you're able to create a jar that can hold a soul of a certain Servants that, when used on certain entities, revives them."
+      "text": "シェード ストーンを使用すると、特定の従者の魂を収容できる瓶を作成できます。この瓶を特定のエンティティに使用すると、その従者が復活します。"
     },
     {
       "type": "patchouli:crafting",

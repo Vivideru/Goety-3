@@ -1,17 +1,17 @@
 {
-  "name": "Cryptic Eye",
+  "name": "クリプトアイ",
   "icon": "goety:cryptic_eye",
   "category": "goety:crafts",
   "advancement": "goety:goety/kill_a_wight",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These essences dropped by that $(l:world/bestiary/wight)horrific creature$() appears to be resonating towards something. By combining it with an Eye of Ender, you've discovered that instead of leading to the nearest Stronghold, it leads to $(l:world/crypts)someplace else$()."
+      "text": "$(l:world/bestiary/wight)恐ろしい生き物$()が落としたエッセンスは何かに向かって共鳴しています。エンダーアイと組み合わせると、要塞ではなく $(l:world/crypts)他の場所$()を指すことが分かりました。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:cryptic_eye",
-      "text": "It appears that using it will throw a copy of the eye instead of using it fully. However, it takes up durability when doing so."
+      "text": "これを使用すると、エンダーアイとは違い、自身の複製が投げられるようです。その代わり、耐久力を消費します。"
     }
   ]
 }

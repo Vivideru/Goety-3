@@ -1,15 +1,17 @@
 {
-  "name": "Corpse Blossoms",
+  "name": "死体の花",
   "icon": "goety:corpse_blossom",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A stinky plant has been spotted, or more likely scented, in the canopies of Jungles. They not only smell, and look pretty, but are said to also contain the energies of the Jungle."
+      "text": "ジャングルの樹冠で、悪臭を放つ植物が発見されました。あるいは、その匂いを嗅いだ可能性が高いです。 香りや見た目が美しいだけでなく、ジャングルのエネルギーが宿っていると言われています。"
     },
     {
       "type": "patchouli:image",
-      "images": ["goety:textures/gui/entries/corpse_blossom.png"],
+      "images": [
+        "goety:textures/gui/entries/corpse_blossom.png"
+      ],
       "border": true
     }
   ],

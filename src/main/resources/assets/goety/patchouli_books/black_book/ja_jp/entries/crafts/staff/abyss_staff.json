@@ -1,11 +1,11 @@
 {
-  "name": "Abyss Staff",
+  "name": "深淵の杖",
   "icon": "goety:abyss_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Abyss Staff gives the wielder great authority over the waves, increasing the power of Abyss Spells."
+      "text": "深淵の杖は、使用者に波に対する大きな権威を与え、深淵呪文の力を高めます。"
     },
     {
       "type": "goety:ritual",

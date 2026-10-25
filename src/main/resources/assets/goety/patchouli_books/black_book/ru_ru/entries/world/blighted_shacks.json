@@ -1,11 +1,11 @@
 {
-  "name": "Blighted Shacks",
+  "name": "Обветшалые хижины",
   "icon": "goety:rotten_log",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Rumors of old, rotting shacks have reached your ear. Apparently, old and powerful witches live within those decrepit dens, studying and brewing all kinds of dark magic. Yet when you come across these shacks, you spot no ancient witch, but a peculiar crystal ball... you wonder what will happen if you were to use it..."
+      "text": "До вас дошли слухи о старых, рассыпающихся хижинах. По-видимому, в этих ветхих норах живут старые и могущественные ведьмы, изучающие и использующие всевозможные виды тёмной магии. Однако, наткнувшись на хижину, вы обнаруживаете не древнюю ведьму, а своеобразный хрустальный шар... Интересно, что произойдет, если вы им воспользуетесь?.."
     },
     {
       "type": "patchouli:image",

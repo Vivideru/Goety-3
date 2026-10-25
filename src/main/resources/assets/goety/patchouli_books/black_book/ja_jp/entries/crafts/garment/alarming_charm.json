@@ -1,12 +1,12 @@
 {
-  "name": "Alarming Charm",
+  "name": "憂慮すべき魅力",
   "icon": "goety:alarming_charm",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/kill_a_envioker",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When hunting you down, the Illagers tend to signal their approach by having rows of fangs below you, or a Tormentor charging at you. With how sneaky they are, you've managed to devise a charm that would signal their arrival towards you."
+      "text": "あなたを追い詰めるとき、邪悪な村人は、あなたの下に牙を並べたり、トーメンターがあなたに向かって突進したりすることで、彼らの接近を知らせる傾向があります。 彼らがどれほど卑劣であるかを考えて、あなたは彼らがあなたに近づいてくることを知らせるお守りを考案することに成功しました。"
     },
     {
       "type": "goety:ritual",

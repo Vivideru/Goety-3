@@ -1,5 +1,5 @@
 {
-  "name": "Nameless Set",
+  "name": "名も無き者セット",
   "icon": "goety:nameless_cape",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/read_forbidden_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After discovering the most hidden of necromantic ways, you've devised a new set of garb to showcase your mastery over the dark arts."
+      "text": "最も隠された死霊術の方法を発見した後、あなたは闇の芸術に対する熟練度を示すための新しい服装を考案しました。"
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The set functions the same as the old Necro Set with some improvements and does not give the wearer debuffs when under sunlight."
+      "text": "このセットの機能は古いネクロセットと同じですが、いくつかの改良が加えられています。"
     }
   ],
   "extra_recipe_mappings": {

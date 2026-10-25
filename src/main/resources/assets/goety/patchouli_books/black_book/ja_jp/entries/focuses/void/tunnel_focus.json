@@ -1,11 +1,11 @@
 {
-  "name": "Tunnel Focus",
+  "name": "トンネルのフォーカス",
   "icon": "goety:tunnel_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using this focus on a wall or floor will create an ethereal tunnel leading to the other side. Tunnels will only open for a short amount of time and cannot open through certain blocks."
+      "text": "このフォーカスを壁や床に使用すると、向こう側へ続く霊気のある3x3のトンネルが生成されます。トンネルは短時間のみ開き、特定のブロックは貫通できません。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/void_staff)Void Staff$() increases the tunnel size from 3x3 to 5x5."
+      "text": "$(l:crafts/staff/void_staff)ヴォイドの杖$()で唱えると、トンネルのサイズが5x5になります。"
     }
   ],
   "extra_recipe_mappings": {

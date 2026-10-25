@@ -2,6 +2,7 @@ package com.Polarice3.Goety.common.items;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.api.items.IShowOutlines;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class WaystoneItem extends ItemBase {
+public class WaystoneItem extends ItemBase implements IShowOutlines {
     public static final String TAG_OWNER = "Owner";
     public static final String TAG_OWNER_NAME = "Owner_Name";
     public static final String TAG_POS = "Pos";
@@ -162,6 +163,9 @@ public class WaystoneItem extends ItemBase {
     public static boolean isInRange(Vec3 origin, ItemStack stack, int increase){
         GlobalPos globalPos = getPosition(stack);
         if (globalPos != null) {
+            if (increase >= 3) {
+                return true;
+            }
             double scale = 6.0D * (increase + 1.0F);
             double trueRange = Mth.square(scale) * 2.0D;
             return globalPos.pos().distToCenterSqr(origin) <= Mth.square(trueRange);
@@ -180,6 +184,10 @@ public class WaystoneItem extends ItemBase {
                 InteractionResult wolfTotemResult = WolfTotemHooks.tryLinkToTotem(new WolfTotemHooks.ItemStackAccess(stack), player, entity, hand);
                 if (wolfTotemResult.consumesAction()) {
                     return wolfTotemResult;
+                }
+                InteractionResult plinthResult = com.Vivideru.Goety.common.blocks.entities.PlinthHooks.tryBindToPlinth(stack, player, entity);
+                if (plinthResult.consumesAction()) {
+                    return plinthResult;
                 }
                 if (entity instanceof IServant owned) {
                     if (owned.getTrueOwner() == player) {

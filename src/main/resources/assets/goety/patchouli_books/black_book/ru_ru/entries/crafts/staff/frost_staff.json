@@ -1,11 +1,11 @@
 {
-  "name": "Frost Staff",
+  "name": "Морозный посох",
   "icon": "goety:frost_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Through the freezing cold of the Frost Staff, the power of Frost Spells is heightened."
+      "text": "Благодаря леденящему холоду морозного посоха сила ледяных заклинаний возрастает."
     },
     {
       "type": "goety:ritual",

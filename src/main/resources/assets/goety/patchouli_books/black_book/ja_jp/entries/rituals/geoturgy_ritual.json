@@ -1,22 +1,22 @@
 {
-  "name": "Geoturgy Ritual",
+  "name": "地質学の儀式",
   "icon": "minecraft:deepslate_bricks",
   "category": "goety:rituals",
   "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Altar is at or below 32 height, not expose to sky $(br)$(l)OR$()$() $(li)1 Smithing Table $(li)8 Blocks of Amethyst $(li)16 Deepslate Blocks"
+      "text": "Requirements: $(li)祭壇の高さは y32 以下で、空に露出していないのが条件$(br)$(l)OR$()$() $(li)1 鍛冶台 $(li)8アメジストブロック $(li)16深層岩(種類は何でも可）"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/geoturgy_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "祭祀の置き方の一例。"
     },
     {
       "type": "patchouli:text",
-      "text": "Placing the Altar deep beneath and surrounding it with deepslate and amethysts, you will be able to harness the earth to create all kinds of jewels and magics."
+      "text": "祭壇を地下深くに設置し、深層岩とアメジストで囲むと、地球を利用してあらゆる種類の宝石や魔法を作成できるようになります。"
     }
   ]
 }

@@ -134,6 +134,11 @@ public class SummonCircleBoss extends Entity {
     }
 
     @Override
+    public boolean shouldBeSaved() {
+        return false;
+    }
+
+    @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket(ServerEntity serverEntity) {
         return super.getAddEntityPacket(serverEntity);
     }

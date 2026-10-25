@@ -1,5 +1,5 @@
 {
-  "name": "Cursed Infusion",
+  "name": "Проклятая инфузия",
   "icon": "goety:cursed_infuser",
   "category": "goety:intro",
   "sortnum": 4,
@@ -7,16 +7,16 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While crafting using your Totem is all well and good, some of the items can demand a lot of resources, so you wondered if there's a way to obtain these items more cheaply. Throughout your research, you find that Lapis Lazulis can be used to create some sort of siphon. A way to attract some sort of magical energy towards it."
+      "text": "Хотя создание через ваш тотем — это хорошо, некоторые предметы могут потребовать много ресурсов, поэтому вы задались вопросом, есть ли способ получать их дешевле. В ходе своих исследований вы обнаруживаете, что лазурит можно использовать для создания своего рода сифона, привлекающего магическую энергию."
     },
     {
       "type": "patchouli:text",
-      "text": "With some experiments and research, you've came up with the idea of a device, called a 'Cursed Infuser'. This device will siphon up magical energies from below it and infuse whatever items is place on it. While there are certain objects that hold some magical energies, there's one that seems to have an endless amount of it. Spawners."
+      "text": "Проведя несколько экспериментов и исследований, вы пришли к идее устройства под названием проклятый инфузор. Оно будет выкачивать магическую энергию из-под себя и вливать в предметы. В то время как есть определённые блоки, содержащие некоторую магическую энергию, есть один, в котором, кажется, её бесконечное количество. Рассадник."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:cursed_infuser",
-      "text": "By placing the Cursed Infuser atop of a Spawner, it will start to siphon the Spawner's energy and infuse certain items with it. You've no clue what fuels these monstrous machines, but perhaps the infuser will provide some clues."
+      "text": "Помещённый поверх рассадника проклятый инфузор начнёт выкачивать его энергию и наполнять ею предметы. Вы понятия не имеете, что питает эти чудовищные машины, но, возможно, инфузор даст какие-нибудь ответы."
     },
     {
       "type": "patchouli:multiblock",

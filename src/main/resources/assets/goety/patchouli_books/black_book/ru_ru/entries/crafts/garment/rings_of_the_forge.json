@@ -1,11 +1,11 @@
 {
-  "name": "Ring of the Forge",
+  "name": "Кольцо кузницы",
   "icon": "goety:ring_of_the_forge",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "When summoning a Zombie or Skeleton Servants, they have a small chance of coming equipped with their own armor. With this ring, the chance will increase to 100%%."
+      "text": "При вызове зомби- или скелетов-прислужников у них есть небольшой шанс появиться в броне. С этим кольцом шанс увеличится до 100%%."
     },
     {
       "type": "goety:ritual",

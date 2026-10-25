@@ -1,11 +1,11 @@
 {
-  "name": "Feline Amulet",
+  "name": "Кошачий амулет",
   "icon": "goety:feline_amulet",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The amulet contains the essence of a feline creature on it, making it seemed like the wearer has one on them the whole time, warding off Creepers and Phantoms away."
+      "text": "Амулет содержит в себе сущность кошачьего, благодаря чему отгоняет от владельца криперов и фантомов."
     },
     {
       "type": "goety:ritual",

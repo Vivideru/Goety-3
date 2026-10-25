@@ -1,5 +1,5 @@
 {
-  "name": "Nameless Staff",
+  "name": "Безымянный посох",
   "icon": "goety:nameless_staff",
   "category": "goety:crafts/staff",
   "advancement": "goety:goety/read_forbidden_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the forbidden texts, you have discovered a way to harness the power of the night, allowing you to create a powerful staff that bring you supremacy in necromancy."
+      "text": "С помощью запретных текстов вы нашли способ использовать силу ночи, что позволило вам создать мощный посох, который дарует вам превосходство в некромантии."
     },
     {
       "type": "goety:ritual",
@@ -19,7 +19,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "$(l:focuses/soul_bolt_focus)Soul Bolts$() shot from this staff will turn into the more powerful Necro Bolts. Casting the $(l:focuses/illusion_focus)Mirror Spell$() while also wearing the $(l:crafts/garment/nameless_set)Nameless Set$() will cause them to shoot a single Necro Bolt at your target instead."
+      "text": "$(l:focuses/soul_bolt_focus)Снаряды душ$(), выпущенные из этого посоха, превратятся в более мощные некро-снаряды. Использование $(l:focuses/illusion_focus)заклинания отражения$(), будучи в $(l:crafts/garment/nameless_set)безымянных одеждах$(), позволит вам стрелять одним, более мощным некро-снарядом."
     }
   ],
   "extra_recipe_mappings": {

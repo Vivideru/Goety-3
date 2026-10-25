@@ -5,10 +5,13 @@ import com.Polarice3.Goety.api.blocks.entities.IBarrack;
 import com.Polarice3.Goety.api.blocks.entities.IOwnedBlock;
 import com.Polarice3.Goety.api.blocks.entities.ITrainingBlock;
 import com.Polarice3.Goety.api.blocks.entities.IWaystoneBlock;
+import com.Polarice3.Goety.api.entities.IEnchanter;
 import com.Polarice3.Goety.api.entities.IOwned;
+import com.Polarice3.Goety.api.items.IPosHolder;
 import com.Polarice3.Goety.api.items.magic.IWand;
 import com.Polarice3.Goety.api.magic.ISpell;
 import com.Polarice3.Goety.client.audio.*;
+import com.Polarice3.Goety.client.gui.overlay.SoulChangePopup;
 import com.Polarice3.Goety.client.gui.screen.inventory.BrewRadialMenuScreen;
 import com.Polarice3.Goety.client.gui.screen.inventory.FocusRadialMenuScreen;
 import com.Polarice3.Goety.client.render.*;
@@ -17,12 +20,14 @@ import com.Polarice3.Goety.client.render.model.LichModeModel;
 import com.Polarice3.Goety.common.blocks.entities.ArcaBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.BrewCauldronBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.CursedCageBlockEntity;
+import com.Polarice3.Goety.common.blocks.entities.OminousDecreeBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.OminousIdolBlockEntity;
 import com.Polarice3.Goety.common.blocks.entities.SculpturedStatueBlockEntity;
 import com.Polarice3.Goety.common.crafting.CauldronSusStewRecipe;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.common.entities.ally.GuardianServant;
 import com.Polarice3.Goety.common.entities.ally.Leapleaf;
+import com.Polarice3.Goety.common.entities.ally.golem.FlameConstruct;
 import com.Polarice3.Goety.common.entities.ally.golem.SquallGolem;
 import com.Polarice3.Goety.common.entities.ally.illager.CrusherServant;
 import com.Polarice3.Goety.common.entities.ally.illager.StormCasterServant;
@@ -30,7 +35,11 @@ import com.Polarice3.Goety.common.entities.ally.illager.WindCallerServant;
 import com.Polarice3.Goety.common.entities.boss.Apostle;
 import com.Polarice3.Goety.common.entities.boss.EnderKeeper;
 import com.Polarice3.Goety.common.entities.boss.Vizier;
+import com.Polarice3.Goety.common.entities.hostile.SkullLord;
 import com.Polarice3.Goety.common.entities.hostile.Wight;
+import com.Polarice3.Goety.common.entities.hostile.WitherNecromancer;
+import com.Polarice3.Goety.common.entities.hostile.cultists.Crone;
+import com.Polarice3.Goety.common.entities.hostile.cultists.Heresiarch;
 import com.Polarice3.Goety.common.entities.hostile.ender.Endersent;
 import com.Polarice3.Goety.common.entities.hostile.illagers.HostileRedstoneGolem;
 import com.Polarice3.Goety.common.entities.hostile.illagers.HostileRedstoneMonstrosity;
@@ -183,6 +192,12 @@ public class ClientEvents {
             if (entity instanceof IceStorm){
                 soundHandler.play(new LoopSound(ModSounds.ICE_STORM_LOOP.get(), entity));
             }
+            if (entity instanceof FlameConstruct){
+                soundHandler.play(new LoopSound(ModSounds.FLAME_CONSTRUCT_LOOP.get(), 0.15F, 1.0F, entity));
+            }
+            if (entity instanceof IEnchanter && entity instanceof LivingEntity livingEntity) {
+                soundHandler.play(new EnchantBeamLoopSound(livingEntity));
+            }
         }
     }
 
@@ -330,6 +345,18 @@ public class ClientEvents {
                         if (entity instanceof Wight wight && !wight.isNoAi()) {
                             playBossMusic(ModSounds.ENDERMAN_THEME.get(), ModSounds.ARENA_END.get(), wight, 0.75F, 1.0F);
                         }
+                        if (entity instanceof Crone crone && !crone.isNoAi()) {
+                            playBossMusic(ModSounds.CRONE_THEME.get(), ModSounds.CRONE_THEME_POST.get(), crone, 0.75F, 1.0F);
+                        }
+                        if (entity instanceof Heresiarch heresiarch && !heresiarch.isNoAi()) {
+                            playBossMusic(ModSounds.HERESIARCH_THEME.get(), ModSounds.ARENA_END.get(), heresiarch, 0.75F, 1.0F);
+                        }
+                        if (entity instanceof SkullLord skullLord && !skullLord.isNoAi()) {
+                            playBossMusic(ModSounds.SKULL_LORD_THEME.get(), ModSounds.ARENA_END.get(), skullLord, 0.75F, 1.0F);
+                        }
+                        if (entity instanceof WitherNecromancer necromancer && !necromancer.isNoAi()) {
+                            playBossMusic(ModSounds.WITHER_NECROMANCER_THEME.get(), ModSounds.ARENA_END.get(), necromancer, 0.75F, 1.0F);
+                        }
                     }
                 }
             }
@@ -338,6 +365,41 @@ public class ClientEvents {
 
     public static AbstractTickableSoundInstance PRE_BOSS_MUSIC;
     public static AbstractTickableSoundInstance BOSS_MUSIC;
+    public static PostBossMusic POST_BOSS_MUSIC;
+
+    public static void queuePostBossMusic(PostBossMusic music) {
+        POST_BOSS_MUSIC = music;
+        Minecraft.getInstance().getSoundManager().queueTickingSound(music);
+    }
+
+    private static boolean isStale(AbstractTickableSoundInstance music) {
+        if (music == null) {
+            return true;
+        }
+        if (music instanceof BossLoopMusic boss) {
+            return boss.isStale();
+        }
+        if (music instanceof PreBossLoopMusic pre) {
+            return pre.isStale();
+        }
+        return music.isStopped();
+    }
+
+    public static void stopBossMusic() {
+        Minecraft minecraft = Minecraft.getInstance();
+        if (PRE_BOSS_MUSIC != null) {
+            minecraft.getSoundManager().stop(PRE_BOSS_MUSIC);
+            PRE_BOSS_MUSIC = null;
+        }
+        if (BOSS_MUSIC != null) {
+            minecraft.getSoundManager().stop(BOSS_MUSIC);
+            BOSS_MUSIC = null;
+        }
+        if (POST_BOSS_MUSIC != null) {
+            minecraft.getSoundManager().stop(POST_BOSS_MUSIC);
+            POST_BOSS_MUSIC = null;
+        }
+    }
 
     public static void playPreBossMusic(SoundEvent soundEvent, SoundEvent postBossMusic, Mob mob){
         playPreBossMusic(soundEvent, postBossMusic, mob, 1.0F, 1.0F, 0);
@@ -368,7 +430,7 @@ public class ClientEvents {
                 }
             }
             if (soundEvent != null && mob.isAlive()) {
-                if (PRE_BOSS_MUSIC == null && flag) {
+                if (isStale(PRE_BOSS_MUSIC) && flag && PreBossLoopMusic.canPlayFor(mob)) {
                     PRE_BOSS_MUSIC = new PreBossLoopMusic(soundEvent, postBossMusic, mob, volume, pitch, withinRange, mustSee);
                 }
             } else {
@@ -396,7 +458,7 @@ public class ClientEvents {
         if (MainConfig.BossMusic.get()) {
             Minecraft minecraft = Minecraft.getInstance();
             if (soundEvent != null && mob.isAlive()) {
-                if (BOSS_MUSIC == null) {
+                if (isStale(BOSS_MUSIC)) {
                     BOSS_MUSIC = new BossLoopMusic(soundEvent, postBossMusic, mob, volume, pitch);
                 }
             } else {
@@ -663,6 +725,46 @@ public class ClientEvents {
                                 event.getGuiGraphics().drawString(fontRenderer, s2, (-l2 / 2), -4, 0xFFFFFF);
                                 RenderSystem.disableBlend();
                                 poseStack.popPose();
+                            } else if (blockEntity instanceof OminousDecreeBlockEntity decree) {
+                                poseStack.pushPose();
+                                poseStack.translate((float) (width / 2), (float) (height - 58), 0.0F);
+                                RenderSystem.enableBlend();
+                                RenderSystem.defaultBlendFunc();
+                                String s = Component.translatable("tooltip.goety.blockOwner").getString() + owner.getDisplayName().getString();
+                                int l = fontRenderer.width(s);
+                                event.getGuiGraphics().drawString(fontRenderer, s, (-l / 2), -4, 0xFFFFFF);
+                                RenderSystem.disableBlend();
+                                poseStack.popPose();
+
+                                poseStack.pushPose();
+                                poseStack.translate((float) (width / 2), (float) (height - 68), 0.0F);
+                                RenderSystem.enableBlend();
+                                RenderSystem.defaultBlendFunc();
+                                String s2 = Component.translatable("tooltip.goety.decree.mode").getString() + Component.translatable("tooltip.goety.decree." + decree.getMode().getName().toLowerCase(Locale.ROOT)).getString();
+                                int l2 = fontRenderer.width(s2);
+                                event.getGuiGraphics().drawString(fontRenderer, s2, (-l2 / 2), -4, 0xFFFFFF);
+                                RenderSystem.disableBlend();
+                                poseStack.popPose();
+                                poseStack.pushPose();
+                                poseStack.translate((float) (width / 2), (float) (height - 78), 0.0F);
+                                RenderSystem.enableBlend();
+                                RenderSystem.defaultBlendFunc();
+                                String s1 = Component.translatable("tooltip.goety.blockRange", decree.getRange()).getString();
+                                int l1 = fontRenderer.width(s1);
+                                event.getGuiGraphics().drawString(fontRenderer, s1, (-l1 / 2), -4, 0xFFFFFF);
+                                RenderSystem.disableBlend();
+                                poseStack.popPose();
+                                if (decree.getEntityType() != null) {
+                                    poseStack.pushPose();
+                                    poseStack.translate((float) (width / 2), (float) (height - 88), 0.0F);
+                                    RenderSystem.enableBlend();
+                                    RenderSystem.defaultBlendFunc();
+                                    String s3 = Component.translatable("tooltip.goety.decree.type").getString() + Component.translatable(decree.getEntityType().getDescriptionId()).getString();
+                                    int l3 = fontRenderer.width(s3);
+                                    event.getGuiGraphics().drawString(fontRenderer, s3, (-l3 / 2), -4, 0xFFFFFF);
+                                    RenderSystem.disableBlend();
+                                    poseStack.popPose();
+                                }
                             } else if ((player.isShiftKeyDown() || player.isCrouching()) && ownedBlock.getPlayer() != null) {
                                 poseStack.pushPose();
                                 poseStack.translate((float) (width / 2), (float) (height - 68), 0.0F);
@@ -762,10 +864,14 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void RenderWorldLast(RenderLevelStageEvent event) {
+        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_SKY) {
+            CorruptedBeamRenderer.clearQueue();
+        }
         if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS) {
             return;
         }
         Minecraft minecraft = Minecraft.getInstance();
+        CorruptedBeamRenderer.renderQueued(minecraft.renderBuffers().bufferSource());
         Player player = minecraft.player;
         Level level = minecraft.level;
         if (level != null) {
@@ -777,6 +883,12 @@ public class ClientEvents {
                     ItemStack stack = player.getItemInHand(hand);
                     if (stack.getItem() instanceof WaystoneItem && stack.has(DataComponents.CUSTOM_DATA)) {
                         GlobalPos loc = WaystoneItem.getPosition(stack);
+                        if (loc != null && loc.dimension() == world.dimension()) {
+                            renderCubes.put(loc.pos(), RITUAL_LOCATION_COLOR);
+                        }
+                    }
+                    if (stack.getItem() instanceof IPosHolder) {
+                        GlobalPos loc = IPosHolder.getPosition(stack);
                         if (loc != null && loc.dimension() == world.dimension()) {
                             renderCubes.put(loc.pos(), RITUAL_LOCATION_COLOR);
                         }
@@ -963,6 +1075,11 @@ public class ClientEvents {
     public static void TickEvents(ClientTickEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
 
+        if (!minecraft.isPaused()) {
+            SoulChangePopup.tick();
+        }
+
+
         if (minecraft.player != null){
             Player player = minecraft.player;
             Wight wight = Wight.findWight(player);
@@ -1053,8 +1170,25 @@ public class ClientEvents {
     }
 
     @SubscribeEvent
+    public static void RenderFire(RenderBlockScreenEffectEvent event) {
+        if (event.getOverlayType() == RenderBlockScreenEffectEvent.OverlayType.FIRE) {
+            if (event.getPlayer().hasEffect(GoetyEffects.SOUL_BURN)) {
+                event.setCanceled(true);
+            }
+        }
+    }
+
+    @SubscribeEvent
     public static void logOff(ClientPlayerNetworkEvent.LoggingOut event) {
         leaveLockOn();
+        SoulChangePopup.clear();
+        stopBossMusic();
+    }
+
+    @SubscribeEvent
+    public static void networkClone(ClientPlayerNetworkEvent.Clone event) {
+        SoulChangePopup.clear();
+        stopBossMusic();
     }
 
     @SubscribeEvent

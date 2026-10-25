@@ -10,6 +10,7 @@ import com.Polarice3.Goety.common.entities.neutral.GlacialWall;
 import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.*;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -130,7 +131,11 @@ public class IceChunk extends SpellEntity {
         float damage = SpellConfig.get(SpellConfig.IceChunkDamage).floatValue() * WandUtil.damageMultiply();
         damage += this.getExtraDamage();
         if (livingEntity != null) {
-            if (livingEntity.hurt(ModDamageSource.indirectFreeze(this, this.getOwner()), damage)) {
+            DamageSource damageSource = ModDamageSource.indirectFreeze(this, this.getOwner());
+            if (livingEntity.isDamageSourceBlocked(damageSource)) {
+                MobUtil.disableShield(livingEntity, 100);
+            }
+            if (livingEntity.hurt(damageSource, damage)) {
                 livingEntity.addEffect(new MobEffectInstance(GoetyEffects.STUNNED, MathHelper.secondsToTicks(2)));
             }
         }

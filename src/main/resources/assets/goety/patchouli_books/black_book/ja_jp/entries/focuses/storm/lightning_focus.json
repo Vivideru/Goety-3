@@ -1,11 +1,11 @@
 {
-  "name": "Lightning Focus",
+  "name": "ライトニングのフォーカス",
   "icon": "goety:lightning_focus",
   "category": "goety:focuses/storm",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Finally, with this focus in your hands, you can now summon the fury of the heavens on a foe or a location! When not casted from $(l:crafts/staff/storm_staff)Storm Staff$(), the summoned lightning will be affected by Lightning Rods."
+      "text": "ついに、このフォーカスを手に入れて、敵や場所に天の怒りを呼び起こすことができるようになりました。 ストームスタッフからキャストされていない場合、召喚された稲妻は避雷針の影響を受けます。"
     },
     {
       "type": "goety:ritual",

@@ -2,6 +2,7 @@ package com.Vivideru.Goety.common.items;
 
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.common.items.block.BlockItemBase;
+import com.Polarice3.Goety.common.items.block.EnchantableBlockItem;
 import com.Polarice3.Goety.common.items.ModSpawnEggItem;
 import com.Polarice3.Goety.common.items.ServantSpawnEggItem;
 import com.Vivideru.Goety.common.blocks.VivideruBlocks;
@@ -49,9 +50,41 @@ public class VivideruItems {
             HurricaneCoreItem::new);
     public static final DeferredHolder<Item, Item> WHIRLING_CAGE = ITEMS.register("whirling_cage",
             () -> new BlockItemBase(VivideruBlocks.WHIRLING_CAGE.get()));
+    public static final DeferredHolder<Item, Item> CURSED_METAL_GRATE = ITEMS.register("cursed_metal_grate",
+            () -> new BlockItemBase(VivideruBlocks.CURSED_METAL_GRATE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_STONE = ITEMS.register("plinth_stone",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_STONE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_DEEPSLATE = ITEMS.register("plinth_deepslate",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_DEEPSLATE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_OMINOUS_STONE = ITEMS.register("plinth_ominous_stone",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_OMINOUS_STONE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_NETHER_BRICK = ITEMS.register("plinth_nether_brick",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_NETHER_BRICK.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_BLACKSTONE = ITEMS.register("plinth_blackstone",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_BLACKSTONE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_END_STONE = ITEMS.register("plinth_end_stone",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_END_STONE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_HIGHROCK = ITEMS.register("plinth_highrock",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_HIGHROCK.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_MARBLE = ITEMS.register("plinth_marble",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_MARBLE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_PRISMARINE = ITEMS.register("plinth_prismarine",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_PRISMARINE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_CRYPT_STONE = ITEMS.register("plinth_crypt_stone",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_CRYPT_STONE.get()));
+    public static final DeferredHolder<Item, Item> PLINTH_DARK = ITEMS.register("plinth_dark",
+            () -> new EnchantableBlockItem(VivideruBlocks.PLINTH_DARK.get()));
+    public static final DeferredHolder<Item, Item> SEALER = ITEMS.register("sealer",
+            () -> new BlockItemBase(VivideruBlocks.SEALER.get()));
+    public static final DeferredHolder<Item, Item> POLAR_CRYSTAL = ITEMS.register("polar_crystal",
+            () -> new BlockItemBase(VivideruBlocks.POLAR_CRYSTAL.get()));
     public static final DeferredHolder<Item, Item> GALE_KEY = ITEMS.register("gale_key",
             () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> OMINOUS_GALE_KEY = ITEMS.register("ominous_gale_key",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> CRYPT_KEY = ITEMS.register("crypt_key",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> OMINOUS_CRYPT_KEY = ITEMS.register("ominous_crypt_key",
             () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> HURRICANE_SERVANT_SPAWN_EGG = ITEMS.register("hurricane_servant_spawn_egg",
             () -> new ServantSpawnEggItem(VivideruEntityTypes.HURRICANE_SERVANT, 0xB9C4E8, 0x5E6FA8, new Item.Properties()));

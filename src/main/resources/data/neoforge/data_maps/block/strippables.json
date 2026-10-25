@@ -23,6 +23,12 @@
     },
     "goety:pine_wood": {
       "stripped_block": "goety:stripped_pine_wood"
+    },
+    "goety:marsh_log": {
+      "stripped_block": "goety:stripped_marsh_log"
+    },
+    "goety:marsh_wood": {
+      "stripped_block": "goety:stripped_marsh_wood"
     }
   }
 }

@@ -1,12 +1,12 @@
 {
-  "name": "Wraith Servant",
+  "name": "レイスの従者",
   "icon": "goety:wraith_servant_spawn_egg",
   "category": "goety:summons",
   "advancement": "goety:goety/kill_a_wraith",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "These spectres are called and bound by your will to the point where their own Ice Bouquets do not touch either you or your allies."
+      "text": "これらの幽霊はあなたの意志によって呼び出され、拘束され、彼ら自身の凍えつく炎があなたやあなたの仲間に触れないようにします。"
     },
     {
       "type": "patchouli:entity",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/necromancy/spooky_focus)Spooky Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "これらのレイスは、$(l:focuses/necromancy/spooky_focus)レイスのフォーカス$() を使用するか、寿命に制限のないクリーチャーを召喚する儀式を通じて呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wraiths can be healed by right-clicking on them with Ectoplasm."
+      "text": "レイスに右クリックでエクトプラズムを与えると回復します。"
     },
     {
       "type": "patchouli:entity",
@@ -32,7 +32,7 @@
     {
       "type": "patchouli:text",
       "advancement": "goety:goety/kill_a_muck_wraith",
-      "text": "A variant of the wraith, these acid gas calling phantasms are called when summoned within a Swamp biome."
+      "text": "レイスの亜種である酸性ガスを出す幽霊は、沼地バイオーム内で召喚されると呼び出されます。"
     },
     {
       "type": "patchouli:entity",
@@ -42,7 +42,7 @@
     {
       "type": "patchouli:text",
       "advancement": "goety:goety/kill_a_border_wraith",
-      "text": "A variant of the wraith, these ice puking creatures are called when summoned within a $(l:world/crypts)Crypt$()."
+      "text": "レイスの亜種である氷を吐く幽霊は、$(l:world/crypts)クリプト$() 内で召喚されたときに呼び出されます。"
     }
   ]
 }

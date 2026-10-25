@@ -1,12 +1,12 @@
 {
-  "name": "Haunted Jug",
+  "name": "幽霊の水差し",
   "icon": "goety:haunted_jug",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/craft_dark_altar",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sometimes a dark wizard needs more than just two water source blocks to obtain infinite water, something more compact and manageable perhaps."
+      "text": "場合によっては、闇の魔法使いが無限水源を得るために、2つ以上の水源ブロックが必要になることがあります。おそらく、もっとコンパクトで扱いやすいものでしょう。"
     },
     {
       "type": "goety:ritual",
@@ -14,15 +14,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Haunted Jug holds infinite supply of water that anyone can take through buckets, bottles and even pipes! However, what truly makes this jug special is that, as it's name suggests, is that it's haunted with spiritual energies."
+      "text": "幽霊の水差しには無限に水が供給されており、誰でもバケツ、ボトル、さらにはパイプ(つまり、工業modでも使えます)を通して受け取ることができます。しかし、この水差しを本当に特別なものにしているのは、その名前が示すように、スピリチュアルなエネルギーが憑りついているということです。"
     },
     {
       "type": "patchouli:text",
-      "text": "The jug will attempt to fill in any nearby valid container, such as cauldrons, with water, and will even extinguish any creature that's lit aflame near itself."
+      "text": "水差しは、大釜など、近くにある有効な容器に水を入れようとし、近くで燃えている生き物を消火してしまうこともあります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on the jug with a Wand/Staff will put a lid on it, disabling the feature, or remove it if it's lidded."
+      "text": "杖で水差しを右クリックすると、蓋がかけられて機能が無効になるか、蓋がかかっている場合は蓋が外されます。"
     }
   ],
   "extra_recipe_mappings": {

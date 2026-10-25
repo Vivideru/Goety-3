@@ -1,11 +1,11 @@
 {
-  "name": "Haunted Painting",
+  "name": "Одержимые картины",
   "icon": "goety:haunted_painting",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Combining a regular painting with a Haunted Plank allows the creation of Haunted Paintings. Despite the name, they appear to be a new set of paintings and nothing more."
+      "text": "Объединение обычной картины с одержимыми досками позволяет создавать одержимые картины. Несмотря на название, они выглядят как новый набор картин и не более того."
     },
     {
       "type": "patchouli:crafting",

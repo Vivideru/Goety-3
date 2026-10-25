@@ -17,6 +17,11 @@
     {
       "type": "patchouli:text",
       "text": "A varinha requer um $(l:focuses)Foco$() para funcionar. Para inserir um Foco, pressione a tecla designada (Padrão: Z) e adicione-o pelo inventário. Muitos focos podem exigir uma $(l:crafts/garment/focus_bag)Bolsa de Focos$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:empty_focus_craft",
+      "recipe2": "goety:empty_focus_craft2"
     }
   ]
 }

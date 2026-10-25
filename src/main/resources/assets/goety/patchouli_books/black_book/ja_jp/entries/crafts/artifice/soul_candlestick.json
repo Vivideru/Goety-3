@@ -1,16 +1,16 @@
 {
-  "name": "Soul Candlestick",
+  "name": "ソウルキャンドルスティック",
   "icon": "goety:soul_candlestick",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Certain devices require a large portion of Soul Energy, but are unable to directly take the energy from the $(l:intro/cursed_cage)Cursed Cage$(). After some experiments, you've discovered a way to have such devices siphon energies from multiple Cursed Cages instead of one. Such devices usually process faster the more Candlesticks and filled Cages are, usually usually 8 blocks, around it."
+      "text": "特定のデバイスはソウル エネルギーの大部分を必要としますが、$(l:intro/cursed_cage)呪いの檻$() からエネルギーを直接取得することはできません。 いくつかの実験の後、あなたはそのようなデバイスが 1 つではなく複数の)呪いの檻からエネルギーを吸い上げる方法を発見しました。 このようなデバイスは通常、周囲にあるローソク足と満たされたケージ (通常は 8 ブロック) が多いほど、処理が速くなります。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:soul_candlestick",
-      "text": "Placed one on top of a filled $(l:intro/cursed_cage)Cursed Cage$()."
+      "text": "満たされた $(l:intro/cursed_cage)呪いの檻$() の上に 1 つを置きます。"
     }
   ]
 }

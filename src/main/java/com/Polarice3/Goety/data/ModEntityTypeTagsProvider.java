@@ -119,6 +119,7 @@ public class ModEntityTypeTagsProvider extends IntrinsicHolderTagsProvider<Entit
                 ModEntityType.STORM_CASTER.get(),
                 ModEntityType.STONE_MINISTROSITY.get(),
                 ModEntityType.REDSTONE_MINISTROSITY.get(),
+                ModEntityType.FLAME_CONSTRUCT.get(),
                 ModEntityType.ICE_GOLEM.get(),
                 ModEntityType.SQUALL_GOLEM.get(),
                 ModEntityType.GRAVE_GOLEM.get(),
@@ -159,8 +160,25 @@ public class ModEntityTypeTagsProvider extends IntrinsicHolderTagsProvider<Entit
                         ModEntityType.HAUNT.get(),
                         ModEntityType.WIGHT.get(),
                         ModEntityType.SKULL_LORD.get(),
-                        ModEntityType.BONE_LORD.get()
+                        ModEntityType.BONE_LORD.get(),
+                        ModEntityType.ROGUEGUARD_SERVANT.get(),
+                        ModEntityType.ZOMBIE_VINDICATOR.get(),
+                        ModEntityType.SKELETON_PILLAGER.get()
                 );
+        this.tag(EntityTypeTags.ILLAGER).add(
+                ModEntityType.ENVIOKER.get(),
+                ModEntityType.TORMENTOR.get(),
+                ModEntityType.INQUILLAGER.get(),
+                ModEntityType.CONQUILLAGER.get(),
+                ModEntityType.PIKER.get(),
+                ModEntityType.CRUSHER.get(),
+                ModEntityType.STORM_CASTER.get(),
+                ModEntityType.CRYOLOGER.get(),
+                ModEntityType.PREACHER.get(),
+                ModEntityType.MINISTER.get(),
+                ModEntityType.SORCERER.get(),
+                ModEntityType.VIZIER.get(),
+                ModEntityType.VIZIER_CLONE.get());
         this.tag(EntityTypeTags.RAIDERS).add(
                 ModEntityType.ARMORED_RAVAGER.get(),
                 ModEntityType.WARLOCK.get(),
@@ -188,6 +206,7 @@ public class ModEntityTypeTagsProvider extends IntrinsicHolderTagsProvider<Entit
         this.tag(EntityTypeTags.ARROWS).add(
                 ModEntityType.GHOST_ARROW.get(),
                 ModEntityType.RAIN_ARROW.get(),
+                ModEntityType.HEAVY_ARROW.get(),
                 ModEntityType.DEATH_ARROW.get());
         this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(
                 ModEntityType.SOUL_BOLT.get(),

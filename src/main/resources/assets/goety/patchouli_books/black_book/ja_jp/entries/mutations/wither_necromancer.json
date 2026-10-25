@@ -1,12 +1,12 @@
 {
-  "name": "Wither Necromancer",
+  "name": "ウィザーネクロマンサー",
   "icon": "goety:nether_staff",
   "category": "goety:mutations",
   "advancement": "goety:goety/read_buried_and_bygone_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've discovered a more powerful variant of regular Necromancers, one that burns with the fires of the Nether, shooting jets of flames from the ground and withers their foes. Rather than regular Skeletons, the ritual is performed on a Wither Skeleton instead."
+      "text": "通常のネクロマンサーのより強力な亜種を発見しました。ネザーの炎で燃え、地面から炎を噴射して敵を枯らす者です。通常のスケルトンではなく、ウィザースケルトンに対して儀式が行われます。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Much like regular Necromancers, they can be taught to summon more than just Wither Skeletons. Right-clicking with certain Necromancy Focuses allows them to summon more types of servants. Right-clicking on them with an empty hand will cause the Necromancer to summon Undead Servants for you. They are healed the same way as regular Wither Skeleton Servants."
+      "text": "通常のネクロマンサーと同様に、ウィザースケルトン以外の召喚方法も教えることができます。ある特定のネクロマンシーフォーカスで右クリックすると、より多くの種類の従者を召喚できます。何も持っていない手で右クリックすると、ネクロマンサーがアンデッドの従者を召喚します。アンデッドの従者は通常のウィザースケルトンの従者と同じ方法で回復します。"
     },
     {
       "type": "patchouli:entity",
@@ -23,7 +23,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:soul_jar[minecraft:custom_data={Wither:1b}]",
-      "text": "Should a Wither Necromancer fall, having an $(l:crafts/empty_soul_jar)Empty Soul Jar$() will cause their soul to fill it, which, when right-clicked on a Wither Skeleton, will revive them using said Wither Skeleton as their new body."
+      "text": "ウィザーネクロマンサーが倒れた場合、$(l:crafts/empty_soul_jar)空のソウルの瓶$()があれば魂が満たされ、ウィザースケルトンを右クリックすると、そのウィザースケルトンを新しい媒体として復活します。"
     }
   ]
 }

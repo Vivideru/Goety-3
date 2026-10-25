@@ -1,11 +1,11 @@
 {
-  "name": "Ring of Force",
+  "name": "フォースのリング",
   "icon": "goety:ring_of_force",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Telekinesis spell is fun and all, but what if you want to damage whoever you're holding without constantly smashing them to the ground?"
+      "text": "テレキネシスの呪文はとても楽しいものですが、常に地面に叩きつけることなく、浮かしてる相手にダメージを与えたい場合はどうすればよいでしょうか?"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting the spell while wearing this ring will cause the being you're holding to slowly lose breath, chocking until they perish or you lose your grip on them."
+      "text": "この指輪を身に着けている間に呪文を唱えると、あなたが保持している存在はゆっくりと息を失い、彼らが死ぬかあなたがそれらを握る力を失うまで窒息します。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,11 +1,11 @@
 {
-  "name": "Geo Robes",
+  "name": "地のローブ",
   "icon": "goety:geo_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With pelts and some magical fabrics, this simple shamanistic robe reduces the soul cost of Geomantic spells by half."
+      "text": "毛皮と魔法の布地を使用したこのシンプルなシャーマニズムのローブは、地の呪文のソウルコストを半分に減らします。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Amethysts are powerful conduits to Geomantic magic. By crafting and wearing this necklace, the casting time of Geomantic spells will be reduced by half."
+      "text": "アメジストは風水術の強力な導管です。このネックレスを作成して身に着けると、ジオマンシー/地の呪文の詠唱時間が半分に短縮されます。"
     },
     {
       "type": "patchouli:crafting",

@@ -1,11 +1,11 @@
 {
-  "name": "Stash Urn",
+  "name": "Складская урна",
   "icon": "goety:stash_urn",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple urn that holds emeralds within itself, that can even break apart and reveal its content when shot with a projectile."
+      "text": "Простая урна для хранения изумрудов, которую можно разбить попаданием снаряда."
     },
     {
       "type": "patchouli:crafting",

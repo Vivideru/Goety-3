@@ -1,11 +1,11 @@
 {
-  "name": "Charge Focus",
+  "name": "チャージフォーカス",
   "icon": "goety:charge_focus",
   "category": "goety:focuses/storm",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A spell that requires the caster to directly right click a living target. When doing so, the target will become Charged and will gain a charge when casted again. Level 1 Charged makes the target move and deal damage 10%% more. Level 2 Charged makes the target move 25%% faster, but deal 25%% less damage. Adding another level causes the target to take damage and lose all charges."
+      "text": "術者が生きているターゲットを直接右クリックする必要がある呪文。 そうすることで、ターゲットはチャージ状態になり、再度キャストするとチャージを獲得します。 レベル 1 チャージすると、ターゲットが移動し、与えるダメージが 10%% 増加します。 レベル 2 チャージすると、ターゲットの移動が 25% 速くなりますが、与えるダメージは 25%% 減少します。 別のレベルを追加すると、ターゲットはダメージを受け、すべてのチャージを失います。"
     },
     {
       "type": "patchouli:crafting",

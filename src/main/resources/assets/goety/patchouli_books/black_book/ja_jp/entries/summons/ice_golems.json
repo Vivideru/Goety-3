@@ -1,11 +1,11 @@
 {
-  "name": "Ice Golems",
+  "name": "アイスゴーレム",
   "icon": "goety:ice_golem_spawn_egg",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A golem made of glacial frost and snow, they hold more power than Snow Golem, yet less power than Iron Golems. They attack by jabbing their foes with their ice spiked hands and rarely smash the ground and summon a $(l:focuses/frost/frost_nova_focus)frost nova$()."
+      "text": "氷河の霜と雪で作られたゴーレムは、スノー ゴーレムよりも高い力を持ちますが、アイアン ゴーレムよりは劣ります。 彼らは氷のスパイクが付いた手で敵を突いて攻撃し、まれに地面を叩きつけて $(l:focuses/frost/frost_nova_focus)フロストノヴァ$() を召喚します。"
     },
     {
       "type": "patchouli:entity",
@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/frost/frostborn_focus)Frostborn Focus$(), or a permanent golem through this configuration. They can be healed by right-clicking on them with Ice, Packed Ice or Blue Ice."
+      "text": "(l:focuses/frostborn_focus)フロストボーンのフォーカス$() を使用して、これらのクリーチャーを呼び出すことができます。"
     }
   ]
 }

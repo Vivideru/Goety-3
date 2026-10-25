@@ -1,19 +1,19 @@
 {
-  "name": "Ghost Fire Focus",
+  "name": "ゴーストファイアのフォーカス",
   "icon": "goety:ghost_fire_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The flames of the dead can be quite chilling. With ectoplasms, you've managed to summon forth the cold flames of the dead on a location or at your foe's feet."
+      "text": "死者の炎は非常に恐ろしいです。エクトプラズムを使えば、特定の場所や敵の足元に死者の冷たい炎を呼び出すことができるらしい..."
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/ghost_fire_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more icy flames in a 3x3 grid instead of 2x2."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、2x2ではなく3x3ブロックと、でより多くの氷の炎を召喚できます。"
     }
   ],
   "extra_recipe_mappings": {

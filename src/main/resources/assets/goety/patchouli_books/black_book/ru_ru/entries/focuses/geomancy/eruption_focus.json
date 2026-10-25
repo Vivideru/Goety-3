@@ -1,11 +1,11 @@
 {
-  "name": "Eruption Focus",
+  "name": "Фокус извержения",
   "icon": "goety:eruption_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus allows you to summon forth a small volcano that would spew several pyroclastic rocks to the sky, which would fall around it, exploding and hopefully hurting and stunning your foes."
+      "text": "Позволяет вам вызвать небольшой вулкан, который выбросит в небо несколько пирокластических глыб, которые будут падать вокруг него, взрываясь и, возможно, нанося урон вашим врагам."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() summon three small volcanoes instead of one."
+      "text": "Использование $(l:crafts/staff/geo_staff)гео-посоха$() позволит создать три вулкана вместо одного."
     }
   ],
   "extra_recipe_mappings": {

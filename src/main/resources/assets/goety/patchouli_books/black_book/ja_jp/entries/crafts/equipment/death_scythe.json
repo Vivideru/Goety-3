@@ -1,5 +1,5 @@
 {
-  "name": "Death Scythe",
+  "name": "デスサイズ",
   "icon": "goety:death_scythe",
   "category": "goety:crafts/equipment",
   "advancement": "goety:goety/kill_a_apostle",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Death Scythe is the most powerful of its kind, with blades so sharp that its slashes not only can travel through the air, hitting beings far from its wielder, but also makes them more vulnerable. It repairs itself using the wielder's Soul Energy."
+      "text": "デスサイズはその種類の中で最も強力で、その刃は非常に鋭いため、その斬撃は空中を伝わり、使用者から遠く離れた存在を攻撃するだけでなく、彼らをより脆弱にします。 使用者のソウルエネルギーを使って自身を修復する。"
     },
     {
       "type": "goety:ritual",

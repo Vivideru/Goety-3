@@ -1,11 +1,11 @@
 {
-  "name": "Earth's Punch Focus",
+  "name": "アースパンチのフォーカス",
   "icon": "goety:earth_punch_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus conjures a fist from the earth beneath a target or a position, dealing damage to non-allied entities and punching them up in the air."
+      "text": "ターゲットまたは位置の下の地面から拳を召喚し、味方以外の存在にダメージを与え、空中に打ち上げます。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will conjure multiple fists to nearby enemies."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、近くの敵に複数の拳を召喚します。"
     }
   ]
 }

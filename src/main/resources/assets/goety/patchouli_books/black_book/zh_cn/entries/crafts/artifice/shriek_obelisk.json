@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Tall Skulls placed around the Obelisk, like the blocks around a Beacon, though only on the outlines, will increase the Shrieking Obelisk's radius of effect."
+      "text": "在方尖碑周围放置高头骨，就像信标基座一样，尽管只是在轮廓上，但会拓展方尖碑的效果半径。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,15 +1,15 @@
 {
-  "name": "Black Wolves",
+  "name": "ブラックウルフ",
   "icon": "minecraft:bone",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Thought to be fairy tales, these omens of death are very real and loyal to their summoner."
+      "text": "おとぎ話だと考えられているこれらの死の前兆は、現実的にあり、召喚者に忠実です。"
     },
     {
       "type": "patchouli:text",
-      "text": "One can call upon a loyal black wolf through the use of a $(l:focuses/wild/hunting_focus)Hunting Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "ブラックウルフの従者は、$(l:focuses/wild/hunting_focus)狩猟のフォーカス$()を使用するか、寿命に制限のないブラックウルフを召喚する儀式を通じて呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -22,11 +22,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on a loyal Black Wolf with meat will heal them."
+      "text": "ブラックウルフの従者を肉で右クリックすると回復します。"
     },
     {
       "type": "patchouli:text",
-      "text": "Summoning Black Wolves through certain ways may also yield variants of the beast or even other types of hounds."
+      "text": "特定の方法でブラックウルフを召喚すると、亜種や他の種類の何かが出現することもあります。"
     },
     {
       "type": "patchouli:entity",
@@ -35,7 +35,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "An undead version of regular wolves, though unlike them, these wolves may emit a howl that boosts the damage of their skeleton allies. Unlike the other two variants, these wolves don't turn invisible when hunting their query. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/necro_staff)Necro Staff$(), or through another ritual."
+      "text": "通常のオオカミのアンデッド版です。通常のオオカミとは異なり、あらゆるスケルトン系の従者のダメージを増加させる遠吠えを発することがあります。他の2つの亜種とは異なり、は対象を狩っている間は透明化しません。召喚するには、$(l:crafts/staff/necro_staff)ネクロの杖$()を用いて$(l:focuses/wild/hunting_focus)狩猟のフォーカス$()を唱えるか、その他の儀式によって召喚されます。"
     },
     {
       "type": "goety:ritual",
@@ -48,7 +48,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These white furred canines are a terror to people living in cold areas, with their icy fangs and resistance to frost. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/frost_staff)Frost Staff$(), summoned in snowing biomes, or through another ritual."
+      "text": "白い毛皮に覆われたこのオオカミは、氷のような牙と凍結に対する耐性を持ち、寒冷地に住む人々にとって恐怖の種です。召喚するには、$(l:crafts/staff/frost_staff)氷の杖$()を用いて$(l:focuses/wild/hunting_focus)狩猟のフォーカス$()を唱えるか、雪の降るバイオームで召喚するか、その他の儀式によって召喚されます。"
     },
     {
       "type": "goety:ritual",
@@ -61,7 +61,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Legends of fiendish hounds that appear in a clap of thunder have been abound, now their lightning jaws are yours to command. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/frost_staff)Storm Staff$(), summoned in an exposed storm, or through another ritual."
+      "text": "雷鳴とともに現れる凶悪な猟犬の伝説は数多くありますが、今、その雷撃の顎を操れるのはあなたです。$(l:crafts/staff/frost_staff)嵐の杖$()を用いて$(l:focuses/wild/hunting_focus)狩猟のフォーカス$()を唱えるか、風雨にさらされた嵐の中で召喚するか、その他の儀式によって召喚されます。"
     },
     {
       "type": "goety:ritual",
@@ -74,7 +74,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You've heard of tales and myths of hounds dragging the damned to the fires of the Nether, perhaps it's time to put these hounds to heel. They are summoned by casting $(l:focuses/wild/hunting_focus)Hunting spell$() with a $(l:crafts/staff/nether_staff)Nether Staff$(), summoned in Nether biomes, or through another ritual."
+      "text": "猟犬が地獄の業火へと罪人たちを引きずり込むという伝説を耳にしたことがあるでしょう。そろそろこれらの猟犬たちを鎮圧する時かもしれません。彼らは、$(l:crafts/staff/nether_staff)ネザーの杖$()を使って$(l:focuses/wild/hunting_focus)狩猟のフォーカス$()を唱えるか、ネザーのバイオームで召喚するか、その他の儀式によって召喚されます。"
     },
     {
       "type": "goety:ritual",

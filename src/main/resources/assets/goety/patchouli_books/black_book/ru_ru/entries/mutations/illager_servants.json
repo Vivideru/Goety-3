@@ -1,11 +1,11 @@
 {
-  "name": "Illager Servants",
+  "name": "Злодеяне-прислужники",
   "icon": "goety:magic_emerald",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After learning more on the Illagers, how they came about from an ancient struggle where their Villager ancestors took up arms to defend themselves, you've conceived and found a way to introduce violence within the hearts of the Villagers... along with servitude."
+      "text": "Узнав о том, что злодеяне возникли в результате древней борьбы, в ходе которой их предки, крестьяне, взялись за оружие, вы придумали способ привнести в сердца крестьян жестокость... и покорность."
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While you've managed to turn the pacifistic Villager towards violence, such hatred must be learned. The Illagers don't instantly know how to shoot their crossbows and chop with axes from the get go. To make a proper Illager, one must set up a $(l:goety:crafts/artifice/ominous_pyre)proper training ground$() for them to grow. If one has a $(l:goety:mutations/illager_servants#banner)registered banner$(), giving a Neollager any banner that's not already a replica and having a Loom near them will have them work to make a replicated banner. Baby Neollagers are quicker to train."
+      "text": "Вам уже удалось склонить мирных крестьян к жестокости, но злодеяниям необходимо учиться. Злодеяне не сразу понимают, как стрелять из арбалетов и рубить топорами. Чтобы получить настоящего злодеянина, нужно создать $(l:goety:crafts/artifice/ominous_pyre)подходящую тренировочную площадку$(). Если у вас есть $(l:goety:mutations/illager_servants#banner)личный флаг$(), то вы можете дать новодеянину любой другой флаг, чтобы он сделал точную копию вашего личного на ближайшем ткацком станке. Маленькие новодеяне обучаются быстрее."
     },
     {
       "type": "patchouli:entity",
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "That being said, not all Illagers are made equal. Only those born with the talent for magic can hope to become a spellcaster, whom are conveniently marked by their purple robes."
+      "text": "Как бы то ни было, не все крестьяне равны. Только те, кто одарён волшебным талантом, могут стать колдунами (о чём свидетельствует их пурпурная мантия)."
     },
     {
       "type": "patchouli:entity",
@@ -33,15 +33,28 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While armed with the sophisticated crossbow, these Illagers are quite simple in their approach to combat. Fortunately your servants knows how to back off when their target goes near them. They can accept custom arrows by right-clicking on them with up a stack of them, which they will use up when shooting."
+      "text": "Несмотря на то, что эти злодеяне вооружены изощрёнными арбалетами, они довольно просты в обращении с оружием. И к счастью, они знают, как отступать, когда противник приближается к ним."
     },
     {
       "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
+      "entity": "goety:imperial_guard_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "Highly trained Pillagers trained to protect their superiors by pelting foes with powerful arrows from behind their shields. You've made this role through creative thinking while researching on desert scrolls."
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
       "entity": "goety:piker_servant"
     },
     {
       "type": "patchouli:text",
-      "text": "These highly trained and disciplined Illagers are capable of stabbing targets further from their position."
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "Эти обученные и дисциплинированные бойцы способны поражать врагов на большом расстоянии."
     },
     {
       "type": "patchouli:entity",
@@ -49,7 +62,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Though shunned by others for their lack of magic or martial skills, these Illagers are highly useful for spotting incoming threats from afar, especially when perched high up, and sounding a horn that causes Guarding servants in a large radius around themselves, to attack it. These threats are either a hostile Player, a hostile mob with twice the amount of max health as the Signaler or a horde of enemies, the size of which depending on what comprises them and whether they have a higher max health than the Signaler."
+      "text": "Хотя эти злодеяне и являются изгоями ввиду отсутствия магических или боевых навыков, но они полезны для обнаружения угрозы. Они забираются повыше и трубят в рог, заставляя прислужников в режиме охраны атаковать нападающего. Угрозой считается: враждебно настроенный игрок; враждебный моб, у которого максимальное здоровье в два раза больше, чем у известителя; орда врагов (в зависимости от её размера и отношения макс. здоровья каждого врага к макс. здоровью известителя)."
     },
     {
       "type": "patchouli:entity",
@@ -57,7 +70,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "One of the most deadliest Illagers now under your command, these brutes can disable shields with their axes and deal a ton of damage as well. You probably shouldn't name them 'Johnny' if you wish to keep them obedient."
+      "text": "Одни из самых смертоносных злодеян под вашим командованием. Они могут выводить из боя щиты и наносить массу урона своими топорами. Вероятно, не стоит называть их «Johnny»..."
     },
     {
       "type": "patchouli:entity",
@@ -66,7 +79,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A specialized Vindicator that can collect ingredients, like uncooked meat, and will either cook them at a nearby Smoker or Furnace, or assemble them at a nearby Crafting Table into an actual meal. Shift-right click with an empty hand on them will give you their first food in their inventory."
+      "text": "Особые поборники, которые могут добывать сырое мясо и готовить пищу из своего инвентаря в коптильне или печи."
     },
     {
       "type": "patchouli:entity",
@@ -74,7 +87,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These mountain climbers are a bit more sturdier than their vindictive cousins, both in health and their resistance on being blown away by wind."
+      "text": "Эти скалолазы на порядок выносливее, чем их собратья-поборники, как в плане здоровья, так и в плане сопротивлению отбрасыванию."
     },
     {
       "type": "patchouli:entity",
@@ -83,7 +96,18 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These Illagers are usually the ones that forge weapons for other Illagers, but they can also smash apart their foes with their mighty hammer. They can also take ore from a chest they're bound to and smelt them at a nearby Furnace or Blast Furnace, and will also craft weapons to other Illagers if they're somehow deprived of them, or make a better version if they have the resources and the Illager in question doesn't have an enchanted weapon."
+      "text": "Эти злодеяне обычно куют оружие для своих товарищей, но также могут уничтожать врагов своим великим молотом."
+    },
+    {
+      "type": "patchouli:entity",
+      "advancement": "goety:goety/read_front_scroll",
+      "entity": "goety:royal_guard_servant",
+      "scale": 0.75
+    },
+    {
+      "type": "patchouli:text",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "High-ranking Illagers charged with guarding their superiors through intimidation and powerful blows from their maces. If they're shield-less, right click on them with an Iron Ingot to give them their shield back when they're not attacking."
     },
     {
       "type": "patchouli:entity",
@@ -91,7 +115,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A practitioner of the dark arts, though one that's limited to only two spells, spells they perform quite well though. Combat-wise they love to run around in order to avoid getting stabbed. If their master learned $(l:rumors/ravaging)the ways of ravaging$(), they are able to transform a Villager into a Ravaged which requires $(l:goety:focuses/command_focus)commanding$() a $(l:goety:mutations/illager_servants#banner)leading$() Evoker to one, or one nearby if Villagers as a whole are $(l:goety:crafts/grimoire_of_grudges)grudged against$(), while also having two Evokers nearby."
+      "text": "Последователи тёмных искусств, ограниченные всего двумя заклинаниями, которые они, тем не менее, отлично исполняют. В бою любят бегать сломя голову, чтобы избежать увечий. Если владельцу заклинателя доступны $(l:rumors/ravaging)секреты разорения$(), то он может превратить крестьянина в разорённого по его $(l:goety:focuses/command_focus)команде$(). Ритуал проводится заклинатель-$(l:goety:mutations/illager_servants#banner)лидер$() при поддержке двух рядовых заклинателей. Они могут проводить эти ритуалы по своей воле, если владелец $(l:goety:crafts/grimoire_of_grudges)разгневан$() на крестьян."
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:enchanter_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "These scholars have the ability to enchant nearby allies, when confronted with an enemy, increasing their stats and resistance to damage. They can only maintain their links for a time, and it will break if the enchanted moves too far from the Enchanter."
     },
     {
       "type": "patchouli:entity",
@@ -99,7 +131,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "With the ability to manipulate the very ground, these ragged spellcasters can raise stone pillars out of the ground to either hinder their enemy's path or to blow them up."
+      "text": "Управляя самой землёй, эти бедные заклинатели могут поднимать из земли каменные столбы, чтобы либо преграждать путь своему противнику, либо взрывать его."
     },
     {
       "type": "patchouli:entity",
@@ -107,7 +139,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These chilling conjurers of ice will smash their foes' head with their Ice Chunks."
+      "text": "Эти леденящие душу заклинатели разбивают головы своих противников ледяными глыбами."
     },
     {
       "type": "patchouli:entity",
@@ -120,93 +152,105 @@
     {
       "type": "patchouli:entity",
       "entity": "goety:wind_caller_servant",
+      "advancement": "goety:goety/read_mistral_scroll",
       "scale": 0.75
     },
     {
       "type": "patchouli:text",
-      "text": "Masters of the skies, these big haired shamans can fling their foes to the sky or blast them away with the wind."
+      "advancement": "goety:goety/read_mistral_scroll",
+      "text": "Повелевая небесами, эти пышноволосые шаманы могут подбрасывать своих врагов в воздух или отталкивать порывами ветра."
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:storm_caster_servant",
+      "advancement": "goety:goety/read_mistral_scroll",
       "scale": 0.75
     },
     {
       "type": "patchouli:text",
-      "text": "Whether they're hunting treasures or keeping them safe, these illagers will mercilessly electrocute their enemies to cinders."
+      "advancement": "goety:goety/read_mistral_scroll",
+      "text": "Охотясь за сокровищами или охраняя их, эти злодеяне безжалостно испепеляют врагов электрическим током."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:red_bed",
-      "title": "Food, Breed & Heal",
-      "text": "The Illagers can be given certain types of food directly or throwing it at them, which they would eat to regenerate health when hurt or to breed. If fully healed, not in combat, not in following mode and with a reachable bed nearby, the food can be used to help them breed with one another, much like Villagers, which would result in a baby Neollager."
+      "title": "Еда, размножение и исцеление",
+      "text": "Злодеянам можно давать пищу (непосредственно или бросая), чтобы они восстанавливали здоровье или размножались. При полном здоровье, будучи вне боя и не в режиме следования, злодеяне могут размножаться, подобно крестьянам, если рядом с ними будет доступная кровать. Это приведёт к появлению маленького новодеянина."
     },
     {
       "type": "patchouli:text",
-      "text": "Having an excess amount of food in their inventory will cause them to share some food other Illagers with less food. The food they can take are either cooked meat, vegetables, fruits and Rotten Flesh, though they don't eat the latter, but use it to feed $(l:goety:mutations/ravaged)Ravaged or injured Ravagers$(). They can also be given armor to wear and associated weapons to equip."
+      "text": "Наличие избыточного количества еды в инвентаре позволим им подбрасывать её другим злодеянам, у которых её меньше. Злодеяне берут жареное мясо, овощи, фрукты и гнилую плоть. Последнюю они не едят, а кормят ею $(l:goety:mutations/ravaged)разорённых и раненых разорителей$(). Злодеянам можно предоставить подходящие доспехи и оружие."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:black_banner",
       "anchor": "banner",
-      "title": "Personal Banner",
-      "text": "While the Illagers have their own ominous banner, it would be both fun and useful to have your own banner that signifies your rule. To register your own personal banner, simply place down a banner and right click it with a Wand or Staff that doesn't have a Block based spell (ie, $(l:goety:focuses/geomancy/pulverize_focus)Pulverize$())."
+      "title": "Личный флаг",
+      "text": "Хотя у злодеян есть зловещий флаг, было бы и весело, и полезно иметь свой собственный флаг, символизирующий ваше правление. Чтобы установить личный флаг, нажмите по нему ПКМ палочкой или посохом, в которых не установлен фокус, нацеливаемый на блок (например, $(l:goety:focuses/geomancy/pulverize_focus)фокус измельчения$())."
     },
     {
       "type": "patchouli:entity",
-      "name": "Illager Captain",
+      "name": "Злодеянин-лидер",
+      "anchor": "captain",
       "entity": "goety:pillager_servant{HandItems:[{Count:1,id:\"minecraft:crossbow\"},{}], ArmorItems:[{},{},{},{Count:1,id:\"minecraft:black_banner\"}]}",
       "scale": 0.5,
-      "text": "Illagers like Pillager Servants can be made a captain."
+      "text": "Злодеяне, вроде разбойников-прислужников, могут быть лидерами."
     },
     {
       "type": "patchouli:text",
-      "text": "If an Illager were given your $(l:goety:mutations/illager_servants#banner)personal banner$(), they will become a captain. Using a $(l:goety:focuses/command_focus)Command$() / $(l:goety:focuses/order_focus)Order$() Focus and commanding Illagers and certain other raiding servants, like tamed Ravagers, onto a leading Illager will cause them to follow them instead of you. Updating their movement stance will stop them from following the leading Illager. Right-clicking on the captain with an empty hand will cause them to drop their banner."
+      "text": "Если злодеянин получит ваш $(l:goety:mutations/illager_servants#banner)личный флаг$(), то он станет лидером. Используя $(l:goety:focuses/command_focus)фокус командования$() или $(l:goety:focuses/order_focus)фокус приказания$(), можно привязать злодеян-прислужников и некоторых других рейдеров-прислужников, вроде прирученных разорителей, к злодеянину-лидеру, и они будут следовать за ним, а не за вами. Если изменить им режим движения, то они перестанут следовать за лидером. Нажав ПКМ по лидеру пустой рукой, можно снять с него флаг."
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on a captain with a Taglock Kit, that has a Tagged creature on it, will cause them, and nearby raiding servants that are following the Illager, or not have a captain, to hunt said creature down before returning to their master once they slay their query. If the hunting party contains raiders that weren't following any Illager, they will start to follow the captain they came with."
+      "text": "Нажатие ПКМ по злодеянину-лидеру набором привязки, который уже привязан к существу, заставит его и ближайших рейдеров-прислужников, которые следуют за ним или у которых нет лидера, выследить и убить указанное существо. Если в такой поход попадают рейдеры, у которых нет лидера, то по его окончании они продолжат следовать за лидером похода."
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:waystone",
       "anchor": "raid",
-      "title": "Raiding",
-      "text": "Right-clicking on an Illager captain with a Waystone, that stored a position located in a chunk-loaded Village, with a Goat, or Raiding, Horn offhand, will cause them to perform a raid on the Village, attacking all non-baby Villagers. Much like with the taglock, the captain will cause nearby leaderless raiders to join them."
+      "title": "Рейдерство",
+      "text": "Если во второй руке держать козий рог, то нажатие ПКМ по злодеянину-лидеру путеводным камнем, сохранившим местоположение прогруженной деревни, заставит его начать рейд на деревню и атаковать в ней всех взрослых крестьян. Как и в случае с привязкой, он заставит ближайших рейдеров, у которых нет лидера, присоединиться к нему."
     },
     {
       "type": "patchouli:text",
-      "text": "If their raid is successful, they will return to their master and will drop off loot, as Illagers gain Emeralds and other loot when killing Villagers. They will not perform a raid if their master has stored Villagers as a whole as $(l:goety:crafts/grimoire_of_goodwill)allies$(). To stop your raid, either register Villagers as your $(l:goety:crafts/grimoire_of_goodwill)allies$() or press Ceasefire key $(l)while holding a banner on main or offhand$()."
+      "text": "Если рейд пройдёт успешно, они вернутся к своему владельцу и отдадут награбленное, поскольку злодеяне получают изумруды и прочую добычу при убийстве крестьян. Они не будут совершать рейд, если их хозяин сохранил вид крестьян в $(l:goety:crafts/grimoire_of_goodwill)гримуар благоволения$(). Чтобы остановить свой рейд, либо запишите крестьян в $(l:goety:crafts/grimoire_of_goodwill)гримуар благоволения$(), либо нажмите клавишу «Усмирение атакующих», $(l)держа личный флаг в любой из рук$()."
     },
     {
       "type": "patchouli:text",
-      "text": "All Illagers will collect any loot from their kills and will throw them at their master when they're near them and away from combat, unless the loot is a valid food for them to eat."
+      "text": "Злодеяне-прислужники собирают любую добычу, полученную в результате их убийств, и отдают своему владельцу, когда находятся рядом с ним и вдали от поля боя, если только эта она не пригодна им в пищу."
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:ominous_shackles",
       "anchor": "capture",
-      "title": "Capturing",
-      "text": "Right-clicking on a Raider with an Ominous Shackles will cause them to enter Capturing Mode where, rather than killing Villagers, they will turn them into $(l:goety:mutations/prisoners)Prisoners$() that will follow their captor and can be commanded by you. Right-clicking on the Capturing raider with Shears will stop them from being in Capturing Mode."
+      "title": "Захват",
+      "text": "Нажатие ПКМ по рейдеру цепью заставит его перейти в режим захвата: вместо того, чтобы убивать крестьян, он будет брать их в плен и вести за собой. Вы тоже можете командовать пленниками. Нажатие ПКМ по рейдеру топором выведет его из режима захвата."
     },
     {
       "type": "patchouli:text",
-      "text": "Much like everything else, all raiders will enter Capturing Mode if their captain is in that mode. In Raids, if all surviving Villagers are Prisoners, the raid is considered a success. The Prisoner can be chained to you if you right-click on them, and can be chained to a captain by right-clicking on them with an empty hand. There's a chance that certain Villagers don't end up being captured and can potentially die like usual."
+      "text": "Как всегда, рейдеры переходят в режим захвата, если в этом режиме находится их лидер. Если все выжившие крестьяне взяты в плен, рейд считается успешным. Чтобы освободить пленника, нажмите по нему ПКМ, присев. Пленники также освободятся, если получат достаточно урона, находясь вдали от своего захватчика или владельца. Есть вероятность, что некоторые крестьяне не попадут в плен и погибнут."
     },
     {
       "type": "patchouli:spotlight",
       "item": "minecraft:chest",
-      "title": "Chest Interaction",
-      "text": "Right clicking on an Illager with a Waystone that leads to an unlocked Chest will cause them to register the chest as a valid container to take food from it, or store excess food and loot, when they are nearby. If the Illager is a leader, their followers will register the same chest as well."
+      "anchor": "chest",
+      "title": "Сундуки",
+      "text": "Нажатие ПКМ по злодеянину путеводным камнем, который привязан к сундуку, заставит его принять сундук за хранилище, где он начнёт брать еду или хранить добычу, если будет поблизости. Если злодеянин является лидером, то его последователи также примут этот сундук."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:raiding_chest",
-      "text": "An Illager can also register another chest aside from regular ones. When registered to this, Illagers will try to deposit any loot they have in this above their other chest and will not take items from it."
+      "text": "Помимо обычных сундуков, злодеяне способны взаимодействовать с ещё одним. Они ставят рейдерский сундук в приоритет, если нужно складывать добычу, но ничего из него не берут."
     },
     {
       "type": "patchouli:text",
-      "text": "Illagers can be given armor (if config is set to true) and can be given a Totem of Undying so long as their offhand is empty. Right-clicking on them with a Stick will cause them to drop their Totem from their Offhand."
+      "text": "На злодеян можно надевать броню (если это позволяет конфиг) и давать им тотемы бессмертия во вторую руку. Нажатие ПКМ по ним палкой позволяет забрать тотем."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:soul_healer",
+      "title": "Charms",
+      "text": "Some items can be given to an Illager that gives them additional abilities. Simply right-click on an Illager to equip them a charm, right-click on them with a Stick to remove any charms they're equipped with (if they're no longer/not holding a Totem offhand)."
     }
   ]
 }

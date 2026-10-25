@@ -1,5 +1,5 @@
 {
-  "name": "Nether Staff",
+  "name": "Незерский посох",
   "icon": "goety:nether_staff",
   "category": "goety:crafts/staff",
   "advancement": "goety:goety/read_bygone_scroll",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After learning the powers of the Wither Necromancers, you're able to replicate their staff, empowering your Nether spells."
+      "text": "Изучив способности визер-некромантов, вы смогли воссоздать их посохи, усиливающие незерские заклинания."
     },
     {
       "type": "goety:ritual",

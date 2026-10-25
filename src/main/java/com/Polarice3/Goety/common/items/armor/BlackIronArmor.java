@@ -5,6 +5,7 @@ import com.Polarice3.Goety.api.items.IPersist;
 import com.Polarice3.Goety.api.items.armor.ISoulDiscount;
 import com.Polarice3.Goety.client.render.ModModelLayer;
 import com.Polarice3.Goety.client.render.model.BlackIronArmorModel;
+import com.Vivideru.Goety.client.render.model.ArmorModelCache;
 import com.Polarice3.Goety.common.items.ModItems;
 import com.Polarice3.Goety.config.ItemConfig;
 import com.google.common.collect.ImmutableMultimap;
@@ -41,6 +42,11 @@ public class BlackIronArmor extends ArmorItem implements ISoulDiscount, IPersist
     @Override
     public int getMaxDamage(ItemStack stack) {
         return ModArmorMaterials.configuredDurability(this.type, ItemConfig.BlackIronDurability, 30);
+    }
+
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return com.Polarice3.Goety.utils.ConfiguredItemUtil.positive(ItemConfig.BlackIronEnchantability, 15);
     }
 
     @Override
@@ -116,9 +122,7 @@ public class BlackIronArmor extends ArmorItem implements ISoulDiscount, IPersist
         super.initializeClient(consumer);
         consumer.accept(new IClientItemExtensions() {
            public HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
-               EntityModelSet modelSet = Minecraft.getInstance().getEntityModels();
-               ModelPart root = modelSet.bakeLayer(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.BLACK_IRON_ARMOR_INNER : ModModelLayer.BLACK_IRON_ARMOR_OUTER);
-               BlackIronArmorModel model = new BlackIronArmorModel(root);
+               BlackIronArmorModel model = ArmorModelCache.get(equipmentSlot == EquipmentSlot.LEGS ? ModModelLayer.BLACK_IRON_ARMOR_INNER : ModModelLayer.BLACK_IRON_ARMOR_OUTER, BlackIronArmorModel::new);
                model.hat.visible = equipmentSlot == EquipmentSlot.HEAD;
                model.body.visible = equipmentSlot == EquipmentSlot.CHEST;
                model.rightArm.visible = equipmentSlot == EquipmentSlot.CHEST;

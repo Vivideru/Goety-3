@@ -55,6 +55,11 @@ public class ArmoredRavager extends Ravager implements IRavager {
         super.aiStep();
         if (this.getArmor().isEmpty()){
             this.convertTo(EntityType.RAVAGER, false);
+        } else if (!this.level().isClientSide && this.isArmor(this.getArmor())) {
+            AttributeInstance attribute = this.getAttribute(Attributes.ARMOR);
+            if (attribute != null && attribute.getModifier(com.Polarice3.Goety.utils.ModAttributeUtil.stableId(ARMOR_MODIFIER_UUID, "Ravager armor bonus")) == null) {
+                this.updateArmor();
+            }
         }
     }
 

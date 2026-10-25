@@ -1,5 +1,5 @@
 {
-  "name": "Abominable Machines",
+  "name": "Ужасные машины",
   "icon": "minecraft:end_stone",
   "category": "goety:rumors",
   "advancement": "goety:goety/read_warred_scroll",
@@ -7,12 +7,12 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "From the warred scrolls there's mention of a powerful variant, stronger than even the Redstone Golems, that was made and banished to a lost land. There's also mentioned of how some scholars recorded how this beast was made before they were destroyed, but surely there's some that still remains..."
+      "text": "В военных свитках есть упоминание о могущественном существе, превосходящем по силе даже редстоуновых големов, которое было создано, а позже уничтожено. Также упоминается, что некоторые учёные записали процесс создания этого зверя до его исчезновения, и наверняка что-то ещё сохранилось..."
     },
     {
       "type": "patchouli:quest",
       "trigger": "goety:goety/get_shrouded_blueprint",
-      "text": "The scroll mentions that the beast's design may have came from a being of $(l)The End$(), and its secrets lies within a $(l)terminal of power$()."
+      "text": "В свитке упоминается, что зверь, возможно, был создан существом из $(l)Энда$() и что его секреты заключены в $(l)последнем оплоте$()."
     }
   ]
 }

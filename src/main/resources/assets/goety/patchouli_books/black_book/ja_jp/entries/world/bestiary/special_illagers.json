@@ -1,16 +1,16 @@
 {
-  "name": "Illager Hunters",
+  "name": "イリジャー",
   "icon": "minecraft:crossbow",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_hunting_illagers",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "After killing a bunch of Illagers that have come to slay you for stealing their knowledge, you've managed to document the ones that you've never encountered before."
+      "text": "知識を盗んだとしてあなたを殺しに来た大勢のイリジャーを殺した後、あなたはこれまで遭遇したことのないイリジャーを記録することに成功しました。"
     },
     {
       "type": "patchouli:text",
-      "text": "Most of these Illagers seemed to only go after those who had discovered or stolen their secrets as they aren't found stationed in Woodland Mansions or Outposts, and they seemed to only partake in Raids if those discoverers are within that village. What's certain is that these brand of Illagers are high ranking enough to bring even Ravagers in their pursuit."
+      "text": "これらのイリジャーのほとんどは、森の洋館や前哨基地には配置されていないため、秘密を発見したり盗んだ者だけを追いかけるのが本業のようで、発見者がその村にいる場合にのみ襲撃に参加するようでした。確かなことは、これらのイリジャーは、ラヴェジャーさえも追跡するほど十分に高い地位であるということです。"
     },
     {
       "type": "patchouli:entity",
@@ -18,7 +18,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "A powerful and well-read Evoker that seems to be using an odd Ruby Shard on their heads to power up their magics. Their Totem was either gifted or taken from others."
+      "text": "強力で倒しがいのあるエヴォーカーで、魔法を強化するために頭に奇妙なルビーの破片を使用しているようです。彼らのトーテムは贈られたものであるか、他人から譲り受けたものでした。"
     },
     {
       "type": "patchouli:entity",
@@ -26,7 +26,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Looks to be the result of an experiment between a Vex and a Vindicator, these beings remain invisible when they're not charging at their target."
+      "text": "ターゲットに向かって突撃していないときは目に見えません。外見を見ると、ヴェックスとヴィンディケーターの間の実験の結果と思われます。"
     },
     {
       "type": "patchouli:entity",
@@ -34,7 +34,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "All round practitioners of the dark arts, these mages aren't specialized on one element like the other illager spellcasters, making them more unpredictable than the rest. Highly trained sorcerers tend to gild their robes with precious materials."
+      "text": "闇の芸術の万能の実践者である魔術師は、他の一般的な魔法を使うイリジャーのように、1つの属性に特化していないため、他の魔術師よりも予測不可能です。高度に訓練された魔術師は、ローブに貴重な素材をメッキする傾向があります。"
     },
     {
       "type": "patchouli:entity",
@@ -43,7 +43,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Greater than the average Pillagers, lesser but more reaching than Vindicators, these disciplined foot-soldiers might've been inspired by the scrolls of the desert."
+      "text": "基本的にはピリジャーより強く、ヴィンディケーターよりは劣るものの、リーチが長い歩兵です。砂漠の文書からインスピレーションを得た可能性があります。"
     },
     {
       "type": "patchouli:entity",
@@ -52,7 +52,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wolves and dogs tamed and bred by Illagers for the purpose of chasing down queries or mauling their enemies in advance of their troops. They can come in different sizes with different stats, and rarely have reinforcements appear nearby."
+      "text": "オオカミと犬は、軍隊に先立って敵を攻撃したり、追跡したりする目的で、イリジャーによって飼いならされ、飼育されています。さまざまなサイズとさまざまなステータスがあり、極稀に増援が現れます。"
     },
     {
       "type": "patchouli:entity",
@@ -61,7 +61,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Violent steeds of the Illagers, rumored to be made from the weakest of their kind or as a punishment, that charges at their targets with or without a rider."
+      "text": "イリジャーの凶暴な馬で、イリジャーの中で最も弱い者から作られた、または罰として作られたと噂されており、乗り手の有無にかかわらずターゲットに突撃します。"
     },
     {
       "type": "patchouli:entity",
@@ -69,7 +69,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Blacksmiths and warriors, these Illagers tend to either be forging away from plain sight, or dispatch on certain areas. They say that some of their hammers are made to absorb and control the lightning itself."
+      "text": "鍛冶屋や戦士であるこれらのイリジャーは、人目を避けて鍛冶をするなど、特定の地域に派遣される傾向があります。彼らのハンマーの一部は雷そのものを吸収して制御するように作られていると言われています。"
     },
     {
       "type": "patchouli:entity",
@@ -77,7 +77,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Some believe them to be former Geomancers or Wind Callers that decided to harness the power of lightning itself. They seek out the tallest sanctum to plunder its secrets."
+      "text": "彼らの中には雷そのものの力を利用することを決意したジオマンサーかウィンドコーラーであると信じている人もいます。彼らはその秘密を知るために最も高い聖域を探し求めます。"
     },
     {
       "type": "patchouli:entity",
@@ -85,7 +85,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Kin to the Iceologers, these criers have more tricks up their sleeves than their mono-spelled cousins. The Illagers believe that they're crying out of admiration of the cold."
+      "text": "単一のスペルしか使わない、親せきといわれるアイソロジャーよりも多くのトリックを持っています。イリジャーたちは、寒さを賞賛して泣いているのだと信じています。"
     },
     {
       "type": "patchouli:entity",
@@ -93,7 +93,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Like Enchanters, Preachers are a rare type of Illager that work to support their brethren rather than fighting head on. These Illagers will follow and heal any nearby injured raider."
+      "text": "エンチャンターと同様に、プリーチャーは、真っ向から戦うのではなく、イリジャーをサポートするために働く珍しいタイプのイラジャーです。これらのイリジャーは、近くで負傷したレイダーを追いかけて治療します。"
     },
     {
       "type": "patchouli:entity",
@@ -102,7 +102,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Disease-ridden aristocrats that spread civilization-ending pestilence to foreigners. Fortunately, they prefer to shoot from afar than go into barbaric melee."
+      "text": "文明を滅ぼす疫病を広める、病気に侵された貴族です。幸いなことに、彼らは近接攻撃を行うよりも遠くから射撃することを好みます。"
     },
     {
       "type": "patchouli:entity",
@@ -110,7 +110,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "An unexpected Illager trained to attack magic users as they're immune to their spells. They wield flaming swords and throw Harming Potions."
+      "text": "インクイリジャーは呪文の影響を受けないため、魔法のユーザーを攻撃するように訓練されました。彼らは炎の剣を振り回し、有害なポーションを投げます。"
     }
   ]
 }

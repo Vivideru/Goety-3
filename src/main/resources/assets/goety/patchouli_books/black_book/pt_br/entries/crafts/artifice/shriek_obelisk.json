@@ -15,6 +15,17 @@
     {
       "type": "patchouli:text",
       "text": "Deve ser colocado sobre uma Jaula Amaldiçoada cheia. Crânios Altos ao redor aumentam o raio de efeito."
+    },
+    {
+      "type": "multiblock",
+      "name": "Placement Example",
+      "multiblock_id": "goety:so_example",
+      "enable_visualize": false,
+      "text": "Up to 4 levels of skulls can be placed."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Tall Skulls placed around the Obelisk, like the blocks around a Beacon, though only on the outlines, will increase the Shrieking Obelisk's radius of effect."
     }
   ],
   "extra_recipe_mappings": {

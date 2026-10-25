@@ -18,6 +18,7 @@ import com.Vivideru.Goety.client.render.HurricaneCycloneRenderer;
 import com.Vivideru.Goety.client.render.HurricanePunchRenderer;
 import com.Vivideru.Goety.client.render.HurricaneRenderer;
 import com.Vivideru.Goety.client.render.WargRenderer;
+import com.Vivideru.Goety.client.render.model.ArmorModelCache;
 import com.Vivideru.Goety.client.render.model.BreezeServantModel;
 import com.Vivideru.Goety.client.render.model.HurricaneModel;
 import com.Vivideru.Goety.client.render.model.HurricanePunchModel;
@@ -42,12 +43,19 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 
 @EventBusSubscriber(modid = Goety.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class VivideruClientEvents {
     @SubscribeEvent
+    public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener((ResourceManagerReloadListener) manager -> ArmorModelCache.clear());
+    }
+
+    @SubscribeEvent
     public static void wrapVaultModels(net.neoforged.neoforge.client.event.ModelEvent.ModifyBakingResult event) {
-        for (net.minecraft.world.level.block.state.BlockState state : net.minecraft.world.level.block.Blocks.VAULT.getStateDefinition().getPossibleStates()) {
+        for (net.minecraft.world.level.block.Block block : java.util.List.of(net.minecraft.world.level.block.Blocks.VAULT, net.minecraft.world.level.block.Blocks.TRIAL_SPAWNER)) for (net.minecraft.world.level.block.state.BlockState state : block.getStateDefinition().getPossibleStates()) {
             event.getModels().computeIfPresent(net.minecraft.client.renderer.block.BlockModelShaper.stateToModelLocation(state),
                     (location, model) -> model instanceof com.Vivideru.Goety.client.render.model.VaultVariantModel ? model : new com.Vivideru.Goety.client.render.model.VaultVariantModel(model));
         }

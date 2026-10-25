@@ -1,11 +1,11 @@
 {
-  "name": "Storm Staff",
+  "name": "嵐の杖",
   "icon": "goety:storm_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The power of the storms and lightning rest within this staff. With it, storm spells are no longer affected by Lightning Rods and can chain lightning multiple non-allied mobs."
+      "text": "嵐と稲妻の力がこの杖の中に宿ります。これにより、嵐の呪文は避雷針の影響を受けなくなり、複数の敵を連鎖的に感電させることができます。"
     },
     {
       "type": "goety:ritual",

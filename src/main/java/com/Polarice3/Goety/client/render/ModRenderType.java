@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import org.joml.Matrix4f;
 import org.joml.Matrix4fStack;
 
 import java.util.function.Function;
@@ -50,6 +51,23 @@ public class ModRenderType {
 
     public static RenderType wraith(ResourceLocation p_110459_) {
         return WRAITH.apply(p_110459_);
+    }
+
+    protected static final RenderStateShard.ShaderStateShard RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER = new RenderStateShard.ShaderStateShard(GameRenderer::getRendertypeEntityTranslucentEmissiveShader);
+
+    private static final Function<ResourceLocation, RenderType> FIRE = Util.memoize(location ->
+            RenderType.create(source("fire"), DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, true,
+                    RenderType.CompositeState.builder()
+                            .setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_EMISSIVE_SHADER)
+                            .setTextureState(new RenderStateShard.TextureStateShard(location, false, false))
+                            .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                            .setCullState(NO_CULL)
+                            .setOverlayState(OVERLAY)
+                            .setWriteMaskState(COLOR_WRITE)
+                            .createCompositeState(false)));
+
+    public static RenderType fire(ResourceLocation location) {
+        return FIRE.apply(location);
     }
 
     /**
@@ -195,6 +213,69 @@ public class ModRenderType {
             return source("additive");
         }
     };
+
+    public static ParticleRenderType PARTICLE_GOD_RAY = new ParticleRenderType() {
+        public BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.enableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.enableBlend();
+            RenderSystem.blendFuncSeparate(
+                    GlStateManager.SourceFactor.SRC_ALPHA,
+                    GlStateManager.DestFactor.ONE,
+                    GlStateManager.SourceFactor.ZERO,
+                    GlStateManager.DestFactor.ONE);
+            RenderSystem.setShader(GameRenderer::getRendertypeLightningShader);
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_COLOR);
+        }
+
+        public String toString() {
+            return source("god_ray");
+        }
+    };
+
+    protected static final RenderStateShard.ShaderStateShard RENDERTYPE_ENCHANTED_BEAM_SHADER = new RenderStateShard.ShaderStateShard(ModShaders::getEnchantBeamShader);
+
+    private static final Function<ResourceLocation, RenderType> ENCHANTED_BEAM = Util.memoize(location ->
+            RenderType.create(source("enchant_beam"),
+                    DefaultVertexFormat.POSITION_TEX_COLOR, VertexFormat.Mode.QUADS,
+                    RenderType.TRANSIENT_BUFFER_SIZE, false, false,
+                    RenderType.CompositeState.builder()
+                            .setShaderState(RENDERTYPE_ENCHANTED_BEAM_SHADER)
+                            .setTextureState(new RenderStateShard.TextureStateShard(location, true, false))
+                            .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                            .setCullState(NO_CULL)
+                            .setLightmapState(NO_LIGHTMAP)
+                            .setWriteMaskState(COLOR_WRITE)
+                            .createCompositeState(false)));
+
+    public static RenderType enchantedBeam(ResourceLocation location) {
+        return ENCHANTED_BEAM.apply(location);
+    }
+
+    protected static final RenderStateShard.ShaderStateShard RENDERTYPE_ENCHANTED_SWIRL_SHADER = new RenderStateShard.ShaderStateShard(ModShaders::getEnchantSwirlShader);
+
+    public static RenderType enchantSwirl(ResourceLocation swirl, ResourceLocation mask, float u, float v, float scaleU, float scaleV) {
+        RenderStateShard.EmptyTextureStateShard textures = new RenderStateShard.EmptyTextureStateShard(() -> {
+            TextureManager textureManager = Minecraft.getInstance().getTextureManager();
+            textureManager.getTexture(swirl).setFilter(false, false);
+            RenderSystem.setShaderTexture(0, swirl);
+            textureManager.getTexture(mask).setFilter(false, false);
+            RenderSystem.setShaderTexture(3, mask);
+        }, () -> {
+        });
+        RenderStateShard.TexturingStateShard texturing = new RenderStateShard.TexturingStateShard("enchant_swirl_texturing",
+                () -> RenderSystem.setTextureMatrix(new Matrix4f().scale(scaleU, scaleV, 1.0F).translate(u, v, 0.0F)),
+                RenderSystem::resetTextureMatrix);
+        return RenderType.create(source("enchant_swirl"), DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, false, true,
+                RenderType.CompositeState.builder()
+                        .setShaderState(RENDERTYPE_ENCHANTED_SWIRL_SHADER)
+                        .setTextureState(textures)
+                        .setTexturingState(texturing)
+                        .setTransparencyState(ADDITIVE_TRANSPARENCY)
+                        .setCullState(NO_CULL)
+                        .setLightmapState(LIGHTMAP)
+                        .createCompositeState(false));
+    }
 
     private static String source(String name) {
         return Goety.MOD_ID + ":" + name;

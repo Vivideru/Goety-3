@@ -1,5 +1,13 @@
 {
   "values": [
-    "goety:crypt"
+    "goety:crypt",
+    "goety:crypt_wing_a",
+    "goety:crypt_wing_b",
+    "goety:crypt_wing_c",
+    "goety:crypt_wing_d",
+    "goety:crypt_boss",
+    "goety:crypt_vault",
+    "goety:crypt_wing_e",
+    "goety:crypt_wing_f"
   ]
 }

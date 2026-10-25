@@ -1,19 +1,19 @@
 {
-  "name": "Skeleton Servant",
+  "name": "スケルトンの従者",
   "icon": "minecraft:skeleton_skull",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Skeletons are slightly more intelligent and quicker than their rotting cousins, but are otherwise still basic in their functions."
+      "text": "スケルトンは、腐敗した同族よりもわずかに知能が高く、素早いですが、その他の機能は基本的なままです。"
     },
     {
       "type": "patchouli:text",
-      "text": "The following texts will detail the variants of skeletons a necromancer can summon."
+      "text": "以下のテキストでは、召喚できるスケルトンの亜種について詳しく説明します。"
     },
     {
       "type": "patchouli:text",
-      "text": "One can call these creatures through the use of a $(l:focuses/necromancy/osseous_focus)Osseous Focus$(), or through a ritual which summons one without a limited lifespan."
+      "text": "これらは$(l:focuses/necromancy/osseous_focus)スケルトンのフォーカス$()を使用するか、寿命に制限のない従者を召喚する儀式を通じて呼び出すことができます。"
     },
     {
       "type": "goety:ritual",
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Skeleton Servants will attempt to kill anyone who hurts you or any hostile creatures nearby. If summoned when the summoner wears a Necro Cape, their arrows pass through allied mobs."
+      "text": "スケルトンの従者は、敵対的な生き物やあなたを傷つける者を殺します。召喚者がネクロのケープを装備している状態で召喚された場合、スケルトンの従者の矢は味方モブを貫通します。"
     },
     {
       "type": "patchouli:entity",
@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Attempting to summon a Skeleton Servant in a cold tundra exposed to the skies, or summon using a $(l:crafts/frost_staff)Frost Staff$(), will yield a Stray Servant instead."
+      "text": "空に露出した寒いツンドラでスケルトンの従者を召喚しようとするか、$(l:crafts/frost_staff)氷の杖$()を使用して召喚しようとすると、代わりにストレイの従者が生成されます。"
     },
     {
       "type": "patchouli:entity",
@@ -41,7 +41,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While being in a Jungle biome, one might have a chance of summoning a Mossy Skeleton Servant instead, a 100%% if summoned with a $(l:crafts/staff/wild_staff)Wild Staff$(). Their arrows inflicts Poison, but if their summoner dons the $(l:crafts/garment/wild_robe)Wild Robes$(), they will inflict Acid Venom."
+      "text": "ジャングルバイオームにいる場合、代わりに苔むしたスケルトンの従者を召喚できる可能性があります。$(l:crafts/staff/wild_staff)野生の杖$()で召喚した場合、100%の確率で召喚されます。彼らの矢は毒ですが、召喚者が$(l:crafts/garment/wild_robe)野生のローブ$()を装備している場合は、酸毒の矢になります。"
     },
     {
       "type": "patchouli:entity",
@@ -50,7 +50,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Under the sea, not only do Skeletons swim, but also wield harpoon shooting crossbows that fly through water better than regular arrows."
+      "text": "水中では、スケルトンは泳ぐだけでなく、通常の矢よりも水中を飛ぶ銛とクロスボウを操ります。"
     },
     {
       "type": "patchouli:entity",
@@ -58,7 +58,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Being exposed to an open thunderstorm will have a chance of summoning a Rattled Servant instead, a 100%% if summoned with a $(l:crafts/staff/storm_staff)Storm Staff$(). Their arrows inflicts Spasms, and they are have damage resistance to shock or lightning attacks."
+      "text": "雷雨にさらされると、代わりにラトルドの従者を召喚する可能性があります。$(l:crafts/staff/storm_staff)嵐の杖$()で召喚した場合は100%の確率で召喚されます。矢は痙攣効果を引き起こし、ショック攻撃や雷に対する耐性を持ちます。"
     },
     {
       "type": "patchouli:entity",
@@ -66,15 +66,15 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting the spell at a Pillager Outpost will summon forth a loyal Skeleton Pillager, which has more health than regular Skeletons and wields a crossbow."
+      "text": "ピリジャーの前哨基地で呪文を唱えると、スケルトンピリジャーの従者が召喚されます。スケルトンピリジャーは通常のスケルトンよりも体力があり、クロスボウを装備しています。"
     },
     {
       "type": "patchouli:text",
-      "text": "Skeleton Servants can accept any Armor but only Swords/Bows meaning they can either be range or melee attackers."
+      "text": "スケルトンの従者は、あらゆる鎧を受け入れることができますが、剣と弓のみを受け入れることができるため、遠距離攻撃または近接攻撃のいずれかになります。"
     },
     {
       "type": "patchouli:text",
-      "text": "Curiously, the spell cannot call forth a loyal Wither Skeleton when cast within a Nether Fortress. The charred skeletons seems to hold great magical power and a great loyalty towards their home to be summoned frivolously..."
+      "text": "不思議なことに、ネザー要塞内で唱えてもウィザースケルトンの従者を呼び出すことができません。ウィザースケルトンは強大な魔力と故郷への強い忠誠心を持っているようで、軽々しく召喚されるには惜しい存在です…"
     },
     {
       "type": "patchouli:entity",
@@ -84,7 +84,7 @@
     {
       "type": "patchouli:text",
       "advancement": "goety:goety/read_bygone_scroll",
-      "text": "After much research, you've found a way to call forth a former inhabitant of the Fortress, and bind it to your will. They inflict Wither on melee and shoot fire arrows when given a bow."
+      "text": "数々の研究の末、かつての要塞の住人を呼び出し、自分の意志に従わせる方法を発見した。彼らは近接攻撃でウィザー効果を付与し、弓を持たせると火の矢を放つ。"
     },
     {
       "type": "goety:ritual",

@@ -1,11 +1,11 @@
 {
-  "name": "Witches Set",
+  "name": "Ведьмины одежды",
   "icon": "goety:witch_hat",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Witches are known to look snazzy with their massive hats. You've figured out how to make your own Witch hat with some Dark Fabrics and you've discovered how wearing them gives you a small chance of not consuming any potion."
+      "text": "Ведьмы шикарно выглядят в своих массивных шляпах. Вы выяснили, как сшить свою собственную ведьмину шляпу из тёмных тканей, и обнаружили, что она даёт вам небольшой шанс не потратить зелье при использовании."
     },
     {
       "type": "patchouli:crafting",
@@ -17,11 +17,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You've also discovered a way to replicate the powers of a Witch by crafting your own Witches Robes. The Robe is essentially a portable Brewing Stand (that you can open by pressing the default key: V while wearing it). It also provides resistance to magical attacks."
+      "text": "Вы также нашли способ заполучить силу ведьмы, создав собственную ведьмину мантию. Мантия, по сути, представляет собой переносную зельеварку, которую вы можете открыть, нажав клавишу (по умолчанию: М). Она также даёт защиту от магических атак."
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing a Witches Hat while wearing the Witches Robes not only makes the robe brew potions faster, but also makes Witches and Warlocks neutral to the wearer. You can also barter with Witches and Warlocks by right-clicking on them with an Emerald, but only if they're not aggressive or holding something. Unlike the brutish Piglins, the two won't pick up Emeralds thrown at them, you gotta give it to them straight."
+      "text": "В комбинации ведьмина шляпа и ведьмина мантия не только ускоряют приготовление зелий в мантии, но и делают ведьм и чернокнижников нейтральными к вам. Вы также можете обменять у них изумруды, нажав ПКМ, но только в том случае, если они не агрессивны и не держат что-либо в руках. В отличие от грубых пиглинов, эти двое не будут подбирать брошенные им под ноги изумруды — вы должны отдать им их сами."
     }
   ],
   "extra_recipe_mappings": {

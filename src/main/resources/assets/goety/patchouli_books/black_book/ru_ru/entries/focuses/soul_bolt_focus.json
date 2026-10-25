@@ -1,11 +1,11 @@
 {
-  "name": "Soul Bolt Focus",
+  "name": "Фокус снаряда душ",
   "icon": "goety:soul_bolt_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With this focus, you're capable of rapidly fire bolts of Soul Energy towards your foe, dealing knockback and magic damage."
+      "text": "С помощью этого фокуса вы можете быстро стрелять снарядами энергии душ, нанося отбрасывающий магический урон."
     },
     {
       "type": "patchouli:crafting",
@@ -14,7 +14,7 @@
     {
       "type": "patchouli:text",
       "advancement": "goety:goety/read_forbidden_scroll",
-      "text": "Casting this spell with a $(l:crafts/staff/nameless_staff)Nameless Staff$() will shoot forth Necro Bolts, which does far more damage and can hit multiple targets, instead."
+      "text": "Использование $(l:crafts/staff/nameless_staff)безымянного посоха$() позволит фокусу создавать некро-снаряды, которые наносят больше урона нескольким жертвам."
     }
   ]
 }

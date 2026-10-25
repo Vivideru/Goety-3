@@ -1,11 +1,11 @@
 {
-  "name": "Bolting Focus",
+  "name": "帯電のフォーカス",
   "icon": "goety:bolting_focus",
   "category": "goety:focuses/storm",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The spell covers you with electricity and propels you, like a riptide enchanted trident, towards where you're looking at, shocking any non-allied creatures along the way."
+      "text": "この呪文はあなたを電気で覆い、激流がエンチャントされたトライデントのように、見ている方向に打ち上げ、ぶつかった味方以外の生き物に衝撃ダメージを与えます。"
     },
     {
       "type": "goety:ritual",

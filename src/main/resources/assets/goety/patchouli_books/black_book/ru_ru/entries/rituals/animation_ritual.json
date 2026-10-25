@@ -1,22 +1,22 @@
 {
-  "name": "Animation Ritual",
+  "name": "Ритуал оживления",
   "icon": "goety:animation_core",
   "category": "goety:rituals",
   "sortnum": 1,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)15 Ladders $(li)15 Rails $(li)1 Carved Pumpkin"
+      "text": "Требования: $(li)15 лестниц $(li)15 рельс $(li)1 вырезанная тыква"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/animalis_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "Пример того, как можно провести ритуал."
     },
     {
       "type": "patchouli:text",
-      "text": "From your studies, you figured out a way to make rituals that surrounds summoning and controlling creatures. The rails and ladders are to signify motion, and the pumpkin signifies life, for a Carved Pumpkin is what gives life to Snow and Iron. Funnily, through your researches, you've found out that aside from giving life, pumpkins also have a magical property that stops Enderman from being enraged if you stare at them while wearing it, and not because you are fooling them. "
+      "text": "Благодаря своим изучениям вы придумали способ проведения ритуалов, связанных с призывом существ и управлением ими. Рельсы и лестницы должны символизировать движение, а тыква — жизнь, ибо она оживляет снег и железо. Забавно, но оказалось, что тыквы не только даруют жизнь, но и обладают магическим свойством, которое не даёт эндерменам прийти в ярость. Выходит, их агрессию сдерживает магия, а не глупость."
     }
   ]
 }

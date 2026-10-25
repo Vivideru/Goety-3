@@ -1,12 +1,12 @@
 {
-  "name": "Magma Bomb Focus",
+  "name": "マグマボムのフォーカス",
   "icon": "goety:magma_bomb_focus",
   "category": "goety:focuses/nether",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Ancient villager legends speaks of giant hoglin-like creatures that shoot Magma Cubes at their foes, leaving devastation. Inspired and with some tinkering, you've made a focus that shoots out a ball of magma that leaves an explosion... and a couple of loyal Magma Cubes at the site of impact."
+      "text": "村の古来の伝説には、巨大なホグリンのような生き物が敵に向かってマグマキューブを発射し、壊滅的な被害をもたらすと語られています。その伝説にヒントを得て、少し手を加え、あなたはマグマの球を発射して爆発を引き起こすフォーカスを作りました…そして、着弾地点には忠実なマグマキューブがいくつか残ります。"
     },
     {
       "type": "goety:ritual",
@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() increases explosion range."
+      "text": "$(l:crafts/staff/nether_staff)ネザーの杖$()で唱えると、爆発範囲が広がります。"
     }
   ],
   "extra_recipe_mappings": {

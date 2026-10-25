@@ -1,11 +1,11 @@
 {
-  "name": "Apparition Door",
+  "name": "Призрачная дверь",
   "icon": "goety:apparition_door",
   "category": "goety:crafts/artifice",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Apparition Door is a device that will turn intangible when right-clicked or activated through redstone. The door also trigger other adjacent doors to do the same."
+      "text": "Призрачная дверь — это устройство, которое становится неосязаемым при нажатии ПКМ или активации редстоуном. Дверь также активирует другие соседние призрачные двери."
     },
     {
       "type": "patchouli:crafting",

@@ -22,6 +22,20 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 @EventBusSubscriber(modid = Goety.MOD_ID)
 public class VivideruCommonEvents {
+    /**
+     * A trial spawner calls its mob whatever the light: vanilla monsters already ignore darkness for that spawn type, but the
+     * Goety ones (Crypt Slime, Reaper, Wraiths, Necromancers, spiders) keep their night-time rules and would leave the
+     * crypt spawners stuck forever on a mob that cannot appear in a lit room.
+     */
+    @SubscribeEvent
+    public static void onSpawnPlacementCheck(net.neoforged.neoforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck event) {
+        if (event.getSpawnType() == net.minecraft.world.entity.MobSpawnType.TRIAL_SPAWNER
+                && net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(event.getEntityType()).getNamespace().equals(Goety.MOD_ID)
+                && event.getLevel().getDifficulty() != net.minecraft.world.Difficulty.PEACEFUL) {
+            event.setResult(net.neoforged.neoforge.event.entity.living.MobSpawnEvent.SpawnPlacementCheck.Result.SUCCEED);
+        }
+    }
+
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof LivingEntity living) {

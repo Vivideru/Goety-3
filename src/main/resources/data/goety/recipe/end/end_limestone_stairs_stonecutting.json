@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "goety:end_limestone"
+  },
+  "result": {
+    "count": 1,
+    "id": "goety:end_limestone_stairs"
+  }
+}

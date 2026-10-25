@@ -18,6 +18,7 @@ import com.Polarice3.Goety.config.AttributesConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
+import com.Polarice3.Goety.utils.ModDamageSource;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -805,6 +806,9 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
                         GraveGolem.this.getZ() + GraveGolem.this.getHorizontalLookAngle().z * 2, 9, 7, 9);
                 for (LivingEntity target : GraveGolem.this.level().getEntitiesOfClass(LivingEntity.class, aabb)) {
                     if (target != GraveGolem.this && !target.isAlliedTo(GraveGolem.this) && !GraveGolem.this.isAlliedTo(target)) {
+                        if (target.isDamageSourceBlocked(ModDamageSource.summonAttack(GraveGolem.this, GraveGolem.this.getTrueOwner()))) {
+                            MobUtil.disableShield(target, 100);
+                        }
                         this.hurtTarget(target);
                     }
                 }

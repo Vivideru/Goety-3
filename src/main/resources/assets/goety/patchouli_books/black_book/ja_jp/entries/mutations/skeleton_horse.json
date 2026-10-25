@@ -1,11 +1,11 @@
 {
-  "name": "Skeleton Horse",
+  "name": "スケルトンホース",
   "icon": "minecraft:skeleton_horse_spawn_egg",
   "category": "goety:mutations",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Despite its boniness, the steed can not only withstand being ridden without breaking under weight, but can also ride underwater."
+      "text": "その骨っぽさにもかかわらず、この馬は重みで壊れることなく騎乗に耐えるだけでなく、水中でも走ることができます。"
     },
     {
       "type": "goety:ritual",

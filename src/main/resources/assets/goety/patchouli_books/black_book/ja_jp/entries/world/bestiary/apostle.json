@@ -1,12 +1,12 @@
 {
-  "name": "Apostles of the Nether",
+  "name": "アパスル・オブ・ネザー(使徒)",
   "icon": "goety:unholy_blood",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_apostle",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The closest followers of the first Nether Cultist, Apollyon, these terrific beings spread the word of the Great Flame alongside their master when they walked the Overworld. Some Apostles used to be Kings, Lords or Nobles, while others range from normal Villagers to the most ill-witted Nitwits. When the emissary appears, the water around them boils, and the sky darkens."
+      "text": "最初のネザーカルト信者であるアポリオン、そして最も近い信者である恐ろしい存在は、オーバーワールドを歩いていたときにマスターと一緒に大いなる炎の言葉を広めました。使徒の中には、かつて王、領主、貴族だった者もいれば、普通の村人からニートまでさまざまな使徒もいます。使者が現れると、周囲の水が沸騰し、空が暗くなります。"
     },
     {
       "type": "patchouli:entity",
@@ -15,24 +15,24 @@
     },
     {
       "type": "patchouli:text",
-      "text": "An Apostle doesn't deign to use their true power when confronted with a violent heathen. They would shoot arrows upon them, while occasionally shooting a Hell Blast or summoning fiendish servants to defend themselves. The fiend would teleport, leaving a cloud of smoke, when hit after a number of times or after casting a spell."
+      "text": "使徒は、暴力的な異教徒と対峙したときに真の力を行使するつもりはありません。彼らは矢を放ち、時にはヘルブラストを放ち、自分を守るために悪魔の従者を召喚した。何度か攻撃を受けた後、または呪文を唱えた後、悪魔は煙を出してテレポートします。"
     },
     {
       "type": "patchouli:text",
-      "text": "When lowered to half of their maximum health, the Apostle will regenerate their health and reveal their true might. When fought in the Overworld or dimensions similar to it, a storm will rain upon the world once they reveal themselves in their horrid form. Meteors will fall around them and the true battle begins. The Apostle will try to teleport more often, and their arrows are much potent in damage and effects."
+      "text": "最大体力の半分まで低下すると、使徒は体力を回復し、真の力を解放します。オーバーワールドまたはそれに類似したディメンションで戦う場合、世界に嵐が降り注ぎます。彼らの周囲に隕石が落ち、本当の戦いが始まります。使徒はより頻繁にテレポートし、矢もダメージや効果が強化されます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Throughout the battle, they will cast horrid spells upon their target, from a rain of lava to hurling souls damned to the fires of Nether towards their foe. If their target was close to them, the Apostle will summon a circle of fire that after a short time, burst causing whatever creature near them to be knocked into the sky. The bursts and the flaming tornado curses the target with Burn Hex, which prevents Fire Resistance from working."
+      "text": "戦闘中、使徒は標的に恐ろしい呪文を唱えます。溶岩の雨を降らせたり、冥府の炎に堕ちた魂を敵に向かって投げつけたりします。標的が使徒の近くにいる場合、使徒は炎の輪を召喚し、しばらくすると爆発して近くの生き物を空へと吹き飛ばします。爆発と燃え盛る竜巻は標的に「炎の呪い」をかけ、耐火能力を無効化します。"
     },
     {
       "type": "patchouli:text",
-      "text": "The Apostle regenerates health once their arrows pierce their victims. However, when struck with a weapon enchanted with Smite, they won't be able to regenerate their health for a time depending on the level of the Enchantment."
+      "text": "使徒は矢をモブに当てるたびに回復します。しかし、アンデッド特攻がエンチャントされた武器で攻撃すると、しばらくの間HPを回復できなくなります。アンデッド特攻のレベルが大きいほど、この時間は長くなる。"
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:unholy_blood",
-      "text": "The blood of an Apostle courses with Necrotic and Nether Energies. With it, one can either cheat death or create miracles. It appears that an Apostle doesn't possess too much blood and only by slaying them can a sizeable amount be extracted. When slain, the storm will ebb and the meteors will stop falling."
+      "text": "使徒の血にはネクロエネルギーとネザーエネルギーが流れています。それを使えば、死を欺くことも、奇跡を起こすこともできる。彼らを殺すことによってのみ血を抽出することができます。殺されると、嵐は収まり、隕石の落下は止まります。彼らの血はネザーで落とされると純粋なままであるとささやかれています..."
     },
     {
       "type": "patchouli:entity",
@@ -41,7 +41,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Infernos are cousins to the blazes, but are enchanted to be undeterred by simple water and their flames burns even those that are immune to fire."
+      "text": "インフェルノはブレイズの親戚ですが、単純な水にはひるまない魔法がかけられており、インフェルノの炎は火炎耐性のあるものさえも焼きます。"
     },
     {
       "type": "patchouli:entity",
@@ -50,7 +50,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Smaller but far superior to ghasts, these agonized monsters belch out balls of unholy flames that burns through all. Occasionally, these creatures would shoot out a regular lavaball, that can be swung back at them."
+      "text": "小さいながらもガストよりはるかに優れた苦しみの怪物は、すべてを焼き尽くす不浄な炎の球を吐き出します。時々、通常の球を発射しますが、その場合ははね返すことが可能です。"
     },
     {
       "type": "patchouli:spotlight",

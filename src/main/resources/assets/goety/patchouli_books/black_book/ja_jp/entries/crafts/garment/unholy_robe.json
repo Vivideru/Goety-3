@@ -1,12 +1,12 @@
 {
-  "name": "Unholy Robes",
+  "name": "反神聖なローブ",
   "icon": "goety:unholy_robe",
   "category": "goety:crafts/garment",
   "advancement": "goety:goety/kill_a_apostle",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Using the $(l)purest$() blood of the dark emissary, $(l)which can only be obtained by slaying them within the Nether$(), you've made replica of their garments. The Robes gives you immunity to fire and Burn Hexes, and both robe and hat empowers some spells with hellfire."
+      "text": "$(l)純正な$() 反神聖な血 $(l)を使って、$()彼らの衣服のレプリカを作れます。ローブは火と炎の呪いに対する耐性を与え、ローブと帽子の両方で、いくつかの呪文を地獄の炎に強化します。"
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Unholy Hat reduces all incoming damage towards the wearer when within the Nether, as well as capping the configurable max amount of damage the wearer can take much like Apostles. The Unholy Robes grants resistance to hellfire damage."
+      "text": "反神聖な帽子は、ネザー内で着用者が受けるダメージを軽減します。アパスル/使徒のように着用者が受けるダメージの上限を設定することもできます。反神聖なローブは、地獄の炎によるダメージに対する耐性を与えます。"
     }
   ],
   "extra_recipe_mappings": {

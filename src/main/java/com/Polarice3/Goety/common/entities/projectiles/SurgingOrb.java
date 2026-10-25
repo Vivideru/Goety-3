@@ -63,7 +63,7 @@ public class SurgingOrb extends SpellHurtingProjectile{
         pBuilder.define(DATA_ORANGE, false);
         pBuilder.define(TARGET_UNIQUE_ID, Optional.empty());
         pBuilder.define(TARGET_CLIENT_ID, -1);
-        pBuilder.define(TURN_RATE, 0.1F);
+        pBuilder.define(TURN_RATE, 0.2F);
     }
 
     public void readAdditionalSaveData(CompoundTag compound) {

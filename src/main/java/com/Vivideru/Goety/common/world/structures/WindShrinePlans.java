@@ -13,7 +13,10 @@ import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
+import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -46,7 +49,10 @@ public final class WindShrinePlans {
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion_g"),
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion_h"));
     private static final int CACHE_SIZE = 512;
-    private static final Map<Long, Map<Long, Optional<Plan>>> CACHES = new LinkedHashMap<>();
+    private static final Map<CacheKey, Map<Long, Optional<Plan>>> CACHES = new LinkedHashMap<>();
+
+    private record CacheKey(ChunkGenerator generator, long seed) {
+    }
 
     public record Resolver(RegistryAccess registryAccess, ChunkGenerator generator, RandomState randomState, StructureTemplateManager templates, long seed, LevelHeightAccessor heightAccessor) {
         public static Resolver of(WorldGenRegion region, ChunkGenerator generator) {
@@ -57,7 +63,7 @@ public final class WindShrinePlans {
             return new Resolver(context.registryAccess(), context.chunkGenerator(), context.randomState(), context.structureTemplateManager(), context.seed(), context.heightAccessor());
         }
 
-        StructureStart generate(Structure structure, ChunkPos chunkPos) {
+        public StructureStart generate(Structure structure, ChunkPos chunkPos) {
             return structure.generate(this.registryAccess, this.generator, this.generator.getBiomeSource(), this.randomState, this.templates, this.seed, chunkPos, 0, this.heightAccessor, structure.biomes()::contains);
         }
     }
@@ -139,16 +145,34 @@ public final class WindShrinePlans {
         }
 
         public boolean touches(ChunkPos chunkPos) {
-            int reach = this.reach();
-            return chunkPos.getMaxBlockX() >= this.hull.minX() - reach && chunkPos.getMinBlockX() <= this.hull.maxX() + reach
-                    && chunkPos.getMaxBlockZ() >= this.hull.minZ() - reach && chunkPos.getMinBlockZ() <= this.hull.maxZ() + reach;
+            return this.touches(chunkPos.getMinBlockX(), chunkPos.getMinBlockZ(), chunkPos.getMaxBlockX(), chunkPos.getMaxBlockZ(), this.reach());
+        }
+
+        public boolean touches(int minX, int minZ, int maxX, int maxZ, int reach) {
+            return maxX >= this.hull.minX() - reach && minX <= this.hull.maxX() + reach && maxZ >= this.hull.minZ() - reach && minZ <= this.hull.maxZ() + reach;
         }
     }
 
     private WindShrinePlans() {
     }
 
+    public static boolean possibleIn(@Nullable ChunkGeneratorStructureState state) {
+        if (state == null) {
+            return false;
+        }
+        for (Holder<StructureSet> set : state.possibleStructureSets()) {
+            if (set.is(ID)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static List<Plan> forChunk(WorldGenRegion region, ChunkGenerator generator) {
+        ChunkGeneratorStructureState state = region.getLevel().getChunkSource().getGeneratorState();
+        if (!possibleIn(state) || com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine()) {
+            return List.of();
+        }
         Resolver resolver = Resolver.of(region, generator);
         Optional<WindShrineStructure> shrine = shrine(resolver.registryAccess());
         if (shrine.isEmpty()) {
@@ -157,7 +181,7 @@ public final class WindShrinePlans {
         int reachChunks = Math.floorDiv(shrine.get().maxDistanceFromCenter + shrine.get().slopeRadius + 160, 16) + 1;
         ChunkPos current = region.getCenter();
         List<Plan> plans = new ArrayList<>();
-        for (ChunkPos candidate : candidates(resolver.registryAccess(), resolver.seed, current, reachChunks)) {
+        for (ChunkPos candidate : candidates(resolver.registryAccess(), resolver.seed, current, reachChunks, state)) {
             Optional<Plan> plan = plan(resolver, candidate);
             if (plan.isPresent() && plan.get().touches(current)) {
                 plans.add(plan.get());
@@ -167,7 +191,7 @@ public final class WindShrinePlans {
     }
 
     public static Optional<Plan> shrineWithDoorIn(Resolver resolver, ChunkPos chunkPos, int door, int searchChunks) {
-        for (ChunkPos candidate : candidates(resolver.registryAccess(), resolver.seed, chunkPos, searchChunks)) {
+        for (ChunkPos candidate : candidates(resolver.registryAccess(), resolver.seed, chunkPos, searchChunks, StructureTerrain.structureState())) {
             Optional<Plan> plan = plan(resolver, candidate);
             if (plan.isEmpty()) {
                 continue;
@@ -180,7 +204,12 @@ public final class WindShrinePlans {
         return Optional.empty();
     }
 
-    public static List<ChunkPos> candidates(RegistryAccess registryAccess, long seed, ChunkPos around, int searchChunks) {
+    /**
+     * Chunks around the given one where the shrine's structure set may start a shrine. With a generator state the set's own
+     * placement test (frequency, exclusion zones) is applied, so a shrine removed or disabled by data packs or other mods
+     * also disables the mountain around it.
+     */
+    public static List<ChunkPos> candidates(RegistryAccess registryAccess, long seed, ChunkPos around, int searchChunks, @Nullable ChunkGeneratorStructureState state) {
         Optional<RandomSpreadStructurePlacement> spread = spread(registryAccess);
         if (spread.isEmpty()) {
             return List.of();
@@ -191,21 +220,34 @@ public final class WindShrinePlans {
         for (int rx = Math.floorDiv(around.x - searchChunks, spacing); rx <= Math.floorDiv(around.x + searchChunks, spacing); rx++) {
             for (int rz = Math.floorDiv(around.z - searchChunks, spacing); rz <= Math.floorDiv(around.z + searchChunks, spacing); rz++) {
                 ChunkPos candidate = spread.get().getPotentialStructureChunk(seed, rx * spacing, rz * spacing);
-                if (candidate.getChessboardDistance(around) <= searchChunks && visited.add(candidate.toLong())) {
-                    result.add(candidate);
+                if (candidate.getChessboardDistance(around) > searchChunks || !visited.add(candidate.toLong())) {
+                    continue;
                 }
+                if (state != null && !spread.get().isStructureChunk(state, candidate.x, candidate.z)) {
+                    continue;
+                }
+                result.add(candidate);
             }
         }
         return result;
     }
 
+    /** The shrine set's placement, only while the set still lists the shrine (data packs may have emptied it). */
     public static Optional<RandomSpreadStructurePlacement> spread(RegistryAccess registryAccess) {
         Registry<StructureSet> sets = registryAccess.registryOrThrow(Registries.STRUCTURE_SET);
         StructureSet set = sets.get(ID);
-        return set != null && set.placement() instanceof RandomSpreadStructurePlacement spread ? Optional.of(spread) : Optional.empty();
+        if (set == null || !(set.placement() instanceof RandomSpreadStructurePlacement spread)) {
+            return Optional.empty();
+        }
+        for (StructureSet.StructureSelectionEntry entry : set.structures()) {
+            if (entry.structure().is(ID)) {
+                return Optional.of(spread);
+            }
+        }
+        return Optional.empty();
     }
 
-    private static Optional<WindShrineStructure> shrine(RegistryAccess registryAccess) {
+    static Optional<WindShrineStructure> shrine(RegistryAccess registryAccess) {
         Structure structure = registryAccess.registryOrThrow(Registries.STRUCTURE).get(ID);
         return structure instanceof WindShrineStructure shrine ? Optional.of(shrine) : Optional.empty();
     }
@@ -213,7 +255,10 @@ public final class WindShrinePlans {
     private static final int RESERVED_MARGIN = 200;
 
     public static boolean reservesSurface(Structure structure, RegistryAccess registryAccess, ChunkGenerator generator, RandomState randomState, StructureTemplateManager templates, long seed, LevelHeightAccessor heightAccessor, ChunkPos chunkPos) {
-        if (structure instanceof WindShrineStructure || structure instanceof WindShrineExpansionStructure || structure.step() != net.minecraft.world.level.levelgen.GenerationStep.Decoration.SURFACE_STRUCTURES) {
+        if (structure instanceof WindShrineStructure || structure instanceof WindShrineExpansionStructure || structure instanceof com.Vivideru.Goety.common.world.structures.crypt.CryptStructure || structure instanceof com.Vivideru.Goety.common.world.structures.crypt.CryptWingStructure || structure.step() != net.minecraft.world.level.levelgen.GenerationStep.Decoration.SURFACE_STRUCTURES) {
+            return false;
+        }
+        if (!possibleIn(StructureTerrain.structureState()) || com.Vivideru.Goety.common.world.VivideruWorldConfig.classicWindShrine()) {
             return false;
         }
         Optional<WindShrineStructure> shrine = shrine(registryAccess);
@@ -222,7 +267,7 @@ public final class WindShrinePlans {
         }
         Resolver resolver = new Resolver(registryAccess, generator, randomState, templates, seed, heightAccessor);
         int reachChunks = Math.floorDiv(shrine.get().maxDistanceFromCenter + RESERVED_MARGIN, 16) + 2;
-        for (ChunkPos candidate : candidates(registryAccess, seed, chunkPos, reachChunks)) {
+        for (ChunkPos candidate : candidates(registryAccess, seed, chunkPos, reachChunks, StructureTerrain.structureState())) {
             Optional<Plan> plan = plan(resolver, candidate);
             if (plan.isPresent()) {
                 BoundingBox hull = plan.get().hull();
@@ -241,7 +286,7 @@ public final class WindShrinePlans {
         if (inProgress != null) {
             return inProgress;
         }
-        Map<Long, Optional<Plan>> cache = cacheFor(resolver.seed);
+        Map<Long, Optional<Plan>> cache = cacheFor(resolver);
         Optional<Plan> cached = cache.get(candidate.toLong());
         if (cached != null) {
             return cached;
@@ -252,6 +297,8 @@ public final class WindShrinePlans {
                 return cached;
             }
             Optional<Plan> plan = Optional.empty();
+            // Plans are made on the natural land: the land the noise generator raises depends on them.
+            WindShrineBlend.suppress();
             try {
                 Optional<WindShrineStructure> shrine = shrine(resolver.registryAccess());
                 if (shrine.isPresent()) {
@@ -289,6 +336,7 @@ public final class WindShrinePlans {
                     }
                 }
             } finally {
+                WindShrineBlend.resume();
                 partial.remove(candidate.toLong());
             }
             cache.put(candidate.toLong(), plan);
@@ -414,11 +462,12 @@ public final class WindShrinePlans {
         stair.sloped = true;
     }
 
-    private static Map<Long, Optional<Plan>> cacheFor(long seed) {
+    private static Map<Long, Optional<Plan>> cacheFor(Resolver resolver) {
+        CacheKey key = new CacheKey(resolver.generator(), resolver.seed());
         synchronized (CACHES) {
-            Map<Long, Optional<Plan>> cache = CACHES.get(seed);
+            Map<Long, Optional<Plan>> cache = CACHES.get(key);
             if (cache == null) {
-                if (CACHES.size() >= 4) {
+                if (CACHES.size() >= 8) {
                     CACHES.remove(CACHES.keySet().iterator().next());
                 }
                 cache = Collections.synchronizedMap(new LinkedHashMap<>(128, 0.75F, true) {
@@ -427,7 +476,7 @@ public final class WindShrinePlans {
                         return this.size() > CACHE_SIZE;
                     }
                 });
-                CACHES.put(seed, cache);
+                CACHES.put(key, cache);
             }
             return cache;
         }

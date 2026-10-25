@@ -20,6 +20,6 @@ public class ModBanners {
     public static final DeferredHolder<BannerPattern, BannerPattern> MOON = create("moon");
 
     private static DeferredHolder<BannerPattern, BannerPattern> create(String name) {
-        return BANNER_PATTERNS.register(name, () -> new BannerPattern(ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, name), "block.goety.banner." + name));
+        return BANNER_PATTERNS.register(name, () -> new BannerPattern(ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, name), "block.minecraft.banner.goety." + name));
     }
 }

@@ -31,6 +31,15 @@
       "recipe": "goety:pine/pine_lantern"
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "goety:gold_chandelier"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "goety:iron_dungeon_chain",
+      "recipe2": "goety:gold_dungeon_chain"
+    },
+    {
       "type": "patchouli:spotlight",
       "item": "goety:royal_carpet_corner",
       "text": "Обычные ковры вам не годятся. Полы в логове должны быть достаточно просторными для ваших ног. К сожалению, эти ковры необходимо делить на части, из которых впоследствии можно составить целый узор."
@@ -90,6 +99,10 @@
       "item": "minecraft:enchanted_book",
       "title": "Царственность",
       "text": "На все троны можно наложить «царственность». Никто, кроме вас и ваших союзников, не сможет сидеть на зачарованном троне. Если на трон сядете вы, 4 ближайших союзника будут получать урон вместо вас. Если кто-то другой сломает трон, он потеряет свои чары."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:enchant/royalty"
     }
   ]
 }

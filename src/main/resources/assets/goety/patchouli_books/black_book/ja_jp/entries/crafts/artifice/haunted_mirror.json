@@ -1,12 +1,12 @@
 {
-  "name": "Haunted Mirror",
+  "name": "幽霊の鏡",
   "icon": "goety:haunted_mirror",
   "category": "goety:crafts/artifice",
-  "advancement": "goety:goety/craft_dark_altar",
+  "advancement": "goety:goety/read_haunting_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With some studies and experimentation, you've discovered a way to transform a piece of Haunted Glass into a mirror that allows you to essentially teleport from one place to another."
+      "text": "いくつかの研究と実験を行った結果、幽霊のガラスを鏡に変えて、ある場所から別の場所にテレポートできるようにする方法を発見しました。"
     },
     {
       "type": "goety:ritual",
@@ -14,11 +14,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "In order to teleport by using Mirrors, you must have two placed down in the world on the same X and Z or Y-Axis. For the X and Z, or horizontal axis, two mirrors must be placed on the same Y axis, each facing way from each other, within 32 blocks, making it seem like a tunnel or hole between walls."
+      "text": "鏡を使用してテレポートするには、ワールドの同じ X 軸、Z 軸、または Y 軸上に 2 つ配置する必要があります。 X 軸と Z 軸、つまり水平軸については、2 つのミラーを同じ Y 軸上に、それぞれ向かい合って32ブロック以内に配置する必要があり、鏡と鏡の間にトンネルを置くようにブロックを置く必要があります。"
     },
     {
       "type": "patchouli:text",
-      "text": "For a the Y, or vertical, axis, the Mirrors must be facing the same way, and share the same XZ coordinates, either 16 blocks below or above each other. Mirrors will attempt to find another mirror above itself before searching below."
+      "text": "Y 軸 (垂直軸) の場合、鏡は同じ方向を向いており、互いに 16 ブロック上下に同じ X Z 座標を共有する必要があります。鏡は、下を検索する前に、それ自体の上にある別の鏡を検索しようとします。"
     }
   ],
   "extra_recipe_mappings": {

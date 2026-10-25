@@ -62,7 +62,7 @@ public class BlackCrystalBlockEntity extends OwnedBlockEntity implements IEnchan
         if (this.level != null) {
             ++this.tickCount;
             if (this.level instanceof ServerLevel serverLevel) {
-                int radius = 8 + this.getEnchantments().getOrDefault(ModEnchantments.RADIUS, 0);
+                int radius = 8 + this.getEnchantmentLevel(ModEnchantments.RADIUS);
                 if (this.target == null) {
                     for (LivingEntity livingEntity : serverLevel.getEntitiesOfClass(LivingEntity.class, new AABB(this.worldPosition).inflate(radius * 2))) {
                         if (EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(livingEntity) && livingEntity.distanceToSqr(this.getBlockPos().getCenter()) <= Mth.square(radius)) {
@@ -98,7 +98,7 @@ public class BlackCrystalBlockEntity extends OwnedBlockEntity implements IEnchan
                                 }
                                 this.level.playSound(null, this.worldPosition, ModSounds.SOUL_EAT.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                                 if (this.getTrueOwner() instanceof Player player) {
-                                    int enchantment = this.getEnchantments().getOrDefault(ModEnchantments.SOUL_EATER, 0);
+                                    int enchantment = this.getEnchantmentLevel(ModEnchantments.SOUL_EATER);
                                     int soulEater = Mth.clamp(enchantment + 1, 1, 10);
                                     SEHelper.increaseSouls(player, ItemConfig.DarkScytheSouls.get() * soulEater);
                                 }

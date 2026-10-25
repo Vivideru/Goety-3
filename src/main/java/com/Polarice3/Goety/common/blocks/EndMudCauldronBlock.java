@@ -3,6 +3,9 @@ package com.Polarice3.Goety.common.blocks;
 import com.Polarice3.Goety.init.ModCauldronInteraction;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
@@ -62,5 +65,10 @@ public class EndMudCauldronBlock extends AbstractCauldronBlock {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_153549_) {
         p_153549_.add(LEVEL);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        return new ItemStack(Items.CAULDRON);
     }
 }

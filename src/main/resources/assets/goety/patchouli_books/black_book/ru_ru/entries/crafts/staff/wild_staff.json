@@ -1,11 +1,11 @@
 {
-  "name": "Wild Staff",
+  "name": "Дикий посох",
   "icon": "goety:wild_staff",
   "category": "goety:crafts/staff",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The natural world can be hard to tame, but with some dark magic and wood, you've crafted a staff that heightens the natural and unnatural powers of Wild spells."
+      "text": "Мир природы порой трудно подчинить, но с помощью тёмной магии и дерева вы создали посох, который усиливает естественную и неестественную силу диких заклинаний."
     },
     {
       "type": "goety:ritual",

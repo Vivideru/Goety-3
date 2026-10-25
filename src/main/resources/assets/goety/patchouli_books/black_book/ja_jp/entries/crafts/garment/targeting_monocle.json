@@ -1,11 +1,11 @@
 {
-  "name": "Targeting Monocle",
+  "name": "ターゲティングモノクル",
   "icon": "goety:targeting_monocle",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Trying to hit your foes with your spells can be an ordeal as they could avoid your Magical Fangs with but a single step. With this monocle, you can lock onto nearby foes by pressing the 'Activate Curio' key, allowing you to more accurately hit them with a spell."
+      "text": "魔法で敵を攻撃するのは至難の業です。敵はたった一歩で魔法の牙をかわしてしまうからです。このモノクルを使えば、「Curioをアクティブ」キーを押すことで近くの敵をロックオンでき、より正確に魔法を命中させることができます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Pressing the 'Activate Curio' key while active will change to another nearby foe. Pressing the key while crouching will deactivate the monocle."
+      "text": "有効化された状態で「Curioをアクティブ」キーを押すと、近くの別の敵に切り替わります。しゃがんだ状態でこのキーを押すと、モノクルが無効化されます。"
     }
   ],
   "extra_recipe_mappings": {

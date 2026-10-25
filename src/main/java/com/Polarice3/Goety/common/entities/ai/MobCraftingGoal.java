@@ -124,6 +124,7 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
             this.mob.setCrafting(false);
             this.posedByMob = false;
         }
+        this.returnIdleAnimation();
     }
 
     @Override
@@ -152,12 +153,27 @@ public class MobCraftingGoal<T extends Mob & IMobCrafter> extends Goal {
                     this.mob.setCrafting(true);
                 }
 
+                if (this.workTick == this.timeToAnimateWork()) {
+                    this.playWorkAnimation();
+                }
+
                 if (this.workTick >= this.craftTime) {
                     this.workTick = 0;
                     this.onCraft(serverLevel);
+                    this.returnIdleAnimation();
                 }
             }
         }
+    }
+
+    public int timeToAnimateWork(){
+        return this.craftTime;
+    }
+
+    public void playWorkAnimation() {
+    }
+
+    public void returnIdleAnimation() {
     }
 
     public void onCraft(ServerLevel serverLevel) {

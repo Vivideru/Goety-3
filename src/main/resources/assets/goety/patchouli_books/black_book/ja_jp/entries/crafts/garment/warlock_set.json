@@ -1,11 +1,11 @@
 {
-  "name": "Warlock Set",
+  "name": "ウォーロックセット",
   "icon": "goety:warlock_robe",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Warlocks are known to have a very fungal brown robes with a nice sash wrapped around it. With some Red Wool, A couple of Wartful Eggs and Nether Warts, you've figured out how to make your own Warlock sash and which makes it so using that a Wartful Egg no longer harms you."
+      "text": "ウォーロックは、非常にカビの生えた茶色のローブを着ており、それに素敵な帯が巻かれていることが知られています。 いくつかの赤い羊毛、いくつかのいぼのような卵、そしてネザーの疣贅を使って、あなたは自分のウォーロックの帯を作る方法を見つけました。これにより、いぼリングがあなたに害を及ぼすことがなくなります。"
     },
     {
       "type": "patchouli:crafting",
@@ -17,11 +17,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Warlock Robe causes the wearer to be resistant to magic damage and provides a 10%% chance of not consuming any Wartful Eggs or a Snap Fungi and gives a 25%% chance for an additional Snap Fungi to drop from full grown Snap Warts. The Sash and Robe also cause Spiders to more likely drop Spider Eggs. If the wearer has a negative status effect, the garment will automatically use up any Wartful Eggs within the wearer's inventory."
+      "text": "ウォーロック ローブは着用者に爆発的ダメージに対する耐性を与え、10%% の確率でワートフルエッグを消費しないようにします。 サッシュとローブにより、クモはクモの卵をドロップする可能性が高くなります。 着用者がマイナスのステータス効果を持っている場合、衣服は着用者のインベントリ内のワートフルエッグを自動的に使い切って、ワートリングに効果を移します。"
     },
     {
       "type": "patchouli:text",
-      "text": "Much like wearing a Witches Hat and Robe, wearing Warlock Robes causes all Witches and Warlocks to be neutral and barter-able."
+      "text": "魔女の帽子とローブを着用するのと同じように、ウォーロック ローブを着用すると、すべての魔女とウォーロックが中立になり、物々交換が可能になります。"
     }
   ],
   "extra_recipe_mappings": {

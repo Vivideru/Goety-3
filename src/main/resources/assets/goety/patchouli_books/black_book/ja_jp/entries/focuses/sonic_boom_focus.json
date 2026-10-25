@@ -1,5 +1,5 @@
 {
-  "name": "Sonic Boom Focus",
+  "name": "ソニックブームフォーカス",
   "icon": "goety:sonic_boom_focus",
   "category": "goety:focuses",
   "advancement": "goety:goety/get_ruby",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "With the power of the Ruby, you've managed to replicate the power of the Warden's Sonic Boom, allowing you to use its ability against others!"
+      "text": "ルビーの力で、あなたはウォーデンのソニックブームの力を複製することに成功し、その能力を他の人に対して使用できるようになりました。"
     },
     {
       "type": "goety:ritual",

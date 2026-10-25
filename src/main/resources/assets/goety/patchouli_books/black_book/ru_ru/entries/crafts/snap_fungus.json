@@ -1,11 +1,11 @@
 {
-  "name": "Snap Fungus",
+  "name": "Бум-грибы",
   "icon": "goety:snap_warts",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've discovered a new type of fungus that can only grow on Crimson or Warped Stems/Hyphae called Snap Fungus. The Fungus is a ball full of toxins that one can't help but throw upwards in the air. When hitting something, they will explode, with a chance of leaving behind a small cloud of poison. Curiously, the explosion does not effect the thrower nor their servants."
+      "text": "Вы обнаружили новый вид грибов, который может расти только на багровых и искажённых стеблях/гифах и называется бум-гриб. Гриб представляет собой шар, наполненный токсинами, который можно бросать. При попадании во что-либо он взрывается, оставляя после себя небольшое облако яда. Любопытно, что взрыв не действует ни на бросающего, ни на его прислужников."
     },
     {
       "type": "patchouli:crafting",
@@ -14,17 +14,17 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:snap_fungus",
-      "text": "It appears that you can only throw a large amount of them at a time. On one hand, you get to throw multiple at once, on the other, you can't throw any more for a couple of seconds."
+      "text": "Похоже, что вы можете бросать их только кучами. С одной стороны, это позволяет бросать сразу несколько, с другой — придётся ждать их отката."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:blast_fungus",
-      "text": "You've also discovered a way to increase the potency of the fungi by combining 4 of them with a Ghast Tear. These fungi's explosions have larger radius but no longer leave any poison clouds."
+      "text": "Вы также обнаружили способ увеличить эффективность грибов, объединяя их по 4 со слезой гаста. Радиус действия этих взрыв-грибов больше, но они не оставляют ядовитых облаков."
     },
     {
       "type": "patchouli:spotlight",
       "item": "goety:berserk_fungus",
-      "text": "By putting Snap Fungi with a Lily of the Valley in a Brewing Stand, you've managed to create the Berserk Fungus. Unlike the other two fungi, the fungus throws much like Snowballs and Eggs, and grants whoever gets hit with Strength, Speed and, unfortunately for beings like you, Nausea."
+      "text": "Проварив бум-грибы в зельеварке с ландышем, вам удалось создать берсерк-гриб. В отличие от двух других грибов, этот можно кидать так же, как снежки и яйца. Он наделяет того, в кого попадает, силой, скоростью и, к несчастью для подобных вам, тошнотой."
     }
   ],
   "extra_recipe_mappings": {

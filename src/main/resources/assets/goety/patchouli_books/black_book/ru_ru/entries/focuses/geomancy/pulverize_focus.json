@@ -1,11 +1,11 @@
 {
-  "name": "Pulverize Focus",
+  "name": "Фокус измельчения",
   "icon": "goety:pulverize_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Equipping this focus on a wand or staff allows you to pulverize certain blocks into cracked versions, or into gravel and then to sand, by right-clicking on a block."
+      "text": "Использование этого фокуса позволяет вам превращать определённые блоки в их потрескавшиеся версии или в гравий, а затем в песок, нажав ПКМ."
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will pulverize 3x3 blocks un-enchanted."
+      "text": "Использование $(l:crafts/staff/geo_staff)гео-посоха$() позволит превращать блоки в области 3 на 3, не накладывая чары."
     }
   ]
 }

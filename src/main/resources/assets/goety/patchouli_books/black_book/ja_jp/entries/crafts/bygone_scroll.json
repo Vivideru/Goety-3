@@ -1,12 +1,12 @@
 {
-  "name": "Bygone Scroll",
+  "name": "過ぎ去ったスクロール",
   "icon": "goety:bygone_scroll",
   "category": "goety:crafts",
   "advancement": "goety:goety/get_withered_manuscript",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've managed to obtain a manuscript that details on the fortress dwellers workings and magic. Unfortunately, the manuscript is nigh-unreadable but you've managed to find a way to call upon the dead to fill in the blanks."
+      "text": "あなたは要塞の住人の働きと魔法について詳細に記された写本を手に入れました。残念ながら写本はほとんど読めませんが、あなたは死者を呼び出して空白を埋める方法を見つけました。"
     },
     {
       "type": "goety:ritual",

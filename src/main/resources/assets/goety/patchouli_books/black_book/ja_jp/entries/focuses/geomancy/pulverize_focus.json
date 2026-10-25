@@ -1,11 +1,11 @@
 {
-  "name": "Pulverize Focus",
+  "name": "粉砕のフォーカス",
   "icon": "goety:pulverize_focus",
   "category": "goety:focuses/geomancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Equipping this focus on a wand or staff allows you to pulverize certain blocks into cracked versions, or into gravel and then to sand, by right-clicking on a block."
+      "text": "このフォーカスを杖に入れて、ブロックを右クリックすると、特定のブロックをひびの入ったブロックに粉砕したり、砂利に粉砕してから砂に粉砕したりできるようになります。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/geo_staff)Geo Staff$() will pulverize 3x3 blocks un-enchanted."
+      "text": "$(l:crafts/staff/geo_staff)地の杖$()で唱えると、エンチャントされていない3x3ブロックを粉砕します。"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Summon Storm",
+  "name": "竜巻の儀式",
   "icon": "minecraft:netherrack",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple yet powerful ritual that conjures up a Thunderstorm. Useful to those who wish to hide from the sun."
+      "text": "雷雨を呼び起こすシンプルかつ強力な儀式。 日差しを避けたい方に便利です。"
     },
     {
       "type": "goety:ritual",

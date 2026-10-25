@@ -1,5 +1,5 @@
 {
-  "name": "Soul Menderer",
+  "name": "ソウルメンダラー",
   "icon": "goety:soul_mender",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/craft_dark_ingot",
@@ -7,7 +7,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Soul Menderer is a powerful device that repairs damaged weapons and tools using Soul Energy. The Soul Menderer must be placed on-top of a $(l:intro/cursed_cage)Cursed Cage$() with a Totem or $(l:crafts/soul_transfer_gem)Transfer Gem$() in it to activate, then it will slowly repair the item within itself."
+      "text": "ソウルメンダラーは、ソウル エネルギーを使用して損傷した武器や道具を修復する強力な装置です。 ソウルメンダラーを起動するには、トーテムまたは $(l:crafts/soul_transfer_gem)Transfer Gem$() が入った $(l:intro/cursed_cage)Cursed Cage$() の上に置く必要があります。その後、ゆっくりと起動します。 アイテム自体を修復します。"
     },
     {
       "type": "goety:ritual",

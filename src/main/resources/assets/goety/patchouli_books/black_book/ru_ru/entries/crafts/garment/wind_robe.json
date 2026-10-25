@@ -1,11 +1,12 @@
 {
-  "name": "Wind Robes",
+  "name": "Ветряные одежды",
   "icon": "goety:wind_robe",
   "category": "goety:crafts/garment",
+  "advancement": "goety:goety/read_mistral_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Wind Robes allows you to fall slowly(or not so slowly when holding shift) and make you immune to fall damage. However, every second the robes slow your fall, Soul Energy is consumed. Wearing the Robes also halves the Soul Cost for Wind Spells."
+      "text": "Ветряная мантия дарует вам замедленное падение (или не такое замедленное, если зажать Shift) и иммунитет к урону от него. Однако с каждой секундой замедленного падения расходуется энергия душ. Мантия также снижает стоимость ветряных заклинаний вдвое."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The creatures of the winds can use their summoner's soul energy to slowly heal themselves, should they wear this robe."
+      "text": "Существа, порождённые ветряной магией, могут медленно исцеляться, используя энергию душ создателя, если он наденет эту мантию."
     },
     {
       "type": "goety:ritual",
@@ -21,11 +22,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The jade crown will halved the time to cast Wind spells and keeps your wind servants from dying off, like Vexes, when worn."
+      "text": "Эта нефритовая корона вдвое сокращает время использования диких заклинаний и не даёт вашим диким прислужникам исчезать, подобно врединам."
     }
   ],
   "extra_recipe_mappings": {
     "goety:wind_robe": 1,
-    "goety:wind_crown": 3
+	"goety:wind_crown": 3
   }
 }

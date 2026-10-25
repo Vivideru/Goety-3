@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    " $ ",
+    "$O$",
+    " $ "
+  ],
+  "key":
+  {
+    "$":
+    {
+      "tag": "c:dusts/glowstone"
+    },
+    "O":
+    {
+      "item": "goety:end_mineral_bottle"
+    }
+  },
+  "result":
+  {
+    "id": "goety:end_lamp"
+  }
+}

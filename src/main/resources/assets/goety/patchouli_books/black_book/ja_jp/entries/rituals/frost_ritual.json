@@ -1,22 +1,22 @@
 {
-  "name": "Frost Ritual",
+  "name": "霜の儀式",
   "icon": "minecraft:packed_ice",
   "category": "goety:rituals",
   "sortnum": 4,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)Altar is located in a snowing biome $(br)$(l)OR$()$() $(li)16 Ice Blocks of any type $(li)8 Snow Blocks $(li)4 $(l:goety:crafts/artifice/freezing_lamp)Freezing Lamps$()"
+      "text": "Requirements: $(li)儀式は寒冷地で行う必要があります$(br)$(l)OR$()$() $(li)16氷ブロック（種類は何でも可）$(li)8雪ブロック $(li)4フリージングランプ"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/frost_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "祭祀の置き方の一例。"
     },
     {
       "type": "patchouli:text",
-      "text": "Surrounding the Altar with freezing bricks and blocks allows it to use the cold to craft all kinds of magic."
+      "text": "祭壇を凍るレンガやブロックで囲むことで、寒さを利用してあらゆる種類の魔法を作り出すことができます。"
     }
   ]
 }

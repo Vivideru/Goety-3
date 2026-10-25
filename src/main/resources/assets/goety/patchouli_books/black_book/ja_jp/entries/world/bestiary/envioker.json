@@ -1,16 +1,16 @@
 {
-  "name": "A Strange Incident",
+  "name": "奇妙な出来事",
   "icon": "minecraft:totem_of_undying",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_envioker",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While you were busy with your day, you seemed to be attacked by a lone Illager that seemed to be an Evoker. Unlike other Evokers, this one seems to be far more powerful and seems to be using their Totem to the fullest."
+      "text": "あなたが忙しい日々を送っている間に、エヴォーカーと思われる孤独な邪悪な村人に襲われたようです。 他のエヴォーカーとは異なり、このエヴォーカーははるかに強力であるようで、トーテムを最大限に活用しているようです。"
     },
     {
       "type": "patchouli:text",
-      "text": "It seems the Illagers despised how you've managed to delve into secrets that they believed belonged to them. You feel that this Evoker was simply one that was too enraged by how quickly you've discovered said secrets. You have a feeling that the more you delve into the dark arts, the more Illagers will take umbrage."
+      "text": "邪悪な村人たちは、あなたが自分たちのものだと信じていた秘密をどのようにして掘り下げたのかを軽蔑していたようです。 あなたは、このエヴォーカーは単にあなたが秘密を素早く発見したことに激怒しただけだと感じています。 闇の芸術を深く掘り下げれば調べるほど、より多くのイリジャーが憤慨するだろうという気がします。"
     }
   ]
 }

@@ -24,6 +24,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.SectionPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -97,6 +99,9 @@ public abstract class RaiderServant extends Summoned {
     private int celebrationTime;
     private int raidTime;
     private boolean missionComplete = false;
+    @Nullable
+    private ItemStack cachedBanner;
+    private long bannerCacheExpiry = -1L;
 
     public RaiderServant(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -114,7 +119,7 @@ public abstract class RaiderServant extends Summoned {
 
     @Override
     public void followGoal() {
-        this.goalSelector.addGoal(6, new FollowOwnerGoal<>(this, 1.0D, 10.0F, 2.0F){
+        this.goalSelector.addGoal(6, new FollowOwnerGoal<>(this, this.getFollowSpeed(), 10.0F, 2.0F){
             @Override
             public boolean canUse() {
                 if (RaiderServant.this.isRaiding()){
@@ -169,8 +174,8 @@ public abstract class RaiderServant extends Summoned {
     public void miscGoal() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(8, new RaiderWanderGoal<>(this, 0.6D));
-        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 15.0F, 1.0F));
-        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 15.0F));
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
+        this.goalSelector.addGoal(10, new LookAtPlayerGoal(this, Mob.class, 8.0F));
     }
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
@@ -302,11 +307,11 @@ public abstract class RaiderServant extends Summoned {
 
     public boolean isLeader(){
         if (this.canBeLeader()) {
-            if (this.getLeaderBannerInstance().isEmpty()) {
+            ItemStack banner = this.getLeaderBannerInstance();
+            if (banner.isEmpty()) {
                 return this.getItemBySlot(EquipmentSlot.HEAD).is(ItemTags.BANNERS);
-            } else {
-                return ItemStack.matches(this.getItemBySlot(EquipmentSlot.HEAD), this.getLeaderBannerInstance());
             }
+            return ItemHelper.sameBanner(this.getItemBySlot(EquipmentSlot.HEAD), banner);
         }
         return false;
     }
@@ -492,6 +497,7 @@ public abstract class RaiderServant extends Summoned {
 
     @Override
     public void onCeaseFire(ServerPlayer player) {
+        super.onCeaseFire(player);
         if (player.getMainHandItem().is(ItemTags.BANNERS) || player.getOffhandItem().is(ItemTags.BANNERS)){
             if (this.getRaidPos() != null) {
                 if (this.isLeader()) {
@@ -521,6 +527,15 @@ public abstract class RaiderServant extends Summoned {
             }
         }
         return flag;
+    }
+
+    @Override
+    public Entity changeDimension(DimensionTransition transition) {
+        Entity moved = super.changeDimension(transition);
+        if (moved instanceof RaiderServant raider) {
+            raider.setRaidPos(null);
+        }
+        return moved;
     }
 
     @Override
@@ -636,7 +651,7 @@ public abstract class RaiderServant extends Summoned {
                         }
                     }
                 }
-                if (this.getMarked().isDeadOrDying()) {
+                if (this.getMarked() == null || this.getMarked().isDeadOrDying()) {
                     this.celebrationTime = 600;
                     this.missionComplete = true;
                     if (this.getMarked() != null){
@@ -663,7 +678,8 @@ public abstract class RaiderServant extends Summoned {
 
     public void raidTick(){
         if (this.level() instanceof ServerLevel serverLevel) {
-            if (this.getRaidPos() != null) {
+            BlockPos raidPos = this.getRaidPos();
+            if (raidPos != null) {
                 if (this.level().dimension() != this.getRaidLevel()){
                     this.setRaidPos(null);
                     if (this.getTrueOwner() != null
@@ -673,11 +689,11 @@ public abstract class RaiderServant extends Summoned {
                     }
                 }
 
-                if (!serverLevel.isVillage(this.getRaidPos())) {
+                if (!serverLevel.isVillage(raidPos)) {
                     this.moveRaidCenterToNearbyVillageSection();
                 }
 
-                if (!serverLevel.isVillage(this.getRaidPos()) || (this.getRaidVillagers().isEmpty() && this.raidTime >= 100)) {
+                if (!serverLevel.isVillage(raidPos) || (this.getRaidVillagers().isEmpty() && this.raidTime >= 100)) {
                     this.celebrationTime = 600;
                     this.missionComplete = true;
                     this.setRaidPos(null);
@@ -687,7 +703,7 @@ public abstract class RaiderServant extends Summoned {
                 }
                 ++this.raidTime;
 
-                this.chunkLoadTarget(this.getRaidPos());
+                this.chunkLoadTarget(raidPos);
 
                 if (this.raidTime >= 48000){
                     this.setRaidPos(null);
@@ -709,7 +725,7 @@ public abstract class RaiderServant extends Summoned {
                 }
                 if (this.isLeader()) {
                     for (RaiderServant servant : this.getNearbyCompanions()) {
-                        if (servant.getLeader() == null && servant.getRaidPos() == this.getRaidPos()) {
+                        if (servant.getLeader() == null && servant.getRaidPos() == raidPos) {
                             servant.setLeader(this);
                             servant.setFollowing();
                         }
@@ -820,14 +836,23 @@ public abstract class RaiderServant extends Summoned {
     }
 
     public ItemStack getLeaderBannerInstance() {
+        long now = this.level().getGameTime();
+        if (this.cachedBanner != null && now < this.bannerCacheExpiry) {
+            return this.cachedBanner;
+        }
+        this.bannerCacheExpiry = now + 100L;
+        this.cachedBanner = this.getBannerPatternInstance();
+        return this.cachedBanner;
+    }
+
+    public ItemStack getLeaderBannerWithNameInstance() {
         if (this.getTrueOwner() instanceof Player player) {
-            ListTag listTag = SEHelper.getBannerPattern(player);
-            if (listTag != null) {
-                ItemStack itemstack = this.getBannerPatternInstance();
+            ItemStack itemstack = this.getBannerPatternInstance();
+            if (!itemstack.isEmpty()) {
                 itemstack.set(DataComponents.HIDE_ADDITIONAL_TOOLTIP, Unit.INSTANCE);
                 itemstack.set(DataComponents.CUSTOM_NAME, Component.translatable("block.goety.player_banner", player.getDisplayName()).withStyle(ChatFormatting.GOLD));
-                return itemstack;
             }
+            return itemstack;
         }
         return ItemStack.EMPTY;
     }
@@ -987,15 +1012,17 @@ public abstract class RaiderServant extends Summoned {
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         if (this.getTrueOwner() != null && pPlayer == this.getTrueOwner()) {
-            if (this.canBeLeader()
-                    && !this.getLeaderBannerInstance().isEmpty()
-                    && ItemHelper.sameBanner(itemstack, this.getBannerPatternInstance())
-                    && !ItemStack.matches(this.getItemBySlot(EquipmentSlot.HEAD), this.getLeaderBannerInstance())) {
+            ItemStack leaderBanner = this.getLeaderBannerInstance();
+            if (pHand == InteractionHand.MAIN_HAND
+                    && this.canBeLeader()
+                    && !leaderBanner.isEmpty()
+                    && ItemHelper.sameBanner(itemstack, leaderBanner)
+                    && !ItemHelper.sameBanner(this.getItemBySlot(EquipmentSlot.HEAD), leaderBanner)) {
                 ItemStack helmet = this.getItemBySlot(EquipmentSlot.HEAD);
                 this.playSound(SoundEvents.ARMOR_EQUIP_GENERIC.value(), 1.0F, 1.0F);
                 this.playSound(this.getCelebrateSound(), 1.0F, this.getVoicePitch());
                 this.dropEquipment(EquipmentSlot.HEAD, helmet);
-                this.setItemSlot(EquipmentSlot.HEAD, this.getLeaderBannerInstance());
+                this.setItemSlot(EquipmentSlot.HEAD, this.getLeaderBannerWithNameInstance());
                 this.setGuaranteedDrop(EquipmentSlot.HEAD);
                 if (!pPlayer.getAbilities().instabuild) {
                     itemstack.shrink(1);
@@ -1256,10 +1283,11 @@ public abstract class RaiderServant extends Summoned {
         }
 
         public boolean canUse() {
-            if ((this.mob.getMarked() != null || this.mob.isRaiding()) && this.mob.canBeLeader() && !this.mob.getLeaderBannerInstance().isEmpty() && !ItemStack.matches(this.mob.getItemBySlot(EquipmentSlot.HEAD), this.mob.getLeaderBannerInstance())) {
+            ItemStack leaderBanner = this.mob.getLeaderBannerInstance();
+            if ((this.mob.getMarked() != null || this.mob.isRaiding()) && this.mob.canBeLeader() && !leaderBanner.isEmpty() && !ItemHelper.sameBanner(this.mob.getItemBySlot(EquipmentSlot.HEAD), leaderBanner)) {
                 RaiderServant raider = this.mob.getLeader();
                 if (raider == null || !raider.isAlive()) {
-                    List<ItemEntity> list = this.mob.level().getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(16.0D, 8.0D, 16.0D), itemEntity -> !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && ItemHelper.sameBanner(itemEntity.getItem(), this.mob.getBannerPatternInstance()));
+                    List<ItemEntity> list = this.mob.level().getEntitiesOfClass(ItemEntity.class, this.mob.getBoundingBox().inflate(16.0D, 8.0D, 16.0D), itemEntity -> !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && ItemHelper.sameBanner(itemEntity.getItem(), leaderBanner));
                     if (!list.isEmpty()) {
                         Optional<ItemEntity> optional = list.stream().findFirst();
                         if (optional.isPresent()) {

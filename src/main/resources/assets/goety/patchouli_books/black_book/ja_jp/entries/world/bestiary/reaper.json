@@ -1,12 +1,12 @@
 {
-  "name": "Reapers",
+  "name": "リーパー",
   "icon": "goety:spirit_fabric",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_reaper",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Hooded apparitions that are proficient at wielding scythes with a hunger for souls."
+      "text": "魂を渇望し、鎌を巧みに扱うフード付きの幽霊です。"
     },
     {
       "type": "patchouli:entity",
@@ -15,7 +15,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "goety:grave_dust",
-      "title": "Grave Dust",
+      "title": "リーパーは、ネクロマンシー系の作成に役立つグレイブダストをドロップする可能性があります。",
       "text": "Reapers have a chance of dropping Grave Dusts, which are useful for crafting certain necromantic objects."
     }
   ],

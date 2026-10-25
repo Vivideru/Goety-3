@@ -1,11 +1,11 @@
 {
-  "name": "Entangling Focus",
+  "name": "絡み合いのフォーカス",
   "icon": "goety:entangling_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This spell will summon entangling roots upon a target. If the roots managed to catch a target in time, they will be unable to move until the roots retreat back into the ground. When cast with $(l:crafts/staff/wild_staff)Wild Staff$(), the roots will be summoned underneath 8 nearby non-allied creatures."
+      "text": "この呪文はターゲットに絡み合った根を召喚します。根が時間内にターゲットを捕まえることができた場合、根が地面に戻るまで動くことができなくなります。$(l:crafts/staff/wild_staff)野生の杖$()でキャストすると、近くにある8体の味方ではないクリーチャーの下に根が召喚されます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing a $(l:crafts/garment/wild_robe)Wild Robe$(), will cause the roots to continuously damage the entrapped target."
+      "text": "$(l:crafts/garment/wild_robe)野生のローブ$()を着用すると、根が捕まえたターゲットに継続的にダメージを与えます。"
     }
   ],
   "extra_recipe_mappings": {

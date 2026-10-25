@@ -1,11 +1,11 @@
 {
-  "name": "Zombie Variants",
+  "name": "ゾンビの亜種",
   "icon": "minecraft:rotten_flesh",
   "category": "goety:world/bestiary",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "More types of zombies have been sighted lately, with some appearing on certain areas or conditions."
+      "text": "最近はより多くの種類のゾンビが目撃されており、特定の地域や状況で出現するゾンビもいます。"
     },
     {
       "type": "patchouli:entity",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These burnt corpses appeared to be remains of those struck by lightning, whose attacks leave their victims in fits of Spasms. They seem to appear only in thunderstorms, exposed to the skies, or when a Zombie is hit by a lightning bolt. They also take half the damage amount from shock or lightning attacks."
+      "text": "これらの焼け焦げた死体は、雷に打たれた者の残骸のようで、雷の攻撃を受けると痙攣発作を起こします。雷雨の際、空に露出している時、またはゾンビが雷に打たれた時にのみ出現するようです。また、ショック攻撃や雷撃によるダメージを半減します。"
     }
   ]
 }

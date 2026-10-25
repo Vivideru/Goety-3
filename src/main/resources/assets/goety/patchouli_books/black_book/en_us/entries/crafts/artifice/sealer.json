@@ -1,0 +1,27 @@
+{
+  "name": "Sealer",
+  "icon": "goety:sealer",
+  "category": "goety:crafts/artifice",
+  "advancement": "goety:goety/craft_animation_core",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The Sealer keeps a chest or an $(l:world/crypts)Apparition Door$() shut for as long as it is told to. Bind a $(l:crafts/waystone)Waystone$() to the chest or door and place the Waystone in the Sealer by using it on the block; an empty hand takes it back out. The bound block must be in the same dimension and within 32 blocks."
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:sealer"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "While the Sealer receives a redstone signal the bound block is sealed: a chest cannot be opened and an Apparition Door cannot be made to vanish, neither by hand nor by redstone. Sealing one Apparition Door seals every door connected to it. The sealed block carries the same glowing seal as the chests of the Skull Lord. Remove the signal and the seal is lifted. A sealed block cannot be mined, blown up or broken by spells. A working Sealer glows and shows its Waystone turning inside, and nothing short of creative tools can break it while it is active."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A Sealer placed by a player needs a filled $(l:intro/cursed_cage)Cursed Cage$() directly beneath it and draws one Soul Energy per minute while active; when the Cage runs dry the seal falls. Sealers found inside ruins run on their own."
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:sealer": 1
+  }
+}

@@ -10,6 +10,8 @@
     "goety:chorus_chest",
     "goety:trapped_chorus_chest",
     "goety:corrupt_chorus_chest",
-    "goety:trapped_corrupt_chorus_chest"
+    "goety:trapped_corrupt_chorus_chest",
+    "goety:marsh_chest",
+    "goety:trapped_marsh_chest"
   ]
 }

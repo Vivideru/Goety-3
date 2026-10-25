@@ -1,11 +1,11 @@
 {
-  "name": "Hunting Focus",
+  "name": "狩猟のフォーカス",
   "icon": "goety:hunting_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(l:summons/black_wolves)Black wolves$() are supernatural, or demonic hounds mentioned in folklore that are said to be seen throughout the Overworld. With the focus, you're able to summon or conjure them for aid. When on top of mountains, you'll summon forth $(l:summons/twilight_goats)twilight goats$(), vicious cousins of regular goats. When underwater, you'll summon forth $(l:summons/snappers)Snappers$(), ferocious piranha-like creatures that will gnaw on your foes."
+      "text": "$(l:summons/black_wolves)ブラックウルフ$() は、民間伝承の神秘的または悪魔的な猟犬であり、オーバーワールド全体で見られると言われています。フォーカスを使用すると、助けのためにそれらを召喚できます。山の頂上では、通常のヤギの凶暴ないとこである $(l:summons/twilight_goats)夕闇のヤギ$() を召喚します。水中では、敵をかじる凶暴なピラニアのような生き物である $(l:summons/snappers)スナッパー$() を召喚します。"
     },
     {
       "type": "patchouli:crafting",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "When cast with $(l:crafts/staff/wild_staff)Wild Staff$(), more wolves are summoned, wearing a Wild Robe will strengthened them, where their claws and bites Curses their target. When cast with $(l:crafts/staff/wind_staff)Wind Staff$(), you'll call forth Twilight Goats. When cast with $(l:crafts/staff/abyss_staff)Abyss Staff$() you'll summon Snappers... even on land. Snappers will only teleport towards you if crouch-casting underwater."
+      "text": "$(l:crafts/staff/wild_staff)野生の杖$() で唱えると、より多くのブラックウルフが召喚されます。野生のローブを着ていれば、ブラックウルフは強化され、爪と噛みつきでターゲットを呪います。$(l:crafts/staff/wind_staff)風の杖$()で唱えると、夕闇のヤギを召喚します。$(l:crafts/staff/abyss_staff)深淵の杖$()で詠唱えると、スナッパーを召喚します。(陸上でも召喚できます)スナッパーは、水中でしゃがんで唱えた場合にのみ、あなたに向かってテレポートします。"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Osseous Focus",
+  "name": "スケルトンのフォーカス",
   "icon": "goety:osseous_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Skeletons can be quite annoying to those who lack the patience to carry a Shield. Now you have the power to summon and command one to turn others into pincushions."
+      "text": "盾を持ち歩く忍耐力のない人にとって、スケルトンは実に厄介な存在です。しかし今、スケルトンを召喚し、命令して他のスケルトンを針山に変えることができるようになりました。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more skeletons at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるスケルトンの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

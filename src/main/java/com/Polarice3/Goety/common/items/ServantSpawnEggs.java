@@ -85,6 +85,9 @@ public class ServantSpawnEggs {
     public static final DeferredHolder<Item, ServantSpawnEggItem> VANGUARD_SERVANT_SPAWN_EGG = ITEMS.register("vanguard_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.VANGUARD_SERVANT, 0xd6d0c9, 0xe8b42f, egg()));
 
+    public static final DeferredHolder<Item, ServantSpawnEggItem> ROGUEGUARD_SERVANT_SPAWN_EGG = ITEMS.register("rogueguard_servant_spawn_egg",
+            () -> new ServantSpawnEggItem(ModEntityType.ROGUEGUARD_SERVANT, 0x203945, 0x606060, egg()));
+
     public static final DeferredHolder<Item, ServantSpawnEggItem> REAPER_SERVANT_SPAWN_EGG = ITEMS.register("reaper_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.REAPER_SERVANT, 0x1f1f2e, 0xd8e1e6, egg()));
 
@@ -226,6 +229,8 @@ public class ServantSpawnEggs {
     public static final DeferredHolder<Item, ServantSpawnEggItem> REDSTONE_MINISTROSITY_SPAWN_EGG = ITEMS.register("redstone_ministrosity_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.REDSTONE_MINISTROSITY, 0x6c1005, 0xdad9d9, egg()));
 
+    public static final DeferredHolder<Item, ServantSpawnEggItem> FLAME_CONSTRUCT_SPAWN_EGG = ITEMS.register("flame_construct_spawn_egg",
+            () -> new ServantSpawnEggItem(ModEntityType.FLAME_CONSTRUCT, 0x878d99, 0x8c310d, egg()));
     public static final DeferredHolder<Item, ServantSpawnEggItem> ICE_GOLEM_SPAWN_EGG = ITEMS.register("ice_golem_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.ICE_GOLEM, 0x22806a, 0x94daff, egg()));
 
@@ -274,6 +279,9 @@ public class ServantSpawnEggs {
     public static final DeferredHolder<Item, ServantSpawnEggItem> PILLAGER_SERVANT_SPAWN_EGG = ITEMS.register("pillager_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.PILLAGER_SERVANT, 0x341c22, 0xadbebe, egg()));
 
+    public static final DeferredHolder<Item, ServantSpawnEggItem> IMPERIAL_GUARD_SERVANT_SPAWN_EGG = ITEMS.register("imperial_guard_servant_spawn_egg",
+            () -> new ServantSpawnEggItem(ModEntityType.IMPERIAL_GUARD_SERVANT, 0x311505, 0xffc444, egg()));
+
     public static final DeferredHolder<Item, ServantSpawnEggItem> PIKER_SERVANT_SPAWN_EGG = ITEMS.register("piker_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.PIKER_SERVANT, 0x341610, 0xc7cece, egg()));
 
@@ -297,6 +305,9 @@ public class ServantSpawnEggs {
 
     public static final DeferredHolder<Item, ServantSpawnEggItem> EVOKER_SERVANT_SPAWN_EGG = ITEMS.register("evoker_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.EVOKER_SERVANT, 0x959b9b, 0x0f1119, egg()));
+
+    public static final DeferredHolder<Item, ServantSpawnEggItem> ENCHANTER_SERVANT_SPAWN_EGG = ITEMS.register("enchanter_servant_spawn_egg",
+            () -> new ServantSpawnEggItem(ModEntityType.ENCHANTER_SERVANT, 0x35c1a9, 0x600f2b, egg()));
 
     public static final DeferredHolder<Item, ServantSpawnEggItem> GEOMANCER_SERVANT_SPAWN_EGG = ITEMS.register("geomancer_servant_spawn_egg",
             () -> new ServantSpawnEggItem(ModEntityType.GEOMANCER_SERVANT, 0x342817, 0xcdb7d8, egg()));

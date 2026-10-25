@@ -1,5 +1,5 @@
 {
-  "name": "Cursed Infusion",
+  "name": "呪われた注入器",
   "icon": "goety:cursed_infuser",
   "category": "goety:intro",
   "sortnum": 4,
@@ -7,24 +7,30 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "While crafting using your Totem is all well and good, some of the items can demand a lot of resources, so you wondered if there's a way to obtain these items more cheaply. Throughout your research, you find that Lapis Lazulis can be used to create some sort of siphon. A way to attract some sort of magical energy towards it."
+      "text": "トーテムを使用してクラフトするのは良いことですが、一部のアイテムは大量のリソースを必要とするため、これらのアイテムをもっと安く入手する方法はないかと考えました。 研究を通じて、ラピスラズリがある種のサイフォンを作成するために使用できることがわかりました。 ある種の魔法のエネルギーを引き寄せる方法。"
     },
     {
       "type": "patchouli:text",
-      "text": "With some experiments and research, you've came up with the idea of a device, called a 'Cursed Infuser'. This device will siphon up magical energies from below it and infuse whatever items is place on it. While there are certain objects that hold some magical energies, there's one that seems to have an endless amount of it. Spawners."
+      "text": "いくつかの実験と研究を経て、「呪われた注入器」と呼ばれる装置のアイデアを思いつきました。 この装置はその下から魔法のエネルギーを吸い上げ、その上に置かれたあらゆるアイテムを注入します。 魔法のエネルギーを保持する特定の物体が存在する一方で、無限の量の魔法のエネルギーを持っているように見える物体もあります。 スポナー。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:cursed_infuser",
-      "text": "By placing the Cursed Infuser atop of a Spawner, it will start to siphon the Spawner's energy and infuse certain items with it. You've no clue what fuels these monstrous machines, but perhaps the infuser will provide some clues."
+      "text": "呪われた注入器をスポナーの上に置くと、スポナーのエネルギーが吸い上げられ、特定のアイテムに注入され始めます。 これらの巨大な機械に何が燃料を供給しているのかはわかりませんが、おそらく注入器がいくつかの手がかりを提供してくれるでしょう。"
     },
     {
       "type": "patchouli:multiblock",
       "multiblock": {
         "pattern": [
-          [ "C" ],
-          [ "S" ],
-          [ "0" ]
+          [
+            "C"
+          ],
+          [
+            "S"
+          ],
+          [
+            "0"
+          ]
         ],
         "mapping": {
           "C": "goety:cursed_infuser",

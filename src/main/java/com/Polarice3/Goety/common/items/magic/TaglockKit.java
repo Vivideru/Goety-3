@@ -258,6 +258,9 @@ public class TaglockKit extends Item {
     public static boolean isInRange(Vec3 origin, ItemStack stack, int increase){
         LivingEntity tagged = getEntity(stack);
         if (tagged != null){
+            if (increase >= 3) {
+                return true;
+            }
             double scale = 6.0D * (increase + 1.0F);
             double trueRange = Mth.square(scale) * 2.0D;
             return tagged.distanceToSqr(origin) <= Mth.square(trueRange);

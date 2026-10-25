@@ -1,20 +1,20 @@
 {
-  "name": "Blackguard Focus",
+  "name": "ブラックガードのフォーカス",
   "icon": "goety:blackguard_focus",
   "category": "goety:focuses/necromancy",
   "advancement": "goety:goety/read_front_scroll",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Inspired by the vanguards, you've devised a way to summon and armed powerful, but slow, zombies with heavy armor and mace."
+      "text": "スケルトンのヴァンガードがいるなら、ゾンビの衛兵もいますよね？ブラックガードは重装甲でメイスを持った強力なゾンビです。その代わり、移動速度は落ちました。"
     },
     {
       "type": "goety:ritual",
       "recipe": "goety:focus/blackguard_focus"
     },
-    {
+	{
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more blackguards at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるブラックガードの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1,17 +1,17 @@
 {
-  "name": "Blazing Horn",
+  "name": "燃える角笛",
   "icon": "goety:blazing_horn",
   "category": "goety:crafts",
   "advancement": "minecraft:story/enter_the_nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "You've heard rumors of powerful magicians that once roam the Nether Fortresses. It is said that a specific incantation could summon one forth when cast within said fortress."
+      "text": "かつて冥界の要塞をさまよっていた強力な魔術師の噂を聞いたことがあるでしょう。その要塞内で特定の呪文を唱えると、魔術師を召喚できると言われています。"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "goety:blazing_horn",
-      "text": "With a Goat's horn and the power of the Nether, you can replicate the incantation to summon forth one of these beings."
+      "text": "ヤギの角と冥界の力を使えば、呪文を複製してこれらの存在の 1 つを召喚することができます。"
     }
   ]
 }

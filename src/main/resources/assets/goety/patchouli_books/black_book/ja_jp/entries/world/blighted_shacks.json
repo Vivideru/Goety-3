@@ -1,11 +1,11 @@
 {
-  "name": "Blighted Shacks",
+  "name": "荒廃した小屋",
   "icon": "goety:rotten_log",
   "category": "goety:world",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Rumors of old, rotting shacks have reached your ear. Apparently, old and powerful witches live within those decrepit dens, studying and brewing all kinds of dark magic. Yet when you come across these shacks, you spot no ancient witch, but a peculiar crystal ball... you wonder what will happen if you were to use it..."
+      "text": "古くて朽ち果てた掘っ立て小屋の噂があなたの耳に届きました。 どうやら、老朽化した洞窟の中に年老いた強力な魔女たちが住んでおり、あらゆる種類の闇の魔法を研究し、醸造しているようです。 しかし、これらの小屋に出会ったとき、あなたは古代の魔女ではなく、奇妙な水晶玉を見つけました...それを使ったらどうなるだろうと思います..."
     },
     {
       "type": "patchouli:image",

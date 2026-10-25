@@ -24,6 +24,7 @@ import com.Polarice3.Goety.common.items.equipment.FangedDaggerItem;
 import com.Polarice3.Goety.common.listeners.SoulTakenListener;
 import com.Polarice3.Goety.common.network.ModNetwork;
 import com.Polarice3.Goety.common.network.server.SPlayPlayerSoundPacket;
+import com.Polarice3.Goety.common.network.server.SSoulChangePacket;
 import com.Polarice3.Goety.common.research.Research;
 import com.Polarice3.Goety.common.research.ResearchList;
 import com.Polarice3.Goety.common.world.data.GrimoireData;
@@ -69,6 +70,7 @@ import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
 import java.util.*;
+import java.util.function.Consumer;
 
 public class SEHelper {
 
@@ -113,6 +115,11 @@ public class SEHelper {
         return getCapability(player).getArcaBlock();
     }
 
+    @Nullable
+    public static BlockPos getArcaRevivePos(Player player){
+        return getCapability(player).getArcaRevivePos();
+    }
+
     public static ResourceKey<Level> getArcaDimension(Player player){
         return getCapability(player).getArcaBlockDimension();
     }
@@ -141,11 +148,19 @@ public class SEHelper {
     }
 
     public static boolean decreaseSESouls(Player player, int souls){
-        return getCapability(player).decreaseSE(souls);
+        boolean decrease = getCapability(player).decreaseSE(souls);
+        if (decrease) {
+            sendSoulChange(player, -souls);
+        }
+        return decrease;
     }
 
     public static boolean increaseSESouls(Player player, int souls){
-        return getCapability(player).increaseSE(souls);
+        boolean increase = getCapability(player).increaseSE(souls);
+        if (increase) {
+            sendSoulChange(player, souls);
+        }
+        return increase;
     }
 
     public static boolean apostleWarned(Player player){
@@ -268,6 +283,9 @@ public class SEHelper {
         } else {
             ItemStack foundStack = TotemFinder.FindTotem(player);
             if (foundStack != null){
+                if (!ITotem.isFull(foundStack)) {
+                    sendSoulChange(player, soulChange);
+                }
                 ITotem.increaseSouls(foundStack, soulChange);
             }
         }
@@ -286,6 +304,10 @@ public class SEHelper {
 
     public static void decreaseSouls(Player player, int souls){
         souls *= soulDiscount(player);
+        decreaseSoulsNoDiscount(player, souls);
+    }
+
+    public static void decreaseSoulsNoDiscount(Player player, int souls){
         int soulChange = GoetyEventFactory.onSoulEnergyLoss(player, souls);
         if (getSEActive(player)) {
             decreaseSESouls(player, soulChange);
@@ -293,8 +315,17 @@ public class SEHelper {
         } else {
             ItemStack foundStack = TotemFinder.FindTotem(player);
             if (foundStack != null){
+                if (!ITotem.isEmpty(foundStack)) {
+                    sendSoulChange(player, -soulChange);
+                }
                 ITotem.decreaseSouls(foundStack, soulChange);
             }
+        }
+    }
+
+    public static void sendSoulChange(Player player, int change) {
+        if (change != 0 && !player.level().isClientSide) {
+            ModNetwork.sendTo(player, new SSoulChangePacket(change));
         }
     }
 
@@ -507,12 +538,16 @@ public class SEHelper {
     public static void autoSaveToWorld(Player player) {
         if (player != null && !player.level().isClientSide) {
             saveGrimoireToWorld(player);
+            sendSEUpdatePacket(player);
         }
     }
 
     public static boolean teleportToArca(Player player){
         ISoulEnergy soulEnergy = SEHelper.getCapability(player);
         BlockPos blockPos = SEHelper.getArcaBlock(player);
+        if (SEHelper.getArcaRevivePos(player) != null) {
+            blockPos = SEHelper.getArcaRevivePos(player);
+        }
         if (blockPos != null) {
             BlockPos blockPos1 = BlockPos.containing(blockPos.getX() + 0.5F, blockPos.getY() + 0.5F, blockPos.getZ() + 0.5F);
             if (soulEnergy.getArcaBlockDimension() == player.level().dimension()) {
@@ -1097,6 +1132,54 @@ public class SEHelper {
         sendSEUpdatePacket(player);
     }
 
+    private static <T> void replaceAll(Collection<T> current, List<T> loaded, Consumer<T> add, Consumer<T> remove) {
+        for (T value : new ArrayList<>(current)) {
+            if (!loaded.contains(value)) {
+                remove.accept(value);
+            }
+        }
+        for (T value : loaded) {
+            if (!current.contains(value)) {
+                add.accept(value);
+            }
+        }
+    }
+
+    private static List<UUID> loadUUIDs(CompoundTag tag, String key) {
+        List<UUID> list = new ArrayList<>();
+        if (tag.contains(key, Tag.TAG_LIST)) {
+            for (Tag value : tag.getList(key, Tag.TAG_INT_ARRAY)) {
+                list.add(NbtUtils.loadUUID(value));
+            }
+        }
+        return list;
+    }
+
+    private static List<EntityType<?>> loadTypes(CompoundTag tag, String key) {
+        List<EntityType<?>> list = new ArrayList<>();
+        if (tag.contains(key, Tag.TAG_LIST)) {
+            ListTag listTag = tag.getList(key, Tag.TAG_COMPOUND);
+            for (int i = 0; i < listTag.size(); ++i) {
+                EntityType.byString(listTag.getCompound(i).getString("id")).ifPresent(list::add);
+            }
+        }
+        return list;
+    }
+
+    private static List<Research> loadResearch(CompoundTag tag) {
+        List<Research> list = new ArrayList<>();
+        if (tag.contains("researchList", Tag.TAG_LIST)) {
+            ListTag listTag = tag.getList("researchList", Tag.TAG_COMPOUND);
+            for (int i = 0; i < listTag.size(); ++i) {
+                Research research = ResearchList.getResearch(listTag.getCompound(i).getString("research"));
+                if (research != null) {
+                    list.add(research);
+                }
+            }
+        }
+        return list;
+    }
+
     public static void sendSEUpdatePacket(Player player) {
         if (!player.level().isClientSide()) {
             ModNetwork.sendTo(player, new SEUpdatePacket(player));
@@ -1125,6 +1208,11 @@ public class SEHelper {
             tag.putInt("arcaz", soulEnergy.getArcaBlock().getZ());
             ResourceLocation.CODEC.encodeStart(NbtOps.INSTANCE, soulEnergy.getArcaBlockDimension().location()).resultOrPartial(Goety.LOGGER::error).ifPresent(
                     (p_241148_1_) -> tag.put("dimension", p_241148_1_));
+        }
+        if (soulEnergy.getArcaRevivePos() != null) {
+            tag.putInt("arcaReviveX", soulEnergy.getArcaRevivePos().getX());
+            tag.putInt("arcaReviveY", soulEnergy.getArcaRevivePos().getY());
+            tag.putInt("arcaReviveZ", soulEnergy.getArcaRevivePos().getZ());
         }
         tag.putInt("BannerBaseColor", soulEnergy.bannerBaseColor().getId());
         ListTag banner = soulEnergy.bannerPattern();
@@ -1238,6 +1326,11 @@ public class SEHelper {
         if (tag.contains("arcax") && tag.contains("arcay") && tag.contains("arcaz")) {
             soulEnergy.setArcaBlock(new BlockPos(tag.getInt("arcax"), tag.getInt("arcay"), tag.getInt("arcaz")));
         }
+        if (tag.contains("arcaReviveX") && tag.contains("arcaReviveY") && tag.contains("arcaReviveZ")) {
+            soulEnergy.setArcaRevivePos(new BlockPos(tag.getInt("arcaReviveX"), tag.getInt("arcaReviveY"), tag.getInt("arcaReviveZ")));
+        } else {
+            soulEnergy.setArcaRevivePos(null);
+        }
         if (tag.contains("dimension")) {
             soulEnergy.setArcaBlockDimension(Level.RESOURCE_KEY_CODEC.parse(NbtOps.INSTANCE, tag.get("dimension")).resultOrPartial(Goety.LOGGER::error).orElse(Level.OVERWORLD));
         } else {
@@ -1272,81 +1365,13 @@ public class SEHelper {
         } else {
             soulEnergy.setCameraUUID(null);
         }
-        if (tag.contains("grudgeList", 9)) {
-            ListTag listtag = tag.getList("grudgeList", 11);
-            for (Tag value : listtag) {
-                UUID uuid = NbtUtils.loadUUID(value);
-                if (!soulEnergy.grudgeList().contains(uuid)){
-                    soulEnergy.addGrudge(NbtUtils.loadUUID(value));
-                }
-            }
-        }
-        if (tag.contains("grudgeTypeList", Tag.TAG_LIST)) {
-            ListTag listtag = tag.getList("grudgeTypeList", Tag.TAG_COMPOUND);
-            for (int i = 0; i < listtag.size(); ++i) {
-                String string = listtag.getCompound(i).getString("id");
-                if (EntityType.byString(string).isPresent()){
-                    EntityType<?> entityType = EntityType.byString(string).get();
-                    if (!soulEnergy.grudgeTypeList().contains(entityType)) {
-                        soulEnergy.addGrudgeType(EntityType.byString(string).get());
-                    }
-                }
-            }
-        }
-        if (tag.contains("allyList", 9)) {
-            ListTag listtag = tag.getList("allyList", 11);
-            for (Tag value : listtag) {
-                UUID uuid = NbtUtils.loadUUID(value);
-                if (!soulEnergy.allyList().contains(uuid)) {
-                    soulEnergy.addAlly(NbtUtils.loadUUID(value));
-                }
-            }
-        }
-        if (tag.contains("allyTypeList", Tag.TAG_LIST)) {
-            ListTag listtag = tag.getList("allyTypeList", Tag.TAG_COMPOUND);
-            for (int i = 0; i < listtag.size(); ++i) {
-                String string = listtag.getCompound(i).getString("id");
-                if (EntityType.byString(string).isPresent()){
-                    EntityType<?> entityType = EntityType.byString(string).get();
-                    if (!soulEnergy.allyTypeList().contains(entityType)) {
-                        soulEnergy.addAllyType(EntityType.byString(string).get());
-                    }
-                }
-            }
-        }
-        if (tag.contains("groundedList", 9)) {
-            ListTag listtag = tag.getList("groundedList", 11);
-            for (Tag value : listtag) {
-                UUID uuid = NbtUtils.loadUUID(value);
-                if (!soulEnergy.groundedList().contains(uuid)) {
-                    soulEnergy.addGrounded(NbtUtils.loadUUID(value));
-                }
-            }
-        }
-        if (tag.contains("groundedTypeList", Tag.TAG_LIST)) {
-            ListTag listtag = tag.getList("groundedTypeList", Tag.TAG_COMPOUND);
-            for (int i = 0; i < listtag.size(); ++i) {
-                String string = listtag.getCompound(i).getString("id");
-                if (EntityType.byString(string).isPresent()){
-                    EntityType<?> entityType = EntityType.byString(string).get();
-                    if (!soulEnergy.groundedTypeList().contains(entityType)) {
-                        soulEnergy.addGroundedType(EntityType.byString(string).get());
-                    }
-                }
-            }
-        }
-        if (tag.contains("researchList", Tag.TAG_LIST)) {
-            ListTag listtag = tag.getList("researchList", Tag.TAG_COMPOUND);
-            for (int i = 0; i < listtag.size(); ++i) {
-                String string = listtag.getCompound(i).getString("research");
-                if (ResearchList.getResearch(string) != null) {
-                    Research research = ResearchList.getResearch(string);
-                    if (!soulEnergy.getResearch().contains(research)) {
-                        soulEnergy.addResearch(ResearchList.getResearch(string));
-                    }
-                }
-            }
-        }
+        replaceAll(soulEnergy.grudgeList(), loadUUIDs(tag, "grudgeList"), soulEnergy::addGrudge, soulEnergy::removeGrudge);
+        replaceAll(soulEnergy.grudgeTypeList(), loadTypes(tag, "grudgeTypeList"), soulEnergy::addGrudgeType, soulEnergy::removeGrudgeType);
+        replaceAll(soulEnergy.allyList(), loadUUIDs(tag, "allyList"), soulEnergy::addAlly, soulEnergy::removeAlly);
+        replaceAll(soulEnergy.allyTypeList(), loadTypes(tag, "allyTypeList"), soulEnergy::addAllyType, soulEnergy::removeAllyType);
+        replaceAll(soulEnergy.groundedList(), loadUUIDs(tag, "groundedList"), soulEnergy::addGrounded, soulEnergy::removeGrounded);
+        replaceAll(soulEnergy.groundedTypeList(), loadTypes(tag, "groundedTypeList"), soulEnergy::addGroundedType, soulEnergy::removeGroundedType);
+        replaceAll(soulEnergy.getResearch(), loadResearch(tag), soulEnergy::addResearch, soulEnergy::removeResearch);
         if (tag.contains("coolDowns", Tag.TAG_LIST)){
             ListTag listTag = (ListTag) tag.get("coolDowns");
             soulEnergy.cooldowns().load(listTag);

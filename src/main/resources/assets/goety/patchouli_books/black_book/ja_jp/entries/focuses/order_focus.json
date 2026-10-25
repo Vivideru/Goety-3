@@ -1,11 +1,11 @@
 {
-  "name": "Order Focus",
+  "name": "体制のフォーカス",
   "icon": "goety:order_focus",
   "category": "goety:focuses",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A modified Command Focus that can stores up to 8 servants for you to command with."
+      "text": "最大8体の従者を保存して指揮できるコマンドのフォーカスの改良型です。"
     },
     {
       "type": "goety:ritual",

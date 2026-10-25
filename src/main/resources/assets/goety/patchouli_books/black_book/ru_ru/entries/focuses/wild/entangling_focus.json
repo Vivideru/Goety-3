@@ -1,11 +1,11 @@
 {
-  "name": "Entangling Focus",
+  "name": "Фокус опутывания",
   "icon": "goety:entangling_focus",
   "category": "goety:focuses/wild",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "This spell will summon entangling roots upon a target. If the roots managed to catch a target in time, they will be unable to move until the roots retreat back into the ground. When cast with $(l:crafts/staff/wild_staff)Wild Staff$(), the roots will be summoned underneath 8 nearby non-allied creatures."
+      "text": "Это заклинание нашлёт на цель опутывающие корни. Если корням удалось поймать цель, она не сможет двигаться, пока корни не уйдут обратно в землю. При использовании $(l:crafts/staff/wild_staff)дикого посоха$() корни появятся из-под 8 близлежащих существ."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing a $(l:crafts/garment/wild_robe)Wild Robe$(), will cause the roots to continuously damage the entrapped target."
+      "text": "Ношение $(l:crafts/garment/wild_robe)дикой мантии$() позволит корням наносить опутанной жертве постоянный урон."
     }
   ],
   "extra_recipe_mappings": {

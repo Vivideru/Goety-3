@@ -45,6 +45,20 @@
     "goety:haunted_mirror",
     "goety:skull_pile",
     "goety:rusty_iron_grate",
+    "goety:cursed_metal_grate",
+    "goety:plinth_stone",
+    "goety:plinth_deepslate",
+    "goety:plinth_ominous_stone",
+    "goety:plinth_nether_brick",
+    "goety:plinth_blackstone",
+    "goety:plinth_end_stone",
+    "goety:plinth_highrock",
+    "goety:plinth_marble",
+    "goety:plinth_prismarine",
+    "goety:plinth_crypt_stone",
+    "goety:plinth_dark",
+    "goety:sealer",
+    "goety:polar_crystal",
     "goety:rusty_iron_bars",
     "goety:blazing_cage",
     "goety:lofty_chest",
@@ -60,6 +74,7 @@
     "goety:reinforced_redstone_block",
     "goety:stone_sarcophagus",
     "goety:deepslate_sarcophagus",
-    "goety:sandstone_sarcophagus"
+    "goety:sandstone_sarcophagus",
+    "#goety:end_limestone"
   ]
 }

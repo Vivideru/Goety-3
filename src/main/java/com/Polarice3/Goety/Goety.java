@@ -56,6 +56,8 @@ import com.Polarice3.Goety.common.world.features.trees.trunkplacers.ModTrunkPlac
 import com.Polarice3.Goety.common.world.placements.ModPlacementType;
 import com.Polarice3.Goety.common.world.processors.ModProcessors;
 import com.Polarice3.Goety.common.world.structures.ModStructureTypes;
+import com.Polarice3.Goety.common.world.structures.ModStructurePieces;
+import com.Polarice3.Goety.common.world.processors.ruletest.ModRuleTests;
 import com.Polarice3.Goety.compat.OtherModCompat;
 import com.Polarice3.Goety.config.*;
 import com.Polarice3.Goety.init.*;
@@ -177,8 +179,10 @@ public class Goety {
         ModBlockEntities.BLOCK_ENTITY.register(modEventBus);
         com.Vivideru.Goety.common.blocks.VivideruBlocks.init();
         com.Vivideru.Goety.common.blocks.entities.VivideruBlockEntities.init();
+        com.Vivideru.Goety.common.capabilities.VivideruAttachments.init();
         ModEntityType.ENTITY_TYPE.register(modEventBus);
         com.Vivideru.Goety.common.entities.VivideruEntityTypes.init();
+        com.Vivideru.Goety.common.entities.extra.ExtraServants.init(modEventBus);
         ModFeatures.FEATURES.register(modEventBus);
         ModTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
         ModParticleTypes.PARTICLE_TYPES.register(modEventBus);
@@ -187,9 +191,11 @@ public class Goety {
         ModLootModifier.GLOBAL_LOOT_MODIFIER.register(modEventBus);
         ModRituals.RITUALS.register(modEventBus);
         ModStructureTypes.STRUCTURE_TYPE.register(modEventBus);
+        ModStructurePieces.STRUCTURE_PIECE.register(modEventBus);
         com.Vivideru.Goety.common.world.structures.VivideruStructureTypes.init();
         ModPlacementType.STRUCTURE_PLACEMENT_TYPE.register(modEventBus);
         ModProcessors.STRUCTURE_PROCESSOR.register(modEventBus);
+        ModRuleTests.RULE_TESTS.register(modEventBus);
         ModCreativeTab.CREATIVE_MODE_TABS.register(modEventBus);
         ModCapabilities.ATTACHMENT_TYPES.register(modEventBus);
 
@@ -207,6 +213,7 @@ public class Goety {
         modContainer.registerConfig(ModConfig.Type.COMMON, BrewConfig.SPEC, "goety/goety-brews.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, MobsConfig.SPEC, "goety/goety-mobs.toml");
         modContainer.registerConfig(ModConfig.Type.COMMON, ItemConfig.SPEC, "goety/goety-items.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, com.Vivideru.Goety.common.world.VivideruWorldConfig.SPEC, "goety/goety-worldgen.toml");
         if (net.neoforged.fml.ModList.get().isLoaded("apotheosis")) {
             com.Vivideru.Goety.compat.apotheosis.ApotheosisCompat.init(modEventBus, modContainer);
         }
@@ -494,11 +501,13 @@ public class Goety {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CHORUS_FERN.getId(), ModBlocks.POTTED_CHORUS_FERN);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.HAUNTED_SAPLING.getId(), ModBlocks.POTTED_HAUNTED_SAPLING);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.ROTTEN_SAPLING.getId(), ModBlocks.POTTED_ROTTEN_SAPLING);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.MARSH_SAPLING.getId(), ModBlocks.POTTED_MARSH_SAPLING);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.WINDSWEPT_SAPLING.getId(), ModBlocks.POTTED_WINDSWEPT_SAPLING);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.PINE_SAPLING.getId(), ModBlocks.POTTED_PINE_SAPLING);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.CHORUS_SAPLING.getId(), ModBlocks.POTTED_CHORUS_SAPLING);
             WoodType.register(ModWoodType.HAUNTED);
             WoodType.register(ModWoodType.ROTTEN);
+            WoodType.register(ModWoodType.MARSH);
             WoodType.register(ModWoodType.WINDSWEPT);
             WoodType.register(ModWoodType.PINE);
             ModPotPatterns.addPatterns();
@@ -522,8 +531,10 @@ public class Goety {
             }
             ComposterBlock.COMPOSTABLES.put(ModBlocks.END_GROWTH_VINES.get().asItem(), 0.3F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.HAUNTED_SAPLING.get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(ModBlocks.MARSH_SAPLING.get().asItem(), 0.65F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.WINDSWEPT_SAPLING.get().asItem(), 0.3F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.PINE_SAPLING.get().asItem(), 0.3F);
+            ComposterBlock.COMPOSTABLES.put(ModBlocks.MARSH_LEAVES.get().asItem(), 0.65F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.WINDSWEPT_LEAVES.get().asItem(), 0.3F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.PINE_LEAVES.get().asItem(), 0.3F);
             ComposterBlock.COMPOSTABLES.put(ModBlocks.CHORUS_VINE.get().asItem(), 0.3F);
@@ -605,6 +616,8 @@ public class Goety {
         event.put(ModEntityType.HOSTILE_BLACK_WOLF.get(), HostileBlackWolf.setCustomAttributes().build());
         event.put(ModEntityType.FRAYED.get(), Frayed.setCustomAttributes().build());
         event.put(ModEntityType.RATTLED.get(), Rattled.setCustomAttributes().build());
+        event.put(ModEntityType.ZOMBIE_VINDICATOR.get(), HostileZombieVindicator.setCustomAttributes().build());
+        event.put(ModEntityType.SKELETON_PILLAGER.get(), HostileSkeletonPillager.setCustomAttributes().build());
         event.put(ModEntityType.REAPER.get(), Reaper.setCustomAttributes().build());
         event.put(ModEntityType.WRAITH.get(), Wraith.setCustomAttributes().build());
         event.put(ModEntityType.BORDER_WRAITH.get(), BorderWraith.setCustomAttributes().build());
@@ -652,6 +665,7 @@ public class Goety {
         event.put(ModEntityType.PHANTOM_SERVANT.get(), PhantomServant.setCustomAttributes().build());
         event.put(ModEntityType.VANGUARD_SERVANT.get(), VanguardServant.setCustomAttributes().build());
         event.put(ModEntityType.SKELETON_PILLAGER_SERVANT.get(), SkeletonPillagerServant.setCustomAttributes().build());
+        event.put(ModEntityType.ROGUEGUARD_SERVANT.get(), RogueguardServant.setCustomAttributes().build());
         event.put(ModEntityType.ZOMBIE_VINDICATOR_SERVANT.get(), ZombieVindicatorServant.setCustomAttributes().build());
         event.put(ModEntityType.BOUND_EVOKER.get(), BoundEvoker.setCustomAttributes().build());
         event.put(ModEntityType.BOUND_GEOMANCER.get(), BoundGeomancer.setCustomAttributes().build());
@@ -681,6 +695,7 @@ public class Goety {
         event.put(ModEntityType.PRISONER.get(), Villager.createAttributes().add(Attributes.ATTACK_DAMAGE, 1.0D).build());
         event.put(ModEntityType.NEOLLAGER.get(), Neollager.setCustomAttributes().build());
         event.put(ModEntityType.PILLAGER_SERVANT.get(), PillagerServant.setCustomAttributes().build());
+        event.put(ModEntityType.IMPERIAL_GUARD_SERVANT.get(), ImperialGuardServant.setCustomAttributes().build());
         event.put(ModEntityType.PIKER_SERVANT.get(), PikerServant.setCustomAttributes().build());
         event.put(ModEntityType.SIGNALER_SERVANT.get(), SignalerServant.setCustomAttributes().build());
         event.put(ModEntityType.VINDICATOR_SERVANT.get(), VindicatorServant.setCustomAttributes().build());
@@ -689,6 +704,7 @@ public class Goety {
         event.put(ModEntityType.MOUNTAINEER_SERVANT.get(), MountaineerServant.setCustomAttributes().build());
         event.put(ModEntityType.CRUSHER_SERVANT.get(), CrusherServant.setCustomAttributes().build());
         event.put(ModEntityType.EVOKER_SERVANT.get(), EvokerServant.setCustomAttributes().build());
+        event.put(ModEntityType.ENCHANTER_SERVANT.get(), EnchanterServant.setCustomAttributes().build());
         event.put(ModEntityType.GEOMANCER_SERVANT.get(), GeomancerServant.setCustomAttributes().build());
         event.put(ModEntityType.ICEOLOGER_SERVANT.get(), IceologerServant.setCustomAttributes().build());
         event.put(ModEntityType.CRYOLOGER_SERVANT.get(), CryologerServant.setCustomAttributes().build());
@@ -730,6 +746,7 @@ public class Goety {
         event.put(ModEntityType.LEAPLEAF.get(), Leapleaf.setCustomAttributes().build());
         event.put(ModEntityType.STONE_MINISTROSITY.get(), StoneMinistrosity.setCustomAttributes().build());
         event.put(ModEntityType.REDSTONE_MINISTROSITY.get(), RedstoneMinistrosity.setCustomAttributes().build());
+        event.put(ModEntityType.FLAME_CONSTRUCT.get(), FlameConstruct.setCustomAttributes().build());
         event.put(ModEntityType.ICE_GOLEM.get(), IceGolem.setCustomAttributes().build());
         event.put(ModEntityType.SQUALL_GOLEM.get(), SquallGolem.setCustomAttributes().build());
         event.put(ModEntityType.REDSTONE_GOLEM.get(), RedstoneGolem.setCustomAttributes().build());
@@ -790,6 +807,8 @@ public class Goety {
         event.register(ModEntityType.HOSTILE_BLACK_WOLF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkNetherAwareDayMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
         event.register(ModEntityType.FRAYED.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Frayed::checkFrayedSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
         event.register(ModEntityType.RATTLED.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Rattled::checkRattledSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
+        event.register(ModEntityType.ZOMBIE_VINDICATOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkHostileSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
+        event.register(ModEntityType.SKELETON_PILLAGER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkHostileSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
         event.register(ModEntityType.REAPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkNetherAwareHostileSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
         event.register(ModEntityType.WRAITH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkNetherAwareHostileSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);
         event.register(ModEntityType.BORDER_WRAITH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Owned::checkNetherAwareHostileSpawnRules, RegisterSpawnPlacementsEvent.Operation.AND);

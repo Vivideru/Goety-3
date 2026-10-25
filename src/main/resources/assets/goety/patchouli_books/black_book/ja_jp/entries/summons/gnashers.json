@@ -1,15 +1,15 @@
 {
-  "name": "Gnashers",
+  "name": "ナッシャー",
   "icon": "minecraft:cod",
   "category": "goety:summons",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Sharks aren't as vicious as most would think and very rarely attack people on their own. These underwater fiends are another story, ripping and tearing up foes with their sharp teeth. Also makes for a good underwater mount without any need for a saddle."
+      "text": "サメは意外と凶暴な種は少なく、単独で人を襲うことは滅多にありません。しかし、水中に潜むこの怪物は鋭い歯で敵を引き裂きます。また、鞍を必要とせず、水中での乗り物としても優れています。"
     },
     {
       "type": "patchouli:text",
-      "text": "One can call upon a loyal gnasher through the use of a $(l:focuses/wild/mauling_focus)Mauling Focus$() underwater or through $(l:crafts/staff/abyss_staff)Abyss Staff$(), or through a ritual which summons one without a limited lifespan."
+      "text": "忠実なナッシャーを呼び出すには、水中で$(l:focuses/wild/mauling_focus)猛獣のフォーカス$()を使用する、または$(l:crafts/staff/abyss_staff)深淵の杖$()でそのフォーカスを使用するか、寿命に制限のないものを召喚する儀式を行う必要があります。"
     },
     {
       "type": "goety:ritual",
@@ -22,7 +22,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Right-clicking on a loyal Gnasher with fish will heal them. If the Gnasher was summoned through ritual, it can breed with another Gnasher summoned that way by right-clicking on them with meat while crouching."
+      "text": "忠実なナッシャーに魚を右クリックすると、回復します。儀式で召喚されたナッシャーは、しゃがんだ状態で肉を右クリックすることで、儀式で召喚された別のナッシャーと繁殖することができます。"
     }
   ]
 }

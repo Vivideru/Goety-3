@@ -1,15 +1,15 @@
 {
-  "name": "Esoteric Tesseract",
+  "name": "Эзотерический тессеракт",
   "icon": "goety:esoteric_tesseract",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Growing tired of Servants losing their way to you, and/or using Call and Troop Focuses from afar, you've desperately wished you could just put your servants into your pocket so that you can unleash them wherever you wish."
+      "text": "Устав от того, что мобы сбиваются с пути, и от постоянного использования фокусов призыва и армии, вы отчаянно жалели, что не можете просто засунуть прислужников в инвентарь."
     },
     {
       "type": "patchouli:text",
-      "text": "After countless days of research and experimentation, you've created an odd box that fulfills your desire. By left-clicking one of your servants with it, it will instantly contain them. Holding down right-click will slowly pull out your servants from it, but will use up durability that will render it unusable until repaired, which can be done on an Anvil with Ender Pearls. It can hold multiple servants, and is immune to being burned in fire and lava. If destroyed while in thrown form, it will release every servant within itself."
+      "text": "После бесчисленных исследований вы создали необычное хранилище для этих нужд. Если нажать ЛКМ по прислужнику, держа тессеракт в руках, тот мгновенно попадёт внутрь. Удерживая ПКМ, вы будете медленно извлекать прислужников, расходуя прочность. Сломанный тессеракт будет непригоден, пока его не починят, например, эндер-жемчугом на наковальне. В нём может находиться несколько прислужников, и он невосприимчив к огню и лаве. Если уничтожить тессеракт, лежащий на земле, он выпустит всех прислужников."
     },
     {
       "type": "goety:ritual",
@@ -17,7 +17,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "There are some conditions when it comes to storing certain types of servants. Some servants take up more than one space within the tesseract, depending on their size, (and whether they're tagged properly). Limited life servants will have their lifespan paused when stored within the tesseract."
+      "text": "При хранении определённых прислужников существуют дополнительные условия. Некоторые занимают в тессеракте более одного места ввиду своего размера (или неправильного тега). Отсчёт срока жизни прислужников, у которых он ограничен, приостанавливается на время хранения в тессеракте."
     }
   ],
   "extra_recipe_mappings": {

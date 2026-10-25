@@ -1,18 +1,31 @@
 package com.Polarice3.Goety.common.events;
 
+import com.Polarice3.Goety.api.items.IPersist;
 import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.armor.ModArmorMaterials;
+import com.Polarice3.Goety.common.items.equipment.SickleItem;
 import com.Polarice3.Goety.config.ItemConfig;
 import com.Polarice3.Goety.utils.ModAttributeUtil;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import org.jetbrains.annotations.Nullable;
 
 public class ConfiguredItemAttributeEvents {
 
     public static void onItemAttributes(ItemAttributeModifierEvent event) {
         Item item = event.getItemStack().getItem();
+        if (item instanceof IPersist persist && persist.isBroken(event.getItemStack())) {
+            event.clearModifiers();
+            return;
+        }
 
         if (item == ModItems.OMINOUS_SCYTHE.get()) {
             replaceAttack(event, ItemConfig.ScytheBaseDamage.get() + ItemConfig.SpecialToolsDamage.get() - 1.0D);
@@ -79,6 +92,45 @@ public class ConfiguredItemAttributeEvents {
             replaceAttack(event, ItemConfig.NetherStaffDamage.get() - 1.0D);
         } else if (item == ModItems.NAMELESS_STAFF.get()) {
             replaceAttack(event, ItemConfig.NamelessStaffDamage.get() - 1.0D);
+        } else if (item instanceof SickleItem sickle) {
+            replaceAttack(event, ItemConfig.SickleBaseDamage.get() + sickle.getTier().getAttackDamageBonus() - 1.0D);
+            replaceSpeed(event, -(4.0D - ItemConfig.SickleAttackSpeed.get()));
+        } else if (item instanceof ArmorItem armor) {
+            Holder<ArmorMaterial> material = armor.getMaterial();
+            if (material == ModArmorMaterials.CURSED_KNIGHT) {
+                replaceArmor(event, armor, ItemConfig.CursedKnightFeet, ItemConfig.CursedKnightLegs, ItemConfig.CursedKnightChest, ItemConfig.CursedKnightHead, ItemConfig.CursedKnightToughness, ItemConfig.CursedKnightKnockResist);
+            } else if (material == ModArmorMaterials.CURSED_PALADIN) {
+                replaceArmor(event, armor, ItemConfig.CursedPaladinFeet, ItemConfig.CursedPaladinLegs, ItemConfig.CursedPaladinChest, ItemConfig.CursedPaladinHead, ItemConfig.CursedPaladinToughness, ItemConfig.CursedPaladinKnockResist);
+            } else if (material == ModArmorMaterials.BLACK_IRON) {
+                replaceArmor(event, armor, ItemConfig.BlackIronFeet, ItemConfig.BlackIronLegs, ItemConfig.BlackIronChest, ItemConfig.BlackIronHead, ItemConfig.BlackIronToughness, ItemConfig.BlackIronKnockResist);
+            } else if (material == ModArmorMaterials.DARK) {
+                replaceArmor(event, armor, ItemConfig.DarkArmorFeet, ItemConfig.DarkArmorLegs, ItemConfig.DarkArmorChest, ItemConfig.DarkArmorHead, ItemConfig.DarkArmorToughness, ItemConfig.DarkArmorKnockResist);
+            } else if (material == ModArmorMaterials.MALEFIC) {
+                replaceArmor(event, armor, null, null, null, ItemConfig.MaleficHead, ItemConfig.MaleficToughness, ItemConfig.MaleficKnockResist);
+            }
+        }
+    }
+
+    private static void replaceArmor(ItemAttributeModifierEvent event, ArmorItem armor, @Nullable ModConfigSpec.ConfigValue<Integer> feet, @Nullable ModConfigSpec.ConfigValue<Integer> legs,
+                                     @Nullable ModConfigSpec.ConfigValue<Integer> chest, @Nullable ModConfigSpec.ConfigValue<Integer> head,
+                                     ModConfigSpec.ConfigValue<Double> toughness, ModConfigSpec.ConfigValue<Double> knockResist) {
+        ModConfigSpec.ConfigValue<Integer> defense = switch (armor.getType()) {
+            case BOOTS -> feet;
+            case LEGGINGS -> legs;
+            case CHESTPLATE -> chest;
+            case HELMET -> head;
+            default -> null;
+        };
+        ResourceLocation id = ResourceLocation.withDefaultNamespace("armor." + armor.getType().getName());
+        EquipmentSlotGroup slot = EquipmentSlotGroup.bySlot(armor.getEquipmentSlot());
+        if (defense != null) {
+            event.replaceModifier(Attributes.ARMOR, new AttributeModifier(id, defense.get(), AttributeModifier.Operation.ADD_VALUE), slot);
+        }
+        event.replaceModifier(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(id, toughness.get(), AttributeModifier.Operation.ADD_VALUE), slot);
+        if (knockResist.get() > 0.0D) {
+            event.replaceModifier(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier(id, knockResist.get(), AttributeModifier.Operation.ADD_VALUE), slot);
+        } else {
+            event.removeModifier(Attributes.KNOCKBACK_RESISTANCE, id);
         }
     }
 

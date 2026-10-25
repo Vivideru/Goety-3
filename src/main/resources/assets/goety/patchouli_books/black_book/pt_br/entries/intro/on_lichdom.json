@@ -24,6 +24,13 @@
     {
       "type": "patchouli:text",
       "text": "Podes reassumir a forma dos teus tempos de vivo pressionando a Tecla de Forma de Lich (Predefinição: N). Esta forma é apenas visual."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:haunted_mirror",
+      "title": "Mudando Cores",
+      "advancement": "goety:goety/read_haunting_scroll",
+      "text": "Você também pode mudar a cor da sua Forma de Lich clicando com o botão direito em um Espelho Assombrado com um corante. Para remover a cor personalizada, clique com o botão direito no espelho com um balde de água."
     }
   ]
 }

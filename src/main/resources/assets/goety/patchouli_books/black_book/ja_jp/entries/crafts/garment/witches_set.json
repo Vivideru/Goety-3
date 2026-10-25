@@ -1,11 +1,11 @@
 {
-  "name": "Witches Set",
+  "name": "魔女のセット",
   "icon": "goety:witch_hat",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Witches are known to look snazzy with their massive hats. You've figured out how to make your own Witch hat with some Dark Fabrics and you've discovered how wearing them gives you a small chance of not consuming any potion."
+      "text": "魔女は巨大な帽子をかぶっておしゃれに見えることで知られています。 あなたはいくつかの闇の生地を使って独自の魔女の帽子を作る方法を見つけ出し、それをかぶるとポーションを消費しない可能性が少しだけあることを発見しました。"
     },
     {
       "type": "patchouli:crafting",
@@ -17,11 +17,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "You've also discovered a way to replicate the powers of a Witch by crafting your own Witches Robes. The Robe is essentially a portable Brewing Stand (that you can open by pressing the default key: V while wearing it). It also provides resistance to magical attacks."
+      "text": "また、独自の魔女のローブを作って魔女の力を再現する方法も発見しました。 ローブは本質的にはポータブルな醸造スタンドです (着用中にデフォルトのキーである V を押すと開きます)。 魔法攻撃に対する耐性も得られます。"
     },
     {
       "type": "patchouli:text",
-      "text": "Wearing a Witches Hat while wearing the Witches Robes not only makes the robe brew potions faster, but also makes Witches and Warlocks neutral to the wearer. You can also barter with Witches and Warlocks by right-clicking on them with an Emerald, but only if they're not aggressive or holding something. Unlike the brutish Piglins, the two won't pick up Emeralds thrown at them, you gotta give it to them straight."
+      "text": "魔女のローブを着ているときに魔女の帽子をかぶると、ローブのポーションの醸造が早くなるだけでなく、魔女とウォーロックが着用者に対して中立になります。 エメラルドを右クリックして魔女や魔法使いと物々交換することもできますが、これは彼らが攻撃的でないか、何かを持っていない場合に限られます。 野蛮なピグリンとは異なり、2 人は投げられたエメラルドを拾うことはありません。まっすぐに渡さなければなりません。"
     }
   ],
   "extra_recipe_mappings": {

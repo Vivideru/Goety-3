@@ -1,11 +1,11 @@
 {
-  "name": "Phantasm Focus",
+  "name": "Фокус бессонницы",
   "icon": "goety:phantasm_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Phantoms are quite an oddity, beings that fly between reality and un-reality, only appearing towards the sleep-deprived. With this focus, you're able to summon and bind them to your will."
+      "text": "Фантомы — довольно странные существа, которые летают между реальностью и нереальностью, появляясь только рядом с теми, кто страдает бессонницей. С помощью этого фокуса вы можете вызывать их и подчинять своей воле."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more phantoms at once."
+      "text": "Использование $(l:crafts/staff/necro_staff)некро-посоха$() позволяет вызывать больше фантомов."
     }
   ],
   "extra_recipe_mappings": {

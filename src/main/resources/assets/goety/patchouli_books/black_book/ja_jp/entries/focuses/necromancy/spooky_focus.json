@@ -1,11 +1,11 @@
 {
-  "name": "Spooky Focus",
+  "name": "レイスのフォーカス",
   "icon": "goety:spooky_focus",
   "category": "goety:focuses/necromancy",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Wraiths aren't exactly the most common of undead creatures, only in recent times do they start appearing. With some Spirit Fabrics, you're able to summon and bound one to your command."
+      "text": "レイスはアンデッドの中でもそこまで一般的な存在ではなく、近年になってようやく姿を現し始めた。魂の生地を使えば、レイスを召喚し、自分の命令に従わせることができる。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/necro_staff)Necro Staff$() summons more wraiths at once."
+      "text": "$(l:crafts/staff/necro_staff)ネクロの杖$()で唱えると、一度に召喚されるレイスの数が増えます。"
     }
   ],
   "extra_recipe_mappings": {

@@ -1105,7 +1105,7 @@ public class Wight extends Summoned implements Enemy, NeutralMob, IHiding, IMobT
                 if (entityIn instanceof LivingEntity living){
                     if (entityIn instanceof Player player){
                         if (SEHelper.getSoulsAmount(player, AttributesConfig.get(AttributesConfig.WightSoulAbsorb))){
-                            SEHelper.decreaseSouls(player, AttributesConfig.get(AttributesConfig.WightSoulAbsorb));
+                            SEHelper.decreaseSoulsNoDiscount(player, AttributesConfig.get(AttributesConfig.WightSoulAbsorb));
                             this.regenHeal += AttributesConfig.get(AttributesConfig.WightSoulHeal);
                         } else {
                             player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 0, false, false));
@@ -1319,7 +1319,7 @@ public class Wight extends Summoned implements Enemy, NeutralMob, IHiding, IMobT
                     Wight.this.playSound(ModSounds.WIGHT_PRE_SWING.get(), Wight.this.getSoundVolume(), Wight.this.getVoicePitch() - pitch);
                 }
                 if (Wight.this.isMeleeAttacking()) {
-                    float seconds = Wight.this.getCurrentAnimation() == Wight.this.getAnimationState(SUPER_SMASH) ? 2.05F : 1.7F;
+                    float seconds = Wight.this.getCurrentAnimation() == Wight.this.getAnimationState(SUPER_SMASH) ? 2.05F : Wight.this.attackFast ? 0.85F : 1.7F;
                     if (Wight.this.attackTick < MathHelper.secondsToTicks(seconds)) {
                         Wight.this.setYBodyRot(Wight.this.getYHeadRot());
                         if (Wight.this.getCurrentAnimation() == Wight.this.getAnimationState(SUPER_SMASH)) {

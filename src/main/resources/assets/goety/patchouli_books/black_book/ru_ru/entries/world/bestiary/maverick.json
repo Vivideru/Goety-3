@@ -1,21 +1,21 @@
 {
-  "name": "Mavericks",
-  "icon": "minecraft:iron_sword",
+  "name": "Вольнодумцы",
+  "icon": "goety:wicked_boline",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_maverick",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "More hands on than their cousins, they apply potions effects through their blades, before fleeing and drinking a potion to buff themselves."
+      "text": "Более умелые, чем их собратья. Своими ударами они накладывают на жертву эффекты, а затем отступают и выпивают зелье, чтобы усилиться."
     },
     {
       "type": "patchouli:entity",
       "entity": "goety:maverick",
-      "text": "They're resistant to magic much like their Witch cousins."
+      "text": "Обладает защитой от магии, как и его родственницы, ведьмы."
     },
     {
       "type": "patchouli:text",
-      "text": "If a Wandering Trader is underneath a Crying Obsidian Block, they have a chance of transforming into a Maverick."
+      "text": "Если странствующий торговец окажется под плачущем обсидианом, он может превратиться в вольнодумца."
     }
   ]
 }

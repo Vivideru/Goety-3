@@ -1,0 +1,24 @@
+{
+  "name": "旋风人仆从",
+  "icon": "goety:breeze_servant_spawn_egg",
+  "category": "goety:summons",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "试炼密室中的旋风人是被束缚于某种目的的活体烈风。只要有足够的旋风棒，再加上一点灵质来锚定灵魂，那个目的就能被改写：旋风人仆从会在主人的敌人周围跳跃滑动，用风弹打击他们。"
+    },
+    {
+      "type": "patchouli:entity",
+      "entity": "goety:breeze_servant"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "旋风人仆从不受摔落伤害，能将大多数投射物反弹回射击者，且不会被自己的风弹所伤。它们的爆发会把敌人抛来抛去，触发按钮和拉杆，打开门，但绝不会伤害主人或盟友。手持旋风棒或风弹右键忠诚的旋风人仆从即可治疗它。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:thrall/summon_breeze_servant_thrall"
+    }
+  ]
+}

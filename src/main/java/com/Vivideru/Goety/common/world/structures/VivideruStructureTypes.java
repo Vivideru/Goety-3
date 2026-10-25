@@ -1,6 +1,9 @@
 package com.Vivideru.Goety.common.world.structures;
 
 import com.Polarice3.Goety.Goety;
+import com.Vivideru.Goety.common.world.structures.crypt.CryptStructure;
+import com.Vivideru.Goety.common.world.structures.crypt.CryptWingPlacement;
+import com.Vivideru.Goety.common.world.structures.crypt.CryptWingStructure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacementType;
@@ -15,7 +18,10 @@ public class VivideruStructureTypes {
 
     public static final DeferredHolder<StructureType<?>, StructureType<WindShrineStructure>> WIND_SHRINE = STRUCTURE_TYPES.register("wind_shrine", () -> () -> WindShrineStructure.CODEC);
     public static final DeferredHolder<StructureType<?>, StructureType<WindShrineExpansionStructure>> WIND_SHRINE_EXPANSION = STRUCTURE_TYPES.register("wind_shrine_expansion", () -> () -> WindShrineExpansionStructure.CODEC);
+    public static final DeferredHolder<StructureType<?>, StructureType<CryptStructure>> CRYPT = STRUCTURE_TYPES.register("crypt_dungeon", () -> () -> CryptStructure.CODEC);
+    public static final DeferredHolder<StructureType<?>, StructureType<CryptWingStructure>> CRYPT_WING = STRUCTURE_TYPES.register("crypt_wing", () -> () -> CryptWingStructure.CODEC);
     public static final DeferredHolder<StructurePlacementType<?>, StructurePlacementType<WindShrineExpansionPlacement>> WIND_SHRINE_EXPANSION_PLACEMENT = PLACEMENT_TYPES.register("wind_shrine_expansion", () -> () -> WindShrineExpansionPlacement.CODEC);
+    public static final DeferredHolder<StructurePlacementType<?>, StructurePlacementType<CryptWingPlacement>> CRYPT_WING_PLACEMENT = PLACEMENT_TYPES.register("crypt_wing", () -> () -> CryptWingPlacement.CODEC);
     public static final DeferredHolder<StructureProcessorType<?>, StructureProcessorType<WindShrineFoundationProcessor>> WIND_SHRINE_FOUNDATION = PROCESSOR_TYPES.register("wind_shrine_foundation", () -> () -> WindShrineFoundationProcessor.CODEC);
 
     public static void init() {

@@ -1,22 +1,22 @@
 {
-  "name": "Sabbath Ritual",
+  "name": "Ритуал шабаша",
   "icon": "minecraft:crying_obsidian",
   "category": "goety:rituals",
   "sortnum": 10,
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Requirements: $(li)8 Crying Obsidian $(li)16 Obsidian $(li)4 Soul Fires"
+      "text": "Требования: $(li)8 блоков плачущего обсидиана $(li)16 блоков обсидиана $(li)4 огня душ"
     },
     {
       "type": "patchouli:image",
       "images": ["goety:textures/gui/entries/sabbath_ritual.png"],
       "border": true,
-      "text": "An example of how the ritual can be placed."
+      "text": "Пример того, как можно провести ритуал."
     },
     {
       "type": "patchouli:text",
-      "text": "You've heard rumors of a powerful being that lurks within the Nether. Rumor has it that a cabal of Nether Cultists met with what a being they called an 'Apostle' in a circle of Obsidian where they appeared before them and told them secrets."
+      "text": "До вас дошли слухи о могущественном существе, которое скрывается в Незере. Говорят, что группа незерских культистов встретилась с существом в обсидиановом круге, где оно предстало перед ними и поведало свои секреты. Культисты назвали его «апостолом»."
     },
     {
       "type": "goety:ritual",
@@ -28,7 +28,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Perhaps, with some trickery, magic and a baiting material, you are capable of summoning one for your own purposes, though you shouldn't summon one within the Nether where they're at their most powerful. (Recommended Equipment: Enchanted Armor, Smite Weapons and Efficiency Pickaxe)"
+      "text": "Возможно, с помощью некоторых хитростей, магии и приманки вы сможете призвать такого апостола для своих собственных целей. Однако не следует призывать его в Незере, где он наиболее силен. (Рекомендуемое снаряжение: зачарованная броня, оружие с «небесной карой» и кирка с «эффективностью»)."
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
-  "name": "Stash Urn",
+  "name": "隠し壺",
   "icon": "goety:stash_urn",
   "category": "goety:crafts",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A simple urn that holds emeralds within itself, that can even break apart and reveal its content when shot with a projectile."
+      "text": "中にエメラルドが入っているシンプルな壺。発射物で撃たれると壊れて中身が現れることもあります。"
     },
     {
       "type": "patchouli:crafting",

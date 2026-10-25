@@ -349,7 +349,7 @@ public class SoulEnergyEvents {
             }
             if (killer instanceof Wight wight){
                 if (wight.level() instanceof ServerLevel serverLevel) {
-                    SEHelper.decreaseSouls(player, 1000);
+                    SEHelper.decreaseSoulsNoDiscount(player, 1000);
                     float healAmount = 50.0F * (Math.min(0.0F, SEHelper.getSoulAmountInt(player)) / 1000.0F);
                     wight.heal(healAmount);
                     ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, ParticleTypes.SCULK_SOUL, wight);
@@ -372,8 +372,7 @@ public class SoulEnergyEvents {
                                         player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
                                         player.playSound(SoundEvents.WITHER_DEATH, 1.0F, 1.0F);
                                         ModNetwork.sendTo(player, new SPlayPlayerSoundPacket(SoundEvents.WITHER_DEATH, 1.0F, 1.0F));
-                                        SEHelper.decreaseSESouls(player, MainConfig.MaxSouls.get());
-                                        SEHelper.sendSEUpdatePacket(player);
+                                        SEHelper.decreaseSoulsNoDiscount(player, MainConfig.MaxSouls.get());
                                         event.setCanceled(true);
                                     } else {
                                         if (MainConfig.LichModeSounds.get()) {
@@ -400,8 +399,7 @@ public class SoulEnergyEvents {
                                     }
                                     player.playSound(SoundEvents.WITHER_DEATH, 1.0F, 1.0F);
                                     ModNetwork.sendTo(player, new SPlayPlayerSoundPacket(SoundEvents.WITHER_DEATH, 1.0F, 1.0F));
-                                    SEHelper.decreaseSESouls(player, MainConfig.MaxSouls.get());
-                                    SEHelper.sendSEUpdatePacket(player);
+                                    SEHelper.decreaseSoulsNoDiscount(player, MainConfig.MaxSouls.get());
                                     event.setCanceled(true);
                                 }
                             } else if (soulEnergy.getSoulEnergy() >= MainConfig.MaxSouls.get()) {
@@ -413,8 +411,7 @@ public class SoulEnergyEvents {
                                 player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
                                 player.playSound(SoundEvents.WITHER_DEATH, 1.0F, 1.0F);
                                 ModNetwork.sendTo(player, new SPlayPlayerSoundPacket(SoundEvents.WITHER_DEATH, 1.0F, 1.0F));
-                                SEHelper.decreaseSESouls(player, MainConfig.MaxSouls.get());
-                                SEHelper.sendSEUpdatePacket(player);
+                                SEHelper.decreaseSoulsNoDiscount(player, MainConfig.MaxSouls.get());
                                 event.setCanceled(true);
                             }
                         }
@@ -428,6 +425,7 @@ public class SoulEnergyEvents {
                     player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
                     player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
                     ModNetwork.sendTo(player, new TotemDeathPacket(player.getUUID()));
+                    SEHelper.sendSoulChange(player, -ITotem.currentSouls(TotemFinder.FindTotem(player)));
                     ITotem.setSoulsamount(TotemFinder.FindTotem(player), 0);
                 }
                 event.setCanceled(true);

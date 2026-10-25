@@ -1,12 +1,12 @@
 {
-  "name": "Brood Mothers",
+  "name": "Паучьи королевы",
   "icon": "goety:spider_mother_den",
   "category": "goety:world/bestiary",
   "advancement": "goety:goety/kill_a_brood_mother",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Gigantic spiders that attacks those who dare mess with their dens, with fangs that poison even the undead."
+      "text": "Гигантские пауки, нападающие на всех, кто осмелится сунуться в их логово. Их клыки отравляют даже нежить."
     },
     {
       "type": "patchouli:entity",
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "These creatures will try to directly attack their target, but if their children were to join the fight they would instead circle around them, letting their kids have their meal."
+      "text": "Эти существа пытаются атаковать жертву, но если к битве присоединятся их дети, то они будут держаться на расстоянии, позволяя малышам поесть."
     }
   ]
 }

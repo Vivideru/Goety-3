@@ -31,7 +31,7 @@ public class CrypticEyeItem extends Item {
          if (blockpos != null) {
             EyeItemEntity eyeItem = new EyeItemEntity(ModEntityType.CRYPTIC_EYE.get(), p_41184_, p_41185_.getX(), p_41185_.getY(0.5D), p_41185_.getZ());
             eyeItem.setItem(itemstack);
-            eyeItem.signalTo(blockpos);
+            eyeItem.signalTo(com.Vivideru.Goety.common.world.structures.crypt.CryptEntrance.doorFor(serverlevel, blockpos));
             eyeItem.setSurviveAfterDeath(false);
             eyeItem.setParticle(ModParticleTypes.TOTEM_EFFECT.get());
             eyeItem.setOwner(p_41185_);

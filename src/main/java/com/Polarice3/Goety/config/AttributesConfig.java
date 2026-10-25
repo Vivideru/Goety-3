@@ -192,6 +192,11 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> SignalerServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> SignalerServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> SignalerServantFollowRange;
+    public static final ModConfigSpec.ConfigValue<Double> ImperialGuardServantHealth;
+    public static final ModConfigSpec.ConfigValue<Double> ImperialGuardServantArmor;
+    public static final ModConfigSpec.ConfigValue<Double> ImperialGuardServantToughness;
+    public static final ModConfigSpec.ConfigValue<Double> ImperialGuardServantRangeDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> ImperialGuardServantShield;
     public static final ModConfigSpec.ConfigValue<Double> VindicatorServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> VindicatorServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> VindicatorServantDamage;
@@ -201,6 +206,11 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> EvokerServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> EvokerServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> EvokerServantFollowRange;
+    public static final ModConfigSpec.ConfigValue<Double> EnchanterServantHealth;
+    public static final ModConfigSpec.ConfigValue<Double> EnchanterServantArmor;
+    public static final ModConfigSpec.ConfigValue<Double> EnchanterServantFollowRange;
+    public static final ModConfigSpec.ConfigValue<Double> EnchanterServantDamage;
+    public static final ModConfigSpec.ConfigValue<Integer> EnchanterServantEnchantTime;
     public static final ModConfigSpec.ConfigValue<Double> GeomancerServantHealth;
     public static final ModConfigSpec.ConfigValue<Double> GeomancerServantArmor;
     public static final ModConfigSpec.ConfigValue<Double> GeomancerServantFollowRange;
@@ -321,6 +331,10 @@ public class AttributesConfig {
     public static final ModConfigSpec.ConfigValue<Double> RedstoneMinistrosityArmor;
     public static final ModConfigSpec.ConfigValue<Double> RedstoneMinistrosityDamage;
     public static final ModConfigSpec.ConfigValue<Double> RedstoneMinistrosityFollowRange;
+    public static final ModConfigSpec.ConfigValue<Double> FlameConstructHealth;
+    public static final ModConfigSpec.ConfigValue<Double> FlameConstructArmor;
+    public static final ModConfigSpec.ConfigValue<Double> FlameConstructDamage;
+    public static final ModConfigSpec.ConfigValue<Double> FlameConstructFollowRange;
     public static final ModConfigSpec.ConfigValue<Double> IceGolemHealth;
     public static final ModConfigSpec.ConfigValue<Double> IceGolemArmor;
     public static final ModConfigSpec.ConfigValue<Double> IceGolemDamage;
@@ -848,6 +862,18 @@ public class AttributesConfig {
                 SignalerServantFollowRange = BUILDER.comment("How much initial following/detection range Signaler Servants have, Default: 32.0")
                         .defineInRange("signalerServantFollowRange", 32.0, 0.0, Double.MAX_VALUE);
                 BUILDER.pop();
+                BUILDER.push("Imperial Guard Servant");
+                ImperialGuardServantHealth = BUILDER.comment("How much Max Health Imperial Guard Servants have, Default: 40.0")
+                        .defineInRange("imperialGuardServantHealth", 40.0, 1.0, Double.MAX_VALUE);
+                ImperialGuardServantArmor = BUILDER.comment("How much natural Armor Imperial Guard Servants have, Default: 8.0")
+                        .defineInRange("imperialGuardServantArmor", 8.0, 0.0, Double.MAX_VALUE);
+                ImperialGuardServantToughness = BUILDER.comment("How much natural armor toughness points Imperial Guard Servants have, Default: 2.0")
+                        .defineInRange("imperialGuardServantToughness", 2.0, 0.0, Double.MAX_VALUE);
+                ImperialGuardServantRangeDamage = BUILDER.comment("How much damage Imperial Guard Servants range attack deals, Default: 8.0")
+                        .defineInRange("imperialGuardServantRangeDamage", 8.0, 0.0, Double.MAX_VALUE);
+                ImperialGuardServantShield = BUILDER.comment("Initially, how many hits until Shield is broken, Default: 1")
+                        .defineInRange("imperialGuardServantShield", 1, 1, Integer.MAX_VALUE);
+                BUILDER.pop();
                 BUILDER.push("Vindicator Servant");
                 VindicatorServantHealth = BUILDER.comment("How much Max Health Vindicator Servants have, Default: 24.0")
                         .defineInRange("vindicatorServantHealth", 24.0, 1.0, Double.MAX_VALUE);
@@ -871,6 +897,18 @@ public class AttributesConfig {
                         .defineInRange("evokerServantArmor", 0.0, 0.0, Double.MAX_VALUE);
                 EvokerServantFollowRange = BUILDER.comment("How much following/detection range Evoker Servants have, Default: 12.0")
                         .defineInRange("evokerServantFollowRange", 12.0, 0.0, Double.MAX_VALUE);
+                BUILDER.pop();
+                BUILDER.push("Enchanter Servant");
+                EnchanterServantHealth = BUILDER.comment("How much Max Health Enchanter Servants have, Default: 20.0")
+                        .defineInRange("enchanterServantHealth", 20.0, 1.0, Double.MAX_VALUE);
+                EnchanterServantArmor = BUILDER.comment("How much natural Armor Enchanter Servants have, Default: 0.0")
+                        .defineInRange("enchanterServantArmor", 0.0, 0.0, Double.MAX_VALUE);
+                EnchanterServantFollowRange = BUILDER.comment("How much following/detection range Enchanter Servants have, Default: 12.0")
+                        .defineInRange("enchanterServantFollowRange", 12.0, 0.0, Double.MAX_VALUE);
+                EnchanterServantDamage = BUILDER.comment("How much damage Enchanter Servants deals, Default: 5.0")
+                        .defineInRange("enchanterServantDamage", 5.0, 1.0, Double.MAX_VALUE);
+                EnchanterServantEnchantTime = BUILDER.comment("How long the Enchanter can maintain enchantment in seconds, set to -1 to make it last forever, Default: 300")
+                        .defineInRange("enchanterServantEnchantTime", 300, -1, Integer.MAX_VALUE);
                 BUILDER.pop();
                 BUILDER.push("Geomancer Servant");
                 GeomancerServantHealth = BUILDER.comment("How much Max Health Geomancer Servants have, Default: 18.0")
@@ -1209,6 +1247,16 @@ public class AttributesConfig {
                         .defineInRange("redstoneMinistrosityDamage", 5.0, 1.0, Double.MAX_VALUE);
                 RedstoneMinistrosityFollowRange = BUILDER.comment("How much following/detection range Redstone Ministrosities have, Default: 16.0")
                         .defineInRange("redstoneMinistrosityFollowRange", 16.0, 1.0, 2048.0);
+                BUILDER.pop();
+                BUILDER.push("Flame Construct");
+                FlameConstructHealth = BUILDER.comment("How much Max Health Flame Constructs have, Default: 35.0")
+                        .defineInRange("flameConstructHealth", 35.0, 1.0, Double.MAX_VALUE);
+                FlameConstructArmor = BUILDER.comment("How much natural armor points Flame Constructs have, Default: 0.0")
+                        .defineInRange("flameConstructArmor", 0.0, 0.0, Double.MAX_VALUE);
+                FlameConstructDamage = BUILDER.comment("How much damage Flame Constructs deals, Default: 5.0")
+                        .defineInRange("flameConstructDamage", 5.0, 1.0, Double.MAX_VALUE);
+                FlameConstructFollowRange = BUILDER.comment("How much following/detection range Flame Constructs have, Default: 10.0")
+                        .defineInRange("flameConstructFollowRange", 10.0, 1.0, 2048.0);
                 BUILDER.pop();
                 BUILDER.push("Ice Golem");
                 IceGolemHealth = BUILDER.comment("How much Max Health Ice Golems have, Default: 60.0")

@@ -1,11 +1,11 @@
 {
-  "name": "Ring of Thirst",
+  "name": "渇望のリング",
   "icon": "goety:ring_of_thirst",
   "category": "goety:crafts/garment",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The Eerie Pickaxe might be useful for collecting Experience Orbs, there are times where even that ability is not enough. With this ring, experience is immediately given to the wearer if it's dropped by killing a creature, personally or through a servant."
+      "text": "不気味なツルハシは経験値オーブを集めるのに役立つかもしれませんが、それでも足りない時があります。この指輪は、クリーチャーを倒してドロップした経験値を、直接または従者を通して即座に獲得します。"
     },
     {
       "type": "goety:ritual",

@@ -1,11 +1,11 @@
 {
-  "name": "Snaring Focus",
+  "name": "スネアリングのフォーカス",
   "icon": "goety:snaring_focus",
   "category": "goety:focuses/void",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus feels gooey by touch, but it does not seem to secrete any goo whatsoever. The same cannot be said to the creature it can summon, $(l:summons/enderling_servants#snareling)a gangly caricature of humanity with long arms, a jaw on its chest and a glowing back-sac$()."
+      "text": "このフォーカスは触るとベタベタするが、実際には分泌物は一切出ていないようだ。しかし、それが召喚する生き物は$(l:summons/enderling_servants#snareling)長い腕、胸に顎、そして光る背嚢を持つ、ひょろ長い人間の似顔絵のような$()ものである。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/void_staff)Void Staff$() summons more snarelings at once."
+      "text": "$(l:crafts/staff/void_staff)ヴォイドの杖$()で唱えると、一度に召喚されるスネアリングの量が増えます。"
     }
   ],
   "extra_recipe_mappings": {

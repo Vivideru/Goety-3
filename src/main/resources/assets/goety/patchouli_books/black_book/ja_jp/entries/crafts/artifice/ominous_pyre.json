@@ -18,7 +18,14 @@
     },
     {
       "type": "patchouli:text",
+      "title": "インペリアルガードの従者",
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)注:$(l:goety:rumors/desert)前線のスクロール$()を読む必要がある$()$(br)必要: $(li)ピリジャーの従者 $(li)4 不吉な石像 $(li)4 旗 $(li)4 干し草/ターゲット ブロック $(li)4 矢細工台 $(li)2 金床 $(li)8 $(l:goety:crafts/stash_urn)隠し壺$()"
+    },
+    {
+      "type": "patchouli:text",
       "title": "パイカーの従者",
+      "advancement": "goety:goety/read_front_scroll",
       "text": "$(o)注:$(l:goety:rumors/desert)前線のスクロール$()を読む必要がある$()$(br)必要: $(li)ネオラジャー $(li)2 砥石 $(li)2 鍛冶台 $(li)16 木のフェンス $(li)32 原木 $(li)4 樽 $(li)4 ベッド $(li)2 金床"
     },
     {
@@ -49,12 +56,18 @@
     {
       "type": "patchouli:text",
       "title": "ロイヤルガードの従者",
-      "text": "必要: $(li)ヴィンディケーターの従者 $(li)4 不吉な石像 $(li)16 ロイヤル/フロスト カーペット $(li)4 旗 $(li)4 金床 $(li)4 $(l:goety:crafts/stash_urn)隠し壺$()"
+      "advancement": "goety:goety/read_front_scroll",
+      "text": "$(o)注:$(l:goety:rumors/desert)前線のスクロール$()を読む必要がある$()$(br)必要: $(li)ヴィンディケーターの従者 $(li)4 不吉な石像 $(li)16 ロイヤル/フロスト カーペット $(li)4 旗 $(li)4 金床 $(li)8 $(l:goety:crafts/stash_urn)隠し壺$()"
     },
     {
       "type": "patchouli:text",
       "title": "エヴォーカーの従者",
       "text": "必要: $(li)魔法ネオラジャー $(li)32 本棚/エンチャントパワー $(li)16 灯ったろうそく $(li)4 頭 $(li)4 植えられた植木鉢 $(li)2 旗 $(li)4 $(l:goety:crafts/stash_urn)隠し壺$() $(li)1 書見台"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "エンチャンターの従者",
+      "text": "必要: $(li)魔法ネオラジャー $(li)64 本棚/エンチャントパワー $(li)2 キャンドルスティック/燭台 $(li)1 書見台 $(li)1 エンチャントテーブル $(li)4 $(l:goety:crafts/stash_urn)隠し壺$() $(li)4 エンチャントの本で満たした模様入りの本棚"
     },
     {
       "type": "patchouli:text",
@@ -64,7 +77,7 @@
     {
       "type": "patchouli:text",
       "title": "アイソロジャーの従者",
-      "text": "必要: $(li)魔法ネオラジャー $(li)16 青い氷 $(li)48 雪ブロック $(li)16 粉雪 $(li)4 $(l:goety:crafts/artifice/freezing_lamp)フリージングランプ$()"
+      "text": "必要: $(li)魔法ネオラジャー $(li)16 青い氷 $(li)64 雪ブロック $(li)4 $(l:goety:crafts/artifice/freezing_lamp)フリージングランプ$()"
     },
     {
       "type": "patchouli:text",
@@ -74,16 +87,18 @@
     {
       "type": "patchouli:text",
       "title": "ウィンドコーラーの従者",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "必要: $(li)魔法ネオラジャー $(li)64 大理石系ブロック $(li)32 翡翠系ブロック $(li)4 インデントされた金系ブロック"
     },
     {
       "type": "patchouli:text",
       "title": "ストームキャスターの従者",
+      "advancement": "goety:goety/read_mistral_scroll",
       "text": "必要: $(li)ジオマンサーかウィンドコーラー $(li)炎の台が雷雨に当たっている $(li)32 あらゆる銅ブロック $(li)64 あらゆるレンガブロック $(li)4 避雷針"
     },
     {
       "type": "patchouli:text",
-      "text": "トレーニングを中止するには、火の台を壊すか、火の台から10ブロック以上離れた場所に、対象を移動させます。"
+      "text": "トレーニングを中止するには、火の台を壊すか、火の台から10ブロック以上離れた場所に、対象を移動させます。また、トレーニング中のイリジャーが、目指している種類のイリジャーの近くにいると、トレーニングの進行が速まります。"
     }
   ],
   "extra_recipe_mappings": {

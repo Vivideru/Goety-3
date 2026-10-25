@@ -1,11 +1,11 @@
 {
-  "name": "Meteor Shower Focus",
+  "name": "Фокус метеоритного дождя",
   "icon": "goety:meteor_shower_focus",
   "category": "goety:focuses/nether",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Infusing the Arrow Rain Focus with the power of the nether, you call upon a rain of explosive lava bombs instead of arrows."
+      "text": "Наполняя фокус града стрел силой Незера, вы создаёте дождь из взрывоопасных лавовых бомб."
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/nether_staff)Nether Staff$() increases the number of lava bombs falling from the sky."
+      "text": "Использование $(l:crafts/staff/nether_staff)незерского посоха$() увеличивает число лавовых бомб."
     }
   ],
   "extra_recipe_mappings": {

@@ -1,0 +1,23 @@
+{
+  "name": "微风聚晶",
+  "icon": "goety:breeze_focus",
+  "category": "goety:focuses/wind",
+  "advancement": "minecraft:adventure/minecraft_trials_edition",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "将旋风人的旋风棒与活力核心结合，可制作出召唤$(l:goety:summons/breeze_servants)旋风人仆从$()的聚晶：一团活着的烈风，在你的敌人周围跳跃滑动，用风弹打击他们。强效附魔能强化每个被召唤的旋风人，每级为其风弹增加伤害与击退。"
+    },
+    {
+      "type": "goety:ritual",
+      "recipe": "goety:focus/breeze_focus"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用$(l:crafts/staff/wind_staff)风之魔杖$()施法时，可一次召唤两个旋风人。"
+    }
+  ],
+  "extra_recipe_mappings": {
+    "goety:breeze_focus": 1
+  }
+}

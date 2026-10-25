@@ -1,11 +1,11 @@
 {
-  "name": "Biomine Focus",
+  "name": "バイオマインのフォーカス",
   "icon": "goety:biomine_focus",
   "category": "goety:focuses/abyss",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The focus allows you to summon biomines, which are egg-like structures that explode into poisonous gas when popped or if an non-allied creature is nearby."
+      "text": "唱えると、バイオマインを呼び出すことができます。バイオマインは卵のようなモノで、割られたとき、または味方ではない生き物が近くにいる場合に爆発して有毒ガスが発生させます。"
     },
     {
       "type": "goety:ritual",
@@ -13,7 +13,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Casting with $(l:crafts/staff/abyss_staff)Abyss Staff$() will summon forth more biomines."
+      "text": "$(l:crafts/staff/abyss_staff)深淵の杖$()で唱えると、さらに多くのバイオマインを呼び出すことができます。"
     }
   ],
   "extra_recipe_mappings": {

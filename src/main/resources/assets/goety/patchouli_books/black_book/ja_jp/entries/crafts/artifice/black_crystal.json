@@ -1,12 +1,12 @@
 {
-  "name": "Black Crystal",
+  "name": "ブラッククリスタル",
   "icon": "goety:black_crystal",
   "category": "goety:crafts/artifice",
   "advancement": "goety:goety/kill_a_wight",
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A soul-hungering crystal that, when placed down, will link itself to you and will attempt to suck in soul energy from any nearby entity, that's not allied to you, damaging them until they are at low health."
+      "text": "設置すると、魂に飢えたクリスタルがあなたにリンクし、あなたの仲間でない近くの存在からソウルエネルギーを吸い取ろうとし、それらの体力が低下するまでダメージを与えます。"
     },
     {
       "type": "goety:ritual",
