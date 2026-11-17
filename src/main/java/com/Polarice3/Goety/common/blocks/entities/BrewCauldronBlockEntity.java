@@ -71,6 +71,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.LavaFluid;
 import net.minecraft.world.phys.Vec3;
+import com.Vivideru.Goety.common.blocks.entities.BlockEntitySync;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -103,6 +104,8 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
     public float lingering = 0;
     public CauldronRecipe recipe;
     public ResourceLocation recipeId;
+    @Nullable
+    private CompoundTag lastSyncTag;
 
     public BrewCauldronBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(ModBlockEntities.BREWING_CAULDRON.get(), p_155229_, p_155230_);
@@ -217,7 +220,7 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
                     }
                 }
                 this.level.setBlock(this.getBlockPos(), this.getBlockState().setValue(ModStateProperties.FAILED, this.mode == Mode.FAILED).setValue(ModStateProperties.CRAFTING, this.mode == Mode.CRAFTING || this.mode == Mode.CRAFTED), 11);
-                this.markUpdated();
+                this.lastSyncTag = BlockEntitySync.markUpdatedIfChanged(this, this.lastSyncTag, this::markUpdated);
             }
         }
     }
@@ -1247,6 +1250,7 @@ public class BrewCauldronBlockEntity extends BlockEntity implements WorldlyConta
     }
 
     public void markUpdated() {
+        this.lastSyncTag = null;
         this.setChanged();
         if (this.level != null && !this.level.isClientSide) {
             this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_ALL);

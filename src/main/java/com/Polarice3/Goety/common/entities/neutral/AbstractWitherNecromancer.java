@@ -20,6 +20,7 @@ import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -270,6 +271,7 @@ public class AbstractWitherNecromancer extends AbstractNecromancer {
                     Summoned summoned = AbstractWitherNecromancer.this.getSummon();
                     BlockPos blockPos = BlockFinder.SummonRadius(AbstractWitherNecromancer.this.blockPosition(), summoned, serverLevel);
                     summoned.setTrueOwner(MobUtil.getSummonOwner(AbstractWitherNecromancer.this));
+                    SummonerTracker.record(summoned, AbstractWitherNecromancer.this);
                     summoned.moveTo(blockPos, 0.0F, 0.0F);
                     MobUtil.moveDownToGround(summoned);
                     if (!AbstractWitherNecromancer.this.getType().is(ModTags.EntityTypes.MINI_BOSSES)) {

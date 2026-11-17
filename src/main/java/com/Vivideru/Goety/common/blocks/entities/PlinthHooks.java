@@ -3,13 +3,13 @@ package com.Vivideru.Goety.common.blocks.entities;
 import com.Polarice3.Goety.api.entities.IGolem;
 import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
+import com.Polarice3.Goety.utils.ServerParticleUtil;
 import com.Polarice3.Goety.common.entities.ally.Summoned;
 import com.Polarice3.Goety.common.entities.neutral.AbstractHauntedArmor;
 import com.Polarice3.Goety.common.items.WaystoneItem;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Vivideru.Goety.common.blocks.PlinthBlock;
 import com.Vivideru.Goety.common.capabilities.VivideruAttachments;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.GlobalPos;
@@ -27,6 +27,7 @@ import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raider;
@@ -36,17 +37,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.util.List;
 
 /** Everything that links golems and Haunted Armors to Plinths: binding, resting, waking, mending and the enemy check. */
 public final class PlinthHooks {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final String TAG_POS = "PlinthPos";
     private static final String TAG_DIM = "PlinthDim";
     private static final String TAG_RESTING = "Resting";
     private static final String TAG_FROZEN = "goety_plinth_frozen";
+    private static final String TAG_WOKE = "WokeAt";
     public static final float HEAL_SHARE_PER_SECOND = 0.02F;
     public static final float REPAIR_SHARE_PER_SECOND = 0.02F;
     public static final int RETURN_DELAY = 100;
@@ -100,6 +100,20 @@ public final class PlinthHooks {
         return entity instanceof Mob mob && mob.hasData(VivideruAttachments.PLINTH) && mob.getData(VivideruAttachments.PLINTH).getBoolean(TAG_RESTING);
     }
 
+    /** A servant leaves its Plinth when its owner calls it away: following, commanded or sent to patrol. */
+    public static boolean stopResting(Mob mob) {
+        return mob instanceof IServant servant && servant.getTrueOwner() != null && (!servant.isGuardingArea() || servant.isCommanded() || servant.isPatrolling());
+    }
+
+    /** Woke less than RETURN_DELAY ticks ago: it is neither taken back by a Plinth nor sent back to it yet. */
+    public static boolean recentlyWoke(Mob mob) {
+        if (!mob.hasData(VivideruAttachments.PLINTH)) {
+            return false;
+        }
+        CompoundTag tag = mob.getData(VivideruAttachments.PLINTH);
+        return tag.contains(TAG_WOKE) && mob.level().getGameTime() - tag.getLong(TAG_WOKE) < RETURN_DELAY;
+    }
+
     private static void setResting(Mob mob, boolean resting) {
         CompoundTag tag = mob.getData(VivideruAttachments.PLINTH);
         tag.putBoolean(TAG_RESTING, resting);
@@ -129,10 +143,11 @@ public final class PlinthHooks {
         mob.yHeadRotO = yRot;
         mob.setXRot(0.0F);
         mob.xRotO = 0.0F;
+        // Minecraft raises tickCount before the tick event that the freeze cancels: idle animations tied to it would run.
+        mob.tickCount = 0;
         CompoundTag data = mob.getPersistentData();
         if (!data.getBoolean(TAG_FROZEN)) {
             data.putBoolean(TAG_FROZEN, true);
-            mob.tickCount = 0;
             mob.walkAnimation.update(0.0F, 1.0F);
             mob.walkAnimation.setSpeed(0.0F);
         }
@@ -212,7 +227,6 @@ public final class PlinthHooks {
         }
         player.displayClientMessage(Component.translatable(complete ? "info.goety.plinth.bind" : "info.goety.plinth.too_small", entity.getDisplayName(), footprint(mob)), true);
         player.playSound(SoundEvents.ARROW_HIT_PLAYER, 1.0F, 0.45F);
-        LOGGER.debug("Plinth: {} bound to {} (width {}, square {} complete={})", entity.getName().getString(), globalPos.pos(), mob.getBbWidth(), footprint(mob), complete);
         return InteractionResult.SUCCESS;
     }
 
@@ -253,7 +267,10 @@ public final class PlinthHooks {
                 }
                 plinth.setCharged(working);
                 LivingEntity enemy = findEnemy(level, plinth, occupant);
-                if (enemy != null) {
+                if (enemy == null && occupant.getTarget() != null && occupant.getTarget().isAlive()) {
+                    enemy = occupant.getTarget();
+                }
+                if (enemy != null || stopResting(occupant)) {
                     wake(occupant, enemy);
                 }
             } else {
@@ -324,7 +341,7 @@ public final class PlinthHooks {
         }
         AABB area = new AABB(pos).inflate(0.5D, 0.0D, 0.5D).expandTowards(0.0D, 3.0D, 0.0D);
         for (Mob mob : level.getEntitiesOfClass(Mob.class, area, PlinthHooks::canRest)) {
-            if (!mob.isAlive() || mob.getTarget() != null || isResting(mob) || mob instanceof Raider raider && raider.hasActiveRaid()) {
+            if (!mob.isAlive() || mob.getTarget() != null || isResting(mob) || recentlyWoke(mob) || mob instanceof Raider raider && raider.hasActiveRaid()) {
                 continue;
             }
             GlobalPos assigned = getPlinth(mob);
@@ -351,7 +368,6 @@ public final class PlinthHooks {
     public static boolean rest(Mob mob, PlinthBlockEntity plinth) {
         Level level = plinth.getLevel();
         if (level == null || !footprintComplete(level, plinth.getBlockPos(), mob)) {
-            LOGGER.debug("Plinth: {} cannot rest at {}, the square of {} Plinths is incomplete", mob.getName().getString(), plinth.getBlockPos(), footprint(mob));
             return false;
         }
         GlobalPos globalPos = GlobalPos.of(level.dimension(), plinth.getBlockPos());
@@ -380,7 +396,9 @@ public final class PlinthHooks {
         setResting(mob, true);
         plinth.setOccupant(mob.getUUID());
         level.playSound(null, plinth.getBlockPos(), SoundEvents.STONE_PLACE, SoundSource.BLOCKS, 0.8F, 0.6F);
-        LOGGER.debug("Plinth: {} now rests at {} facing {}", mob.getName().getString(), plinth.getBlockPos(), yRot);
+        if (level instanceof ServerLevel serverLevel) {
+            ServerParticleUtil.summonUndeadParticles(serverLevel, mob);
+        }
         return true;
     }
 
@@ -395,11 +413,13 @@ public final class PlinthHooks {
         mob.setNoAi(false);
         mob.setSilent(false);
         setResting(mob, false);
+        CompoundTag woke = mob.getData(VivideruAttachments.PLINTH);
+        woke.putLong(TAG_WOKE, mob.level().getGameTime());
+        mob.setData(VivideruAttachments.PLINTH, woke);
         if (target != null) {
             setTarget(mob, target);
         }
         mob.level().playSound(null, mob.blockPosition(), SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 0.8F, 0.7F);
-        LOGGER.debug("Plinth: {} wakes up{}", mob.getName().getString(), target != null ? " against " + target.getName().getString() : "");
     }
 
     private static void setTarget(Mob mob, LivingEntity target) {
@@ -433,13 +453,14 @@ public final class PlinthHooks {
         }
         LivingEntity owner = occupant instanceof IOwned owned ? owned.getTrueOwner() : null;
         if (owner != null) {
-            if (candidate == owner || MobUtil.areAllies(owner, candidate) || MobUtil.areAllies(occupant, candidate)) {
-                return false;
-            }
-            if (candidate instanceof Enemy) {
-                return true;
-            }
-            return candidate instanceof Mob mob && mob.getTarget() != null && (mob.getTarget() == owner || MobUtil.areAllies(owner, mob.getTarget()));
+            // The rules every servant targets by: servantsAttackCreepers, neutral mobs, grudges, mob griefing...
+            return !(candidate == owner || MobUtil.areAllies(owner, candidate) || MobUtil.areAllies(occupant, candidate))
+                    && TargetingConditions.forCombat().ignoreLineOfSight().selector(target -> MobUtil.isOwnedTargetable(occupant, target)).test(occupant, candidate)
+                    && occupant.hasLineOfSight(candidate);
+        }
+        // Crypt guardians without an owner wake for players and their servants, never through walls.
+        if (!occupant.hasLineOfSight(candidate)) {
+            return false;
         }
         if (candidate instanceof Player) {
             return true;

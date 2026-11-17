@@ -18,6 +18,7 @@ import com.Polarice3.Goety.utils.EntityFinder;
 import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
+import com.Vivideru.Goety.common.entities.util.OwnerCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.GlobalPos;
 import net.minecraft.core.registries.Registries;
@@ -92,6 +93,7 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
     public int revivingTime;
     public int pacifyTime;
     public long ticketTime = 0;
+    private final OwnerCache ownerCache = new OwnerCache();
 
     public AbstractSpiderServant(EntityType<? extends Spider> p_33786_, Level p_33787_) {
         super(p_33786_, p_33787_);
@@ -604,7 +606,7 @@ public abstract class AbstractSpiderServant extends Spider implements PlayerRide
         }
         if (!this.level().isClientSide){
             UUID uuid = this.getOwnerId();
-            return uuid == null ? null : EntityFinder.getLivingEntityByUuiD(uuid);
+            return uuid == null ? null : this.ownerCache.get(uuid);
         } else {
             int id = this.getOwnerClientId();
             return id <= -1 ? null : this.level().getEntity(this.getOwnerClientId()) instanceof LivingEntity living && living != this ? living : null;

@@ -30,7 +30,7 @@ import java.util.Optional;
 
 public class ModTradeUtil {
     /**
-     * Based on TeamAbnormals' TradeUtil: <a href="https://github.com/team-abnormals/blueprint/blob/1.19.x/src/main/java/com/teamabnormals/blueprint/core/util/TradeUtil.java">...</a>
+     * From Here: Based of TeamAbnormals' TradeUtil: <a href="https://github.com/team-abnormals/blueprint/blob/1.19.x/src/main/java/com/teamabnormals/blueprint/core/util/TradeUtil.java">...</a>
      */
     public static final int NOVICE = 1;
     public static final int APPRENTICE = 2;

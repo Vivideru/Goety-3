@@ -108,7 +108,11 @@ public class LeapleafMold implements IMold {
     }
 
     public static boolean canSpawn(Level level, BlockPos blockPos){
+        if (!level.getBlockState(blockPos.offset(CORPSE_BLOSSOM)).is(ModBlocks.CORPSE_BLOSSOM.get())) {
+            return false;
+        }
         if (checkRootsX(level, blockPos).isEmpty() && checkLeavesX(level, blockPos).isEmpty()){
+            removeBlocks(level, blockPos);
             for (BlockPos blockPos1 : ROOTS_LOCATIONS) {
                 BlockPos blockPos2 = blockPos.offset(blockPos1);
                 if (level.getBlockState(blockPos2).is(ModBlocks.OVERGROWN_ROOTS.get())) {
@@ -123,8 +127,9 @@ public class LeapleafMold implements IMold {
                     level.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
                 }
             }
-            return level.getBlockState(blockPos.offset(CORPSE_BLOSSOM)).is(ModBlocks.CORPSE_BLOSSOM.get());
+            return true;
         } else if (checkRootsZ(level, blockPos).isEmpty() && checkLeavesZ(level, blockPos).isEmpty()) {
+            removeBlocks(level, blockPos);
             for (BlockPos blockPos1 : ROOTS_LOCATIONS_Z) {
                 BlockPos blockPos2 = blockPos.offset(blockPos1);
                 if (level.getBlockState(blockPos2).is(ModBlocks.OVERGROWN_ROOTS.get())) {
@@ -139,7 +144,7 @@ public class LeapleafMold implements IMold {
                     level.setBlockAndUpdate(blockPos2, Blocks.AIR.defaultBlockState());
                 }
             }
-            return level.getBlockState(blockPos.offset(CORPSE_BLOSSOM)).is(ModBlocks.CORPSE_BLOSSOM.get());
+            return true;
         } else {
             return false;
         }

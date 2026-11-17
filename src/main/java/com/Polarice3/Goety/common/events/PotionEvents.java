@@ -1065,6 +1065,11 @@ public class PotionEvents {
                 event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
             }
         }
+        if (event.getEffectInstance().getEffect().is(GoetyEffects.SOUL_BURN)) {
+            if (event.getEntity().getType().is(ModTags.EntityTypes.SOUL_BURN_IMMUNE)) {
+                event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
+            }
+        }
         if (event.getEffectInstance().getEffect().is(GoetyEffects.FREEZING)){
             if (event.getEntity().hasEffect(GoetyEffects.SNOW_SKIN) || event.getEntity().getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)){
                 event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);

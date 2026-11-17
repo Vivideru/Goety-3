@@ -43,6 +43,7 @@ public class GenericRadialMenu {
     private State state = State.INITIALIZING;
     public double startAnimation;
     public float animProgress;
+    public float baseRadius = 30.0F;
     public float radiusIn;
     public float radiusOut;
     public float itemRadius;
@@ -172,7 +173,7 @@ public class GenericRadialMenu {
         Font fontRenderer = host.getFontRenderer();
 
         boolean animated = state == State.OPENING || state == State.CLOSING;
-        this.radiusIn = animated ? Math.max(0.1f, 30 * this.animProgress) : 30;
+        this.radiusIn = animated ? Math.max(0.1f, this.baseRadius * this.animProgress) : this.baseRadius;
         this.radiusOut = this.radiusIn * 2;
         this.itemRadius = (this.radiusIn + this.radiusOut) * 0.5f;
         float animTop = animated ? (1 - this.animProgress) * owner.height / 2.0F : 0;

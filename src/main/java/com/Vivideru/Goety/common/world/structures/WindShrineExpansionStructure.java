@@ -29,8 +29,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 
 public class WindShrineExpansionStructure extends Structure {
     private static final int LANDING_BEYOND = 6;
@@ -39,7 +37,6 @@ public class WindShrineExpansionStructure extends Structure {
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion/start_stairs_12"),
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion/start_stairs_steep_6"),
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion/start_stairs_steep_12"));
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final MapCodec<WindShrineExpansionStructure> CODEC = RecordCodecBuilder.<WindShrineExpansionStructure>mapCodec(instance -> instance.group(
             settingsCodec(instance),
             StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(s -> s.startPool),
@@ -114,7 +111,6 @@ public class WindShrineExpansionStructure extends Structure {
             }
         }
         if (pool == null) {
-            LOGGER.debug("Wind Shrine wing {} skipped: no entrance stair fits at door {} of the shrine in chunk {}", this.door, door.target(), plan.chunk());
             return Optional.empty();
         }
         Optional<GenerationStub> stub;
@@ -123,9 +119,6 @@ public class WindShrineExpansionStructure extends Structure {
             stub = JigsawPlacement.addPieces(context, pool, Optional.of(this.startJigsawName), this.maxDepth, start, false, Optional.empty(), this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, DimensionPadding.ZERO, LiquidSettings.APPLY_WATERLOGGING);
         } finally {
             WindShrinePlacementRules.clearForcedRotation();
-        }
-        if (stub.isEmpty()) {
-            LOGGER.warn("Wind Shrine wing {} could not start at door {} (facing {}) of the shrine in chunk {}", this.door, door.target(), door.facing(), plan.chunk());
         }
         return stub.map(s -> new GenerationStub(s.position(), Either.left(builder -> {
             WindShrinePlacementRules.beginWing(plan, this.door, this.maxDepth, context.chunkPos());

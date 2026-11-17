@@ -8,7 +8,9 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.AbstractTexture;
@@ -29,6 +31,7 @@ public class EnchantLayer<T extends LivingEntity, M extends EntityModel<T>> exte
     private static final float OUTER_SPEED = 0.01F;
     private static final float INNER_SPEED = 0.02F;
     private static final Map<ResourceLocation, int[]> SIZES = new HashMap<>();
+    private static final Map<ResourceLocation, Boolean> EYES = new HashMap<>();
     private final LivingEntityRenderer<T, M> renderer;
 
     public EnchantLayer(LivingEntityRenderer<T, M> renderer) {
@@ -43,6 +46,7 @@ public class EnchantLayer<T extends LivingEntity, M extends EntityModel<T>> exte
         }
         ResourceLocation entityTex = this.renderer.getTextureLocation(entity);
         float f = (float) entity.tickCount + partialTicks;
+        this.renderEyes(entity, matrixStackIn, bufferIn);
         this.renderSwirl(matrixStackIn, bufferIn, packedLightIn, entityTex, OUTER, f * OUTER_SPEED);
         this.renderSwirl(matrixStackIn, bufferIn, packedLightIn, entityTex, INNER, f * INNER_SPEED);
     }
@@ -58,6 +62,16 @@ public class EnchantLayer<T extends LivingEntity, M extends EntityModel<T>> exte
         float scaleV = (float) base[1] / (float) swirl[1];
         VertexConsumer consumer = buffer.getBuffer(ModRenderType.enchantSwirl(swirlTex, entityTex, offset, offset, scaleU, scaleV));
         this.getParentModel().renderToBuffer(poseStack, consumer, packedLight, OverlayTexture.NO_OVERLAY, -1);
+    }
+
+    private void renderEyes(T entity, PoseStack poseStack, MultiBufferSource buffer) {
+        String path = entity.getType().getDescriptionId().replace("entity.", "").replace(".", "/");
+        ResourceLocation eyeLocation = Goety.location("textures/entity/enchant_eyes/" + path + ".png");
+        if (!EYES.computeIfAbsent(eyeLocation, rl -> Minecraft.getInstance().getResourceManager().getResource(rl).isPresent())) {
+            return;
+        }
+        VertexConsumer consumer = buffer.getBuffer(RenderType.eyes(eyeLocation));
+        this.getParentModel().renderToBuffer(poseStack, consumer, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, -1);
     }
 
     private static int[] size(ResourceLocation rl) {

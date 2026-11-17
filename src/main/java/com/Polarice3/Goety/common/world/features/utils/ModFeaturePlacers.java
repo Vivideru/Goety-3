@@ -20,7 +20,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 /**
- * Adapted from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/FeaturePlacers.java">...</a>
+ * Stolen from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/FeaturePlacers.java">...</a>
  */
 public final class ModFeaturePlacers {
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;

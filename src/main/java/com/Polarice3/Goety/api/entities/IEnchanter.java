@@ -3,6 +3,7 @@ package com.Polarice3.Goety.api.entities;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.config.AttributesConfig;
 import com.Polarice3.Goety.utils.MathHelper;
+import com.Polarice3.Goety.utils.MobUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.StringTag;
@@ -78,6 +79,12 @@ public interface IEnchanter extends IAnimated {
                             Entity entity = serverLevel.getEntity(uuid);
                             if (entity instanceof LivingEntity livingEntity) {
                                 livingEntity.addEffect(new MobEffectInstance(GoetyEffects.ENCHANTED, 30), mob);
+                                if (entity instanceof Mob mob1) {
+                                    LivingEntity target = mob.getLastHurtByMob();
+                                    if (target != null && !target.isDeadOrDying() && target.isAlive() && target != mob1 && !MobUtil.areAllies(mob1, target)) {
+                                        mob1.setTarget(target);
+                                    }
+                                }
                             }
                         });
                         this.setEnchantTime(this.getEnchantTime() + 1);

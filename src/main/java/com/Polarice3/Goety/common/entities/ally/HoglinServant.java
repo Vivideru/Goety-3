@@ -329,9 +329,10 @@ public class HoglinServant extends AnimalSummon implements HoglinBase, PlayerRid
             --this.attackAnimationRemainingTicks;
         }
         if (this.level() instanceof ServerLevel serverLevel){
-            if (this.findNearestRepellent(serverLevel, this).isPresent()){
+            Optional<BlockPos> repellent = (this.tickCount + this.getId()) % 20 == 0 ? this.findNearestRepellent(serverLevel, this) : Optional.ofNullable(this.nearestRepellent);
+            if (repellent.isPresent()){
                 if (this.nearestRepellent == null){
-                    this.nearestRepellent = this.findNearestRepellent(serverLevel, this).get();
+                    this.nearestRepellent = repellent.get();
                     this.getNavigation().stop();
                     this.retreatTime = 200;
                 }

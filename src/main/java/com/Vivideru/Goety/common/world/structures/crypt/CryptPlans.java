@@ -3,7 +3,6 @@ package com.Vivideru.Goety.common.world.structures.crypt;
 import com.Polarice3.Goety.Goety;
 import com.Vivideru.Goety.common.world.structures.StructureTerrain;
 import com.Vivideru.Goety.common.world.structures.WindShrinePlans;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistryAccess;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,7 +32,6 @@ import java.util.Set;
  * main dungeon's Libraries, on level 1; there is no deeper level.
  */
 public final class CryptPlans {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "crypt");
     public static final int DOORS = 4;
     /**
@@ -60,7 +57,6 @@ public final class CryptPlans {
     private static final int CACHE_SIZE = 256;
     private static final Map<CacheKey, Map<Long, Optional<Plan>>> CACHES = new LinkedHashMap<>();
     private static final ThreadLocal<Map<Long, Optional<Plan>>> PARTIAL = ThreadLocal.withInitial(java.util.HashMap::new);
-    private static final Map<Long, Object> LOCKS = new java.util.concurrent.ConcurrentHashMap<>();
 
     private record CacheKey(ChunkGenerator generator, long seed) {
     }
@@ -135,9 +131,6 @@ public final class CryptPlans {
             for (BoundingBox box : plan.get().allBoxes()) {
                 if (chunkPos.getMaxBlockX() >= box.minX() - KEEP_AWAY && chunkPos.getMinBlockX() <= box.maxX() + KEEP_AWAY
                         && chunkPos.getMaxBlockZ() >= box.minZ() - KEEP_AWAY && chunkPos.getMinBlockZ() <= box.maxZ() + KEEP_AWAY) {
-                    if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("Structure {} in chunk {} gives way to the crypt planned at chunk {}", registryAccess.registryOrThrow(Registries.STRUCTURE).getKey(candidate), chunkPos, start);
-                    }
                     return true;
                 }
             }
@@ -206,54 +199,43 @@ public final class CryptPlans {
         if (cached != null) {
             return cached;
         }
-        synchronized (LOCKS.computeIfAbsent(resolver.seed() * 31L + candidate.toLong(), key -> new Object())) {
-            cached = cache.get(candidate.toLong());
-            if (cached != null) {
-                return cached;
-            }
-            Optional<Plan> plan = Optional.empty();
-            try {
-                Optional<CryptStructure> crypt = crypt(resolver.registryAccess());
-                if (crypt.isPresent()) {
-                    StructureStart start = resolver.generate(crypt.get(), candidate);
-                    if (start.isValid() && !start.getPieces().isEmpty()) {
-                        List<BoundingBox> mainBoxes = boxes(start);
-                        BlockPos tower = start.getPieces().get(0).getBoundingBox().getCenter();
-                        List<WindShrinePlans.Door> doors0 = CryptExits.openDoors(start.getPieces(), resolver.templates(), resolver.seed());
-                        List<List<BoundingBox>> wing1 = new ArrayList<>();
-                        List<Optional<WindShrinePlans.Door>> doors1 = new ArrayList<>();
-                        List<List<BoundingBox>> wing2 = new ArrayList<>();
-                        Plan current = new Plan(resolver.seed(), candidate, tower, mainBoxes, doors0, List.copyOf(wing1), List.copyOf(doors1), List.copyOf(wing2));
+        Optional<Plan> plan = Optional.empty();
+        try {
+            Optional<CryptStructure> crypt = crypt(resolver.registryAccess());
+            if (crypt.isPresent()) {
+                StructureStart start = resolver.generate(crypt.get(), candidate);
+                if (start.isValid() && !start.getPieces().isEmpty()) {
+                    List<BoundingBox> mainBoxes = boxes(start);
+                    BlockPos tower = start.getPieces().get(0).getBoundingBox().getCenter();
+                    List<WindShrinePlans.Door> doors0 = CryptExits.openDoors(start.getPieces(), resolver.templates(), resolver.seed());
+                    List<List<BoundingBox>> wing1 = new ArrayList<>();
+                    List<Optional<WindShrinePlans.Door>> doors1 = new ArrayList<>();
+                    List<List<BoundingBox>> wing2 = new ArrayList<>();
+                    Plan current = new Plan(resolver.seed(), candidate, tower, mainBoxes, doors0, List.copyOf(wing1), List.copyOf(doors1), List.copyOf(wing2));
+                    partial.put(candidate.toLong(), Optional.of(current));
+                    Registry<Structure> structures = resolver.registryAccess().registryOrThrow(Registries.STRUCTURE);
+                    for (int index = 0; index < LEVEL_ONE.size(); index++) {
+                        Optional<StructureStart> generated = generateWing(resolver, structures, LEVEL_ONE.get(index), current.door(1, index));
+                        wing1.add(generated.map(CryptPlans::boxes).orElse(List.of()));
+                        Optional<WindShrinePlans.Door> next = Optional.empty();
+                        if (generated.isPresent()) {
+                            List<WindShrinePlans.Door> open = CryptExits.openDoors(generated.get().getPieces(), resolver.templates(), resolver.seed());
+                            next = open.isEmpty() ? Optional.empty() : Optional.of(open.get(0));
+                        }
+                        doors1.add(next);
+                        current = new Plan(resolver.seed(), candidate, tower, mainBoxes, doors0, List.copyOf(wing1), List.copyOf(doors1), List.copyOf(wing2));
                         partial.put(candidate.toLong(), Optional.of(current));
-                        Registry<Structure> structures = resolver.registryAccess().registryOrThrow(Registries.STRUCTURE);
-                        for (int index = 0; index < LEVEL_ONE.size(); index++) {
-                            Optional<StructureStart> generated = generateWing(resolver, structures, LEVEL_ONE.get(index), current.door(1, index));
-                            wing1.add(generated.map(CryptPlans::boxes).orElse(List.of()));
-                            Optional<WindShrinePlans.Door> next = Optional.empty();
-                            if (generated.isPresent()) {
-                                List<WindShrinePlans.Door> open = CryptExits.openDoors(generated.get().getPieces(), resolver.templates(), resolver.seed());
-                                next = open.isEmpty() ? Optional.empty() : Optional.of(open.get(0));
-                            }
-                            doors1.add(next);
-                            current = new Plan(resolver.seed(), candidate, tower, mainBoxes, doors0, List.copyOf(wing1), List.copyOf(doors1), List.copyOf(wing2));
-                            partial.put(candidate.toLong(), Optional.of(current));
-                        }
-                        plan = Optional.of(current);
-                        if (LOGGER.isDebugEnabled()) {
-                            StringBuilder summary = new StringBuilder();
-                            for (int index = 0; index < LEVEL_ONE.size(); index++) {
-                                summary.append(' ').append(LEVEL_ONE.get(index).getPath()).append('=').append(index < doors0.size() ? wing1.get(index).size() : -1);
-                            }
-                            LOGGER.debug("Crypt plan for chunk {}: {} main pieces, {} level-0 doors, wing pieces:{}", candidate, start.getPieces().size(), doors0.size(), summary);
-                        }
                     }
+                    plan = Optional.of(current);
                 }
-            } finally {
-                partial.remove(candidate.toLong());
             }
-            cache.put(candidate.toLong(), plan);
-            return plan;
+        } finally {
+            partial.remove(candidate.toLong());
         }
+        // No lock around the work above: Structure.generate runs code of other mods, which may wait on threads that need
+        // this very plan. Plans are deterministic, so threads racing here agree, and all of them keep the first one stored.
+        Optional<Plan> stored = cache.putIfAbsent(candidate.toLong(), plan);
+        return stored != null ? stored : plan;
     }
 
     private static Optional<StructureStart> generateWing(WindShrinePlans.Resolver resolver, Registry<Structure> structures, ResourceLocation id, Optional<WindShrinePlans.Door> door) {

@@ -3,6 +3,7 @@ package com.Polarice3.Goety.client.render;
 import com.Polarice3.Goety.client.render.model.DarkRobeModel;
 import com.Polarice3.Goety.client.render.model.GloveModel;
 import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.curios.NecroGarbs;
 import com.Polarice3.Goety.common.items.curios.UnholyHatItem;
 import com.Polarice3.Goety.config.ItemConfig;
 import com.Polarice3.Goety.utils.CuriosFinder;
@@ -16,11 +17,13 @@ import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FastColor;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.HumanoidArm;
@@ -141,6 +144,10 @@ public record WearRenderer(ResourceLocation texture,
 
     private void render(LivingEntity livingEntity, ItemStack stack, PoseStack matrixStack, MultiBufferSource buffer, int light) {
         RenderType renderType = this.getModel().renderType(getTexture(livingEntity));
+        boolean dyedCape = stack.getItem() instanceof NecroGarbs garbs && garbs.isNameless && garbs.hasCustomColor(stack);
+        if (dyedCape) {
+            renderType = this.getModel().renderType(CuriosRenderer.render("nameless_cape_colorless.png"));
+        }
         VertexConsumer vertexBuilder = buffer.getBuffer(renderType);
         this.getModel().renderToBuffer(matrixStack, vertexBuilder, light, OverlayTexture.NO_OVERLAY, -1);
         if (stack.getItem() instanceof UnholyHatItem) {
@@ -150,6 +157,10 @@ public record WearRenderer(ResourceLocation texture,
             }
             VertexConsumer vertexBuilder2 = buffer.getBuffer(ModRenderType.wraith(CuriosRenderer.render(glow)));
             this.getModel().renderToBuffer(matrixStack, vertexBuilder2, 15728640, OverlayTexture.NO_OVERLAY, 0x26FFFFFF);
+        }
+        if (dyedCape) {
+            VertexConsumer vertexBuilder2 = buffer.getBuffer(this.getModel().renderType(CuriosRenderer.render("nameless_cape_colorless_layer.png")));
+            this.getModel().renderToBuffer(matrixStack, vertexBuilder2, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY, FastColor.ARGB32.opaque(((NecroGarbs) stack.getItem()).getColor(stack)));
         }
     }
 

@@ -41,7 +41,6 @@ public class IceBouquet extends GroundProjectile {
     private static final EntityDataAccessor<Boolean> CENTER = SynchedEntityData.defineId(IceBouquet.class, EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Float> DATA_EXTRA_DAMAGE = SynchedEntityData.defineId(IceBouquet.class, EntityDataSerializers.FLOAT);
     public boolean isDying;
-    /** The caster's hurt timer as last seen: concentration breaks only on a hit taken after the bouquet was called. */
     private int ownerHurtTime = -1;
 
     public IceBouquet(EntityType<? extends Entity> p_i50170_1_, Level p_i50170_2_) {

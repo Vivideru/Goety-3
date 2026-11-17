@@ -46,6 +46,15 @@ public class VivideruCommonEvents {
         }
     }
 
+    /**
+     * A summon that converts (zombie servant to drowned, skeleton servant to stray) keeps counting toward the summon cap of
+     * the mob that summoned it.
+     */
+    @SubscribeEvent
+    public static void onLivingConvert(net.neoforged.neoforge.event.entity.living.LivingConversionEvent.Post event) {
+        com.Vivideru.Goety.common.entities.SummonerTracker.copy(event.getEntity(), event.getOutcome());
+    }
+
     @SubscribeEvent
     public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event) {
         if (event.getSlot() != EquipmentSlot.BODY

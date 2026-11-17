@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.init;
 
+import com.Polarice3.Goety.common.entities.projectiles.Ripple;
 import com.Polarice3.Goety.utils.ColorUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Mob;
@@ -26,5 +27,8 @@ public interface ModProxy {
     }
 
     default void lightningBolt(Vec3 vectorStart, Vec3 vectorEnd, ColorUtil colorUtil, int lifespan){
+    }
+
+    default void rippleTick(Ripple ripple){
     }
 }

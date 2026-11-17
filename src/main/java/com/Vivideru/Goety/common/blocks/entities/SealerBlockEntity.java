@@ -1,5 +1,7 @@
 package com.Vivideru.Goety.common.blocks.entities;
 
+import com.Polarice3.Goety.config.MainConfig;
+import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.common.blocks.entities.CursedCageBlockEntity;
 import com.Polarice3.Goety.common.items.WaystoneItem;
 import com.Vivideru.Goety.common.blocks.SealerBlock;
@@ -19,8 +21,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class SealerBlockEntity extends BlockEntity {
     public static final int RANGE = 32;
-    public static final int SOUL_COST = 1;
-    public static final int SOUL_INTERVAL = 1200;
     private static final int CHECK_INTERVAL = 20;
     private ItemStack waystone = ItemStack.EMPTY;
     private boolean playerPlaced;
@@ -187,12 +187,13 @@ public class SealerBlockEntity extends BlockEntity {
         if (!(level.getBlockEntity(this.worldPosition.below()) instanceof CursedCageBlockEntity cage)) {
             return false;
         }
+        int cost = MainConfig.SealerCost.get();
         this.soulTimer += CHECK_INTERVAL;
-        if (this.soulTimer >= SOUL_INTERVAL) {
-            if (cage.getSouls() < SOUL_COST) {
+        if (this.soulTimer >= MathHelper.secondsToTicks(MainConfig.SealerIntervalCost.get())) {
+            if (cage.getSouls() < cost) {
                 return false;
             }
-            cage.decreaseSouls(SOUL_COST);
+            cage.decreaseSouls(cost);
             this.soulTimer = 0;
         }
         return cage.getSouls() > 0;

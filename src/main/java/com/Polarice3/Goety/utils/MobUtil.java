@@ -152,7 +152,11 @@ public class MobUtil {
                 }
                 return entity.isAlliedTo(entity1) || entity1.isAlliedTo(entity) || entity == entity1
                         || (entity instanceof Player player && entity1 instanceof LivingEntity living && SEHelper.isAlly(player, living))
-                        || (entity1 instanceof Player player1 && entity instanceof LivingEntity living1 && SEHelper.isAlly(player1, living1));
+                        || (entity1 instanceof Player player1 && entity instanceof LivingEntity living1 && SEHelper.isAlly(player1, living1))
+                        || (entity1 instanceof OwnableEntity ownable1 && ownable1.getOwner() == entity)
+                        || (entity instanceof OwnableEntity ownable0 && ownable0.getOwner() == entity1)
+                        || (entity1 instanceof IOwned owned1 && owned1.getMasterOwner() == entity)
+                        || (entity instanceof IOwned owned0 && owned0.getMasterOwner() == entity1);
             }
         } else {
             return false;
@@ -1565,7 +1569,7 @@ public class MobUtil {
     }
 
     /**
-     * Based on code by @Crimson_Steve.
+     * Based of @Crimson_Steve codes.
      */
     public static AABB makeAttackRange(double x, double y, double z, double sizeX, double sizeY, double sizeZ) {
         return new AABB(x - (sizeX / 2.0D), y - (sizeY / 2.0D), z - (sizeZ / 2.0D), x + (sizeX / 2.0D), y + (sizeY / 2.0D), z + (sizeZ / 2.0D));
@@ -1857,7 +1861,7 @@ public class MobUtil {
     }
 
     /*
-     * Adapted from @L_Ender's code.
+     * Stolen from @L_Ender's codes.
      * From Here:
      */
     public static double calculateRange(LivingEntity livingEntity, DamageSource source) {
@@ -1943,5 +1947,102 @@ public class MobUtil {
                     && worldGenLevel.getLevel().isThundering();
         }
         return false;
+    }
+
+    public static final float MCD2_UNITS_PER_BLOCK = 100.0F;
+    public static float MCD2_KNOCKBACK_SCALE = 1.0F / (MCD2_UNITS_PER_BLOCK * 20.0F);
+
+    public static void meleeConeAttack(LivingEntity attacker, float range, float coneAngle, float maxZDifference, float damage, float hpDamage, int shieldBreak, DamageSource damageSource, float knockbackStrength, float launchAngle, @Nullable Consumer<LivingEntity> onHit) {
+        meleeConeAttack(attacker, range, coneAngle, 0.0F, maxZDifference, damage, hpDamage, shieldBreak, damageSource, knockbackStrength, launchAngle, false, onHit);
+    }
+
+    public static void meleeConeAttack(LivingEntity attacker, float range, float coneAngle, float coneOffset, float maxZDifference, float damage, float hpDamage, int shieldBreak, DamageSource damageSource, float knockbackStrength, float launchAngle, boolean friendlyFire, @Nullable Consumer<LivingEntity> onHit) {
+        if (attacker.level().isClientSide) {
+            return;
+        }
+        float yaw = attacker.getYRot();
+        double fx = -Mth.sin(yaw * Mth.DEG_TO_RAD);
+        double fz = Mth.cos(yaw * Mth.DEG_TO_RAD);
+        double apexX = attacker.getX() + fx * coneOffset;
+        double apexZ = attacker.getZ() + fz * coneOffset;
+        float halfAngle = coneAngle * 0.5F;
+
+        AABB search = attacker.getBoundingBox().inflate(range + 4.0D, maxZDifference, range + 4.0D);
+        for (LivingEntity target : attacker.level().getEntitiesOfClass(LivingEntity.class, search, target -> target != attacker && target.isAlive() && target.isAttackable() && EntitySelector.NO_CREATIVE_OR_SPECTATOR.test(target))) {
+            if (!friendlyFire && areAllies(attacker, target)) {
+                continue;
+            }
+            if (Math.abs(target.getY() - attacker.getY()) > maxZDifference) {
+                continue;
+            }
+            double radius = target.getBbWidth() * 0.5D;
+
+            double cx = target.getX() - attacker.getX();
+            double cz = target.getZ() - attacker.getZ();
+            if (Math.sqrt(cx * cx + cz * cz) - radius > range) {
+                continue;
+            }
+
+            double dx = target.getX() - apexX;
+            double dz = target.getZ() - apexZ;
+            double dist = Math.sqrt(dx * dx + dz * dz);
+            if (dist > radius) {
+                float yawTo = (float) (Mth.atan2(-dx, dz) * Mth.RAD_TO_DEG);
+                float slack = (float) (Math.asin(Math.min(1.0D, radius / dist)) * Mth.RAD_TO_DEG);
+                if (Math.abs(Mth.wrapDegrees(yawTo - yaw)) - slack > halfAngle) {
+                    continue;
+                }
+            }
+
+            boolean blocked = target.isDamageSourceBlocked(damageSource);
+            if (target.hurt(damageSource, damage + (target.getMaxHealth() * hpDamage))) {
+                if (knockbackStrength > 0.0F) {
+                    mcd2Knockback(attacker, target, knockbackStrength, launchAngle);
+                }
+                if (onHit != null) {
+                    onHit.accept(target);
+                }
+            }
+            if (blocked && shieldBreak > 0) {
+                disableShield(target, shieldBreak);
+            }
+        }
+    }
+
+    public static void mcd2Knockback(LivingEntity attacker, LivingEntity target, float strength, float launchAngle) {
+        double resist = target.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE) * 0.5D;
+        double speed = strength * MCD2_KNOCKBACK_SCALE * Math.max(0.0D, 1.0D - resist);
+        if (speed <= 0.0D) {
+            return;
+        }
+        double dx = target.getX() - attacker.getX();
+        double dz = target.getZ() - attacker.getZ();
+        double len = Math.sqrt(dx * dx + dz * dz);
+        if (len < 1.0E-4D) {
+            dx = -Mth.sin(attacker.getYRot() * Mth.DEG_TO_RAD);
+            dz = Mth.cos(attacker.getYRot() * Mth.DEG_TO_RAD);
+            len = 1.0D;
+        }
+        double angle = Math.toRadians(launchAngle);
+        double horizontal = speed * Math.cos(angle) / len;
+        double vertical = speed * Math.sin(angle);
+        target.hurtMarked = true;
+        target.setDeltaMovement(dx * horizontal, Math.max(target.getDeltaMovement().y, vertical), dz * horizontal);
+        target.hasImpulse = true;
+    }
+
+    public static void mcd2Dash(LivingEntity entity, float impulseStrength) {
+        float blocks = impulseStrength / MCD2_UNITS_PER_BLOCK;
+        double drag = 0.91D;
+        if (entity.onGround()) {
+            BlockPos below = BlockPos.containing(entity.getX(), entity.getBoundingBox().minY - 0.5000001D, entity.getZ());
+            drag *= entity.level().getBlockState(below).getFriction(entity.level(), below, entity);
+        }
+        double speed = blocks * (1.0D - drag);
+        float yaw = entity.getYRot() * Mth.DEG_TO_RAD;
+        Vec3 motion = entity.getDeltaMovement();
+        entity.setDeltaMovement(-Mth.sin(yaw) * speed, motion.y, Mth.cos(yaw) * speed);
+        entity.hurtMarked = true;
+        entity.hasImpulse = true;
     }
 }

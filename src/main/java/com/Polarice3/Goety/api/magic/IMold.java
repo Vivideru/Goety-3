@@ -9,5 +9,9 @@ public interface IMold {
     default boolean spawnServant(Player player, ItemStack stack, Level level, BlockPos blockPos){
         return false;
     }
+
+    default boolean isStructureValid(Level level, BlockPos blockPos) {
+        return true;
+    }
 }
 

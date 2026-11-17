@@ -209,7 +209,7 @@ public final class WindShrineBlend {
 
     @Nullable
     private static Area area(RandomState randomState, int minX, int minZ, int size) {
-        if (SUPPRESSED.get()[0] > 0 || VivideruWorldConfig.classicWindShrine()) {
+        if (SUPPRESSED.get()[0] > 0 || VivideruWorldConfig.classicWindShrine() || onRiverPlanningThread()) {
             return null;
         }
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
@@ -248,6 +248,15 @@ public final class WindShrineBlend {
             }
         }
         return plans.isEmpty() ? null : new Area(plans, generator, level, randomState);
+    }
+
+    /**
+     * Streams Reflowing plans its rivers on its own threads from the height of the land, and it only accepts a structure, the
+     * shrine too, once the rivers around it are planned. Those rivers can't wait for a shrine plan, so they see the natural land.
+     */
+    private static boolean onRiverPlanningThread() {
+        String thread = Thread.currentThread().getName();
+        return thread.startsWith("streamsreflowing-") || thread.startsWith("sr-chunkfill");
     }
 
     /** The shrines that reach some terrain, and how to find the natural ground under it. */

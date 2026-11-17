@@ -4,7 +4,7 @@ import com.Polarice3.Goety.api.magic.SpellType;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
 import com.Vivideru.Goety.common.enchantments.VivideruEnchantments;
 import com.Polarice3.Goety.common.entities.projectiles.*;
-import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.magic.NamelessStaff;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
 import com.Polarice3.Goety.config.SpellConfig;
@@ -93,7 +93,7 @@ public class SoulBoltSpell extends Spell {
                     vector3d.z, worldIn);
             this.playSound(worldIn, caster, SoundEvents.WITHER_SHOOT, 0.5F, 0.25F);
             this.playSound(worldIn, caster, ModSounds.HELL_BOLT_SHOOT.get());
-        } else if (staff.is(ModItems.NAMELESS_STAFF.get())) {
+        } else if (staff.getItem() instanceof NamelessStaff staff1) {
             soulBolt = new NecroBolt(
                     caster.getX() + vector3d.x / 2,
                     caster.getEyeY() - 0.2,
@@ -101,6 +101,9 @@ public class SoulBoltSpell extends Spell {
                     vector3d.x,
                     vector3d.y,
                     vector3d.z, worldIn);
+            if (soulBolt instanceof NecroBolt necroBolt && staff1.hasCustomColor(staff)) {
+                necroBolt.setColor(staff1.getColor(staff));
+            }
             SoundUtil.playNecroBolt(caster);
         } else {
             SoundUtil.playSoulBolt(caster);

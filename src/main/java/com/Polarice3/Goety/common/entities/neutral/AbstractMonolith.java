@@ -1,6 +1,7 @@
 package com.Polarice3.Goety.common.entities.neutral;
 
 import com.Polarice3.Goety.utils.MobUtil;
+import com.Vivideru.Goety.common.entities.util.GroundSnap;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -29,6 +30,7 @@ public abstract class AbstractMonolith extends Owned{
     protected static final EntityDataAccessor<Integer> AGE = SynchedEntityData.defineId(AbstractMonolith.class, EntityDataSerializers.INT);
     protected static final EntityDataAccessor<Boolean> ACTIVATE = SynchedEntityData.defineId(AbstractMonolith.class, EntityDataSerializers.BOOLEAN);
     public int lifeSpan = 6;
+    private final GroundSnap.Tracker groundSnap = new GroundSnap.Tracker();
 
     public AbstractMonolith(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -212,7 +214,7 @@ public abstract class AbstractMonolith extends Owned{
     public void aiStep() {
         super.aiStep();
         if (!this.isNoGravity()) {
-            MobUtil.moveDownToGround(this);
+            GroundSnap.moveDownToGround(this, this.groundSnap);
         }
         if (this.isEmerging()){
             if (!this.level().isClientSide) {

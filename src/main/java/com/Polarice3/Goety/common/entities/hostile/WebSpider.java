@@ -162,8 +162,9 @@ public class WebSpider extends Spider implements RangedAttackMob, ICustomAttribu
             AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
             if (this.stopMoving) {
                 if (modifiableattributeinstance != null) {
-                    modifiableattributeinstance.removeModifier(SHOOT_SPEED_MODIFIER.id());
-                    modifiableattributeinstance.addTransientModifier(SHOOT_SPEED_MODIFIER);
+                    if (!modifiableattributeinstance.hasModifier(SHOOT_SPEED_MODIFIER.id())) {
+                        modifiableattributeinstance.addTransientModifier(SHOOT_SPEED_MODIFIER);
+                    }
                 }
             } else {
                 if (modifiableattributeinstance != null) {

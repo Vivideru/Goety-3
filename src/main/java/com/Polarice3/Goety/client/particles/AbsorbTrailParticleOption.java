@@ -16,10 +16,11 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Locale;
 
-public record AbsorbTrailParticleOption(Vec3 target, int color, int duration) implements ParticleOptions {
+public record AbsorbTrailParticleOption(Vec3 target, int fromColor, int toColor, int duration) implements ParticleOptions {
     public static final MapCodec<AbsorbTrailParticleOption> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             Vec3.CODEC.fieldOf("target").forGetter(AbsorbTrailParticleOption::target),
-            Codec.INT.fieldOf("color").forGetter(AbsorbTrailParticleOption::color),
+            Codec.INT.fieldOf("fromColor").forGetter(AbsorbTrailParticleOption::fromColor),
+            Codec.INT.fieldOf("toColor").forGetter(AbsorbTrailParticleOption::toColor),
             ExtraCodecs.POSITIVE_INT.fieldOf("duration").forGetter(AbsorbTrailParticleOption::duration)
     ).apply(instance, AbsorbTrailParticleOption::new));
 
@@ -29,8 +30,12 @@ public record AbsorbTrailParticleOption(Vec3 target, int color, int duration) im
    );
 
    private static AbsorbTrailParticleOption fromNetwork(RegistryFriendlyByteBuf buffer) {
-            return new AbsorbTrailParticleOption(new Vec3(buffer.readDouble(), buffer.readDouble(), buffer.readDouble()), buffer.readInt(), buffer.readInt());
+            return new AbsorbTrailParticleOption(new Vec3(buffer.readDouble(), buffer.readDouble(), buffer.readDouble()), buffer.readInt(), buffer.readInt(), buffer.readInt());
    }
+
+    public AbsorbTrailParticleOption(Vec3 target, int color, int duration) {
+        this(target, color, color, duration);
+    }
 
     public ParticleType<AbsorbTrailParticleOption> getType() {
         return ModParticleTypes.ABSORB_TRAIL.get();
@@ -40,7 +45,8 @@ public record AbsorbTrailParticleOption(Vec3 target, int color, int duration) im
         p_123732_.writeDouble(this.target().x);
         p_123732_.writeDouble(this.target().y);
         p_123732_.writeDouble(this.target().z);
-        p_123732_.writeInt(this.color());
+        p_123732_.writeInt(this.fromColor());
+        p_123732_.writeInt(this.toColor());
         p_123732_.writeInt(this.duration());
     }
 
@@ -49,7 +55,7 @@ public record AbsorbTrailParticleOption(Vec3 target, int color, int duration) im
         double d0 = vec3.x();
         double d1 = vec3.y();
         double d2 = vec3.z();
-        return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %s %s",
-                BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), d0, d1, d2, this.color, this.duration);
+        return String.format(Locale.ROOT, "%s %.2f %.2f %.2f %s %s %s",
+                BuiltInRegistries.PARTICLE_TYPE.getKey(this.getType()), d0, d1, d2, this.fromColor, this.toColor, this.duration);
     }
 }

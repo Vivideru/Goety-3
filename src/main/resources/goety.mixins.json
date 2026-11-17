@@ -33,6 +33,7 @@
     "StructureTemplateMixin",
     "VillagerAccessor",
     "VillagerMixin",
+    "WitherBossMixin",
     "compat.SiphonEnchantmentMixin"
   ],
   "injectors": {

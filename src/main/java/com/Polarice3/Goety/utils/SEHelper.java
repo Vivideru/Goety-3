@@ -31,6 +31,7 @@ import com.Polarice3.Goety.common.world.data.GrimoireData;
 import com.Polarice3.Goety.compat.minecolonies.MinecoloniesLoaded;
 import com.Polarice3.Goety.config.BrewConfig;
 import com.Polarice3.Goety.config.MainConfig;
+import com.Vivideru.Goety.common.capabilities.GrimoireLists;
 import net.minecraft.tags.TagKey;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
@@ -660,7 +661,7 @@ public class SEHelper {
     }
 
     public static boolean isGrudged(Player owner, LivingEntity livingEntity){
-        return getGrudgeEntities(owner).contains(livingEntity) || getGrudgeEntityTypes(owner).contains(livingEntity.getType());
+        return GrimoireLists.resolvesTo(owner, getCapability(owner).grudgeList(), livingEntity) || getCapability(owner).grudgeTypeList().contains(livingEntity.getType());
     }
 
     public static boolean addAllyEntity(Player owner, LivingEntity target){
@@ -736,7 +737,7 @@ public class SEHelper {
     }
 
     public static boolean isAlly(Player owner, LivingEntity livingEntity){
-        return getAllyEntities(owner).contains(livingEntity) || getAllyEntityTypes(owner).contains(livingEntity.getType());
+        return GrimoireLists.resolvesTo(owner, getCapability(owner).allyList(), livingEntity) || getCapability(owner).allyTypeList().contains(livingEntity.getType());
     }
 
     public static boolean addGroundedEntity(Player owner, LivingEntity target){

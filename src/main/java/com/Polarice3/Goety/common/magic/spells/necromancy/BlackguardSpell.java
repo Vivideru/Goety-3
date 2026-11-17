@@ -120,10 +120,7 @@ public class BlackguardSpell extends SummonSpell {
                     this.SummonSap(caster, summonedentity);
                     this.setTarget(caster, summonedentity);
                     if (worldIn.addFreshEntity(summonedentity)) {
-                        worldIn.sendParticles(ModParticleTypes.LICH.get(), summonedentity.getX(), summonedentity.getY(), summonedentity.getZ(), 1, 0, 0, 0, 0.0F);
-                        ServerParticleUtil.summonPowerfulUndeadParticles(worldIn, summonedentity);
-                        this.playSound(worldIn, summonedentity, ModSounds.SOUL_EXPLODE.get(), 0.25F + (worldIn.random.nextFloat() / 2.0F), 1.0F);
-                        this.playSound(worldIn, summonedentity, SoundEvents.ENDERMAN_TELEPORT, 0.25F + (worldIn.random.nextFloat() / 2.0F), 1.0F);
+                        this.namelessSummon(worldIn, caster, staff, summonedentity);
                     }
                     this.summonAdvancement(caster, summonedentity);
                 }

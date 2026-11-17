@@ -4,6 +4,7 @@ import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.common.entities.ally.spider.SpiderServant;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -167,6 +168,7 @@ public class SpiderEgg extends Owned {
                         spiderServant.setTrueOwner(this.getTrueOwner());
                     }
                     spiderServant.setHostile(this.isHostile());
+                    SummonerTracker.copy(this, spiderServant);
                     spiderServant.setPersistenceRequired();
                     spiderServant.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(this.blockPosition()), MobSpawnType.MOB_SUMMONED, null);
                     if (serverLevel.addFreshEntity(spiderServant)) {

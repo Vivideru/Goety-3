@@ -1,9 +1,12 @@
 package com.Polarice3.Goety.common.magic.spells;
 
+import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.client.particles.CircleExplodeParticleOption;
-import com.Polarice3.Goety.client.particles.ModParticleTypes;
+import com.Polarice3.Goety.client.particles.NecroVFXPalette;
+import com.Polarice3.Goety.client.particles.SoulSummonVFX;
 import com.Polarice3.Goety.client.particles.SphereExplodeParticleOption;
 import com.Polarice3.Goety.common.enchantments.ModEnchantments;
+import com.Polarice3.Goety.common.items.magic.NamelessStaff;
 import com.Polarice3.Goety.common.magic.Spell;
 import com.Polarice3.Goety.common.magic.SpellStat;
 import com.Polarice3.Goety.common.network.ModNetwork;
@@ -14,7 +17,6 @@ import com.Polarice3.Goety.utils.ColorUtil;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.RandomUtil;
 import com.Polarice3.Goety.utils.WandUtil;
-import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShockwaveSpell extends Spell {
+    public static ColorUtil SHOCKWAVE_COLOR = new ColorUtil(0x2ac9cf);
+    public static ColorUtil NAMELESS_COLOR = new ColorUtil(NecroVFXPalette.BRIGHT_HEX);
 
     @Override
     public SpellStat defaultStats() {
@@ -72,19 +76,28 @@ public class ShockwaveSpell extends Spell {
         }
         damage += potency;
         maxDamage += potency;
-        for (int i = -radius; i < radius; ++i){
-            for (int k = -radius; k < radius; ++k){
-                BlockPos blockPos = caster.blockPosition().offset(i, 0, k);
-                if (worldIn.getRandom().nextFloat() <= 0.05F){
-                    worldIn.sendParticles(ModParticleTypes.SOUL_EXPLODE.get(), blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0, 0, 0.04D, 0, 0.5F);
-                }
+        boolean nameless = staff.getItem() instanceof NamelessStaff;
+        int color = -1;
+        ColorUtil colorUtil = SHOCKWAVE_COLOR;
+        if (staff.getItem() instanceof NamelessStaff staff1) {
+            colorUtil = NAMELESS_COLOR;
+            if (staff1.hasCustomColor(staff)) {
+                colorUtil = new ColorUtil(staff1.getColor(staff));
+                color = staff1.getColor(staff);
             }
         }
-        ColorUtil colorUtil = new ColorUtil(0x2ac9cf);
+        int souls = 2 + worldIn.getRandom().nextInt(2);
+        for (int i = 0; i < souls; i++) {
+            if (color > -1) {
+                SoulSummonVFX.shockwaveSoul(worldIn, caster.position(), worldIn.getRandom(), color);
+            } else {
+                SoulSummonVFX.bombSoul(worldIn, caster.position(), worldIn.getRandom(), nameless);
+            }
+        }
         worldIn.sendParticles(new CircleExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), radius, 1), caster.getX(), caster.getY() + 0.5F, caster.getZ(), 0, 0, 0, 0, 0);
         worldIn.sendParticles(new SphereExplodeParticleOption(colorUtil.red(), colorUtil.green(), colorUtil.blue(), radius, 1), caster.getX(), caster.getY() + 0.5F, caster.getZ(), 1, 0, 0, 0, 0);
         float trueDamage = Mth.clamp(damage + RandomUtil.nextInt(worldIn.getRandom(), (int) (maxDamage - damage)), damage, maxDamage);
         ModNetwork.sendToALL(new SPlayWorldSoundPacket(caster.blockPosition(), ModSounds.SOUL_EXPLODE.get(), 2.0F, 1.0F));
-        MobUtil.explosionDamage(worldIn, caster, worldIn.damageSources().indirectMagic(caster, caster), caster.blockPosition(), radius, trueDamage);
+        MobUtil.explosionDamage(worldIn, caster, ModDamageSource.indirectSoul(caster, caster), caster.blockPosition(), radius, trueDamage);
     }
 }

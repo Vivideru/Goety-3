@@ -31,7 +31,7 @@ import org.joml.Matrix4f;
 /** Shows the Waystone turning inside the Sealer and draws the slowly pulsing crypt seal over the blocks it keeps shut. */
 public class SealerRenderer implements BlockEntityRenderer<SealerBlockEntity> {
     private static final ResourceLocation SEAL = Goety.location("textures/block/sealer_seal.png");
-    private static final float INFLATE = 0.004F;
+    private static final float INFLATE = 0.005F;
     private static final float PULSE_PERIOD = 50.0F;
 
     public SealerRenderer(BlockEntityRendererProvider.Context context) {
@@ -76,7 +76,7 @@ public class SealerRenderer implements BlockEntityRenderer<SealerBlockEntity> {
     private void renderSeal(PoseStack poseStack, MultiBufferSource buffer, Level level, BlockPos pos, BlockState state, BlockPos offset, int alpha) {
         VoxelShape shape = state.getShape(level, pos, CollisionContext.empty());
         AABB box = shape.isEmpty() ? new AABB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D) : shape.bounds();
-        VertexConsumer consumer = buffer.getBuffer(RenderType.entityTranslucentEmissive(SEAL));
+        VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutout(SEAL));
         poseStack.pushPose();
         poseStack.translate(offset.getX(), offset.getY(), offset.getZ());
         float x0 = (float) box.minX - INFLATE;

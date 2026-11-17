@@ -143,6 +143,8 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> WALL_GRAVE_GOLEM_SKULL_BLOCK = register("wall_grave_golem_skull", WallGraveGolemSkullBlock::new, false, LootTableType.EMPTY);
     public static final DeferredHolder<Block, Block> REDSTONE_MONSTROSITY_HEAD_BLOCK = register("redstone_monstrosity_head", RedstoneMonstrosityHeadBlock::new, false, LootTableType.EMPTY);
     public static final DeferredHolder<Block, Block> WALL_REDSTONE_MONSTROSITY_HEAD_BLOCK = register("wall_redstone_monstrosity_head", WallRedstoneMonstrosityHeadBlock::new, false, LootTableType.EMPTY);
+    public static final DeferredHolder<Block, Block> GRAVE_MONSTROSITY_HEAD_BLOCK = register("grave_monstrosity_head", GraveMonstrosityHeadBlock::new, false, LootTableType.EMPTY);
+    public static final DeferredHolder<Block, Block> WALL_GRAVE_MONSTROSITY_HEAD_BLOCK = register("wall_grave_monstrosity_head", WallGraveMonstrosityHeadBlock::new, false, LootTableType.EMPTY);
 
     //Plants
     public static final DeferredHolder<Block, Block> SNAP_WARTS = register("snap_warts", SnapWartsBlock::new, false, LootTableType.EMPTY);
@@ -269,9 +271,18 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> OMINOUS_BRAZIER_STATUE = register("ominous_brazier_statue", OminousBrazierStatueBlock::new);
     public static final DeferredHolder<Block, Block> DIAMOND_MOLD_BLOCK = register("diamond_mold_block", () ->
             new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)));
+    public static final DeferredHolder<Block, Block> DARK_MOLD_BLOCK = register("dark_mold_block", () ->
+            new Block(BlockBehaviour.Properties.ofFullCopy(ModBlocks.DARK_ALLOY_BLOCK.get())));
     public static final DeferredHolder<Block, Block> REINFORCED_REDSTONE_BLOCK = register("reinforced_redstone_block", () ->
             new PoweredBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.FIRE)
+                    .requiresCorrectToolForDrops()
+                    .strength(50.0F, 1200.0F)
+                    .sound(SoundType.METAL)
+                    .isRedstoneConductor(ModBlocks::never)));
+    public static final DeferredHolder<Block, Block> MONSTROUS_CORE = register("monstrous_core", () ->
+            new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.METAL)
                     .requiresCorrectToolForDrops()
                     .strength(50.0F, 1200.0F)
                     .sound(SoundType.METAL)
@@ -287,20 +298,20 @@ public class ModBlocks {
     public static final DeferredHolder<Block, Block> ROYAL_CARPET = register("royal_carpet", () ->
             new StairCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final DeferredHolder<Block, Block> ROYAL_CARPET_CORNER = register("royal_carpet_corner", () ->
-            new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
+            new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET), true));
     public static final DeferredHolder<Block, Block> ROYAL_CARPET_EDGE = register("royal_carpet_edge", () ->
             new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
     public static final DeferredHolder<Block, Block> ROYAL_CARPET_INNER_CORNER = register("royal_carpet_inner_corner", () ->
-            new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
+            new FancyCarpetBlock(DyeColor.RED, BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET), true));
 
     public static final DeferredHolder<Block, Block> FROSTY_CARPET = register("frosty_carpet", () ->
             new StairCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
     public static final DeferredHolder<Block, Block> FROSTY_CARPET_CORNER = register("frosty_carpet_corner", () ->
-            new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
+            new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET), true));
     public static final DeferredHolder<Block, Block> FROSTY_CARPET_EDGE = register("frosty_carpet_edge", () ->
             new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
     public static final DeferredHolder<Block, Block> FROSTY_CARPET_INNER_CORNER = register("frosty_carpet_inner_corner", () ->
-            new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET)));
+            new FancyCarpetBlock(DyeColor.BLUE, BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_CARPET), true));
 
     public static final DeferredHolder<Block, Block> SHADE_THRONE = enchantedRegister("shade_throne", () -> new StoneThroneBlock(ShadeStoneProperties().noOcclusion()));
     public static final DeferredHolder<Block, Block> STONE_THRONE = enchantedRegister("stone_throne", () -> new StoneThroneBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
@@ -1388,6 +1399,7 @@ public class ModBlocks {
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_13 = curioIsterRegister("plushie_13", () -> new PlushieBlock(13));
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_14 = curioIsterRegister("plushie_14", () -> new PlushieBlock(14));
     public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_15 = curioIsterRegister("plushie_15", () -> new PlushieBlock(15));
+    public static final DeferredHolder<Block, PlushieBlock> PLUSHIE_16 = curioIsterRegister("plushie_16", () -> new PlushieBlock(16));
 
     public static final DeferredHolder<Block, SculpturedStatueBlock> SCULPTURED_STATUE = isterRegister("sculptured_statue", SculpturedStatueBlock::new);
     public static final DeferredHolder<Block, SculpturedStatueBlock> STATUE_1 = isterRegister("sculptured_statue_1", () -> new SculpturedStatueBlock(1));
@@ -1494,6 +1506,18 @@ public class ModBlocks {
             });
     public static final DeferredHolder<Item, Item> REDSTONE_MONSTROSITY_HEAD_ITEM = ModItems.ITEMS.register("redstone_monstrosity_head",
             () -> new RedstoneMonstrosityHeadItem((new Item.Properties()).rarity(Rarity.EPIC).fireResistant()){
+                @Override
+                public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+                    consumer.accept(new IClientItemExtensions() {
+                        @Override
+                        public BlockEntityWithoutLevelRenderer getCustomRenderer() {
+                            return new ModISTER();
+                        }
+                    });
+                }
+            });
+    public static final DeferredHolder<Item, Item> GRAVE_MONSTROSITY_HEAD_ITEM = ModItems.ITEMS.register("grave_monstrosity_head",
+            () -> new GraveMonstrosityHeadItem((new Item.Properties()).rarity(Rarity.EPIC).fireResistant()){
                 @Override
                 public void initializeClient(Consumer<IClientItemExtensions> consumer) {
                     consumer.accept(new IClientItemExtensions() {

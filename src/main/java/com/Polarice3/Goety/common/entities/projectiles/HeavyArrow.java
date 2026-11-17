@@ -56,9 +56,6 @@ public class HeavyArrow extends Arrow {
         return ModEntityType.HEAVY_ARROW.get();
     }
 
-    /**
-     * Vanilla's setPierceLevel is private in 1.21, so Heavy Arrows keep their own pierce count.
-     */
     public void setPierceLevel(byte pierceLevel) {
         this.heavyPierceLevel = pierceLevel;
     }

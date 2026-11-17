@@ -6,7 +6,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -40,7 +39,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -59,7 +57,6 @@ import java.util.Map;
  * start-up, before entity types are registered, so changes need a restart and must be the same on server and clients.
  */
 public final class ExtraServants {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final String FILE = "goety/goety-extra-servants.json";
     private static final Map<String, ExtraServantDefinition> DEFINITIONS = load();
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, Goety.MOD_ID);
@@ -90,9 +87,6 @@ public final class ExtraServants {
         modBus.addListener(ExtraServants::addPacks);
         NeoForge.EVENT_BUS.addListener(ExtraServants::noDrops);
         NeoForge.EVENT_BUS.addListener(ExtraServants::noExperience);
-        if (!DEFINITIONS.isEmpty()) {
-            LOGGER.info("Extra servants from {}: {}", FILE, DEFINITIONS.keySet());
-        }
     }
 
     public static Collection<ExtraServantDefinition> definitions() {
@@ -145,22 +139,16 @@ public final class ExtraServants {
             JsonArray servants = root.isJsonObject() && root.getAsJsonObject().has("servants") ? root.getAsJsonObject().getAsJsonArray("servants") : new JsonArray();
             for (int i = 0; i < servants.size(); i++) {
                 if (!servants.get(i).isJsonObject()) {
-                    LOGGER.error("{}: servant #{} is not an object", FILE, i + 1);
                     continue;
                 }
                 JsonObject json = servants.get(i).getAsJsonObject();
                 StringBuilder problem = new StringBuilder();
                 ExtraServantDefinition definition = ExtraServantDefinition.parse(json, problem);
-                if (definition == null) {
-                    LOGGER.error("{}: servant #{} skipped: {}", FILE, i + 1, problem);
-                } else if (definitions.containsKey(definition.id())) {
-                    LOGGER.error("{}: servant #{} skipped: id {} is used twice", FILE, i + 1, definition.id());
-                } else {
+                if (definition != null && !definitions.containsKey(definition.id())) {
                     definitions.put(definition.id(), definition);
                 }
             }
         } catch (Exception e) {
-            LOGGER.error("{} could not be read, no extra servants are added", FILE, e);
             definitions.clear();
         }
         return definitions;
@@ -179,7 +167,6 @@ public final class ExtraServants {
                 builder.fireImmune();
             }
         } else {
-            LOGGER.warn("{}: {} is not registered yet when goety:{} is, so it gets a default size", FILE, definition.parent(), definition.id());
             builder.sized(0.6F, 1.95F).clientTrackingRange(8);
         }
         return builder.build(ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, definition.id()).toString());
@@ -214,7 +201,6 @@ public final class ExtraServants {
             EntityType<?> type = type(definition);
             EntityType<?> parent = parentType(definition);
             if (type == null || parent == null || !DefaultAttributes.hasSupplier(parent)) {
-                LOGGER.warn("{}: goety:{} keeps basic attributes, {} has none", FILE, definition.id(), definition.parent());
                 continue;
             }
             AttributeSupplier supplier = DefaultAttributes.getSupplier((EntityType<? extends LivingEntity>) parent);
@@ -241,7 +227,6 @@ public final class ExtraServants {
                 }
                 ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, focus.id());
                 if (BuiltInRegistries.ITEM.containsKey(id)) {
-                    LOGGER.error("{}: the focus of goety:{} is not added, the item {} already exists; give it another \"id\"", FILE, definition.id(), id);
                     continue;
                 }
                 Item item = new ExtraServantFocus(definition, focus);

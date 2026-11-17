@@ -260,8 +260,12 @@ public class MiscCapHelper {
     }
 
     public static void setSunscreen(LivingEntity livingEntity, int ticks){
-        getCapability(livingEntity).setSunscreen(ticks);
-        MiscCapHelper.sendMiscUpdatePacket(livingEntity);
+        IMisc misc = getCapability(livingEntity);
+        boolean started = misc.getSunscreen() <= 0 && ticks > 0;
+        misc.setSunscreen(ticks);
+        if (started) {
+            MiscCapHelper.sendMiscUpdatePacket(livingEntity);
+        }
     }
 
     public static boolean isSunscreen(LivingEntity livingEntity) {

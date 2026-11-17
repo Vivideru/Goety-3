@@ -4,6 +4,7 @@ import com.Polarice3.Goety.common.entities.neutral.Owned;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
+import com.Vivideru.Goety.common.entities.util.ShieldedHits;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -98,7 +99,7 @@ public interface IShielded {
         if (this instanceof Mob mob) {
             if (!mob.level().isClientSide) {
                 if (this.hasShield() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-                    if (amount > 0.0F) {
+                    if (amount > 0.0F && !ShieldedHits.isFriendly(mob, source)) {
                         this.destroyShield(source, amount);
                     } else {
                         mob.playSound(SoundEvents.SHIELD_BLOCK);

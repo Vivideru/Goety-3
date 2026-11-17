@@ -670,8 +670,8 @@ public class SpellConfig {
     public static final ModConfigSpec.ConfigValue<Integer> CerberusLimit;
     public static final ModConfigSpec.ConfigValue<Integer> RedstoneGolemLimit;
     public static final ModConfigSpec.ConfigValue<Integer> GraveGolemLimit;
-    public static final ModConfigSpec.ConfigValue<Integer> RedstoneMonstrosityGlobalLimit;
-    public static final ModConfigSpec.ConfigValue<Integer> RedstoneMonstrosityPlayerLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> MonstrosityGlobalLimit;
+    public static final ModConfigSpec.ConfigValue<Integer> MonstrosityPlayerLimit;
 
     public static final ModConfigSpec.ConfigValue<Integer> MaxSoulEaterLevel;
     public static final ModConfigSpec.ConfigValue<Integer> MaxWantingLevel;
@@ -2062,10 +2062,10 @@ public class SpellConfig {
                 .defineInRange("redstoneGolemLimit", 2, 0, Integer.MAX_VALUE);
         GraveGolemLimit = BUILDER.comment("Total number of Grave Golems an individual player can have, Default: 2")
                 .defineInRange("graveGolemLimit", 2, 0, Integer.MAX_VALUE);
-        RedstoneMonstrosityGlobalLimit = BUILDER.comment("Total number of Redstone Monstrosities that can be summoned in total on a world, Default: 2")
-                .defineInRange("redstoneMonstrosityGlobalLimit", 2, 0, Integer.MAX_VALUE);
-        RedstoneMonstrosityPlayerLimit = BUILDER.comment("Total number of Redstone Monstrosities an individual player can have, Default: 1")
-                .defineInRange("redstoneMonstrosityPlayerLimit", 1, 0, Integer.MAX_VALUE);
+        MonstrosityGlobalLimit = BUILDER.comment("Total number of Monstrosities that can be summoned in total on a world, Default: 6")
+                .defineInRange("monstrosityGlobalLimit", 6, 0, Integer.MAX_VALUE);
+        MonstrosityPlayerLimit = BUILDER.comment("Total number of Monstrosities an individual player can have, Default: 2")
+                .defineInRange("monstrosityPlayerLimit", 2, 0, Integer.MAX_VALUE);
         BUILDER.pop();
         BUILDER.push("Enchantments");
         FocusEnchantsTrades = BUILDER.comment("Whether Focus Enchantments can appear on Villager Trade Pools, Default: true")

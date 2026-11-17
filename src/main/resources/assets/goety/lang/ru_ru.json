@@ -3627,6 +3627,7 @@
   "info.goety.targeting_monocle": "Помогает прицелится в жертву.",
   "info.goety.targeting_monocle.activate": "Нажмите %s, чтобы активировать или перевести прицел.",
   "info.goety.targeting_monocle.deactivate": "Нажмите %s, присев, чтобы деактивировать.",
+  "info.goety.tesseract": "Позволяет хранить и перемещать прислужников.",
   "info.goety.blade_of_ender": "Если индикатор атаки заполнен, создаёт порыв пустотного ветра.",
   "info.goety.blade_of_ender.1": "Нажмите ПКМ, чтобы отступить.",
   "info.goety.blade_of_ender.2": "Нажмите ПКМ на бегу, чтобы совершить рывок.",
@@ -3768,5 +3769,9 @@
   "item.goety.shade_ossuary": "Shade Ossuary",
   "item.goety.ring_of_wrecking": "Ring of Wrecking",
   "item.goety.aging_cream": "Aging Cream",
-  "item.goety.elder_guardian_servant_spawn_egg": "Elder Guardian Servant Spawn Egg"
+  "item.goety.elder_guardian_servant_spawn_egg": "Elder Guardian Servant Spawn Egg",
+  "info.goety.tesseract.more": "и ещё %s...",
+  "info.goety.tesseract.contains": "Содержит %s/%s прислужников",
+  "info.goety.tesseract.unleash": "Удерживайте ПКМ, чтобы поочерёдно высвобождать прислужников.",
+  "info.goety.tesseract.empty": "Нажмите ЛКМ по прислужнику, чтобы поместить его в тессеракт."
 }

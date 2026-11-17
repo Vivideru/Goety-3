@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.entities.projectiles;
 
+import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.entities.ModEntityType;
@@ -121,7 +122,7 @@ public class SoulBolt extends SpellHurtingProjectile {
                     }
                 }
                 baseDamage += this.getExtraDamage();
-                DamageSource damageSource = entity.damageSources().indirectMagic(this, livingentity);
+                DamageSource damageSource = ModDamageSource.indirectSoul(this, livingentity);
                 flag = entity.hurt(damageSource, baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {

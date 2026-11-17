@@ -508,7 +508,7 @@ public class WandUtil {
     }
 
     /**
-     * Based on the GeomancyHelper class from Dungeons Mobs: <a href="https://github.com/Infamous-Misadventures/Dungeons-Mobs/blob/1.19/src/main/java/com/infamous/dungeons_mobs/utils/GeomancyHelper.java">...</a>
+     * Based off GeomancyHelper class from Dungeons Mobs: <a href="https://github.com/Infamous-Misadventures/Dungeons-Mobs/blob/1.19/src/main/java/com/infamous/dungeons_mobs/utils/GeomancyHelper.java">...</a>
      */
     public static final int[] CONFIG_1_NORTH_ROW = new int[]{2, 3, 4, 5, 6};
     public static final int[] CONFIG_1_WEST_ROW = new int[]{6, 7, 8, 9, 10};

@@ -77,4 +77,9 @@ public class ParticleUtil {
     public static void windParticle(Level level, ColorUtil color, float width, float height, int id, Vec3 position) {
         level.addParticle(new WindParticleOption(color, width, height, 0, id), position.x(), position.y(), position.z(), 0.0D, 0.0D, 0.0D);
     }
+
+    public static void setHdrColor(Particle particle, float r, float g, float b) {
+        float[] c = ColorUtil.toLdr(r, g, b);
+        particle.setColor(c[0], c[1], c[2]);
+    }
 }

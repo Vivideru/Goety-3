@@ -78,7 +78,6 @@ public class GodRayParticle extends TextureSheetParticle {
         stack.popPose();
     }
 
-    // Both windings: 1.21 particle render types cannot restore culling afterwards, so it stays enabled.
     private static void face(VertexConsumer buffer, Matrix4f pose, float x0, float z0, float x1, float z1, float height, int baseColor, int topColor) {
         buffer.addVertex(pose, x0, 0, z0).setColor(baseColor);
         buffer.addVertex(pose, x1, 0, z1).setColor(baseColor);

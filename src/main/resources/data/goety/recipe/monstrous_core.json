@@ -1,0 +1,40 @@
+{
+  "type": "goety:ritual",
+  "ritual_type": "goety:craft",
+  "activation_item": {
+    "tag": "goety:ominous_metal_block"
+  },
+  "craftType": "forge",
+  "soulCost": 1,
+  "duration": 10,
+  "research": "terminus",
+  "ingredients": [
+    {
+      "item": "goety:magic_emerald"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    },
+    {
+      "item": "goety:command_focus"
+    },
+    {
+      "tag": "c:storage_blocks/copper"
+    },
+    {
+      "item": "goety:animation_core"
+    },
+    {
+      "tag": "c:storage_blocks/redstone"
+    },
+    {
+      "tag": "c:obsidian"
+    },
+    {
+      "item": "goety:cursed_metal_block"
+    }
+  ],
+  "result": {
+    "id": "goety:monstrous_core"
+  }
+}

@@ -97,7 +97,7 @@ public class Vec3Util {
         return randVec(random::nextDouble);
     }
 
-    // Adapted from @mehvahdjukaar's math utilities: https://github.com/MehVahdJukaar/Moonlight/blob/1.20/common/src/main/java/net/mehvahdjukaar/moonlight/api/util/math/MthUtils.java
+    //Stolen from @mehvahdjukaar codes: https://github.com/MehVahdJukaar/Moonlight/blob/1.20/common/src/main/java/net/mehvahdjukaar/moonlight/api/util/math/MthUtils.java
     public static Vec3 rotateVec3(Vec3 vec, Direction dir) {
         double cos = 1;
         double sin = 0;

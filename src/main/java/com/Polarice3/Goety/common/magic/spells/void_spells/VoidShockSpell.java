@@ -63,7 +63,7 @@ public class VoidShockSpell extends Spell {
     public List<ResourceKey<Enchantment>> acceptedEnchantments() {
         List<ResourceKey<Enchantment>> list = new ArrayList<>();
         list.add(ModEnchantments.POTENCY);
-//        list.add(ModEnchantments.DURATION);
+//        list.add(ModEnchantments.DURATION.get());
         list.add(ModEnchantments.RADIUS);
         return list;
     }

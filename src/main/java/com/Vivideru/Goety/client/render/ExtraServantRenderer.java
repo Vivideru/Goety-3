@@ -6,7 +6,6 @@ import com.Vivideru.Goety.common.entities.extra.ExtraServants;
 import com.Vivideru.Goety.mixin.EntityRendererAccessor;
 import com.Vivideru.Goety.mixin.EntityRenderersAccessor;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -17,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.phys.Vec3;
-import org.slf4j.Logger;
 
 import java.util.function.Supplier;
 
@@ -26,7 +24,6 @@ import java.util.function.Supplier;
  * entity type (the piglin's does), so while that renderer works the servant reports the mob's type instead of its own.
  */
 public class ExtraServantRenderer<T extends Entity> extends EntityRenderer<T> {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private final EntityRenderer<Entity> parent;
 
     @SuppressWarnings("unchecked")
@@ -49,7 +46,6 @@ public class ExtraServantRenderer<T extends Entity> extends EntityRenderer<T> {
     public static EntityRenderer<Entity> create(EntityRendererProvider.Context context, ExtraServantDefinition definition) {
         EntityType<?> parentType = ExtraServants.parentType(definition);
         if (parentType == null || !EntityRenderersAccessor.goety$getProviders().containsKey(parentType)) {
-            LOGGER.error("{}: goety:{} is not drawn, there is no mob {} to draw it as", ExtraServants.FILE, definition.id(), definition.parent());
             return new NoopRenderer<>(context);
         }
         return new ExtraServantRenderer<>(context, definition);

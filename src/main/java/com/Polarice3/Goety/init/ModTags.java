@@ -45,6 +45,8 @@ public class ModTags {
         public static final TagKey<Block> JADE_BLOCKS = tag("jade_blocks");
         public static final TagKey<Block> RED_MOSS_BLOCKS = tag("red_moss_blocks");
         public static final TagKey<Block> OMINOUS_BLOCKS = tag("ominous_blocks");
+        public static final TagKey<Block> CRYPT_STONE = tag("crypt_stone");
+        public static final TagKey<Block> CRAFTING_TABLE = tag("crafting_table");
         public static final TagKey<Block> END_STONE = tag("end_stone");
         public static final TagKey<Block> CHORUS_GRASS_BLOCKS = tag("chorus_grass_blocks");
         public static final TagKey<Block> END_SOIL_BLOCKS = tag("end_soil_blocks");
@@ -80,7 +82,13 @@ public class ModTags {
     public static class Items {
         private static void init(){}
 
+        public static final TagKey<Item> DAGGERS = tag("daggers");
         public static final TagKey<Item> HAMMERS = tag("hammers");
+        public static final TagKey<Item> GLAIVES = tag("glaives");
+        public static final TagKey<Item> MACES = tag("maces");
+        public static final TagKey<Item> PIKES = tag("pikes");
+        public static final TagKey<Item> CLAWS = tag("claws");
+        public static final TagKey<Item> SCYTHES = tag("scythes");
         public static final TagKey<Item> WANDS = tag("wands");
         public static final TagKey<Item> STAFFS = tag("staffs");
         public static final TagKey<Item> TOTEMS = tag("totems");
@@ -89,6 +97,7 @@ public class ModTags {
         public static final TagKey<Item> CROWNS = tag("crowns");
         public static final TagKey<Item> FOCUSES = tag("focuses");
         public static final TagKey<Item> GRIMOIRES = tag("grimoires");
+        public static final TagKey<Item> REPLICABLE_SCROLLS = tag("replicable_scrolls");
         public static final TagKey<Item> PLUSHIE = tag("plushie");
         public static final TagKey<Item> PILLAGER_WEAPONS = tag("pillager_weapons");
         public static final TagKey<Item> VINDICATOR_WEAPONS = tag("vindicator_weapons");
@@ -179,6 +188,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> NO_SEATING = tag("no_seating");
         public static final TagKey<EntityType<?>> HOLE_IMMUNE = tag("hole_immune");
         public static final TagKey<EntityType<?>> VOID_TOUCHED_IMMUNE = tag("void_touched_immune");
+        public static final TagKey<EntityType<?>> SOUL_BURN_IMMUNE = tag("soul_burn_immune");
         public static final TagKey<EntityType<?>> WANTING_ENTITIES = tag("wanting_entities");
         public static final TagKey<EntityType<?>> SUMMON_KILL = tag("summon_kill");
         public static final TagKey<EntityType<?>> IGNORE_SERVANTS = tag("ignore_servants");
@@ -193,6 +203,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> SKELETON_WOLF_BUFF = tag("skeleton_wolf_buff");
         public static final TagKey<EntityType<?>> SERVANT_RIDEABLE = tag("servant_rideable");
         public static final TagKey<EntityType<?>> REPAIRABLE = tag("repairable");
+        public static final TagKey<EntityType<?>> PLINTHABLE = tag("plinthable");
         public static final TagKey<EntityType<?>> FRAYED_CONVERT = tag("convert/frayed");
         public static final TagKey<EntityType<?>> RATTLED_CONVERT = tag("convert/rattled");
         public static final TagKey<EntityType<?>> REGULAR_CONVERT = tag("necromancer/regular_convert");
@@ -365,6 +376,7 @@ public class ModTags {
         public static final TagKey<DamageType> SHOCK_ATTACKS = tag("shock_attacks");
         public static final TagKey<DamageType> WATER_ATTACKS = tag("water_attacks");
         public static final TagKey<DamageType> ELEMENTAL = tag("elemental");
+        public static final TagKey<DamageType> SOUL = tag("soul");
         public static final TagKey<DamageType> MAGIC_FIRE = tag("magic_fire");
         public static final TagKey<DamageType> HELLFIRE = tag("hellfire");
         public static final TagKey<DamageType> NO_KNOCKBACK = tag("no_knockback");

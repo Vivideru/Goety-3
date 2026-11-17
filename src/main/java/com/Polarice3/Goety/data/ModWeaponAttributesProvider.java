@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
-// Adapted from @0999312: https://github.com/0999312/umapyoi/blob/7c60655c6b3ba5f51795b6adaa99ccfad965bc70/src/main/java/net/tracen/umapyoi/data/compat/BetterCombatProvider.java
+//Stolen from @0999312:https://github.com/0999312/umapyoi/blob/7c60655c6b3ba5f51795b6adaa99ccfad965bc70/src/main/java/net/tracen/umapyoi/data/compat/BetterCombatProvider.java
 public class ModWeaponAttributesProvider implements DataProvider {
     protected final PackOutput output;
     protected final ExistingFileHelper existingFileHelper;

@@ -24,8 +24,8 @@ public class GroundAuraParticle extends GroundCircleParticle {
         this.quadSize = size;
         this.lifetime = 20;
         this.setSpriteFromAge(spriteSet);
-        this.rotSpeed = ((float)Math.random() - 0.5F) * 0.1F;
-        this.roll = (float)Math.random() * ((float)Math.PI * 2F);
+        this.rotSpeed = 0.01F;
+        this.roll = (level.getGameTime() * this.rotSpeed) * ((float)Math.PI * 2F);
         this.setColor(red, green, blue);
     }
 

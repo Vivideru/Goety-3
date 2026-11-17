@@ -481,7 +481,7 @@ public interface IServant extends IOwned, IChunkLoader {
                             }
                         }
                         if (noSeat) {
-                            if (owned.distanceToSqr(this.vec3BoundPos()) > Mth.square(this.guardingRange())) {
+                            if (owned.distanceToSqr(this.vec3BoundPos()) > Mth.square(this.guardingRange()) && !com.Vivideru.Goety.common.entities.ai.StuckPathRetry.shouldWait(owned, this.getBoundPos())) {
                                 owned.getNavigation().moveTo(this.getBoundPos().getX(), this.getBoundPos().getY(), this.getBoundPos().getZ(), 1.0F);
                             }
                         }
@@ -670,8 +670,9 @@ public interface IServant extends IOwned, IChunkLoader {
                         owned.getNavigation().stop();
                     }
                     if (owned.getAttribute(Attributes.MOVEMENT_SPEED) != null) {
-                        modifiableattributeinstance.removeModifier(SPEED_MODIFIER.id());
-                        modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER);
+                        if (!modifiableattributeinstance.hasModifier(SPEED_MODIFIER.id())) {
+                            modifiableattributeinstance.addTransientModifier(SPEED_MODIFIER);
+                        }
                     }
                     this.stayingPosition();
                     if (!isRidden) {

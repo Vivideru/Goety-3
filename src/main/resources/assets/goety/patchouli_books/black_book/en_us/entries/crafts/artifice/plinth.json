@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "A Cursed Plinth is a low plate of stone on which golems and $(l:world/bestiary/haunted_armor)Haunted Armors$() can rest as statues. While resting they recover 2% of their health every second and mend their armor and weapons at the same pace, make no sound, cannot be harmed and never despawn. The statue faces the way the Plinth was placed; a Rotation Focus turns the plate, and the statue with it. Bind a $(l:crafts/waystone)Waystone$() to a Plinth, then use it on one of your golems or Haunted Armors: it will walk to the Plinth and turn to stone there. A servant simply told to guard a Plinth adopts it as well once it stands on it."
+      "text": "A Cursed Plinth is a low plate of stone on which golems and $(l:world/bestiary/haunted_armor)Haunted Armors$() can rest as statues. While resting they recover 2%% of their health every second and mend their armor and weapons at the same pace, make no sound, cannot be harmed and never despawn. The statue faces the way the Plinth was placed; a Rotation Focus turns the plate, and the statue with it. Bind a $(l:crafts/waystone)Waystone$() to a Plinth, then use it on one of your golems or Haunted Armors: it will walk to the Plinth and turn to stone there. A servant simply told to guard a Plinth adopts it as well once it stands on it."
     },
     {
       "type": "goety:ritual",

@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 /**
- * Based on code by @AlexModGuy
+ * Based of codes by @AlexModGuy
  */
 public class ModMobSpawnStructureModifier implements StructureModifier {
     private static final DeferredHolder<MapCodec<? extends StructureModifier>, MapCodec<? extends StructureModifier>> SERIALIZER = DeferredHolder.create(NeoForgeRegistries.Keys.STRUCTURE_MODIFIER_SERIALIZERS, Goety.location("mob_structure_spawns"));

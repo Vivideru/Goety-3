@@ -135,7 +135,7 @@ public class MathHelper extends Mth {
         return startPos.add(rotationToPosition(radius, pitch, yaw));
     }
 
-    // Adapted from @mehvahdjukaar's math utilities: https://github.com/MehVahdJukaar/Moonlight/blob/1.20/common/src/main/java/net/mehvahdjukaar/moonlight/api/util/math/MthUtils.java
+    //Stolen from @mehvahdjukaar codes: https://github.com/MehVahdJukaar/Moonlight/blob/1.20/common/src/main/java/net/mehvahdjukaar/moonlight/api/util/math/MthUtils.java
     public static VoxelShape rotateVoxelShape(VoxelShape source, Direction direction) {
         if (direction == Direction.NORTH) return source;
         AtomicReference<VoxelShape> newShape = new AtomicReference<>(Shapes.empty());
@@ -159,5 +159,18 @@ public class MathHelper extends Mth {
             newShape.set(Shapes.or(newShape.get(), s));
         });
         return newShape.get();
+    }
+
+    public static float radianToDegrees(float radian) {
+        return radian * (180.0F / (float)Math.PI);
+    }
+
+    public static float degreesToRadian(float degree) {
+        return degree * ((float)Math.PI / 180.0F);
+    }
+
+    public static float mcd2DamageCalculator(float mcdDamage) {
+        //MCD2 player has 100 max health by default so...
+        return ((mcdDamage / 100.0F) * 20.0F);
     }
 }

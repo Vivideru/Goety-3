@@ -4,7 +4,6 @@ import com.Vivideru.Goety.common.world.structures.VivideruStructureTypes;
 import com.Vivideru.Goety.common.world.structures.WindShrinePlans;
 import com.Vivideru.Goety.mixin.StructurePiecesBuilderAccessor;
 import com.mojang.datafixers.util.Either;
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -22,7 +21,6 @@ import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
-import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +31,6 @@ import java.util.Optional;
  * ({@link CryptWingStructure}); the wings re-plan this structure to find their door.
  */
 public class CryptStructure extends Structure {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final int SAMPLE_RADIUS = 14;
     static final int ATTEMPTS = 8;
     /** Settings of the previous crypt's structure file. */
@@ -97,18 +94,19 @@ public class CryptStructure extends Structure {
             return Optional.empty();
         }
         GenerationStub s = stub.get();
-        return Optional.of(new GenerationStub(s.position(), Either.left(builder -> {
+        // Minecraft checks the biome at the generation point: that is the entrance on the surface, not the start deep below it,
+        // where cave biomes (lush caves, or the many of Terralith) would turn down crypts under forests and plains.
+        int ground = context.chunkGenerator().getFirstFreeHeight(s.position().getX(), s.position().getZ(), Heightmap.Types.OCEAN_FLOOR_WG, context.heightAccessor(), context.randomState());
+        return Optional.of(new GenerationStub(new BlockPos(s.position().getX(), ground, s.position().getZ()), Either.left(builder -> {
             // The dungeon is assembled up to ATTEMPTS times with different seeds until every direction has its Library.
             List<StructurePiece> best = null;
             CryptPlacementRules.Outcome bestOutcome = CryptPlacementRules.Outcome.NONE;
-            int attempts = 0;
             for (int attempt = 0; attempt < ATTEMPTS; attempt++) {
                 Optional<GenerationStub> retry = attempt == 0 ? Optional.of(s)
                         : JigsawPlacement.addPieces(retryContext(context, attempt), this.startPool, Optional.empty(), this.maxDepth, start, false, Optional.empty(), this.maxDistanceFromCenter, PoolAliasLookup.EMPTY, DimensionPadding.ZERO, LiquidSettings.IGNORE_WATERLOGGING);
                 if (retry.isEmpty()) {
                     continue;
                 }
-                attempts++;
                 StructurePiecesBuilder temp = new StructurePiecesBuilder();
                 CryptPlacementRules.beginMain(chunkPos, this.maxDepth, context.heightAccessor().getMinBuildHeight());
                 CryptPlacementRules.Outcome outcome;
@@ -139,13 +137,6 @@ public class CryptStructure extends Structure {
             CryptExits.closeOpenDoors(best, context.structureTemplateManager(), context.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.TEMPLATE_POOL), context.seed());
             for (StructurePiece piece : best) {
                 builder.addPiece(piece);
-            }
-            if (LOGGER.isDebugEnabled()) {
-                StringBuilder doors = new StringBuilder();
-                for (WindShrinePlans.Door door : CryptExits.openDoors(best, context.structureTemplateManager(), context.seed())) {
-                    doors.append(' ').append(door.target().toShortString()).append('>').append(door.facing());
-                }
-                LOGGER.debug("Crypt in chunk {} at {}: {} pieces after {} attempt(s), open doors:{}", chunkPos, s.position().toShortString(), best.size(), attempts, doors);
             }
         })));
     }

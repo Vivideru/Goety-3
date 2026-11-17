@@ -6,6 +6,8 @@ import com.Polarice3.Goety.client.particles.LightningEffect;
 import com.Polarice3.Goety.client.particles.LightningParticleOptions;
 import com.Polarice3.Goety.client.particles.ShockwaveParticle;
 import com.Polarice3.Goety.init.ModProxy;
+import com.Polarice3.Goety.client.render.RippleRenderer;
+import com.Polarice3.Goety.common.entities.projectiles.Ripple;
 import com.Polarice3.Goety.utils.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -72,5 +74,10 @@ public class ClientProxy implements ModProxy {
             return;
         }
         Minecraft.getInstance().particleEngine.add(new ShockwaveParticle.Explosion((ClientLevel) level, blockPos.getX() + 0.5F, blockPos.getY(), blockPos.getZ() + 0.5F, 0, 0, 0, radius, Minecraft.getInstance().particleEngine));
+    }
+
+    @Override
+    public void rippleTick(Ripple ripple){
+        RippleRenderer.clientTick(ripple);
     }
 }

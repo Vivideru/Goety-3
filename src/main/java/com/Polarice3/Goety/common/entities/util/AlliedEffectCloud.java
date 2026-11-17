@@ -195,6 +195,7 @@ public class AlliedEffectCloud extends Entity implements TraceableEntity {
                     d5 = (double)((float)(k >> 16 & 255) / 255.0F);
                     d6 = (double)((float)(k >> 8 & 255) / 255.0F);
                     d7 = (double)((float)(k & 255) / 255.0F);
+                    particleoptions = ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, 0xFF000000 | k);
                 } else if (flag) {
                     d5 = 0.0D;
                     d6 = 0.0D;

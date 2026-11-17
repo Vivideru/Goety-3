@@ -20,6 +20,13 @@
     {
       "type": "patchouli:text",
       "text": "$(l:focuses/soul_bolt_focus)Снаряды душ$(), выпущенные из этого посоха, превратятся в более мощные некро-снаряды. Использование $(l:focuses/illusion_focus)заклинания отражения$(), будучи в $(l:crafts/garment/nameless_set)безымянных одеждах$(), позволит вам стрелять одним, более мощным некро-снарядом."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "goety:haunted_mirror",
+      "title": "Changing Colors",
+      "advancement": "goety:goety/read_haunting_scroll",
+      "text": "You can also change the color of your staff's orb by right-clicking a Haunted Mirror with a dye while holding it offhand. To remove the custom color, right-click the mirror with a bucket of water also while holding it offhand."
     }
   ],
   "extra_recipe_mappings": {

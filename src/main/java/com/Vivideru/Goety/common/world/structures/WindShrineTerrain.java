@@ -39,8 +39,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.neoforged.neoforge.common.Tags;
 
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.IdentityHashMap;
@@ -50,7 +48,6 @@ import java.util.List;
 import java.util.Optional;
 
 public final class WindShrineTerrain {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final int PLATEAU_MARGIN = 3;
     private static final int PROTECT_MARGIN = 6;
     private static final int PROTECT_FADE = 22;
@@ -128,8 +125,6 @@ public final class WindShrineTerrain {
         }
         ChunkPos chunkPos = chunk.getPos();
         BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
-        int windsweptColumns = 0;
-        int removed = 0;
         for (int lx = 0; lx < 16; lx++) {
             for (int lz = 0; lz < 16; lz++) {
                 int x = chunkPos.getMinBlockX() + lx;
@@ -138,10 +133,8 @@ public final class WindShrineTerrain {
                 if (!chunk.getNoiseBiome(x >> 2, top >> 2, z >> 2).is(WINDSWEPT_PEAKS_BIOME)) {
                     continue;
                 }
-                windsweptColumns++;
                 BlockState state = chunk.getBlockState(cursor.set(x, top, z));
                 if (state.is(Blocks.SNOW)) {
-                    removed++;
                     chunk.setBlockState(cursor, Blocks.AIR.defaultBlockState(), false);
                     top--;
                     state = chunk.getBlockState(cursor.set(x, top, z));
@@ -155,18 +148,14 @@ public final class WindShrineTerrain {
                 }
             }
         }
-        int settled = settleRedMoss(chunk);
-        if (windsweptColumns > 0 && LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Wind Shrine cleanup {}: {} windswept columns, {} snow layers removed, {} red moss blocks settled", chunkPos, windsweptColumns, removed, settled);
-        }
+        settleRedMoss(chunk);
     }
 
-    private static int settleRedMoss(ChunkAccess chunk) {
+    private static void settleRedMoss(ChunkAccess chunk) {
         ChunkPos chunkPos = chunk.getPos();
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
         BlockPos.MutableBlockPos coverPos = new BlockPos.MutableBlockPos();
         int maxY = chunk.getMaxBuildHeight() - 1;
-        int settled = 0;
         for (int s = 0; s < chunk.getSectionsCount(); s++) {
             LevelChunkSection section = chunk.getSection(s);
             if (section.hasOnlyAir() || !section.maybeHas(state -> state.getBlock() instanceof RedMossBlock)) {
@@ -193,13 +182,11 @@ public final class WindShrineTerrain {
                         }
                         if (result != state) {
                             chunk.setBlockState(pos, result, false);
-                            settled++;
                         }
                     }
                 }
             }
         }
-        return settled;
     }
 
     private static boolean mossSurvives(ChunkAccess chunk, BlockState state, BlockPos pos, BlockState cover, BlockPos coverPos) {

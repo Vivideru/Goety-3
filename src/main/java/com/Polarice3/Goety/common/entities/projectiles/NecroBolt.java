@@ -1,16 +1,22 @@
 package com.Polarice3.Goety.common.entities.projectiles;
 
+import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.entities.ModEntityType;
 import com.Polarice3.Goety.common.research.ResearchList;
 import com.Polarice3.Goety.config.SpellConfig;
+import com.Polarice3.Goety.utils.ColorUtil;
 import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.SEHelper;
 import com.Polarice3.Goety.utils.ServantUtil;
 import com.Polarice3.Goety.utils.WandUtil;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerEntity;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -33,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 public class NecroBolt extends SpellHurtingProjectile {
+    public static final EntityDataAccessor<Integer> DATA_COLOR = SynchedEntityData.defineId(NecroBolt.class, EntityDataSerializers.INT);
     private final float rotSpeed;
     public float roll;
     public float oRoll;
@@ -59,6 +66,32 @@ public class NecroBolt extends SpellHurtingProjectile {
         this.roll = (float)Math.random() * ((float)Math.PI * 2F);
     }
 
+    @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(DATA_COLOR, -1);
+    }
+
+    public void readAdditionalSaveData(CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("CustomColor")) {
+            this.setColor(compound.getInt("CustomColor"));
+        }
+    }
+
+    public void addAdditionalSaveData(CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("CustomColor", this.getColor());
+    }
+
+    public int getColor() {
+        return this.entityData.get(DATA_COLOR);
+    }
+
+    public void setColor(int color) {
+        this.entityData.set(DATA_COLOR, color);
+    }
+
     public boolean isOnFire() {
         return false;
     }
@@ -82,10 +115,10 @@ public class NecroBolt extends SpellHurtingProjectile {
                     }
                 }
                 baseDamage += this.getExtraDamage();
-                flag = entity.hurt(entity.damageSources().indirectMagic(this, livingentity), baseDamage);
+                flag = entity.hurt(ModDamageSource.indirectSoul(this, livingentity), baseDamage);
                 if (flag) {
                     if (entity.isAlive()) {
-                        EnchantmentHelper.doPostAttackEffects(serverLevel, entity, entity.damageSources().indirectMagic(this, livingentity));
+                        EnchantmentHelper.doPostAttackEffects(serverLevel, entity, ModDamageSource.indirectSoul(this, livingentity));
                     } else {
                         if (entity instanceof Zombie) {
                             ServantUtil.convertZombies(entity, livingentity, true);
@@ -122,7 +155,12 @@ public class NecroBolt extends SpellHurtingProjectile {
                 double d0 = (double)this.getX() + this.level().random.nextDouble();
                 double d1 = (double)this.getY() + this.level().random.nextDouble();
                 double d2 = (double)this.getZ() + this.level().random.nextDouble();
-                serverLevel.sendParticles(ModParticleTypes.NECRO_EFFECT.get(), d0, d1, d2, 0, 0.45, 0.45, 0.45, 0.5F);
+                if (this.getColor() > -1) {
+                    ColorUtil colorUtil = new ColorUtil(this.getColor());
+                    serverLevel.sendParticles(ModParticleTypes.ADDITIVE_EFFECT.get(), d0, d1, d2, 0, colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F);
+                } else {
+                    serverLevel.sendParticles(ModParticleTypes.NECRO_EFFECT.get(), d0, d1, d2, 0, 0.45, 0.45, 0.45, 0.5F);
+                }
                 serverLevel.sendParticles(ModParticleTypes.SUMMON_TRAIL.get(), d0, d1, d2, 1, 0.0F, 0.0F, 0.0F, 0);
             }
             this.discard();

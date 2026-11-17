@@ -1,7 +1,5 @@
 package com.Vivideru.Goety.common.world.structures;
 
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 import com.Polarice3.Goety.Goety;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -37,7 +35,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public final class WindShrinePlans {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine");
     public static final List<ResourceLocation> WINGS = List.of(
             ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "wind_shrine_expansion_a"),
@@ -291,65 +288,44 @@ public final class WindShrinePlans {
         if (cached != null) {
             return cached;
         }
-        synchronized (lockFor(resolver.seed, candidate)) {
-            cached = cache.get(candidate.toLong());
-            if (cached != null) {
-                return cached;
-            }
-            Optional<Plan> plan = Optional.empty();
-            // Plans are made on the natural land: the land the noise generator raises depends on them.
-            WindShrineBlend.suppress();
-            try {
-                Optional<WindShrineStructure> shrine = shrine(resolver.registryAccess());
-                if (shrine.isPresent()) {
-                    StructureStart start = resolver.generate(shrine.get(), candidate);
-                    if (start.isValid()) {
-                        List<Optional<StructureStart>> wings = new ArrayList<>();
-                        Plan current = planFor(resolver, shrine.get(), candidate, start, wings);
+        Optional<Plan> plan = Optional.empty();
+        // Plans are made on the natural land: the land the noise generator raises depends on them.
+        WindShrineBlend.suppress();
+        try {
+            Optional<WindShrineStructure> shrine = shrine(resolver.registryAccess());
+            if (shrine.isPresent()) {
+                StructureStart start = resolver.generate(shrine.get(), candidate);
+                if (start.isValid()) {
+                    List<Optional<StructureStart>> wings = new ArrayList<>();
+                    Plan current = planFor(resolver, shrine.get(), candidate, start, wings);
+                    partial.put(candidate.toLong(), Optional.of(current));
+                    Registry<Structure> structures = resolver.registryAccess().registryOrThrow(Registries.STRUCTURE);
+                    for (int door = 0; door < WINGS.size(); door++) {
+                        Structure wing = structures.get(WINGS.get(door));
+                        Optional<Door> exit = current.door(door);
+                        Optional<StructureStart> wingStart = Optional.empty();
+                        if (wing != null && exit.isPresent()) {
+                            StructureStart generated = resolver.generate(wing, new ChunkPos(exit.get().target()));
+                            wingStart = generated.isValid() ? Optional.of(generated) : Optional.empty();
+                        }
+                        wings.add(wingStart);
+                        current = planFor(resolver, shrine.get(), candidate, start, wings);
                         partial.put(candidate.toLong(), Optional.of(current));
-                        Registry<Structure> structures = resolver.registryAccess().registryOrThrow(Registries.STRUCTURE);
-                        for (int door = 0; door < WINGS.size(); door++) {
-                            Structure wing = structures.get(WINGS.get(door));
-                            Optional<Door> exit = current.door(door);
-                            Optional<StructureStart> wingStart = Optional.empty();
-                            if (wing != null && exit.isPresent()) {
-                                StructureStart generated = resolver.generate(wing, new ChunkPos(exit.get().target()));
-                                wingStart = generated.isValid() ? Optional.of(generated) : Optional.empty();
-                            }
-                            wings.add(wingStart);
-                            current = planFor(resolver, shrine.get(), candidate, start, wings);
-                            partial.put(candidate.toLong(), Optional.of(current));
-                        }
-                        plan = Optional.of(current);
-                        if (LOGGER.isDebugEnabled()) {
-                            StringBuilder summary = new StringBuilder();
-                            for (int door = 0; door < WINGS.size(); door++) {
-                                summary.append(' ').append((char) ('a' + door)).append('=');
-                                if (current.door(door).isEmpty()) {
-                                    summary.append("no-door");
-                                } else {
-                                    summary.append(wings.get(door).map(w -> String.valueOf(w.getPieces().size())).orElse("failed"));
-                                }
-                            }
-                            LOGGER.debug("Wind Shrine plan for chunk {}: ring {} pieces, wings:{}", candidate, start.getPieces().size(), summary);
-                        }
                     }
+                    plan = Optional.of(current);
                 }
-            } finally {
-                WindShrineBlend.resume();
-                partial.remove(candidate.toLong());
             }
-            cache.put(candidate.toLong(), plan);
-            return plan;
+        } finally {
+            WindShrineBlend.resume();
+            partial.remove(candidate.toLong());
         }
+        // No lock around the work above: Structure.generate runs code of other mods, which may wait on threads that need
+        // this very plan. Plans are deterministic, so threads racing here agree, and all of them keep the first one stored.
+        Optional<Plan> stored = cache.putIfAbsent(candidate.toLong(), plan);
+        return stored != null ? stored : plan;
     }
 
     private static final ThreadLocal<Map<Long, Optional<Plan>>> PARTIAL = ThreadLocal.withInitial(java.util.HashMap::new);
-    private static final Map<Long, Object> LOCKS = new java.util.concurrent.ConcurrentHashMap<>();
-
-    private static Object lockFor(long seed, ChunkPos candidate) {
-        return LOCKS.computeIfAbsent(seed * 31L + candidate.toLong(), key -> new Object());
-    }
 
     private static Plan planFor(Resolver resolver, WindShrineStructure shrine, ChunkPos chunk, StructureStart start, List<Optional<StructureStart>> wings) {
         Map<Long, Footprint> byBox = new LinkedHashMap<>();

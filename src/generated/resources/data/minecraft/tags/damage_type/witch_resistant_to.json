@@ -7,6 +7,8 @@
     "goety:magic_bolt",
     "goety:wind_blast",
     "goety:soul_leech",
-    "goety:life_leech"
+    "goety:life_leech",
+    "goety:soul",
+    "goety:indirect_soul"
   ]
 }

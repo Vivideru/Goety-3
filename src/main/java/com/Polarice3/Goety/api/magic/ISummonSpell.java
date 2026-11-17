@@ -4,10 +4,15 @@ import com.Polarice3.Goety.utils.MobTypeHelper;
 
 import com.Polarice3.Goety.init.ModMobType;
 
+import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
-import com.Polarice3.Goety.common.items.ModItems;
+import com.Polarice3.Goety.common.items.magic.NamelessStaff;
+import com.Polarice3.Goety.common.magic.Spell;
+import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.*;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -109,10 +114,15 @@ public interface ISummonSpell extends ISpell{
                 colorFrom = 0xffffff;
             }
         } else {
-            if (staff.is(ModItems.NAMELESS_STAFF.get())) {
+            if (staff.getItem() instanceof NamelessStaff staff1) {
                 colorUtil = NAMELESS_SUMMON;
                 colorFrom = 0xa7fc3e;
                 colorTo = 0xcffc97;
+                if (staff1.hasCustomColor(staff)) {
+                    colorUtil = new ColorUtil(staff1.getColor(staff));
+                    colorFrom = staff1.getColor(staff);
+                    colorTo = staff1.getColor(staff);
+                }
             } else if (this.typeStaff(staff, SpellType.WILD)) {
                 colorUtil = WILD_SUMMON;
                 colorFrom = 0x403b14;
@@ -124,6 +134,24 @@ public interface ISummonSpell extends ISpell{
             }
         }
         ServerParticleUtil.summonUndeadParticles(worldIn, summoned, colorUtil, colorFrom, colorTo);
+    }
+
+    default void namelessSummon(ServerLevel worldIn, LivingEntity caster, ItemStack staff, LivingEntity summoned) {
+        if (staff.getItem() instanceof NamelessStaff staff1) {
+            if (staff1.hasCustomColor(staff)) {
+                ColorUtil colorUtil = new ColorUtil(staff1.getColor(staff));
+                worldIn.sendParticles(ModParticleTypes.LICH_COLORED.get(), summoned.getX(), summoned.getY(), summoned.getZ(), 0, colorUtil.red, colorUtil.green, colorUtil.blue, 1.0F);
+                ServerParticleUtil.summonUndeadParticles(worldIn, summoned, colorUtil, staff1.getColor(staff), staff1.getColor(staff));
+            } else {
+                worldIn.sendParticles(ModParticleTypes.LICH.get(), summoned.getX(), summoned.getY(), summoned.getZ(), 1, 0, 0, 0, 0.0F);
+                ServerParticleUtil.summonPowerfulUndeadParticles(worldIn, summoned);
+            }
+            SoundSource source = this instanceof Spell spell ? spell.getSoundSource() : SoundSource.PLAYERS;
+            worldIn.playSound(null, summoned.getX(), summoned.getY(), summoned.getZ(), ModSounds.SOUL_EXPLODE.get(), source, 0.25F + (worldIn.getRandom().nextFloat() / 2.0F), 1.0F);
+            worldIn.playSound(null, summoned.getX(), summoned.getY(), summoned.getZ(), SoundEvents.ENDERMAN_TELEPORT, source, 0.25F + (worldIn.getRandom().nextFloat() / 2.0F), 1.0F);
+        } else {
+            this.summonParticles(worldIn, caster, staff, summoned);
+        }
     }
 }
 

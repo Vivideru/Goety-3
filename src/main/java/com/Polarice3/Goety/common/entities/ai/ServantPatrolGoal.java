@@ -47,7 +47,7 @@ public class ServantPatrolGoal<T extends PathfinderMob & IServant> extends Goal 
                 this.mob.advancePatrol();
                 this.waitTicks = WAIT_TICKS;
             }
-        } else if (this.mob.getNavigation().isDone()) {
+        } else if (this.mob.getNavigation().isDone() && !com.Vivideru.Goety.common.entities.ai.StuckPathRetry.shouldWait(this.mob, pos)) {
             this.mob.moveToPatrolPoint(pos, this.speed);
         }
     }

@@ -3,7 +3,6 @@ package com.Vivideru.Goety.common.entities.extra;
 import com.Polarice3.Goety.Goety;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.mojang.logging.LogUtils;
 import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -18,7 +17,6 @@ import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.server.packs.resources.IoSupplier;
 import net.neoforged.fml.loading.FMLPaths;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -40,7 +38,6 @@ import java.util.function.Consumer;
  * Duration enchantments.
  */
 public final class ExtraServantPack implements PackResources {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final String ID = "goety_extra_servants";
     /** Tags every summoning focus is in: Goety's focus list and the items Potency and Duration go on. */
     private static final List<String> FOCUS_TAGS = List.of("focuses", "enchantable/focus/potency", "enchantable/focus/duration");
@@ -85,7 +82,6 @@ public final class ExtraServantPack implements PackResources {
                 try {
                     files.put(definition.texture(), read(folder, definition.textureFile()));
                 } catch (IOException e) {
-                    LOGGER.error("{}: the texture {} of goety:{} could not be read, it keeps the mob's own: {}", ExtraServants.FILE, definition.textureFile(), definition.id(), e.getMessage());
                 }
             }
             ExtraServantFocusDefinition focus = definition.focus();
@@ -98,7 +94,6 @@ public final class ExtraServantPack implements PackResources {
                     files.put(ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "textures/item/extra_servants/" + focus.id() + ".png"), read(folder, texture));
                     texture = Goety.MOD_ID + ":item/extra_servants/" + focus.id();
                 } catch (IOException e) {
-                    LOGGER.error("{}: the focus texture {} of goety:{} could not be read: {}", ExtraServants.FILE, texture, definition.id(), e.getMessage());
                     texture = "goety:item/focus/spell_template";
                 }
             }

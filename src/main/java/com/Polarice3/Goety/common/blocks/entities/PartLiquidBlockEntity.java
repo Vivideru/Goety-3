@@ -31,10 +31,11 @@ public class PartLiquidBlockEntity extends SaveBlockEntity{
                 this.setChanged();
             }
             if (this.life >= this.lifespan) {
-                if (this.oldBlock.is(ModBlocks.PART_LIQUID.get()) || this.oldBlock == null){
+                if (this.oldBlock == null || this.oldBlock.is(ModBlocks.PART_LIQUID.get())){
                     this.level.setBlock(this.getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+                } else {
+                    this.level.setBlock(this.getBlockPos(), this.oldBlock, 3);
                 }
-                this.level.setBlock(this.getBlockPos(), this.oldBlock, 3);
             }
         }
     }

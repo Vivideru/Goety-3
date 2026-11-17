@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 /**
- * Based on code from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/client/model/block/leaves/BakedLeavesModel.java">...</a>
+ * Based of codes from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/client/model/block/leaves/BakedLeavesModel.java">...</a>
  */
 public class BakedLeavesModel extends BakedModelWrapper<BakedModel> {
 

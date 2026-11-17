@@ -18,7 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * Adapted from @BobMowzie's code:<a href="https://github.com/BobMowzie/MowziesMobs/blob/1.19.2/src/main/java/com/bobmowzie/mowziesmobs/server/entity/effects/EntityCameraShake.java">...</a>
+ * Ripped from @BobMowzie's codes:<a href="https://github.com/BobMowzie/MowziesMobs/blob/1.19.2/src/main/java/com/bobmowzie/mowziesmobs/server/entity/effects/EntityCameraShake.java">...</a>
  */
 public class CameraShake extends Entity {
     private static final EntityDataAccessor<Float> RADIUS = SynchedEntityData.defineId(CameraShake.class, EntityDataSerializers.FLOAT);

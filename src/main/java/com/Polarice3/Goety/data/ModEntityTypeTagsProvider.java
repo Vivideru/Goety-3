@@ -128,6 +128,7 @@ public class ModEntityTypeTagsProvider extends IntrinsicHolderTagsProvider<Entit
                 ModEntityType.HOSTILE_REDSTONE_GOLEM.get(),
                 ModEntityType.REDSTONE_MONSTROSITY.get(),
                 ModEntityType.HOSTILE_REDSTONE_MONSTROSITY.get(),
+                ModEntityType.GRAVE_MONSTROSITY.get(),
                 ModEntityType.SKULL_LORD.get(),
                 ModEntityType.BONE_LORD.get(),
                 ModEntityType.APOSTLE.get(),

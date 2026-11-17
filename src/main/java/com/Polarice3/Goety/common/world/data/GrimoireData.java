@@ -14,6 +14,7 @@ import java.util.UUID;
 
 public class GrimoireData extends SavedData {
     private static final String DATA_NAME = "goety_grimoire_data";
+    private static final SavedData.Factory<GrimoireData> FACTORY = new SavedData.Factory<>(GrimoireData::new, GrimoireData::load);
 
     public Map<UUID, CompoundTag> grimoireLists = new HashMap<>();
 
@@ -24,7 +25,7 @@ public class GrimoireData extends SavedData {
             return null;
         }
         DimensionDataStorage storage = overworld.getDataStorage();
-        return storage.computeIfAbsent(new SavedData.Factory<>(GrimoireData::new, GrimoireData::load), DATA_NAME);
+        return storage.computeIfAbsent(FACTORY, DATA_NAME);
     }
 
     public static GrimoireData load(CompoundTag tag, HolderLookup.Provider provider) {
@@ -53,7 +54,8 @@ public class GrimoireData extends SavedData {
     }
 
     public CompoundTag getPlayerLists(UUID playerUUID) {
-        return this.grimoireLists.getOrDefault(playerUUID, new CompoundTag());
+        CompoundTag lists = this.grimoireLists.get(playerUUID);
+        return lists != null ? lists : new CompoundTag();
     }
 
     public void setPlayerLists(UUID playerUUID, CompoundTag listsData) {

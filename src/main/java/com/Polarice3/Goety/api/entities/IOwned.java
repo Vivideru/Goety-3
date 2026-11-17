@@ -10,6 +10,7 @@ import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
 import com.Polarice3.Goety.utils.SEHelper;
 import com.Polarice3.Goety.utils.ServantUtil;
+import com.Vivideru.Goety.common.entities.util.GoodwillGuard;
 import net.minecraft.tags.TagKey;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -102,6 +103,9 @@ public interface IOwned {
 
     default LivingEntity getMasterOwner() {
         LivingEntity current = this.getTrueOwner();
+        if (!(current instanceof IOwned) && !(current instanceof OwnableEntity)) {
+            return current;
+        }
         Set<UUID> visited = new HashSet<>();
 
         while (current != null) {
@@ -277,12 +281,17 @@ public interface IOwned {
             if (this.getTrueOwner() instanceof Mob mobOwner && mobOwner.getTarget() != null && mob.getTarget() == null) {
                 mob.setTarget(mobOwner.getTarget());
             }
+            if ((mob.tickCount + mob.getId()) % 2 != 0 && mob.tickCount > 1) {
+                return;
+            }
             if (this.getTrueOwner() != null) {
+                LivingEntity owner = this.getTrueOwner();
+                boolean goodwill = MainConfig.GoodwillServantGuard.get() && GoodwillGuard.mayHaveAllies(this, owner, mob.level());
                 for (Mob target : mob.level().getEntitiesOfClass(Mob.class,
                         mob.getBoundingBox().inflate(mob.getAttributeValue(Attributes.FOLLOW_RANGE)),
                         candidate -> candidate.isAlive() && mob != candidate)) {
                     boolean defend = false;
-                    if (MainConfig.GoodwillServantGuard.get()) {
+                    if (goodwill) {
                         if (this.isAllyWith(target)) {
                             LivingEntity attacker = null;
                             if (target.getLastHurtByMob() != null && mob.getLastHurtByMob() == null) {
@@ -300,12 +309,12 @@ public interface IOwned {
                             defend = true;
                         }
                     }
-                    if (target instanceof IOwned owned && this.getTrueOwner() != owned.getTrueOwner()
-                            && target.getTarget() == this.getTrueOwner()) {
+                    if (target instanceof IOwned owned && target.getTarget() == owner
+                            && owner != owned.getTrueOwner()) {
                         defend = true;
                     }
                     if (defend && mob.canAttack(target, TargetingConditions.DEFAULT)
-                            && !MobUtil.areAllies(mob, target) && !MobUtil.areAllies(this.getTrueOwner(), target)) {
+                            && !MobUtil.areAllies(mob, target) && !MobUtil.areAllies(owner, target)) {
                         mob.setTarget(target);
                     }
                 }

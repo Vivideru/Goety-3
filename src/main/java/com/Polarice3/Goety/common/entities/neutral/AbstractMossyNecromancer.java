@@ -18,6 +18,7 @@ import com.Polarice3.Goety.config.MobsConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -158,8 +159,8 @@ public class AbstractMossyNecromancer extends AbstractNecromancer{
             double d0 = colors[0];
             double d1 = colors[1];
             double d2 = colors[2];
-            for (int i = 0; i < this.level().random.nextInt(4) + 4; ++i) {
-                this.level().addParticle(ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY(), this.getZ(), d0, d1, d2);
+            for (int i = 0; i < this.level.random.nextInt(4) + 4; ++i) {
+                this.level.addParticle(ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY(), this.getZ(), d0, d1, d2);
             }
         }*/
     }
@@ -177,6 +178,7 @@ public class AbstractMossyNecromancer extends AbstractNecromancer{
                     Summoned summonedentity = AbstractMossyNecromancer.this.getSummon();
                     BlockPos blockPos = BlockFinder.SummonRadius(AbstractMossyNecromancer.this.blockPosition(), summonedentity, serverLevel);
                     summonedentity.setTrueOwner(MobUtil.getSummonOwner(AbstractMossyNecromancer.this));
+                    SummonerTracker.record(summonedentity, AbstractMossyNecromancer.this);
                     summonedentity.moveTo(blockPos, 0.0F, 0.0F);
                     MobUtil.moveDownToGround(summonedentity);
                     if (MobsConfig.NecromancerSummonsLife.get()) {

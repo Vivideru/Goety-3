@@ -873,9 +873,6 @@ public class Apostle extends SpellCastingCultist implements RangedAttackMob, Sho
         }
 
         float trueAmount = this.isInNether() ? pAmount * (1.0F - (MobsConfig.ApostleNetherDamageReduction.get() / 100.0F)) : pAmount;
-        if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            trueAmount = Math.min(trueAmount, AttributesConfig.get(AttributesConfig.ApostleDamageCap).floatValue());
-        }
 
         if (!this.isNoAi()) {
             if (this.getHealth() > trueAmount) {
@@ -910,10 +907,6 @@ public class Apostle extends SpellCastingCultist implements RangedAttackMob, Sho
     }
 
     protected void actuallyHurt(DamageSource source, float amount) {
-        float initialAmount = amount;
-        if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)){
-            amount = Math.min(initialAmount, AttributesConfig.get(AttributesConfig.ApostleDamageCap).floatValue());
-        }
         if (this.moddedInvul <= 0){
             super.actuallyHurt(source, amount);
             if (source.getEntity() != null) {

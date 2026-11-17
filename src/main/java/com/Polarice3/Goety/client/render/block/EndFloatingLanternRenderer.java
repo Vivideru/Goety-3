@@ -87,8 +87,6 @@ public class EndFloatingLanternRenderer implements BlockEntityRenderer<EndLanter
         Minecraft minecraft = Minecraft.getInstance();
         ModelManager models = minecraft.getModelManager();
         ModelBlockRenderer renderer = minecraft.getBlockRenderer().getModelRenderer();
-        // Chunk render types share one buffer in 1.21: requesting cutout ends the solid batch and writing to it crashes ("Not building!").
-        // The entity block sheets are fixed buffers, so both stay open while the parts are drawn.
         VertexConsumer consumer = buffer.getBuffer(RenderTypeHelper.getEntityRenderType(RenderType.solid(), false));
         VertexConsumer consumer2 = buffer.getBuffer(RenderTypeHelper.getEntityRenderType(RenderType.cutout(), false));
 

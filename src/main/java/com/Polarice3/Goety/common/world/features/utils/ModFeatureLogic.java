@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.function.Predicate;
 
 /**
- * Adapted from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/FeatureLogic.java">...</a>
+ * Stolen from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/FeatureLogic.java">...</a>
  */
 public final class ModFeatureLogic {
     public static final Predicate<BlockState> IS_REPLACEABLE_AIR = state -> state.canBeReplaced() || state.isAir();

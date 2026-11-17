@@ -1,7 +1,7 @@
 package com.Polarice3.Goety.utils;
 
 /**
- * Adapted from L_Ender's code: <a href="https://github.com/lender544/new1.20.1/blob/master/src/main/java/com/github/L_Ender/cataclysm/client/tool/ControlledAnimation.java">...</a>
+ * Ripped from L_Ender's codes: <a href="https://github.com/lender544/new1.20.1/blob/master/src/main/java/com/github/L_Ender/cataclysm/client/tool/ControlledAnimation.java">...</a>
  * @author RafaMv
  */
 public class ControlledAnimation {

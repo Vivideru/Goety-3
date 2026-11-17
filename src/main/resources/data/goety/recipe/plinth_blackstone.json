@@ -16,6 +16,7 @@
     { "item": "goety:ectoplasm" }
   ],
   "result": {
-    "id": "goety:plinth_blackstone"
+    "id": "goety:plinth_blackstone",
+    "count": 3
   }
 }

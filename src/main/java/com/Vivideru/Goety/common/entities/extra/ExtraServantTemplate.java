@@ -5,6 +5,7 @@ import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.utils.EntityFinder;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
+import com.Vivideru.Goety.common.entities.util.OwnerCache;
 import com.Vivideru.Goety.mixin.MobTargetAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
@@ -33,10 +35,11 @@ import java.util.UUID;
  * methods every PathfinderMob has may be used here, and every super call reaches that mob. Overrides are public so they
  * never narrow a method the mob made public.
  */
-public abstract class ExtraServantTemplate extends PathfinderMob implements IServant, ExtraServant {
+public abstract class ExtraServantTemplate extends PathfinderMob implements IServant, ExtraServant, OwnableEntity {
     @Nullable
     private UUID ownerId;
     private int ownerClientId = -1;
+    private final OwnerCache ownerCache = new OwnerCache();
     private boolean hostile;
     private boolean natural;
     private boolean hasLifespan;
@@ -251,13 +254,26 @@ public abstract class ExtraServantTemplate extends PathfinderMob implements ISer
             Entity entity = this.ownerClientId < 0 ? null : this.level().getEntity(this.ownerClientId);
             return entity instanceof LivingEntity living && living != this ? living : null;
         }
-        return this.ownerId == null ? null : EntityFinder.getLivingEntityByUuiD(this.level(), this.ownerId);
+        return this.ownerId == null ? null : this.ownerCache.get(this.level(), this.ownerId);
     }
 
     @Override
     @Nullable
     public UUID getOwnerId() {
         return this.ownerId;
+    }
+
+    /** OwnableEntity, as Goety's own servants: what the Esoteric Tesseract and other owner checks look for. */
+    @Override
+    @Nullable
+    public UUID getOwnerUUID() {
+        return this.getOwnerId();
+    }
+
+    @Override
+    @Nullable
+    public LivingEntity getOwner() {
+        return this.getTrueOwner();
     }
 
     @Override

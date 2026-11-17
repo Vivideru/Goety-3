@@ -88,7 +88,9 @@ public class InsectSwarm extends Owned{
                     vec3 = DefaultRandomPos.getPos(this, 10, 7);
                 }
                 if (vec3 != null){
+                    this.navigation.setMaxVisitedNodesMultiplier(0.25F);
                     this.navigation.moveTo(vec3.x, vec3.y, vec3.z, 1.0D);
+                    this.navigation.resetMaxVisitedNodesMultiplier();
                 }
             }
             if (this.level().collidesWithSuffocatingBlock(this, this.getBoundingBox().move(0.0D, -1.0D, 0.0D))) {

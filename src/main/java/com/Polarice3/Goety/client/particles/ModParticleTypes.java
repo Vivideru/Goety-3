@@ -45,6 +45,9 @@ public class ModParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> NECRO_EFFECT = PARTICLE_TYPES.register("necro_effect",
             () -> new SimpleParticleType(false));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ADDITIVE_EFFECT = PARTICLE_TYPES.register("additive_effect",
+            () -> new SimpleParticleType(false));
+
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> NECRO_BOLT = PARTICLE_TYPES.register("necro_bolt",
             () -> new SimpleParticleType(false));
 
@@ -339,6 +342,42 @@ public class ModParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOSSOM_THORN_INDICATOR = PARTICLE_TYPES.register("blossom_thorn_indicator",
             () -> new SimpleParticleType(true));
 
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> MAGIC_RUNES = PARTICLE_TYPES.register("magic_runes",
+            () -> new SimpleParticleType(true));
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<EruptionParticleOption>> ERUPTION = PARTICLE_TYPES.register("eruption",
+            EruptionParticleOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_LEADER = PARTICLE_TYPES.register("soul_leader",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_DUST = PARTICLE_TYPES.register("soul_dust",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_FLASH = PARTICLE_TYPES.register("soul_flash",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_SPARK = PARTICLE_TYPES.register("soul_spark",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_ORBIT = PARTICLE_TYPES.register("soul_orbit",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_BURST = PARTICLE_TYPES.register("soul_burst",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_STREAK = PARTICLE_TYPES.register("soul_streak",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<EruptionParticleOption>> SOUL_LAVA = PARTICLE_TYPES.register("soul_lava",
+            EruptionParticleOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<MCDEffectOption>> SOUL_EMITTER = PARTICLE_TYPES.register("soul_emitter",
+            MCDEffectOption::createType);
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SoulLeaderCCParticleOption>> SOUL_BURST_COLORED = PARTICLE_TYPES.register("soul_burst_colored",
+            SoulLeaderCCParticleOption::createType);
+
     public static final DeferredHolder<ParticleType<?>, ParticleType<SparkleParticleOption>> SPARKLE = PARTICLE_TYPES.register("sparkle",
             () -> particleType(false, SparkleParticleOption.CODEC, SparkleParticleOption.STREAM_CODEC));
 
@@ -416,7 +455,7 @@ public class ModParticleTypes {
             () -> particleType(false, AuraParticleOption.CODEC, AuraParticleOption.STREAM_CODEC));
 
     public static final DeferredHolder<ParticleType<?>, ParticleType<GroundAuraParticleOption>> GROUND_AURA = PARTICLE_TYPES.register("ground_aura",
-            () -> particleType(false, GroundAuraParticleOption.CODEC, GroundAuraParticleOption.STREAM_CODEC));
+            () -> particleType(true, GroundAuraParticleOption.CODEC, GroundAuraParticleOption.STREAM_CODEC));
 
     public static final DeferredHolder<ParticleType<?>, ParticleType<VerticalCircleExplodeParticleOption>> VERTICAL_CIRCLE_EXPLODE = PARTICLE_TYPES.register("vertical_circle_explode",
             () -> particleType(false, VerticalCircleExplodeParticleOption.CODEC, VerticalCircleExplodeParticleOption.STREAM_CODEC));
@@ -447,6 +486,9 @@ public class ModParticleTypes {
 
     public static final DeferredHolder<ParticleType<?>, ParticleType<SphereExplodeParticleOption>> SPHERE_EXPLODE = PARTICLE_TYPES.register("sphere_explode",
             () -> particleType(false, SphereExplodeParticleOption.CODEC, SphereExplodeParticleOption.STREAM_CODEC));
+
+    public static final DeferredHolder<ParticleType<?>, ParticleType<SwirlCloudParticleOption>> SWIRL_CLOUD = PARTICLE_TYPES.register("swirl_cloud",
+            () -> particleType(true, SwirlCloudParticleOption.CODEC, SwirlCloudParticleOption.STREAM_CODEC));
 
     private static <T extends ParticleOptions> ParticleType<T> particleType(boolean overrideLimiter, MapCodec<T> codec, StreamCodec<? super RegistryFriendlyByteBuf, T> streamCodec) {
         return new ParticleType<T>(overrideLimiter) {

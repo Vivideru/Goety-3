@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.effects;
 
+import com.Polarice3.Goety.compat.iron.IronLoaded;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.utils.MobTypeHelper;
 
@@ -50,7 +51,6 @@ public class GoetyBaseEffect extends MobEffect {
         super(p_19451_, p_19452_);
     }
 
-    /** Effects registered without a colour are meant to show no particles; vanilla would otherwise draw them in black. */
     @Override
     public net.minecraft.core.particles.ParticleOptions createParticleOptions(MobEffectInstance instance) {
         if (this.getColor() == 0) {
@@ -248,6 +248,9 @@ public class GoetyBaseEffect extends MobEffect {
             }
         }
         if (this == GoetyEffects.SOUL_BURN.get()){
+            if (livingEntity.fireImmune() || livingEntity.hasEffect(MobEffects.FIRE_RESISTANCE) || IronLoaded.IRON_SPELLBOOKS.hasFirewardRing(livingEntity)) {
+                return false;
+            }
             if (livingEntity.tickCount % 20 == 0) {
                 boolean flag = livingEntity.hurt(ModDamageSource.getDamageSource(world, ModDamageSource.SOUL_BURN), 2.0F);
                 if (livingEntity instanceof Player player && flag) {

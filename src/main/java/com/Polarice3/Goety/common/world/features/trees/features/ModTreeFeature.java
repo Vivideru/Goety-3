@@ -29,7 +29,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 
 /**
- * Adapted from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/world/components/feature/trees/TFTreeFeature.java">...</a>
+ * Stolen from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/world/components/feature/trees/TFTreeFeature.java">...</a>
  */
 public abstract class ModTreeFeature<T extends ModTreeFeatureConfig> extends Feature<T> {
 	public ModTreeFeature(Codec<T> configIn) {

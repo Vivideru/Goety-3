@@ -18,6 +18,7 @@ import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModMobType;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ItemParticleOption;
@@ -631,7 +632,7 @@ public class Wildfire extends Summoned implements IMobTyped {
 
         @Override
         public boolean canUse() {
-            Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof BlazeServant blazeServant && blazeServant.getTrueOwner() instanceof Wildfire;
+            Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof BlazeServant blazeServant && (blazeServant.getTrueOwner() instanceof Wildfire || SummonerTracker.getSummoner(blazeServant) instanceof Wildfire);
             int i = Wildfire.this.level().getEntitiesOfClass(LivingEntity.class, Wildfire.this.getBoundingBox().inflate(32.0D, 16.0D, 32.0D)
                     , predicate).size();
             return i < 4 && Wildfire.this.getSummonCooldown() <= 0 && Wildfire.this.getTarget() != null && Wildfire.this.getTarget().distanceTo(Wildfire.this) > 10.0D;
@@ -645,6 +646,7 @@ public class Wildfire extends Summoned implements IMobTyped {
                     BlazeServant blazeServant = new BlazeServant(ModEntityType.BLAZE_SERVANT.get(), serverLevel);
                     BlockPos blockPos = BlockFinder.SummonFlyingRadius(Wildfire.this.blockPosition(), blazeServant, serverLevel, 3);
                     blazeServant.setTrueOwner(MobUtil.getSummonOwner(Wildfire.this));
+                    SummonerTracker.record(blazeServant, Wildfire.this);
                     blazeServant.moveTo(blockPos, Wildfire.this.getYRot(), Wildfire.this.getXRot());
                     if (MobsConfig.WildfireSummonsLife.get()) {
                         blazeServant.setLimitedLife(MobUtil.getSummonLifespan(serverLevel));

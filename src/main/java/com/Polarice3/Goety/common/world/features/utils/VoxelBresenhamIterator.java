@@ -6,7 +6,7 @@ import net.minecraft.core.Direction;
 import java.util.Iterator;
 
 /**
- * Adapted from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/VoxelBresenhamIterator.java">...</a>
+ * Stolen from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/util/VoxelBresenhamIterator.java">...</a>
  */
 public final class VoxelBresenhamIterator implements Iterator<BlockPos>, Iterable<BlockPos> {
     private final int x_inc, y_inc, z_inc, doubleAbsDx, doubleAbsDy, doubleAbsDz, length;

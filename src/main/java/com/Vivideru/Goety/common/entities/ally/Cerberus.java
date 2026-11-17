@@ -67,6 +67,11 @@ public class Cerberus extends Warg implements IBreathing {
         this.goalSelector.addGoal(2, new CerberusBreathGoal());
     }
 
+    @Override
+    protected float getLeapPower() {
+        return 0.0F;
+    }
+
     public static AttributeSupplier.Builder setCustomAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)

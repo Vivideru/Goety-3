@@ -5,7 +5,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.level.Level;
 
-// Based on Alex's Mobs DirectPathNavigator.
+//Stolen from @alexthe666:https://github.com/AlexModGuy/AlexsMobs/blob/1.20/src/main/java/com/github/alexthe666/alexsmobs/entity/ai/DirectPathNavigator.java
 public class DirectPathNavigation extends GroundPathNavigation {
     private final Mob mob;
     private final float yMobOffset;

@@ -1,6 +1,5 @@
 package com.Vivideru.Goety.common.entities.extra;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +16,6 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.ClassRemapper;
 import org.objectweb.asm.commons.SimpleRemapper;
-import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,7 +34,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * of its super calls change. The class is built the first time the servant is created, once the mob's class is known.
  */
 final class ExtraServantClasses {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final String TEMPLATE = Type.getInternalName(ExtraServantTemplate.class);
     private static final String TEMPLATE_SUPER = Type.getInternalName(PathfinderMob.class);
     private static final Map<String, MethodHandle> CONSTRUCTORS = new ConcurrentHashMap<>();
@@ -45,7 +42,7 @@ final class ExtraServantClasses {
     private ExtraServantClasses() {
     }
 
-    /** A new servant, or null when its class cannot be built (the reason is logged once). */
+    /** A new servant, or null when its class cannot be built (it is tried only once). */
     @Nullable
     static Mob create(EntityType<?> type, Level level, ExtraServantDefinition definition) {
         if (FAILURES.containsKey(definition.id())) {
@@ -61,10 +58,6 @@ final class ExtraServantClasses {
                         CONSTRUCTORS.put(definition.id(), constructor);
                     } catch (Throwable throwable) {
                         FAILURES.put(definition.id(), String.valueOf(throwable.getMessage()));
-                        LOGGER.error("Extra servant goety:{} made from {} is not available: {}", definition.id(), definition.parent(), throwable.getMessage());
-                        if (!(throwable instanceof IllegalStateException)) {
-                            LOGGER.error("Extra servant goety:{} failed with", definition.id(), throwable);
-                        }
                         return null;
                     }
                 }
@@ -73,7 +66,6 @@ final class ExtraServantClasses {
         try {
             return (Mob) constructor.invoke(type, level);
         } catch (Throwable throwable) {
-            LOGGER.error("Extra servant goety:{} could not be created", definition.id(), throwable);
             return null;
         }
     }
@@ -94,11 +86,10 @@ final class ExtraServantClasses {
         String name = Type.getInternalName(ExtraServantClasses.class).replace("ExtraServantClasses", "ExtraServant_" + definition.id());
         byte[] bytes = copyTemplate(name, Type.getInternalName(parent));
         Class<?> generated = MethodHandles.lookup().defineClass(bytes);
-        LOGGER.info("Extra servant goety:{} made from {} ({})", definition.id(), definition.parent(), parent.getName());
         return MethodHandles.lookup().findConstructor(generated, MethodType.methodType(void.class, EntityType.class, Level.class));
     }
 
-    /** Refuses the mobs the template cannot become: the reasons end up in the log for the pack maker. */
+    /** Refuses the mobs the template cannot become. */
     private static void check(ExtraServantDefinition definition, Class<?> parent) {
         if (!PathfinderMob.class.isAssignableFrom(parent)) {
             throw new IllegalStateException(parent.getName() + " is not a PathfinderMob (a mob that walks to its targets)");

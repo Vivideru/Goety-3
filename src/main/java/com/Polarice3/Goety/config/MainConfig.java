@@ -44,6 +44,8 @@ public class MainConfig {
     public static final ModConfigSpec.ConfigValue<Integer> ShriekObeliskCost;
     public static final ModConfigSpec.ConfigValue<Integer> ShriekObeliskIncrease;
     public static final ModConfigSpec.ConfigValue<Integer> AnimatorCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SealerCost;
+    public static final ModConfigSpec.ConfigValue<Integer> SealerIntervalCost;
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolReviveCost;
     public static final ModConfigSpec.ConfigValue<Integer> OminousIdolLimit;
     public static final ModConfigSpec.ConfigValue<Integer> VoidFrameCoolTime;
@@ -234,6 +236,10 @@ public class MainConfig {
                 .define("ShriekObeliskRaid", true);
         AnimatorCost = BUILDER.comment("The amount of Soul Energy used to power the Animator per block distance, Default: 10")
                 .defineInRange("animatorCost", 10, 0, Integer.MAX_VALUE);
+        SealerCost = BUILDER.comment("The amount of Soul Energy used to power the Sealer, Default: 1")
+                .defineInRange("sealerCost", 1, 0, Integer.MAX_VALUE);
+        SealerIntervalCost = BUILDER.comment("How many seconds before Sealer needs to be powered with Soul Energy, Default: 60")
+                .defineInRange("sealerIntervalCost", 60, 0, Integer.MAX_VALUE);
         OminousIdolRevive = BUILDER.comment("Whether Ominous Idols can revive Illager Servants, Default: true")
                 .define("ominousIdolRevive", true);
         OminousIdolReviveCost = BUILDER.comment("The amount of Soul Energy required to revive an Illager Servant, Default: 500")

@@ -24,6 +24,7 @@ import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.BlockFinder;
 import com.Polarice3.Goety.utils.MathHelper;
 import com.Polarice3.Goety.utils.MobUtil;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -587,7 +588,7 @@ public class AbstractBroodMother extends Summoned implements IAutoRideable, Play
 
         if (this.getTarget() != null) {
             Predicate<Entity> predicate = entity -> entity.isAlive()
-                    && ((entity instanceof SpiderServant spiderServant && spiderServant.getTrueOwner() == this) || entity instanceof Spider spider && spider.getTarget() != null && spider.getTarget() == this.getTarget() && this.isHostile());
+                    && ((entity instanceof SpiderServant spiderServant && (spiderServant.getTrueOwner() == this || SummonerTracker.isSummonedBy(spiderServant, this))) || entity instanceof Spider spider && spider.getTarget() != null && spider.getTarget() == this.getTarget() && this.isHostile());
             int i = this.level().getEntitiesOfClass(LivingEntity.class, this.getTarget().getBoundingBox().inflate(8.0D)
                     , predicate).size();
 
@@ -622,6 +623,7 @@ public class AbstractBroodMother extends Summoned implements IAutoRideable, Play
                         SpiderEgg spiderEgg = new SpiderEgg(ModEntityType.SPIDER_EGG.get(), serverLevel);
                         BlockPos blockPos = BlockFinder.SummonRadius(this.blockPosition(), spiderEgg, serverLevel, 1);
                         spiderEgg.setTrueOwner(MobUtil.getSummonOwner(this));
+                        SummonerTracker.record(spiderEgg, this);
                         spiderEgg.moveTo(blockPos, this.getYRot(), this.getXRot());
                         spiderEgg.setPersistenceRequired();
                         spiderEgg.setLimitedLife(MathHelper.secondsToTicks(3 + serverLevel.getRandom().nextInt(3)));
@@ -1017,7 +1019,7 @@ public class AbstractBroodMother extends Summoned implements IAutoRideable, Play
 
         @Override
         public boolean canUse() {
-            Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof SpiderServant spiderServant && spiderServant.getTrueOwner() instanceof AbstractBroodMother;
+            Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof SpiderServant spiderServant && (spiderServant.getTrueOwner() instanceof AbstractBroodMother || SummonerTracker.getSummoner(spiderServant) instanceof AbstractBroodMother);
             int i = AbstractBroodMother.this.level().getEntitiesOfClass(LivingEntity.class, AbstractBroodMother.this.getBoundingBox().inflate(32.0D, 16.0D, 32.0D)
                     , predicate).size();
             return i < 4

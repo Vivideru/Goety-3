@@ -24,6 +24,7 @@ import com.Polarice3.Goety.init.ModMobType;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.*;
 import com.Vivideru.Goety.common.blocks.entities.WolfTotemHooks;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import com.Vivideru.Goety.common.items.VivideruItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -661,6 +662,7 @@ public class BlackBeast extends Summoned implements IMobTyped{
                             Summoned summonedentity = new BlackWolf(ModEntityType.BLACK_WOLF.get(), serverLevel);
                             BlockPos blockPos = BlockFinder.SummonRadius(this.blockPosition(), summonedentity, serverLevel);
                             summonedentity.setTrueOwner(MobUtil.getSummonOwner(this));
+                            SummonerTracker.record(summonedentity, this);
                             summonedentity.moveTo(blockPos, this.getYRot(), this.getXRot());
                             MobUtil.moveDownToGround(summonedentity);
                             summonedentity.setPersistenceRequired();
@@ -974,7 +976,7 @@ public class BlackBeast extends Summoned implements IMobTyped{
         }
 
         public boolean canUse() {
-            List<BlackWolf> list = BlackBeast.this.level().getEntitiesOfClass(BlackWolf.class, BlackBeast.this.getBoundingBox().inflate(32.0D), (blackWolf -> blackWolf.getTrueOwner() == BlackBeast.this));
+            List<BlackWolf> list = BlackBeast.this.level().getEntitiesOfClass(BlackWolf.class, BlackBeast.this.getBoundingBox().inflate(32.0D), (blackWolf -> (blackWolf.getTrueOwner() == BlackBeast.this || SummonerTracker.isSummonedBy(blackWolf, BlackBeast.this))));
             if (BlackBeast.this.getTarget() != null
                     && BlackBeast.this.hasLineOfSight(BlackBeast.this.getTarget())
                     && BlackBeast.this.summonCool <= 0

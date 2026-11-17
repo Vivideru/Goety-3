@@ -21,7 +21,7 @@ import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import java.util.Optional;
 import java.util.function.Function;
 
-// Adapted from @Fuzss' structure code: https://github.com/Fuzss/illagerinvasion/blob/main/1.20.1/Common/src/main/java/fuzs/illagerinvasion/world/level/levelgen/structure/structure/structures/LabyrinthStructure.java
+//Based/Stolen from @Fuzss codes:https://github.com/Fuzss/illagerinvasion/blob/main/1.20.1/Common/src/main/java/fuzs/illagerinvasion/world/level/levelgen/structure/structure/structures/LabyrinthStructure.java
 public class CryptStructure extends BiggerJigsawStructure {
     public static final MapCodec<CryptStructure> CODEC = RecordCodecBuilder.<CryptStructure>mapCodec((p_227640_) -> {
         return p_227640_.group(settingsCodec(p_227640_), StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter((p_227656_) -> {

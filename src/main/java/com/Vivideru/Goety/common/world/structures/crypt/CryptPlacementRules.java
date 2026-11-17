@@ -1,6 +1,5 @@
 package com.Vivideru.Goety.common.world.structures.crypt;
 
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.SectionPos;
@@ -12,7 +11,6 @@ import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +25,6 @@ import java.util.Map;
  * Hooked through the same mixins as the Wind Shrine rules; every method is a no-op without a crypt session on the thread.
  */
 public final class CryptPlacementRules {
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     /** What a structure of the crypt is for; decides which pieces it may hold. */
     public enum Kind { MAIN, STAIRS, BOSS, VAULT, DEEP }
@@ -119,7 +116,6 @@ public final class CryptPlacementRules {
 
     private static final class Session {
         final Kind kind;
-        final String label;
         final BoundingBox reach;
         final List<BoundingBox> foreign = new ArrayList<>();
         @Nullable
@@ -161,13 +157,11 @@ public final class CryptPlacementRules {
         @Nullable
         int[] candidateDoors;
         int placed;
-        final int[] rejected = new int[Reason.values().length];
 
-        Session(Kind kind, String label, ChunkPos startChunk, @Nullable String terminal, int maxDepth, int maxPieces, @Nullable BlockPos towerCenter, int baseLevel, int minBuildY) {
+        Session(Kind kind, ChunkPos startChunk, @Nullable String terminal, int maxDepth, int maxPieces, @Nullable BlockPos towerCenter, int baseLevel, int minBuildY) {
             this.kind = kind;
             this.baseLevel = baseLevel;
             this.minBuildY = minBuildY;
-            this.label = label;
             this.terminal = terminal;
             this.maxDepth = maxDepth;
             this.maxPieces = maxPieces;
@@ -227,13 +221,13 @@ public final class CryptPlacementRules {
     }
 
     public static void beginMain(ChunkPos startChunk, int maxDepth, int minBuildY) {
-        SESSION.set(new Session(Kind.MAIN, "dungeon", startChunk, null, maxDepth, MAX_MAIN_PIECES, null, 0, minBuildY));
+        SESSION.set(new Session(Kind.MAIN, startChunk, null, maxDepth, MAX_MAIN_PIECES, null, 0, minBuildY));
     }
 
     /** A wing keeps clear of everything planned before it; {@code terminal} is the room a boss or vault wing must place exactly once. */
-    public static void beginWing(String label, ChunkPos startChunk, List<BoundingBox> obstacles, Kind kind, @Nullable String terminal, int maxDepth, BlockPos towerCenter, Direction direction,
+    public static void beginWing(ChunkPos startChunk, List<BoundingBox> obstacles, Kind kind, @Nullable String terminal, int maxDepth, BlockPos towerCenter, Direction direction,
                                  int level, int minBuildY) {
-        Session session = new Session(kind, label, startChunk, terminal, maxDepth, MAX_WING_PIECES, towerCenter, level, minBuildY);
+        Session session = new Session(kind, startChunk, terminal, maxDepth, MAX_WING_PIECES, towerCenter, level, minBuildY);
         session.direction = direction;
         session.foreign.addAll(obstacles);
         SESSION.set(session);
@@ -267,15 +261,6 @@ public final class CryptPlacementRules {
         Session session = SESSION.get();
         if (session == null) {
             return Outcome.NONE;
-        }
-        if (LOGGER.isDebugEnabled()) {
-            StringBuilder summary = new StringBuilder();
-            for (Reason reason : Reason.values()) {
-                if (session.rejected[reason.ordinal()] > 0) {
-                    summary.append(' ').append(reason.name().toLowerCase()).append('=').append(session.rejected[reason.ordinal()]);
-                }
-            }
-            LOGGER.debug("Crypt {} assembled: {} pieces, libraries={} terminal={}, rejected:{}", session.label, session.placed, session.libraries, session.terminalPlaced, summary);
         }
         SESSION.remove();
         return new Outcome(session.placed, session.libraries, session.terminalPlaced);
@@ -428,8 +413,7 @@ public final class CryptPlacementRules {
         return first;
     }
 
-    private static boolean reject(Session session, Reason reason) {
-        session.rejected[reason.ordinal()]++;
+    private static boolean reject(Reason reason) {
         return true;
     }
 
@@ -478,17 +462,17 @@ public final class CryptPlacementRules {
         Direction path = session.pathDirection();
         if (session.parentBox != null && session.parentName.contains(LIBRARY) && session.parentDirection.getAxis().isHorizontal()
                 && box.minY() <= session.parentBox.minY() + LEVEL_TOLERANCE && session.parentDirection == path) {
-            return reject(session, Reason.RESERVED);
+            return reject(Reason.RESERVED);
         }
         if (CryptExits.isCapName(name)) {
             return false;
         }
         if (box.minX() < session.reach.minX() || box.maxX() > session.reach.maxX() || box.minZ() < session.reach.minZ() || box.maxZ() > session.reach.maxZ()) {
-            return reject(session, Reason.REACH);
+            return reject(Reason.REACH);
         }
         for (BoundingBox other : session.foreign) {
             if (other.intersects(box)) {
-                return reject(session, Reason.FOREIGN);
+                return reject(Reason.FOREIGN);
             }
         }
         if (name.contains("crypt/entrance")) {
@@ -500,10 +484,10 @@ public final class CryptPlacementRules {
         // its start door. The terminal room of a wing (the Skull Lord chamber, the Vault) is so wide that it is judged by overlaps alone.
         if (session.towerCenter != null && session.parentBox != null && !terminalRoom) {
             if (path.getAxis().isHorizontal() && !inSector(session.towerCenter, box.getCenter(), path)) {
-                return reject(session, Reason.SECTOR);
+                return reject(Reason.SECTOR);
             }
             if (session.direction != null && session.startPlane != Integer.MIN_VALUE && session.depth > 0 && behindStart(box, session.direction, session.startPlane)) {
-                return reject(session, Reason.BACKWARD);
+                return reject(Reason.BACKWARD);
             }
         }
         // A piece takes its parent's level, one more when it hangs from the lower doors of a Library.
@@ -511,24 +495,24 @@ public final class CryptPlacementRules {
         boolean underLibrary = session.parentBox != null && session.parentName.contains(LIBRARY) && box.minY() < (session.parentBox.minY() + session.parentBox.maxY()) / 2;
         session.candidateLevel = parentLevel + (underLibrary ? 1 : 0);
         if (box.minY() < session.minBuildY + FLOOR_MARGIN || !name.contains(LIBRARY) && outOfLevel(session, box)) {
-            return reject(session, Reason.HEIGHT);
+            return reject(Reason.HEIGHT);
         }
         if (isVertical(name) && session.parentBox != null && (session.sinceStairs.getOrDefault(session.parentBox, STAIR_GAP) < STAIR_GAP
                 || session.verticalChildren.getOrDefault(session.parentBox, 0) > 0)) {
-            return reject(session, Reason.STAIRS_CLOSE);
+            return reject(Reason.STAIRS_CLOSE);
         }
         if (name.contains(LIBRARY)) {
             if (!session.descends() || !session.parentOnEntryLevel()) {
-                return reject(session, Reason.LEVEL);
+                return reject(Reason.LEVEL);
             }
             if (session.depth < STAIRS_FROM_DEPTH) {
-                return reject(session, Reason.STAIRS_EARLY);
+                return reject(Reason.STAIRS_EARLY);
             }
             if (session.kind == Kind.STAIRS && session.stairsPlaced) {
-                return reject(session, Reason.STAIRS_TWICE);
+                return reject(Reason.STAIRS_TWICE);
             }
             if (session.kind == Kind.MAIN && session.libraries >= MAIN_LIBRARIES) {
-                return reject(session, Reason.LIMIT);
+                return reject(Reason.LIMIT);
             }
             session.stairsPlaced = true;
             session.libraries++;
@@ -542,20 +526,19 @@ public final class CryptPlacementRules {
                     default -> box.minZ();
                 };
                 session.reserved.add(new Reserved(away, plane, box.minY()));
-                LOGGER.debug("Crypt {}: Library at depth {} box {} keeps its {} door", session.label, session.depth + 1, box, away);
             }
             return false;
         }
         for (Reserved reserved : session.reserved) {
             if (reserved.crossedBy(box)) {
-                return reject(session, Reason.BEYOND);
+                return reject(Reason.BEYOND);
             }
         }
         boolean deadEnd = name.contains(DEAD_END);
         boolean stairsDone = session.kind == Kind.MAIN && session.libraries >= MAIN_LIBRARIES;
         if (session.descends() && session.parentOnEntryLevel() && !(stairsDone && deadEnd)) {
             if (!isPlainCorridor(name) || session.depth >= STAIRS_FORCED_DEPTH) {
-                return reject(session, Reason.ENTRY_PATH);
+                return reject(Reason.ENTRY_PATH);
             }
             session.accept(box, path);
             return false;
@@ -563,30 +546,30 @@ public final class CryptPlacementRules {
         boolean terminal = session.terminal != null && name.contains(session.terminal);
         if (terminal) {
             if (!session.terminalAllowed()) {
-                return reject(session, Reason.TERMINAL);
+                return reject(Reason.TERMINAL);
             }
         } else if (!deadEnd) {
             if (session.depth >= session.maxDepth) {
-                return reject(session, Reason.UNFINISHABLE);
+                return reject(Reason.UNFINISHABLE);
             }
             if (session.placed >= session.maxPieces) {
-                return reject(session, Reason.FULL);
+                return reject(Reason.FULL);
             }
         }
         if (deadEnd && session.depth < DEAD_END_FROM_DEPTH) {
-            return reject(session, Reason.EARLY_DEAD_END);
+            return reject(Reason.EARLY_DEAD_END);
         }
         for (Map.Entry<String, Integer> limit : ROOM_LIMITS.entrySet()) {
             if (name.contains(limit.getKey())) {
                 int count = session.placedRooms.getOrDefault(limit.getKey(), 0);
                 if (count >= limit.getValue()) {
-                    return reject(session, Reason.LIMIT);
+                    return reject(Reason.LIMIT);
                 }
                 session.placedRooms.put(limit.getKey(), count + 1);
             }
         }
         if (name.contains(STRAIGHT) && session.parentName.contains(STRAIGHT)) {
-            return reject(session, Reason.STRAIGHT);
+            return reject(Reason.STRAIGHT);
         }
         if (terminal) {
             session.terminalPlaced = true;

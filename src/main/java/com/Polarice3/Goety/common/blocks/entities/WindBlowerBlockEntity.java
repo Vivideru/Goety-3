@@ -29,6 +29,7 @@ import java.util.List;
  * Fan Mechanic based of @vadis365 code: <a href="https://github.com/vadis365/Mob-Grinding-Utils/blob/MC1.19/MobGrindingUtils/MobGrindingUtils/src/main/java/mob_grinding_utils/tile/TileEntityFan.java">...</a>
  */
 public class WindBlowerBlockEntity extends BlockEntity {
+    private BlockState lastTickState;
 
     public WindBlowerBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(ModBlockEntities.WIND_BLOWER.get(), p_155229_, p_155230_);
@@ -47,7 +48,11 @@ public class WindBlowerBlockEntity extends BlockEntity {
                         }
                     }
                     if (!this.level.isClientSide) {
-                        this.level.sendBlockUpdated(this.getBlockPos(), this.level.getBlockState(this.getBlockPos()), this.level.getBlockState(this.getBlockPos()), 8);
+                        BlockState current = this.level.getBlockState(this.getBlockPos());
+                        if (current != this.lastTickState) {
+                            this.lastTickState = current;
+                            this.level.sendBlockUpdated(this.getBlockPos(), current, current, 8);
+                        }
                     }
                     //Particle codes based of Create mod's Air Flow Particle: https://github.com/Creators-of-Create/Create/blob/mc1.18/dev/src/main/java/com/simibubi/create/content/kinetics/fan/AirFlowParticle.java
                     if (this.level.isClientSide){
@@ -98,12 +103,9 @@ public class WindBlowerBlockEntity extends BlockEntity {
                     this.level.removeBlock(blockPos, false);
                     this.level.levelEvent((Player)null, 1009, blockPos, 0);
                 }
-                // Water and other liquids do not stop the wind: only blocks do.
                 if (state2.isSolid() && state2.isSolidRender(this.level, blockPos)) {
                     break;
                 }
-                // Slabs, stairs and other partial blocks with a full face across the wind's path also stop it,
-                // and their own space is left out so entities standing on them are not pushed.
                 if (!state2.isCollisionShapeFullBlock(this.level, blockPos)
                         && (state2.isFaceSturdy(this.level, blockPos, facing.getOpposite()) || state2.isFaceSturdy(this.level, blockPos, facing))) {
                     partialBlocked = true;

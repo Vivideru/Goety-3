@@ -23,6 +23,7 @@ import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -74,6 +75,7 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
     protected int spellCooldown;
     protected int idleSpellCool;
     public int cantDo;
+    private int summonCapRecheck;
     protected float attackSpeed = 1.0F;
     private NecromancerSpellType activeSpell = NecromancerSpellType.NONE;
     public AnimationState idleAnimationState = new AnimationState();
@@ -499,8 +501,8 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
             double d0 = MathHelper.rgbParticle(this.getNecromancerSpellType().particleSpeed)[0];
             double d1 = MathHelper.rgbParticle(this.getNecromancerSpellType().particleSpeed)[1];
             double d2 = MathHelper.rgbParticle(this.getNecromancerSpellType().particleSpeed)[2];
-            for (int i = 0; i < this.level().random.nextInt(4) + 4; ++i) {
-                this.level().addParticle(ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY(), this.getZ(), d0, d1, d2);
+            for (int i = 0; i < this.level.random.nextInt(4) + 4; ++i) {
+                this.level.addParticle(ModParticleTypes.BIG_CULT_SPELL.get(), this.getX(), this.getY(), this.getZ(), d0, d1, d2);
             }
         }*/
     }
@@ -839,13 +841,25 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
         protected abstract NecromancerSpellType getNecromancerSpellType();
     }
 
+    protected int remainingIdleSummonSlots(int limit) {
+        Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof IOwned owned && owned.getTrueOwner() == this;
+        return Math.max(0, limit - this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(64.0D, 16.0D, 64.0D), predicate).size());
+    }
+
     protected int countOwnedSummons() {
-        Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof IOwned owned && owned.getTrueOwner() == AbstractNecromancer.this;
+        Predicate<Entity> predicate = entity -> entity.isAlive() && entity instanceof IOwned owned && (owned.getTrueOwner() == AbstractNecromancer.this || SummonerTracker.isSummonedBy(entity, AbstractNecromancer.this));
         return AbstractNecromancer.this.level().getEntitiesOfClass(LivingEntity.class, AbstractNecromancer.this.getBoundingBox().inflate(64.0D, 16.0D, 64.0D), predicate).size();
     }
 
     protected int remainingOwnedSummonSlots(int limit) {
-        return Math.max(0, limit - this.countOwnedSummons());
+        if (this.tickCount < this.summonCapRecheck) {
+            return 0;
+        }
+        int slots = Math.max(0, limit - this.countOwnedSummons());
+        if (slots <= 0) {
+            this.summonCapRecheck = this.tickCount + 10;
+        }
+        return slots;
     }
 
     public class SummonZombieSpell extends SummoningSpellGoal {
@@ -862,6 +876,7 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
                         Summoned summonedentity = AbstractNecromancer.this.getSummon();
                         BlockPos blockPos = BlockFinder.SummonRadius(AbstractNecromancer.this.blockPosition(), summonedentity, serverLevel);
                         summonedentity.setTrueOwner(MobUtil.getSummonOwner(AbstractNecromancer.this));
+                        SummonerTracker.record(summonedentity, AbstractNecromancer.this);
                         summonedentity.moveTo(blockPos, AbstractNecromancer.this.getYRot(), AbstractNecromancer.this.getXRot());
                         if (MobsConfig.NecromancerSummonsLife.get()) {
                             summonedentity.setLimitedLife(MobUtil.getSummonLifespan(serverLevel));
@@ -932,7 +947,7 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
             } else if (!AbstractNecromancer.this.spawnUndeadIdle()){
                 return false;
             } else {
-                return AbstractNecromancer.this.getSpellCooldown() <= 0 && AbstractNecromancer.this.idleSpellCool <= 0 && AbstractNecromancer.this.remainingOwnedSummonSlots(7) > 0;
+                return AbstractNecromancer.this.getSpellCooldown() <= 0 && AbstractNecromancer.this.idleSpellCool <= 0 && AbstractNecromancer.this.remainingIdleSummonSlots(7) > 0;
             }
         }
 
@@ -961,7 +976,7 @@ public abstract class AbstractNecromancer extends AbstractSkeletonServant implem
             if (this.spellTime == 0) {
                 this.playLaughSound();
                 AbstractNecromancer.this.setNecromancerSpellType(NecromancerSpellType.NONE);
-                int i = Math.min(AbstractNecromancer.this.remainingOwnedSummonSlots(7), 2 + AbstractNecromancer.this.level().random.nextInt(4));
+                int i = Math.min(AbstractNecromancer.this.remainingIdleSummonSlots(7), 2 + AbstractNecromancer.this.level().random.nextInt(4));
                 for (int i1 = 0; i1 < i; ++i1) {
                     if (AbstractNecromancer.this.level() instanceof ServerLevel serverLevel) {
                         Summoned summonedentity = AbstractNecromancer.this.getSummon();

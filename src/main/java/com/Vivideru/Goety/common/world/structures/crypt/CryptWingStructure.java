@@ -4,7 +4,6 @@ import com.Polarice3.Goety.Goety;
 import com.Vivideru.Goety.common.world.structures.VivideruStructureTypes;
 import com.Vivideru.Goety.common.world.structures.WindShrinePlans;
 import com.mojang.datafixers.util.Either;
-import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -31,7 +30,6 @@ import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,6 @@ import java.util.Optional;
  * are retired and never generate.
  */
 public class CryptWingStructure extends Structure {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final ResourceKey<StructureTemplatePool> CORRIDOR_EXITS = ResourceKey.create(Registries.TEMPLATE_POOL, ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "crypt/corridor_exits"));
 
     public enum Kind implements StringRepresentable {
@@ -138,7 +135,6 @@ public class CryptWingStructure extends Structure {
         }
         BoundingBox startBox = this.startBox(this.startPool.value(), context.structureTemplateManager(), start, rotation);
         if (startBox == null || obstacles.stream().anyMatch(o -> o.intersects(startBox))) {
-            LOGGER.debug("Crypt wing {} (level {}, door {}) skipped: its first corridor does not fit at {} of the crypt in chunk {}", this.kind.getSerializedName(), this.level, this.door, door.target(), plan.chunk());
             return Optional.empty();
         }
         PoolAliasLookup aliases = PoolAliasLookup.EMPTY;
@@ -153,10 +149,6 @@ public class CryptWingStructure extends Structure {
         } finally {
             CryptPlacementRules.clearForcedRotation();
         }
-        if (stub.isEmpty()) {
-            LOGGER.warn("Crypt wing {} (level {}, door {}) could not start at {} (facing {}) of the crypt in chunk {}", this.kind.getSerializedName(), this.level, this.door, door.target(), door.facing(), plan.chunk());
-        }
-        String label = "wing " + this.kind.getSerializedName() + " " + this.level + "/" + this.door;
         Rotation forced = rotation;
         PoolAliasLookup aliasLookup = aliases;
         return stub.map(s -> new GenerationStub(s.position(), Either.left(builder -> {
@@ -164,7 +156,6 @@ public class CryptWingStructure extends Structure {
             // wing must always end in its room, which fits about one time in four, so it gets many more tries.
             List<StructurePiece> best = null;
             CryptPlacementRules.Outcome bestOutcome = CryptPlacementRules.Outcome.NONE;
-            int attempts = 0;
             int maxAttempts = this.terminal.isPresent() ? TERMINAL_ATTEMPTS : CryptStructure.ATTEMPTS;
             for (int attempt = 0; attempt < maxAttempts; attempt++) {
                 Optional<GenerationStub> retry;
@@ -181,9 +172,8 @@ public class CryptWingStructure extends Structure {
                 if (retry.isEmpty()) {
                     continue;
                 }
-                attempts++;
                 StructurePiecesBuilder temp = new StructurePiecesBuilder();
-                CryptPlacementRules.beginWing(label, context.chunkPos(), obstacles, this.kind.rules, this.terminal.orElse(null), this.maxDepth, plan.towerCenter(), door.facing(),
+                CryptPlacementRules.beginWing(context.chunkPos(), obstacles, this.kind.rules, this.terminal.orElse(null), this.maxDepth, plan.towerCenter(), door.facing(),
                         this.level, context.heightAccessor().getMinBuildHeight());
                 CryptPlacementRules.Outcome outcome;
                 try {
@@ -207,7 +197,6 @@ public class CryptWingStructure extends Structure {
             for (StructurePiece piece : best) {
                 builder.addPiece(piece);
             }
-            LOGGER.debug("Crypt {} in chunk {}: {} pieces after {} attempt(s), satisfied={}", label, context.chunkPos(), best.size(), attempts, bestOutcome.satisfies(this.kind.rules));
         })));
     }
 

@@ -9,6 +9,7 @@ import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.utils.EntityFinder;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ModDamageSource;
+import com.Vivideru.Goety.common.entities.util.OwnerCache;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -54,6 +55,7 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
     public int hasSummonCheck;
     public int revivingTime;
     public int pacifyTime;
+    private final OwnerCache ownerCache = new OwnerCache();
 
     protected Owned(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -269,7 +271,7 @@ public class Owned extends PathfinderMob implements IOwned, OwnableEntity, ICust
         }
         if (!this.level().isClientSide){
             UUID uuid = this.getOwnerId();
-            return uuid == null ? null : EntityFinder.getLivingEntityByUuiD(this.level(), uuid);
+            return uuid == null ? null : this.ownerCache.get(this.level(), uuid);
         } else {
             int id = this.getOwnerClientId();
             return id <= -1 ? null : this.level().getEntity(this.getOwnerClientId()) instanceof LivingEntity living && living != this ? living : null;

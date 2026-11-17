@@ -9,12 +9,14 @@ import com.Polarice3.Goety.common.items.magic.CommandFocus;
 import com.Polarice3.Goety.common.items.magic.CommandHorn;
 import com.Polarice3.Goety.common.items.magic.OrderFocus;
 import com.Polarice3.Goety.common.items.magic.TransferScroll;
+import com.Polarice3.Goety.utils.SEHelper;
 import com.Polarice3.Goety.utils.WandUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.phys.BlockHitResult;
@@ -77,6 +79,18 @@ public class MinecraftMixin {
                     if (CommandHorn.getEntities(player.level(), player).contains(livingEntity)) {
                         cir.setReturnValue(true);
                     }
+                }
+                if (player.isHolding(ModItems.GRIMOIRE_OF_GRUDGES.get()) && livingEntity != player
+                        && SEHelper.getCapability(player).grudgeList().contains(livingEntity.getUUID())) {
+                    cir.setReturnValue(!(livingEntity instanceof Player) || player.hasLineOfSight(livingEntity));
+                }
+                if (player.isHolding(ModItems.GRIMOIRE_OF_GOODWILL.get()) && livingEntity != player
+                        && SEHelper.getCapability(player).allyList().contains(livingEntity.getUUID())) {
+                    cir.setReturnValue(!(livingEntity instanceof Player) || player.hasLineOfSight(livingEntity));
+                }
+                if (player.isHolding(ModItems.GRIMOIRE_OF_GROUNDING.get()) && livingEntity != player
+                        && SEHelper.getCapability(player).groundedList().contains(livingEntity.getUUID())) {
+                    cir.setReturnValue(true);
                 }
                 if (pEntity instanceof RaiderServant servant) {
                     if (servant.canLinkToIdol()) {

@@ -22,6 +22,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BiomeTags;
@@ -75,6 +76,7 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
     private float shakeAnimO;
     public boolean isSitting;
     private boolean ritualSummonedByPlayer;
+    private int syncedSitting = -1;
 
     public BlackWolf(EntityType<? extends Owned> type, Level worldIn) {
         super(type, worldIn);
@@ -296,10 +298,16 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
                 }
                 if (this.isStaying()){
                     this.isSitting = true;
-                    this.level().broadcastEntityEvent(this, (byte) 4);
+                    if (this.syncedSitting != 1) {
+                        this.syncedSitting = 1;
+                        this.level().broadcastEntityEvent(this, (byte) 4);
+                    }
                 } else {
                     this.isSitting = false;
-                    this.level().broadcastEntityEvent(this, (byte) 5);
+                    if (this.syncedSitting != 0) {
+                        this.syncedSitting = 0;
+                        this.level().broadcastEntityEvent(this, (byte) 5);
+                    }
                 }
             }
 
@@ -434,6 +442,12 @@ public class BlackWolf extends AnimalSummon implements IMobTyped{
             super.handleEntityEvent(p_30379_);
         }
 
+    }
+
+    @Override
+    public void startSeenByPlayer(ServerPlayer pPlayer) {
+        super.startSeenByPlayer(pPlayer);
+        this.syncedSitting = -1;
     }
 
     public float getTailAngle() {

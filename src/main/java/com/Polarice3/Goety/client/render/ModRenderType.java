@@ -16,6 +16,11 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import org.joml.Matrix4f;
 import org.joml.Matrix4fStack;
 
@@ -196,7 +201,7 @@ public class ModRenderType {
     }
 
     /**
-     * Adapted from @RCXcrafter's Embers Rekindled code: <a href="https://github.com/RCXcrafter/EmbersRekindled/blob/rekindled/src/main/java/com/rekindled/embers/render/EmbersRenderTypes.java#L49">...</a>
+     * Based/Stolen from @RCXcrafter's Embers Rekindled codes: <a href="https://github.com/RCXcrafter/EmbersRekindled/blob/rekindled/src/main/java/com/rekindled/embers/render/EmbersRenderTypes.java#L49">...</a>
      */
     public static ParticleRenderType PARTICLE_ADDITIVE = new ParticleRenderType() {
         public BufferBuilder begin(Tesselator p_107455_, TextureManager p_107456_) {
@@ -230,6 +235,22 @@ public class ModRenderType {
 
         public String toString() {
             return source("god_ray");
+        }
+    };
+
+    public static final ParticleRenderType PARTICLE_TRANSLUCENT = new ParticleRenderType() {
+        @Override
+        public BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.depthMask(false);
+            RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_PARTICLES);
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        @Override
+        public String toString() {
+            return source("translucent_no_depth");
         }
     };
 
@@ -275,6 +296,98 @@ public class ModRenderType {
                         .setCullState(NO_CULL)
                         .setLightmapState(LIGHTMAP)
                         .createCompositeState(false));
+    }
+
+    public static final RenderType RIPPLE_ADDITIVE = RenderType.create(source("ripple_additive"), DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, 8192, false, false,
+            RenderType.CompositeState.builder()
+                    .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+                    .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .createCompositeState(false));
+
+    public static final RenderType RIPPLE_TRANSLUCENT = RenderType.create(source("ripple_translucent"), DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS, 8192, false, false,
+            RenderType.CompositeState.builder()
+                    .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+                    .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .createCompositeState(false));
+
+    public static final ResourceLocation RIPPLE_ELECTRIC_TEXTURE = Goety.location("textures/particle/electric_straight.png");
+
+    public static final RenderType RIPPLE_ELECTRIC = RenderType.create(source("ripple_electric"), DefaultVertexFormat.POSITION_TEX_COLOR, VertexFormat.Mode.QUADS, 8192, false, false,
+            RenderType.CompositeState.builder()
+                    .setShaderState(POSITION_TEX_COLOR_SHADER)
+                    .setTextureState(new RenderStateShard.TextureStateShard(RIPPLE_ELECTRIC_TEXTURE, false, false))
+                    .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .createCompositeState(false));
+
+    public static final ResourceLocation CHARGE_PIXEL_NOISE = Goety.location("textures/particle/pixel_noise_32.png");
+    public static final ResourceLocation CHARGE_CLOUDS = Goety.location("textures/particle/clouds_16.png");
+
+    public static final RenderType CHARGE_AURA = RenderType.create(source("charge_aura"), DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP, VertexFormat.Mode.QUADS, 262144, false, false,
+            RenderType.CompositeState.builder()
+                    .setShaderState(new RenderStateShard.ShaderStateShard(ModShaders::getChargeAuraShader))
+                    .setTextureState(RenderStateShard.MultiTextureStateShard.builder().add(CHARGE_PIXEL_NOISE, false, false).add(CHARGE_CLOUDS, true, false).build())
+                    .setTransparencyState(ADDITIVE_TRANSPARENCY)
+                    .setCullState(NO_CULL)
+                    .setWriteMaskState(COLOR_WRITE)
+                    .createCompositeState(false));
+
+    private static final ResourceLocation SOUL_LEADER_TEXTURE = Goety.location("textures/particle/soul_leader.png");
+    private static final ResourceLocation SOUL_TRAIL_TEXTURE = Goety.location("textures/particle/soul_trail.png");
+    private static final ResourceLocation SOUL_CLOUDS_TEXTURE = Goety.location("textures/particle/clouds_64.png");
+    private static final ResourceLocation SOUL_SKULL_CLOUDS_TEXTURE = Goety.location("textures/particle/clouds_64_skull.png");
+    private static final ResourceLocation DITHER_NOISE_TEXTURE = Goety.location("textures/particle/tiling_noise_high_freq.png");
+
+    public static ParticleRenderType PARTICLE_SOUL = new ParticleRenderType() {
+        public BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.enableDepthTest();
+            RenderSystem.depthMask(false);
+            RenderSystem.disableCull();
+            RenderSystem.enableBlend();
+            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+            RenderSystem.setShader(ModShaders::getSoulParticleShader);
+            RenderSystem.setShaderTexture(0, SOUL_LEADER_TEXTURE);
+            RenderSystem.setShaderTexture(1, SOUL_TRAIL_TEXTURE);
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        public String toString() {
+            return source("soul");
+        }
+    };
+
+    public static ParticleRenderType PARTICLE_DITHER_SMOKE = new ParticleRenderType() {
+        public BufferBuilder begin(Tesselator tesselator, TextureManager textureManager) {
+            RenderSystem.enableDepthTest();
+            RenderSystem.depthMask(true);
+            RenderSystem.disableBlend();
+            RenderSystem.setShader(ModShaders::getDitherSmokeShader);
+            RenderSystem.setShaderTexture(0, SOUL_CLOUDS_TEXTURE);
+            RenderSystem.setShaderTexture(1, SOUL_SKULL_CLOUDS_TEXTURE);
+            RenderSystem.setShaderTexture(3, DITHER_NOISE_TEXTURE);
+            return tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
+        }
+
+        public String toString() {
+            return source("dither_smoke");
+        }
+    };
+
+    @EventBusSubscriber(modid = Goety.MOD_ID, value = Dist.CLIENT)
+    public static class ParticleStateHandler {
+
+        @SubscribeEvent(priority = EventPriority.HIGHEST)
+        public static void afterParticles(RenderLevelStageEvent event) {
+            if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
+                RenderSystem.enableCull();
+                RenderSystem.defaultBlendFunc();
+            }
+        }
     }
 
     private static String source(String name) {

@@ -30,6 +30,8 @@ import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
@@ -43,11 +45,42 @@ public class NecroBrazierBlockEntity extends ModBlockEntity implements Clearable
         public int getMaxStackSize() {
             return 1;
         }
+
+        @Override
+        public boolean canPlaceItem(int slot, ItemStack stack) {
+            return NecroBrazierBlockEntity.this.canAccept(slot, stack);
+        }
+
+        @Override
+        public void setChanged() {
+            super.setChanged();
+            if (NecroBrazierBlockEntity.this.level != null && !NecroBrazierBlockEntity.this.level.isClientSide) {
+                NecroBrazierBlockEntity.this.markUpdated();
+            }
+        }
+    };
+    public final IItemHandler itemHandler = new InvWrapper(this.inventory) {
+        @Override
+        public ItemStack extractItem(int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
     };
     public int currentTime;
 
     public NecroBrazierBlockEntity(BlockPos p_155229_, BlockState p_155230_) {
         super(ModBlockEntities.NECRO_BRAZIER.get(), p_155229_, p_155230_);
+    }
+
+    public boolean canAccept(int slot, ItemStack stack) {
+        if (this.currentTime > 0 || stack.isEmpty() || !this.inventory.getItem(slot).isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < this.inventory.getContainerSize(); i++) {
+            if (ItemStack.isSameItem(this.inventory.getItem(i), stack)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Container getContainer(){
@@ -277,6 +310,9 @@ public class NecroBrazierBlockEntity extends ModBlockEntity implements Clearable
         if (this.level != null) {
             if (!this.level.isClientSide) {
                 BrazierRecipe recipe = this.getRecipe();
+                if (recipe == null && this.currentTime == 0 && this.isEmpty()) {
+                    return;
+                }
                 if (recipe != null) {
                     this.level.playSound(null, this.getBlockPos(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
                     if (finished) {

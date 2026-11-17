@@ -76,6 +76,7 @@ public class Summoned extends Owned implements IServant {
     public String boundDim = Level.OVERWORLD.location().toString();
     public String reviveDim = Level.OVERWORLD.location().toString();
     public List<GlobalPos> patrolList = new ArrayList<>();
+    public boolean playSummonParticles = true;
     public int patrolIndex = 0;
     public int priorityTime;
     public int commandTick;
@@ -247,6 +248,10 @@ public class Summoned extends Owned implements IServant {
         this.overrideSetTarget(target);
     }
 
+    public void setPlaySummonParticles(boolean flag) {
+        this.playSummonParticles = flag;
+    }
+
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData) {
         pSpawnData = super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData);
@@ -261,7 +266,7 @@ public class Summoned extends Owned implements IServant {
     }
 
     public void summonParticles(ServerLevel pLevel, MobSpawnType pReason) {
-        if (pReason == MobSpawnType.MOB_SUMMONED && this.getTrueOwner() != null){
+        if (this.playSummonParticles && pReason == MobSpawnType.MOB_SUMMONED && this.getTrueOwner() != null){
             for (int i = 0; i < pLevel.random.nextInt(10) + 10; ++i) {
                 pLevel.sendParticles(ModParticleTypes.SUMMON.get(), this.getRandomX(1.5D), this.getRandomY(), this.getRandomZ(1.5D), 0, 0.0F, 0.0F, 0.0F, 1.0F);
             }
@@ -365,6 +370,10 @@ public class Summoned extends Owned implements IServant {
         }
 
         return flag;
+    }
+
+    public boolean doHurtTarget(float amount, Entity target){
+        return target.hurt(this.getServantAttack(), amount);
     }
 
     protected void hurtArmor(DamageSource pDamageSource, float pDamage) {
@@ -686,9 +695,12 @@ public class Summoned extends Owned implements IServant {
             if (this.owner != null) {
                 this.summonedEntity.getLookControl().setLookAt(this.owner, 10.0F, (float) this.summonedEntity.getMaxHeadXRot());
                 if (this.summonedEntity.getControlledVehicle() != null){
-                    this.navigation.moveTo(this.owner, this.followSpeed + 0.25D);
-                    if (this.summonedEntity.getControlledVehicle() instanceof Mob mob){
-                        mob.getNavigation().moveTo(this.owner, this.followSpeed + 0.25D);
+                    if (--this.timeToRecalcPath <= 0) {
+                        this.timeToRecalcPath = this.adjustedTickDelay(10);
+                        this.navigation.moveTo(this.owner, this.followSpeed + 0.25D);
+                        if (this.summonedEntity.getControlledVehicle() instanceof Mob mob){
+                            mob.getNavigation().moveTo(this.owner, this.followSpeed + 0.25D);
+                        }
                     }
                 } else if (--this.timeToRecalcPath <= 0) {
                     this.timeToRecalcPath = 10;

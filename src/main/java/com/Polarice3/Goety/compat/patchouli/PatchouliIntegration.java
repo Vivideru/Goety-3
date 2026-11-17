@@ -33,6 +33,8 @@ public class PatchouliIntegration implements ICompatable {
         registerMultiblock(Goety.location("grave_golem_revive"), GRAVE_GOLEM_REVIVE);
         registerMultiblock(Goety.location("redstone_monstrosity"), REDSTONE_MONSTROSITY);
         registerMultiblock(Goety.location("redstone_monstrosity_revive"), REDSTONE_MONSTROSITY_REVIVE);
+        registerMultiblock(Goety.location("grave_monstrosity"), GRAVE_MONSTROSITY);
+        registerMultiblock(Goety.location("grave_monstrosity_revive"), GRAVE_MONSTROSITY_REVIVE);
         registerMultiblock(Goety.location("so_example"), SO_EXAMPLE);
     }
 
@@ -263,11 +265,11 @@ public class PatchouliIntegration implements ICompatable {
     });
 
     public static final Supplier<IMultiblock> GRAVE_GOLEM = Suppliers.memoize(() -> {
-        IStateMatcher stoneMold = PatchouliAPI.get().predicateMatcher(Blocks.STONE_BRICKS,
-                state -> state.getBlock().getDescriptionId().contains("bricks") && !(state.getBlock() instanceof SlabBlock) && !(state.getBlock() instanceof StairBlock) && !(state.getBlock() instanceof WallBlock));
-        IStateMatcher darkMetalMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DARK_ALLOY_BLOCK.get(),
-                state -> state.is(ModBlocks.DARK_ALLOY_BLOCK.get()));
-        IStateMatcher coarseDirt = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
+        IStateMatcher cryptMold = PatchouliAPI.get().predicateMatcher(ModBlocks.CRYPT_STONE_BLOCK.get(),
+                state -> state.is(ModTags.Blocks.CRYPT_STONE));
+        IStateMatcher darkMetalMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DARK_MOLD_BLOCK.get(),
+                state -> state.is(ModBlocks.DARK_MOLD_BLOCK.get()));
+        IStateMatcher graveSoil = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
                 state -> state.is(ModBlocks.GRAVE_SOIL.get()));
         IStateMatcher skullPiles = PatchouliAPI.get().predicateMatcher(ModBlocks.SKULL_PILE.get(),
                 state -> state.is(ModBlocks.SKULL_PILE.get()));
@@ -280,36 +282,36 @@ public class PatchouliIntegration implements ICompatable {
         return PatchouliAPI.get().makeMultiblock(
                 new String[][] {
                         {
-                                "_________",
-                                "_DBBBBBD_",
-                                "_BLLLLLB_",
-                                "_BLOPOLB_",
-                                "_BLPPPLB_",
-                                "_BLOPOLB_",
-                                "_BLLLLLB_",
-                                "_DBBBBBD_",
-                                "_________",
+                                "___BDB___",
+                                "_DBLLLBD_",
+                                "_BLCSCLB_",
+                                "BLCOPOCLB",
+                                "DLSPPPSLD",
+                                "BLCOPOCLB",
+                                "_BLCSCLB_",
+                                "_DBLLLBD_",
+                                "___BDB___",
                         },
                         {
                                 "_________",
-                                "_________",
-                                "__CCCCC__",
-                                "__CSLSC__",
-                                "__CL0LC__",
-                                "__CSLSC__",
-                                "__CCCCC__",
-                                "_________",
+                                "___BDB___",
+                                "__DBBBD__",
+                                "_BBBBBBB_",
+                                "_DBB0BBD_",
+                                "_BBBBBBB_",
+                                "__DBBBD__",
+                                "___BDB___",
                                 "_________",
                         }
                 },
                 'L', shadeBody,
-                'B', stoneMold,
+                'B', cryptMold,
                 'D', darkMetalMold,
                 'P', skullPiles,
                 'O', boneMold,
-                'C', coarseDirt,
+                'C', graveSoil,
                 'S', soulSand,
-                '0', shadeBody
+                '0', cryptMold
         );
     });
 
@@ -351,8 +353,8 @@ public class PatchouliIntegration implements ICompatable {
                 state -> state.is(ModBlocks.DIAMOND_MOLD_BLOCK.get()));
         IStateMatcher redstone = PatchouliAPI.get().predicateMatcher(Blocks.REDSTONE_BLOCK,
                 state -> state.is(Tags.Blocks.STORAGE_BLOCKS_REDSTONE));
-        IStateMatcher redstoneCore = PatchouliAPI.get().predicateMatcher(ModBlocks.REINFORCED_REDSTONE_BLOCK.get(),
-                state -> state.is(ModBlocks.REINFORCED_REDSTONE_BLOCK.get()));
+        IStateMatcher redstoneCore = PatchouliAPI.get().predicateMatcher(ModBlocks.MONSTROUS_CORE.get(),
+                state -> state.is(ModBlocks.MONSTROUS_CORE.get()));
         IStateMatcher stoneMold = PatchouliAPI.get().predicateMatcher(Blocks.STONE_BRICKS,
                 state -> state.getBlock().getDescriptionId().contains("bricks") && !(state.getBlock() instanceof SlabBlock) && !(state.getBlock() instanceof StairBlock) && !(state.getBlock() instanceof WallBlock));
         return PatchouliAPI.get().makeMultiblock(
@@ -406,8 +408,8 @@ public class PatchouliIntegration implements ICompatable {
                 state -> state.is(Tags.Blocks.STORAGE_BLOCKS_REDSTONE));
         IStateMatcher diamondMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DIAMOND_MOLD_BLOCK.get(),
                 state -> state.is(ModBlocks.DIAMOND_MOLD_BLOCK.get()));
-        IStateMatcher reinforced = PatchouliAPI.get().predicateMatcher(ModBlocks.REINFORCED_REDSTONE_BLOCK.get(),
-                state -> state.is(ModBlocks.REINFORCED_REDSTONE_BLOCK.get()));
+        IStateMatcher core = PatchouliAPI.get().predicateMatcher(ModBlocks.MONSTROUS_CORE.get(),
+                state -> state.is(ModBlocks.MONSTROUS_CORE.get()));
         return PatchouliAPI.get().makeMultiblock(
                 new String[][] {
                         {
@@ -428,9 +430,119 @@ public class PatchouliIntegration implements ICompatable {
                 },
                 'H', ModBlocks.REDSTONE_MONSTROSITY_HEAD_BLOCK.get(),
                 '#', redstoneBlocks,
-                'R', reinforced,
+                'R', core,
                 'D', diamondMold,
                 '0', diamondMold
+        );
+    });
+
+    public static final Supplier<IMultiblock> GRAVE_MONSTROSITY = Suppliers.memoize(() -> {
+        IStateMatcher darkMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DARK_MOLD_BLOCK.get(),
+                state -> state.is(ModBlocks.DARK_MOLD_BLOCK.get()));
+        IStateMatcher skullPile = PatchouliAPI.get().predicateMatcher(ModBlocks.SKULL_PILE.get(),
+                state -> state.is(ModBlocks.SKULL_PILE.get()));
+        IStateMatcher core = PatchouliAPI.get().predicateMatcher(ModBlocks.MONSTROUS_CORE.get(),
+                state -> state.is(ModBlocks.MONSTROUS_CORE.get()));
+        IStateMatcher soulSand = PatchouliAPI.get().predicateMatcher(Blocks.SOUL_SAND,
+                state -> state.is(BlockTags.SOUL_FIRE_BASE_BLOCKS));
+        IStateMatcher boneBlocks = PatchouliAPI.get().predicateMatcher(Blocks.BONE_BLOCK,
+                state -> state.is(Blocks.BONE_BLOCK));
+        IStateMatcher graveSoil = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
+                state -> state.is(ModBlocks.GRAVE_SOIL.get()));
+        IStateMatcher shadeStone = PatchouliAPI.get().predicateMatcher(ModBlocks.SHADE_STONE_BLOCK.get(),
+                state -> state.is(ModTags.Blocks.SHADE_STONE));
+        IStateMatcher cryptMold = PatchouliAPI.get().predicateMatcher(ModBlocks.CRYPT_STONE_BLOCK.get(),
+                state -> state.is(ModTags.Blocks.CRYPT_STONE));
+        return PatchouliAPI.get().makeMultiblock(
+                new String[][] {
+                        {
+                                "_______________",
+                                "_____GSGSG_____",
+                                "____SLLLLLS____",
+                                "___GLLIIILLG___",
+                                "__SLLIIBIILLS__",
+                                "_GLLIIBNBIILLG_",
+                                "_SLIIBRRRBIILS_",
+                                "_GLIBNRCRNBILG_",
+                                "_SLIIBRRRBIILS_",
+                                "_GLLIIBNBIILLG_",
+                                "__SLLIIBIILLS__",
+                                "___GLLIIILLG___",
+                                "____SLLLLLS____",
+                                "_____GSGSG_____",
+                                "_______________"
+                        },
+                        {
+                                "_______________",
+                                "_______________",
+                                "_____GSGSG_____",
+                                "____SSGSGSS____",
+                                "___SSSSSSSSS___",
+                                "__GSSSSSSSSSG__",
+                                "__SGSSSGSSSGS__",
+                                "__GSSSG0GSSSG__",
+                                "__SGSSSGSSSGS__",
+                                "__GSSSSSSSSSG__",
+                                "___SSSSSSSSS___",
+                                "____SSGSGSS____",
+                                "_____GSGSG_____",
+                                "_______________",
+                                "_______________"
+                        }
+                },
+                'L', shadeStone,
+                'N', boneBlocks,
+                'B', soulSand,
+                'I', graveSoil,
+                'G', darkMold,
+                'R', skullPile,
+                'C', core,
+                'S', cryptMold,
+                '0', cryptMold
+        );
+    });
+
+    public static final Supplier<IMultiblock> GRAVE_MONSTROSITY_REVIVE = Suppliers.memoize(() -> {
+        IStateMatcher darkMold = PatchouliAPI.get().predicateMatcher(ModBlocks.DARK_MOLD_BLOCK.get(),
+                state -> state.is(ModBlocks.DARK_MOLD_BLOCK.get()));
+        IStateMatcher skullPile = PatchouliAPI.get().predicateMatcher(ModBlocks.SKULL_PILE.get(),
+                state -> state.is(ModBlocks.SKULL_PILE.get()));
+        IStateMatcher core = PatchouliAPI.get().predicateMatcher(ModBlocks.MONSTROUS_CORE.get(),
+                state -> state.is(ModBlocks.MONSTROUS_CORE.get()));
+        IStateMatcher soulSand = PatchouliAPI.get().predicateMatcher(Blocks.SOUL_SAND,
+                state -> state.is(BlockTags.SOUL_FIRE_BASE_BLOCKS));
+        IStateMatcher boneBlocks = PatchouliAPI.get().predicateMatcher(Blocks.BONE_BLOCK,
+                state -> state.is(Blocks.BONE_BLOCK));
+        IStateMatcher graveSoil = PatchouliAPI.get().predicateMatcher(ModBlocks.GRAVE_SOIL.get(),
+                state -> state.is(ModBlocks.GRAVE_SOIL.get()));
+        IStateMatcher shadeStone = PatchouliAPI.get().predicateMatcher(ModBlocks.SHADE_STONE_BLOCK.get(),
+                state -> state.is(ModTags.Blocks.SHADE_STONE));
+        return PatchouliAPI.get().makeMultiblock(
+                new String[][] {
+                        {
+                            "___H___"
+                        },
+                        {
+                            "SGG#GGS"
+                        },
+                        {
+                            "NB#R#BN"
+                        },
+                        {
+                            "_SB#BS_"
+                        },
+                        {
+                            "_SS0SS_"
+                        }
+                },
+                'H', ModBlocks.GRAVE_MONSTROSITY_HEAD_BLOCK.get(),
+                '#', skullPile,
+                'R', core,
+                'G', graveSoil,
+                'B', soulSand,
+                'S', shadeStone,
+                'N', boneBlocks,
+                '0', darkMold
         );
     });
 

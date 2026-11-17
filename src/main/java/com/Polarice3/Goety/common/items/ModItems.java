@@ -405,7 +405,7 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> LIGHTNING_FOCUS = ITEMS.register("lightning_focus", () -> new MagicFocus(new LightningSpell()));
     public static final DeferredHolder<Item, Item> THUNDERSTORM_FOCUS = ITEMS.register("thunderstorm_focus", () -> new MagicFocus(new ThunderstormSpell()));
 
-    //Abyss
+    ///Abyss
     public static final DeferredHolder<Item, Item> WATER_JET_FOCUS = ITEMS.register("water_jet_focus", () -> new MagicFocus(new WaterJetSpell()));
     public static final DeferredHolder<Item, Item> BOUNCY_BUBBLE_FOCUS = ITEMS.register("bouncy_bubble_focus", () -> new MagicFocus(new BouncyBubbleSpell()));
     public static final DeferredHolder<Item, Item> STEAMING_FOCUS = ITEMS.register("steaming_focus", () -> new MagicFocus(new SteamSpell()));
@@ -493,7 +493,7 @@ public class ModItems {
     public static final DeferredHolder<Item, Item> RAMPAGING_AXE = ITEMS.register("rampaging_axe", RampagingAxeItem::new);
     public static final DeferredHolder<Item, Item> GRAVEROBBER_SHOVEL = ITEMS.register("graverobber_shovel", GraverobberShovelItem::new);
     public static final DeferredHolder<Item, Item> HUNTERS_BOW = ITEMS.register("hunters_bow", HuntersBowItem::new);
-//    public static final DeferredHolder<Item, Item> REVOLVER_CROSSBOW = ITEMS.register("revolver_crossbow", RevolverCrossbowItem::new);
+//    public static final RegistryObject<Item> REVOLVER_CROSSBOW = ITEMS.register("revolver_crossbow", RevolverCrossbowItem::new);
     public static final DeferredHolder<Item, Item> IRON_ICE_AXE = ITEMS.register("iron_ice_axe", () -> new IceAxeItem(Tiers.IRON));
     public static final DeferredHolder<Item, Item> REINFORCED_ICE_AXE = ITEMS.register("reinforced_ice_axe", () -> new IceAxeItem(Tiers.IRON, new Item.Properties(), 600));
     public static final DeferredHolder<Item, Item> DIAMOND_ICE_AXE = ITEMS.register("diamond_ice_axe", () -> new IceAxeItem(Tiers.DIAMOND));

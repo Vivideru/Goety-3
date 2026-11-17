@@ -1,5 +1,6 @@
 package com.Polarice3.Goety.common.blocks;
 
+import com.Polarice3.Goety.api.items.INamelessDyeable;
 import com.Polarice3.Goety.client.particles.ModParticleTypes;
 import com.Polarice3.Goety.common.blocks.entities.HauntedMirrorBlockEntity;
 import com.Polarice3.Goety.common.network.ModNetwork;
@@ -107,14 +108,29 @@ public class HauntedMirrorBlock extends BaseEntityBlock implements SimpleWaterlo
 
     @Override
     protected ItemInteractionResult useItemOn(ItemStack itemStack, BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (LichdomHelper.isLich(pPlayer)) {
-            if (itemStack.getItem() instanceof DyeItem dyeItem) {
-                LichdomHelper.setLichModeColor(pPlayer, dyeItem.getDyeColor().getTextColor());
+        if (pHand == InteractionHand.MAIN_HAND) {
+            ItemStack offHand = pPlayer.getOffhandItem();
+            INamelessDyeable dyeable = offHand.getItem() instanceof INamelessDyeable namelessDyeable && namelessDyeable.canDye() ? namelessDyeable : null;
+            if (itemStack.getItem() instanceof DyeItem dyeItem && (dyeable != null || LichdomHelper.isLich(pPlayer))) {
+                if (dyeable != null) {
+                    dyeable.setColor(offHand, dyeItem.getDyeColor().getTextColor());
+                } else {
+                    LichdomHelper.setLichModeColor(pPlayer, dyeItem.getDyeColor().getTextColor());
+                }
                 pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CAST_SPELL.get(), pPlayer.getSoundSource(), 1.0F, 0.5F);
                 return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
-            } else if (itemStack.is(Items.WATER_BUCKET) && LichdomHelper.lichModeColor(pPlayer) > -1) {
-                LichdomHelper.setLichModeColor(pPlayer, -1);
+            } else if (itemStack.is(Items.WATER_BUCKET) && (dyeable != null && dyeable.hasCustomColor(offHand) || dyeable == null && LichdomHelper.isLich(pPlayer) && LichdomHelper.lichModeColor(pPlayer) > -1)) {
+                if (dyeable != null) {
+                    dyeable.clearColor(offHand);
+                } else {
+                    LichdomHelper.setLichModeColor(pPlayer, -1);
+                }
                 pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.BUCKET_EMPTY, pPlayer.getSoundSource(), 1.0F, 1.0F);
+                pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CAST_SPELL.get(), pPlayer.getSoundSource(), 1.0F, 0.5F);
+                return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
+            } else if (itemStack.is(Items.BONE) && LichdomHelper.isLich(pPlayer)) {
+                LichdomHelper.setLegs(pPlayer, !LichdomHelper.hasLegs(pPlayer));
+                pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), SoundEvents.SKELETON_AMBIENT, pPlayer.getSoundSource(), 1.0F, 1.0F);
                 pLevel.playSound(pPlayer, pPos.getX(), pPos.getY(), pPos.getZ(), ModSounds.CAST_SPELL.get(), pPlayer.getSoundSource(), 1.0F, 0.5F);
                 return ItemInteractionResult.sidedSuccess(pLevel.isClientSide);
             }

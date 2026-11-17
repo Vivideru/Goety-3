@@ -8,12 +8,9 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.EnumSet;
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 
 /** Walks a golem or Haunted Armor back to its Plinth once it has had no target for a while, then turns it into a statue. */
 public class PlinthReturnGoal extends Goal {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private final Mob mob;
     private int idleTicks;
     private int repathTicks;
@@ -25,7 +22,7 @@ public class PlinthReturnGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        if (this.mob.getTarget() != null || PlinthHooks.isResting(this.mob)) {
+        if (this.mob.getTarget() != null || PlinthHooks.isResting(this.mob) || PlinthHooks.stopResting(this.mob) || PlinthHooks.recentlyWoke(this.mob)) {
             this.idleTicks = 0;
             return false;
         }
@@ -38,14 +35,13 @@ public class PlinthReturnGoal extends Goal {
 
     @Override
     public boolean canContinueToUse() {
-        return this.mob.getTarget() == null && !PlinthHooks.isResting(this.mob) && this.plinth() != null;
+        return this.mob.getTarget() == null && !PlinthHooks.isResting(this.mob) && !PlinthHooks.stopResting(this.mob) && !PlinthHooks.recentlyWoke(this.mob) && this.plinth() != null;
     }
 
     @Override
     public void start() {
         this.repathTicks = 0;
         this.moveToPlinth();
-        LOGGER.debug("Plinth: {} heads for its Plinth at {} (path found: {})", this.mob.getName().getString(), PlinthHooks.getPlinth(this.mob), this.mob.getNavigation().getPath() != null);
     }
 
     @Override

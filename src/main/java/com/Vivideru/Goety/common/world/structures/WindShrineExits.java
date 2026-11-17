@@ -13,11 +13,8 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 
 public final class WindShrineExits {
-    private static final Logger LOGGER = LogUtils.getLogger();
     public static final int COUNT = 8;
     private static final String CAP = "connector_end";
     private static final List<String> DOOR_NAMES = List.of("goety:wind_shrine/entrance", "goety:wind_shrine/connector", "goety:wind_shrine/connector_ground");
@@ -96,37 +93,7 @@ public final class WindShrineExits {
                 best[sector] = chosen;
             }
         }
-        if (LOGGER.isDebugEnabled()) {
-            List<Candidate> all = candidates(pieces, templates, seed);
-            StringBuilder report = new StringBuilder();
-            for (int sector = 0; sector < COUNT; sector++) {
-                report.append(' ').append((char) ('a' + sector)).append('=').append(best[sector] == null ? "none" : best[sector].door().target().toShortString() + '>' + best[sector].door().facing());
-            }
-            int blockedShown = 0;
-            StringBuilder blocked = new StringBuilder();
-            for (Candidate candidate : all) {
-                double dx = candidate.door().jigsaw().getX() - center.getX();
-                double dz = candidate.door().jigsaw().getZ() - center.getZ();
-                Direction facing = candidate.door().facing();
-                if (dx * facing.getStepX() + dz * facing.getStepZ() > 0.0D && !landingFree(pieces, candidate) && blockedShown++ < 12) {
-                    blocked.append("\n    ").append(candidate.door().target().toShortString()).append('>').append(facing).append(" blocked by ").append(blockerOf(pieces, candidate));
-                }
-            }
-            LOGGER.debug("Wind Shrine exits: {} candidates, {} outward with a free landing; doors:{}{}", all.size(), outward.size(), report, blocked);
-        }
         return best;
-    }
-
-    private static String blockerOf(List<StructurePiece> pieces, Candidate candidate) {
-        BoundingBox zone = landingZone(candidate.door());
-        for (StructurePiece piece : pieces) {
-            BoundingBox box = piece.getBoundingBox();
-            if (!isCap(piece) && !(box.getXSpan() <= 3 && box.getZSpan() <= 3) && box.intersects(zone)) {
-                String name = piece instanceof PoolElementStructurePiece pool ? pool.getElement().toString().replace("Single[Left[goety:wind_shrine/", "").replace("]]", "") : piece.getClass().getSimpleName();
-                return name + " " + box + " (zone " + zone + ")";
-            }
-        }
-        return "?";
     }
 
     private static BoundingBox landingZone(WindShrinePlans.Door door) {

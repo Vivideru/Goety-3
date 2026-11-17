@@ -6,6 +6,7 @@ import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.blocks.IEnchanteableBlock;
 import com.Polarice3.Goety.api.entities.IChunkLoader;
 import com.Polarice3.Goety.api.entities.ICustomAttributes;
+import com.Polarice3.Goety.api.entities.IEnchanter;
 import com.Polarice3.Goety.api.entities.IHiding;
 import com.Polarice3.Goety.api.entities.IOwned;
 import com.Polarice3.Goety.api.entities.ally.IServant;
@@ -33,6 +34,7 @@ import com.Polarice3.Goety.common.entities.ally.illager.raider.Prisoner;
 import com.Polarice3.Goety.common.entities.ally.illager.raider.RaiderServant;
 import com.Polarice3.Goety.common.entities.ally.illager.raider.Ravaged;
 import com.Polarice3.Goety.common.entities.ally.undead.GraveGolem;
+import com.Polarice3.Goety.common.entities.ally.undead.GraveMonstrosity;
 import com.Polarice3.Goety.common.entities.boss.Apostle;
 import com.Polarice3.Goety.common.entities.boss.Vizier;
 import com.Polarice3.Goety.common.entities.deco.HauntedArmorStand;
@@ -199,6 +201,8 @@ public class ModEvents {
         lichdom.setLichdom(capability2.getLichdom());
 
         lichdom.setLichMode(capability2.isLichMode());
+
+        lichdom.setLegs(capability2.hasLegs());
 
         lichdom.setNightVision(capability2.nightVision());
 
@@ -564,6 +568,23 @@ public class ModEvents {
                                     if (advancementProgress1.isDone() && advancementProgress2.isDone()){
                                         for(String s : advancementProgress3.getRemainingCriteria()) {
                                             serverPlayer.getAdvancements().award(advancement3, s);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        AdvancementHolder readTerminusHaunt = serverPlayer.getServer().getAdvancements().get(Goety.location("goety/read_terminus_and_haunting_scroll"));
+                        if (readTerminusHaunt != null) {
+                            AdvancementProgress readTerminusHauntProgress = serverPlayer.getAdvancements().getOrStartProgress(readTerminusHaunt);
+                            if (!readTerminusHauntProgress.isDone()){
+                                AdvancementHolder readTerminus = serverPlayer.getServer().getAdvancements().get(Goety.location("goety/read_terminus_scroll"));
+                                AdvancementHolder readHaunt = serverPlayer.getServer().getAdvancements().get(Goety.location("goety/read_haunting_scroll"));
+                                if (readTerminus != null && readHaunt != null) {
+                                    AdvancementProgress readTerminusProgress = serverPlayer.getAdvancements().getOrStartProgress(readTerminus);
+                                    AdvancementProgress readHauntProgress = serverPlayer.getAdvancements().getOrStartProgress(readHaunt);
+                                    if (readTerminusProgress.isDone() && readHauntProgress.isDone()){
+                                        for(String s : readTerminusHauntProgress.getRemainingCriteria()) {
+                                            serverPlayer.getAdvancements().award(readTerminusHaunt, s);
                                         }
                                     }
                                 }
@@ -971,7 +992,6 @@ public class ModEvents {
         }
         if (misc.shieldCool() > 0){
             misc.decreaseShieldCool();
-            dirty = true;
         }
         if (misc.getShakeTime() > 0) {
             misc.setShakeTime(misc.getShakeTime() - 1);
@@ -979,7 +999,6 @@ public class ModEvents {
         }
         if (misc.getSunscreen() > 0) {
             misc.setSunscreen(misc.getSunscreen() - 1);
-            dirty = true;
         }
         if (misc.getEnchanterTime() > 0) {
             misc.setEnchanterTime(misc.getEnchanterTime() - 1);
@@ -1035,6 +1054,18 @@ public class ModEvents {
                         event.setNewAboutToBeSetTarget(null);
                     } else {
                         event.setCanceled(true);
+                    }
+                }
+                if (attacker.level() instanceof ServerLevel serverLevel) {
+                    if (target instanceof IEnchanter enchanter) {
+                        if (!enchanter.getEnchantList().isEmpty()) {
+                            for (UUID uuid : enchanter.getEnchantList()) {
+                                Entity enchanted = serverLevel.getEntity(uuid);
+                                if (enchanted != attacker && enchanted instanceof Mob mob && !MobUtil.areAllies(mob, attacker)) {
+                                    mob.setTarget(attacker);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1243,6 +1274,11 @@ public class ModEvents {
                     event.setNewDamage(damageAmount * 0.5F);
                 }
             }
+            if (ModDamageSource.soulAttacks(event.getSource())){
+                if (target instanceof Warden){
+                    event.setNewDamage(damageAmount * 0.8F);
+                }
+            }
             float totalReduce = 0;
             for (EquipmentSlot equipmentSlot : EquipmentSlot.values()){
                 if (equipmentSlot.isArmor()){
@@ -1262,8 +1298,8 @@ public class ModEvents {
                 event.setNewDamage(damageAmount);
             }
             /*if (event.getSource().getEntity() instanceof Player attacker) {
-                if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SOUL_EATER, attacker) > 0) {
-                    int level = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SOUL_EATER, attacker);
+                if (EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SOUL_EATER.get(), attacker) > 0) {
+                    int level = EnchantmentHelper.getEnchantmentLevel(ModEnchantments.SOUL_EATER.get(), attacker);
                     int percent = ((level - 1) * 5) + 15;
                     float rawPercent = (float) SEHelper.getSoulAmountInt(attacker) / MainConfig.MaxArcaSouls.get();
                     float totalPercent = rawPercent * percent;
@@ -1444,7 +1480,13 @@ public class ModEvents {
                 if (!living.level().isClientSide) {
                     if (player instanceof ServerPlayer serverPlayer) {
                         for (LivingEntity livingEntity : serverPlayer.level().getEntitiesOfClass(LivingEntity.class, serverPlayer.getBoundingBox().inflate(64.0D))) {
-                            if (livingEntity instanceof GraveGolem graveGolem) {
+                            if (livingEntity instanceof GraveMonstrosity graveMonstrosity) {
+                                if (graveMonstrosity.getTrueOwner() == serverPlayer) {
+                                    graveMonstrosity.addDrops(event.getDrops());
+                                    event.getDrops().clear();
+                                    break;
+                                }
+                            } else if (livingEntity instanceof GraveGolem graveGolem) {
                                 if (graveGolem.getTrueOwner() == serverPlayer) {
                                     graveGolem.addDrops(event.getDrops());
                                     event.getDrops().clear();

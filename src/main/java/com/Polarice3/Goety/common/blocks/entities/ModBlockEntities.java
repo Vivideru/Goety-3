@@ -197,6 +197,8 @@ public class ModBlockEntities {
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RedstoneMonstrosityHeadBlockEntity>> REDSTONE_MONSTROSITY_HEAD = BLOCK_ENTITY.register("redstone_monstrosity_head",
             () -> BlockEntityType.Builder.of(RedstoneMonstrosityHeadBlockEntity::new, ModBlocks.REDSTONE_MONSTROSITY_HEAD_BLOCK.get(), ModBlocks.WALL_REDSTONE_MONSTROSITY_HEAD_BLOCK.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GraveMonstrosityHeadBlockEntity>> GRAVE_MONSTROSITY_HEAD = BLOCK_ENTITY.register("grave_monstrosity_head",
+            () -> BlockEntityType.Builder.of(GraveMonstrosityHeadBlockEntity::new, ModBlocks.GRAVE_MONSTROSITY_HEAD_BLOCK.get(), ModBlocks.WALL_GRAVE_MONSTROSITY_HEAD_BLOCK.get()).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ModChestBlockEntity>> MOD_CHEST = BLOCK_ENTITY.register("chest",
             () -> {

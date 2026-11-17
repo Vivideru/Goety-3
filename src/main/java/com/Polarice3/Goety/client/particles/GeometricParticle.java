@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Function;
 
 /**
- * Adapted from @cerbon's Cerbon API code:<a href="https://github.com/CERBON-MODS/CERBONs-API/blob/master/Common/src/main/java/com/cerbon/cerbons_api/api/general/particle/SimpleParticle.java">...</a>
+ * Stolen from @cerbon's Cerbon API codes:<a href="https://github.com/CERBON-MODS/CERBONs-API/blob/master/Common/src/main/java/com/cerbon/cerbons_api/api/general/particle/SimpleParticle.java">...</a>
  */
 public class GeometricParticle extends TextureSheetParticle {
     private final ParticleContext particleContext;

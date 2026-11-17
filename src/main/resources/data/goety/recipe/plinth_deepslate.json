@@ -16,6 +16,7 @@
     { "item": "goety:ectoplasm" }
   ],
   "result": {
-    "id": "goety:plinth_deepslate"
+    "id": "goety:plinth_deepslate",
+    "count": 3
   }
 }

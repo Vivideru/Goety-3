@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 
 public class WargSwordLayer extends RenderLayer<Warg, WargModel> {
+    private static final float PIXEL = 1.0F / 16.0F;
     private final ItemInHandRenderer itemRenderer;
 
     public WargSwordLayer(RenderLayerParent<Warg, WargModel> parent, ItemInHandRenderer itemRenderer) {
@@ -26,30 +27,19 @@ public class WargSwordLayer extends RenderLayer<Warg, WargModel> {
         if (!warg.hasSword()) {
             return;
         }
+        ItemStack sword = warg.getMainHandItem();
         poseStack.pushPose();
         this.getParentModel().translateToSword(poseStack);
-        poseStack.translate(0.3125F, -0.3125F, -0.1875F);
-        SwordMount mount = getSwordMount(warg.getMainHandItem());
-        if (mount.verticalOffset() != 0.0F) {
-            poseStack.translate(0.0F, mount.verticalOffset(), 0.0F);
-        }
-        poseStack.mulPose(Axis.ZP.rotationDegrees(mount.rotation()));
-        if (mount.gripOffset() != 0.0F) {
-            poseStack.translate(0.0F, mount.gripOffset(), 0.0F);
-        }
-        poseStack.scale(2.5F, 2.5F, 2.5F);
-        this.itemRenderer.renderItem(warg, warg.getMainHandItem(), ItemDisplayContext.GROUND, false, poseStack, buffer, packedLight);
-        poseStack.popPose();
-    }
-
-    private static SwordMount getSwordMount(ItemStack sword) {
+        // The model's sword bone holds a 16x16 voxel copy of a sword sprite lying flat, pommel at its -X/-Z corner and tip at
+        // the +X/+Z corner: the item sprite (pixel u along +X, v along -Z) is laid on it at full size.
+        poseStack.translate(5.0F * PIXEL, -0.5F * PIXEL, 5.0F * PIXEL);
+        poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
         if (sword.is(ModItems.BLADE_OF_ENDER.get())) {
-            return new SwordMount(-90.0F, -0.375F, 0.25F);
+            // Its model is a straight vertical blade: turned onto the sprite diagonal, grip moved onto the usual grip.
+            poseStack.translate(-1.35F * PIXEL, -1.35F * PIXEL, 0.0F);
+            poseStack.mulPose(Axis.ZP.rotationDegrees(-45.0F));
         }
-        return SwordMount.FLAT_SWORD;
-    }
-
-    private record SwordMount(float rotation, float gripOffset, float verticalOffset) {
-        private static final SwordMount FLAT_SWORD = new SwordMount(-45.0F, 0.0F, 0.0F);
+        this.itemRenderer.renderItem(warg, sword, ItemDisplayContext.NONE, false, poseStack, buffer, packedLight);
+        poseStack.popPose();
     }
 }

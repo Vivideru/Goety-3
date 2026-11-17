@@ -7,6 +7,8 @@ import com.Polarice3.Goety.utils.BlockFinder;
 import com.Polarice3.Goety.utils.BrewUtils;
 import com.Polarice3.Goety.utils.ConstantPaths;
 import com.Polarice3.Goety.utils.MathHelper;
+import com.Vivideru.Goety.common.entities.util.BrewGasParticles;
+import com.Vivideru.Goety.common.entities.util.EntityQueries;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -178,10 +180,10 @@ public class BrewGas extends Entity {
 
     public void tick() {
         super.tick();
+        if (this.level().isClientSide) {
+            BrewGasParticles.clientTick(this);
+        }
         if (!this.level().isClientSide) {
-            if (this.level() instanceof ServerLevel serverLevel){
-                serverLevel.sendParticles(ModParticleTypes.CULT_SPELL.get(), this.getRandomX(1.0D), this.getRandomY(), this.getRandomZ(1.0D), 0, MathHelper.rgbParticle(this.getColor())[0], MathHelper.rgbParticle(this.getColor())[1], MathHelper.rgbParticle(this.getColor())[2], 0.5F);
-            }
             if (this.isInSolid()){
                 this.discard();
             }
@@ -198,7 +200,7 @@ public class BrewGas extends Entity {
                             BlockPos blockPos = this.blockPosition().relative(direction);
                             BlockState blockState = this.level().getBlockState(blockPos);
                             if (blockState.isAir() || blockState.canBeReplaced(Fluids.FLOWING_WATER)) {
-                                if (this.level().getEntitiesOfClass(BrewGas.class, new AABB(blockPos)).isEmpty()) {
+                                if (EntityQueries.noneOfClass(this.level(), BrewGas.class, new AABB(blockPos))) {
                                     BrewGas brewGas = new BrewGas(ModEntityType.BREW_EFFECT_GAS.get(), this.level());
                                     brewGas.setPos(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                                     brewGas.setGas(this.effects, this.brewEffects, this.duration, this.area - 1, this.owner != null ? this.owner : null);

@@ -3,11 +3,18 @@ package com.Polarice3.Goety.api.magic;
 import com.Polarice3.Goety.common.blocks.ModBlocks;
 import com.Polarice3.Goety.common.magic.construct.*;
 import com.google.common.collect.Maps;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.fml.common.asm.enumextension.ExtensionInfo;
 import net.neoforged.fml.common.asm.enumextension.IExtensibleEnum;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -20,7 +27,8 @@ public enum GolemType implements IExtensibleEnum {
     SQUALL_GOLEM(ModBlocks.JADE_BLOCK.get()::defaultBlockState, new SquallGolemMold()),
     REDSTONE_GOLEM(Blocks.REDSTONE_BLOCK::defaultBlockState, new RedstoneGolemMold()),
     GRAVE_GOLEM(ModBlocks.SKULL_PILE.get()::defaultBlockState, new GraveGolemMold()),
-    REDSTONE_MONSTROSITY(ModBlocks.REINFORCED_REDSTONE_BLOCK.get()::defaultBlockState, new RedstoneMonstrosityMold());
+    REDSTONE_MONSTROSITY(ModBlocks.MONSTROUS_CORE.get()::defaultBlockState, new RedstoneMonstrosityMold()),
+    GRAVE_MONSTROSITY(ModBlocks.MONSTROUS_CORE.get()::defaultBlockState, new GraveMonstrosityMold());
 
     private final Supplier<BlockState> blockState;
     private final IMold mold;
@@ -50,6 +58,39 @@ public enum GolemType implements IExtensibleEnum {
             }
         }
         return list;
+    }
+
+    public static List<IMold> getMolds(BlockState blockState) {
+        List<IMold> molds = new ArrayList<>();
+        for (GolemType golemType : GolemType.values()) {
+            if (golemType.blockState != null && golemType.getBlockState().equals(blockState)) {
+                molds.add(golemType.getMold());
+            }
+        }
+        return molds;
+    }
+
+    public static boolean hasMold(BlockState blockState) {
+        return !getMolds(blockState).isEmpty();
+    }
+
+    public static boolean spawnServant(Player player, ItemStack stack, Level level, BlockPos pos) {
+        List<IMold> molds = getMolds(level.getBlockState(pos));
+        if (molds.isEmpty()) {
+            return false;
+        }
+        for (IMold mold : molds) {
+            if (mold.isStructureValid(level, pos)) {
+                return mold.spawnServant(player, stack, level, pos);
+            }
+        }
+        if (molds.size() > 1) {
+            if (!level.isClientSide) {
+                player.displayClientMessage(Component.translatable("info.goety.block.fail"), true);
+            }
+            return false;
+        }
+        return molds.get(0).spawnServant(player, stack, level, pos);
     }
 }
 

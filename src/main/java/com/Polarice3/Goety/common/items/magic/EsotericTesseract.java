@@ -1,6 +1,9 @@
 package com.Polarice3.Goety.common.items.magic;
 
 
+import java.util.Comparator;
+import net.minecraft.nbt.Tag;
+import com.Polarice3.Goety.init.ModKeybindings;
 import net.minecraft.core.registries.BuiltInRegistries;
 import com.Polarice3.Goety.api.entities.ally.IServant;
 import com.Polarice3.Goety.api.items.IPersist;
@@ -44,6 +47,8 @@ import java.util.function.Consumer;
  * Based on Rat Sack item by @AlexModGuy: <a href="https://github.com/AlexModGuy/Rats/blob/1.20/src/main/java/com/github/alexthe666/rats/server/items/RatSackItem.java">...</a>
  */
 public class EsotericTesseract extends Item implements IPersist {
+    public static final String SERVANT_PREFIX = "Servant_";
+    public static final String SELECTED = "TesseractSelected";
     public static String BIG = "Big";
     public static String LARGE = "Large";
     public static String HUGE = "Huge";
@@ -262,6 +267,56 @@ public class EsotericTesseract extends Item implements IPersist {
         return servantCount;
     }
 
+    public static List<String> getServantKeys(ItemStack stack) {
+        CompoundTag tag = data(stack);
+        List<String> keys = new ArrayList<>();
+        for (String key : tag.getAllKeys()) {
+            if (key.startsWith(SERVANT_PREFIX) && tag.contains(key, Tag.TAG_COMPOUND)) {
+                keys.add(key);
+            }
+        }
+        keys.sort(Comparator.comparingInt(EsotericTesseract::servantIndex));
+        return keys;
+    }
+
+    private static int servantIndex(String key) {
+        try {
+            return Integer.parseInt(key.substring(SERVANT_PREFIX.length()));
+        } catch (NumberFormatException e) {
+            return Integer.MAX_VALUE;
+        }
+    }
+
+    @Nullable
+    public static String getNextServantKey(ItemStack stack) {
+        List<String> keys = getServantKeys(stack);
+        if (keys.isEmpty()) {
+            return null;
+        }
+        String selected = data(stack).getString(SELECTED);
+        return keys.contains(selected) ? selected : keys.get(0);
+    }
+
+    public static boolean selectServant(ItemStack stack, String key) {
+        if (!getServantKeys(stack).contains(key)) {
+            return false;
+        }
+        CompoundTag tag = data(stack);
+        tag.putString(SELECTED, key);
+        setData(stack, tag);
+        return true;
+    }
+
+    public static ItemStack getHeldTesseract(Player player) {
+        for (InteractionHand hand : InteractionHand.values()) {
+            ItemStack stack = player.getItemInHand(hand);
+            if (stack.getItem() instanceof EsotericTesseract) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
     public static int ejectSingleServant(ItemStack stack, Level level, BlockPos pos) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return 0;
@@ -269,7 +324,7 @@ public class EsotericTesseract extends Item implements IPersist {
         int servantCount = 0;
         if (stack.has(DataComponents.CUSTOM_DATA)) {
             CompoundTag tag = data(stack);
-            Optional<String> optional = tag.getAllKeys().stream().filter(string -> string.contains("Servant")).findFirst();
+            Optional<String> optional = Optional.ofNullable(getNextServantKey(stack));
             if (optional.isPresent()) {
                 String tagInfo = optional.get();
                 if (tagInfo.contains("Servant")) {
@@ -323,6 +378,7 @@ public class EsotericTesseract extends Item implements IPersist {
                                 ServerParticleUtil.addParticlesAroundMiddleSelf(serverLevel, ParticleTypes.PORTAL, servant);
                                 if (!stack.isEmpty()) {
                                     tag.remove(tagInfo);
+                                    tag.remove(SELECTED);
                                     setData(stack, tag);
                                 }
                             } else {
@@ -456,12 +512,15 @@ public class EsotericTesseract extends Item implements IPersist {
             tooltip.add(Component.translatable("info.goety.armor.broken").withStyle(ChatFormatting.DARK_RED));
         }
         if (servantCount <= 0) {
-            tooltip.add(Component.translatable("item.goety.tesseract").withStyle(ChatFormatting.DARK_PURPLE));
-            tooltip.add(Component.translatable("item.goety.tesseract.empty").withStyle(ChatFormatting.BLUE));
+            tooltip.add(Component.translatable("info.goety.tesseract").withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(Component.translatable("info.goety.tesseract.empty").withStyle(ChatFormatting.BLUE));
         } else {
-            tooltip.add(Component.translatable("item.goety.tesseract.unleash").withStyle(ChatFormatting.DARK_PURPLE));
+            tooltip.add(Component.translatable("info.goety.tesseract.unleash").withStyle(ChatFormatting.DARK_PURPLE));
+            if (ModKeybindings.wandCircle() != null) {
+                tooltip.add(Component.translatable("info.goety.tesseract.switch", ModKeybindings.wandCircle().getTranslatedKeyMessage()).withStyle(ChatFormatting.BLUE));
+            }
         }
-        tooltip.add(Component.translatable("item.goety.tesseract.contains", servantCount, ItemConfig.TesseractCapacity.get()).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("info.goety.tesseract.contains", servantCount, ItemConfig.TesseractCapacity.get()).withStyle(ChatFormatting.GRAY));
         if (!servantNames.isEmpty()) {
             for (int i = 0; i < servantNames.size(); i++) {
                 if (i < 3) {
@@ -471,7 +530,7 @@ public class EsotericTesseract extends Item implements IPersist {
                 }
             }
             if (servantNames.size() > 3) {
-                tooltip.add(Component.translatable("item.goety.tesseract.more", servantNames.size() - 3).withStyle(ChatFormatting.GRAY));
+                tooltip.add(Component.translatable("info.goety.tesseract.more", servantNames.size() - 3).withStyle(ChatFormatting.GRAY));
             }
         }
     }

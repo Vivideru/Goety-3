@@ -381,6 +381,12 @@ public class ModEntityType {
                     .clientTrackingRange(8)
                     .updateInterval(1));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<SoulStar>> SOUL_STAR = register("soul_star",
+            EntityType.Builder.<SoulStar>of(SoulStar::new, MobCategory.MISC)
+                    .sized(0.5F, 0.5F)
+                    .clientTrackingRange(8)
+                    .updateInterval(1));
+
     public static final DeferredHolder<EntityType<?>, EntityType<SnapFungus>> SNAP_FUNGUS = register("snap_fungus",
             EntityType.Builder.<SnapFungus>of(SnapFungus::new, MobCategory.MISC)
                     .sized(0.25F, 0.25F)
@@ -1429,6 +1435,18 @@ public class ModEntityType {
                     .sized(1.0F, 1.0F)
                     .clientTrackingRange(10));
 
+    public static final DeferredHolder<EntityType<?>, EntityType<GraveMonstrosity>> GRAVE_MONSTROSITY = register("grave_monstrosity",
+            EntityType.Builder.of(GraveMonstrosity::new, MobCategory.MONSTER)
+                    .sized(4.0F, 5.4F)
+                    .fireImmune()
+                    .clientTrackingRange(10));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<GraveCube>> GRAVE_CUBE = register("grave_cube",
+            EntityType.Builder.of(GraveCube::new, MobCategory.MONSTER)
+                    .fireImmune()
+                    .sized(1.0F, 1.0F)
+                    .clientTrackingRange(10));
+
     public static final DeferredHolder<EntityType<?>, EntityType<WatchlingServant>> WATCHLING_SERVANT = register("watchling_servant",
             EntityType.Builder.of(WatchlingServant::new, MobCategory.MONSTER)
                     .sized(0.8F, 2.6F)
@@ -1672,6 +1690,20 @@ public class ModEntityType {
 
     public static final DeferredHolder<EntityType<?>, EntityType<AcidPool>> ACID_POOL = register("acid_pool",
             EntityType.Builder.of(AcidPool::new, MobCategory.MISC)
+                    .fireImmune()
+                    .sized(2.0F, 0.5F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<NecroticPool>> NECROTIC_POOL = register("necrotic_pool",
+            EntityType.Builder.of(NecroticPool::new, MobCategory.MISC)
+                    .fireImmune()
+                    .sized(2.0F, 0.5F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Ripple>> RIPPLE = register("ripple",
+            EntityType.Builder.<Ripple>of(Ripple::new, MobCategory.MISC)
                     .fireImmune()
                     .sized(2.0F, 0.5F)
                     .clientTrackingRange(10)

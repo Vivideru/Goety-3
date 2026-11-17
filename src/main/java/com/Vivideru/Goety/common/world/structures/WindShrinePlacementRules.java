@@ -13,8 +13,6 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import net.minecraft.core.Registry;
-import com.mojang.logging.LogUtils;
-import org.slf4j.Logger;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class WindShrinePlacementRules {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final String STAIRS = "stairs";
     private static final int DESCENT_PER_DEPTH = 2;
     private static final double INWARD_TOLERANCE = 6.0D;
@@ -75,8 +72,6 @@ public final class WindShrinePlacementRules {
         String startName = "";
         WindShrinePieceProfiles.Profile candidateProfile = WindShrinePieceProfiles.Profile.CLOSED;
         int placed;
-        int loggedCollisions;
-        final int[] rejected = new int[Reason.values().length];
 
         Session(boolean wing, int summitY, int maxDepth, BlockPos center) {
             this.wing = wing;
@@ -88,8 +83,7 @@ public final class WindShrinePlacementRules {
 
     private enum Reason { COLLISION, FOREIGN, REACH, WEDGE, WING_FULL, UNFINISHABLE, CLOSING_SPACE, STAIRS_CLIMB, TOWER_HEIGHT, WING_CLIMB, DESCENT_QUOTA, INWARD, FOOTPRINT }
 
-    private static boolean reject(Session session, Reason reason) {
-        session.rejected[reason.ordinal()]++;
+    private static boolean reject(Reason reason) {
         return true;
     }
 
@@ -125,15 +119,6 @@ public final class WindShrinePlacementRules {
 
     public static void end() {
         Session session = SESSION.get();
-        if (session != null && LOGGER.isDebugEnabled()) {
-            StringBuilder summary = new StringBuilder();
-            for (Reason reason : Reason.values()) {
-                if (session.rejected[reason.ordinal()] > 0) {
-                    summary.append(' ').append(reason.name().toLowerCase()).append('=').append(session.rejected[reason.ordinal()]);
-                }
-            }
-            LOGGER.debug("Wind Shrine {} assembled from {}: {} pieces accepted, rejected:{}", session.wing ? "wing" : "ring", session.startName, session.placed, summary);
-        }
         SESSION.remove();
     }
 
@@ -165,15 +150,6 @@ public final class WindShrinePlacementRules {
         Session session = SESSION.get();
         if (session != null) {
             AABB free = boundsOf(freeShape);
-            if (session.wing && depth == 0 && LOGGER.isDebugEnabled()) {
-                StringBuilder jigsaws = new StringBuilder();
-                for (net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo info : parent.getElement().getShuffledJigsawBlocks(templates, parent.getPosition(), parent.getRotation(), RandomSource.create(0L))) {
-                    Direction facing = net.minecraft.world.level.block.JigsawBlock.getFrontFacing(info.state());
-                    BlockPos target = info.pos().relative(facing);
-                    jigsaws.append(' ').append(info.nbt() == null ? "?" : info.nbt().getString("name")).append('@').append(info.pos().toShortString()).append('>').append(facing).append(parent.getBoundingBox().isInside(target) ? "(interior)" : "");
-                }
-                LOGGER.debug("Wind Shrine wing start {} rot {} box {} free {} jigsaws:{}", parent.getElement(), parent.getRotation(), parent.getBoundingBox(), free == null ? "?" : free, jigsaws);
-            }
             session.parentBox = parent.getBoundingBox();
             session.parentDepth = depth;
             remember(session, session.parentBox);
@@ -288,41 +264,41 @@ public final class WindShrinePlacementRules {
             if (stackedCandidate && overlapsOnlyStairs(session, box, aabb)) {
                 collides = false;
             } else {
-                return reject(session, Reason.COLLISION);
+                return reject(Reason.COLLISION);
             }
         }
         for (BoundingBox other : session.foreign) {
             if (other.intersects(box)) {
-                return reject(session, Reason.FOREIGN);
+                return reject(Reason.FOREIGN);
             }
         }
         if (session.reach != null && !withinReach(session.reach, box)) {
-            return reject(session, Reason.REACH);
+            return reject(Reason.REACH);
         }
         WindShrinePieceProfiles.Profile profile = session.candidateProfile;
         if (profile.open()) {
             int depth = session.parentDepth + 1;
             if (depth + profile.chain() > session.maxDepth + 1) {
-                return reject(session, Reason.UNFINISHABLE);
+                return reject(Reason.UNFINISHABLE);
             }
             BoundingBox closing = new BoundingBox(box.minX(), box.maxY() + 1, box.minZ(), box.maxX(), box.maxY() + profile.closingHeight(), box.maxZ());
             for (BoundingBox other : session.foreign) {
                 if (other.intersects(closing)) {
-                    return reject(session, Reason.CLOSING_SPACE);
+                    return reject(Reason.CLOSING_SPACE);
                 }
             }
             for (BoundingBox other : session.accepted) {
                 if (other.intersects(closing)) {
                     StairBox stair = stairFor(session, other);
                     if (stair == null || !stair.clearOf(closing)) {
-                        return reject(session, Reason.CLOSING_SPACE);
+                        return reject(Reason.CLOSING_SPACE);
                     }
                 }
             }
         }
         boolean stairs = session.candidateName.contains(STAIRS);
         if (stairs && session.parentBox != null && box.minY() >= session.parentBox.minY() - 2) {
-            return reject(session, Reason.STAIRS_CLIMB);
+            return reject(Reason.STAIRS_CLIMB);
         }
         boolean stacked = session.parentDirection.getAxis().isVertical();
         if (stacked && !session.candidateName.contains("main_tower") && !session.candidateName.contains("roof") && !session.candidateName.contains("mobs/")) {
@@ -334,16 +310,16 @@ public final class WindShrinePlacementRules {
             }
             int limit = 21 - (int) Math.round(10.0D * lowness(session));
             if (box.minY() - baseY >= limit) {
-                return reject(session, Reason.TOWER_HEIGHT);
+                return reject(Reason.TOWER_HEIGHT);
             }
         }
         if (session.wing && session.parentBox != null && !stacked) {
             if (box.minY() > session.parentBox.minY() + 1) {
-                return reject(session, Reason.WING_CLIMB);
+                return reject(Reason.WING_CLIMB);
             }
             boolean closingPiece = session.candidateName.contains("connector_end") || session.candidateName.contains("roof") || session.candidateName.contains("bottom") || session.candidateName.contains("mobs/");
             if (session.placed >= MAX_WING_PIECES && !closingPiece) {
-                return reject(session, Reason.WING_FULL);
+                return reject(Reason.WING_FULL);
             }
             if (session.doorPos != null && !closingPiece) {
                 double doorBearing = Math.atan2(session.doorPos.getZ() - session.center.getZ(), session.doorPos.getX() - session.center.getX());
@@ -351,12 +327,12 @@ public final class WindShrinePlacementRules {
                 double bearing = Math.atan2(boxCenter.getZ() - session.center.getZ(), boxCenter.getX() - session.center.getX());
                 double delta = Math.abs(Math.atan2(Math.sin(bearing - doorBearing), Math.cos(bearing - doorBearing)));
                 if (delta > WEDGE) {
-                    return reject(session, Reason.WEDGE);
+                    return reject(Reason.WEDGE);
                 }
             }
             boolean cap = session.candidateName.contains("connector_end") || session.candidateName.contains("roof") || session.candidateName.contains("bottom") || session.candidateName.contains("mobs/");
             if (!cap && session.doorFloorY != Integer.MIN_VALUE && box.minY() > session.doorFloorY - 4 - DESCENT_PER_DEPTH * (session.parentDepth + 1)) {
-                return reject(session, Reason.DESCENT_QUOTA);
+                return reject(Reason.DESCENT_QUOTA);
             }
             BlockPos parentCenter = session.parentBox.getCenter();
             double radialX = parentCenter.getX() - session.center.getX();
@@ -365,12 +341,12 @@ public final class WindShrinePlacementRules {
             if (radialLength > 1.0D) {
                 double cosine = (radialX * session.parentDirection.getStepX() + radialZ * session.parentDirection.getStepZ()) / radialLength;
                 if (cosine < INWARD_COSINE) {
-                    return reject(session, Reason.INWARD);
+                    return reject(Reason.INWARD);
                 }
             }
             double limit = session.doorPos != null ? horizontalDistance(session.doorPos, session.center) - INWARD_TOLERANCE : radialLength - INWARD_TOLERANCE;
             if (horizontalDistance(box.getCenter(), session.center) < limit) {
-                return reject(session, Reason.INWARD);
+                return reject(Reason.INWARD);
             }
         }
         boolean slender = box.getXSpan() <= 3 && box.getZSpan() <= 3;
@@ -379,13 +355,13 @@ public final class WindShrinePlacementRules {
             for (BoundingBox other : session.accepted) {
                 boolean verticallyApart = box.maxY() < other.minY() || other.maxY() < box.minY();
                 if (verticallyApart && sharesGround(box, other)) {
-                    return reject(session, Reason.FOOTPRINT);
+                    return reject(Reason.FOOTPRINT);
                 }
             }
             for (BoundingBox other : session.foreign) {
                 boolean otherSlender = other.getXSpan() <= 3 && other.getZSpan() <= 3;
                 if (!otherSlender && sharesGround(box, other)) {
-                    return reject(session, Reason.FOOTPRINT);
+                    return reject(Reason.FOOTPRINT);
                 }
             }
         }

@@ -112,6 +112,10 @@ public class ApparitionDoorBlock extends Block {
             this.playReappearSound(pLevel, pPos);
         } else {
             if (pState.getValue(ACTIVE)) {
+                if (com.Vivideru.Goety.common.blocks.entities.SealerHooks.isSealed(pLevel, pPos)) {
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(ACTIVE, false));
+                    return;
+                }
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(VANISHED, true).setValue(ACTIVE, false));
                 pLevel.scheduleTick(pPos, this, 80);
                 this.playVanishSound(pLevel, pPos);

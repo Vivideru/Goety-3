@@ -368,7 +368,8 @@ public class MobsConfig {
     public static final ModConfigSpec.ConfigValue<Boolean> HellfireFireImmune;
     public static final ModConfigSpec.ConfigValue<Boolean> HellfireFireProtection;
     public static final ModConfigSpec.ConfigValue<Boolean> EnderKeeperAfterImage;
-    public static final ModConfigSpec.ConfigValue<Boolean> RedstoneMonstrosityLeafBreak;
+    public static final ModConfigSpec.ConfigValue<Boolean> MonstrosityLeafBreak;
+    public static final ModConfigSpec.ConfigValue<Integer> MonstrositySoulCost;
     public static final ModConfigSpec.ConfigValue<Boolean> RedstoneCubeBlockFind;
     public static final ModConfigSpec.ConfigValue<Boolean> PlayerRavagerArmorDrop;
     public static final ModConfigSpec.ConfigValue<Boolean> DamnedShootIndicator;
@@ -756,8 +757,10 @@ public class MobsConfig {
                 .define("servantTeleport", false);
         ServantOwnedServantPlayerBenefit = BUILDER.comment("Whether Servants owned by other Servants benefits from Player Robes and Crown, Default: true")
                 .define("servantOwnedServantPlayerBenefit", true);
-        RedstoneMonstrosityLeafBreak = BUILDER.comment("Whether Redstone Monstrosity breaks leaves and certain blocks if mob griefing is enabled, Default: true")
-                .define("redstoneMonstrosityLeafBreak", true);
+        MonstrositySoulCost = BUILDER.comment("How much Soul Energy is needed to create a Monstrosity, Default: 50000")
+                .defineInRange("monstrositySoulCost", 50000, 0, Integer.MAX_VALUE);
+        MonstrosityLeafBreak = BUILDER.comment("Whether Monstrosities breaks leaves and certain blocks if mob griefing is enabled, Default: true")
+                .define("monstrosityLeafBreak", true);
         RedstoneCubeBlockFind = BUILDER.comment("Enable Redstone Cubes block detection mechanic, Default: true")
                 .define("RedstoneCubeBlockFind", true);
         VexTeleport = BUILDER.comment("Whether Vex Servants can teleport to Players, Default: true")

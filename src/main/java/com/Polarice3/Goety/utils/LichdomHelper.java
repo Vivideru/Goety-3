@@ -52,6 +52,23 @@ public class LichdomHelper {
         sendLichUpdatePacket(player);
     }
 
+    public static boolean hasLegs(LivingEntity livingEntity){
+        if (livingEntity instanceof Player player){
+            return hasLegs(player);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean hasLegs(Player player){
+        return getCapability(player).hasLegs();
+    }
+
+    public static void setLegs(Player player, boolean legs){
+        getCapability(player).setLegs(legs);
+        sendLichUpdatePacket(player);
+    }
+
     public static boolean nightVision(Player player){
         return getCapability(player).nightVision();
     }
@@ -100,6 +117,7 @@ public class LichdomHelper {
     public static CompoundTag save(CompoundTag tag, ILichdom lichdom) {
         tag.putBoolean("lichdom", lichdom.getLichdom());
         tag.putBoolean("lichMode", lichdom.isLichMode());
+        tag.putBoolean("hasLegs", lichdom.hasLegs());
         tag.putBoolean("nightVision", lichdom.nightVision());
         tag.putInt("smited", lichdom.smited());
         tag.putInt("LichModeColor", lichdom.lichModeColor());
@@ -112,6 +130,9 @@ public class LichdomHelper {
         }
         if (tag.contains("lichMode")) {
             lichdom.setLichMode(tag.getBoolean("lichMode"));
+        }
+        if (tag.contains("hasLegs")) {
+            lichdom.setLegs(tag.getBoolean("hasLegs"));
         }
         if (tag.contains("nightVision")) {
             lichdom.setNightVision(tag.getBoolean("nightVision"));

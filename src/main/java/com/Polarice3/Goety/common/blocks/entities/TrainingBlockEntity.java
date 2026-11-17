@@ -480,7 +480,9 @@ public abstract class TrainingBlockEntity extends OwnedBlockEntity implements IT
     public void markUpdated() {
         this.setChanged();
         if (this.level != null) {
-            this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+            if (!this.level.isClientSide) {
+                this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
+            }
         }
     }
 

@@ -10,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 /**
- * Based on code by @AlexModGuy
+ * Based of codes by @AlexModGuy
  */
 public class ModMobSpawnBiomeModifier implements BiomeModifier {
     private static final DeferredHolder<MapCodec<? extends BiomeModifier>, MapCodec<? extends BiomeModifier>> SERIALIZER = DeferredHolder.create(NeoForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, Goety.location("mob_spawns"));

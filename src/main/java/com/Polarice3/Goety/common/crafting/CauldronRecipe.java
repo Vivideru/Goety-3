@@ -42,7 +42,7 @@ public class CauldronRecipe implements Recipe<CraftingInput> {
     }
 
     /**
-     * Based on Runic Altar Recipe code by Vazkii.
+     * Based on Runic Altar Recipe code by @Vazkii
      */
     public boolean matches(Container container, Level level) {
         List<Ingredient> missingIngredients = Lists.newArrayList(this.ingredients);

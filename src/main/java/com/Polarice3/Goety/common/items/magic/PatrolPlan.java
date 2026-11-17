@@ -32,10 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Charts a cycle of waypoints that owned servants patrol once the plan is used on them (or blown to them with a
- * Command Horn held in the other hand). Based on @Minecraft-LightLand's ModularGolems PathRecordCard.
- */
+//Based on @Minecraft-LightLand's codes:https://github.com/Minecraft-LightLand/ModularGolems/blob/1.20/src/main/java/dev/xkmc/modulargolems/content/item/card/PathRecordCard.java
 public class PatrolPlan extends Item implements IShowOutlines {
     private static final Codec<List<GlobalPos>> LIST_CODEC = GlobalPos.CODEC.listOf();
     private static final String PATROL_PATH = "PatrolPath";

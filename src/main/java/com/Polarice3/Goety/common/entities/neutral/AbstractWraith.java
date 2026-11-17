@@ -60,6 +60,7 @@ public class AbstractWraith extends Summoned implements IMobTyped {
     public int teleportTime = 20;
     public int teleportTime2;
     public int postTeleportTime;
+    private boolean postTeleportEnded;
     public float interestTime;
     public double prevX;
     public double prevY;
@@ -309,8 +310,12 @@ public class AbstractWraith extends Summoned implements IMobTyped {
                 }
             }
             --this.postTeleportTime;
+            this.postTeleportEnded = this.postTeleportTime == 0;
         } else {
-            this.level().broadcastEntityEvent(this, (byte) 7);
+            if (this.postTeleportEnded) {
+                this.postTeleportEnded = false;
+                this.level().broadcastEntityEvent(this, (byte) 7);
+            }
         }
 
         if (this.isAlive()) {
@@ -406,7 +411,7 @@ public class AbstractWraith extends Summoned implements IMobTyped {
                             this.fireTick = 0;
                         }
                         this.stopFiring();
-                        if (this.canTeleport() && this.getTarget().distanceToSqr(this) <= Mth.square(4.0F)) {
+                        if (this.getTarget().distanceToSqr(this) <= Mth.square(4.0F) && this.canTeleport()) {
                             this.getNavigation().stop();
                             this.setIsTeleporting(true);
                         } else if (!this.isTeleporting()) {
@@ -439,7 +444,7 @@ public class AbstractWraith extends Summoned implements IMobTyped {
     }
 
     public void movement(){
-        if (this.getTarget() != null && !this.isStaying() && !this.isPostTeleporting()) {
+        if (this.getTarget() != null && !this.isStaying() && !this.isPostTeleporting() && this.getNavigation().isDone()) {
             Vec3 vector3d2;
             if (this.getTarget().distanceToSqr(this) > Mth.square(this.attackRange())){
                 vector3d2 = this.getTarget().position();
@@ -460,7 +465,6 @@ public class AbstractWraith extends Summoned implements IMobTyped {
         return !event.isCanceled() && !this.isStaying() && this.teleportCooldown <= 0 && !this.isPostTeleporting() && this.hasTeleportSpot();
     }
 
-    /** Looks for a spot the teleport would accept before the animation starts, so a Wraith never winds up where it cannot go. */
     protected boolean hasTeleportSpot() {
         if (this.level().isClientSide() || this.getTarget() == null || !this.getSensing().hasLineOfSight(this.getTarget())) {
             return true;

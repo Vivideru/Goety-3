@@ -2,7 +2,7 @@
     "parent":  "goety:goety/servant_kill_mob",
     "display":  {
                     "icon":  {
-                                 "id":  "goety:reinforced_redstone_block"
+                                 "id":  "goety:monstrous_core"
                              },
                     "title":  {
                                   "translate":  "advancements.goety.monstrosity_kill_boss.title"
@@ -29,7 +29,7 @@
                                                                 ],
                                                      "killing_blow":  {
                                                                           "source_entity":  {
-                                                                                                "type":  "goety:redstone_monstrosity"
+                                                                                                "type":  "#goety:monstrosities"
                                                                                             }
                                                                       }
                                                  },

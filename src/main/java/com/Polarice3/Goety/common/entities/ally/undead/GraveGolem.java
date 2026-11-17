@@ -914,6 +914,7 @@ public class GraveGolem extends AbstractGolemServant implements IMobTyped {
                     this.mob.level().broadcastEntityEvent(this.mob, (byte) 15);
                     for (int i = 0; i < 8; i++) {
                         SoulBomb snowball = new SoulBomb(this.mob, this.mob.level());
+                        snowball.setDamage((float) this.mob.getAttributeValue(Attributes.ATTACK_DAMAGE));
                         double d0 = vec3.y - 2.5D;
                         double d1 = vec3.x - this.mob.getX();
                         double d2 = d0 - snowball.getY();

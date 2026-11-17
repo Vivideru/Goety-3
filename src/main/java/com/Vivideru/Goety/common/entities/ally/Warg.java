@@ -48,6 +48,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
@@ -79,14 +80,39 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
 
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState walkAnimationState = new AnimationState();
+    public final AnimationState runAnimationState = new AnimationState();
     public final AnimationState groundedAnimationState = new AnimationState();
-    public final AnimationState jumpAnimationState = new AnimationState();
+    public final AnimationState jumpStartAnimationState = new AnimationState();
+    public final AnimationState jumpLoopAnimationState = new AnimationState();
+    public final AnimationState jumpLandAnimationState = new AnimationState();
     public final AnimationState biteAnimationState = new AnimationState();
     public final AnimationState spinAnimationState = new AnimationState();
     public final AnimationState slashAnimationState = new AnimationState();
     private static final int AIRBORNE_ANIMATION_TICKS = 4;
+    // Lengths of the jump take-off (0.38 s) and landing (0.25 s) animations.
+    private static final int JUMP_START_TICKS = 8;
+    private static final int JUMP_LAND_TICKS = 5;
+    private static final double JUMP_RISE_PER_TICK = 0.05D;
+    // Horizontal blocks per tick: walking servants move about 0.15, a ridden Warg 0.4 or more.
+    private static final float RUN_START_SPEED = 0.22F;
+    private static final float RUN_STOP_SPEED = 0.18F;
+    private static final float WALK_ANIMATION_SPEED = 0.15F;
+    private static final float RUN_ANIMATION_SPEED = 0.4F;
+    // Sword attacks last as long as their animations (1 s slash, 1.92 s spin) and hit on their strike frames, one tick after
+    // the animation time because clients start it a tick later. The spin turns twice: fastest at 0.5 s and, back the other
+    // way, at 1.55 s.
+    private static final int SLASH_ATTACK_TICKS = 20;
+    private static final int SLASH_HIT_TICKS_LEFT = 8;
+    private static final int SPIN_ATTACK_TICKS = 38;
+    private static final int SPIN_FIRST_HIT_TICKS_LEFT = 27;
+    private static final int SPIN_SECOND_HIT_TICKS_LEFT = 6;
     private int airborneTicks;
     private int airborneCountedTick = -1;
+    private int airAnimationTicks;
+    private int landAnimationTicks;
+    private boolean leapAnimation;
+    private boolean runningAnimation;
+    private float animationMoveSpeed;
     private int howlCooldown;
     private boolean howling;
     @Nullable
@@ -113,6 +139,27 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         });
         this.goalSelector.addGoal(3, new WargSwordAttackGoal());
         this.goalSelector.addGoal(2, new SkeletalHowlGoal());
+        // The wolf leap inherited from the Black Wolf, with this mob's own height (none for the Cerberus).
+        this.goalSelector.removeAllGoals(goal -> goal instanceof LeapAtTargetGoal);
+        float leap = this.getLeapPower();
+        if (leap > 0.0F) {
+            this.goalSelector.addGoal(4, new LeapAtTargetGoal(this, leap) {
+                @Override
+                public boolean canUse() {
+                    return super.canUse() && !Warg.this.isStaying();
+                }
+
+                @Override
+                public boolean canContinueToUse() {
+                    return super.canContinueToUse() && !Warg.this.isStaying();
+                }
+            });
+        }
+    }
+
+    /** Upward speed of the leap at the target: 0.27 jumps about half as high as the Black Wolf's 0.4. 0 disables it. */
+    protected float getLeapPower() {
+        return 0.27F;
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -194,13 +241,53 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     private void updateAnimationStates() {
         boolean airborne = this.tickAirborneAnimation();
         boolean attacking = this.getAttackTicks() > 0;
+        boolean rising = !this.onGround() && this.getY() - this.yo > JUMP_RISE_PER_TICK;
+        double dx = this.getX() - this.xo;
+        double dz = this.getZ() - this.zo;
+        this.animationMoveSpeed = Mth.lerp(0.3F, this.animationMoveSpeed, (float) Math.sqrt(dx * dx + dz * dz));
+
+        // A real jump plays the take-off, then the air loop; a fall goes straight to the loop. Landing follows either.
+        if (!attacking && (airborne || rising)) {
+            if (this.airAnimationTicks == 0) {
+                this.leapAnimation = rising;
+            }
+            ++this.airAnimationTicks;
+            this.landAnimationTicks = 0;
+        } else {
+            if (this.airAnimationTicks > 0) {
+                this.landAnimationTicks = !attacking && this.onGround() ? JUMP_LAND_TICKS : 0;
+            } else if (this.landAnimationTicks > 0) {
+                --this.landAnimationTicks;
+            }
+            this.airAnimationTicks = 0;
+        }
+        boolean inAir = this.airAnimationTicks > 0;
+        boolean takeOff = inAir && this.leapAnimation && this.airAnimationTicks <= JUMP_START_TICKS;
+        boolean landing = !inAir && !attacking && this.landAnimationTicks > 0;
+        boolean onFeet = !attacking && !inAir && !landing;
+        boolean moving = onFeet && !this.isSitting() && this.walkAnimation.speed() > 0.05F;
+        this.runningAnimation = moving && this.animationMoveSpeed > (this.runningAnimation ? RUN_STOP_SPEED : RUN_START_SPEED);
+
         setAnimation(this.biteAnimationState, attacking && this.getAttackType() == ATTACK_BITE);
         setAnimation(this.spinAnimationState, attacking && this.getAttackType() == ATTACK_SPIN);
         setAnimation(this.slashAnimationState, attacking && this.getAttackType() == ATTACK_SLASH);
-        setAnimation(this.jumpAnimationState, !attacking && airborne);
-        setAnimation(this.groundedAnimationState, !attacking && !airborne && this.isSitting());
-        setAnimation(this.walkAnimationState, !attacking && !airborne && !this.isSitting() && this.walkAnimation.speed() > 0.05F);
-        setAnimation(this.idleAnimationState, !attacking && !airborne && !this.isSitting() && this.walkAnimation.speed() <= 0.05F);
+        setAnimation(this.jumpStartAnimationState, takeOff);
+        setAnimation(this.jumpLoopAnimationState, inAir && !takeOff);
+        setAnimation(this.jumpLandAnimationState, landing);
+        setAnimation(this.groundedAnimationState, onFeet && this.isSitting());
+        setAnimation(this.runAnimationState, this.runningAnimation);
+        setAnimation(this.walkAnimationState, moving && !this.runningAnimation);
+        setAnimation(this.idleAnimationState, onFeet && !this.isSitting() && !moving);
+    }
+
+    /** Playback speed of the walk animation, following how fast the Warg actually moves. */
+    public float getWalkAnimationScale() {
+        return Mth.clamp(this.animationMoveSpeed / WALK_ANIMATION_SPEED, 0.7F, 1.4F);
+    }
+
+    /** Playback speed of the run animation, following how fast the Warg actually moves. */
+    public float getRunAnimationScale() {
+        return Mth.clamp(this.animationMoveSpeed / RUN_ANIMATION_SPEED, 0.8F, 1.3F);
     }
 
     private void setAnimation(AnimationState state, boolean running) {
@@ -237,9 +324,9 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         }
         this.applyLockedAttackFacing();
         this.getNavigation().stop();
-        if (this.getAttackType() == ATTACK_SPIN && ticks == 10) {
+        if (this.getAttackType() == ATTACK_SPIN && (ticks == SPIN_FIRST_HIT_TICKS_LEFT || ticks == SPIN_SECOND_HIT_TICKS_LEFT)) {
             this.performSpinAttack();
-        } else if (this.getAttackType() == ATTACK_SLASH && ticks == 7) {
+        } else if (this.getAttackType() == ATTACK_SLASH && ticks == SLASH_HIT_TICKS_LEFT) {
             this.performSlashAttack();
         }
         this.entityData.set(ATTACK_TICKS, ticks - 1);
@@ -254,7 +341,7 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
         this.queuedTarget = target;
         this.lockAttackFacing(target);
         int attack = this.horizontalDistanceToSqr(target) > 4.0D ? ATTACK_SLASH : ATTACK_SPIN;
-        this.setAttack(attack, attack == ATTACK_SPIN ? 19 : 13);
+        this.setAttack(attack, attack == ATTACK_SPIN ? SPIN_ATTACK_TICKS : SLASH_ATTACK_TICKS);
         this.getNavigation().stop();
     }
 
@@ -297,7 +384,8 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     private void performSpinAttack() {
         List<LivingEntity> targets = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3.25D), this::canHitWithSword);
         for (LivingEntity target : targets) {
-            this.hurtWithSword(target);
+            // two hits per spin, so each deals half: together they match one full sword hit
+            this.hurtWithSword(target, 0.5F);
         }
     }
 
@@ -317,13 +405,17 @@ public class Warg extends BlackWolf implements PlayerRideableJumping {
     }
 
     private void hurtWithSword(LivingEntity target) {
+        this.hurtWithSword(target, 1.0F);
+    }
+
+    private void hurtWithSword(LivingEntity target, float damageScale) {
         DamageSource source = this.getServantAttack();
         ItemStack sword = this.getMainHandItem();
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
         if (this.level() instanceof ServerLevel serverLevel) {
             damage = EnchantmentHelper.modifyDamage(serverLevel, sword, target, source, damage);
         }
-        if (target.hurt(source, damage)) {
+        if (target.hurt(source, damage * damageScale)) {
             this.curseTarget(target);
             if (this.level() instanceof ServerLevel serverLevel) {
                 EnchantmentHelper.doPostAttackEffectsWithItemSource(serverLevel, target, source, sword);

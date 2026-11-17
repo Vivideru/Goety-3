@@ -322,7 +322,7 @@ public class ItemHelper {
         }
     }
 
-    // Adapted from @Vazkii's tooltip handling: https://github.com/VazkiiMods/Botania/blob/1.20.x/Xplat/src/main/java/vazkii/botania/client/gui/TooltipHandler.java
+    //Stolen from @Vazkii: https://github.com/VazkiiMods/Botania/blob/1.20.x/Xplat/src/main/java/vazkii/botania/client/gui/TooltipHandler.java
     public static Component getShiftInfoTooltip() {
         Component shift = Component.literal("SHIFT").withStyle(ChatFormatting.AQUA);
         return Component.translatable("info.goety.item_info", shift).withStyle(ChatFormatting.GRAY);

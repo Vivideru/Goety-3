@@ -321,7 +321,14 @@ public class Wartling extends AbstractSpiderServant {
                 } else if (this.mob.getTrueOwner().distanceToSqr(vec3.x, vec3.y, vec3.z) < this.mob.getTrueOwner().distanceToSqr(this.mob)) {
                     return false;
                 } else {
+                    boolean unused = this.mob.getStoredEffect() == null || this.mob.getStoredEffect().getEffect().value().getCategory() == MobEffectCategory.BENEFICIAL || this.mob.getTarget() != null;
+                    if (unused) {
+                        this.pathNav.setMaxVisitedNodesMultiplier(0.0F);
+                    }
                     this.path = this.pathNav.createPath(vec3.x, vec3.y, vec3.z, 0);
+                    if (unused) {
+                        this.pathNav.resetMaxVisitedNodesMultiplier();
+                    }
                     return this.path != null
                             && this.mob.getStoredEffect() != null
                             && this.mob.getStoredEffect().getEffect().value().getCategory() != MobEffectCategory.BENEFICIAL

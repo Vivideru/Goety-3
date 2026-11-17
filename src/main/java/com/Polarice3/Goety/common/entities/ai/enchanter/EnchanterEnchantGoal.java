@@ -5,9 +5,11 @@ import com.Polarice3.Goety.client.particles.MagicSmokeParticleOption;
 import com.Polarice3.Goety.common.effects.GoetyEffects;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.utils.ColorUtil;
+import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 
 import java.util.ArrayList;
@@ -27,10 +29,15 @@ public class EnchanterEnchantGoal<T extends PathfinderMob & IEnchanter> extends 
 
     @Override
     public boolean canUse() {
-        if (this.enchanter.getTarget() != null) {
+        if (this.enchanter.hurtTime <= 0 && this.enchanter.getEnchantCool() <= 0) {
             if (this.enchanter.getEnchantList().size() < MAX_ENCHANTED) {
                 if (!this.getAllies().isEmpty()) {
-                    return this.enchanter.hurtTime <= 0 && this.enchanter.getEnchantCool() <= 0;
+                    if (this.enchanter.getTarget() != null) {
+                        return true;
+                    } else {
+                        List<LivingEntity> hurtAllies = this.getAllies().stream().filter(livingEntity -> (livingEntity.getLastHurtByMob() != null && !MobUtil.areAllies(livingEntity.getLastHurtByMob(), this.enchanter)) || (livingEntity instanceof Mob mob && mob.getTarget() != null && mob.getTarget().isAlive())).toList();
+                        return !hurtAllies.isEmpty();
+                    }
                 }
             }
         }

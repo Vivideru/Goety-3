@@ -1,6 +1,8 @@
 package com.Polarice3.Goety.init;
 
 
+import com.Polarice3.Goety.api.items.INamelessDyeable;
+import net.minecraft.util.FastColor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import com.Polarice3.Goety.Goety;
 import com.Polarice3.Goety.api.items.IPersist;
@@ -101,6 +103,10 @@ public class ClientInitEvents {
                     (stack, world, living, seed) -> TotemOfSouls.isActivated(stack) ? 1.0F : 0.0F);
             ItemProperties.register(ModItems.FLAME_CAPTURE.get(), ResourceLocation.parse("capture"),
                     (stack, world, living, seed) -> FlameCaptureItem.hasEntity(stack) ? 1.0F : 0.0F);
+            ItemProperties.register(ModItems.NAMELESS_CROWN.get(), ResourceLocation.parse("colored"),
+                    (stack, world, living, seed) -> stack.getItem() instanceof INamelessDyeable dyeable && dyeable.hasCustomColor(stack) ? 1.0F : 0.0F);
+            ItemProperties.register(ModItems.NAMELESS_CAPE.get(), ResourceLocation.parse("colored"),
+                    (stack, world, living, seed) -> stack.getItem() instanceof INamelessDyeable dyeable && dyeable.hasCustomColor(stack) ? 1.0F : 0.0F);
             ItemProperties.register(ModItems.SOUL_JAR.get(), ResourceLocation.parse("type"),
                     (stack, world, living, seed) -> SoulJar.isDrowned(stack) ? 1.0F : SoulJar.isWither(stack) ? 2.0F : SoulJar.isCairn(stack) ? 3.0F : SoulJar.isMossy(stack) ? 4.0F : 0.0F);
             ItemProperties.register(ModItems.TAGLOCK_KIT.get(), ResourceLocation.parse("tagged"),
@@ -125,7 +131,7 @@ public class ClientInitEvents {
                     });
             ItemProperties.register(ModItems.HUNTERS_BOW.get(), ResourceLocation.parse("pulling")
                     , (stack, world, living, seed) -> living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0F : 0.0F);
-            /*ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), ResourceLocation.parse("pull")
+            /*ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), new ResourceLocation("pull")
                     , (stack, world, living, seed) -> {
                 if (living == null) {
                     return 0.0F;
@@ -133,11 +139,11 @@ public class ClientInitEvents {
                     return RevolverCrossbowItem.isCharged(stack) ? 0.0F : (float)(stack.getUseDuration() - living.getUseItemRemainingTicks()) / (float)RevolverCrossbowItem.getChargeDuration(stack);
                 }
             });
-            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), ResourceLocation.parse("pulling")
+            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), new ResourceLocation("pulling")
                     , (stack, world, living, seed) -> living != null && living.isUsingItem() && living.getUseItem() == stack && !RevolverCrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), ResourceLocation.parse("charged")
+            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), new ResourceLocation("charged")
                     , (stack, world, living, seed) -> RevolverCrossbowItem.isCharged(stack) ? 1.0F : 0.0F);
-            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), ResourceLocation.parse("firework")
+            ItemProperties.register(ModItems.REVOLVER_CROSSBOW.get(), new ResourceLocation("firework")
                     , (stack, world, living, seed) -> RevolverCrossbowItem.isCharged(stack) && RevolverCrossbowItem.containsChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1.0F : 0.0F);*/
             ItemProperties.register(ModItems.CALL_FOCUS.get(), ResourceLocation.parse("active")
                     , (stack, world, living, seed) -> CallFocus.hasSummon(stack) ? 1.0F : 0.0F);
@@ -208,7 +214,7 @@ public class ClientInitEvents {
     }*/
 
     /**
-     * Adapted from @TeamTwilight's AddLayer code: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/client/TFClientSetup.java">...</a>
+     * Ripped from @TeamTwilight's AddLayer codes: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.x/src/main/java/twilightforest/client/TFClientSetup.java">...</a>
      */
     @Nullable
     private static Field fieldEntityRenderer;
@@ -221,7 +227,7 @@ public class ClientInitEvents {
                 fieldEntityRenderer = EntityRenderersEvent.AddLayers.class.getDeclaredField("renderers");
                 fieldEntityRenderer.setAccessible(true);
             } catch (NoSuchFieldException e) {
-                Goety.LOGGER.error("Unable to access entity renderer map for client layers", e);
+                e.printStackTrace();
             }
         }
         if (fieldEntityRenderer != null) {
@@ -235,7 +241,7 @@ public class ClientInitEvents {
                 ((Map<EntityType<?>, EntityRenderer<?>>) fieldEntityRenderer.get(event)).values().stream().
                         filter(LivingEntityRenderer.class::isInstance).map(LivingEntityRenderer.class::cast).forEach(ClientInitEvents::addLivingLayer);
             } catch (IllegalAccessException e) {
-                Goety.LOGGER.error("Unable to attach client entity render layers", e);
+                e.printStackTrace();
             }
         }
     }
@@ -271,6 +277,7 @@ public class ClientInitEvents {
         event.registerLayerDefinition(ModBlockLayer.REDSTONE_GOLEM_SKULL, RedstoneGolemSkullModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.GRAVE_GOLEM_SKULL, GraveGolemSkullModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.REDSTONE_MONSTROSITY_HEAD, RedstoneMonstrosityHeadModel::createBodyLayer);
+        event.registerLayerDefinition(ModBlockLayer.GRAVE_MONSTROSITY_HEAD, GraveMonstrosityHeadModel::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.LOFTY_CHEST, LoftyChestRenderer::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.BLACK_CRYSTAL, BlackCrystalRenderer::createBodyLayer);
         event.registerLayerDefinition(ModBlockLayer.OMINOUS_STATUE, OminousStatueRenderer::createBodyLayer);
@@ -358,6 +365,7 @@ public class ClientInitEvents {
         event.registerLayerDefinition(ModModelLayer.GRAVE_GOLEM, GraveGolemModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.HAUNT, HauntModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.REDSTONE_MONSTROSITY, RedstoneMonstrosityModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayer.GRAVE_MONSTROSITY, GraveMonstrosityModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.REDSTONE_CUBE, RedstoneCubeModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.WATCHLING, WatchlingModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayer.BLASTLING, BlastlingModel::createBodyLayer);
@@ -517,6 +525,7 @@ public class ClientInitEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.REDSTONE_GOLEM_SKULL.get(), RedstoneGolemSkullBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.GRAVE_GOLEM_SKULL.get(), GraveGolemSkullBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.REDSTONE_MONSTROSITY_HEAD.get(), RedstoneMonstrosityHeadBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.GRAVE_MONSTROSITY_HEAD.get(), GraveMonstrosityHeadBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.MOD_CHEST.get(), ModChestRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.MOD_TRAPPED_CHEST.get(), ModChestRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.CRYPT_CHEST.get(), CryptChestRenderer::new);
@@ -582,6 +591,7 @@ public class ClientInitEvents {
         event.registerEntityRenderer(ModEntityType.SCATTER_MINE.get(), ScatterMineRenderer::new);
         event.registerEntityRenderer(ModEntityType.SCATTER_BOMB.get(), ScatterBombRenderer::new);
         event.registerEntityRenderer(ModEntityType.SOUL_BOMB.get(), SoulBombRenderer::new);
+        event.registerEntityRenderer(ModEntityType.SOUL_STAR.get(), SoulStarRenderer::new);
         event.registerEntityRenderer(ModEntityType.SNAP_FUNGUS.get(), SnapFungusRenderer::new);
         event.registerEntityRenderer(ModEntityType.BLAST_FUNGUS.get(), BlastFungusRenderer::new);
         event.registerEntityRenderer(ModEntityType.BERSERK_FUNGUS.get(), BerserkFungusRenderer::new);
@@ -777,6 +787,10 @@ public class ClientInitEvents {
         event.registerEntityRenderer(ModEntityType.HAUNT.get(), HauntRenderer::new);
         event.registerEntityRenderer(ModEntityType.REDSTONE_MONSTROSITY.get(), RedstoneMonstrosityRenderer::new);
         event.registerEntityRenderer(ModEntityType.REDSTONE_CUBE.get(), RedstoneCubeRenderer::new);
+        event.registerEntityRenderer(ModEntityType.GRAVE_MONSTROSITY.get(), GraveMonstrosityRenderer::new);
+        event.registerEntityRenderer(ModEntityType.GRAVE_CUBE.get(), GraveCubeRenderer::new);
+        event.registerEntityRenderer(ModEntityType.NECROTIC_POOL.get(), TrapRenderer::new);
+        event.registerEntityRenderer(ModEntityType.RIPPLE.get(), RippleRenderer::new);
         event.registerEntityRenderer(ModEntityType.WATCHLING_SERVANT.get(), WatchlingRenderer::new);
         event.registerEntityRenderer(ModEntityType.BLASTLING_SERVANT.get(), BlastlingRenderer::new);
         event.registerEntityRenderer(ModEntityType.SNARELING_SERVANT.get(), SnarelingRenderer::new);
@@ -859,6 +873,8 @@ public class ClientInitEvents {
         event.register((itemStack, i) -> i > 0 ? -1 : ModPotionUtil.getColor(itemStack),
                 ModItems.BREW.get(), ModItems.SPLASH_BREW.get(), ModItems.LINGERING_BREW.get(), ModItems.GAS_BREW.get());
         event.register((itemStack, i) -> 3694022, ModBlocks.HAUNTED_JUG.get());
+        event.register((itemStack, i) -> i > 0 ? -1 : itemStack.getItem() instanceof INamelessDyeable dyeable && dyeable.hasCustomColor(itemStack) ? FastColor.ARGB32.opaque(dyeable.getColor(itemStack)) : -1,
+                ModItems.NAMELESS_CROWN.get(), ModItems.NAMELESS_CAPE.get());
         event.register((itemStack, i) -> {
             BlockState blockstate = ((BlockItem)itemStack.getItem()).getBlock().defaultBlockState();
             return event.getBlockColors().getColor(blockstate, null, null, i);

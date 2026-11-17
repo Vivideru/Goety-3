@@ -1,7 +1,6 @@
 package com.Vivideru.Goety.common.world.structures;
 
 import com.Polarice3.Goety.Goety;
-import com.mojang.logging.LogUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -36,7 +35,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.neoforged.neoforge.common.Tags;
-import org.slf4j.Logger;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -46,7 +44,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public final class StructureTerrain {
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final int BASEMENT_DEPTH = 3;
     private static final int UPPER_FLOOR = 6;
     private static final int SEARCH_CHUNKS = 8;
@@ -408,7 +405,6 @@ public final class StructureTerrain {
         }
         if (raised + cut > 0) {
             refreshHeightmaps(chunk);
-            LOGGER.debug("Structure ground work {}: {} columns raised, {} lowered for {} structure(s)", chunkPos, raised, cut, sites.size());
         }
     }
 
@@ -654,7 +650,6 @@ public final class StructureTerrain {
                             continue;
                         }
                     }
-                    LOGGER.debug("Structure {} in chunk {} gives way to {} expected around chunk [{}, {}]", candidateKey.map(k -> k.location().toString()).orElse("?"), chunkPos, profile.key().location(), cx, cz);
                     return true;
                 }
             }

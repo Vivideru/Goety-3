@@ -163,8 +163,9 @@ public class WebSpiderServant extends SpiderServant implements RangedAttackMob {
             AttributeInstance modifiableattributeinstance = this.getAttribute(Attributes.MOVEMENT_SPEED);
             if (this.stopMoving) {
                 if (modifiableattributeinstance != null) {
-                    modifiableattributeinstance.removeModifier(SHOOT_SPEED_MODIFIER.id());
-                    modifiableattributeinstance.addTransientModifier(SHOOT_SPEED_MODIFIER);
+                    if (!modifiableattributeinstance.hasModifier(SHOOT_SPEED_MODIFIER.id())) {
+                        modifiableattributeinstance.addTransientModifier(SHOOT_SPEED_MODIFIER);
+                    }
                 }
             } else {
                 if (modifiableattributeinstance != null) {

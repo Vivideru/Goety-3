@@ -51,6 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         plushie(ModBlocks.PLUSHIE_13.get());
         plushie(ModBlocks.PLUSHIE_14.get());
         plushie(ModBlocks.PLUSHIE_15.get());
+        plushie(ModBlocks.PLUSHIE_16.get());
 
         sculpturedStatue(ModBlocks.SCULPTURED_STATUE.get());
         sculpturedStatue(ModBlocks.STATUE_1.get());
@@ -63,6 +64,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         sculpturedStatue(ModBlocks.STATUE_8.get());
 
         simpleBlockWithItem(ModBlocks.DIAMOND_MOLD_BLOCK.get());
+
+        simpleBlockWithItem(ModBlocks.DARK_MOLD_BLOCK.get());
+
+        simpleBlockWithItem(ModBlocks.MONSTROUS_CORE.get());
 
         simpleBlockWithItem(ModBlocks.COBBLED_DIRT.get());
         simpleBlockWithItem(ModBlocks.SNOWY_DIRT.get());

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    " s ",
+    "sds",
+    " s "
+  ],
+  "key": {
+    "s": {
+      "tag": "goety:crypt_stone"
+    },
+    "d": {
+      "item": "goety:dark_metal_block"
+    }
+  },
+  "result": {
+    "id": "goety:dark_mold_block",
+    "count": 4
+  }
+}

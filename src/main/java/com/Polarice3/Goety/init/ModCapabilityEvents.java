@@ -39,6 +39,7 @@ public class ModCapabilityEvents {
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.PEDESTAL.get(), (blockEntity, context) -> blockEntity.itemStackHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.DARK_ALTAR.get(), (blockEntity, context) -> blockEntity.itemStackHandler);
         event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.VOID_SHRINE.get(), (blockEntity, context) -> blockEntity.itemStackHandler);
+        event.registerBlockEntity(Capabilities.ItemHandler.BLOCK, ModBlockEntities.NECRO_BRAZIER.get(), (blockEntity, context) -> blockEntity.itemHandler);
         event.registerBlockEntity(Capabilities.FluidHandler.BLOCK, ModBlockEntities.HAUNTED_JUG.get(), (blockEntity, context) -> blockEntity.getFluidTank());
     }
 }

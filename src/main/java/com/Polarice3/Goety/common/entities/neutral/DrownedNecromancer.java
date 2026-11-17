@@ -25,6 +25,7 @@ import com.Polarice3.Goety.config.SpellConfig;
 import com.Polarice3.Goety.init.ModSounds;
 import com.Polarice3.Goety.init.ModTags;
 import com.Polarice3.Goety.utils.*;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -621,6 +622,7 @@ public class DrownedNecromancer extends AbstractNecromancer {
                         blockPos = BlockFinder.SummonWaterRadius(DrownedNecromancer.this, serverLevel);
                     }
                     summonedentity.setTrueOwner(MobUtil.getSummonOwner(DrownedNecromancer.this));
+                    SummonerTracker.record(summonedentity, DrownedNecromancer.this);
                     summonedentity.moveTo(blockPos, 0.0F, 0.0F);
                     if (!DrownedNecromancer.this.isUnderWater()){
                         MobUtil.moveDownToGround(summonedentity);
@@ -873,7 +875,7 @@ public class DrownedNecromancer extends AbstractNecromancer {
             } else if (!DrownedNecromancer.this.spawnUndeadIdle()){
                 return false;
             } else {
-                return DrownedNecromancer.this.getSpellCooldown() <= 0 && DrownedNecromancer.this.idleSpellCool <= 0 && DrownedNecromancer.this.remainingOwnedSummonSlots(10) > 0;
+                return DrownedNecromancer.this.getSpellCooldown() <= 0 && DrownedNecromancer.this.idleSpellCool <= 0 && DrownedNecromancer.this.remainingIdleSummonSlots(10) > 0;
             }
         }
 
@@ -907,7 +909,7 @@ public class DrownedNecromancer extends AbstractNecromancer {
             if (this.spellTime == 0) {
                 DrownedNecromancer.this.playSound(ModSounds.DROWNED_NECROMANCER_AMBIENT.get(), 2.0F, DrownedNecromancer.this.getVoicePitch());
                 DrownedNecromancer.this.setNecromancerSpellType(NecromancerSpellType.NONE);
-                int i = Math.min(DrownedNecromancer.this.remainingOwnedSummonSlots(10), 2 + DrownedNecromancer.this.level().random.nextInt(4));
+                int i = Math.min(DrownedNecromancer.this.remainingIdleSummonSlots(10), 2 + DrownedNecromancer.this.level().random.nextInt(4));
                 for (int i1 = 0; i1 < i; ++i1) {
                     if (DrownedNecromancer.this.level() instanceof ServerLevel serverLevel) {
                         Summoned summonedentity = DrownedNecromancer.this.getSummon();

@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import java.util.List;
 
 /**
- * Adapted from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/world/components/feature/config/TFTreeFeatureConfig.java">...</a>
+ * Stolen from @TeamTwilight: <a href="https://github.com/TeamTwilight/twilightforest/blob/1.20.1/src/main/java/twilightforest/world/components/feature/config/TFTreeFeatureConfig.java">...</a>
  */
 public class ModTreeFeatureConfig implements FeatureConfiguration {
 	public static final Codec<ModTreeFeatureConfig> CODEC = RecordCodecBuilder.create(instance -> instance.group(

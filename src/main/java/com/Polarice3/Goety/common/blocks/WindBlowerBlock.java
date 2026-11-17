@@ -58,7 +58,7 @@ public class WindBlowerBlock extends DirectionalBlock implements EntityBlock {
         if (!p_55633_.is(p_55630_.getBlock()) && !p_55631_.isClientSide) {
             int signal = p_55631_.getBestNeighborSignal(p_55632_);
             if (signal != p_55630_.getValue(POWER)) {
-                p_55631_.setBlock(p_55632_, p_55630_.setValue(POWER, signal), 4);
+                p_55631_.setBlock(p_55632_, p_55630_.setValue(POWER, signal), 6);
             }
         }
     }
@@ -67,7 +67,7 @@ public class WindBlowerBlock extends DirectionalBlock implements EntityBlock {
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         int signal = world.getBestNeighborSignal(pos);
         if (signal != state.getValue(POWER)) {
-            world.setBlock(pos, state.setValue(POWER, signal), 4);
+            world.setBlock(pos, state.setValue(POWER, signal), 6);
         }
     }
 

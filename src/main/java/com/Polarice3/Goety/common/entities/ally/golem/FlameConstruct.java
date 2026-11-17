@@ -48,6 +48,8 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
     private static final EntityDataAccessor<Integer> ANIM_STATE = SynchedEntityData.defineId(FlameConstruct.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> HUNKERED = SynchedEntityData.defineId(FlameConstruct.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> BREATHING = SynchedEntityData.defineId(FlameConstruct.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Float> LOOK_ANGLE = SynchedEntityData.defineId(FlameConstruct.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Boolean> HAS_LOOK = SynchedEntityData.defineId(FlameConstruct.class, EntityDataSerializers.BOOLEAN);
     public static String IDLE = "idle";
     public static String BREATH = "breath";
     public static String BLAST = "blast";
@@ -55,6 +57,7 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
     public static String BORED = "bored";
     public static String PEEK = "peek";
     public static String STAND_UP = "stand_up";
+    public static final float BREATH_RANGE = 5.0F;
     public float getGlow;
     public AnimationState idleAnimationState = new AnimationState();
     public AnimationState breathAnimationState = new AnimationState();
@@ -111,8 +114,10 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
 
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
+        builder.define(LOOK_ANGLE, 0.0F);
         builder.define(HUNKERED, false);
         builder.define(BREATHING, false);
+        builder.define(HAS_LOOK, false);
         builder.define(ANIM_STATE, 0);
     }
 
@@ -122,12 +127,18 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
         if (compound.contains("Hunkered")) {
             this.setHunkered(compound.getBoolean("Hunkered"));
         }
+        if (compound.contains("CustomLookAngle")) {
+            this.setCustomLook(compound.getFloat("CustomLookAngle"));
+        }
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("Hunkered", this.isHunkered());
+        if (this.hasCustomLook()) {
+            compound.putFloat("CustomLookAngle", this.getCustomLook());
+        }
     }
 
     public void setAnimationState(int id) {
@@ -273,6 +284,19 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
         }
     }
 
+    public void setCustomLook(float angle) {
+        this.entityData.set(LOOK_ANGLE, angle);
+        this.entityData.set(HAS_LOOK, true);
+    }
+
+    public float getCustomLook() {
+        return this.entityData.get(LOOK_ANGLE);
+    }
+
+    public boolean hasCustomLook() {
+        return this.entityData.get(HAS_LOOK);
+    }
+
     @Override
     public boolean altStaying() {
         return this.isHunkered();
@@ -370,6 +394,7 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
                         this.setYRot(f);
                         this.setYBodyRot(f);
                         this.setYHeadRot(f);
+                        this.setCustomLook(f);
                     }
                     this.playSound(SoundEvents.IRON_GOLEM_STEP, 1.0F, 0.5F);
                     return InteractionResult.SUCCESS;
@@ -456,8 +481,8 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
                 }
                 Vec3 source = this.construct.position().add(0, this.construct.getBbHeight() * 0.5F, 0);
                 Vec3 direction = this.construct.calculateViewVector(0, this.construct.getViewYRot(1.0F));
-                FlamethrowerVFX.flamethrower(this.construct, direction, duration - 27);
-                for (Entity entity : MobUtil.getTargets(this.attacker.level(), this.attacker, source, direction, 5.0F, 1.5D)) {
+                FlamethrowerVFX.flamethrower(this.construct, direction, duration - 27, BREATH_RANGE);
+                for (Entity entity : MobUtil.getTargets(this.attacker.level(), this.attacker, source, direction, BREATH_RANGE, 1.5D)) {
                     if (entity != null) {
                         this.attacker.doBreathing(entity);
                     }
@@ -632,10 +657,16 @@ public class FlameConstruct extends AbstractGolemServant implements IBreathing, 
         public void tick() {
             super.tick();
             ++this.toHunker;
-            float f = Mth.floor(this.construct.getYRot() / 90.0D + 0.5D) & 3;
-            this.construct.setYRot(f);
-            this.construct.setYBodyRot(f);
-            this.construct.setYHeadRot(f);
+            if (this.construct.hasCustomLook()) {
+                this.construct.setYRot(this.construct.getCustomLook());
+                this.construct.setYBodyRot(this.construct.getCustomLook());
+                this.construct.setYHeadRot(this.construct.getCustomLook());
+            } else {
+                float f = Mth.floor(this.construct.getYRot() / 90.0D + 0.5D) & 3;
+                this.construct.setYRot(f);
+                this.construct.setYBodyRot(f);
+                this.construct.setYHeadRot(f);
+            }
             if (this.toHunker == 5) {
                 this.construct.playSound(ModSounds.FLAME_CONSTRUCT_HUNKER_DOWN.get());
             }

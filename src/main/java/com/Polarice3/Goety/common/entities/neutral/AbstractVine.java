@@ -39,6 +39,7 @@ import org.joml.Vector3f;
 
 public abstract class AbstractVine extends AbstractMonolith implements IMobTyped{
     public static final EntityDataAccessor<Boolean> PERPETUAL = SynchedEntityData.defineId(AbstractVine.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> BURSTED = SynchedEntityData.defineId(AbstractVine.class, EntityDataSerializers.BOOLEAN);
     public int warmupDelayTicks;
     public int activeTick = 0;
     public int proximityTick = 0;
@@ -51,6 +52,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
         super.defineSynchedData(builder);
         builder.define(PERPETUAL, false);
+        builder.define(BURSTED, false);
     }
 
     public void addAdditionalSaveData(CompoundTag p_31485_) {
@@ -79,6 +81,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
         if (p_31474_.contains("Perpetual")){
             this.setPerpetual(p_31474_.getBoolean("Perpetual"));
         }
+        this.entityData.set(BURSTED, this.activeTick > 0);
     }
 
     @Override
@@ -94,6 +97,10 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
         this.entityData.set(PERPETUAL, perpetual);
     }
 
+    public boolean isBursted() {
+        return this.level().isClientSide ? this.entityData.get(BURSTED) : this.activeTick > 0;
+    }
+
     public void setWarmup(int warmupDelayTicks) {
         this.warmupDelayTicks = warmupDelayTicks;
     }
@@ -104,7 +111,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
 
     @Override
     public boolean isInvisible() {
-        return super.isInvisible() || this.activeTick < 1;
+        return super.isInvisible() || !this.isBursted();
     }
 
     public boolean canHaveEffects(){
@@ -144,7 +151,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
     }
 
     public void playAmbientSound() {
-        if (this.activeTick > 0){
+        if (this.isBursted()){
             super.playAmbientSound();
         }
     }
@@ -192,7 +199,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
 
     @Override
     public boolean canBeCollidedWith() {
-        return this.activeTick > 0;
+        return this.isBursted();
     }
 
     public boolean passableEntities(Entity collider){
@@ -202,7 +209,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
     }
 
     public void aiStep() {
-        if (this.activeTick > 0){
+        if (this.isBursted()){
             super.aiStep();
         }
         if (!this.level().isClientSide) {
@@ -223,7 +230,10 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
                         this.proximityTick = 20;
                     }
                     ++this.activeTick;
-                    this.level().broadcastEntityEvent(this, (byte) 6);
+                    this.entityData.set(BURSTED, true);
+                    if (this.activeTick == 1) {
+                        this.level().broadcastEntityEvent(this, (byte) 6);
+                    }
                     this.burst();
                 }
             }
@@ -312,6 +322,7 @@ public abstract class AbstractVine extends AbstractMonolith implements IMobTyped
             this.level().broadcastEntityEvent(this, (byte) 5);
         } else {
             this.activeTick = 0;
+            this.entityData.set(BURSTED, false);
             this.level().broadcastEntityEvent(this, (byte) 7);
             this.setActivate(false);
             this.level().broadcastEntityEvent(this, (byte) 101);

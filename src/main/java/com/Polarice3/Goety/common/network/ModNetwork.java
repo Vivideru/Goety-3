@@ -8,6 +8,7 @@ import com.Polarice3.Goety.common.capabilities.witchbarter.WBUpdatePacket;
 import com.Polarice3.Goety.common.network.client.*;
 import com.Polarice3.Goety.common.network.client.brew.CBrewBagKeyPacket;
 import com.Polarice3.Goety.common.network.client.brew.CThrowBrewKeyPacket;
+import com.Polarice3.Goety.common.network.client.CSelectTesseractServantPacket;
 import com.Polarice3.Goety.common.network.client.focus.CAddFocusToBagPacket;
 import com.Polarice3.Goety.common.network.client.focus.CAddFocusToInventoryPacket;
 import com.Polarice3.Goety.common.network.client.focus.CSwapFocusPacket;
@@ -94,6 +95,7 @@ public class ModNetwork {
         INSTANCE.registerMessage(nextID(), SFocusBagSyncPacket.class, SFocusBagSyncPacket::encode, SFocusBagSyncPacket::decode, SFocusBagSyncPacket::consume, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         INSTANCE.registerMessage(nextID(), CBrewBagKeyPacket.class, CBrewBagKeyPacket::encode, CBrewBagKeyPacket::decode, CBrewBagKeyPacket::consume);
         INSTANCE.registerMessage(nextID(), CThrowBrewKeyPacket.class, CThrowBrewKeyPacket::encode, CThrowBrewKeyPacket::decode, CThrowBrewKeyPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        INSTANCE.registerMessage(nextID(), CSelectTesseractServantPacket.class, CSelectTesseractServantPacket::encode, CSelectTesseractServantPacket::decode, CSelectTesseractServantPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CMultiJumpPacket.class, CMultiJumpPacket::encode, CMultiJumpPacket::decode, CMultiJumpPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CSetDeltaMovement.class, CSetDeltaMovement::encode, CSetDeltaMovement::decode, CSetDeltaMovement::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         INSTANCE.registerMessage(nextID(), CTramplerPacket.class, CTramplerPacket::encode, CTramplerPacket::decode, CTramplerPacket::consume, Optional.of(NetworkDirection.PLAY_TO_SERVER));

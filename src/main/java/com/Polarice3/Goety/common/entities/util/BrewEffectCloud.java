@@ -186,6 +186,7 @@ public class BrewEffectCloud extends Entity {
                     d5 = (double)((float)(k >> 16 & 255) / 255.0F);
                     d6 = (double)((float)(k >> 8 & 255) / 255.0F);
                     d7 = (double)((float)(k & 255) / 255.0F);
+                    particleoptions = ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, 0xFF000000 | k);
                 }
 
                 this.level().addAlwaysVisibleParticle(particleoptions, d0, d2, d4, d5, d6, d7);

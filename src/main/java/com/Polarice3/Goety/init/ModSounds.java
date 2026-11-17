@@ -436,6 +436,29 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> REDSTONE_CUBE_HURT = create("redstone_cube_hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> REDSTONE_CUBE_WALK = create("redstone_cube_walk");
     public static final DeferredHolder<SoundEvent, SoundEvent> REDSTONE_CUBE_ATTACK = create("redstone_cube_attack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_AMBIENT = create("grave_monstrosity_ambient");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_HURT = create("grave_monstrosity_hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_AWAKEN = create("grave_monstrosity_awaken");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_SUMMON_START = create("grave_monstrosity_summon_start");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_SUMMON = create("grave_monstrosity_summon");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_SUMMON_END = create("grave_monstrosity_summon_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_ATTACK_COMBO = create("grave_monstrosity_attack_combo");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_ATTACK_COMBO_END = create("grave_monstrosity_attack_combo_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_ATTACK_SWIPE = create("grave_monstrosity_attack_swipe");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_CHARGE_START = create("grave_monstrosity_charge_start");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_CHARGE_END = create("grave_monstrosity_charge_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_PRE_BELCH = create("grave_monstrosity_pre_belch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_BELCH = create("grave_monstrosity_belch");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_CALL = create("grave_monstrosity_call");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_STAGGER_START = create("grave_monstrosity_stagger_start");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_STAGGER_END = create("grave_monstrosity_stagger_end");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_STEP = create("grave_monstrosity_step");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_MONSTROSITY_DEATH = create("grave_monstrosity_death");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_CUBE_BURST = create("grave_cube_burst");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_CUBE_HURT = create("grave_cube_hurt");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_CUBE_ATTACK = create("grave_cube_attack");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_CUBE_WALK = create("grave_cube_walk");
+    public static final DeferredHolder<SoundEvent, SoundEvent> GRAVE_CUBE_DEATH = create("grave_cube_death");
 
     public static final DeferredHolder<SoundEvent, SoundEvent> WATCHLING_AMBIENT = create("watchling_ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> WATCHLING_HURT = create("watchling_hurt");
@@ -566,6 +589,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_AMBIENT = create("lich_ambient");
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_HURT = create("lich_hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_LAUGH = create("lich_laugh");
+    public static final DeferredHolder<SoundEvent, SoundEvent> LICH_FLY = create("lich_fly");
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_TELEPORT_IN = create("lich_teleport_in");
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_TELEPORT_OUT = create("lich_teleport_out");
     public static final DeferredHolder<SoundEvent, SoundEvent> LICH_DEATH = create("lich_death");
@@ -615,6 +639,7 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> VANGUARD_SPELL = create("vanguard_spell");
     public static final DeferredHolder<SoundEvent, SoundEvent> VANGUARD_SUMMON = create("vanguard_summon");
     public static final DeferredHolder<SoundEvent, SoundEvent> BOSS_SUMMON = create("boss_summon");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MONSTROSITY_SPAWN = create("monstrosity_spawn");
     public static final DeferredHolder<SoundEvent, SoundEvent> SWING = create("swing");
     public static final DeferredHolder<SoundEvent, SoundEvent> HEAVY_WOOSH = create("heavy_woosh");
     public static final DeferredHolder<SoundEvent, SoundEvent> PROJECTILE_SPELL = create("projectile_spell");
@@ -633,6 +658,8 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> HELL_BLAST_SHOOT = create("hell_blast_shoot");
     public static final DeferredHolder<SoundEvent, SoundEvent> HELL_BLAST_IMPACT = create("hell_blast_impact");
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_EXPLODE = create("soul_explode");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_ORB_EXPLODE = create("soul_orb_explode");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_BOMB_EXPLODE = create("soul_bomb_explode");
     public static final DeferredHolder<SoundEvent, SoundEvent> RADIANCE_WAVE = create("radiance_wave");
     public static final DeferredHolder<SoundEvent, SoundEvent> LEECHING = create("leeching");
     public static final DeferredHolder<SoundEvent, SoundEvent> HEAL_SPELL = create("heal_spell");
@@ -665,6 +692,10 @@ public class ModSounds {
     public static final DeferredHolder<SoundEvent, SoundEvent> VOID_TOUCHED_DEACTIVATE = create("void_touched_deactivate");
     public static final DeferredHolder<SoundEvent, SoundEvent> VOID_TOUCHED_LOOP = create("void_touched_loop");
     public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_EAT = create("soul_eat");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_LEECH_START = create("soul_leech_start");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_LEECH_LOOP_1 = create("soul_leech_loop_1");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_LEECH_LOOP_2 = create("soul_leech_loop_2");
+    public static final DeferredHolder<SoundEvent, SoundEvent> SOUL_LEECH_END = create("soul_leech_end");
     public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_IDLE = create("flame_construct_idle");
     public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_HURT = create("flame_construct_hurt");
     public static final DeferredHolder<SoundEvent, SoundEvent> FLAME_CONSTRUCT_PRE_BREATH = create("flame_construct_pre_breath");

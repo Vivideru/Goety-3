@@ -305,7 +305,7 @@ public class AbstractBlastling extends AbstractEnderling implements RangedAttack
     public void performRangedAttack(LivingEntity p_33317_, float p_33318_) {
     }
 
-    // Adapted from @Infamous-Misadventures: https://github.com/Infamous-Misadventures/Dungeons-Mobs/blob/1.19/src/main/java/com/infamous/dungeons_mobs/entities/ender/BlastlingEntity.java#L41
+    //Based/Stolen from @Infamous-Misadventures codes: https://github.com/Infamous-Misadventures/Dungeons-Mobs/blob/1.19/src/main/java/com/infamous/dungeons_mobs/entities/ender/BlastlingEntity.java#L41
     private void shoot(boolean leftArm, LivingEntity target) {
         this.shoot(leftArm, target.getX(), target.getY(0.3333333333333333D), target.getZ());
         this.playSound(ModSounds.BLASTLING_SHOOT.get(), 1.0F, this.getVoicePitch());

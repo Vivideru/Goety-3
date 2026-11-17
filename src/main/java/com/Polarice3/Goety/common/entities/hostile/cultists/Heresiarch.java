@@ -120,7 +120,7 @@ public class Heresiarch extends Cultist {
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(1, new WitchBarterGoal(this){
+        this.goalSelector.addGoal(0, new WitchBarterGoal(this){
             @Override
             public void start() {
                 super.start();
@@ -130,18 +130,21 @@ public class Heresiarch extends Cultist {
             @Override
             public void stop() {
                 super.stop();
+                if (Heresiarch.this.getTarget() == null) {
+                    Heresiarch.this.fightTick = 0;
+                }
                 Heresiarch.this.setAnimationState(IDLE);
             }
         });
-        this.goalSelector.addGoal(0, new ChantGoal(this));
-        this.goalSelector.addGoal(0, new MeleeGoal(this));
-        this.goalSelector.addGoal(1, new StareGoal(this));
-        this.goalSelector.addGoal(2, new HysteriaGoal(this));
-        this.goalSelector.addGoal(2, new SummonGoal(this));
-        this.goalSelector.addGoal(2, new BlastGoal(this));
-        this.goalSelector.addGoal(2, new ShootGoal(this));
-        this.goalSelector.addGoal(2, new BarrageGoal(this));
-        this.targetSelector.addGoal(3, new NearestAttackableWitchTargetGoal<>(this, Player.class, 10, true, false, null));
+        this.goalSelector.addGoal(1, new ChantGoal(this));
+        this.goalSelector.addGoal(1, new MeleeGoal(this));
+        this.goalSelector.addGoal(2, new StareGoal(this));
+        this.goalSelector.addGoal(3, new HysteriaGoal(this));
+        this.goalSelector.addGoal(3, new SummonGoal(this));
+        this.goalSelector.addGoal(3, new BlastGoal(this));
+        this.goalSelector.addGoal(3, new ShootGoal(this));
+        this.goalSelector.addGoal(3, new BarrageGoal(this));
+        this.targetSelector.addGoal(4, new NearestAttackableWitchTargetGoal<>(this, Player.class, 10, true, false, null));
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -429,7 +432,7 @@ public class Heresiarch extends Cultist {
             this.bossInfo.update();
         }
         this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
-        this.bossInfo.setVisible(!this.isCurrentAnimation(CHANT));
+        this.bossInfo.setVisible(!this.isCurrentAnimation(CHANT) && !this.isCurrentAnimation(INSPECT));
         MiscCapHelper.updateMobTarget(this);
         if (this.level().isClientSide) {
             this.prevRuneScale = this.runeScale;

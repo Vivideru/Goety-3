@@ -75,6 +75,8 @@
     "goety:stone_sarcophagus",
     "goety:deepslate_sarcophagus",
     "goety:sandstone_sarcophagus",
-    "#goety:end_limestone"
+    "#goety:end_limestone",
+    "goety:dark_mold_block",
+    "goety:monstrous_core"
   ]
 }

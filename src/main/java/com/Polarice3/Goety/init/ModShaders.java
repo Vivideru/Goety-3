@@ -18,6 +18,9 @@ public final class ModShaders {
     private static ShaderInstance holeShader;
     private static ShaderInstance enchantBeamShader;
     private static ShaderInstance enchantSwirlShader;
+    private static ShaderInstance chargeAuraShader;
+    private static ShaderInstance soulParticleShader;
+    private static ShaderInstance ditherSmokeShader;
 
     @SubscribeEvent
     static void registerShaders(RegisterShadersEvent event) throws IOException {
@@ -39,6 +42,24 @@ public final class ModShaders {
                         DefaultVertexFormat.NEW_ENTITY),
                 shader -> enchantSwirlShader = shader
         );
+        event.registerShader(
+                new ShaderInstance(event.getResourceProvider(),
+                        ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "charge_aura"),
+                        DefaultVertexFormat.POSITION_COLOR_TEX_LIGHTMAP),
+                shader -> chargeAuraShader = shader
+        );
+        event.registerShader(
+                new ShaderInstance(event.getResourceProvider(),
+                        ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "soul_particle"),
+                        DefaultVertexFormat.PARTICLE),
+                shader -> soulParticleShader = shader
+        );
+        event.registerShader(
+                new ShaderInstance(event.getResourceProvider(),
+                        ResourceLocation.fromNamespaceAndPath(Goety.MOD_ID, "dither_smoke"),
+                        DefaultVertexFormat.PARTICLE),
+                shader -> ditherSmokeShader = shader
+        );
     }
 
     public static ShaderInstance getHoleShader() {
@@ -51,6 +72,18 @@ public final class ModShaders {
 
     public static ShaderInstance getEnchantSwirlShader() {
         return enchantSwirlShader;
+    }
+
+    public static ShaderInstance getChargeAuraShader() {
+        return chargeAuraShader;
+    }
+
+    public static ShaderInstance getSoulParticleShader() {
+        return soulParticleShader;
+    }
+
+    public static ShaderInstance getDitherSmokeShader() {
+        return ditherSmokeShader;
     }
 
 }

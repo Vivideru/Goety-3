@@ -5,6 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.SimpleCraftingRecipeSerializer;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -62,6 +63,9 @@ public class ModRecipeSerializer {
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ModShapelessRecipe>> MODDED_SHAPELESS = RECIPE_SERIALIZERS.register("crafting_shapeless",
             ModShapelessRecipe.Serializer::new);
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ScrollCloningRecipe>> SCROLL_CLONING = RECIPE_SERIALIZERS.register("scroll_cloning",
+            () -> new SimpleCraftingRecipeSerializer<>(ScrollCloningRecipe::new));
 
     static <T extends Recipe<?>> DeferredHolder<RecipeType<?>, RecipeType<T>> register(final String id) {
         return RECIPE_TYPES.register(id, () -> new RecipeType<T>() {

@@ -548,9 +548,6 @@ public class Vizier extends SpellcasterIllager implements PowerableMob, ICustomA
         if (this.moddedInvul > 0){
             return false;
         }
-        if (!pSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
-            pAmount = Math.min(pAmount, AttributesConfig.get(AttributesConfig.VizierDamageCap).floatValue());
-        }
         if (livingEntity != null){
             if (pSource.getEntity() instanceof Irk irk && irk.getTarget() != this){
                 return false;
@@ -588,10 +585,6 @@ public class Vizier extends SpellcasterIllager implements PowerableMob, ICustomA
     }
 
     protected void actuallyHurt(DamageSource source, float amount) {
-        float initialAmount = amount;
-        if (!source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)){
-            amount = Math.min(initialAmount, AttributesConfig.get(AttributesConfig.VizierDamageCap).floatValue());
-        }
         if (this.moddedInvul <= 0){
             super.actuallyHurt(source, amount);
             if (source.getEntity() != null) {

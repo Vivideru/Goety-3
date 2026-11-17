@@ -21,6 +21,7 @@ import com.Polarice3.Goety.utils.BlockFinder;
 import com.Polarice3.Goety.utils.MobUtil;
 import com.Polarice3.Goety.utils.ServerParticleUtil;
 import com.Polarice3.Goety.utils.SoundUtil;
+import com.Vivideru.Goety.common.entities.SummonerTracker;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -158,6 +159,7 @@ public class AbstractCairnNecromancer extends AbstractNecromancer{
                     Summoned summonedentity = AbstractCairnNecromancer.this.getSummon();
                     BlockPos blockPos = BlockFinder.SummonRadius(AbstractCairnNecromancer.this.blockPosition(), summonedentity, serverLevel);
                     summonedentity.setTrueOwner(MobUtil.getSummonOwner(AbstractCairnNecromancer.this));
+                    SummonerTracker.record(summonedentity, AbstractCairnNecromancer.this);
                     summonedentity.moveTo(blockPos, 0.0F, 0.0F);
                     MobUtil.moveDownToGround(summonedentity);
                     if (MobsConfig.NecromancerSummonsLife.get()) {

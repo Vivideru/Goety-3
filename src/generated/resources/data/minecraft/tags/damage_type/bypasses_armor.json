@@ -13,6 +13,8 @@
     "goety:rage",
     "goety:voided",
     "goety:dismissed",
-    "goety:death"
+    "goety:death",
+    "goety:soul",
+    "goety:indirect_soul"
   ]
 }
